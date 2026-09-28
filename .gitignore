@@ -1,0 +1,34 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Database & logs
+data/football.db
+data/football.db-wal
+data/football.db-shm
+data/*.log
+data/.fuse_hidden*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+
+# Trained models (large binary files)
+models/xgb_trained.pkl
+experiments/*.pkl
+models/*.pkl
+
+# Predictions output (generated at runtime)
+predictions/next_round_*.txt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
