@@ -2,9 +2,11 @@
 Configurazione centrale: chiavi API, league IDs, costanti del modello.
 """
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # ─── API Keys ─────────────────────────────────────────────────────────────────
 FOOTBALL_DATA_ORG_KEY = os.getenv("FOOTBALL_DATA_ORG_KEY", "")
