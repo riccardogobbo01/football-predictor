@@ -1,5 +1,8 @@
-[variables]
-NIXPACKS_PYTHON_VERSION = "3.11"
+[phases.setup]
+nixPkgs = ["python311", "python311Packages.pip", "gcc", "libffi", "openssl"]
+
+[phases.install]
+cmds = ["pip install --no-cache-dir -r requirements.txt"]
 
 [start]
 cmd = "python app.py"
