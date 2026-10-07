@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Football Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --card: #1c2128;
+  --card-hover: #22272e;
+  --border: #30363d;
+  --accent: #4f8ef7;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --green: #4ade80;
+  --yellow: #fbbf24;
+  --red: #f87171;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f6f8fa;
+    --surface: #ffffff;
+    --card: #ffffff;
+    --card-hover: #f0f4f9;
+    --border: #d0d7de;
+    --text: #1f2328;
+    --muted: #656d76;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-hover: #f0f4f9;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --muted: #656d76;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+/* Header */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.logo { font-size: 1.6rem; }
+.site-title { font-size: 1.2rem; font-weight: 800; letter-spacing: -.4px; }
+.site-title em { color: var(--accent); font-style: normal; }
+.header-meta { margin-left: auto; font-size: .78rem; color: var(--muted); text-align: right; }
+.header-meta strong { color: var(--text); }
+.theme-btn {
+  background: none; border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 10px; cursor: pointer; color: var(--muted); font-size: .85rem;
+  transition: color .15s, border-color .15s;
+}
+.theme-btn:hover { color: var(--text); border-color: var(--accent); }
+
+/* Tabs */
+.tabs-wrap {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-wrap::-webkit-scrollbar { display: none; }
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: .84rem;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color .15s, border-color .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+.badge {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: .72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Main */
+main { padding: 24px 20px 60px; max-width: 1400px; margin: 0 auto; }
+
+/* League section */
+.league-section { margin-bottom: 32px; }
+.league-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.league-flag { font-size: 1.4rem; }
+.league-name { font-size: 1.05rem; font-weight: 700; }
+.league-meta { margin-left: auto; font-size: .75rem; color: var(--muted); }
+
+/* Match grid */
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+/* Match card */
+.match-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: border-color .2s, background .2s, transform .15s;
+}
+.match-card:hover {
+  background: var(--card-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.match-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.teams-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.team {
+  flex: 1;
+  font-weight: 700;
+  font-size: .9rem;
+}
+.away-team { text-align: right; }
+.xg-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.xg {
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.home-xg { color: var(--accent); }
+.away-xg { color: var(--green); }
+.xg-sep { font-size: .6rem; color: var(--muted); }
+.outcome-badge {
+  font-size: .78rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: .02em;
+}
+
+/* Prob bars */
+.probs-section { margin-bottom: 12px; }
+.prob-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.prob-lbl {
+  font-size: .75rem;
+  font-weight: 700;
+  width: 14px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.bar-wrap {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 4px;
+  height: 7px;
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .5s ease;
+}
+.prob-pct {
+  font-size: .75rem;
+  font-weight: 700;
+  width: 38px;
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Secondaries */
+.secondaries {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sec-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 5px 8px;
+  min-width: 72px;
+  flex: 1;
+}
+.sec-lbl { font-size: .65rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.sec-val { font-size: .82rem; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.score-tip { font-size: .76rem; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 14px; }
+.empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: .75rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 600px) {
+  header { padding: 12px 16px; }
+  main { padding: 16px 14px 40px; }
+  .league-meta { display: none; }
+  .matches-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">⚽</div>
+  <h1 class="site-title">Football <em>Predictor</em></h1>
+  <div class="header-meta">
+    <strong>0 previsioni</strong> · aggiornato 2026-10-07 15:02 UTC<br>
+    Dixon-Coles + dati football-data.co.uk
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
+</header>
+
+<div class="tabs-wrap">
+  <button class="tab active" onclick="switchTab('all',this)">🌍 Tutte</button>
+<button class="tab" onclick="switchTab('serie_a',this)">🇮🇹 Serie A <span class="badge">0</span></button>
+<button class="tab" onclick="switchTab('premier_league',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League <span class="badge">0</span></button>
+<button class="tab" onclick="switchTab('bundesliga',this)">🇩🇪 Bundesliga <span class="badge">0</span></button>
+<button class="tab" onclick="switchTab('la_liga',this)">🇪🇸 La Liga <span class="badge">0</span></button>
+<button class="tab" onclick="switchTab('ligue_1',this)">🇫🇷 Ligue 1 <span class="badge">0</span></button>
+
+</div>
+
+<main id="main-content">
+  <div id="leagues-container">
+    <div class="empty-state"><div class="icon">🔍</div><h2>Nessuna partita trovata nei prossimi 14 giorni</h2><p>Le previsioni vengono aggiornate automaticamente ogni mattina.</p></div>
+  </div>
+</main>
+
+<footer>
+  Dati: <a href="https://football-data.co.uk" target="_blank">football-data.co.uk</a> ·
+  <a href="https://football-data.org" target="_blank">football-data.org</a> ·
+  Modello: Dixon-Coles (1997) ·
+  <a href="predictions.json" target="_blank">JSON grezzo</a>
+</footer>
+
+<script>
+function switchTab(league, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.league-section').forEach(sec => {
+    if (league === 'all') {
+      sec.style.display = '';
+    } else {
+      sec.style.display = sec.dataset.league === league ? '' : 'none';
+    }
+  });
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  root.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+  try { localStorage.setItem('fp-theme', root.getAttribute('data-theme')); } catch(e) {}
+}
+
+// Ripristina tema salvato
+try {
+  const saved = localStorage.getItem('fp-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+} catch(e) {}
+</script>
+</body>
+</html>
