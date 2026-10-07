@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 
 # ── Configurazione ─────────────────────────────────────────────────────────────
 
-FOOTBALL_DATA_ORG_KEY = os.getenv("FOOTBALL_DATA_ORG_KEY", "b80401267b00440381271433d237f5c8")
+FOOTBALL_DATA_ORG_KEY = os.getenv("FOOTBALL_DATA_ORG_KEY", "")
 
 LEAGUES = {
     "serie_a":        {"code": "SA",  "csv": "I1",  "name": "Serie A",        "flag": "🇮🇹"},
