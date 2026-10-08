@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08 10:01 UTC",
+  "generated_at": "2026-10-08 10:05 UTC",
   "leagues": {
     "serie_a": {
       "name": "Serie A",
@@ -1569,48 +1569,48 @@
           "away_full": "Nottingham Forest FC",
           "matchday": 6,
           "home_dc": "Crystal Palace",
-          "away_dc": "Tottenham",
+          "away_dc": "Nott'm Forest",
           "prediction": {
-            "home_xg": 1.49,
-            "away_xg": 1.29,
-            "prob_home": 0.41,
-            "prob_draw": 0.273,
-            "prob_away": 0.318,
-            "prob_o15": 0.777,
-            "prob_o25": 0.527,
-            "prob_o35": 0.305,
-            "prob_btts": 0.573,
-            "prob_cs_home": 0.275,
+            "home_xg": 1.26,
+            "away_xg": 1.19,
+            "prob_home": 0.369,
+            "prob_draw": 0.295,
+            "prob_away": 0.335,
+            "prob_o15": 0.715,
+            "prob_o25": 0.445,
+            "prob_o35": 0.233,
+            "prob_btts": 0.511,
+            "prob_cs_home": 0.303,
             "top_scores": [
               [
                 1,
                 1,
-                12.9
-              ],
-              [
-                2,
-                1,
-                8.9
+                14.0
               ],
               [
                 1,
                 0,
+                9.7
+              ],
+              [
+                0,
+                0,
+                9.7
+              ],
+              [
+                0,
+                1,
+                9.1
+              ],
+              [
+                2,
+                1,
                 8.2
               ],
               [
                 1,
                 2,
                 7.7
-              ],
-              [
-                0,
-                0,
-                7.2
-              ],
-              [
-                0,
-                1,
-                6.9
               ]
             ]
           }
@@ -2173,49 +2173,49 @@
           "home_full": "Nottingham Forest FC",
           "away_full": "Arsenal FC",
           "matchday": 7,
-          "home_dc": "Tottenham",
+          "home_dc": "Nott'm Forest",
           "away_dc": "Arsenal",
           "prediction": {
-            "home_xg": 0.88,
-            "away_xg": 1.9,
-            "prob_home": 0.159,
-            "prob_draw": 0.237,
-            "prob_away": 0.604,
-            "prob_o15": 0.773,
-            "prob_o25": 0.524,
-            "prob_o35": 0.302,
-            "prob_btts": 0.505,
-            "prob_cs_home": 0.15,
+            "home_xg": 0.81,
+            "away_xg": 1.6,
+            "prob_home": 0.178,
+            "prob_draw": 0.27,
+            "prob_away": 0.552,
+            "prob_o15": 0.705,
+            "prob_o25": 0.434,
+            "prob_o35": 0.224,
+            "prob_btts": 0.454,
+            "prob_cs_home": 0.201,
             "top_scores": [
               [
+                0,
+                1,
+                13.3
+              ],
+              [
                 1,
                 1,
-                11.3
+                12.6
               ],
               [
                 0,
                 2,
-                11.2
+                11.5
               ],
               [
                 0,
-                1,
-                10.9
+                0,
+                10.0
               ],
               [
                 1,
                 2,
-                9.9
+                9.3
               ],
               [
+                1,
                 0,
-                0,
-                7.2
-              ],
-              [
-                0,
-                3,
-                7.1
+                6.2
               ]
             ]
           }
@@ -3405,8 +3405,51 @@
           "away_full": "Athletic Club",
           "matchday": 8,
           "home_dc": "Vallecano",
-          "away_dc": null,
-          "prediction": null
+          "away_dc": "Ath Bilbao",
+          "prediction": {
+            "home_xg": 1.1,
+            "away_xg": 1.03,
+            "prob_home": 0.366,
+            "prob_draw": 0.299,
+            "prob_away": 0.335,
+            "prob_o15": 0.629,
+            "prob_o25": 0.359,
+            "prob_o35": 0.167,
+            "prob_btts": 0.43,
+            "prob_cs_home": 0.355,
+            "top_scores": [
+              [
+                1,
+                1,
+                13.6
+              ],
+              [
+                1,
+                0,
+                12.9
+              ],
+              [
+                0,
+                1,
+                12.2
+              ],
+              [
+                0,
+                0,
+                12.0
+              ],
+              [
+                2,
+                1,
+                7.4
+              ],
+              [
+                2,
+                0,
+                7.1
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-10",
@@ -3417,48 +3460,48 @@
           "away_full": "Club Atlético de Madrid",
           "matchday": 8,
           "home_dc": "Alaves",
-          "away_dc": "Almeria",
+          "away_dc": "Ath Madrid",
           "prediction": {
-            "home_xg": 1.8,
-            "away_xg": 1.04,
-            "prob_home": 0.552,
-            "prob_draw": 0.233,
-            "prob_away": 0.216,
-            "prob_o15": 0.777,
-            "prob_o25": 0.54,
-            "prob_o35": 0.317,
-            "prob_btts": 0.541,
-            "prob_cs_home": 0.354,
+            "home_xg": 1.04,
+            "away_xg": 1.5,
+            "prob_home": 0.263,
+            "prob_draw": 0.262,
+            "prob_away": 0.475,
+            "prob_o15": 0.721,
+            "prob_o25": 0.466,
+            "prob_o35": 0.25,
+            "prob_btts": 0.503,
+            "prob_cs_home": 0.224,
             "top_scores": [
               [
                 1,
                 1,
-                11.0
+                12.4
+              ],
+              [
+                0,
+                1,
+                11.7
               ],
               [
                 1,
-                0,
-                10.4
-              ],
-              [
                 2,
-                1,
-                9.9
+                9.2
               ],
               [
+                0,
                 2,
-                0,
-                9.5
+                8.8
               ],
               [
-                0,
                 1,
-                6.0
+                0,
+                8.1
               ],
               [
                 0,
                 0,
-                5.9
+                8.0
               ]
             ]
           }
@@ -3637,8 +3680,51 @@
           "away_full": "RC Deportivo La Coruña",
           "matchday": 8,
           "home_dc": "Sociedad",
-          "away_dc": null,
-          "prediction": null
+          "away_dc": "La Coruna",
+          "prediction": {
+            "home_xg": 1.55,
+            "away_xg": 1.22,
+            "prob_home": 0.448,
+            "prob_draw": 0.252,
+            "prob_away": 0.3,
+            "prob_o15": 0.766,
+            "prob_o25": 0.525,
+            "prob_o35": 0.303,
+            "prob_btts": 0.558,
+            "prob_cs_home": 0.294,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.9
+              ],
+              [
+                1,
+                0,
+                9.6
+              ],
+              [
+                2,
+                1,
+                9.2
+              ],
+              [
+                0,
+                1,
+                7.5
+              ],
+              [
+                2,
+                0,
+                7.5
+              ],
+              [
+                1,
+                2,
+                7.2
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-11",
@@ -3813,9 +3899,52 @@
           "home_full": "RC Deportivo La Coruña",
           "away_full": "Levante UD",
           "matchday": 9,
-          "home_dc": null,
+          "home_dc": "La Coruna",
           "away_dc": "Levante",
-          "prediction": null
+          "prediction": {
+            "home_xg": 1.9,
+            "away_xg": 1.13,
+            "prob_home": 0.552,
+            "prob_draw": 0.225,
+            "prob_away": 0.223,
+            "prob_o15": 0.807,
+            "prob_o25": 0.584,
+            "prob_o35": 0.36,
+            "prob_btts": 0.577,
+            "prob_cs_home": 0.322,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.5
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                1,
+                0,
+                9.1
+              ],
+              [
+                2,
+                0,
+                8.7
+              ],
+              [
+                3,
+                1,
+                6.3
+              ],
+              [
+                1,
+                2,
+                5.9
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-17",
@@ -3826,48 +3955,48 @@
           "away_full": "Club Atlético de Madrid",
           "matchday": 9,
           "home_dc": "Espanol",
-          "away_dc": "Almeria",
+          "away_dc": "Ath Madrid",
           "prediction": {
-            "home_xg": 1.85,
-            "away_xg": 1.13,
-            "prob_home": 0.539,
-            "prob_draw": 0.23,
-            "prob_away": 0.231,
-            "prob_o15": 0.798,
-            "prob_o25": 0.571,
-            "prob_o35": 0.347,
-            "prob_btts": 0.571,
-            "prob_cs_home": 0.323,
+            "home_xg": 1.07,
+            "away_xg": 1.63,
+            "prob_home": 0.248,
+            "prob_draw": 0.249,
+            "prob_away": 0.503,
+            "prob_o15": 0.751,
+            "prob_o25": 0.505,
+            "prob_o35": 0.285,
+            "prob_btts": 0.528,
+            "prob_cs_home": 0.196,
             "top_scores": [
               [
                 1,
                 1,
-                10.7
+                11.8
               ],
               [
-                2,
+                0,
                 1,
-                9.8
+                10.9
+              ],
+              [
+                1,
+                2,
+                9.6
+              ],
+              [
+                0,
+                2,
+                9.0
               ],
               [
                 1,
                 0,
-                9.3
+                7.1
               ],
               [
-                2,
                 0,
-                8.7
-              ],
-              [
-                3,
-                1,
-                6.0
-              ],
-              [
-                1,
-                2,
-                6.0
+                0,
+                6.9
               ]
             ]
           }
@@ -3991,8 +4120,51 @@
           "away_full": "Athletic Club",
           "matchday": 9,
           "home_dc": "Valencia",
-          "away_dc": null,
-          "prediction": null
+          "away_dc": "Ath Bilbao",
+          "prediction": {
+            "home_xg": 1.12,
+            "away_xg": 1.12,
+            "prob_home": 0.355,
+            "prob_draw": 0.29,
+            "prob_away": 0.355,
+            "prob_o15": 0.658,
+            "prob_o25": 0.39,
+            "prob_o35": 0.19,
+            "prob_btts": 0.457,
+            "prob_cs_home": 0.325,
+            "top_scores": [
+              [
+                1,
+                1,
+                13.5
+              ],
+              [
+                0,
+                1,
+                11.8
+              ],
+              [
+                1,
+                0,
+                11.8
+              ],
+              [
+                0,
+                0,
+                10.7
+              ],
+              [
+                1,
+                2,
+                7.5
+              ],
+              [
+                2,
+                1,
+                7.5
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-18",
@@ -4278,8 +4450,51 @@
           "away_full": "Athletic Club",
           "matchday": 6,
           "home_dc": "Levante",
-          "away_dc": null,
-          "prediction": null
+          "away_dc": "Ath Bilbao",
+          "prediction": {
+            "home_xg": 1.32,
+            "away_xg": 1.32,
+            "prob_home": 0.368,
+            "prob_draw": 0.264,
+            "prob_away": 0.368,
+            "prob_o15": 0.741,
+            "prob_o25": 0.491,
+            "prob_o35": 0.272,
+            "prob_btts": 0.537,
+            "prob_cs_home": 0.267,
+            "top_scores": [
+              [
+                1,
+                1,
+                12.6
+              ],
+              [
+                0,
+                1,
+                9.3
+              ],
+              [
+                1,
+                0,
+                9.3
+              ],
+              [
+                1,
+                2,
+                8.2
+              ],
+              [
+                2,
+                1,
+                8.2
+              ],
+              [
+                0,
+                0,
+                7.3
+              ]
+            ]
+          }
         }
       ]
     },
@@ -4545,9 +4760,52 @@
           "home_full": "Paris Saint-Germain FC",
           "away_full": "Le Mans FC",
           "matchday": 6,
-          "home_dc": null,
+          "home_dc": "Paris SG",
           "away_dc": "Le Mans",
-          "prediction": null
+          "prediction": {
+            "home_xg": 3.1,
+            "away_xg": 1.14,
+            "prob_home": 0.756,
+            "prob_draw": 0.139,
+            "prob_away": 0.104,
+            "prob_o15": 0.926,
+            "prob_o25": 0.793,
+            "prob_o35": 0.607,
+            "prob_btts": 0.652,
+            "prob_cs_home": 0.32,
+            "top_scores": [
+              [
+                3,
+                1,
+                8.3
+              ],
+              [
+                2,
+                1,
+                8.0
+              ],
+              [
+                3,
+                0,
+                7.3
+              ],
+              [
+                2,
+                0,
+                7.0
+              ],
+              [
+                4,
+                1,
+                6.4
+              ],
+              [
+                4,
+                0,
+                5.6
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-10",
@@ -4667,9 +4925,52 @@
           "home_full": "Stade Rennais FC 1901",
           "away_full": "AJ Auxerre",
           "matchday": 6,
-          "home_dc": null,
+          "home_dc": "Rennes",
           "away_dc": "Auxerre",
-          "prediction": null
+          "prediction": {
+            "home_xg": 1.93,
+            "away_xg": 1.1,
+            "prob_home": 0.562,
+            "prob_draw": 0.23,
+            "prob_away": 0.207,
+            "prob_o15": 0.811,
+            "prob_o25": 0.584,
+            "prob_o35": 0.359,
+            "prob_btts": 0.576,
+            "prob_cs_home": 0.333,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.8
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                2,
+                0,
+                9.0
+              ],
+              [
+                1,
+                0,
+                8.8
+              ],
+              [
+                3,
+                1,
+                6.4
+              ],
+              [
+                3,
+                0,
+                5.8
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-11",
@@ -4739,7 +5040,7 @@
           "prediction": {
             "home_xg": 1.94,
             "away_xg": 1.53,
-            "prob_home": 0.469,
+            "prob_home": 0.468,
             "prob_draw": 0.229,
             "prob_away": 0.302,
             "prob_o15": 0.865,
@@ -4790,8 +5091,51 @@
           "away_full": "Paris Saint-Germain FC",
           "matchday": 7,
           "home_dc": "Strasbourg",
-          "away_dc": null,
-          "prediction": null
+          "away_dc": "Paris SG",
+          "prediction": {
+            "home_xg": 1.27,
+            "away_xg": 2.08,
+            "prob_home": 0.225,
+            "prob_draw": 0.22,
+            "prob_away": 0.555,
+            "prob_o15": 0.852,
+            "prob_o25": 0.649,
+            "prob_o35": 0.429,
+            "prob_btts": 0.634,
+            "prob_cs_home": 0.125,
+            "top_scores": [
+              [
+                1,
+                1,
+                9.8
+              ],
+              [
+                1,
+                2,
+                9.7
+              ],
+              [
+                0,
+                2,
+                7.6
+              ],
+              [
+                0,
+                1,
+                6.8
+              ],
+              [
+                1,
+                3,
+                6.7
+              ],
+              [
+                2,
+                2,
+                6.1
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-17",
@@ -5022,8 +5366,51 @@
           "away_full": "Stade Rennais FC 1901",
           "matchday": 7,
           "home_dc": "Paris FC",
-          "away_dc": null,
-          "prediction": null
+          "away_dc": "Rennes",
+          "prediction": {
+            "home_xg": 1.62,
+            "away_xg": 1.35,
+            "prob_home": 0.431,
+            "prob_draw": 0.254,
+            "prob_away": 0.315,
+            "prob_o15": 0.802,
+            "prob_o25": 0.57,
+            "prob_o35": 0.346,
+            "prob_btts": 0.6,
+            "prob_cs_home": 0.258,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.8
+              ],
+              [
+                2,
+                1,
+                9.1
+              ],
+              [
+                1,
+                0,
+                7.7
+              ],
+              [
+                1,
+                2,
+                7.6
+              ],
+              [
+                2,
+                0,
+                6.7
+              ],
+              [
+                0,
+                1,
+                6.4
+              ]
+            ]
+          }
         },
         {
           "date": "2026-10-18",
