@@ -168,8 +168,9 @@ def add_dc_probs(o, rho=None, prefix=""):
 
 
 # ─────────────────────────────── pi-ratings ──────────────────────────────────
-def pi_ratings(df, lam=0.06, gam=0.6, c=3.0):
-    """Pi-ratings (Constantinou & Fenton 2013). Restituisce rating PRE-partita."""
+def pi_ratings(df, lam=0.06, gam=0.6, c=3.0, return_state=False):
+    """Pi-ratings (Constantinou & Fenton 2013). Restituisce rating PRE-partita
+    (con return_state=True anche lo stato finale {squadra: [casa, trasferta]}, per le previsioni future)."""
     R = {}  # team -> [home_rating, away_rating]
     cols = np.zeros((len(df), 4))
     for k, (i, r) in enumerate(df.iterrows()):
@@ -183,4 +184,5 @@ def pi_ratings(df, lam=0.06, gam=0.6, c=3.0):
         dh, da = psi * lam, -psi * lam
         Rh[0] += dh; Rh[1] += dh * gam
         Ra[1] += da; Ra[0] += da * gam
-    return pd.DataFrame(cols, index=df.index, columns=["pi_hh", "pi_ha", "pi_ah", "pi_aa"])
+    out = pd.DataFrame(cols, index=df.index, columns=["pi_hh", "pi_ha", "pi_ah", "pi_aa"])
+    return (out, R) if return_state else out

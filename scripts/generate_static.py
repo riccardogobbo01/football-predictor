@@ -1,26 +1,33 @@
 #!/usr/bin/env python3
 """
-generate_static.py — Genera docs/index.html con le previsioni delle prossime partite.
+generate_static.py — Genera docs/index.html e docs/predictions.json con le previsioni
+delle prossime partite dei 5 campionati.
 
-Completamente standalone: scarica i CSV da football-data.co.uk, fitta Dixon-Coles
-in memoria (nessun DB), scarica le fixture da football-data.org, genera HTML statico.
+Usa il Poisson-stack (senza Elo) di models/stack.json: per ogni lega calcola le feature
+(Dixon-Coles sui gol, Dixon-Coles sui tiri in porta, pi-ratings) con i dati fino a oggi,
+applica lo stack e ricava tutti i mercati (1X2, O/U, BTTS, clean sheet, risultati esatti)
+da una sola matrice dei punteggi. La logica è in predictions/stack_predictor.py, la stessa
+usata dall'app Flask.
 
-Usato da GitHub Actions per aggiornare GitHub Pages ogni giorno.
-Funziona anche in locale: python scripts/generate_static.py
+Scarica i CSV da football-data.co.uk e le fixture da football-data.org (serve
+FOOTBALL_DATA_ORG_KEY nell'ambiente). Usato da GitHub Actions ogni giorno; in locale:
+  python scripts/generate_static.py
 """
-import io
 import json
 import logging
 import os
+import sys
 import time
 from datetime import datetime, timedelta
-from difflib import SequenceMatcher
 
-import numpy as np
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, REPO_ROOT)
+
 import pandas as pd
 import requests
-from scipy.optimize import minimize
-from scipy.stats import poisson
+
+from backtest import data
+from predictions import stack_predictor as sp
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -30,213 +37,15 @@ log = logging.getLogger(__name__)
 FOOTBALL_DATA_ORG_KEY = os.getenv("FOOTBALL_DATA_ORG_KEY", "")
 
 LEAGUES = {
-    "serie_a":        {"code": "SA",  "csv": "I1",  "name": "Serie A",        "flag": "🇮🇹"},
-    "premier_league": {"code": "PL",  "csv": "E0",  "name": "Premier League", "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"},
-    "bundesliga":     {"code": "BL1", "csv": "D1",  "name": "Bundesliga",      "flag": "🇩🇪"},
-    "la_liga":        {"code": "PD",  "csv": "SP1", "name": "La Liga",         "flag": "🇪🇸"},
-    "ligue_1":        {"code": "FL1", "csv": "F1",  "name": "Ligue 1",         "flag": "🇫🇷"},
+    "serie_a":        {"code": "SA",  "name": "Serie A",        "flag": "🇮🇹"},
+    "premier_league": {"code": "PL",  "name": "Premier League", "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"},
+    "bundesliga":     {"code": "BL1", "name": "Bundesliga",      "flag": "🇩🇪"},
+    "la_liga":        {"code": "PD",  "name": "La Liga",         "flag": "🇪🇸"},
+    "ligue_1":        {"code": "FL1", "name": "Ligue 1",         "flag": "🇫🇷"},
 }
 
-def _recent_seasons(n: int = 6) -> list[str]:
-    """Codici stagione football-data.co.uk (es. '2627'), dalla corrente all'indietro."""
-    now = datetime.utcnow()
-    start = now.year if now.month >= 7 else now.year - 1
-    return [f"{y % 100:02d}{(y + 1) % 100:02d}" for y in range(start, start - n, -1)]
-
-
-CSV_SEASONS = _recent_seasons(6)  # stagione corrente + 5 precedenti
-DC_XI       = 0.0018   # tasso decadimento temporale
-DC_MAX_GOALS = 7
-DAYS_AHEAD  = 14
-
-# ── Download CSV ───────────────────────────────────────────────────────────────
-
-def download_csv_data(league_key: str) -> pd.DataFrame:
-    """Scarica i CSV storici da football-data.co.uk e restituisce un DataFrame pulito."""
-    csv_code = LEAGUES[league_key]["csv"]
-    dfs = []
-
-    for season in CSV_SEASONS:
-        url = f"https://www.football-data.co.uk/mmz4281/{season}/{csv_code}.csv"
-        try:
-            resp = requests.get(url, timeout=25)
-            if resp.status_code == 404:
-                continue
-            resp.raise_for_status()
-            df = pd.read_csv(
-                io.StringIO(resp.content.decode("latin-1")),
-                on_bad_lines="skip"
-            )
-            needed = ["HomeTeam", "AwayTeam", "FTHG", "FTAG", "Date"]
-            if not all(c in df.columns for c in needed):
-                continue
-
-            df = df[needed + [c for c in ["HS", "AS", "HC", "AC", "HY", "AY"]
-                              if c in df.columns]].copy()
-            df = df.dropna(subset=["HomeTeam", "AwayTeam", "FTHG", "FTAG"])
-            df["FTHG"] = pd.to_numeric(df["FTHG"], errors="coerce")
-            df["FTAG"] = pd.to_numeric(df["FTAG"], errors="coerce")
-            df = df.dropna(subset=["FTHG", "FTAG"])
-            df["FTHG"] = df["FTHG"].astype(int)
-            df["FTAG"] = df["FTAG"].astype(int)
-
-            # Parse date — football-data usa DD/MM/YY o DD/MM/YYYY
-            for fmt in ["%d/%m/%Y", "%d/%m/%y"]:
-                try:
-                    df["date_parsed"] = pd.to_datetime(df["Date"], format=fmt)
-                    break
-                except Exception:
-                    pass
-            else:
-                df["date_parsed"] = pd.to_datetime(df["Date"], dayfirst=True, errors="coerce")
-
-            df = df.dropna(subset=["date_parsed"])
-            df["season"] = season
-            dfs.append(df)
-            log.info("  %s/%s: %d partite", league_key, season, len(df))
-            time.sleep(0.4)
-        except Exception as e:
-            log.warning("  Errore download %s: %s", url, e)
-
-    if not dfs:
-        return pd.DataFrame()
-    return pd.concat(dfs, ignore_index=True).sort_values("date_parsed").reset_index(drop=True)
-
-
-# ── Dixon-Coles ────────────────────────────────────────────────────────────────
-
-def fit_dixon_coles(df: pd.DataFrame) -> dict | None:
-    """
-    Fitta il modello Dixon-Coles su df con ottimizzazione vettorizzata.
-    Restituisce un dict con attack/defense/home_adv/rho per ogni squadra.
-    """
-    if len(df) < 60:
-        log.warning("  Dati insufficienti (%d partite)", len(df))
-        return None
-
-    ref_date = df["date_parsed"].max()
-    days_ago = (ref_date - df["date_parsed"]).dt.days.values.astype(float)
-    weights  = np.exp(-DC_XI * days_ago)
-
-    teams = sorted(set(df["HomeTeam"].tolist()) | set(df["AwayTeam"].tolist()))
-    t_idx = {t: i for i, t in enumerate(teams)}
-    n     = len(teams)
-
-    hi_arr = np.array([t_idx[t] for t in df["HomeTeam"]])
-    ai_arr = np.array([t_idx[t] for t in df["AwayTeam"]])
-    hg_arr = df["FTHG"].values
-    ag_arr = df["FTAG"].values
-
-    def neg_log_lik(params):
-        home_adv = params[0]
-        rho      = params[1]
-        alphas   = params[2:2 + n]
-        deltas   = params[2 + n:]
-
-        mu = np.exp(alphas[hi_arr] + deltas[ai_arr] + home_adv)
-        nu = np.exp(alphas[ai_arr] + deltas[hi_arr])
-
-        # Poisson PMF vettorizzato
-        log_p = (poisson.logpmf(hg_arr, mu) + poisson.logpmf(ag_arr, nu))
-
-        # Correzione Dixon-Coles per punteggi bassi
-        tau_vec = np.ones(len(df))
-        m00 = (hg_arr == 0) & (ag_arr == 0)
-        m10 = (hg_arr == 1) & (ag_arr == 0)
-        m01 = (hg_arr == 0) & (ag_arr == 1)
-        m11 = (hg_arr == 1) & (ag_arr == 1)
-        tau_vec[m00] = np.maximum(1 - mu[m00] * nu[m00] * rho, 1e-10)
-        tau_vec[m10] = np.maximum(1 + nu[m10] * rho,           1e-10)
-        tau_vec[m01] = np.maximum(1 + mu[m01] * rho,           1e-10)
-        tau_vec[m11] = np.maximum(1 - rho,                      1e-10)
-
-        ll = np.sum(weights * (log_p + np.log(tau_vec)))
-        return -ll
-
-    x0 = np.zeros(2 + 2 * n)
-    x0[0] = 0.2    # home advantage
-    x0[1] = -0.08  # rho
-
-    bounds = [(-0.5, 1.0), (-0.5, 0.5)] + [(-2.5, 2.5)] * (2 * n)
-
-    result = minimize(
-        neg_log_lik, x0,
-        method="SLSQP",
-        bounds=bounds,
-        constraints={"type": "eq", "fun": lambda p: p[2:2 + n].sum()},
-        options={"maxiter": 400, "ftol": 1e-7},
-    )
-
-    if not result.success:
-        log.warning("  Dixon-Coles non convergita: %s", result.message)
-
-    p = result.x
-    return {
-        "teams":      teams,
-        "attack":     {t: float(p[2 + t_idx[t]])          for t in teams},
-        "defense":    {t: float(p[2 + n + t_idx[t]])      for t in teams},
-        "home_adv":   float(p[0]),
-        "rho":        float(p[1]),
-        "fitted_at":  ref_date.strftime("%Y-%m-%d"),
-        "n_matches":  int(len(df)),
-    }
-
-
-# ── Previsione ─────────────────────────────────────────────────────────────────
-
-def predict_match(home: str, away: str, dc: dict) -> dict | None:
-    """Genera una previsione completa per home vs away."""
-    if home not in dc["attack"] or away not in dc["attack"]:
-        return None
-
-    mu  = np.exp(dc["attack"][home] + dc["defense"][away] + dc["home_adv"])
-    nu  = np.exp(dc["attack"][away] + dc["defense"][home])
-    rho = dc["rho"]
-    mu  = max(float(mu), 0.1)
-    nu  = max(float(nu), 0.1)
-
-    G = DC_MAX_GOALS
-    score_matrix = np.zeros((G + 1, G + 1))
-    for x in range(G + 1):
-        for y in range(G + 1):
-            t = 1.0
-            if   x == 0 and y == 0: t = max(1 - mu * nu * rho, 1e-10)
-            elif x == 1 and y == 0: t = max(1 + nu * rho,       1e-10)
-            elif x == 0 and y == 1: t = max(1 + mu * rho,       1e-10)
-            elif x == 1 and y == 1: t = max(1 - rho,             1e-10)
-            score_matrix[x, y] = t * poisson.pmf(x, mu) * poisson.pmf(y, nu)
-    score_matrix = np.maximum(score_matrix, 1e-10)
-    score_matrix /= score_matrix.sum()
-
-    prob_home = float(np.tril(score_matrix, -1).sum())
-    prob_draw = float(np.trace(score_matrix))
-    prob_away = float(np.triu(score_matrix, 1).sum())
-
-    prob_o15 = float(sum(score_matrix[i, j] for i in range(G+1) for j in range(G+1) if i+j > 1))
-    prob_o25 = float(sum(score_matrix[i, j] for i in range(G+1) for j in range(G+1) if i+j > 2))
-    prob_o35 = float(sum(score_matrix[i, j] for i in range(G+1) for j in range(G+1) if i+j > 3))
-    prob_btts = float(score_matrix[1:, 1:].sum())
-    prob_cs_home = float(score_matrix[:, 0].sum())
-
-    scores_flat = [
-        (int(x), int(y), float(score_matrix[x, y]))
-        for x in range(G + 1) for y in range(G + 1)
-    ]
-    top_scores = sorted(scores_flat, key=lambda s: s[2], reverse=True)[:6]
-
-    return {
-        "home_xg":     round(mu, 2),
-        "away_xg":     round(nu, 2),
-        "prob_home":   round(prob_home, 3),
-        "prob_draw":   round(prob_draw, 3),
-        "prob_away":   round(prob_away, 3),
-        "prob_o15":    round(prob_o15, 3),
-        "prob_o25":    round(prob_o25, 3),
-        "prob_o35":    round(prob_o35, 3),
-        "prob_btts":   round(prob_btts, 3),
-        "prob_cs_home":round(prob_cs_home, 3),
-        "top_scores":  [[s[0], s[1], round(s[2]*100, 1)] for s in top_scores],
-    }
+DAYS_AHEAD = 14
+PROB_TOL = 1e-4   # tolleranza sulla somma delle probabilità 1X2 (arrotondamento a 5 decimali)
 
 
 # ── Fixture da football-data.org ──────────────────────────────────────────────
@@ -277,83 +86,6 @@ def get_fixtures(league_code: str) -> list[dict]:
         return []
 
 
-# ── Name matching ──────────────────────────────────────────────────────────────
-
-# Nomi football-data.org (brevi o completi) → nomi football-data.co.uk.
-# Va consultata prima del fuzzy matching, che altrimenti sbaglia
-# (es. "Atleti" → Almeria, "Nottingham" → Tottenham).
-TEAM_ALIASES = {
-    # Premier League
-    "nottingham": "Nott'm Forest", "nottingham forest": "Nott'm Forest",
-    "wolverhampton": "Wolves", "wolverhampton wanderers": "Wolves", "wolves": "Wolves",
-    "brighton hove": "Brighton", "brighton & hove albion": "Brighton",
-    "man city": "Man City", "manchester city": "Man City",
-    "man united": "Man United", "manchester united": "Man United",
-    "newcastle": "Newcastle", "newcastle united": "Newcastle",
-    "west ham": "West Ham", "west ham united": "West Ham",
-    "tottenham": "Tottenham", "tottenham hotspur": "Tottenham",
-    "sheffield united": "Sheffield United", "west brom": "West Brom",
-    "west bromwich albion": "West Brom",
-    # La Liga
-    "atleti": "Ath Madrid", "atletico madrid": "Ath Madrid", "club atletico de madrid": "Ath Madrid",
-    "athletic": "Ath Bilbao", "athletic club": "Ath Bilbao", "athletic bilbao": "Ath Bilbao",
-    "deportivo": "La Coruna", "rc deportivo la coruna": "La Coruna", "deportivo la coruna": "La Coruna",
-    "barca": "Barcelona", "espanyol": "Espanol", "rcd espanyol de barcelona": "Espanol",
-    "rayo vallecano": "Vallecano", "real sociedad": "Sociedad", "real betis": "Betis",
-    "real oviedo": "Oviedo", "racing santander": "Santander",
-    "real racing club de santander": "Santander", "ud almeria": "Almeria",
-    # Bundesliga
-    "bayern": "Bayern Munich", "fc bayern munchen": "Bayern Munich",
-    "frankfurt": "Ein Frankfurt", "eintracht frankfurt": "Ein Frankfurt",
-    "m'gladbach": "M'gladbach", "borussia monchengladbach": "M'gladbach",
-    "hsv": "Hamburg", "hamburger sv": "Hamburg", "1. fc koln": "FC Koln",
-    "st. pauli": "St Pauli", "fc st. pauli 1910": "St Pauli",
-    "bremen": "Werder Bremen", "sv werder bremen": "Werder Bremen",
-    "1. fc heidenheim 1846": "Heidenheim", "holstein kiel": "Holstein Kiel",
-    # Ligue 1
-    "psg": "Paris SG", "paris saint-germain": "Paris SG", "paris saint-germain fc": "Paris SG",
-    "stade rennais": "Rennes", "stade rennais fc 1901": "Rennes",
-    "olympique lyon": "Lyon", "olympique lyonnais": "Lyon",
-    "olympique de marseille": "Marseille", "rc lens": "Lens", "racing club de lens": "Lens",
-    "saint-etienne": "St Etienne", "as saint-etienne": "St Etienne",
-    "stade brestois 29": "Brest", "stade de reims": "Reims",
-    # Serie A
-    "hellas verona": "Verona", "hellas verona fc": "Verona",
-    "fc internazionale milano": "Inter", "internazionale": "Inter",
-}
-
-
-def _norm(s: str) -> str:
-    import unicodedata
-    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
-    return " ".join(s.lower().strip().split())
-
-
-def best_match(name: str, candidates: list[str]) -> str | None:
-    """Abbina un nome squadra di football-data.org al nome usato nei CSV storici."""
-    name_l = _norm(name)
-    cand = {_norm(c): c for c in candidates}
-
-    # 1. Alias espliciti
-    alias = TEAM_ALIASES.get(name_l)
-    if alias and _norm(alias) in cand:
-        return cand[_norm(alias)]
-
-    # 2. Esatto (senza accenti)
-    if name_l in cand:
-        return cand[name_l]
-
-    # 3. Contenimento, solo se univoco
-    hits = [c for n, c in cand.items() if n in name_l or name_l in n]
-    if len(hits) == 1:
-        return hits[0]
-
-    # 4. Fuzzy, con soglia alta
-    scored = [(SequenceMatcher(None, name_l, n).ratio(), c) for n, c in cand.items()]
-    best_score, best = max(scored, key=lambda x: x[0])
-    return best if best_score > 0.75 else None
-
-
 # ── Generazione HTML ───────────────────────────────────────────────────────────
 
 def _prob_color(p: float) -> str:
@@ -391,7 +123,7 @@ def generate_html(leagues_data: dict, generated_at: str) -> str:
         cards_html += (f'<div class="league-header">'
                        f'<span class="league-flag">{ld["flag"]}</span>'
                        f'<span class="league-name">{ld["name"]}</span>'
-                       f'<span class="league-meta">Modello fittato su {ld["dc_n_matches"]} partite · {ld["dc_fitted_at"]}</span>'
+                       f'<span class="league-meta">Stack su {ld["dc_n_matches"]} partite recenti · {ld["dc_fitted_at"]}</span>'
                        f'</div>\n')
         cards_html += '<div class="matches-grid">\n'
 
@@ -426,9 +158,9 @@ def generate_html(leagues_data: dict, generated_at: str) -> str:
   <div class="teams-row">
     <div class="team home-team">{fix['home']}</div>
     <div class="xg-display">
-      <span class="xg home-xg">{pred['home_xg']}</span>
-      <span class="xg-sep">xG</span>
-      <span class="xg away-xg">{pred['away_xg']}</span>
+      <span class="xg home-xg">{pred['exp_goals_home']}</span>
+      <span class="xg-sep">gol attesi</span>
+      <span class="xg away-xg">{pred['exp_goals_away']}</span>
     </div>
     <div class="team away-team">{fix['away']}</div>
   </div>
@@ -460,7 +192,7 @@ def generate_html(leagues_data: dict, generated_at: str) -> str:
       <span class="sec-val" style="color:{c(pred['prob_btts'])}">{pred['prob_btts']*100:.1f}%</span>
     </div>
     <div class="sec-item">
-      <span class="sec-lbl">Score tip</span>
+      <span class="sec-lbl">Risultato più probabile</span>
       <span class="sec-val score-tip">{ts_str}</span>
     </div>
   </div>
@@ -752,7 +484,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
     <strong>{total_preds} previsioni</strong> · aggiornato {generated_at}<br>
-    Dixon-Coles + dati football-data.co.uk
+    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings)
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
 </header>
@@ -770,7 +502,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
 <footer>
   Dati: <a href="https://football-data.co.uk" target="_blank">football-data.co.uk</a> ·
   <a href="https://football-data.org" target="_blank">football-data.org</a> ·
-  Modello: Dixon-Coles (1997) ·
+  Modello: Poisson-stack su Dixon-Coles (1997) ·
   <a href="predictions.json" target="_blank">JSON grezzo</a>
 </footer>
 
@@ -805,89 +537,112 @@ try {{
 </html>"""
 
 
+# ── Verifica dell'output ───────────────────────────────────────────────────────
+
+def validate_output(all_data: dict) -> list:
+    """Controlli di coerenza sull'output: ritorna l'elenco dei problemi trovati."""
+    problems = []
+    for lk, ld in all_data.items():
+        for fix in ld["fixtures"]:
+            tag = f"{lk}: {fix['home']} - {fix['away']}"
+            p = fix.get("prediction")
+            if not p:
+                problems.append(f"{tag}: nessuna previsione")
+                continue
+            total = p["prob_home"] + p["prob_draw"] + p["prob_away"]
+            if abs(total - 1) > PROB_TOL:
+                problems.append(f"{tag}: 1X2 non somma a 1 ({total:.5f})")
+            vals = [v for k, v in p.items() if k.startswith(("prob_", "exp_goals"))]
+            if any(v != v or v < 0 for v in vals):
+                problems.append(f"{tag}: valori non validi")
+            if not (p["prob_o15"] >= p["prob_o25"] >= p["prob_o35"]):
+                problems.append(f"{tag}: Over non monotoni")
+            if any(v > 1 for k, v in p.items() if k.startswith("prob_")):
+                problems.append(f"{tag}: probabilità > 1")
+    return problems
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
     os.makedirs("docs", exist_ok=True)
     generated_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    today = pd.Timestamp(datetime.utcnow().date())
 
-    log.info("🚀 Football Predictor — Generazione statica")
+    log.info("Football Predictor — Generazione statica (Poisson-stack)")
     log.info("=" * 55)
+
+    model = sp.load_stack()
+    log.info("Stack: %s partite di training, rho=%.4f, allenato %s",
+             model["meta"].get("n_train"), model["rho"], model["meta"].get("trained_at"))
+
+    log.info("Storico football-data.co.uk (2012/13 -> oggi)...")
+    df = data.load_matches(verbose=False)
+    log.info("  %d partite", len(df))
 
     all_data = {}
 
     for league_key, league_info in LEAGUES.items():
-        log.info("\n⚽ %s", league_info["name"])
+        log.info("\n%s", league_info["name"])
 
-        # 1. CSV storici
-        log.info("  ↓ Download CSV...")
-        df = download_csv_data(league_key)
-        if df.empty:
-            log.warning("  Nessun CSV scaricato — salto")
-            continue
-        log.info("  Totale storico: %d partite", len(df))
-
-        # 2. Fit Dixon-Coles
-        log.info("  📐 Fitting Dixon-Coles...")
+        g = df[df.Division == sp.CSV_CODE[league_key]]
         t0 = time.time()
-        dc = fit_dixon_coles(df)
-        log.info("  Fit in %.1fs — home_adv=%.3f rho=%.3f squadre=%d",
-                 time.time() - t0, dc["home_adv"], dc["rho"], len(dc["teams"]))
+        state = sp.LeagueState(g, today)
+        log.info("  Feature calcolate in %.1fs - %d partite nella finestra, %d squadre",
+                 time.time() - t0, state.n_matches, len(state.teams))
 
-        # 3. Fixture prossime
-        log.info("  📅 Fixture da football-data.org...")
+        log.info("  Fixture da football-data.org...")
         time.sleep(7)  # rate limit: 10 req/min
         fixtures = get_fixtures(league_info["code"])
         log.info("  %d partite nei prossimi %d giorni", len(fixtures), DAYS_AHEAD)
 
-        # 4. Previsioni
-        preds_list = []
+        pairs, names = [], []
         for fix in fixtures:
-            # Prova short name e full name
-            home_dc = (best_match(fix["home"],      dc["teams"]) or
-                       best_match(fix["home_full"], dc["teams"]))
-            away_dc = (best_match(fix["away"],      dc["teams"]) or
-                       best_match(fix["away_full"], dc["teams"]))
+            h = state.resolve(fix["home"], fix["home_full"])
+            a = state.resolve(fix["away"], fix["away_full"])
+            for n, r in ((fix["home"], h), (fix["away"], a)):
+                if r is None:
+                    log.warning("  Squadra sconosciuta '%s': trattata come neopromossa", n)
+            pairs.append((h or fix["home"], a or fix["away"]))
+            names.append((h, a))
 
-            pred = predict_match(home_dc, away_dc, dc) if (home_dc and away_dc) else None
-            if not pred:
-                log.warning("  ⚠ Non trovato: %s / %s", fix["home"], fix["away"])
-
-            preds_list.append({
-                **fix,
-                "home_dc":    home_dc,
-                "away_dc":    away_dc,
-                "prediction": pred,
-            })
+        preds = sp.predict_pairs(state, model, pairs)
+        preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
+                       "prediction": pred}
+                      for fix, (h, a), pred in zip(fixtures, names, preds)]
 
         all_data[league_key] = {
             "name":         league_info["name"],
             "flag":         league_info["flag"],
-            "dc_fitted_at": dc["fitted_at"],
-            "dc_n_matches": dc["n_matches"],
-            "dc_teams":     dc["teams"],
+            "dc_fitted_at": state.fitted_at,
+            "dc_n_matches": state.n_matches,
+            "dc_teams":     state.teams,
             "fixtures":     preds_list,
         }
 
     # ── Output ──
-    log.info("\n💾 Scrittura output...")
+    log.info("\nScrittura output...")
 
-    # JSON (per API / debug)
     with open("docs/predictions.json", "w", encoding="utf-8") as f:
-        json.dump({"generated_at": generated_at, "leagues": all_data},
+        json.dump({"generated_at": generated_at,
+                   "model": {"name": "Poisson-stack (senza Elo)", **model["meta"]},
+                   "leagues": all_data},
                   f, ensure_ascii=False, indent=2)
 
-    # HTML statico
     html = generate_html(all_data, generated_at)
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
-    total = sum(
-        sum(1 for fix in ld["fixtures"] if fix.get("prediction"))
-        for ld in all_data.values()
-    )
-    log.info("✅ Generati docs/index.html e docs/predictions.json")
+    total = sum(len(ld["fixtures"]) for ld in all_data.values())
+    log.info("Generati docs/index.html e docs/predictions.json")
     log.info("   %d previsioni totali in %d campionati", total, len(all_data))
+
+    problems = validate_output(all_data)
+    if problems:
+        for pr in problems:
+            log.error("  X %s", pr)
+        sys.exit(1)
+    log.info("   Verifica OK: tutte le partite hanno una previsione e le probabilità sommano a 1")
 
 
 if __name__ == "__main__":

@@ -59,6 +59,19 @@ UNDERSTAT_LEAGUES = {
 DC_XI   = 0.0018   # tasso di decadimento temporale (≈ 1/556 giorni)
 DC_MAX_GOALS = 8   # massimo gol per lato nella matrice punteggi
 
+# ─── Aggiustamenti contestuali NON validati (disattivati) ─────────────────────
+# Il backtest walk-forward (backtest/results.md) non li ha confermati: il riposo
+# sotto i 3 giorni, testato sui soli giorni di riposo di campionato, ha effetto nullo;
+# assenze, PPDA e meteo non sono testabili (manca lo storico datato). Fattori fissati a
+# mano, mai stimati sui dati: restano nel codice ma spenti finche' non ci sono dati per
+# stimarli. NB: il PPDA e' trattato al contrario (PPDA basso = pressing ALTO) —
+# se mai riattivato va corretto e poi stimato, non fissato a mano.
+USE_REST_ADJUST       = False   # riposo < 3 giorni: -8% gol
+USE_CONGESTION_ADJUST = False   # > 3 partite in 14 giorni: -5% gol
+USE_ABSENCES_ADJUST   = False   # -5% gol per assente (max -20%)
+USE_PRESSING_ADJUST   = False   # pressing/PPDA: -4% gol avversario
+USE_WEATHER_ADJUST    = False   # meteo sui gol attesi e sui corner
+
 # ─── Rate limiting ────────────────────────────────────────────────────────────
 FDO_SLEEP  = 6.5   # secondi tra chiamate football-data.org (10 req/min → 6s)
 API_SLEEP  = 0.5   # secondi tra chiamate API-Football

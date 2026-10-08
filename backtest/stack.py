@@ -8,17 +8,20 @@ partite con feature delle stagioni PRECEDENTI (dal 2013/14), tutti i campionati 
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize_scalar
-from sklearn.linear_model import PoissonRegressor
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 
 from . import models
 
 STACK_FEATURES = ["dc_lmu", "dc_lnu", "sot_lmu", "sot_lnu", "elo_diff", "pi_gd", "pi_diff"]
+# Feature del modello in produzione: lo stack SENZA Elo (ClubElo e' instabile e vale ~0.001)
+PRODUCTION_FEATURES = ["dc_lmu", "dc_lnu", "sot_lmu", "sot_lnu", "pi_gd", "pi_diff"]
 
 
 def fit_stack(X_train, hg, ag):
     """Due regressioni di Poisson (gol casa, gol trasferta) + rho stimato per max verosimiglianza."""
+    from sklearn.linear_model import PoissonRegressor
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
     mh = make_pipeline(StandardScaler(), PoissonRegressor(alpha=1e-4, max_iter=1000)).fit(X_train, hg)
     ma = make_pipeline(StandardScaler(), PoissonRegressor(alpha=1e-4, max_iter=1000)).fit(X_train, ag)
     mu, nu = mh.predict(X_train), ma.predict(X_train)
@@ -64,3 +67,27 @@ def walk_forward_stack(feat, features, first_test_season=2019):
         out.append(pd.DataFrame({"pH": P[:, 0], "pD": P[:, 1], "pA": P[:, 2],
                                  "mu": mu, "nu": nu, "rho": m["rho"]}, index=feat.index[te_mask]))
     return pd.concat(out).sort_index()
+
+
+# ─────────────────────── serializzazione JSON (niente pickle) ────────────────────
+# Il serving usa solo numpy: mu = exp(intercept + ((x - mean) / scale) . coef).
+def _side_to_dict(pipe):
+    sc, reg = pipe.named_steps["standardscaler"], pipe.named_steps["poissonregressor"]
+    return {"mean": sc.mean_.tolist(), "scale": sc.scale_.tolist(),
+            "coef": reg.coef_.tolist(), "intercept": float(reg.intercept_)}
+
+
+def stack_to_dict(model, features, meta=None):
+    return {"version": 1, "features": list(features), "rho": float(model["rho"]),
+            "home": _side_to_dict(model["home"]), "away": _side_to_dict(model["away"]),
+            "meta": meta or {}}
+
+
+def _side_predict(side, X):
+    z = (np.asarray(X, float) - np.array(side["mean"])) / np.array(side["scale"])
+    return np.exp(side["intercept"] + z @ np.array(side["coef"]))
+
+
+def predict_from_dict(d, X):
+    """Gol attesi (mu, nu) e rho dal dizionario salvato in models/stack.json."""
+    return _side_predict(d["home"], X), _side_predict(d["away"], X), d["rho"]

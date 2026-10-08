@@ -21,7 +21,11 @@ import numpy as np
 from scipy.optimize import minimize
 from scipy.stats import poisson
 
-from config import DC_XI, DC_MAX_GOALS
+from config import (
+    DC_XI, DC_MAX_GOALS,
+    USE_REST_ADJUST, USE_CONGESTION_ADJUST, USE_ABSENCES_ADJUST,
+    USE_PRESSING_ADJUST, USE_WEATHER_ADJUST,
+)
 from db import get_conn
 from features.engineer import MatchFeatures
 
@@ -290,6 +294,9 @@ def _contextual_adjustment(mu: float, nu: float,
     Aggiusta μ (gol attesi casa) e ν (gol attesi trasferta) in base a
     fattori contestuali non catturati dal modello Dixon-Coles puro.
 
+    ATTENZIONE: tutti gli aggiustamenti sono DISATTIVATI di default (flag USE_*_ADJUST
+    in config.py): non sono validati dal backtest, i fattori sono fissati a mano.
+
     Logica:
     - Stanchezza (< 3 giorni di riposo) → -8% gol
     - Congestionamento (> 3 partite in 14 gg) → -5% gol
@@ -297,33 +304,37 @@ def _contextual_adjustment(mu: float, nu: float,
     - Pressing alto (PPDA avversario alto) → +4% gol subiti
     """
     # 1. Stanchezza
-    if getattr(features, "home_rest_days", 7) < 3:
-        mu *= 0.92
-    if getattr(features, "away_rest_days", 7) < 3:
-        nu *= 0.92
+    if USE_REST_ADJUST:
+        if getattr(features, "home_rest_days", 7) < 3:
+            mu *= 0.92
+        if getattr(features, "away_rest_days", 7) < 3:
+            nu *= 0.92
 
     # 2. Congestionamento calendario
     home_cong = getattr(features, "home_congestion", 0)
     away_cong = getattr(features, "away_congestion", 0)
-    if home_cong > 3:
-        mu *= 0.95
-    if away_cong > 3:
-        nu *= 0.95
+    if USE_CONGESTION_ADJUST:
+        if home_cong > 3:
+            mu *= 0.95
+        if away_cong > 3:
+            nu *= 0.95
 
     # 3. Assenze chiave (infortuni/squalifiche)
     home_abs = min(getattr(features, "home_absences", 0), 4)
     away_abs = min(getattr(features, "away_absences", 0), 4)
-    if home_abs > 0:
-        mu *= max(1.0 - home_abs * 0.05, 0.80)
-    if away_abs > 0:
-        nu *= max(1.0 - away_abs * 0.05, 0.80)
+    if USE_ABSENCES_ADJUST:
+        if home_abs > 0:
+            mu *= max(1.0 - home_abs * 0.05, 0.80)
+        if away_abs > 0:
+            nu *= max(1.0 - away_abs * 0.05, 0.80)
 
     # 4. Pressing aggressivo: squadra con molte pressioni difensive tende
     #    a concedere meno → riduzione leggera dei gol attesi avversario
     home_ppda = getattr(features, "home_ppda", 10.0)
     away_ppda = getattr(features, "away_ppda", 10.0)
-    # Normalizzazione: media ~10, alto pressing = valore alto
-    if home_ppda > 0 and away_ppda > 0:
+    # BUG NOTO: PPDA basso = pressing ALTO, qui e' trattato al contrario.
+    # Se l'aggiustamento viene riattivato va corretto e stimato dai dati.
+    if USE_PRESSING_ADJUST and home_ppda > 0 and away_ppda > 0:
         press_ratio = home_ppda / max(away_ppda, 1.0)
         # Se home preme molto più dell'avversario → riduce attacco away
         if press_ratio > 1.3:
@@ -369,8 +380,9 @@ def predict(home_team: str, away_team: str,
         nu /= max(elo_factor, 0.1)
 
         # Aggiustamento meteo (pioggia riduce gol del ~8% per punto di impatto)
-        mu *= (1 - features.weather_impact * 0.08)
-        nu *= (1 - features.weather_impact * 0.08)
+        if USE_WEATHER_ADJUST:
+            mu *= (1 - features.weather_impact * 0.08)
+            nu *= (1 - features.weather_impact * 0.08)
 
         rho = -0.08   # default
 
@@ -430,7 +442,7 @@ def predict(home_team: str, away_team: str,
     # Corner: media squadra × aggiustamento meteo (pioggia riduce corner del ~4%)
     pred.exp_corners = round(
         (features.home_corners_avg + features.away_corners_avg)
-        * (1 - features.weather_impact * 0.04), 1
+        * (1 - features.weather_impact * 0.04 if USE_WEATHER_ADJUST else 1.0), 1
     )
 
     # Cartellini gialli: media referee + media squadre × fattore derby (H2H)
@@ -444,16 +456,5 @@ def predict(home_team: str, away_team: str,
     # Tiri: xG / conversion rate medio (0.105 tiri xG nei top 5 campionati)
     SHOT_XG_RATE = 0.105
     pred.exp_shots = round((mu + nu) / SHOT_XG_RATE, 1)
-
-    # Blend con quote di mercato (se disponibili) — peso 20% mercato
-    if features.market_ph > 0:
-        w = 0.20
-        pred.prob_home = pred.prob_home * (1-w) + features.market_ph * w
-        pred.prob_draw = pred.prob_draw * (1-w) + features.market_pd * w
-        pred.prob_away = pred.prob_away * (1-w) + features.market_pa * w
-        total = pred.prob_home + pred.prob_draw + pred.prob_away
-        pred.prob_home /= total
-        pred.prob_draw /= total
-        pred.prob_away /= total
 
     return pred

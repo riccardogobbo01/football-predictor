@@ -1,11 +1,26 @@
 {
-  "generated_at": "2026-10-08 10:05 UTC",
+  "generated_at": "2026-10-08 11:03 UTC",
+  "model": {
+    "name": "Poisson-stack (senza Elo)",
+    "trained_at": "2026-10-08 11:00 UTC",
+    "n_train": 23665,
+    "first_match": "2013-08-09",
+    "last_match": "2026-09-20",
+    "leagues": [
+      "D1",
+      "E0",
+      "F1",
+      "I1",
+      "SP1"
+    ],
+    "note": "Poisson-stack senza Elo; feature in walk-forward, ξ=0.0018, finestra 5 anni"
+  },
   "leagues": {
     "serie_a": {
       "name": "Serie A",
       "flag": "🇮🇹",
-      "dc_fitted_at": "2026-09-20",
-      "dc_n_matches": 1950,
+      "dc_fitted_at": "2026-10-08",
+      "dc_n_matches": 1880,
       "dc_teams": [
         "Atalanta",
         "Bologna",
@@ -46,27 +61,30 @@
           "matchday": 6,
           "home_dc": "Genoa",
           "away_dc": "Fiorentina",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.13,
-            "away_xg": 1.31,
-            "prob_home": 0.318,
-            "prob_draw": 0.276,
-            "prob_away": 0.406,
-            "prob_o15": 0.703,
-            "prob_o25": 0.442,
-            "prob_o35": 0.231,
-            "prob_btts": 0.497,
-            "prob_cs_home": 0.269,
+            "exp_goals_home": 1.25,
+            "exp_goals_away": 1.25,
+            "prob_home": 0.35832,
+            "prob_draw": 0.28221,
+            "prob_away": 0.35947,
+            "prob_o05": 0.91205,
+            "prob_o15": 0.7198,
+            "prob_o25": 0.45728,
+            "prob_o35": 0.24334,
+            "prob_btts": 0.51616,
+            "prob_cs_home": 0.28555,
+            "prob_cs_away": 0.28624,
             "top_scores": [
               [
                 1,
                 1,
-                13.1
+                13.4
               ],
               [
                 0,
                 1,
-                11.2
+                9.6
               ],
               [
                 1,
@@ -76,17 +94,17 @@
               [
                 0,
                 0,
-                8.9
+                8.8
               ],
               [
                 1,
                 2,
-                8.5
+                8.0
               ],
               [
-                0,
                 2,
-                7.5
+                1,
+                8.0
               ]
             ]
           }
@@ -101,32 +119,35 @@
           "matchday": 6,
           "home_dc": "Inter",
           "away_dc": "Parma",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.43,
-            "away_xg": 0.65,
-            "prob_home": 0.766,
-            "prob_draw": 0.155,
-            "prob_away": 0.079,
-            "prob_o15": 0.813,
-            "prob_o25": 0.594,
-            "prob_o35": 0.369,
-            "prob_btts": 0.437,
-            "prob_cs_home": 0.522,
+            "exp_goals_home": 2.47,
+            "exp_goals_away": 0.65,
+            "prob_home": 0.76954,
+            "prob_draw": 0.15607,
+            "prob_away": 0.07439,
+            "prob_o05": 0.95243,
+            "prob_o15": 0.82159,
+            "prob_o25": 0.60327,
+            "prob_o35": 0.37974,
+            "prob_btts": 0.44128,
+            "prob_cs_home": 0.5217,
+            "prob_cs_away": 0.08459,
             "top_scores": [
               [
                 2,
                 0,
-                13.6
-              ],
-              [
-                1,
-                0,
-                11.1
+                13.5
               ],
               [
                 3,
                 0,
-                11.0
+                11.1
+              ],
+              [
+                1,
+                0,
+                10.6
               ],
               [
                 2,
@@ -156,47 +177,50 @@
           "matchday": 6,
           "home_dc": "Napoli",
           "away_dc": "Frosinone",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.76,
-            "away_xg": 0.97,
-            "prob_home": 0.557,
-            "prob_draw": 0.238,
-            "prob_away": 0.205,
-            "prob_o15": 0.758,
-            "prob_o25": 0.513,
-            "prob_o35": 0.292,
-            "prob_btts": 0.515,
-            "prob_cs_home": 0.379,
+            "exp_goals_home": 2.01,
+            "exp_goals_away": 0.89,
+            "prob_home": 0.62843,
+            "prob_draw": 0.21698,
+            "prob_away": 0.15459,
+            "prob_o05": 0.94048,
+            "prob_o15": 0.79101,
+            "prob_o25": 0.55523,
+            "prob_o35": 0.33153,
+            "prob_btts": 0.51691,
+            "prob_cs_home": 0.40867,
+            "prob_cs_away": 0.13395,
             "top_scores": [
               [
+                2,
+                0,
+                11.1
+              ],
+              [
                 1,
                 0,
-                11.3
+                10.5
               ],
               [
                 1,
                 1,
-                11.3
+                10.3
               ],
               [
                 2,
-                0,
-                10.1
-              ],
-              [
-                2,
                 1,
-                9.8
+                9.9
               ],
               [
+                3,
                 0,
-                0,
-                6.7
+                7.4
               ],
               [
-                0,
+                3,
                 1,
-                6.2
+                6.6
               ]
             ]
           }
@@ -211,47 +235,50 @@
           "matchday": 6,
           "home_dc": "Como",
           "away_dc": "Roma",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.21,
-            "away_xg": 1.24,
-            "prob_home": 0.355,
-            "prob_draw": 0.277,
-            "prob_away": 0.368,
-            "prob_o15": 0.705,
-            "prob_o25": 0.444,
-            "prob_o35": 0.232,
-            "prob_btts": 0.501,
-            "prob_cs_home": 0.289,
+            "exp_goals_home": 1.43,
+            "exp_goals_away": 1.2,
+            "prob_home": 0.41721,
+            "prob_draw": 0.27216,
+            "prob_away": 0.31062,
+            "prob_o05": 0.92188,
+            "prob_o15": 0.74425,
+            "prob_o25": 0.48893,
+            "prob_o35": 0.27041,
+            "prob_btts": 0.53749,
+            "prob_cs_home": 0.30115,
+            "prob_cs_away": 0.23949,
             "top_scores": [
               [
                 1,
                 1,
-                13.1
-              ],
-              [
-                0,
-                1,
-                10.5
+                13.0
               ],
               [
                 1,
                 0,
-                10.2
+                9.7
               ],
               [
-                0,
-                0,
+                2,
+                1,
                 8.8
               ],
               [
+                0,
                 1,
-                2,
-                8.0
+                8.1
               ],
               [
-                2,
-                1,
+                0,
+                0,
                 7.8
+              ],
+              [
+                1,
+                2,
+                7.4
               ]
             ]
           }
@@ -266,47 +293,50 @@
           "matchday": 6,
           "home_dc": "Lecce",
           "away_dc": "Bologna",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.77,
-            "away_xg": 1.35,
-            "prob_home": 0.211,
-            "prob_draw": 0.285,
-            "prob_away": 0.504,
-            "prob_o15": 0.628,
-            "prob_o25": 0.357,
-            "prob_o35": 0.166,
-            "prob_btts": 0.4,
-            "prob_cs_home": 0.258,
+            "exp_goals_home": 0.94,
+            "exp_goals_away": 1.37,
+            "prob_home": 0.25124,
+            "prob_draw": 0.28699,
+            "prob_away": 0.46177,
+            "prob_o05": 0.89457,
+            "prob_o15": 0.67772,
+            "prob_o25": 0.4067,
+            "prob_o35": 0.20276,
+            "prob_btts": 0.46076,
+            "prob_cs_home": 0.25399,
+            "prob_cs_away": 0.39068,
             "top_scores": [
               [
-                0,
-                1,
-                16.0
-              ],
-              [
                 1,
                 1,
-                12.7
+                13.4
               ],
               [
                 0,
+                1,
+                13.0
+              ],
+              [
                 0,
-                12.2
+                0,
+                10.5
               ],
               [
                 0,
                 2,
-                11.0
-              ],
-              [
-                1,
-                0,
-                9.0
+                9.3
               ],
               [
                 1,
                 2,
-                8.4
+                8.8
+              ],
+              [
+                1,
+                0,
+                8.7
               ]
             ]
           }
@@ -321,47 +351,50 @@
           "matchday": 6,
           "home_dc": "Lazio",
           "away_dc": "Monza",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.93,
-            "away_xg": 0.82,
-            "prob_home": 0.632,
-            "prob_draw": 0.217,
-            "prob_away": 0.152,
-            "prob_o15": 0.762,
-            "prob_o25": 0.519,
-            "prob_o35": 0.297,
-            "prob_btts": 0.481,
-            "prob_cs_home": 0.439,
+            "exp_goals_home": 2.03,
+            "exp_goals_away": 0.81,
+            "prob_home": 0.65364,
+            "prob_draw": 0.21135,
+            "prob_away": 0.13501,
+            "prob_o05": 0.93673,
+            "prob_o15": 0.77979,
+            "prob_o25": 0.53928,
+            "prob_o35": 0.31627,
+            "prob_btts": 0.48605,
+            "prob_cs_home": 0.44574,
+            "prob_cs_away": 0.13149,
             "top_scores": [
               [
+                2,
+                0,
+                12.1
+              ],
+              [
                 1,
                 0,
-                12.2
+                11.4
+              ],
+              [
+                1,
+                1,
+                10.1
               ],
               [
                 2,
-                0,
-                11.9
-              ],
-              [
                 1,
-                1,
-                10.3
-              ],
-              [
-                2,
-                1,
-                9.8
+                9.7
               ],
               [
                 3,
                 0,
-                7.6
+                8.2
               ],
               [
-                0,
-                0,
-                6.5
+                3,
+                1,
+                6.6
               ]
             ]
           }
@@ -376,47 +409,50 @@
           "matchday": 6,
           "home_dc": "Sassuolo",
           "away_dc": "Milan",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.14,
-            "away_xg": 1.79,
-            "prob_home": 0.239,
-            "prob_draw": 0.236,
-            "prob_away": 0.526,
-            "prob_o15": 0.792,
-            "prob_o25": 0.561,
-            "prob_o35": 0.337,
-            "prob_btts": 0.568,
-            "prob_cs_home": 0.166,
+            "exp_goals_home": 1.2,
+            "exp_goals_away": 1.63,
+            "prob_home": 0.27525,
+            "prob_draw": 0.25601,
+            "prob_away": 0.46874,
+            "prob_o05": 0.93529,
+            "prob_o15": 0.77931,
+            "prob_o25": 0.53727,
+            "prob_o35": 0.31437,
+            "prob_btts": 0.56708,
+            "prob_cs_home": 0.19592,
+            "prob_cs_away": 0.30171,
             "top_scores": [
               [
                 1,
                 1,
-                11.1
+                12.1
               ],
               [
                 1,
                 2,
-                9.8
-              ],
-              [
-                0,
-                1,
                 9.4
               ],
               [
                 0,
+                1,
+                9.1
+              ],
+              [
+                0,
                 2,
-                8.6
+                7.9
               ],
               [
                 2,
                 1,
-                6.2
+                6.9
               ],
               [
                 1,
                 0,
-                5.9
+                6.5
               ]
             ]
           }
@@ -431,47 +467,50 @@
           "matchday": 6,
           "home_dc": "Cagliari",
           "away_dc": "Juventus",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.8,
-            "away_xg": 1.54,
-            "prob_home": 0.193,
-            "prob_draw": 0.261,
-            "prob_away": 0.546,
-            "prob_o15": 0.68,
-            "prob_o25": 0.414,
-            "prob_o35": 0.209,
-            "prob_btts": 0.435,
-            "prob_cs_home": 0.215,
+            "exp_goals_home": 0.96,
+            "exp_goals_away": 1.58,
+            "prob_home": 0.22352,
+            "prob_draw": 0.26425,
+            "prob_away": 0.51223,
+            "prob_o05": 0.91484,
+            "prob_o15": 0.7254,
+            "prob_o25": 0.46486,
+            "prob_o35": 0.2497,
+            "prob_btts": 0.49455,
+            "prob_cs_home": 0.20666,
+            "prob_cs_away": 0.38395,
             "top_scores": [
               [
-                0,
                 1,
-                14.6
+                1,
+                12.6
               ],
               [
+                0,
                 1,
-                1,
-                12.1
+                11.9
               ],
               [
                 0,
                 2,
-                11.4
-              ],
-              [
-                0,
-                0,
-                9.8
+                9.9
               ],
               [
                 1,
                 2,
-                9.1
+                9.4
+              ],
+              [
+                0,
+                0,
+                8.5
               ],
               [
                 1,
                 0,
-                7.5
+                7.0
               ]
             ]
           }
@@ -486,42 +525,45 @@
           "matchday": 6,
           "home_dc": "Atalanta",
           "away_dc": "Venezia",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.31,
-            "away_xg": 0.67,
-            "prob_home": 0.742,
-            "prob_draw": 0.168,
-            "prob_away": 0.09,
-            "prob_o15": 0.799,
-            "prob_o25": 0.572,
-            "prob_o35": 0.347,
-            "prob_btts": 0.441,
-            "prob_cs_home": 0.512,
+            "exp_goals_home": 2.14,
+            "exp_goals_away": 0.82,
+            "prob_home": 0.67296,
+            "prob_draw": 0.19989,
+            "prob_away": 0.12715,
+            "prob_o05": 0.94412,
+            "prob_o15": 0.80021,
+            "prob_o25": 0.56929,
+            "prob_o35": 0.34528,
+            "prob_btts": 0.49942,
+            "prob_cs_home": 0.43928,
+            "prob_cs_away": 0.11719,
             "top_scores": [
               [
                 2,
                 0,
-                13.6
+                11.8
               ],
               [
                 1,
                 0,
-                11.6
-              ],
-              [
-                3,
-                0,
-                10.5
+                10.6
               ],
               [
                 2,
                 1,
-                9.1
+                9.7
               ],
               [
                 1,
                 1,
-                8.0
+                9.5
+              ],
+              [
+                3,
+                0,
+                8.5
               ],
               [
                 3,
@@ -541,47 +583,50 @@
           "matchday": 6,
           "home_dc": "Torino",
           "away_dc": "Udinese",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.27,
-            "away_xg": 1.22,
-            "prob_home": 0.374,
-            "prob_draw": 0.275,
-            "prob_away": 0.351,
-            "prob_o15": 0.712,
-            "prob_o25": 0.452,
-            "prob_o35": 0.239,
-            "prob_btts": 0.508,
-            "prob_cs_home": 0.296,
+            "exp_goals_home": 1.28,
+            "exp_goals_away": 1.23,
+            "prob_home": 0.36972,
+            "prob_draw": 0.28174,
+            "prob_away": 0.34853,
+            "prob_o05": 0.91253,
+            "prob_o15": 0.72098,
+            "prob_o25": 0.45878,
+            "prob_o35": 0.24459,
+            "prob_btts": 0.51721,
+            "prob_cs_home": 0.29148,
+            "prob_cs_away": 0.27878,
             "top_scores": [
               [
                 1,
                 1,
-                13.1
+                13.4
               ],
               [
                 1,
                 0,
-                10.4
+                9.8
               ],
               [
                 0,
                 1,
-                9.9
+                9.4
               ],
               [
                 0,
                 0,
-                8.5
+                8.7
               ],
               [
                 2,
                 1,
-                8.1
+                8.2
               ],
               [
                 1,
                 2,
-                7.8
+                7.9
               ]
             ]
           }
@@ -596,46 +641,49 @@
           "matchday": 7,
           "home_dc": "Frosinone",
           "away_dc": "Sassuolo",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.77,
-            "away_xg": 1.33,
-            "prob_home": 0.476,
-            "prob_draw": 0.236,
-            "prob_away": 0.288,
-            "prob_o15": 0.817,
-            "prob_o25": 0.599,
-            "prob_o35": 0.375,
-            "prob_btts": 0.612,
-            "prob_cs_home": 0.264,
+            "exp_goals_home": 1.63,
+            "exp_goals_away": 1.41,
+            "prob_home": 0.4216,
+            "prob_draw": 0.25021,
+            "prob_away": 0.32819,
+            "prob_o05": 0.947,
+            "prob_o15": 0.81258,
+            "prob_o25": 0.58648,
+            "prob_o35": 0.36251,
+            "prob_btts": 0.61383,
+            "prob_cs_home": 0.243,
+            "prob_cs_away": 0.19617,
             "top_scores": [
               [
                 1,
                 1,
-                10.8
+                11.5
               ],
               [
                 2,
                 1,
-                9.4
+                8.9
               ],
               [
                 1,
-                0,
+                2,
                 7.8
               ],
               [
                 1,
+                0,
+                7.2
+              ],
+              [
                 2,
-                7.1
+                2,
+                6.3
               ],
               [
                 2,
                 0,
-                7.0
-              ],
-              [
-                2,
-                2,
                 6.3
               ]
             ]
@@ -651,47 +699,50 @@
           "matchday": 7,
           "home_dc": "Venezia",
           "away_dc": "Napoli",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.66,
-            "away_xg": 2.02,
-            "prob_home": 0.11,
-            "prob_draw": 0.198,
-            "prob_away": 0.692,
-            "prob_o15": 0.75,
-            "prob_o25": 0.503,
-            "prob_o35": 0.282,
-            "prob_btts": 0.422,
-            "prob_cs_home": 0.132,
+            "exp_goals_home": 0.81,
+            "exp_goals_away": 1.96,
+            "prob_home": 0.14112,
+            "prob_draw": 0.21867,
+            "prob_away": 0.64021,
+            "prob_o05": 0.93229,
+            "prob_o15": 0.76796,
+            "prob_o25": 0.5225,
+            "prob_o35": 0.30059,
+            "prob_btts": 0.48007,
+            "prob_cs_home": 0.14071,
+            "prob_cs_away": 0.44692,
             "top_scores": [
               [
                 0,
                 2,
-                14.0
+                12.1
               ],
               [
                 0,
                 1,
-                13.7
-              ],
-              [
-                0,
-                3,
-                9.4
+                11.9
               ],
               [
                 1,
                 1,
-                9.3
+                10.4
               ],
               [
                 1,
                 2,
-                9.3
+                9.7
+              ],
+              [
+                0,
+                3,
+                7.9
               ],
               [
                 0,
                 0,
-                7.0
+                6.8
               ]
             ]
           }
@@ -706,47 +757,50 @@
           "matchday": 7,
           "home_dc": "Bologna",
           "away_dc": "Inter",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.06,
-            "away_xg": 2.0,
-            "prob_home": 0.194,
-            "prob_draw": 0.216,
-            "prob_away": 0.589,
-            "prob_o15": 0.812,
-            "prob_o25": 0.591,
-            "prob_o35": 0.366,
-            "prob_btts": 0.567,
-            "prob_cs_home": 0.135,
+            "exp_goals_home": 0.96,
+            "exp_goals_away": 1.65,
+            "prob_home": 0.21347,
+            "prob_draw": 0.25643,
+            "prob_away": 0.5301,
+            "prob_o05": 0.92076,
+            "prob_o15": 0.74005,
+            "prob_o25": 0.48389,
+            "prob_o35": 0.26601,
+            "prob_btts": 0.50402,
+            "prob_cs_home": 0.19206,
+            "prob_cs_away": 0.38315,
             "top_scores": [
               [
                 1,
                 1,
-                10.1
+                12.2
               ],
               [
+                0,
                 1,
-                2,
-                9.9
+                11.6
               ],
               [
                 0,
                 2,
-                9.4
-              ],
-              [
-                0,
-                1,
-                9.2
+                10.0
               ],
               [
                 1,
-                3,
-                6.6
+                2,
+                9.6
               ],
               [
                 0,
-                3,
-                6.2
+                0,
+                7.9
+              ],
+              [
+                1,
+                0,
+                6.5
               ]
             ]
           }
@@ -761,47 +815,50 @@
           "matchday": 7,
           "home_dc": "Roma",
           "away_dc": "Genoa",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.85,
-            "away_xg": 0.69,
-            "prob_home": 0.65,
-            "prob_draw": 0.22,
-            "prob_away": 0.131,
-            "prob_o15": 0.723,
-            "prob_o25": 0.467,
-            "prob_o35": 0.252,
-            "prob_btts": 0.422,
-            "prob_cs_home": 0.501,
+            "exp_goals_home": 2.15,
+            "exp_goals_away": 0.76,
+            "prob_home": 0.69064,
+            "prob_draw": 0.19525,
+            "prob_away": 0.11411,
+            "prob_o05": 0.94133,
+            "prob_o15": 0.79163,
+            "prob_o25": 0.55681,
+            "prob_o35": 0.33306,
+            "prob_btts": 0.47401,
+            "prob_cs_home": 0.46867,
+            "prob_cs_away": 0.116,
             "top_scores": [
               [
+                2,
+                0,
+                12.6
+              ],
+              [
                 1,
                 0,
-                14.4
+                11.3
               ],
               [
                 2,
-                0,
-                13.5
+                1,
+                9.6
               ],
               [
                 1,
-                1,
-                10.2
-              ],
-              [
-                2,
                 1,
                 9.3
               ],
               [
                 3,
                 0,
-                8.3
+                9.1
               ],
               [
-                0,
-                0,
-                8.0
+                3,
+                1,
+                6.9
               ]
             ]
           }
@@ -816,32 +873,30 @@
           "matchday": 7,
           "home_dc": "Udinese",
           "away_dc": "Lecce",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.39,
-            "away_xg": 0.81,
-            "prob_home": 0.504,
-            "prob_draw": 0.28,
-            "prob_away": 0.216,
-            "prob_o15": 0.647,
-            "prob_o25": 0.376,
-            "prob_o35": 0.18,
-            "prob_btts": 0.418,
-            "prob_cs_home": 0.446,
+            "exp_goals_home": 1.56,
+            "exp_goals_away": 0.87,
+            "prob_home": 0.52945,
+            "prob_draw": 0.26624,
+            "prob_away": 0.20432,
+            "prob_o05": 0.90643,
+            "prob_o15": 0.70448,
+            "prob_o25": 0.4389,
+            "prob_o35": 0.22821,
+            "prob_btts": 0.4656,
+            "prob_cs_home": 0.41799,
+            "prob_cs_away": 0.20998,
             "top_scores": [
               [
                 1,
                 0,
-                15.2
+                13.1
               ],
               [
                 1,
                 1,
-                12.7
-              ],
-              [
-                0,
-                0,
-                11.3
+                12.5
               ],
               [
                 2,
@@ -850,13 +905,18 @@
               ],
               [
                 0,
-                1,
-                8.8
+                0,
+                9.4
               ],
               [
                 2,
                 1,
-                8.7
+                9.3
+              ],
+              [
+                0,
+                1,
+                7.1
               ]
             ]
           }
@@ -871,27 +931,30 @@
           "matchday": 7,
           "home_dc": "Fiorentina",
           "away_dc": "Como",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.09,
-            "away_xg": 1.6,
-            "prob_home": 0.258,
-            "prob_draw": 0.253,
-            "prob_away": 0.489,
-            "prob_o15": 0.751,
-            "prob_o25": 0.504,
-            "prob_o35": 0.284,
-            "prob_btts": 0.532,
-            "prob_cs_home": 0.202,
+            "exp_goals_home": 1.08,
+            "exp_goals_away": 1.62,
+            "prob_home": 0.24694,
+            "prob_draw": 0.25903,
+            "prob_away": 0.49403,
+            "prob_o05": 0.92668,
+            "prob_o15": 0.75597,
+            "prob_o25": 0.50492,
+            "prob_o35": 0.2846,
+            "prob_btts": 0.53407,
+            "prob_cs_home": 0.19827,
+            "prob_cs_away": 0.34098,
             "top_scores": [
               [
                 1,
                 1,
-                12.0
+                12.3
               ],
               [
                 0,
                 1,
-                10.7
+                10.4
               ],
               [
                 1,
@@ -901,17 +964,17 @@
               [
                 0,
                 2,
-                8.7
+                8.9
+              ],
+              [
+                0,
+                0,
+                7.3
               ],
               [
                 1,
                 0,
-                7.2
-              ],
-              [
-                0,
-                0,
-                7.0
+                6.7
               ]
             ]
           }
@@ -926,47 +989,50 @@
           "matchday": 7,
           "home_dc": "Milan",
           "away_dc": "Atalanta",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.37,
-            "away_xg": 1.24,
-            "prob_home": 0.399,
-            "prob_draw": 0.266,
-            "prob_away": 0.335,
-            "prob_o15": 0.737,
-            "prob_o25": 0.485,
-            "prob_o35": 0.267,
-            "prob_btts": 0.532,
-            "prob_cs_home": 0.29,
+            "exp_goals_home": 1.52,
+            "exp_goals_away": 1.18,
+            "prob_home": 0.44393,
+            "prob_draw": 0.26566,
+            "prob_away": 0.29041,
+            "prob_o05": 0.92699,
+            "prob_o15": 0.75732,
+            "prob_o25": 0.50655,
+            "prob_o35": 0.28606,
+            "prob_btts": 0.54744,
+            "prob_cs_home": 0.30635,
+            "prob_cs_away": 0.21922,
             "top_scores": [
               [
                 1,
                 1,
-                12.7
+                12.6
               ],
               [
                 1,
                 0,
-                9.9
+                9.6
               ],
               [
+                2,
+                1,
+                9.2
+              ],
+              [
+                2,
                 0,
-                1,
-                8.9
-              ],
-              [
-                2,
-                1,
-                8.6
-              ],
-              [
-                1,
-                2,
                 7.7
               ],
               [
                 0,
+                1,
+                7.4
+              ],
+              [
                 0,
-                7.5
+                0,
+                7.3
               ]
             ]
           }
@@ -981,47 +1047,50 @@
           "matchday": 7,
           "home_dc": "Juventus",
           "away_dc": "Lazio",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.36,
-            "away_xg": 0.89,
-            "prob_home": 0.477,
-            "prob_draw": 0.281,
-            "prob_away": 0.242,
-            "prob_o15": 0.659,
-            "prob_o25": 0.39,
-            "prob_o35": 0.19,
-            "prob_btts": 0.439,
-            "prob_cs_home": 0.413,
+            "exp_goals_home": 1.67,
+            "exp_goals_away": 0.93,
+            "prob_home": 0.54318,
+            "prob_draw": 0.25398,
+            "prob_away": 0.20284,
+            "prob_o05": 0.92008,
+            "prob_o15": 0.73807,
+            "prob_o25": 0.48139,
+            "prob_o35": 0.26384,
+            "prob_btts": 0.49655,
+            "prob_cs_home": 0.39539,
+            "prob_cs_away": 0.18799,
             "top_scores": [
               [
                 1,
-                0,
-                14.2
+                1,
+                12.1
               ],
               [
                 1,
-                1,
-                12.9
-              ],
-              [
                 0,
-                0,
-                10.8
+                11.9
               ],
               [
                 2,
                 0,
-                9.8
-              ],
-              [
-                0,
-                1,
-                9.2
+                10.4
               ],
               [
                 2,
                 1,
-                8.7
+                9.6
+              ],
+              [
+                0,
+                0,
+                8.0
+              ],
+              [
+                0,
+                1,
+                6.3
               ]
             ]
           }
@@ -1036,47 +1105,50 @@
           "matchday": 7,
           "home_dc": "Monza",
           "away_dc": "Cagliari",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.15,
-            "away_xg": 1.41,
-            "prob_home": 0.306,
-            "prob_draw": 0.268,
-            "prob_away": 0.426,
-            "prob_o15": 0.727,
-            "prob_o25": 0.472,
-            "prob_o35": 0.256,
-            "prob_btts": 0.519,
-            "prob_cs_home": 0.245,
+            "exp_goals_home": 1.13,
+            "exp_goals_away": 1.45,
+            "prob_home": 0.28847,
+            "prob_draw": 0.27358,
+            "prob_away": 0.43795,
+            "prob_o05": 0.91764,
+            "prob_o15": 0.73335,
+            "prob_o25": 0.47471,
+            "prob_o35": 0.25808,
+            "prob_btts": 0.52278,
+            "prob_cs_home": 0.23554,
+            "prob_cs_away": 0.32404,
             "top_scores": [
               [
                 1,
                 1,
-                12.7
+                13.0
               ],
               [
                 0,
                 1,
-                10.7
+                10.4
               ],
               [
                 1,
                 2,
-                8.8
+                9.0
+              ],
+              [
+                0,
+                0,
+                8.2
               ],
               [
                 1,
                 0,
-                8.7
-              ],
-              [
-                0,
-                0,
-                7.9
+                8.0
               ],
               [
                 0,
                 2,
-                7.7
+                8.0
               ]
             ]
           }
@@ -1091,47 +1163,50 @@
           "matchday": 7,
           "home_dc": "Parma",
           "away_dc": "Torino",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.0,
-            "away_xg": 1.06,
-            "prob_home": 0.332,
-            "prob_draw": 0.307,
-            "prob_away": 0.362,
-            "prob_o15": 0.613,
-            "prob_o25": 0.341,
-            "prob_o35": 0.155,
-            "prob_btts": 0.416,
-            "prob_cs_home": 0.346,
+            "exp_goals_home": 1.19,
+            "exp_goals_away": 1.12,
+            "prob_home": 0.3677,
+            "prob_draw": 0.29553,
+            "prob_away": 0.33676,
+            "prob_o05": 0.89444,
+            "prob_o15": 0.67815,
+            "prob_o25": 0.40694,
+            "prob_o35": 0.20294,
+            "prob_btts": 0.47553,
+            "prob_cs_home": 0.3249,
+            "prob_cs_away": 0.30513,
             "top_scores": [
               [
                 1,
                 1,
-                13.7
-              ],
-              [
-                0,
-                1,
-                13.3
-              ],
-              [
-                0,
-                0,
-                12.9
+                13.9
               ],
               [
                 1,
                 0,
-                12.5
+                11.1
+              ],
+              [
+                0,
+                0,
+                10.6
+              ],
+              [
+                0,
+                1,
+                10.5
+              ],
+              [
+                2,
+                1,
+                7.9
               ],
               [
                 1,
                 2,
-                7.2
-              ],
-              [
-                0,
-                2,
-                7.1
+                7.4
               ]
             ]
           }
@@ -1141,8 +1216,8 @@
     "premier_league": {
       "name": "Premier League",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "dc_fitted_at": "2026-09-20",
-      "dc_n_matches": 1950,
+      "dc_fitted_at": "2026-10-08",
+      "dc_n_matches": 1880,
       "dc_teams": [
         "Arsenal",
         "Aston Villa",
@@ -1185,27 +1260,30 @@
           "matchday": 6,
           "home_dc": "Arsenal",
           "away_dc": "Leeds",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.98,
-            "away_xg": 0.7,
-            "prob_home": 0.667,
-            "prob_draw": 0.219,
-            "prob_away": 0.115,
-            "prob_o15": 0.756,
-            "prob_o25": 0.502,
-            "prob_o35": 0.281,
-            "prob_btts": 0.443,
-            "prob_cs_home": 0.496,
+            "exp_goals_home": 1.94,
+            "exp_goals_away": 0.72,
+            "prob_home": 0.65634,
+            "prob_draw": 0.21723,
+            "prob_away": 0.12642,
+            "prob_o05": 0.92566,
+            "prob_o15": 0.74969,
+            "prob_o25": 0.49779,
+            "prob_o35": 0.27823,
+            "prob_btts": 0.44624,
+            "prob_cs_home": 0.48446,
+            "prob_cs_away": 0.14365,
             "top_scores": [
               [
                 2,
                 0,
-                13.4
+                13.1
               ],
               [
                 1,
                 0,
-                12.7
+                13.0
               ],
               [
                 1,
@@ -1215,17 +1293,17 @@
               [
                 2,
                 1,
-                9.4
+                9.5
               ],
               [
                 3,
                 0,
-                8.9
+                8.5
               ],
               [
                 0,
                 0,
-                7.7
+                7.4
               ]
             ]
           }
@@ -1240,47 +1318,50 @@
           "matchday": 6,
           "home_dc": "Sunderland",
           "away_dc": "Brighton",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.21,
-            "away_xg": 1.43,
-            "prob_home": 0.308,
-            "prob_draw": 0.282,
-            "prob_away": 0.411,
-            "prob_o15": 0.75,
-            "prob_o25": 0.49,
-            "prob_o35": 0.272,
-            "prob_btts": 0.544,
-            "prob_cs_home": 0.24,
+            "exp_goals_home": 1.08,
+            "exp_goals_away": 1.5,
+            "prob_home": 0.26766,
+            "prob_draw": 0.26983,
+            "prob_away": 0.46251,
+            "prob_o05": 0.91868,
+            "prob_o15": 0.73573,
+            "prob_o25": 0.47789,
+            "prob_o35": 0.26082,
+            "prob_btts": 0.52023,
+            "prob_cs_home": 0.22276,
+            "prob_cs_away": 0.33833,
             "top_scores": [
               [
                 1,
                 1,
-                13.4
+                12.9
               ],
               [
                 0,
                 1,
-                9.2
+                10.7
               ],
               [
                 1,
                 2,
-                8.8
+                9.2
+              ],
+              [
+                0,
+                2,
+                8.5
               ],
               [
                 0,
                 0,
-                8.2
+                8.1
               ],
               [
                 1,
                 0,
                 7.6
-              ],
-              [
-                2,
-                1,
-                7.5
               ]
             ]
           }
@@ -1295,47 +1376,50 @@
           "matchday": 6,
           "home_dc": "Chelsea",
           "away_dc": "Bournemouth",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.75,
-            "away_xg": 1.33,
-            "prob_home": 0.465,
-            "prob_draw": 0.252,
-            "prob_away": 0.283,
-            "prob_o15": 0.822,
-            "prob_o25": 0.595,
-            "prob_o35": 0.371,
-            "prob_btts": 0.618,
-            "prob_cs_home": 0.264,
+            "exp_goals_home": 1.52,
+            "exp_goals_away": 1.35,
+            "prob_home": 0.40646,
+            "prob_draw": 0.25965,
+            "prob_away": 0.33389,
+            "prob_o05": 0.93762,
+            "prob_o15": 0.78613,
+            "prob_o25": 0.54693,
+            "prob_o35": 0.32355,
+            "prob_btts": 0.58445,
+            "prob_cs_home": 0.25827,
+            "prob_cs_away": 0.21966,
             "top_scores": [
               [
                 1,
                 1,
-                11.6
+                12.2
               ],
               [
                 2,
                 1,
-                9.4
-              ],
-              [
-                1,
-                2,
-                7.1
+                8.8
               ],
               [
                 1,
                 0,
+                8.0
+              ],
+              [
+                1,
+                2,
+                7.9
+              ],
+              [
+                0,
+                1,
                 7.1
               ],
               [
                 2,
                 0,
-                7.0
-              ],
-              [
-                2,
-                2,
-                6.2
+                6.5
               ]
             ]
           }
@@ -1350,47 +1434,50 @@
           "matchday": 6,
           "home_dc": "Ipswich",
           "away_dc": "Fulham",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.15,
-            "away_xg": 1.8,
-            "prob_home": 0.232,
-            "prob_draw": 0.25,
-            "prob_away": 0.518,
-            "prob_o15": 0.802,
-            "prob_o25": 0.565,
-            "prob_o35": 0.341,
-            "prob_btts": 0.579,
-            "prob_cs_home": 0.165,
+            "exp_goals_home": 1.09,
+            "exp_goals_away": 1.66,
+            "prob_home": 0.24324,
+            "prob_draw": 0.25484,
+            "prob_away": 0.50192,
+            "prob_o05": 0.93042,
+            "prob_o15": 0.76576,
+            "prob_o25": 0.51837,
+            "prob_o35": 0.2968,
+            "prob_btts": 0.54279,
+            "prob_cs_home": 0.18988,
+            "prob_cs_away": 0.33692,
             "top_scores": [
               [
                 1,
                 1,
-                11.8
-              ],
-              [
-                1,
-                2,
-                9.8
-              ],
-              [
-                0,
-                2,
-                8.5
+                12.1
               ],
               [
                 0,
                 1,
-                8.5
+                10.1
               ],
               [
-                2,
                 1,
-                6.2
+                2,
+                9.6
+              ],
+              [
+                0,
+                2,
+                8.8
               ],
               [
                 0,
                 0,
-                6.2
+                7.0
+              ],
+              [
+                1,
+                0,
+                6.4
               ]
             ]
           }
@@ -1405,22 +1492,25 @@
           "matchday": 6,
           "home_dc": "Aston Villa",
           "away_dc": "Brentford",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.58,
-            "away_xg": 1.37,
-            "prob_home": 0.412,
-            "prob_draw": 0.264,
-            "prob_away": 0.324,
-            "prob_o15": 0.803,
-            "prob_o25": 0.566,
-            "prob_o35": 0.341,
-            "prob_btts": 0.602,
-            "prob_cs_home": 0.253,
+            "exp_goals_home": 1.51,
+            "exp_goals_away": 1.3,
+            "prob_home": 0.4166,
+            "prob_draw": 0.26242,
+            "prob_away": 0.32098,
+            "prob_o05": 0.93377,
+            "prob_o15": 0.77557,
+            "prob_o25": 0.53181,
+            "prob_o35": 0.30924,
+            "prob_btts": 0.57159,
+            "prob_cs_home": 0.27336,
+            "prob_cs_away": 0.22128,
             "top_scores": [
               [
                 1,
                 1,
-                12.3
+                12.4
               ],
               [
                 2,
@@ -1429,23 +1519,23 @@
               ],
               [
                 1,
-                2,
-                7.8
+                0,
+                8.5
               ],
               [
                 1,
+                2,
+                7.7
+              ],
+              [
                 0,
+                1,
                 7.3
               ],
               [
                 2,
                 0,
-                6.5
-              ],
-              [
-                0,
-                0,
-                6.2
+                6.9
               ]
             ]
           }
@@ -1460,47 +1550,50 @@
           "matchday": 6,
           "home_dc": "Man United",
           "away_dc": "Tottenham",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.91,
-            "away_xg": 1.23,
-            "prob_home": 0.524,
-            "prob_draw": 0.241,
-            "prob_away": 0.235,
-            "prob_o15": 0.829,
-            "prob_o25": 0.607,
-            "prob_o35": 0.383,
-            "prob_btts": 0.611,
-            "prob_cs_home": 0.293,
+            "exp_goals_home": 1.99,
+            "exp_goals_away": 1.02,
+            "prob_home": 0.59202,
+            "prob_draw": 0.22338,
+            "prob_away": 0.18461,
+            "prob_o05": 0.94584,
+            "prob_o15": 0.80718,
+            "prob_o25": 0.57901,
+            "prob_o35": 0.35497,
+            "prob_btts": 0.55779,
+            "prob_cs_home": 0.35908,
+            "prob_cs_away": 0.13729,
             "top_scores": [
               [
                 1,
                 1,
-                11.1
+                10.5
               ],
               [
                 2,
                 1,
+                10.0
+              ],
+              [
+                2,
+                0,
                 9.7
               ],
               [
-                2,
-                0,
-                7.9
-              ],
-              [
                 1,
                 0,
-                7.4
-              ],
-              [
-                1,
-                2,
-                6.2
+                9.3
               ],
               [
                 3,
                 1,
-                6.2
+                6.6
+              ],
+              [
+                3,
+                0,
+                6.4
               ]
             ]
           }
@@ -1515,47 +1608,50 @@
           "matchday": 6,
           "home_dc": "Hull",
           "away_dc": "Everton",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.14,
-            "away_xg": 0.64,
-            "prob_home": 0.465,
-            "prob_draw": 0.338,
-            "prob_away": 0.197,
-            "prob_o15": 0.542,
-            "prob_o25": 0.264,
-            "prob_o35": 0.105,
-            "prob_btts": 0.333,
-            "prob_cs_home": 0.526,
+            "exp_goals_home": 1.09,
+            "exp_goals_away": 1.18,
+            "prob_home": 0.32859,
+            "prob_draw": 0.29877,
+            "prob_away": 0.37263,
+            "prob_o05": 0.8898,
+            "prob_o15": 0.66763,
+            "prob_o25": 0.39487,
+            "prob_o35": 0.19373,
+            "prob_btts": 0.46537,
+            "prob_cs_home": 0.30814,
+            "prob_cs_away": 0.33669,
             "top_scores": [
               [
                 1,
+                1,
+                13.9
+              ],
+              [
                 0,
-                18.1
+                1,
+                11.6
               ],
               [
                 0,
                 0,
-                17.9
+                11.0
               ],
               [
                 1,
+                0,
+                10.6
+              ],
+              [
                 1,
-                13.4
+                2,
+                7.8
               ],
               [
                 2,
-                0,
-                10.9
-              ],
-              [
-                0,
                 1,
-                9.8
-              ],
-              [
-                2,
-                1,
-                7.0
+                7.2
               ]
             ]
           }
@@ -1570,47 +1666,50 @@
           "matchday": 6,
           "home_dc": "Crystal Palace",
           "away_dc": "Nott'm Forest",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.26,
-            "away_xg": 1.19,
-            "prob_home": 0.369,
-            "prob_draw": 0.295,
-            "prob_away": 0.335,
-            "prob_o15": 0.715,
-            "prob_o25": 0.445,
-            "prob_o35": 0.233,
-            "prob_btts": 0.511,
-            "prob_cs_home": 0.303,
+            "exp_goals_home": 1.26,
+            "exp_goals_away": 1.21,
+            "prob_home": 0.36898,
+            "prob_draw": 0.28415,
+            "prob_away": 0.34687,
+            "prob_o05": 0.90947,
+            "prob_o15": 0.71351,
+            "prob_o25": 0.44941,
+            "prob_o35": 0.23681,
+            "prob_btts": 0.50977,
+            "prob_cs_home": 0.29709,
+            "prob_cs_away": 0.28367,
             "top_scores": [
               [
                 1,
                 1,
-                14.0
+                13.5
               ],
               [
                 1,
                 0,
-                9.7
-              ],
-              [
-                0,
-                0,
-                9.7
+                10.0
               ],
               [
                 0,
                 1,
+                9.6
+              ],
+              [
+                0,
+                0,
                 9.1
               ],
               [
                 2,
                 1,
-                8.2
+                8.1
               ],
               [
                 1,
                 2,
-                7.7
+                7.8
               ]
             ]
           }
@@ -1625,22 +1724,25 @@
           "matchday": 6,
           "home_dc": "Liverpool",
           "away_dc": "Man City",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.41,
-            "away_xg": 1.65,
-            "prob_home": 0.318,
-            "prob_draw": 0.258,
-            "prob_away": 0.425,
-            "prob_o15": 0.819,
-            "prob_o25": 0.59,
-            "prob_o35": 0.366,
-            "prob_btts": 0.62,
-            "prob_cs_home": 0.192,
+            "exp_goals_home": 1.29,
+            "exp_goals_away": 1.52,
+            "prob_home": 0.31707,
+            "prob_draw": 0.26149,
+            "prob_away": 0.42144,
+            "prob_o05": 0.93447,
+            "prob_o15": 0.77743,
+            "prob_o25": 0.53447,
+            "prob_o35": 0.31174,
+            "prob_btts": 0.57312,
+            "prob_cs_home": 0.21787,
+            "prob_cs_away": 0.27455,
             "top_scores": [
               [
                 1,
                 1,
-                11.9
+                12.4
               ],
               [
                 1,
@@ -1648,24 +1750,24 @@
                 9.0
               ],
               [
+                0,
+                1,
+                8.5
+              ],
+              [
                 2,
                 1,
-                7.7
+                7.6
+              ],
+              [
+                1,
+                0,
+                7.2
               ],
               [
                 0,
-                1,
-                6.8
-              ],
-              [
-                0,
                 2,
-                6.4
-              ],
-              [
-                2,
-                2,
-                6.3
+                6.9
               ]
             ]
           }
@@ -1680,47 +1782,50 @@
           "matchday": 6,
           "home_dc": "Coventry",
           "away_dc": "Newcastle",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.29,
-            "away_xg": 1.8,
-            "prob_home": 0.047,
-            "prob_draw": 0.209,
-            "prob_away": 0.744,
-            "prob_o15": 0.624,
-            "prob_o25": 0.348,
-            "prob_o35": 0.159,
-            "prob_btts": 0.217,
-            "prob_cs_home": 0.165,
+            "exp_goals_home": 1.07,
+            "exp_goals_away": 1.34,
+            "prob_home": 0.29194,
+            "prob_draw": 0.28565,
+            "prob_away": 0.42241,
+            "prob_o05": 0.90347,
+            "prob_o15": 0.69887,
+            "prob_o25": 0.43157,
+            "prob_o35": 0.2223,
+            "prob_btts": 0.49012,
+            "prob_cs_home": 0.26251,
+            "prob_cs_away": 0.3439,
             "top_scores": [
               [
+                1,
+                1,
+                13.5
+              ],
+              [
                 0,
                 1,
-                21.7
-              ],
-              [
-                0,
-                2,
-                20.0
+                11.4
               ],
               [
                 0,
                 0,
-                12.9
-              ],
-              [
-                0,
-                3,
-                12.0
+                9.7
               ],
               [
                 1,
-                1,
-                7.0
+                0,
+                9.0
               ],
               [
                 1,
                 2,
-                5.8
+                8.6
+              ],
+              [
+                0,
+                2,
+                8.1
               ]
             ]
           }
@@ -1735,47 +1840,50 @@
           "matchday": 7,
           "home_dc": "Everton",
           "away_dc": "Chelsea",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.24,
-            "away_xg": 1.3,
-            "prob_home": 0.341,
-            "prob_draw": 0.29,
-            "prob_away": 0.369,
-            "prob_o15": 0.731,
-            "prob_o25": 0.465,
-            "prob_o35": 0.25,
-            "prob_btts": 0.527,
-            "prob_cs_home": 0.273,
+            "exp_goals_home": 1.37,
+            "exp_goals_away": 1.29,
+            "prob_home": 0.38345,
+            "prob_draw": 0.27239,
+            "prob_away": 0.34416,
+            "prob_o05": 0.92377,
+            "prob_o15": 0.74925,
+            "prob_o25": 0.49554,
+            "prob_o35": 0.27624,
+            "prob_btts": 0.54575,
+            "prob_cs_home": 0.27646,
+            "prob_cs_away": 0.25402,
             "top_scores": [
               [
                 1,
                 1,
-                13.8
+                13.0
               ],
               [
-                0,
                 1,
-                9.2
-              ],
-              [
-                0,
                 0,
                 9.0
               ],
               [
+                2,
                 1,
+                8.5
+              ],
+              [
                 0,
-                8.7
+                1,
+                8.4
               ],
               [
                 1,
                 2,
-                8.3
+                8.0
               ],
               [
-                2,
-                1,
-                7.9
+                0,
+                0,
+                7.6
               ]
             ]
           }
@@ -1790,47 +1898,50 @@
           "matchday": 7,
           "home_dc": "Fulham",
           "away_dc": "Hull",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.86,
-            "away_xg": 1.08,
-            "prob_home": 0.273,
-            "prob_draw": 0.335,
-            "prob_away": 0.392,
-            "prob_o15": 0.589,
-            "prob_o25": 0.307,
-            "prob_o35": 0.132,
-            "prob_btts": 0.392,
-            "prob_cs_home": 0.339,
+            "exp_goals_home": 1.48,
+            "exp_goals_away": 0.94,
+            "prob_home": 0.49179,
+            "prob_draw": 0.27467,
+            "prob_away": 0.23354,
+            "prob_o05": 0.90534,
+            "prob_o15": 0.70251,
+            "prob_o25": 0.43626,
+            "prob_o35": 0.22608,
+            "prob_btts": 0.47717,
+            "prob_cs_home": 0.39036,
+            "prob_cs_away": 0.22713,
             "top_scores": [
               [
-                0,
-                0,
-                15.5
-              ],
-              [
                 1,
                 1,
-                14.5
-              ],
-              [
-                0,
-                1,
-                14.4
+                13.0
               ],
               [
                 1,
                 0,
-                11.2
+                12.5
               ],
               [
-                0,
                 2,
-                8.4
+                0,
+                9.7
               ],
               [
-                1,
+                0,
+                0,
+                9.5
+              ],
+              [
                 2,
-                7.2
+                1,
+                9.2
+              ],
+              [
+                0,
+                1,
+                7.7
               ]
             ]
           }
@@ -1845,47 +1956,50 @@
           "matchday": 7,
           "home_dc": "Man City",
           "away_dc": "Ipswich",
+          "new_team": false,
           "prediction": {
-            "home_xg": 3.51,
-            "away_xg": 0.69,
-            "prob_home": 0.876,
-            "prob_draw": 0.089,
-            "prob_away": 0.036,
-            "prob_o15": 0.923,
-            "prob_o25": 0.784,
-            "prob_o35": 0.593,
-            "prob_btts": 0.485,
-            "prob_cs_home": 0.503,
+            "exp_goals_home": 2.98,
+            "exp_goals_away": 0.65,
+            "prob_home": 0.83588,
+            "prob_draw": 0.11387,
+            "prob_away": 0.05025,
+            "prob_o05": 0.97093,
+            "prob_o15": 0.87949,
+            "prob_o25": 0.70208,
+            "prob_o35": 0.49055,
+            "prob_btts": 0.45579,
+            "prob_cs_home": 0.52241,
+            "prob_cs_away": 0.05088,
             "top_scores": [
+              [
+                2,
+                0,
+                11.8
+              ],
               [
                 3,
                 0,
-                11.1
+                11.7
               ],
               [
                 4,
                 0,
-                9.8
+                8.7
+              ],
+              [
+                1,
+                0,
+                7.7
               ],
               [
                 2,
-                0,
-                9.5
-              ],
-              [
-                3,
                 1,
                 7.7
               ],
               [
-                5,
-                0,
-                6.9
-              ],
-              [
-                4,
+                3,
                 1,
-                6.7
+                7.6
               ]
             ]
           }
@@ -1900,47 +2014,50 @@
           "matchday": 7,
           "home_dc": "Brentford",
           "away_dc": "Liverpool",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.45,
-            "away_xg": 1.65,
-            "prob_home": 0.329,
-            "prob_draw": 0.256,
-            "prob_away": 0.415,
-            "prob_o15": 0.824,
-            "prob_o25": 0.598,
-            "prob_o35": 0.375,
-            "prob_btts": 0.628,
-            "prob_cs_home": 0.192,
+            "exp_goals_home": 1.4,
+            "exp_goals_away": 1.5,
+            "prob_home": 0.35012,
+            "prob_draw": 0.25857,
+            "prob_away": 0.39131,
+            "prob_o05": 0.93948,
+            "prob_o15": 0.79134,
+            "prob_o25": 0.55451,
+            "prob_o35": 0.33083,
+            "prob_btts": 0.59135,
+            "prob_cs_home": 0.22376,
+            "prob_cs_away": 0.2454,
             "top_scores": [
               [
                 1,
                 1,
-                11.7
+                12.1
               ],
               [
                 1,
                 2,
-                8.9
+                8.6
               ],
               [
                 2,
                 1,
-                7.8
+                8.1
               ],
               [
                 0,
                 1,
-                6.5
+                7.7
               ],
               [
-                2,
-                2,
-                6.4
+                1,
+                0,
+                7.2
               ],
               [
                 0,
                 2,
-                6.1
+                6.2
               ]
             ]
           }
@@ -1955,27 +2072,35 @@
           "matchday": 7,
           "home_dc": "Newcastle",
           "away_dc": "Aston Villa",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.75,
-            "away_xg": 1.39,
-            "prob_home": 0.452,
-            "prob_draw": 0.252,
-            "prob_away": 0.297,
-            "prob_o15": 0.829,
-            "prob_o25": 0.606,
-            "prob_o35": 0.383,
-            "prob_btts": 0.629,
-            "prob_cs_home": 0.25,
+            "exp_goals_home": 1.63,
+            "exp_goals_away": 1.29,
+            "prob_home": 0.44979,
+            "prob_draw": 0.25377,
+            "prob_away": 0.29645,
+            "prob_o05": 0.94053,
+            "prob_o15": 0.79399,
+            "prob_o25": 0.55852,
+            "prob_o35": 0.33472,
+            "prob_btts": 0.58789,
+            "prob_cs_home": 0.27619,
+            "prob_cs_away": 0.19539,
             "top_scores": [
               [
                 1,
                 1,
-                11.5
+                11.9
               ],
               [
                 2,
                 1,
-                9.2
+                9.3
+              ],
+              [
+                1,
+                0,
+                8.3
               ],
               [
                 1,
@@ -1983,18 +2108,13 @@
                 7.3
               ],
               [
+                2,
+                0,
+                7.2
+              ],
+              [
+                0,
                 1,
-                0,
-                6.7
-              ],
-              [
-                2,
-                0,
-                6.7
-              ],
-              [
-                2,
-                2,
                 6.4
               ]
             ]
@@ -2010,47 +2130,50 @@
           "matchday": 7,
           "home_dc": "Bournemouth",
           "away_dc": "Sunderland",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.5,
-            "away_xg": 1.06,
-            "prob_home": 0.464,
-            "prob_draw": 0.28,
-            "prob_away": 0.256,
-            "prob_o15": 0.735,
-            "prob_o25": 0.47,
-            "prob_o35": 0.254,
-            "prob_btts": 0.517,
-            "prob_cs_home": 0.348,
+            "exp_goals_home": 1.68,
+            "exp_goals_away": 0.98,
+            "prob_home": 0.53225,
+            "prob_draw": 0.25318,
+            "prob_away": 0.21457,
+            "prob_o05": 0.9247,
+            "prob_o15": 0.75019,
+            "prob_o25": 0.49735,
+            "prob_o35": 0.27784,
+            "prob_btts": 0.51461,
+            "prob_cs_home": 0.37456,
+            "prob_cs_away": 0.18613,
             "top_scores": [
               [
                 1,
                 1,
-                13.4
+                12.1
               ],
               [
                 1,
                 0,
-                10.6
-              ],
-              [
-                2,
-                1,
-                9.2
-              ],
-              [
-                0,
-                0,
-                8.8
+                11.2
               ],
               [
                 2,
                 0,
-                8.7
+                9.9
+              ],
+              [
+                2,
+                1,
+                9.7
+              ],
+              [
+                0,
+                0,
+                7.5
               ],
               [
                 0,
                 1,
-                7.1
+                6.3
               ]
             ]
           }
@@ -2065,47 +2188,50 @@
           "matchday": 7,
           "home_dc": "Leeds",
           "away_dc": "Man United",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.38,
-            "away_xg": 1.42,
-            "prob_home": 0.356,
-            "prob_draw": 0.274,
-            "prob_away": 0.371,
-            "prob_o15": 0.779,
-            "prob_o25": 0.531,
-            "prob_o35": 0.308,
-            "prob_btts": 0.578,
-            "prob_cs_home": 0.242,
+            "exp_goals_home": 1.27,
+            "exp_goals_away": 1.49,
+            "prob_home": 0.31853,
+            "prob_draw": 0.26508,
+            "prob_away": 0.41639,
+            "prob_o05": 0.93065,
+            "prob_o15": 0.76717,
+            "prob_o25": 0.52003,
+            "prob_o35": 0.29833,
+            "prob_btts": 0.56233,
+            "prob_cs_home": 0.22641,
+            "prob_cs_away": 0.28062,
             "top_scores": [
               [
                 1,
                 1,
-                13.0
+                12.6
               ],
               [
                 1,
                 2,
-                8.4
-              ],
-              [
-                2,
-                1,
-                8.2
+                8.9
               ],
               [
                 0,
+                1,
+                8.9
+              ],
+              [
+                2,
                 1,
                 7.6
               ],
               [
                 1,
                 0,
-                7.4
+                7.5
               ],
               [
                 0,
-                0,
-                7.1
+                2,
+                7.0
               ]
             ]
           }
@@ -2120,47 +2246,50 @@
           "matchday": 7,
           "home_dc": "Brighton",
           "away_dc": "Crystal Palace",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.81,
-            "away_xg": 1.07,
-            "prob_home": 0.538,
-            "prob_draw": 0.249,
-            "prob_away": 0.213,
-            "prob_o15": 0.792,
-            "prob_o25": 0.55,
-            "prob_o35": 0.326,
-            "prob_btts": 0.559,
-            "prob_cs_home": 0.343,
+            "exp_goals_home": 1.84,
+            "exp_goals_away": 0.96,
+            "prob_home": 0.57516,
+            "prob_draw": 0.23685,
+            "prob_away": 0.18799,
+            "prob_o05": 0.93348,
+            "prob_o15": 0.77279,
+            "prob_o25": 0.52865,
+            "prob_o35": 0.30629,
+            "prob_btts": 0.52267,
+            "prob_cs_home": 0.38438,
+            "prob_cs_away": 0.15947,
             "top_scores": [
               [
                 1,
                 1,
-                11.8
-              ],
-              [
-                2,
-                1,
-                9.8
+                11.3
               ],
               [
                 1,
                 0,
-                9.2
+                10.7
               ],
               [
                 2,
                 0,
-                9.2
+                10.3
+              ],
+              [
+                2,
+                1,
+                9.9
               ],
               [
                 0,
                 0,
-                6.6
+                6.7
               ],
               [
                 3,
-                1,
-                5.9
+                0,
+                6.3
               ]
             ]
           }
@@ -2175,47 +2304,50 @@
           "matchday": 7,
           "home_dc": "Nott'm Forest",
           "away_dc": "Arsenal",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.81,
-            "away_xg": 1.6,
-            "prob_home": 0.178,
-            "prob_draw": 0.27,
-            "prob_away": 0.552,
-            "prob_o15": 0.705,
-            "prob_o25": 0.434,
-            "prob_o35": 0.224,
-            "prob_btts": 0.454,
-            "prob_cs_home": 0.201,
+            "exp_goals_home": 0.89,
+            "exp_goals_away": 1.51,
+            "prob_home": 0.21487,
+            "prob_draw": 0.2719,
+            "prob_away": 0.51323,
+            "prob_o05": 0.90319,
+            "prob_o15": 0.69704,
+            "prob_o25": 0.42978,
+            "prob_o35": 0.22087,
+            "prob_btts": 0.46408,
+            "prob_cs_home": 0.22051,
+            "prob_cs_away": 0.41221,
             "top_scores": [
               [
                 0,
                 1,
-                13.3
+                13.2
               ],
               [
                 1,
                 1,
-                12.6
+                12.8
               ],
               [
                 0,
                 2,
-                11.5
+                10.4
               ],
               [
                 0,
                 0,
-                10.0
+                9.7
               ],
               [
                 1,
                 2,
-                9.3
+                9.2
               ],
               [
                 1,
                 0,
-                6.2
+                7.5
               ]
             ]
           }
@@ -2230,47 +2362,50 @@
           "matchday": 7,
           "home_dc": "Tottenham",
           "away_dc": "Coventry",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.78,
-            "away_xg": 0.27,
-            "prob_home": 0.747,
-            "prob_draw": 0.209,
-            "prob_away": 0.044,
-            "prob_o15": 0.614,
-            "prob_o25": 0.338,
-            "prob_o35": 0.153,
-            "prob_btts": 0.203,
-            "prob_cs_home": 0.762,
+            "exp_goals_home": 1.29,
+            "exp_goals_away": 0.9,
+            "prob_home": 0.45008,
+            "prob_draw": 0.29699,
+            "prob_away": 0.25293,
+            "prob_o05": 0.88217,
+            "prob_o15": 0.65014,
+            "prob_o25": 0.37554,
+            "prob_o35": 0.17937,
+            "prob_btts": 0.43691,
+            "prob_cs_home": 0.40668,
+            "prob_cs_away": 0.27424,
             "top_scores": [
               [
                 1,
                 0,
-                22.3
+                13.8
+              ],
+              [
+                1,
+                1,
+                13.6
+              ],
+              [
+                0,
+                0,
+                11.8
+              ],
+              [
+                0,
+                1,
+                9.4
               ],
               [
                 2,
                 0,
-                20.4
-              ],
-              [
-                0,
-                0,
-                13.3
-              ],
-              [
-                3,
-                0,
-                12.1
-              ],
-              [
-                1,
-                1,
-                6.7
+                9.3
               ],
               [
                 2,
                 1,
-                5.5
+                8.4
               ]
             ]
           }
@@ -2280,8 +2415,8 @@
     "bundesliga": {
       "name": "Bundesliga",
       "flag": "🇩🇪",
-      "dc_fitted_at": "2026-09-20",
-      "dc_n_matches": 1566,
+      "dc_fitted_at": "2026-10-08",
+      "dc_n_matches": 1503,
       "dc_teams": [
         "Augsburg",
         "Bayern Munich",
@@ -2322,47 +2457,50 @@
           "matchday": 5,
           "home_dc": "Dortmund",
           "away_dc": "Werder Bremen",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.46,
-            "away_xg": 0.86,
-            "prob_home": 0.717,
-            "prob_draw": 0.178,
-            "prob_away": 0.105,
-            "prob_o15": 0.849,
-            "prob_o25": 0.642,
-            "prob_o35": 0.421,
-            "prob_btts": 0.533,
-            "prob_cs_home": 0.424,
+            "exp_goals_home": 2.29,
+            "exp_goals_away": 0.82,
+            "prob_home": 0.70129,
+            "prob_draw": 0.18471,
+            "prob_away": 0.114,
+            "prob_o05": 0.95155,
+            "prob_o15": 0.82139,
+            "prob_o25": 0.60199,
+            "prob_o35": 0.37842,
+            "prob_btts": 0.50748,
+            "prob_cs_home": 0.44009,
+            "prob_cs_away": 0.10088,
             "top_scores": [
               [
                 2,
                 0,
-                11.0
+                11.7
+              ],
+              [
+                1,
+                0,
+                9.8
               ],
               [
                 2,
                 1,
-                9.4
+                9.6
               ],
               [
                 3,
                 0,
-                9.0
+                8.9
               ],
               [
                 1,
                 1,
-                8.3
-              ],
-              [
-                1,
-                0,
-                8.3
+                8.8
               ],
               [
                 3,
                 1,
-                7.7
+                7.3
               ]
             ]
           }
@@ -2377,47 +2515,50 @@
           "matchday": 5,
           "home_dc": "Mainz",
           "away_dc": "Leverkusen",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.29,
-            "away_xg": 1.71,
-            "prob_home": 0.28,
-            "prob_draw": 0.256,
-            "prob_away": 0.464,
-            "prob_o15": 0.811,
-            "prob_o25": 0.578,
-            "prob_o35": 0.353,
-            "prob_btts": 0.604,
-            "prob_cs_home": 0.18,
+            "exp_goals_home": 1.31,
+            "exp_goals_away": 1.53,
+            "prob_home": 0.32105,
+            "prob_draw": 0.26006,
+            "prob_away": 0.41889,
+            "prob_o05": 0.93633,
+            "prob_o15": 0.78254,
+            "prob_o25": 0.54176,
+            "prob_o35": 0.31862,
+            "prob_btts": 0.57916,
+            "prob_cs_home": 0.21598,
+            "prob_cs_away": 0.26852,
             "top_scores": [
               [
                 1,
                 1,
-                11.9
+                12.3
               ],
               [
                 1,
                 2,
-                9.4
+                9.0
               ],
               [
                 0,
                 1,
-                7.6
-              ],
-              [
-                0,
-                2,
-                7.3
+                8.3
               ],
               [
                 2,
                 1,
+                7.7
+              ],
+              [
+                1,
+                0,
                 7.1
               ],
               [
+                0,
                 2,
-                2,
-                6.1
+                6.8
               ]
             ]
           }
@@ -2432,46 +2573,49 @@
           "matchday": 5,
           "home_dc": "Paderborn",
           "away_dc": "Stuttgart",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.82,
-            "away_xg": 1.28,
-            "prob_home": 0.228,
-            "prob_draw": 0.312,
-            "prob_away": 0.46,
-            "prob_o15": 0.631,
-            "prob_o25": 0.349,
-            "prob_o35": 0.161,
-            "prob_btts": 0.415,
-            "prob_cs_home": 0.279,
+            "exp_goals_home": 0.7,
+            "exp_goals_away": 1.84,
+            "prob_home": 0.13067,
+            "prob_draw": 0.22806,
+            "prob_away": 0.64127,
+            "prob_o05": 0.91619,
+            "prob_o15": 0.72571,
+            "prob_o25": 0.46636,
+            "prob_o35": 0.25097,
+            "prob_btts": 0.42828,
+            "prob_cs_home": 0.1588,
+            "prob_cs_away": 0.49673,
             "top_scores": [
               [
                 0,
-                1,
-                14.6
-              ],
-              [
-                1,
                 1,
                 14.0
               ],
               [
                 0,
-                0,
+                2,
                 13.4
               ],
               [
-                0,
-                2,
-                10.0
-              ],
-              [
                 1,
-                0,
-                9.0
+                1,
+                10.6
               ],
               [
                 1,
                 2,
+                9.3
+              ],
+              [
+                0,
+                0,
+                8.4
+              ],
+              [
+                0,
+                3,
                 8.2
               ]
             ]
@@ -2487,47 +2631,50 @@
           "matchday": 5,
           "home_dc": "Union Berlin",
           "away_dc": "Elversberg",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.3,
-            "away_xg": 2.33,
-            "prob_home": 0.197,
-            "prob_draw": 0.207,
-            "prob_away": 0.596,
-            "prob_o15": 0.883,
-            "prob_o25": 0.7,
-            "prob_o35": 0.488,
-            "prob_btts": 0.662,
-            "prob_cs_home": 0.098,
+            "exp_goals_home": 1.22,
+            "exp_goals_away": 1.41,
+            "prob_home": 0.32007,
+            "prob_draw": 0.27244,
+            "prob_away": 0.40749,
+            "prob_o05": 0.92237,
+            "prob_o15": 0.74557,
+            "prob_o25": 0.49066,
+            "prob_o35": 0.27193,
+            "prob_btts": 0.54002,
+            "prob_cs_home": 0.24362,
+            "prob_cs_away": 0.294,
             "top_scores": [
               [
                 1,
-                2,
-                9.4
-              ],
-              [
                 1,
-                1,
-                8.8
-              ],
-              [
-                1,
-                3,
-                7.3
+                13.0
               ],
               [
                 0,
-                2,
-                7.3
+                1,
+                9.5
               ],
               [
+                1,
                 2,
-                2,
-                6.1
+                8.7
+              ],
+              [
+                1,
+                0,
+                8.2
               ],
               [
                 0,
-                3,
-                5.6
+                0,
+                7.8
+              ],
+              [
+                2,
+                1,
+                7.6
               ]
             ]
           }
@@ -2542,47 +2689,50 @@
           "matchday": 5,
           "home_dc": "Hoffenheim",
           "away_dc": "Hamburg",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.16,
-            "away_xg": 1.14,
-            "prob_home": 0.598,
-            "prob_draw": 0.217,
-            "prob_away": 0.185,
-            "prob_o15": 0.849,
-            "prob_o25": 0.64,
-            "prob_o35": 0.419,
-            "prob_btts": 0.609,
-            "prob_cs_home": 0.32,
+            "exp_goals_home": 1.99,
+            "exp_goals_away": 1.09,
+            "prob_home": 0.57778,
+            "prob_draw": 0.22437,
+            "prob_away": 0.19784,
+            "prob_o05": 0.94907,
+            "prob_o15": 0.81694,
+            "prob_o25": 0.59389,
+            "prob_o35": 0.37007,
+            "prob_btts": 0.57724,
+            "prob_cs_home": 0.33689,
+            "prob_cs_away": 0.1368,
             "top_scores": [
               [
                 1,
+                1,
+                10.5
+              ],
+              [
+                2,
                 1,
                 9.9
               ],
               [
                 2,
-                1,
-                9.8
-              ],
-              [
-                2,
                 0,
-                8.6
+                9.1
               ],
               [
                 1,
                 0,
-                7.2
+                8.7
               ],
               [
                 3,
                 1,
-                7.1
+                6.6
               ],
               [
                 3,
                 0,
-                6.2
+                6.0
               ]
             ]
           }
@@ -2597,47 +2747,50 @@
           "matchday": 5,
           "home_dc": "Augsburg",
           "away_dc": "Bayern Munich",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.05,
-            "away_xg": 2.9,
-            "prob_home": 0.103,
-            "prob_draw": 0.152,
-            "prob_away": 0.744,
-            "prob_o15": 0.909,
-            "prob_o25": 0.752,
-            "prob_o35": 0.553,
-            "prob_btts": 0.619,
-            "prob_cs_home": 0.056,
+            "exp_goals_home": 0.89,
+            "exp_goals_away": 2.52,
+            "prob_home": 0.108,
+            "prob_draw": 0.16787,
+            "prob_away": 0.72413,
+            "prob_o05": 0.96335,
+            "prob_o15": 0.85784,
+            "prob_o25": 0.66211,
+            "prob_o35": 0.44373,
+            "prob_btts": 0.54551,
+            "prob_cs_home": 0.08049,
+            "prob_cs_away": 0.41065,
             "top_scores": [
               [
-                1,
-                2,
-                8.6
-              ],
-              [
-                1,
-                3,
-                8.3
-              ],
-              [
                 0,
                 2,
-                8.2
+                10.5
+              ],
+              [
+                1,
+                2,
+                9.3
               ],
               [
                 0,
                 3,
-                7.9
+                8.8
+              ],
+              [
+                0,
+                1,
+                8.0
+              ],
+              [
+                1,
+                3,
+                7.8
               ],
               [
                 1,
                 1,
-                6.4
-              ],
-              [
-                1,
-                4,
-                6.0
+                7.8
               ]
             ]
           }
@@ -2652,47 +2805,50 @@
           "matchday": 5,
           "home_dc": "RB Leipzig",
           "away_dc": "Ein Frankfurt",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.27,
-            "away_xg": 1.36,
-            "prob_home": 0.572,
-            "prob_draw": 0.213,
-            "prob_away": 0.215,
-            "prob_o15": 0.884,
-            "prob_o25": 0.701,
-            "prob_o35": 0.489,
-            "prob_btts": 0.672,
-            "prob_cs_home": 0.258,
+            "exp_goals_home": 2.1,
+            "exp_goals_away": 1.11,
+            "prob_home": 0.59764,
+            "prob_draw": 0.21457,
+            "prob_away": 0.18779,
+            "prob_o05": 0.95499,
+            "prob_o15": 0.83436,
+            "prob_o25": 0.62169,
+            "prob_o35": 0.39918,
+            "prob_btts": 0.59181,
+            "prob_cs_home": 0.33099,
+            "prob_cs_away": 0.12221,
             "top_scores": [
               [
                 2,
                 1,
-                9.3
+                9.9
               ],
               [
                 1,
                 1,
-                8.9
-              ],
-              [
-                3,
-                1,
-                7.1
+                9.9
               ],
               [
                 2,
                 0,
-                6.9
-              ],
-              [
-                2,
-                2,
-                6.3
+                8.9
               ],
               [
                 1,
-                2,
-                5.6
+                0,
+                8.0
+              ],
+              [
+                3,
+                1,
+                6.9
+              ],
+              [
+                3,
+                0,
+                6.3
               ]
             ]
           }
@@ -2707,47 +2863,50 @@
           "matchday": 5,
           "home_dc": "FC Koln",
           "away_dc": "M'gladbach",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.67,
-            "away_xg": 1.49,
-            "prob_home": 0.413,
-            "prob_draw": 0.253,
-            "prob_away": 0.333,
-            "prob_o15": 0.832,
-            "prob_o25": 0.611,
-            "prob_o35": 0.388,
-            "prob_btts": 0.637,
-            "prob_cs_home": 0.226,
+            "exp_goals_home": 1.78,
+            "exp_goals_away": 1.27,
+            "prob_home": 0.4876,
+            "prob_draw": 0.24298,
+            "prob_away": 0.26942,
+            "prob_o05": 0.94751,
+            "prob_o15": 0.81358,
+            "prob_o25": 0.5882,
+            "prob_o35": 0.36425,
+            "prob_btts": 0.6036,
+            "prob_cs_home": 0.27992,
+            "prob_cs_away": 0.16897,
             "top_scores": [
               [
                 1,
                 1,
-                11.5
+                11.2
               ],
               [
                 2,
                 1,
-                8.8
+                9.5
               ],
               [
                 1,
-                2,
+                0,
                 7.9
               ],
               [
                 2,
-                2,
-                6.6
+                0,
+                7.5
               ],
               [
                 1,
-                0,
-                6.2
+                2,
+                6.8
               ],
               [
                 2,
-                0,
-                5.9
+                2,
+                6.1
               ]
             ]
           }
@@ -2762,47 +2921,50 @@
           "matchday": 5,
           "home_dc": "Freiburg",
           "away_dc": "Schalke 04",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.46,
-            "away_xg": 0.84,
-            "prob_home": 0.507,
-            "prob_draw": 0.288,
-            "prob_away": 0.206,
-            "prob_o15": 0.68,
-            "prob_o25": 0.404,
-            "prob_o35": 0.201,
-            "prob_btts": 0.447,
-            "prob_cs_home": 0.432,
+            "exp_goals_home": 2.11,
+            "exp_goals_away": 0.9,
+            "prob_home": 0.64772,
+            "prob_draw": 0.20678,
+            "prob_away": 0.1455,
+            "prob_o05": 0.94644,
+            "prob_o15": 0.80767,
+            "prob_o25": 0.58024,
+            "prob_o35": 0.35621,
+            "prob_btts": 0.52704,
+            "prob_cs_home": 0.40566,
+            "prob_cs_away": 0.12086,
             "top_scores": [
               [
-                1,
-                0,
-                13.6
-              ],
-              [
-                1,
-                1,
-                13.4
-              ],
-              [
-                0,
-                0,
-                11.1
-              ],
-              [
                 2,
                 0,
-                10.7
+                10.9
+              ],
+              [
+                1,
+                0,
+                9.9
               ],
               [
                 2,
                 1,
-                9.0
+                9.9
               ],
               [
-                0,
                 1,
-                7.4
+                1,
+                9.8
+              ],
+              [
+                3,
+                0,
+                7.7
+              ],
+              [
+                3,
+                1,
+                7.0
               ]
             ]
           }
@@ -2817,47 +2979,50 @@
           "matchday": 6,
           "home_dc": "Ein Frankfurt",
           "away_dc": "FC Koln",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.28,
-            "away_xg": 1.3,
-            "prob_home": 0.587,
-            "prob_draw": 0.211,
-            "prob_away": 0.202,
-            "prob_o15": 0.878,
-            "prob_o25": 0.692,
-            "prob_o35": 0.478,
-            "prob_btts": 0.659,
-            "prob_cs_home": 0.274,
+            "exp_goals_home": 1.85,
+            "exp_goals_away": 1.16,
+            "prob_home": 0.52996,
+            "prob_draw": 0.23738,
+            "prob_away": 0.23266,
+            "prob_o05": 0.94584,
+            "prob_o15": 0.80823,
+            "prob_o25": 0.58019,
+            "prob_o35": 0.35616,
+            "prob_btts": 0.58464,
+            "prob_cs_home": 0.31269,
+            "prob_cs_away": 0.15683,
             "top_scores": [
+              [
+                1,
+                1,
+                11.1
+              ],
               [
                 2,
                 1,
-                9.5
+                9.8
               ],
               [
                 1,
-                1,
-                9.0
+                0,
+                8.6
               ],
               [
                 2,
                 0,
-                7.3
+                8.4
               ],
               [
-                3,
                 1,
-                7.2
-              ],
-              [
-                2,
                 2,
                 6.1
               ],
               [
+                3,
                 1,
-                0,
-                5.7
+                6.0
               ]
             ]
           }
@@ -2872,47 +3037,50 @@
           "matchday": 6,
           "home_dc": "Union Berlin",
           "away_dc": "Dortmund",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.97,
-            "away_xg": 2.04,
-            "prob_home": 0.163,
-            "prob_draw": 0.225,
-            "prob_away": 0.612,
-            "prob_o15": 0.809,
-            "prob_o25": 0.576,
-            "prob_o35": 0.352,
-            "prob_btts": 0.547,
-            "prob_cs_home": 0.131,
+            "exp_goals_home": 0.96,
+            "exp_goals_away": 1.79,
+            "prob_home": 0.19441,
+            "prob_draw": 0.24122,
+            "prob_away": 0.56437,
+            "prob_o05": 0.93113,
+            "prob_o15": 0.76664,
+            "prob_o25": 0.51999,
+            "prob_o35": 0.29828,
+            "prob_btts": 0.52029,
+            "prob_cs_home": 0.16618,
+            "prob_cs_away": 0.3824,
             "top_scores": [
               [
                 1,
                 1,
-                10.6
+                11.5
+              ],
+              [
+                0,
+                1,
+                10.9
               ],
               [
                 0,
                 2,
-                10.3
+                10.2
               ],
               [
                 1,
                 2,
-                10.0
+                9.8
               ],
               [
                 0,
-                1,
-                9.3
+                0,
+                6.9
               ],
               [
                 0,
                 3,
-                7.0
-              ],
-              [
-                1,
-                3,
-                6.8
+                6.1
               ]
             ]
           }
@@ -2927,47 +3095,50 @@
           "matchday": 6,
           "home_dc": "Hamburg",
           "away_dc": "Stuttgart",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.16,
-            "away_xg": 1.95,
-            "prob_home": 0.214,
-            "prob_draw": 0.237,
-            "prob_away": 0.549,
-            "prob_o15": 0.824,
-            "prob_o25": 0.599,
-            "prob_o35": 0.375,
-            "prob_btts": 0.596,
-            "prob_cs_home": 0.143,
+            "exp_goals_home": 1.21,
+            "exp_goals_away": 1.88,
+            "prob_home": 0.24091,
+            "prob_draw": 0.23554,
+            "prob_away": 0.52355,
+            "prob_o05": 0.94938,
+            "prob_o15": 0.81865,
+            "prob_o25": 0.59624,
+            "prob_o35": 0.37248,
+            "prob_btts": 0.59997,
+            "prob_cs_home": 0.15335,
+            "prob_cs_away": 0.2973,
             "top_scores": [
               [
                 1,
                 1,
-                11.0
+                10.9
               ],
               [
                 1,
                 2,
-                9.9
-              ],
-              [
-                0,
-                2,
-                8.5
+                9.7
               ],
               [
                 0,
                 1,
-                7.9
+                8.0
+              ],
+              [
+                0,
+                2,
+                8.0
+              ],
+              [
+                2,
+                1,
+                6.3
               ],
               [
                 1,
                 3,
-                6.4
-              ],
-              [
-                2,
-                1,
-                5.8
+                6.1
               ]
             ]
           }
@@ -2982,46 +3153,49 @@
           "matchday": 6,
           "home_dc": "Werder Bremen",
           "away_dc": "Paderborn",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.09,
-            "away_xg": 0.76,
-            "prob_home": 0.42,
-            "prob_draw": 0.34,
-            "prob_away": 0.241,
-            "prob_o15": 0.562,
-            "prob_o25": 0.282,
-            "prob_o35": 0.117,
-            "prob_btts": 0.364,
-            "prob_cs_home": 0.469,
+            "exp_goals_home": 1.59,
+            "exp_goals_away": 0.66,
+            "prob_home": 0.59364,
+            "prob_draw": 0.25945,
+            "prob_away": 0.14691,
+            "prob_o05": 0.88882,
+            "prob_o15": 0.66188,
+            "prob_o25": 0.38961,
+            "prob_o35": 0.18978,
+            "prob_btts": 0.38872,
+            "prob_cs_home": 0.5183,
+            "prob_cs_away": 0.20415,
             "top_scores": [
               [
-                0,
-                0,
-                16.9
-              ],
-              [
                 1,
                 0,
-                16.1
-              ],
-              [
-                1,
-                1,
-                14.1
-              ],
-              [
-                0,
-                1,
-                10.8
+                16.3
               ],
               [
                 2,
                 0,
-                9.4
+                13.4
+              ],
+              [
+                1,
+                1,
+                11.6
+              ],
+              [
+                0,
+                0,
+                11.1
               ],
               [
                 2,
                 1,
+                8.8
+              ],
+              [
+                3,
+                0,
                 7.1
               ]
             ]
@@ -3037,47 +3211,50 @@
           "matchday": 6,
           "home_dc": "Elversberg",
           "away_dc": "Augsburg",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.74,
-            "away_xg": 1.19,
-            "prob_home": 0.692,
-            "prob_draw": 0.172,
-            "prob_away": 0.136,
-            "prob_o15": 0.907,
-            "prob_o25": 0.749,
-            "prob_o35": 0.548,
-            "prob_btts": 0.655,
-            "prob_cs_home": 0.305,
+            "exp_goals_home": 1.68,
+            "exp_goals_away": 1.09,
+            "prob_home": 0.50609,
+            "prob_draw": 0.25347,
+            "prob_away": 0.24044,
+            "prob_o05": 0.93124,
+            "prob_o15": 0.7679,
+            "prob_o25": 0.52137,
+            "prob_o35": 0.29956,
+            "prob_btts": 0.54396,
+            "prob_cs_home": 0.3377,
+            "prob_cs_away": 0.18709,
             "top_scores": [
+              [
+                1,
+                1,
+                12.1
+              ],
+              [
+                1,
+                0,
+                10.0
+              ],
               [
                 2,
                 1,
+                9.6
+              ],
+              [
+                2,
+                0,
                 8.9
               ],
               [
-                3,
-                1,
-                8.1
-              ],
-              [
-                2,
                 0,
-                7.5
-              ],
-              [
-                1,
-                1,
-                7.0
-              ],
-              [
-                3,
                 0,
-                6.8
+                6.9
               ],
               [
-                4,
+                0,
                 1,
-                5.5
+                6.3
               ]
             ]
           }
@@ -3092,47 +3269,50 @@
           "matchday": 6,
           "home_dc": "Schalke 04",
           "away_dc": "Mainz",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.99,
-            "away_xg": 1.09,
-            "prob_home": 0.31,
-            "prob_draw": 0.324,
-            "prob_away": 0.366,
-            "prob_o15": 0.627,
-            "prob_o25": 0.345,
-            "prob_o35": 0.158,
-            "prob_btts": 0.429,
-            "prob_cs_home": 0.335,
+            "exp_goals_home": 1.16,
+            "exp_goals_away": 1.6,
+            "prob_home": 0.26896,
+            "prob_draw": 0.25904,
+            "prob_away": 0.472,
+            "prob_o05": 0.93101,
+            "prob_o15": 0.7677,
+            "prob_o25": 0.52094,
+            "prob_o35": 0.29916,
+            "prob_btts": 0.55311,
+            "prob_cs_home": 0.20105,
+            "prob_cs_away": 0.31484,
             "top_scores": [
               [
                 1,
                 1,
-                14.6
-              ],
-              [
-                0,
-                0,
-                13.6
+                12.3
               ],
               [
                 0,
                 1,
-                12.5
-              ],
-              [
-                1,
-                0,
-                11.1
-              ],
-              [
-                0,
-                2,
-                7.5
+                9.6
               ],
               [
                 1,
                 2,
-                7.4
+                9.4
+              ],
+              [
+                0,
+                2,
+                8.1
+              ],
+              [
+                0,
+                0,
+                6.9
+              ],
+              [
+                2,
+                1,
+                6.8
               ]
             ]
           }
@@ -3147,18 +3327,31 @@
           "matchday": 6,
           "home_dc": "Bayern Munich",
           "away_dc": "RB Leipzig",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.96,
-            "away_xg": 1.16,
-            "prob_home": 0.731,
-            "prob_draw": 0.154,
-            "prob_away": 0.115,
-            "prob_o15": 0.921,
-            "prob_o25": 0.776,
-            "prob_o35": 0.585,
-            "prob_btts": 0.655,
-            "prob_cs_home": 0.314,
+            "exp_goals_home": 2.96,
+            "exp_goals_away": 0.93,
+            "prob_home": 0.77981,
+            "prob_draw": 0.13524,
+            "prob_away": 0.08495,
+            "prob_o05": 0.97693,
+            "prob_o15": 0.90316,
+            "prob_o25": 0.7461,
+            "prob_o35": 0.54572,
+            "prob_btts": 0.57835,
+            "prob_cs_home": 0.39296,
+            "prob_cs_away": 0.05176,
             "top_scores": [
+              [
+                2,
+                0,
+                8.9
+              ],
+              [
+                3,
+                0,
+                8.8
+              ],
               [
                 2,
                 1,
@@ -3170,19 +3363,9 @@
                 8.2
               ],
               [
-                2,
+                4,
                 0,
-                7.2
-              ],
-              [
-                3,
-                0,
-                7.1
-              ],
-              [
-                1,
-                1,
-                6.1
+                6.5
               ],
               [
                 4,
@@ -3202,47 +3385,50 @@
           "matchday": 6,
           "home_dc": "Leverkusen",
           "away_dc": "Freiburg",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.25,
-            "away_xg": 1.12,
-            "prob_home": 0.622,
-            "prob_draw": 0.209,
-            "prob_away": 0.17,
-            "prob_o15": 0.856,
-            "prob_o25": 0.653,
-            "prob_o35": 0.433,
-            "prob_btts": 0.609,
-            "prob_cs_home": 0.328,
+            "exp_goals_home": 2.01,
+            "exp_goals_away": 1.05,
+            "prob_home": 0.59114,
+            "prob_draw": 0.22164,
+            "prob_away": 0.18723,
+            "prob_o05": 0.94836,
+            "prob_o15": 0.81458,
+            "prob_o25": 0.59033,
+            "prob_o35": 0.36643,
+            "prob_btts": 0.56797,
+            "prob_cs_home": 0.34975,
+            "prob_cs_away": 0.13393,
             "top_scores": [
               [
-                2,
                 1,
-                9.8
+                1,
+                10.4
               ],
               [
+                2,
                 1,
-                1,
-                9.4
+                9.9
               ],
               [
                 2,
                 0,
-                8.8
+                9.5
+              ],
+              [
+                1,
+                0,
+                8.9
               ],
               [
                 3,
                 1,
-                7.3
-              ],
-              [
-                1,
-                0,
-                7.0
+                6.7
               ],
               [
                 3,
                 0,
-                6.6
+                6.3
               ]
             ]
           }
@@ -3257,47 +3443,50 @@
           "matchday": 6,
           "home_dc": "M'gladbach",
           "away_dc": "Hoffenheim",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.82,
-            "away_xg": 1.75,
-            "prob_home": 0.397,
-            "prob_draw": 0.236,
-            "prob_away": 0.367,
-            "prob_o15": 0.879,
-            "prob_o25": 0.691,
-            "prob_o35": 0.478,
-            "prob_btts": 0.7,
-            "prob_cs_home": 0.174,
+            "exp_goals_home": 1.52,
+            "exp_goals_away": 1.65,
+            "prob_home": 0.35051,
+            "prob_draw": 0.24537,
+            "prob_away": 0.40412,
+            "prob_o05": 0.95278,
+            "prob_o15": 0.82966,
+            "prob_o25": 0.61332,
+            "prob_o35": 0.39029,
+            "prob_btts": 0.63605,
+            "prob_cs_home": 0.19275,
+            "prob_cs_away": 0.21841,
             "top_scores": [
               [
                 1,
                 1,
-                9.8
-              ],
-              [
-                2,
-                1,
-                8.2
+                11.1
               ],
               [
                 1,
                 2,
-                7.8
+                8.7
               ],
               [
                 2,
-                2,
-                7.1
-              ],
-              [
-                3,
                 1,
-                5.0
+                8.0
               ],
               [
                 2,
+                2,
+                6.6
+              ],
+              [
                 0,
-                4.7
+                1,
+                6.4
+              ],
+              [
+                1,
+                0,
+                5.9
               ]
             ]
           }
@@ -3307,8 +3496,8 @@
     "la_liga": {
       "name": "La Liga",
       "flag": "🇪🇸",
-      "dc_fitted_at": "2026-09-20",
-      "dc_n_matches": 1969,
+      "dc_fitted_at": "2026-10-08",
+      "dc_n_matches": 1891,
       "dc_teams": [
         "Alaves",
         "Almeria",
@@ -3351,47 +3540,50 @@
           "matchday": 8,
           "home_dc": "Malaga",
           "away_dc": "Espanol",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.56,
-            "away_xg": 1.11,
-            "prob_home": 0.186,
-            "prob_draw": 0.327,
-            "prob_away": 0.488,
-            "prob_o15": 0.5,
-            "prob_o25": 0.236,
-            "prob_o35": 0.089,
-            "prob_btts": 0.29,
-            "prob_cs_home": 0.33,
+            "exp_goals_home": 0.93,
+            "exp_goals_away": 1.28,
+            "prob_home": 0.26372,
+            "prob_draw": 0.29738,
+            "prob_away": 0.4389,
+            "prob_o05": 0.88392,
+            "prob_o15": 0.6541,
+            "prob_o25": 0.37986,
+            "prob_o35": 0.18254,
+            "prob_btts": 0.44332,
+            "prob_cs_home": 0.278,
+            "prob_cs_away": 0.39476,
             "top_scores": [
               [
+                1,
+                1,
+                13.7
+              ],
+              [
                 0,
                 1,
-                20.7
+                13.4
               ],
               [
                 0,
                 0,
-                18.8
+                11.6
               ],
               [
                 1,
-                1,
-                11.8
+                0,
+                9.6
               ],
               [
                 0,
                 2,
-                11.5
-              ],
-              [
-                1,
-                0,
-                10.5
+                9.0
               ],
               [
                 1,
                 2,
-                6.5
+                8.4
               ]
             ]
           }
@@ -3406,47 +3598,50 @@
           "matchday": 8,
           "home_dc": "Vallecano",
           "away_dc": "Ath Bilbao",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.1,
-            "away_xg": 1.03,
-            "prob_home": 0.366,
-            "prob_draw": 0.299,
-            "prob_away": 0.335,
-            "prob_o15": 0.629,
-            "prob_o25": 0.359,
-            "prob_o35": 0.167,
-            "prob_btts": 0.43,
-            "prob_cs_home": 0.355,
+            "exp_goals_home": 1.42,
+            "exp_goals_away": 1.12,
+            "prob_home": 0.43149,
+            "prob_draw": 0.27607,
+            "prob_away": 0.29244,
+            "prob_o05": 0.91523,
+            "prob_o15": 0.72736,
+            "prob_o25": 0.46699,
+            "prob_o35": 0.2515,
+            "prob_btts": 0.51764,
+            "prob_cs_home": 0.32509,
+            "prob_cs_away": 0.24204,
             "top_scores": [
               [
                 1,
                 1,
-                13.6
+                13.2
               ],
               [
                 1,
                 0,
-                12.9
-              ],
-              [
-                0,
-                1,
-                12.2
-              ],
-              [
-                0,
-                0,
-                12.0
+                10.6
               ],
               [
                 2,
                 1,
-                7.4
+                8.9
+              ],
+              [
+                0,
+                0,
+                8.5
+              ],
+              [
+                0,
+                1,
+                8.2
               ],
               [
                 2,
                 0,
-                7.1
+                7.9
               ]
             ]
           }
@@ -3461,47 +3656,50 @@
           "matchday": 8,
           "home_dc": "Alaves",
           "away_dc": "Ath Madrid",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.04,
-            "away_xg": 1.5,
-            "prob_home": 0.263,
-            "prob_draw": 0.262,
-            "prob_away": 0.475,
-            "prob_o15": 0.721,
-            "prob_o25": 0.466,
-            "prob_o35": 0.25,
-            "prob_btts": 0.503,
-            "prob_cs_home": 0.224,
+            "exp_goals_home": 1.18,
+            "exp_goals_away": 1.41,
+            "prob_home": 0.30745,
+            "prob_draw": 0.27459,
+            "prob_away": 0.41796,
+            "prob_o05": 0.91872,
+            "prob_o15": 0.73621,
+            "prob_o25": 0.47837,
+            "prob_o35": 0.26124,
+            "prob_btts": 0.52892,
+            "prob_cs_home": 0.24375,
+            "prob_cs_away": 0.3086,
             "top_scores": [
               [
                 1,
                 1,
-                12.4
+                13.1
               ],
               [
                 0,
                 1,
-                11.7
+                10.0
               ],
               [
                 1,
-                2,
-                9.2
-              ],
-              [
-                0,
                 2,
                 8.8
               ],
               [
                 1,
                 0,
-                8.1
+                8.2
               ],
               [
                 0,
                 0,
-                8.0
+                8.1
+              ],
+              [
+                0,
+                2,
+                7.5
               ]
             ]
           }
@@ -3516,47 +3714,50 @@
           "matchday": 8,
           "home_dc": "Barcelona",
           "away_dc": "Getafe",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.31,
-            "away_xg": 0.53,
-            "prob_home": 0.774,
-            "prob_draw": 0.157,
-            "prob_away": 0.069,
-            "prob_o15": 0.776,
-            "prob_o25": 0.54,
-            "prob_o35": 0.316,
-            "prob_btts": 0.373,
-            "prob_cs_home": 0.586,
+            "exp_goals_home": 2.81,
+            "exp_goals_away": 0.57,
+            "prob_home": 0.83267,
+            "prob_draw": 0.1197,
+            "prob_away": 0.04764,
+            "prob_o05": 0.96328,
+            "prob_o15": 0.85339,
+            "prob_o25": 0.65616,
+            "prob_o35": 0.43699,
+            "prob_btts": 0.40968,
+            "prob_cs_home": 0.56692,
+            "prob_cs_away": 0.06012,
             "top_scores": [
               [
                 2,
                 0,
-                15.6
-              ],
-              [
-                1,
-                0,
-                13.4
+                13.5
               ],
               [
                 3,
                 0,
-                12.0
-              ],
-              [
-                2,
-                1,
-                8.3
+                12.6
               ],
               [
                 1,
-                1,
-                7.3
+                0,
+                9.3
               ],
               [
                 4,
                 0,
-                6.9
+                8.9
+              ],
+              [
+                2,
+                1,
+                7.6
+              ],
+              [
+                3,
+                1,
+                7.2
               ]
             ]
           }
@@ -3571,47 +3772,50 @@
           "matchday": 8,
           "home_dc": "Real Madrid",
           "away_dc": "Villarreal",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.46,
-            "away_xg": 1.14,
-            "prob_home": 0.662,
-            "prob_draw": 0.18,
-            "prob_away": 0.159,
-            "prob_o15": 0.874,
-            "prob_o25": 0.695,
-            "prob_o35": 0.482,
-            "prob_btts": 0.621,
-            "prob_cs_home": 0.321,
+            "exp_goals_home": 2.32,
+            "exp_goals_away": 1.02,
+            "prob_home": 0.66011,
+            "prob_draw": 0.19222,
+            "prob_away": 0.14768,
+            "prob_o05": 0.96054,
+            "prob_o15": 0.85041,
+            "prob_o25": 0.64877,
+            "prob_o35": 0.42873,
+            "prob_btts": 0.58092,
+            "prob_cs_home": 0.3603,
+            "prob_cs_away": 0.09824,
             "top_scores": [
               [
                 2,
                 1,
-                9.5
+                9.7
               ],
               [
                 2,
                 0,
-                8.3
+                9.5
               ],
               [
                 1,
                 1,
+                8.8
+              ],
+              [
+                1,
+                0,
                 7.8
               ],
               [
                 3,
                 1,
-                7.8
+                7.5
               ],
               [
                 3,
                 0,
-                6.8
-              ],
-              [
-                1,
-                0,
-                6.7
+                7.4
               ]
             ]
           }
@@ -3626,47 +3830,50 @@
           "matchday": 8,
           "home_dc": "Elche",
           "away_dc": "Celta",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.47,
-            "away_xg": 1.39,
-            "prob_home": 0.392,
-            "prob_draw": 0.251,
-            "prob_away": 0.357,
-            "prob_o15": 0.781,
-            "prob_o25": 0.546,
-            "prob_o35": 0.323,
-            "prob_btts": 0.58,
-            "prob_cs_home": 0.248,
+            "exp_goals_home": 1.3,
+            "exp_goals_away": 1.37,
+            "prob_home": 0.35019,
+            "prob_draw": 0.27169,
+            "prob_away": 0.37813,
+            "prob_o05": 0.92477,
+            "prob_o15": 0.75186,
+            "prob_o25": 0.49903,
+            "prob_o35": 0.27934,
+            "prob_btts": 0.54871,
+            "prob_cs_home": 0.25532,
+            "prob_cs_away": 0.2712,
             "top_scores": [
               [
                 1,
                 1,
-                11.8
-              ],
-              [
-                2,
-                1,
-                8.6
-              ],
-              [
-                1,
-                0,
-                8.3
-              ],
-              [
-                1,
-                2,
-                8.1
+                12.9
               ],
               [
                 0,
                 1,
-                7.8
+                8.9
+              ],
+              [
+                1,
+                0,
+                8.4
+              ],
+              [
+                1,
+                2,
+                8.4
               ],
               [
                 2,
+                1,
+                8.0
+              ],
+              [
                 0,
-                6.2
+                0,
+                7.5
               ]
             ]
           }
@@ -3681,47 +3888,50 @@
           "matchday": 8,
           "home_dc": "Sociedad",
           "away_dc": "La Coruna",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.55,
-            "away_xg": 1.22,
-            "prob_home": 0.448,
-            "prob_draw": 0.252,
-            "prob_away": 0.3,
-            "prob_o15": 0.766,
-            "prob_o25": 0.525,
-            "prob_o35": 0.303,
-            "prob_btts": 0.558,
-            "prob_cs_home": 0.294,
+            "exp_goals_home": 1.82,
+            "exp_goals_away": 0.98,
+            "prob_home": 0.56706,
+            "prob_draw": 0.23839,
+            "prob_away": 0.19455,
+            "prob_o05": 0.93416,
+            "prob_o15": 0.77479,
+            "prob_o25": 0.53141,
+            "prob_o35": 0.30887,
+            "prob_btts": 0.52884,
+            "prob_cs_home": 0.37575,
+            "prob_cs_away": 0.16125,
             "top_scores": [
               [
                 1,
                 1,
-                11.9
+                11.3
               ],
               [
                 1,
                 0,
-                9.6
-              ],
-              [
-                2,
-                1,
-                9.2
-              ],
-              [
-                0,
-                1,
-                7.5
+                10.5
               ],
               [
                 2,
                 0,
-                7.5
+                10.1
               ],
               [
-                1,
                 2,
-                7.2
+                1,
+                9.9
+              ],
+              [
+                0,
+                0,
+                6.6
+              ],
+              [
+                3,
+                0,
+                6.1
               ]
             ]
           }
@@ -3736,47 +3946,50 @@
           "matchday": 8,
           "home_dc": "Betis",
           "away_dc": "Osasuna",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.78,
-            "away_xg": 0.89,
-            "prob_home": 0.583,
-            "prob_draw": 0.233,
-            "prob_away": 0.185,
-            "prob_o15": 0.747,
-            "prob_o25": 0.5,
-            "prob_o35": 0.28,
-            "prob_btts": 0.492,
-            "prob_cs_home": 0.41,
+            "exp_goals_home": 1.93,
+            "exp_goals_away": 0.93,
+            "prob_home": 0.60135,
+            "prob_draw": 0.22684,
+            "prob_away": 0.17181,
+            "prob_o05": 0.93772,
+            "prob_o15": 0.78391,
+            "prob_o25": 0.54468,
+            "prob_o35": 0.32139,
+            "prob_btts": 0.52321,
+            "prob_cs_home": 0.3935,
+            "prob_cs_away": 0.14556,
             "top_scores": [
               [
                 1,
-                0,
-                12.2
-              ],
-              [
                 1,
-                1,
-                11.1
+                10.8
               ],
               [
                 2,
                 0,
-                11.0
+                10.6
+              ],
+              [
+                1,
+                0,
+                10.5
               ],
               [
                 2,
                 1,
-                9.8
-              ],
-              [
-                0,
-                0,
-                7.0
+                9.9
               ],
               [
                 3,
                 0,
-                6.5
+                6.8
+              ],
+              [
+                3,
+                1,
+                6.4
               ]
             ]
           }
@@ -3791,47 +4004,50 @@
           "matchday": 8,
           "home_dc": "Santander",
           "away_dc": "Valencia",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.97,
-            "away_xg": 1.97,
-            "prob_home": 0.395,
-            "prob_draw": 0.21,
-            "prob_away": 0.394,
-            "prob_o15": 0.904,
-            "prob_o25": 0.753,
-            "prob_o35": 0.554,
-            "prob_btts": 0.741,
-            "prob_cs_home": 0.14,
+            "exp_goals_home": 1.52,
+            "exp_goals_away": 1.47,
+            "prob_home": 0.38464,
+            "prob_draw": 0.25444,
+            "prob_away": 0.36092,
+            "prob_o05": 0.94408,
+            "prob_o15": 0.80431,
+            "prob_o25": 0.57381,
+            "prob_o35": 0.34977,
+            "prob_btts": 0.6065,
+            "prob_cs_home": 0.23075,
+            "prob_cs_away": 0.21866,
             "top_scores": [
               [
                 1,
                 1,
-                7.6
+                11.8
               ],
               [
                 2,
                 1,
-                7.5
+                8.5
               ],
               [
                 1,
                 2,
-                7.4
+                8.2
+              ],
+              [
+                1,
+                0,
+                7.1
+              ],
+              [
+                0,
+                1,
+                6.9
               ],
               [
                 2,
                 2,
-                7.3
-              ],
-              [
-                3,
-                1,
-                4.9
-              ],
-              [
-                1,
-                3,
-                4.9
+                6.3
               ]
             ]
           }
@@ -3846,47 +4062,50 @@
           "matchday": 8,
           "home_dc": "Levante",
           "away_dc": "Sevilla",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.61,
-            "away_xg": 1.29,
-            "prob_home": 0.448,
-            "prob_draw": 0.246,
-            "prob_away": 0.306,
-            "prob_o15": 0.787,
-            "prob_o25": 0.555,
-            "prob_o35": 0.331,
-            "prob_btts": 0.582,
-            "prob_cs_home": 0.275,
+            "exp_goals_home": 1.43,
+            "exp_goals_away": 1.27,
+            "prob_home": 0.40179,
+            "prob_draw": 0.26955,
+            "prob_away": 0.32865,
+            "prob_o05": 0.92631,
+            "prob_o15": 0.7558,
+            "prob_o25": 0.50439,
+            "prob_o35": 0.28412,
+            "prob_btts": 0.55147,
+            "prob_cs_home": 0.28178,
+            "prob_cs_away": 0.24044,
             "top_scores": [
               [
                 1,
                 1,
-                11.5
-              ],
-              [
-                2,
-                1,
-                9.2
+                12.8
               ],
               [
                 1,
                 0,
+                9.1
+              ],
+              [
+                2,
+                1,
                 8.7
               ],
               [
+                0,
+                1,
+                8.0
+              ],
+              [
                 1,
                 2,
+                7.7
+              ],
+              [
+                0,
+                0,
                 7.4
-              ],
-              [
-                2,
-                0,
-                7.1
-              ],
-              [
-                0,
-                1,
-                7.0
               ]
             ]
           }
@@ -3901,47 +4120,50 @@
           "matchday": 9,
           "home_dc": "La Coruna",
           "away_dc": "Levante",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.9,
-            "away_xg": 1.13,
-            "prob_home": 0.552,
-            "prob_draw": 0.225,
-            "prob_away": 0.223,
-            "prob_o15": 0.807,
-            "prob_o25": 0.584,
-            "prob_o35": 0.36,
-            "prob_btts": 0.577,
-            "prob_cs_home": 0.322,
+            "exp_goals_home": 1.5,
+            "exp_goals_away": 1.32,
+            "prob_home": 0.40963,
+            "prob_draw": 0.26212,
+            "prob_away": 0.32826,
+            "prob_o05": 0.93462,
+            "prob_o15": 0.7779,
+            "prob_o25": 0.53511,
+            "prob_o35": 0.31233,
+            "prob_btts": 0.57491,
+            "prob_cs_home": 0.26727,
+            "prob_cs_away": 0.2232,
             "top_scores": [
               [
                 1,
                 1,
-                10.5
+                12.4
               ],
               [
                 2,
                 1,
-                9.9
+                8.9
               ],
               [
                 1,
                 0,
-                9.1
+                8.4
+              ],
+              [
+                1,
+                2,
+                7.8
+              ],
+              [
+                0,
+                1,
+                7.3
               ],
               [
                 2,
                 0,
-                8.7
-              ],
-              [
-                3,
-                1,
-                6.3
-              ],
-              [
-                1,
-                2,
-                5.9
+                6.7
               ]
             ]
           }
@@ -3956,17 +4178,20 @@
           "matchday": 9,
           "home_dc": "Espanol",
           "away_dc": "Ath Madrid",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.07,
-            "away_xg": 1.63,
-            "prob_home": 0.248,
-            "prob_draw": 0.249,
-            "prob_away": 0.503,
-            "prob_o15": 0.751,
-            "prob_o25": 0.505,
-            "prob_o35": 0.285,
-            "prob_btts": 0.528,
-            "prob_cs_home": 0.196,
+            "exp_goals_home": 1.07,
+            "exp_goals_away": 1.73,
+            "prob_home": 0.22932,
+            "prob_draw": 0.24834,
+            "prob_away": 0.52234,
+            "prob_o05": 0.93398,
+            "prob_o15": 0.77509,
+            "prob_o25": 0.53153,
+            "prob_o35": 0.30898,
+            "prob_btts": 0.54697,
+            "prob_cs_home": 0.1771,
+            "prob_cs_away": 0.34195,
             "top_scores": [
               [
                 1,
@@ -3976,27 +4201,27 @@
               [
                 0,
                 1,
-                10.9
+                9.9
               ],
               [
                 1,
                 2,
-                9.6
+                9.7
               ],
               [
                 0,
                 2,
-                9.0
+                9.1
               ],
               [
+                0,
+                0,
+                6.6
+              ],
+              [
+                2,
                 1,
-                0,
-                7.1
-              ],
-              [
-                0,
-                0,
-                6.9
+                6.0
               ]
             ]
           }
@@ -4011,47 +4236,50 @@
           "matchday": 9,
           "home_dc": "Villarreal",
           "away_dc": "Elche",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.54,
-            "away_xg": 1.15,
-            "prob_home": 0.673,
-            "prob_draw": 0.174,
-            "prob_away": 0.153,
-            "prob_o15": 0.882,
-            "prob_o25": 0.71,
-            "prob_o35": 0.5,
-            "prob_btts": 0.628,
-            "prob_cs_home": 0.318,
+            "exp_goals_home": 2.16,
+            "exp_goals_away": 0.96,
+            "prob_home": 0.64201,
+            "prob_draw": 0.20491,
+            "prob_away": 0.15308,
+            "prob_o05": 0.95146,
+            "prob_o15": 0.82274,
+            "prob_o25": 0.60349,
+            "prob_o35": 0.37998,
+            "prob_btts": 0.55151,
+            "prob_cs_home": 0.38145,
+            "prob_cs_away": 0.11558,
             "top_scores": [
               [
                 2,
-                1,
-                9.3
+                0,
+                10.3
               ],
               [
                 2,
+                1,
+                9.9
+              ],
+              [
+                1,
+                1,
+                9.6
+              ],
+              [
+                1,
                 0,
-                8.1
+                9.1
               ],
               [
                 3,
-                1,
-                7.9
-              ],
-              [
-                1,
-                1,
+                0,
                 7.4
               ],
               [
                 3,
-                0,
-                6.9
-              ],
-              [
                 1,
-                0,
-                6.4
+                7.1
               ]
             ]
           }
@@ -4066,47 +4294,50 @@
           "matchday": 9,
           "home_dc": "Betis",
           "away_dc": "Barcelona",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.27,
-            "away_xg": 1.99,
-            "prob_home": 0.242,
-            "prob_draw": 0.219,
-            "prob_away": 0.539,
-            "prob_o15": 0.837,
-            "prob_o25": 0.632,
-            "prob_o35": 0.41,
-            "prob_btts": 0.622,
-            "prob_cs_home": 0.137,
+            "exp_goals_home": 1.1,
+            "exp_goals_away": 1.92,
+            "prob_home": 0.209,
+            "prob_draw": 0.23085,
+            "prob_away": 0.56015,
+            "prob_o05": 0.94614,
+            "prob_o15": 0.80865,
+            "prob_o25": 0.58101,
+            "prob_o35": 0.35698,
+            "prob_btts": 0.57393,
+            "prob_cs_home": 0.14656,
+            "prob_cs_away": 0.33337,
             "top_scores": [
               [
                 1,
                 1,
-                9.8
+                10.8
               ],
               [
                 1,
                 2,
-                9.7
+                9.9
               ],
               [
                 0,
                 2,
-                7.6
+                9.0
               ],
               [
                 0,
                 1,
-                7.6
+                8.9
               ],
               [
                 1,
                 3,
-                6.4
+                6.3
               ],
               [
-                2,
-                1,
-                6.2
+                0,
+                3,
+                5.8
               ]
             ]
           }
@@ -4121,47 +4352,50 @@
           "matchday": 9,
           "home_dc": "Valencia",
           "away_dc": "Ath Bilbao",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.12,
-            "away_xg": 1.12,
-            "prob_home": 0.355,
-            "prob_draw": 0.29,
-            "prob_away": 0.355,
-            "prob_o15": 0.658,
-            "prob_o25": 0.39,
-            "prob_o35": 0.19,
-            "prob_btts": 0.457,
-            "prob_cs_home": 0.325,
+            "exp_goals_home": 1.17,
+            "exp_goals_away": 1.19,
+            "prob_home": 0.3498,
+            "prob_draw": 0.29222,
+            "prob_away": 0.35797,
+            "prob_o05": 0.89908,
+            "prob_o15": 0.68885,
+            "prob_o25": 0.41948,
+            "prob_o35": 0.2127,
+            "prob_btts": 0.48596,
+            "prob_cs_home": 0.30491,
+            "prob_cs_away": 0.31005,
             "top_scores": [
               [
                 1,
                 1,
-                13.5
+                13.8
               ],
               [
                 0,
                 1,
-                11.8
+                10.6
               ],
               [
                 1,
                 0,
-                11.8
+                10.4
               ],
               [
                 0,
                 0,
-                10.7
+                10.1
               ],
               [
                 1,
                 2,
-                7.5
+                7.8
               ],
               [
                 2,
                 1,
-                7.5
+                7.7
               ]
             ]
           }
@@ -4176,47 +4410,50 @@
           "matchday": 9,
           "home_dc": "Osasuna",
           "away_dc": "Santander",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.69,
-            "away_xg": 1.49,
-            "prob_home": 0.627,
-            "prob_draw": 0.176,
-            "prob_away": 0.197,
-            "prob_o15": 0.92,
-            "prob_o25": 0.785,
-            "prob_o35": 0.597,
-            "prob_btts": 0.722,
-            "prob_cs_home": 0.226,
+            "exp_goals_home": 1.98,
+            "exp_goals_away": 1.2,
+            "prob_home": 0.55124,
+            "prob_draw": 0.22632,
+            "prob_away": 0.22243,
+            "prob_o05": 0.95376,
+            "prob_o15": 0.83137,
+            "prob_o25": 0.61656,
+            "prob_o35": 0.39371,
+            "prob_btts": 0.6072,
+            "prob_cs_home": 0.30158,
+            "prob_cs_away": 0.13746,
             "top_scores": [
               [
-                2,
-                1,
-                8.3
-              ],
-              [
-                3,
-                1,
-                7.4
-              ],
-              [
                 1,
                 1,
-                6.2
+                10.3
               ],
               [
                 2,
-                2,
-                6.2
+                1,
+                9.8
               ],
               [
                 2,
                 0,
-                5.6
+                8.2
+              ],
+              [
+                1,
+                0,
+                7.7
               ],
               [
                 3,
+                1,
+                6.5
+              ],
+              [
+                1,
                 2,
-                5.5
+                5.9
               ]
             ]
           }
@@ -4231,47 +4468,50 @@
           "matchday": 9,
           "home_dc": "Celta",
           "away_dc": "Alaves",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.51,
-            "away_xg": 0.96,
-            "prob_home": 0.501,
-            "prob_draw": 0.261,
-            "prob_away": 0.238,
-            "prob_o15": 0.707,
-            "prob_o25": 0.448,
-            "prob_o35": 0.236,
-            "prob_btts": 0.481,
-            "prob_cs_home": 0.384,
+            "exp_goals_home": 1.48,
+            "exp_goals_away": 1.02,
+            "prob_home": 0.47168,
+            "prob_draw": 0.27396,
+            "prob_away": 0.25436,
+            "prob_o05": 0.91121,
+            "prob_o15": 0.71701,
+            "prob_o25": 0.45405,
+            "prob_o35": 0.24064,
+            "prob_btts": 0.49814,
+            "prob_cs_home": 0.36201,
+            "prob_cs_away": 0.22865,
             "top_scores": [
               [
                 1,
-                0,
-                12.7
+                1,
+                13.0
               ],
               [
                 1,
-                1,
-                12.4
-              ],
-              [
-                2,
                 0,
-                9.7
+                11.6
               ],
               [
                 2,
                 1,
-                9.3
+                9.2
+              ],
+              [
+                2,
+                0,
+                9.0
               ],
               [
                 0,
                 0,
-                8.6
+                8.9
               ],
               [
                 0,
                 1,
-                8.0
+                7.8
               ]
             ]
           }
@@ -4286,47 +4526,50 @@
           "matchday": 9,
           "home_dc": "Malaga",
           "away_dc": "Sociedad",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.56,
-            "away_xg": 1.29,
-            "prob_home": 0.159,
-            "prob_draw": 0.295,
-            "prob_away": 0.546,
-            "prob_o15": 0.552,
-            "prob_o25": 0.282,
-            "prob_o35": 0.117,
-            "prob_btts": 0.31,
-            "prob_cs_home": 0.275,
+            "exp_goals_home": 0.82,
+            "exp_goals_away": 1.49,
+            "prob_home": 0.20098,
+            "prob_draw": 0.27501,
+            "prob_away": 0.52402,
+            "prob_o05": 0.89467,
+            "prob_o15": 0.67691,
+            "prob_o25": 0.40612,
+            "prob_o35": 0.20231,
+            "prob_btts": 0.4391,
+            "prob_cs_home": 0.22577,
+            "prob_cs_away": 0.44047,
             "top_scores": [
               [
                 0,
                 1,
-                20.3
+                14.2
               ],
               [
-                0,
-                0,
-                15.8
+                1,
+                1,
+                12.7
               ],
               [
                 0,
                 2,
-                13.1
+                11.0
               ],
               [
-                1,
-                1,
-                11.4
-              ],
-              [
-                1,
                 0,
-                8.7
+                0,
+                10.5
               ],
               [
                 1,
                 2,
-                7.3
+                9.0
+              ],
+              [
+                1,
+                0,
+                7.6
               ]
             ]
           }
@@ -4341,47 +4584,50 @@
           "matchday": 9,
           "home_dc": "Real Madrid",
           "away_dc": "Sevilla",
+          "new_team": false,
           "prediction": {
-            "home_xg": 2.57,
-            "away_xg": 0.76,
-            "prob_home": 0.761,
-            "prob_draw": 0.151,
-            "prob_away": 0.089,
-            "prob_o15": 0.845,
-            "prob_o25": 0.645,
-            "prob_o35": 0.424,
-            "prob_btts": 0.494,
-            "prob_cs_home": 0.466,
+            "exp_goals_home": 2.48,
+            "exp_goals_away": 0.77,
+            "prob_home": 0.74374,
+            "prob_draw": 0.16413,
+            "prob_away": 0.09213,
+            "prob_o05": 0.95754,
+            "prob_o15": 0.83851,
+            "prob_o25": 0.62995,
+            "prob_o35": 0.40806,
+            "prob_btts": 0.49573,
+            "prob_cs_home": 0.46275,
+            "prob_cs_away": 0.08399,
             "top_scores": [
               [
                 2,
                 0,
-                11.8
+                11.9
               ],
               [
                 3,
                 0,
-                10.1
+                9.8
               ],
               [
                 1,
                 0,
-                9.2
+                9.3
               ],
               [
                 2,
                 1,
-                9.0
+                9.2
+              ],
+              [
+                1,
+                1,
+                7.8
               ],
               [
                 3,
                 1,
-                7.7
-              ],
-              [
-                1,
-                1,
-                7.1
+                7.6
               ]
             ]
           }
@@ -4396,47 +4642,50 @@
           "matchday": 9,
           "home_dc": "Getafe",
           "away_dc": "Vallecano",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.91,
-            "away_xg": 0.74,
-            "prob_home": 0.375,
-            "prob_draw": 0.346,
-            "prob_away": 0.279,
-            "prob_o15": 0.494,
-            "prob_o25": 0.231,
-            "prob_o35": 0.086,
-            "prob_btts": 0.315,
-            "prob_cs_home": 0.476,
+            "exp_goals_home": 1.13,
+            "exp_goals_away": 1.11,
+            "prob_home": 0.35489,
+            "prob_draw": 0.30117,
+            "prob_away": 0.34394,
+            "prob_o05": 0.88701,
+            "prob_o15": 0.66145,
+            "prob_o25": 0.38787,
+            "prob_o35": 0.18848,
+            "prob_btts": 0.46024,
+            "prob_cs_home": 0.32995,
+            "prob_cs_away": 0.32279,
             "top_scores": [
               [
-                0,
-                0,
-                19.2
+                1,
+                1,
+                14.0
               ],
               [
                 1,
                 0,
-                17.3
+                11.4
+              ],
+              [
+                0,
+                0,
+                11.3
               ],
               [
                 0,
                 1,
-                14.1
-              ],
-              [
-                1,
-                1,
-                13.1
-              ],
-              [
-                2,
-                0,
-                8.0
+                11.2
               ],
               [
                 2,
                 1,
-                5.9
+                7.5
+              ],
+              [
+                1,
+                2,
+                7.4
               ]
             ]
           }
@@ -4451,47 +4700,50 @@
           "matchday": 6,
           "home_dc": "Levante",
           "away_dc": "Ath Bilbao",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.32,
-            "away_xg": 1.32,
-            "prob_home": 0.368,
-            "prob_draw": 0.264,
-            "prob_away": 0.368,
-            "prob_o15": 0.741,
-            "prob_o25": 0.491,
-            "prob_o35": 0.272,
-            "prob_btts": 0.537,
-            "prob_cs_home": 0.267,
+            "exp_goals_home": 1.32,
+            "exp_goals_away": 1.38,
+            "prob_home": 0.35054,
+            "prob_draw": 0.27025,
+            "prob_away": 0.37921,
+            "prob_o05": 0.92646,
+            "prob_o15": 0.75624,
+            "prob_o25": 0.50496,
+            "prob_o35": 0.28464,
+            "prob_btts": 0.55332,
+            "prob_cs_home": 0.25203,
+            "prob_cs_away": 0.26819,
             "top_scores": [
               [
                 1,
                 1,
-                12.6
+                12.9
               ],
               [
                 0,
                 1,
-                9.3
-              ],
-              [
-                1,
-                0,
-                9.3
+                8.7
               ],
               [
                 1,
                 2,
-                8.2
+                8.4
+              ],
+              [
+                1,
+                0,
+                8.3
               ],
               [
                 2,
                 1,
-                8.2
+                8.1
               ],
               [
                 0,
                 0,
-                7.3
+                7.4
               ]
             ]
           }
@@ -4501,8 +4753,8 @@
     "ligue_1": {
       "name": "Ligue 1",
       "flag": "🇫🇷",
-      "dc_fitted_at": "2026-09-20",
-      "dc_n_matches": 1723,
+      "dc_fitted_at": "2026-10-08",
+      "dc_n_matches": 1634,
       "dc_teams": [
         "Ajaccio",
         "Angers",
@@ -4542,47 +4794,50 @@
           "matchday": 6,
           "home_dc": "Lens",
           "away_dc": "Lyon",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.6,
-            "away_xg": 1.25,
-            "prob_home": 0.45,
-            "prob_draw": 0.258,
-            "prob_away": 0.292,
-            "prob_o15": 0.782,
-            "prob_o25": 0.541,
-            "prob_o35": 0.318,
-            "prob_btts": 0.574,
-            "prob_cs_home": 0.288,
+            "exp_goals_home": 1.63,
+            "exp_goals_away": 1.23,
+            "prob_home": 0.46194,
+            "prob_draw": 0.25533,
+            "prob_away": 0.28272,
+            "prob_o05": 0.93712,
+            "prob_o15": 0.78441,
+            "prob_o25": 0.54458,
+            "prob_o35": 0.32129,
+            "prob_btts": 0.57443,
+            "prob_cs_home": 0.29259,
+            "prob_cs_away": 0.19585,
             "top_scores": [
               [
                 1,
                 1,
-                12.2
+                12.0
               ],
               [
                 2,
                 1,
-                9.3
+                9.4
               ],
               [
                 1,
                 0,
-                8.7
+                8.8
               ],
               [
                 2,
                 0,
-                7.4
+                7.6
               ],
               [
                 1,
                 2,
-                7.2
+                7.1
               ],
               [
                 0,
                 1,
-                6.7
+                6.5
               ]
             ]
           }
@@ -4597,47 +4852,50 @@
           "matchday": 6,
           "home_dc": "Lille",
           "away_dc": "Le Havre",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.72,
-            "away_xg": 0.68,
-            "prob_home": 0.62,
-            "prob_draw": 0.243,
-            "prob_away": 0.137,
-            "prob_o15": 0.696,
-            "prob_o25": 0.43,
-            "prob_o35": 0.221,
-            "prob_btts": 0.409,
-            "prob_cs_home": 0.508,
+            "exp_goals_home": 1.84,
+            "exp_goals_away": 0.77,
+            "prob_home": 0.62208,
+            "prob_draw": 0.23152,
+            "prob_away": 0.1464,
+            "prob_o05": 0.92115,
+            "prob_o15": 0.73894,
+            "prob_o25": 0.48321,
+            "prob_o35": 0.26542,
+            "prob_btts": 0.45652,
+            "prob_cs_home": 0.46294,
+            "prob_cs_away": 0.15939,
             "top_scores": [
               [
                 1,
                 0,
-                15.1
+                13.0
               ],
               [
                 2,
                 0,
-                13.5
+                12.4
               ],
               [
                 1,
                 1,
-                11.1
+                10.9
               ],
               [
-                0,
-                0,
+                2,
+                1,
                 9.6
               ],
               [
-                2,
-                1,
-                9.1
+                0,
+                0,
+                7.9
               ],
               [
                 3,
                 0,
-                7.7
+                7.6
               ]
             ]
           }
@@ -4652,47 +4910,50 @@
           "matchday": 6,
           "home_dc": "Brest",
           "away_dc": "Angers",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.56,
-            "away_xg": 0.89,
-            "prob_home": 0.522,
-            "prob_draw": 0.267,
-            "prob_away": 0.21,
-            "prob_o15": 0.709,
-            "prob_o25": 0.444,
-            "prob_o35": 0.232,
-            "prob_btts": 0.473,
-            "prob_cs_home": 0.409,
+            "exp_goals_home": 1.72,
+            "exp_goals_away": 0.9,
+            "prob_home": 0.5616,
+            "prob_draw": 0.24857,
+            "prob_away": 0.18983,
+            "prob_o05": 0.9215,
+            "prob_o15": 0.74133,
+            "prob_o25": 0.4858,
+            "prob_o35": 0.26768,
+            "prob_btts": 0.49213,
+            "prob_cs_home": 0.40689,
+            "prob_cs_away": 0.17948,
             "top_scores": [
               [
                 1,
                 0,
-                12.8
+                12.0
               ],
               [
                 1,
                 1,
-                12.6
+                11.8
               ],
               [
                 2,
                 0,
-                10.4
+                10.8
               ],
               [
                 2,
                 1,
-                9.3
+                9.7
               ],
               [
                 0,
                 0,
-                9.2
+                7.9
               ],
               [
+                3,
                 0,
-                1,
-                7.1
+                6.2
               ]
             ]
           }
@@ -4707,47 +4968,50 @@
           "matchday": 6,
           "home_dc": "Lorient",
           "away_dc": "Paris FC",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.27,
-            "away_xg": 1.38,
-            "prob_home": 0.338,
-            "prob_draw": 0.274,
-            "prob_away": 0.388,
-            "prob_o15": 0.747,
-            "prob_o25": 0.493,
-            "prob_o35": 0.274,
-            "prob_btts": 0.544,
-            "prob_cs_home": 0.253,
+            "exp_goals_home": 1.19,
+            "exp_goals_away": 1.27,
+            "prob_home": 0.33619,
+            "prob_draw": 0.28486,
+            "prob_away": 0.37896,
+            "prob_o05": 0.90825,
+            "prob_o15": 0.71053,
+            "prob_o25": 0.44572,
+            "prob_o35": 0.23378,
+            "prob_btts": 0.5064,
+            "prob_cs_home": 0.27964,
+            "prob_cs_away": 0.30571,
             "top_scores": [
               [
                 1,
                 1,
-                13.0
+                13.5
               ],
               [
                 0,
                 1,
-                9.1
+                10.3
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                0,
+                0,
+                9.2
               ],
               [
                 1,
                 2,
-                8.5
-              ],
-              [
-                1,
-                0,
-                8.4
+                8.2
               ],
               [
                 2,
                 1,
-                7.9
-              ],
-              [
-                0,
-                0,
-                7.7
+                7.6
               ]
             ]
           }
@@ -4762,47 +5026,50 @@
           "matchday": 6,
           "home_dc": "Paris SG",
           "away_dc": "Le Mans",
+          "new_team": false,
           "prediction": {
-            "home_xg": 3.1,
-            "away_xg": 1.14,
-            "prob_home": 0.756,
-            "prob_draw": 0.139,
-            "prob_away": 0.104,
-            "prob_o15": 0.926,
-            "prob_o25": 0.793,
-            "prob_o35": 0.607,
-            "prob_btts": 0.652,
-            "prob_cs_home": 0.32,
+            "exp_goals_home": 2.66,
+            "exp_goals_away": 0.94,
+            "prob_home": 0.73565,
+            "prob_draw": 0.15887,
+            "prob_away": 0.10548,
+            "prob_o05": 0.96941,
+            "prob_o15": 0.87779,
+            "prob_o25": 0.69754,
+            "prob_o35": 0.48511,
+            "prob_btts": 0.57035,
+            "prob_cs_home": 0.39036,
+            "prob_cs_away": 0.06988,
             "top_scores": [
               [
-                3,
-                1,
-                8.3
+                2,
+                0,
+                9.7
               ],
               [
                 2,
                 1,
-                8.0
+                9.1
               ],
               [
                 3,
                 0,
-                7.3
+                8.6
               ],
               [
-                2,
-                0,
-                7.0
-              ],
-              [
-                4,
+                3,
                 1,
-                6.4
+                8.1
               ],
               [
-                4,
+                1,
+                1,
+                7.2
+              ],
+              [
+                1,
                 0,
-                5.6
+                6.9
               ]
             ]
           }
@@ -4817,47 +5084,50 @@
           "matchday": 6,
           "home_dc": "Monaco",
           "away_dc": "Toulouse",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.97,
-            "away_xg": 1.15,
-            "prob_home": 0.56,
-            "prob_draw": 0.228,
-            "prob_away": 0.213,
-            "prob_o15": 0.823,
-            "prob_o25": 0.603,
-            "prob_o35": 0.379,
-            "prob_btts": 0.593,
-            "prob_cs_home": 0.317,
+            "exp_goals_home": 1.78,
+            "exp_goals_away": 1.08,
+            "prob_home": 0.53037,
+            "prob_draw": 0.24419,
+            "prob_away": 0.22543,
+            "prob_o05": 0.9373,
+            "prob_o15": 0.78406,
+            "prob_o25": 0.54439,
+            "prob_o35": 0.32112,
+            "prob_btts": 0.55482,
+            "prob_cs_home": 0.33843,
+            "prob_cs_away": 0.16946,
             "top_scores": [
               [
                 1,
                 1,
-                10.5
+                11.6
               ],
               [
                 2,
                 1,
-                9.9
-              ],
-              [
-                2,
-                0,
-                8.6
+                9.8
               ],
               [
                 1,
                 0,
-                8.2
+                9.6
               ],
               [
-                3,
-                1,
-                6.5
+                2,
+                0,
+                9.0
+              ],
+              [
+                0,
+                0,
+                6.3
               ],
               [
                 1,
                 2,
-                5.7
+                6.0
               ]
             ]
           }
@@ -4872,47 +5142,50 @@
           "matchday": 6,
           "home_dc": "Nice",
           "away_dc": "Strasbourg",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.41,
-            "away_xg": 1.44,
-            "prob_home": 0.361,
-            "prob_draw": 0.262,
-            "prob_away": 0.376,
-            "prob_o15": 0.783,
-            "prob_o25": 0.542,
-            "prob_o35": 0.319,
-            "prob_btts": 0.582,
-            "prob_cs_home": 0.237,
+            "exp_goals_home": 1.36,
+            "exp_goals_away": 1.43,
+            "prob_home": 0.35089,
+            "prob_draw": 0.26443,
+            "prob_away": 0.38469,
+            "prob_o05": 0.93311,
+            "prob_o15": 0.7739,
+            "prob_o25": 0.52942,
+            "prob_o35": 0.30701,
+            "prob_btts": 0.57218,
+            "prob_cs_home": 0.23814,
+            "prob_cs_away": 0.25656,
             "top_scores": [
               [
                 1,
                 1,
-                12.4
+                12.5
               ],
               [
                 1,
                 2,
-                8.5
-              ],
-              [
-                2,
-                1,
-                8.3
+                8.6
               ],
               [
                 0,
                 1,
+                8.2
+              ],
+              [
+                2,
+                1,
+                8.1
+              ],
+              [
+                1,
+                0,
                 7.7
               ],
               [
-                1,
-                0,
-                7.6
-              ],
-              [
                 0,
                 0,
-                6.4
+                6.7
               ]
             ]
           }
@@ -4927,22 +5200,25 @@
           "matchday": 6,
           "home_dc": "Rennes",
           "away_dc": "Auxerre",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.93,
-            "away_xg": 1.1,
-            "prob_home": 0.562,
-            "prob_draw": 0.23,
-            "prob_away": 0.207,
-            "prob_o15": 0.811,
-            "prob_o25": 0.584,
-            "prob_o35": 0.359,
-            "prob_btts": 0.576,
-            "prob_cs_home": 0.333,
+            "exp_goals_home": 1.9,
+            "exp_goals_away": 1.03,
+            "prob_home": 0.57072,
+            "prob_draw": 0.23185,
+            "prob_away": 0.19743,
+            "prob_o05": 0.94175,
+            "prob_o15": 0.79585,
+            "prob_o25": 0.56187,
+            "prob_o35": 0.33799,
+            "prob_btts": 0.55317,
+            "prob_cs_home": 0.35548,
+            "prob_cs_away": 0.1496,
             "top_scores": [
               [
                 1,
                 1,
-                10.8
+                11.0
               ],
               [
                 2,
@@ -4952,22 +5228,22 @@
               [
                 2,
                 0,
-                9.0
+                9.6
               ],
               [
                 1,
                 0,
-                8.8
+                9.6
               ],
               [
                 3,
                 1,
-                6.4
+                6.3
               ],
               [
                 3,
                 0,
-                5.8
+                6.1
               ]
             ]
           }
@@ -4982,32 +5258,40 @@
           "matchday": 6,
           "home_dc": "Troyes",
           "away_dc": "Marseille",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.99,
-            "away_xg": 2.43,
-            "prob_home": 0.133,
-            "prob_draw": 0.183,
-            "prob_away": 0.684,
-            "prob_o15": 0.859,
-            "prob_o25": 0.663,
-            "prob_o35": 0.444,
-            "prob_btts": 0.578,
-            "prob_cs_home": 0.089,
+            "exp_goals_home": 0.95,
+            "exp_goals_away": 2.25,
+            "prob_home": 0.14044,
+            "prob_draw": 0.19503,
+            "prob_away": 0.66453,
+            "prob_o05": 0.95512,
+            "prob_o15": 0.83332,
+            "prob_o25": 0.62058,
+            "prob_o35": 0.39799,
+            "prob_btts": 0.55233,
+            "prob_cs_home": 0.10491,
+            "prob_cs_away": 0.38765,
             "top_scores": [
               [
                 0,
                 2,
-                9.7
+                10.3
               ],
               [
                 1,
                 2,
-                9.6
+                9.8
               ],
               [
                 1,
                 1,
-                8.3
+                9.1
+              ],
+              [
+                0,
+                1,
+                8.7
               ],
               [
                 0,
@@ -5017,12 +5301,7 @@
               [
                 1,
                 3,
-                7.8
-              ],
-              [
-                0,
-                1,
-                7.5
+                7.4
               ]
             ]
           }
@@ -5037,47 +5316,50 @@
           "matchday": 7,
           "home_dc": "Le Mans",
           "away_dc": "Toulouse",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.94,
-            "away_xg": 1.53,
-            "prob_home": 0.468,
-            "prob_draw": 0.229,
-            "prob_away": 0.302,
-            "prob_o15": 0.865,
-            "prob_o25": 0.673,
-            "prob_o35": 0.456,
-            "prob_btts": 0.675,
-            "prob_cs_home": 0.217,
+            "exp_goals_home": 1.45,
+            "exp_goals_away": 1.42,
+            "prob_home": 0.37553,
+            "prob_draw": 0.26062,
+            "prob_away": 0.36385,
+            "prob_o05": 0.93755,
+            "prob_o15": 0.78601,
+            "prob_o25": 0.54673,
+            "prob_o35": 0.32335,
+            "prob_btts": 0.58583,
+            "prob_cs_home": 0.24141,
+            "prob_cs_away": 0.23521,
             "top_scores": [
               [
                 1,
                 1,
-                9.7
+                12.2
               ],
               [
                 2,
                 1,
-                9.0
+                8.5
               ],
               [
                 1,
                 2,
-                7.1
+                8.3
               ],
               [
-                2,
-                2,
-                6.9
-              ],
-              [
-                2,
+                1,
                 0,
-                5.9
+                7.7
               ],
               [
-                3,
+                0,
                 1,
-                5.8
+                7.5
+              ],
+              [
+                0,
+                0,
+                6.2
               ]
             ]
           }
@@ -5092,47 +5374,50 @@
           "matchday": 7,
           "home_dc": "Strasbourg",
           "away_dc": "Paris SG",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.27,
-            "away_xg": 2.08,
-            "prob_home": 0.225,
-            "prob_draw": 0.22,
-            "prob_away": 0.555,
-            "prob_o15": 0.852,
-            "prob_o25": 0.649,
-            "prob_o35": 0.429,
-            "prob_btts": 0.634,
-            "prob_cs_home": 0.125,
+            "exp_goals_home": 1.17,
+            "exp_goals_away": 1.89,
+            "prob_home": 0.22793,
+            "prob_draw": 0.23411,
+            "prob_away": 0.53795,
+            "prob_o05": 0.94787,
+            "prob_o15": 0.81402,
+            "prob_o25": 0.58913,
+            "prob_o35": 0.3652,
+            "prob_btts": 0.58924,
+            "prob_cs_home": 0.15102,
+            "prob_cs_away": 0.31187,
             "top_scores": [
               [
                 1,
                 1,
+                10.9
+              ],
+              [
+                1,
+                2,
                 9.8
               ],
               [
-                1,
-                2,
-                9.7
-              ],
-              [
                 0,
                 2,
-                7.6
+                8.4
               ],
               [
                 0,
                 1,
-                6.8
+                8.4
               ],
               [
                 1,
                 3,
-                6.7
+                6.2
               ],
               [
                 2,
-                2,
-                6.1
+                1,
+                6.0
               ]
             ]
           }
@@ -5147,22 +5432,30 @@
           "matchday": 7,
           "home_dc": "Troyes",
           "away_dc": "Lens",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.85,
-            "away_xg": 2.24,
-            "prob_home": 0.125,
-            "prob_draw": 0.193,
-            "prob_away": 0.682,
-            "prob_o15": 0.818,
-            "prob_o25": 0.596,
-            "prob_o35": 0.372,
-            "prob_btts": 0.518,
-            "prob_cs_home": 0.107,
+            "exp_goals_home": 0.85,
+            "exp_goals_away": 2.25,
+            "prob_home": 0.12372,
+            "prob_draw": 0.19084,
+            "prob_away": 0.68544,
+            "prob_o05": 0.95102,
+            "prob_o15": 0.82027,
+            "prob_o25": 0.60005,
+            "prob_o35": 0.37641,
+            "prob_btts": 0.51834,
+            "prob_cs_home": 0.10532,
+            "prob_cs_away": 0.42531,
             "top_scores": [
               [
                 0,
                 2,
-                11.4
+                11.3
+              ],
+              [
+                1,
+                2,
+                9.7
               ],
               [
                 0,
@@ -5171,13 +5464,8 @@
               ],
               [
                 1,
-                2,
-                9.7
-              ],
-              [
                 1,
-                1,
-                9.2
+                9.0
               ],
               [
                 0,
@@ -5202,32 +5490,35 @@
           "matchday": 7,
           "home_dc": "Lille",
           "away_dc": "Brest",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.78,
-            "away_xg": 0.91,
-            "prob_home": 0.572,
-            "prob_draw": 0.243,
-            "prob_away": 0.185,
-            "prob_o15": 0.754,
-            "prob_o25": 0.503,
-            "prob_o35": 0.282,
-            "prob_btts": 0.502,
-            "prob_cs_home": 0.403,
+            "exp_goals_home": 1.82,
+            "exp_goals_away": 0.9,
+            "prob_home": 0.58674,
+            "prob_draw": 0.23697,
+            "prob_away": 0.17628,
+            "prob_o05": 0.92892,
+            "prob_o15": 0.76023,
+            "prob_o25": 0.51133,
+            "prob_o35": 0.29039,
+            "prob_btts": 0.50188,
+            "prob_cs_home": 0.40766,
+            "prob_cs_away": 0.16154,
             "top_scores": [
-              [
-                1,
-                1,
-                11.6
-              ],
               [
                 1,
                 0,
                 11.5
               ],
               [
+                1,
+                1,
+                11.3
+              ],
+              [
                 2,
                 0,
-                10.8
+                10.9
               ],
               [
                 2,
@@ -5237,12 +5528,12 @@
               [
                 0,
                 0,
-                7.4
+                7.1
               ],
               [
                 3,
                 0,
-                6.4
+                6.6
               ]
             ]
           }
@@ -5257,47 +5548,50 @@
           "matchday": 7,
           "home_dc": "Angers",
           "away_dc": "Marseille",
+          "new_team": false,
           "prediction": {
-            "home_xg": 0.94,
-            "away_xg": 1.68,
-            "prob_home": 0.205,
-            "prob_draw": 0.254,
-            "prob_away": 0.541,
-            "prob_o15": 0.742,
-            "prob_o25": 0.487,
-            "prob_o35": 0.268,
-            "prob_btts": 0.502,
-            "prob_cs_home": 0.187,
+            "exp_goals_home": 1.0,
+            "exp_goals_away": 1.85,
+            "prob_home": 0.19559,
+            "prob_draw": 0.23622,
+            "prob_away": 0.56819,
+            "prob_o05": 0.93674,
+            "prob_o15": 0.78186,
+            "prob_o25": 0.54148,
+            "prob_o35": 0.31835,
+            "prob_btts": 0.53693,
+            "prob_cs_home": 0.15738,
+            "prob_cs_away": 0.36894,
             "top_scores": [
               [
                 1,
                 1,
-                12.1
+                11.2
               ],
               [
                 0,
                 1,
-                11.6
+                10.2
               ],
               [
                 0,
                 2,
-                10.3
+                9.9
               ],
               [
                 1,
                 2,
-                9.7
+                9.9
               ],
               [
                 0,
-                0,
-                7.9
-              ],
-              [
-                1,
                 0,
                 6.3
+              ],
+              [
+                0,
+                3,
+                6.1
               ]
             ]
           }
@@ -5312,47 +5606,50 @@
           "matchday": 7,
           "home_dc": "Lorient",
           "away_dc": "Monaco",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.35,
-            "away_xg": 1.73,
-            "prob_home": 0.294,
-            "prob_draw": 0.246,
-            "prob_away": 0.46,
-            "prob_o15": 0.818,
-            "prob_o25": 0.594,
-            "prob_o35": 0.37,
-            "prob_btts": 0.614,
-            "prob_cs_home": 0.177,
+            "exp_goals_home": 1.24,
+            "exp_goals_away": 1.56,
+            "prob_home": 0.29696,
+            "prob_draw": 0.26059,
+            "prob_away": 0.44245,
+            "prob_o05": 0.9334,
+            "prob_o15": 0.77441,
+            "prob_o25": 0.53024,
+            "prob_o35": 0.30778,
+            "prob_btts": 0.56667,
+            "prob_cs_home": 0.21005,
+            "prob_cs_away": 0.28987,
             "top_scores": [
               [
                 1,
                 1,
-                11.3
+                12.3
               ],
               [
                 1,
                 2,
-                9.3
+                9.2
               ],
               [
                 0,
                 1,
+                8.9
+              ],
+              [
+                0,
+                2,
                 7.4
               ],
               [
                 2,
                 1,
-                7.2
+                7.3
               ],
               [
+                1,
                 0,
-                2,
-                6.9
-              ],
-              [
-                2,
-                2,
-                6.3
+                7.0
               ]
             ]
           }
@@ -5367,47 +5664,50 @@
           "matchday": 7,
           "home_dc": "Paris FC",
           "away_dc": "Rennes",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.62,
-            "away_xg": 1.35,
-            "prob_home": 0.431,
-            "prob_draw": 0.254,
-            "prob_away": 0.315,
-            "prob_o15": 0.802,
-            "prob_o25": 0.57,
-            "prob_o35": 0.346,
-            "prob_btts": 0.6,
-            "prob_cs_home": 0.258,
+            "exp_goals_home": 1.47,
+            "exp_goals_away": 1.2,
+            "prob_home": 0.4284,
+            "prob_draw": 0.2692,
+            "prob_away": 0.3024,
+            "prob_o05": 0.92445,
+            "prob_o15": 0.75081,
+            "prob_o25": 0.49771,
+            "prob_o35": 0.27816,
+            "prob_btts": 0.54295,
+            "prob_cs_home": 0.30238,
+            "prob_cs_away": 0.23022,
             "top_scores": [
               [
                 1,
                 1,
-                11.8
-              ],
-              [
-                2,
-                1,
-                9.1
+                12.8
               ],
               [
                 1,
                 0,
+                9.6
+              ],
+              [
+                2,
+                1,
+                9.0
+              ],
+              [
+                0,
+                1,
                 7.7
               ],
               [
-                1,
-                2,
+                0,
+                0,
                 7.6
               ],
               [
                 2,
                 0,
-                6.7
-              ],
-              [
-                0,
-                1,
-                6.4
+                7.5
               ]
             ]
           }
@@ -5422,47 +5722,50 @@
           "matchday": 7,
           "home_dc": "Le Havre",
           "away_dc": "Auxerre",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.17,
-            "away_xg": 1.14,
-            "prob_home": 0.359,
-            "prob_draw": 0.297,
-            "prob_away": 0.344,
-            "prob_o15": 0.677,
-            "prob_o25": 0.405,
-            "prob_o35": 0.202,
-            "prob_btts": 0.475,
-            "prob_cs_home": 0.321,
+            "exp_goals_home": 1.3,
+            "exp_goals_away": 1.2,
+            "prob_home": 0.38489,
+            "prob_draw": 0.2819,
+            "prob_away": 0.33321,
+            "prob_o05": 0.91182,
+            "prob_o15": 0.71919,
+            "prob_o25": 0.45654,
+            "prob_o35": 0.24272,
+            "prob_btts": 0.51472,
+            "prob_cs_home": 0.30227,
+            "prob_cs_away": 0.27119,
             "top_scores": [
               [
                 1,
                 1,
-                13.9
+                13.4
               ],
               [
                 1,
                 0,
-                11.0
+                10.1
               ],
               [
                 0,
                 1,
-                10.7
+                9.2
               ],
               [
                 0,
                 0,
-                10.7
+                8.8
               ],
               [
                 2,
                 1,
+                8.4
+              ],
+              [
+                1,
+                2,
                 7.7
-              ],
-              [
-                1,
-                2,
-                7.5
               ]
             ]
           }
@@ -5477,27 +5780,30 @@
           "matchday": 7,
           "home_dc": "Lyon",
           "away_dc": "Nice",
+          "new_team": false,
           "prediction": {
-            "home_xg": 1.83,
-            "away_xg": 1.0,
-            "prob_home": 0.562,
-            "prob_draw": 0.239,
-            "prob_away": 0.198,
-            "prob_o15": 0.778,
-            "prob_o25": 0.535,
-            "prob_o35": 0.312,
-            "prob_btts": 0.535,
-            "prob_cs_home": 0.369,
+            "exp_goals_home": 1.96,
+            "exp_goals_away": 1.0,
+            "prob_home": 0.59179,
+            "prob_draw": 0.22512,
+            "prob_away": 0.18309,
+            "prob_o05": 0.94363,
+            "prob_o15": 0.80082,
+            "prob_o25": 0.56942,
+            "prob_o35": 0.34541,
+            "prob_btts": 0.54964,
+            "prob_cs_home": 0.36627,
+            "prob_cs_away": 0.14047,
             "top_scores": [
               [
                 1,
                 1,
-                11.4
+                10.6
               ],
               [
+                2,
                 1,
-                0,
-                10.3
+                10.0
               ],
               [
                 2,
@@ -5505,19 +5811,19 @@
                 9.9
               ],
               [
-                2,
                 1,
-                9.9
+                0,
+                9.6
               ],
               [
-                0,
-                0,
+                3,
+                1,
                 6.5
               ],
               [
                 3,
                 0,
-                6.0
+                6.5
               ]
             ]
           }

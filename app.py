@@ -172,23 +172,29 @@ def api_predict():
         features = eng.build(home, away, league_key, date)
         pred     = dc_predict(home, away, features, dc, league_key)
 
+        # Gol e probabilità: stesso Poisson-stack della pagina statica
+        # (predictions/stack_predictor.py). `pred` resta solo per le statistiche
+        # secondarie (tiri, corner, cartellini) e il contesto.
+        from predictions import stack_predictor
+        sp = stack_predictor.predict_single(league_key, home, away)
+
         f = features
         return jsonify({
             "home_team":   pred.home_team,
             "away_team":   pred.away_team,
-            "home_xg":     pred.home_xg,
-            "away_xg":     pred.away_xg,
-            "prob_home":   round(pred.prob_home, 3),
-            "prob_draw":   round(pred.prob_draw, 3),
-            "prob_away":   round(pred.prob_away, 3),
-            "prob_o05":    round(pred.prob_o05, 3),
-            "prob_o15":    round(pred.prob_o15, 3),
-            "prob_o25":    round(pred.prob_o25, 3),
-            "prob_o35":    round(pred.prob_o35, 3),
-            "prob_btts":   round(pred.prob_btts, 3),
-            "prob_cs_home": round(pred.prob_cs_home, 3),
-            "prob_cs_away": round(pred.prob_cs_away, 3),
-            "top_scores":  pred.top_scores[:5],
+            "home_xg":     sp["exp_goals_home"],   # chiave storica: sono gol attesi, non xG
+            "away_xg":     sp["exp_goals_away"],
+            "prob_home":   round(sp["prob_home"], 3),
+            "prob_draw":   round(sp["prob_draw"], 3),
+            "prob_away":   round(sp["prob_away"], 3),
+            "prob_o05":    round(sp["prob_o05"], 3),
+            "prob_o15":    round(sp["prob_o15"], 3),
+            "prob_o25":    round(sp["prob_o25"], 3),
+            "prob_o35":    round(sp["prob_o35"], 3),
+            "prob_btts":   round(sp["prob_btts"], 3),
+            "prob_cs_home": round(sp["prob_cs_home"], 3),
+            "prob_cs_away": round(sp["prob_cs_away"], 3),
+            "top_scores":  [[x, y, p / 100] for x, y, p in sp["top_scores"][:5]],
             "exp_shots":   pred.exp_shots,
             "exp_corners": pred.exp_corners,
             "exp_yellow":  pred.exp_yellow,
@@ -604,13 +610,13 @@ async function openPredict(home, away, league, date) {
     <div class="pred-xg">
       <div class="xg-side">
         <div class="xg-value">${p.home_xg.toFixed(2)}</div>
-        <div class="xg-label">xG attesi</div>
+        <div class="xg-label">Gol attesi</div>
         <div class="xg-team">${p.home_team}</div>
       </div>
       <div style="color:var(--muted);font-weight:700;font-size:1.1rem;align-self:center">—</div>
       <div class="xg-side">
         <div class="xg-value" style="color:var(--accent2)">${p.away_xg.toFixed(2)}</div>
-        <div class="xg-label">xG attesi</div>
+        <div class="xg-label">Gol attesi</div>
         <div class="xg-team">${p.away_team}</div>
       </div>
     </div>
