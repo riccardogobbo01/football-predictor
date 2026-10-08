@@ -279,25 +279,79 @@ def get_fixtures(league_code: str) -> list[dict]:
 
 # ── Name matching ──────────────────────────────────────────────────────────────
 
+# Nomi football-data.org (brevi o completi) → nomi football-data.co.uk.
+# Va consultata prima del fuzzy matching, che altrimenti sbaglia
+# (es. "Atleti" → Almeria, "Nottingham" → Tottenham).
+TEAM_ALIASES = {
+    # Premier League
+    "nottingham": "Nott'm Forest", "nottingham forest": "Nott'm Forest",
+    "wolverhampton": "Wolves", "wolverhampton wanderers": "Wolves", "wolves": "Wolves",
+    "brighton hove": "Brighton", "brighton & hove albion": "Brighton",
+    "man city": "Man City", "manchester city": "Man City",
+    "man united": "Man United", "manchester united": "Man United",
+    "newcastle": "Newcastle", "newcastle united": "Newcastle",
+    "west ham": "West Ham", "west ham united": "West Ham",
+    "tottenham": "Tottenham", "tottenham hotspur": "Tottenham",
+    "sheffield united": "Sheffield United", "west brom": "West Brom",
+    "west bromwich albion": "West Brom",
+    # La Liga
+    "atleti": "Ath Madrid", "atletico madrid": "Ath Madrid", "club atletico de madrid": "Ath Madrid",
+    "athletic": "Ath Bilbao", "athletic club": "Ath Bilbao", "athletic bilbao": "Ath Bilbao",
+    "deportivo": "La Coruna", "rc deportivo la coruna": "La Coruna", "deportivo la coruna": "La Coruna",
+    "barca": "Barcelona", "espanyol": "Espanol", "rcd espanyol de barcelona": "Espanol",
+    "rayo vallecano": "Vallecano", "real sociedad": "Sociedad", "real betis": "Betis",
+    "real oviedo": "Oviedo", "racing santander": "Santander",
+    "real racing club de santander": "Santander", "ud almeria": "Almeria",
+    # Bundesliga
+    "bayern": "Bayern Munich", "fc bayern munchen": "Bayern Munich",
+    "frankfurt": "Ein Frankfurt", "eintracht frankfurt": "Ein Frankfurt",
+    "m'gladbach": "M'gladbach", "borussia monchengladbach": "M'gladbach",
+    "hsv": "Hamburg", "hamburger sv": "Hamburg", "1. fc koln": "FC Koln",
+    "st. pauli": "St Pauli", "fc st. pauli 1910": "St Pauli",
+    "bremen": "Werder Bremen", "sv werder bremen": "Werder Bremen",
+    "1. fc heidenheim 1846": "Heidenheim", "holstein kiel": "Holstein Kiel",
+    # Ligue 1
+    "psg": "Paris SG", "paris saint-germain": "Paris SG", "paris saint-germain fc": "Paris SG",
+    "stade rennais": "Rennes", "stade rennais fc 1901": "Rennes",
+    "olympique lyon": "Lyon", "olympique lyonnais": "Lyon",
+    "olympique de marseille": "Marseille", "rc lens": "Lens", "racing club de lens": "Lens",
+    "saint-etienne": "St Etienne", "as saint-etienne": "St Etienne",
+    "stade brestois 29": "Brest", "stade de reims": "Reims",
+    # Serie A
+    "hellas verona": "Verona", "hellas verona fc": "Verona",
+    "fc internazionale milano": "Inter", "internazionale": "Inter",
+}
+
+
+def _norm(s: str) -> str:
+    import unicodedata
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    return " ".join(s.lower().strip().split())
+
+
 def best_match(name: str, candidates: list[str]) -> str | None:
-    """Trova il miglior match fuzzy per un nome squadra nella lista DC."""
-    name_l = name.lower().strip()
+    """Abbina un nome squadra di football-data.org al nome usato nei CSV storici."""
+    name_l = _norm(name)
+    cand = {_norm(c): c for c in candidates}
 
-    # 1. Exact
-    for c in candidates:
-        if c.lower() == name_l:
-            return c
+    # 1. Alias espliciti
+    alias = TEAM_ALIASES.get(name_l)
+    if alias and _norm(alias) in cand:
+        return cand[_norm(alias)]
 
-    # 2. Containment
-    for c in candidates:
-        c_l = c.lower()
-        if name_l in c_l or c_l in name_l:
-            return c
+    # 2. Esatto (senza accenti)
+    if name_l in cand:
+        return cand[name_l]
 
-    # 3. Sequenza (SequenceMatcher)
-    scored = [(SequenceMatcher(None, name_l, c.lower()).ratio(), c) for c in candidates]
+    # 3. Contenimento, solo se univoco
+    hits = [c for n, c in cand.items() if n in name_l or name_l in n]
+    if len(hits) == 1:
+        return hits[0]
+
+    # 4. Fuzzy, con soglia alta
+    scored = [(SequenceMatcher(None, name_l, n).ratio(), c) for n, c in cand.items()]
     best_score, best = max(scored, key=lambda x: x[0])
-    return best if best_score > 0.55 else None
+    return best if best_score > 0.75 else None
 
 
 # ── Generazione HTML ───────────────────────────────────────────────────────────
