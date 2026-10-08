@@ -32,3 +32,6 @@ predictions/next_round_*.txt
 # OS
 .DS_Store
 Thumbs.db
+
+# Backtest: cache dei CSV scaricati
+data/cache/
