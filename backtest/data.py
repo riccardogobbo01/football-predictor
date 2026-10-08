@@ -96,7 +96,9 @@ def _parse_one(raw: bytes, season: int, league: str) -> pd.DataFrame:
     out = out.dropna(subset=["date", "hg", "ag"])
     out["hg"] = out["hg"].astype(int)
     out["ag"] = out["ag"].astype(int)
-    out["season"] = np.where(out.date.dt.month >= 7, out.date.dt.year, out.date.dt.year - 1)
+    # stagione = quella del file CSV (non dedotta dal mese: la coda del 2019/20 è stata giocata
+    # a luglio-agosto 2020 e va nella 2019/20)
+    out["season"] = season
     out["res"] = np.select([out.hg > out.ag, out.hg == out.ag], [0, 1], 2)
     return out
 

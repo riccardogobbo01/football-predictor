@@ -6,14 +6,21 @@ Per ogni lega, alla data di oggi:
   1. Dixon-Coles sui gol (xi=0.0018, finestra 5 anni, con tau)      -> dc_lmu, dc_lnu
   2. Dixon-Coles sui tiri in porta HST/AST (senza tau)               -> sot_lmu, sot_lnu
   3. pi-ratings correnti (stato dopo l'ultima partita giocata)       -> pi_gd, pi_diff
-  4. models/stack.json (coefficienti, scaler, rho)                   -> gol attesi (mu, nu)
-  5. matrice dei punteggi con correzione tau -> 1X2, O/U, BTTS, clean sheet, risultati esatti
+  4. xG Understat: Dixon-Coles senza tau sugli xG (xi=0.003)         -> xg_lmu, xg_lnu
+  5. models/stack.json (coefficienti, scaler, rho)                   -> gol attesi (mu, nu)
+  6. matrice dei punteggi con correzione tau -> 1X2, O/U, BTTS, clean sheet, risultati esatti
+
+Due modelli in models/stack.json: "with_xg" (usa gli xG, modello di produzione) e
+"without_xg" (ripiego). Si passa automaticamente a without_xg, partita per partita, se
+Understat non risponde o se mancano gli xG di una delle due squadre: il motivo viene scritto
+nel log e restituito in `fallback_reason` (e quindi in predictions.json).
 
 Le feature sono calcolate con le STESSE funzioni (backtest/models.py, backtest/features.py)
 usate per allenare lo stack: nessuna divergenza tra training e serving.
 Solo numpy/scipy/pandas: lo stack si applica da JSON, senza scikit-learn.
 """
 import json
+import logging
 import os
 import sys
 import threading
@@ -28,7 +35,9 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
-from backtest import data, features, models, stack  # noqa: E402
+from backtest import data, features, models, stack, understat  # noqa: E402
+
+log = logging.getLogger(__name__)
 
 STACK_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 XI = features.XI
@@ -107,21 +116,35 @@ def best_match(name: str, candidates) -> str | None:
 
 # ── Modello salvato ────────────────────────────────────────────────────────────
 
+WITH_XG, WITHOUT_XG = "with_xg", "without_xg"
+
+
 def load_stack(path: str = STACK_PATH) -> dict:
     with open(path, encoding="utf-8") as fh:
         d = json.load(fh)
-    if d["features"] != stack.PRODUCTION_FEATURES:
-        raise ValueError(f"models/stack.json usa feature {d['features']}, "
-                         f"attese {stack.PRODUCTION_FEATURES}")
+    if d.get("version") != 2:
+        raise ValueError("models/stack.json non e' nel formato v2 (due modelli: with_xg / without_xg): "
+                         "rilanciare scripts/train_stack.py")
+    expected = {WITHOUT_XG: stack.PRODUCTION_FEATURES, WITH_XG: stack.XG_FEATURES}
+    for name, feats in expected.items():
+        if d["models"][name]["features"] != feats:
+            raise ValueError(f"models/stack.json: il modello {name} usa feature "
+                             f"{d['models'][name]['features']}, attese {feats}")
     return d
 
 
 # ── Stato della lega (fit di oggi) ─────────────────────────────────────────────
 
 class LeagueState:
-    """DC gol + DC tiri in porta + pi-ratings, calcolati con i dati precedenti a `today`."""
+    """DC gol + DC tiri in porta + DC xG + pi-ratings, calcolati con i dati precedenti a `today`.
 
-    def __init__(self, g: pd.DataFrame, today: pd.Timestamp):
+    Se g non ha le colonne xg_h/xg_a (o non ci sono abbastanza partite con xG) il fit sugli
+    xG non esiste e `xg_reason` dice perché: tutte le partite useranno without_xg.
+    """
+
+    MIN_XG_MATCHES = 200
+
+    def __init__(self, g: pd.DataFrame, today: pd.Timestamp, xg_error: str | None = None):
         c0 = pd.Timestamp(today).normalize()
         g = g.sort_values("date")
         tr = g[(g.date < c0) & (g.date >= c0 - pd.Timedelta(days=365 * YEARS_WINDOW))]
@@ -137,6 +160,20 @@ class LeagueState:
         self.shots = models.fit_dc(trs.HomeTeam.values, trs.AwayTeam.values, trs.HST.values,
                                    trs.AST.values, days_s, XI, use_tau=False, teams=teams_s)
 
+        self.xg, self.xg_reason = None, xg_error
+        if "xg_h" in tr.columns:
+            trx = tr.dropna(subset=["xg_h", "xg_a"])
+            if len(trx) >= self.MIN_XG_MATCHES:
+                teams_x = sorted(set(trx.HomeTeam) | set(trx.AwayTeam))
+                days_x = (c0 - trx.date).dt.days.values
+                self.xg = models.fit_dc(trx.HomeTeam.values, trx.AwayTeam.values, trx.xg_h.values,
+                                        trx.xg_a.values, days_x, features.XG_XI, use_tau=False,
+                                        teams=teams_x)
+            elif self.xg_reason is None:
+                self.xg_reason = f"xG Understat insufficienti ({len(trx)} partite nella finestra)"
+        elif self.xg_reason is None:
+            self.xg_reason = "xG Understat non caricati"
+
         _, self.pi_state = models.pi_ratings(g[g.date < c0], return_state=True)
         self.teams = teams
         self.n_matches = int(len(tr))
@@ -151,6 +188,15 @@ class LeagueState:
                     return m
         return None
 
+    def xg_fallback_reason(self, home: str, away: str) -> str | None:
+        """None se with_xg e' utilizzabile per la partita, altrimenti il motivo del ripiego."""
+        if self.xg is None:
+            return self.xg_reason
+        missing = [t for t in (home, away) if t not in self.xg["idx"]]
+        if missing:
+            return "xG Understat mancanti per " + " e ".join(missing)
+        return None
+
     def features(self, homes, aways) -> pd.DataFrame:
         homes, aways = list(homes), list(aways)
         mu_g, nu_g = models.dc_lambdas(self.goals, homes, aways)
@@ -160,9 +206,13 @@ class LeagueState:
         pi = features.pi_features(pd.DataFrame({
             "pi_hh": [r[0] for r in rh], "pi_ha": [r[1] for r in rh],
             "pi_ah": [r[0] for r in ra], "pi_aa": [r[1] for r in ra]}))
-        return pd.DataFrame({"dc_lmu": np.log(mu_g), "dc_lnu": np.log(nu_g),
-                             "sot_lmu": np.log(mu_s), "sot_lnu": np.log(nu_s),
-                             "pi_gd": pi.pi_gd.values, "pi_diff": pi.pi_diff.values})[stack.PRODUCTION_FEATURES]
+        cols = {"dc_lmu": np.log(mu_g), "dc_lnu": np.log(nu_g),
+                "sot_lmu": np.log(mu_s), "sot_lnu": np.log(nu_s),
+                "pi_gd": pi.pi_gd.values, "pi_diff": pi.pi_diff.values}
+        if self.xg is not None:
+            mu_x, nu_x = models.dc_lambdas(self.xg, homes, aways)
+            cols["xg_lmu"], cols["xg_lnu"] = np.log(mu_x), np.log(nu_x)
+        return pd.DataFrame(cols)
 
 
 # ── Mercati dalla matrice dei punteggi ─────────────────────────────────────────
@@ -192,25 +242,63 @@ def markets(M: np.ndarray, mu: float, nu: float) -> dict:
 
 
 def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
-    """pairs = [(home_csv_name, away_csv_name)]; nomi non presenti nel fit = squadra nuova."""
+    """pairs = [(home_csv_name, away_csv_name)]; nomi non presenti nel fit = squadra nuova.
+
+    Ogni previsione riporta `model` ("with_xg"/"without_xg") e `fallback_reason`
+    (None se si e' usato with_xg)."""
     if not pairs:
         return []
     homes, aways = zip(*pairs)
     X = state.features(homes, aways)
-    mu, nu, rho = stack.predict_from_dict(model, X.to_numpy())
-    M = models.score_matrix(mu, nu, np.full(len(mu), rho))
-    return [markets(M[i], mu[i], nu[i]) for i in range(len(pairs))]
+    reasons = [state.xg_fallback_reason(h, a) for h, a in pairs]
+
+    out = [None] * len(pairs)
+    for name in (WITH_XG, WITHOUT_XG):
+        rows = [i for i, r in enumerate(reasons) if (r is None) == (name == WITH_XG)]
+        if not rows:
+            continue
+        m = model["models"][name]
+        mu, nu, rho = stack.predict_from_dict(m, X.iloc[rows][m["features"]].to_numpy())
+        M = models.score_matrix(mu, nu, np.full(len(rows), rho))
+        for k, i in enumerate(rows):
+            pred = markets(M[k], mu[k], nu[k])
+            pred["model"] = name
+            pred["fallback_reason"] = reasons[i]
+            out[i] = pred
+
+    by_reason = {}
+    for i, r in enumerate(reasons):
+        if r:
+            by_reason.setdefault(r, []).append(f"{pairs[i][0]} - {pairs[i][1]}")
+    for r, matches in by_reason.items():
+        extra = f" (+{len(matches) - 3} altre)" if len(matches) > 3 else ""
+        log.warning("Ripiego su without_xg per %d partite: %s | es. %s%s",
+                    len(matches), r, "; ".join(matches[:3]), extra)
+    return out
 
 
 # ── Storico e stato in cache (usato dall'app Flask) ────────────────────────────
 
 _lock = threading.Lock()
-_cache = {"df": None, "loaded": 0.0, "states": {}, "model": None}
+_cache = {"df": None, "loaded": 0.0, "states": {}, "model": None, "xg_error": None}
 
 
-def _history() -> pd.DataFrame:
+def attach_recent_xg(df: pd.DataFrame, today=None):
+    """Aggiunge xg_h/xg_a a df con gli xG Understat delle ultime stagioni (quelle della
+    finestra di 5 anni). Se Understat non risponde ritorna (df, motivo) senza xG."""
+    cur = data.current_season()
+    try:
+        xg = understat.load_xg(first_season=cur - YEARS_WINDOW, current=cur, verbose=False)
+        return understat.attach_xg(df, xg, strict=False, verbose=False), None
+    except Exception as e:   # confine con un servizio esterno: qualsiasi errore -> ripiego
+        log.warning("Understat non disponibile (%s): tutte le previsioni useranno without_xg", e)
+        return df, f"Understat non disponibile ({type(e).__name__}: {e})"
+
+
+def _history():
     if _cache["df"] is None or time.time() - _cache["loaded"] > HISTORY_TTL_S:
-        _cache.update(df=data.load_matches(verbose=False), loaded=time.time(), states={})
+        df, err = attach_recent_xg(data.load_matches(verbose=False))
+        _cache.update(df=df, loaded=time.time(), states={}, xg_error=err)
     return _cache["df"]
 
 
@@ -221,7 +309,7 @@ def league_state(league_key: str, today=None) -> LeagueState:
         key = (league_key, str(today.date()))
         if key not in _cache["states"]:
             g = df[df.Division == CSV_CODE[league_key]]
-            _cache["states"][key] = LeagueState(g, today)
+            _cache["states"][key] = LeagueState(g, today, xg_error=_cache["xg_error"])
         if _cache["model"] is None:
             _cache["model"] = load_stack()
         return _cache["states"][key]

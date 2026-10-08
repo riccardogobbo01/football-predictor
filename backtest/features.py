@@ -1,13 +1,15 @@
 """
-Feature walk-forward per il Poisson-stack (Step 2). Tutte calcolate SOLO con dati
-precedenti alla partita:
+Feature walk-forward per il Poisson-stack. Tutte calcolate SOLO con dati precedenti alla
+partita:
 
   dc_lmu, dc_lnu    log gol attesi del Dixon-Coles sui gol (xi=0.0018, finestra 5 anni)
   sot_lmu, sot_lnu  log tiri in porta attesi di un Poisson "DC senza tau" su HST/AST
   pi_gd, pi_diff    pi-ratings (lam=0.06, gam=0.6, c=3), in sequenza per lega
-  elo_diff          ClubElo casa - trasferta (backtest/elo.py)
+  xg_lmu, xg_lnu    log xG attesi di un Poisson "DC senza tau" sugli xG Understat
+                    (xi=0.003, finestra 5 anni; da 2016/17: gli xG partono dal 2014)
+  elo_diff          ClubElo casa - trasferta (backtest/elo.py, non usato in produzione)
 
-Il costoso walk-forward del DC viene messo in cache (data/cache/core_features.pkl).
+Il costoso walk-forward viene messo in cache (data/cache/*.pkl).
 """
 import os
 
@@ -18,8 +20,14 @@ from . import models
 
 XI = 0.0018
 FEATURE_START = "2013-07-01"          # primo rifit: dalla stagione 2013/14
-CACHE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                          "data", "cache", "core_features.pkl")
+XG_XI = 0.003
+XG_START = "2016-07-04"               # 2 anni di xG alle spalle; stessa griglia settimanale di FEATURE_START
+CACHE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         "data", "cache")
+CACHE_PATH = os.path.join(CACHE_DIR, "core_features.pkl")
+XG_CACHE_PATH = os.path.join(CACHE_DIR, "xg_features.pkl")
+CORE_COLS = ["dc_lmu", "dc_lnu", "dc_pH", "dc_pD", "dc_pA",
+             "sot_lmu", "sot_lnu", "pi_gd", "pi_diff"]
 
 
 def pi_features(pi_df, c=3.0):
@@ -49,20 +57,48 @@ def _build_core(df, verbose=True):
         f["sot_lmu"], f["sot_lnu"] = np.log(ws.mu.reindex(wg.index)), np.log(ws.nu.reindex(wg.index))
         f = f.join(pi)
         parts.append(f)
-    core = pd.concat(parts).sort_index()
-    return df.loc[core.index].join(core)
+    return pd.concat(parts).sort_index()
+
+
+def _cached(path, key, rebuild):
+    if not rebuild and os.path.exists(path):
+        cached = pd.read_pickle(path)
+        if cached.get("key") == key:
+            return cached
+    return None
 
 
 def build_features(df, rebuild=False, verbose=True):
-    """DataFrame delle partite da FEATURE_START in poi con le feature core (senza Elo)."""
+    """Partite da FEATURE_START in poi con le feature core (senza Elo, senza xG)."""
     key = (len(df), str(df.date.max().date()))
-    if not rebuild and os.path.exists(CACHE_PATH):
-        cached = pd.read_pickle(CACHE_PATH)
-        if cached.get("key") == key:
-            if verbose:
-                print("  feature core lette dalla cache")
-            return cached["feat"]
-    feat = _build_core(df, verbose)
-    os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
-    pd.to_pickle({"key": key, "feat": feat}, CACHE_PATH)
-    return feat
+    cached = _cached(CACHE_PATH, key, rebuild)
+    if cached is not None:
+        if verbose:
+            print("  feature core lette dalla cache")
+        core = cached["core"] if "core" in cached else cached["feat"][CORE_COLS]
+    else:
+        core = _build_core(df, verbose)
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        pd.to_pickle({"key": key, "core": core}, CACHE_PATH)
+    return df.loc[core.index].join(core)
+
+
+def build_xg_features(df, rebuild=False, verbose=True):
+    """xg_lmu, xg_lnu in walk-forward (indicizzati come df). Richiede le colonne xg_h/xg_a."""
+    key = (len(df), str(df.date.max().date()), int(df.xg_h.notna().sum()))
+    cached = _cached(XG_CACHE_PATH, key, rebuild)
+    if cached is not None:
+        if verbose:
+            print("  feature xG lette dalla cache")
+        return cached["xg"]
+
+    parts = []
+    for lg, g in df.groupby("Division"):
+        if verbose:
+            print(f"  [{lg}] DC sugli xG (senza tau, xi={XG_XI})...", flush=True)
+        w = models.walk_forward_dc(g, XG_XI, start=XG_START, use_tau=False, gx="xg_h", gy="xg_a")
+        parts.append(pd.DataFrame({"xg_lmu": np.log(w.mu), "xg_lnu": np.log(w.nu)}, index=w.index))
+    xg = pd.concat(parts).sort_index()
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    pd.to_pickle({"key": key, "xg": xg}, XG_CACHE_PATH)
+    return xg

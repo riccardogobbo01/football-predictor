@@ -195,6 +195,8 @@ def api_predict():
             "prob_cs_home": round(sp["prob_cs_home"], 3),
             "prob_cs_away": round(sp["prob_cs_away"], 3),
             "top_scores":  [[x, y, p / 100] for x, y, p in sp["top_scores"][:5]],
+            "stack_model": sp["model"],             # with_xg, oppure without_xg se xG non disponibili
+            "stack_fallback_reason": sp["fallback_reason"],
             "exp_shots":   pred.exp_shots,
             "exp_corners": pred.exp_corners,
             "exp_yellow":  pred.exp_yellow,

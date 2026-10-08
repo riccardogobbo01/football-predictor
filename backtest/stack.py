@@ -14,6 +14,9 @@ from . import models
 STACK_FEATURES = ["dc_lmu", "dc_lnu", "sot_lmu", "sot_lnu", "elo_diff", "pi_gd", "pi_diff"]
 # Feature del modello in produzione: lo stack SENZA Elo (ClubElo e' instabile e vale ~0.001)
 PRODUCTION_FEATURES = ["dc_lmu", "dc_lnu", "sot_lmu", "sot_lnu", "pi_gd", "pi_diff"]
+# Stack + xG Understat (Step 7.1): si allena dalla stagione 2016/17, gli xG partono dal 2014
+XG_FEATURES = PRODUCTION_FEATURES + ["xg_lmu", "xg_lnu"]
+XG_FIRST_TRAIN_SEASON = 2016
 
 
 def fit_stack(X_train, hg, ag):
@@ -45,8 +48,9 @@ def predict_stack(model, X_new):
     return mu, nu, M
 
 
-def walk_forward_stack(feat, features, first_test_season=2019):
+def walk_forward_stack(feat, features, first_test_season=2019, min_train_season=None):
     """Probabilità 1X2 out-of-sample, rifit di stagione in stagione (finestra espansiva).
+    min_train_season: prima stagione usata per allenare (None = tutte quelle con feature).
     Restituisce DataFrame (pH, pD, pA, mu, nu, rho) indicizzato come le partite di test."""
     cols = feat[features].copy()
     if "elo_diff" in cols:
@@ -58,6 +62,8 @@ def walk_forward_stack(feat, features, first_test_season=2019):
         if s < first_test_season:
             continue
         tr_mask = (feat.season < s) & usable
+        if min_train_season is not None:
+            tr_mask &= feat.season >= min_train_season
         te_mask = (feat.season == s) & usable
         if not te_mask.any():
             continue

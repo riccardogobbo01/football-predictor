@@ -3,16 +3,19 @@
 generate_static.py — Genera docs/index.html e docs/predictions.json con le previsioni
 delle prossime partite dei 5 campionati.
 
-Usa il Poisson-stack (senza Elo) di models/stack.json: per ogni lega calcola le feature
-(Dixon-Coles sui gol, Dixon-Coles sui tiri in porta, pi-ratings) con i dati fino a oggi,
-applica lo stack e ricava tutti i mercati (1X2, O/U, BTTS, clean sheet, risultati esatti)
-da una sola matrice dei punteggi. La logica è in predictions/stack_predictor.py, la stessa
-usata dall'app Flask.
+Usa il Poisson-stack di models/stack.json: per ogni lega calcola le feature (Dixon-Coles
+sui gol, sui tiri in porta e sugli xG Understat, pi-ratings) con i dati fino a oggi, applica
+lo stack e ricava tutti i mercati (1X2, O/U, BTTS, clean sheet, risultati esatti) da una
+sola matrice dei punteggi. In produzione si usa il modello "with_xg"; se Understat non
+risponde o mancano gli xG di una squadra si passa automaticamente a "without_xg" (partita per
+partita), e lo si scrive nel log e in predictions.json. La logica è in
+predictions/stack_predictor.py, la stessa usata dall'app Flask.
 
 Scarica i CSV da football-data.co.uk e le fixture da football-data.org (serve
 FOOTBALL_DATA_ORG_KEY nell'ambiente). Usato da GitHub Actions ogni giorno; in locale:
   python scripts/generate_static.py
 """
+import html as _html
 import json
 import logging
 import os
@@ -145,6 +148,8 @@ def generate_html(leagues_data: dict, generated_at: str) -> str:
             else:
                 outcome_label, outcome_color = "2 Ospite", "#f87171" if pa > 0.5 else "#fbbf24"
 
+            no_xg_tag = ("" if pred["model"] == "with_xg" else
+                         ' · <span title="' + _html.escape(pred["fallback_reason"] or "") + '">senza xG</span>')
             top_score = pred["top_scores"][0]
             ts_str = f"{top_score[0]}–{top_score[1]} ({top_score[2]:.1f}%)"
 
@@ -153,7 +158,7 @@ def generate_html(leagues_data: dict, generated_at: str) -> str:
 <div class="match-card">
   <div class="match-meta">
     <span>Giornata {fix['matchday']}</span>
-    <span>{fix['date']} {fix['time']} UTC</span>
+    <span>{fix['date']} {fix['time']} UTC{no_xg_tag}</span>
   </div>
   <div class="teams-row">
     <div class="team home-team">{fix['home']}</div>
@@ -484,7 +489,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
     <strong>{total_preds} previsioni</strong> · aggiornato {generated_at}<br>
-    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings)
+    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat)
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
 </header>
@@ -502,7 +507,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
 <footer>
   Dati: <a href="https://football-data.co.uk" target="_blank">football-data.co.uk</a> ·
   <a href="https://football-data.org" target="_blank">football-data.org</a> ·
-  Modello: Poisson-stack su Dixon-Coles (1997) ·
+  xG: <a href="https://understat.com" target="_blank">understat.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) ·
   <a href="predictions.json" target="_blank">JSON grezzo</a>
 </footer>
 
@@ -549,6 +554,10 @@ def validate_output(all_data: dict) -> list:
             if not p:
                 problems.append(f"{tag}: nessuna previsione")
                 continue
+            if p.get("model") not in ("with_xg", "without_xg"):
+                problems.append(f"{tag}: modello non indicato")
+            if p.get("model") == "without_xg" and not p.get("fallback_reason"):
+                problems.append(f"{tag}: without_xg senza motivo del ripiego")
             total = p["prob_home"] + p["prob_draw"] + p["prob_away"]
             if abs(total - 1) > PROB_TOL:
                 problems.append(f"{tag}: 1X2 non somma a 1 ({total:.5f})")
@@ -573,12 +582,21 @@ def main():
     log.info("=" * 55)
 
     model = sp.load_stack()
-    log.info("Stack: %s partite di training, rho=%.4f, allenato %s",
-             model["meta"].get("n_train"), model["rho"], model["meta"].get("trained_at"))
+    log.info("Stack allenato %s - with_xg: %s partite (rho=%.4f), without_xg: %s partite (rho=%.4f)",
+             model["meta"].get("trained_at"),
+             model["models"]["with_xg"]["meta"]["n_train"], model["models"]["with_xg"]["rho"],
+             model["models"]["without_xg"]["meta"]["n_train"], model["models"]["without_xg"]["rho"])
 
     log.info("Storico football-data.co.uk (2012/13 -> oggi)...")
     df = data.load_matches(verbose=False)
     log.info("  %d partite", len(df))
+
+    log.info("xG Understat (ultime stagioni)...")
+    df, xg_error = sp.attach_recent_xg(df)
+    if xg_error:
+        log.warning("  RIPIEGO: %s -> modello without_xg per tutte le partite", xg_error)
+    else:
+        log.info("  xG caricati per %d partite", int(df.xg_h.notna().sum()))
 
     all_data = {}
 
@@ -587,7 +605,7 @@ def main():
 
         g = df[df.Division == sp.CSV_CODE[league_key]]
         t0 = time.time()
-        state = sp.LeagueState(g, today)
+        state = sp.LeagueState(g, today, xg_error=xg_error)
         log.info("  Feature calcolate in %.1fs - %d partite nella finestra, %d squadre",
                  time.time() - t0, state.n_matches, len(state.teams))
 
@@ -623,9 +641,25 @@ def main():
     # ── Output ──
     log.info("\nScrittura output...")
 
+    counts = {"with_xg": 0, "without_xg": 0}
+    for ld in all_data.values():
+        for fix in ld["fixtures"]:
+            counts[fix["prediction"]["model"]] += 1
+    log.info("   Modello usato: with_xg=%d, without_xg=%d", counts["with_xg"], counts["without_xg"])
+    if counts["without_xg"]:
+        reasons = sorted({fix["prediction"]["fallback_reason"] for ld in all_data.values()
+                          for fix in ld["fixtures"] if fix["prediction"]["fallback_reason"]})
+        log.warning("   %d partite su %d con ripiego without_xg (dettaglio per partita in "
+                    "docs/predictions.json). Motivi: %s",
+                    counts["without_xg"], sum(counts.values()), " | ".join(reasons))
+
     with open("docs/predictions.json", "w", encoding="utf-8") as f:
         json.dump({"generated_at": generated_at,
-                   "model": {"name": "Poisson-stack (senza Elo)", **model["meta"]},
+                   "model": {"name": "Poisson-stack (with_xg, ripiego without_xg)",
+                             "trained_at": model["meta"].get("trained_at"),
+                             "n_train": {k: v["meta"]["n_train"] for k, v in model["models"].items()}},
+                   "xg_status": {"available": xg_error is None, "error": xg_error},
+                   "model_counts": counts,
                    "leagues": all_data},
                   f, ensure_ascii=False, indent=2)
 
