@@ -37,7 +37,14 @@ LEAGUES = {
     "ligue_1":        {"code": "FL1", "csv": "F1",  "name": "Ligue 1",         "flag": "🇫🇷"},
 }
 
-CSV_SEASONS = ["2526", "2425", "2324", "2223", "2122"]  # ~5 stagioni
+def _recent_seasons(n: int = 6) -> list[str]:
+    """Codici stagione football-data.co.uk (es. '2627'), dalla corrente all'indietro."""
+    now = datetime.utcnow()
+    start = now.year if now.month >= 7 else now.year - 1
+    return [f"{y % 100:02d}{(y + 1) % 100:02d}" for y in range(start, start - n, -1)]
+
+
+CSV_SEASONS = _recent_seasons(6)  # stagione corrente + 5 precedenti
 DC_XI       = 0.0018   # tasso decadimento temporale
 DC_MAX_GOALS = 7
 DAYS_AHEAD  = 14
