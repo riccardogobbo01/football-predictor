@@ -11,6 +11,11 @@ risponde o mancano gli xG di una squadra si passa automaticamente a "without_xg"
 partita), e lo si scrive nel log e in predictions.json. La logica è in
 predictions/stack_predictor.py, la stessa usata dall'app Flask.
 
+Mercato (Step 6): se football-data.co.uk/fixtures.csv ha la partita, la card mostra anche le
+probabilità dei bookmaker senza margine (metodo power) e la differenza modello - mercato per
+1, X e 2, evidenziando gli scarti sopra i 5 punti percentuali. È solo un confronto: il modello
+non usa le quote. Se la partita non c'è la card mostra solo il modello.
+
 Monitoraggio (predictions/monitor.py): a ogni esecuzione le previsioni emesse vengono
 aggiunte a docs/history.csv (insieme alle probabilità di mercato) e, per le partite giocate,
 si aggiungono i risultati; la log-loss mobile di with_xg, without_xg e mercato compare in un
@@ -107,6 +112,36 @@ def _bar(p: float, color: str) -> str:
             f'style="width:{p*100:.1f}%;background:{color}"></div></div>')
 
 
+MARKET_DIFF_PP = 5.0   # scarto modello - mercato oltre il quale la cella viene evidenziata
+
+
+def _market_html(pred: dict, market) -> str:
+    """Blocco "Mercato" della card: probabilità senza margine e differenza modello - mercato
+    per 1, X e 2 (in punti percentuali). Vuoto se la partita non è in fixtures.csv."""
+    if not market:
+        return ""
+    cells, flagged = [], False
+    for lbl, key in (("1", "home"), ("X", "draw"), ("2", "away")):
+        m = market[key]
+        diff = (pred[f"prob_{key}"] - m) * 100
+        hi = abs(round(diff, 1)) > MARKET_DIFF_PP
+        flagged = flagged or hi
+        cells.append(f'<div class="mkt-cell{" hi" if hi else ""}"><span class="mkt-lbl">{lbl}</span>'
+                     f'<span class="mkt-val">{m * 100:.1f}%</span>'
+                     f'<span class="mkt-diff">{diff:+.1f} pp</span></div>')
+    flag = f'<span class="mkt-flag">scarto &gt; {MARKET_DIFF_PP:g} pp</span>' if flagged else ""
+    return ('<div class="mkt-section"><div class="mkt-title"><span>Mercato (Δ = modello − mercato)</span>'
+            f'{flag}</div><div class="mkt-grid">{"".join(cells)}</div></div>')
+
+
+def _row_market(row: dict):
+    """Probabilità di mercato all'emissione (solo fixtures.csv), oppure None."""
+    if row.get("mkt_source") != "fixtures":
+        return None
+    return {"home": round(float(row["mkt_home"]), 5), "draw": round(float(row["mkt_draw"]), 5),
+            "away": round(float(row["mkt_away"]), 5), "source": "fixtures"}
+
+
 def _monitor_html(mon: dict) -> str:
     if mon["status"] != "ok":
         return (f'<section class="monitor"><h2>📈 Monitoraggio</h2>'
@@ -186,6 +221,8 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
             top_score = pred["top_scores"][0]
             ts_str = f"{top_score[0]}–{top_score[1]} ({top_score[2]:.1f}%)"
 
+            mkt_html = _market_html(pred, fix.get("market"))
+
             c = _prob_color
             cards_html += f"""
 <div class="match-card">
@@ -220,6 +257,7 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
       <span class="prob-pct" style="color:{c(pa)}">{pa*100:.1f}%</span>
     </div>
   </div>
+  {mkt_html}
   <div class="secondaries">
     <div class="sec-item">
       <span class="sec-lbl">Over 2.5</span>
@@ -488,6 +526,28 @@ main {{ padding: 24px 20px 60px; max-width: 1400px; margin: 0 auto; }}
 .sec-val {{ font-size: .82rem; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }}
 .score-tip {{ font-size: .76rem; }}
 
+/* Mercato */
+.mkt-section {{ border-top: 1px solid var(--border); padding-top: 10px; margin-bottom: 12px; }}
+.mkt-title {{
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  font-size: .7rem; color: var(--muted); margin-bottom: 6px;
+}}
+.mkt-flag {{ color: var(--yellow); font-weight: 700; white-space: nowrap; }}
+.mkt-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }}
+.mkt-cell {{
+  background: var(--bg); border: 1px solid transparent; border-radius: 8px;
+  padding: 5px 8px; display: flex; flex-direction: column; align-items: center;
+}}
+.mkt-cell.hi {{ border-color: var(--yellow); background: rgba(251,191,36,.14); }}
+.mkt-lbl {{ font-size: .65rem; color: var(--muted); font-weight: 700; }}
+.mkt-val {{ font-size: .82rem; font-weight: 700; font-variant-numeric: tabular-nums; }}
+.mkt-diff {{ font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }}
+.mkt-cell.hi .mkt-diff {{ color: var(--text); font-weight: 700; }}
+.disclaimer {{
+  font-size: .78rem; color: var(--muted); border-left: 3px solid var(--border);
+  padding: 6px 12px; margin-top: 20px;
+}}
+
 /* Monitoraggio */
 .monitor {{
   background: var(--card);
@@ -552,6 +612,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <div id="leagues-container">
     {cards_html if cards_html else '<div class="empty-state"><div class="icon">🔍</div><h2>Nessuna partita trovata nei prossimi 14 giorni</h2><p>Le previsioni vengono aggiornate automaticamente ogni mattina.</p></div>'}
   </div>
+  <p class="disclaimer">Storicamente il mercato è più preciso del modello (log-loss 0,973 contro 0,983): le differenze indicano dove il modello e i bookmaker non sono d'accordo, non scommesse sicure</p>
 </main>
 
 <footer>
@@ -618,6 +679,10 @@ def validate_output(all_data: dict) -> list:
                 problems.append(f"{tag}: Over non monotoni")
             if any(v > 1 for k, v in p.items() if k.startswith("prob_")):
                 problems.append(f"{tag}: probabilità > 1")
+            mk = fix.get("market")
+            if mk and (abs(mk["home"] + mk["draw"] + mk["away"] - 1) > PROB_TOL
+                       or min(mk["home"], mk["draw"], mk["away"]) <= 0):
+                problems.append(f"{tag}: probabilità di mercato non valide")
     return problems
 
 
@@ -682,12 +747,15 @@ def main():
 
         preds = sp.predict_pairs(state, model, pairs)
         probs = sp.probs_by_model(state, model, pairs)
+        n0 = len(new_rows)
         for fix, (h, a), pred, pr in zip(fixtures, names, preds, probs):
             new_rows.append(monitor.make_row(league_key, {**fix, "home_dc": h, "away_dc": a}, pred, pr,
                                              today.strftime("%Y-%m-%d")))
+        league_rows = new_rows[n0:]
+        monitor.attach_fixture_market(league_rows, fx_market)
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
-                       "prediction": pred}
-                      for fix, (h, a), pred in zip(fixtures, names, preds)]
+                       "prediction": pred, "market": _row_market(row)}
+                      for fix, (h, a), pred, row in zip(fixtures, names, preds, league_rows)]
 
         all_data[league_key] = {
             "name":         league_info["name"],
@@ -699,7 +767,6 @@ def main():
         }
 
     # ── Storico e monitoraggio ──
-    monitor.attach_fixture_market(new_rows, fx_market)
     history = monitor.upsert(history, new_rows, today)
     history = monitor.fill_results(history, df, today)
     monitor.save_history(history, history_path)
