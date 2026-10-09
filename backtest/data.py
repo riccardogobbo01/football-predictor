@@ -7,7 +7,7 @@ una sola volta, quella in corso viene riscaricata se la cache ha più di 12 ore.
 
 Il DataFrame restituito usa lo stesso schema atteso da backtest/models.py:
   Division, date, HomeTeam, AwayTeam, hg, ag, res (0=1, 1=X, 2=2), season,
-  HST, AST, odds_h/odds_d/odds_a (quote medie), cl_h/cl_d/cl_a (chiusura).
+  HST, AST, HS, AS, HC, AC, HY, AY, odds_h/odds_d/odds_a (quote medie), cl_h/cl_d/cl_a (chiusura).
 """
 import io
 import os
@@ -85,7 +85,9 @@ def _parse_one(raw: bytes, season: int, league: str) -> pd.DataFrame:
     out["AwayTeam"] = df["AwayTeam"].astype(str).str.strip()
     out["hg"] = pd.to_numeric(df["FTHG"], errors="coerce")
     out["ag"] = pd.to_numeric(df["FTAG"], errors="coerce")
-    for col in ("HST", "AST"):
+    # tiri in porta (HST/AST, usati dal modello) e statistiche di partita per la pagina:
+    # tiri, corner, gialli (HS/AS, HC/AC, HY/AY: "Statistiche attese", non entrano nel modello)
+    for col in ("HST", "AST", "HS", "AS", "HC", "AC", "HY", "AY"):
         out[col] = pd.to_numeric(df[col], errors="coerce") if col in df.columns else np.nan
 
     odds = _first_available(df, AVG_ODDS)

@@ -16,6 +16,11 @@ probabilità dei bookmaker senza margine (metodo power) e la differenza modello 
 1, X e 2, evidenziando gli scarti sopra i 5 punti percentuali. È solo un confronto: il modello
 non usa le quote. Se la partita non c'è la card mostra solo il modello.
 
+Pannello di dettaglio: cliccando (o toccando) una card si apre un pannello con tutti i mercati,
+il confronto col mercato, le "Statistiche attese" (tiri, corner, gialli: medie con decadimento
+temporale da football-data.co.uk, indicative e NON validate) e il "Contesto" (riposo, forma, rating
+pi-rating). I dati del pannello sono incorporati nella pagina e salvati in predictions.json.
+
 Monitoraggio (predictions/monitor.py): a ogni esecuzione le previsioni emesse vengono
 aggiunte a docs/history.csv (insieme alle probabilità di mercato) e, per le partite giocate,
 si aggiungono i risultati; la log-loss mobile di with_xg, without_xg e mercato compare in un
@@ -36,6 +41,7 @@ from datetime import datetime, timedelta
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
 
+import numpy as np
 import pandas as pd
 import requests
 
@@ -112,6 +118,355 @@ def _bar(p: float, color: str) -> str:
             f'style="width:{p*100:.1f}%;background:{color}"></div></div>')
 
 
+# ── Statistiche attese e contesto (indicative, NON validate) ───────────────────
+
+STATS_XI = 0.0018      # decadimento temporale, come il modello
+STATS_SEASONS = 2      # stagione in corso + precedente
+STAT_COLS = {"shots": ("HS", "AS"), "corners": ("HC", "AC"), "yellows": ("HY", "AY")}
+STATS_NOTE = ("Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) "
+              "di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. "
+              "Non è stata verificata con un backtest.")
+
+
+def _wmean(frame: pd.DataFrame, col: str, by: str) -> pd.Series:
+    w = frame["_w"]
+    return (frame[col] * w).groupby(frame[by]).sum() / w.groupby(frame[by]).sum()
+
+
+def build_stat_tables(g: pd.DataFrame, today: pd.Timestamp, cur: int) -> dict:
+    """Per ogni statistica (tiri, corner, gialli): medie pesate nel tempo di cio' che ogni squadra
+    produce e concede in casa e in trasferta, piu' le medie di lega (usate se manca la squadra)."""
+    win = g[(g.season >= cur - STATS_SEASONS + 1) & (g.date < today)].copy()
+    if win.empty:
+        return {}
+    win["_w"] = np.exp(-STATS_XI * (today - win.date).dt.days.to_numpy(float))
+    tables = {}
+    for name, (hc, ac) in STAT_COLS.items():
+        if hc not in win.columns or ac not in win.columns:
+            continue
+        sub = win.dropna(subset=[hc, ac])
+        if sub.empty:
+            continue
+        w = sub["_w"]
+        tables[name] = {
+            "home_for": _wmean(sub, hc, "HomeTeam"), "home_against": _wmean(sub, ac, "HomeTeam"),
+            "away_for": _wmean(sub, ac, "AwayTeam"), "away_against": _wmean(sub, hc, "AwayTeam"),
+            "lg_home": float((sub[hc] * w).sum() / w.sum()), "lg_away": float((sub[ac] * w).sum() / w.sum()),
+        }
+    return tables
+
+
+def expected_stats(tables: dict, home, away):
+    """Tiri / corner / gialli attesi per la partita: la produzione di una squadra e' la media tra
+    quanto fa di solito (in casa o in trasferta) e quanto l'avversario concede (in trasferta o in casa).
+    Squadra sconosciuta (None) o senza dati = media di lega. None se non ci sono dati."""
+    if not tables:
+        return None
+    out = {}
+    for name, t in tables.items():
+        home_exp = (t["home_for"].get(home, t["lg_home"]) + t["away_against"].get(away, t["lg_home"])) / 2
+        away_exp = (t["away_for"].get(away, t["lg_away"]) + t["home_against"].get(home, t["lg_away"])) / 2
+        out[name] = {"home": round(float(home_exp), 1), "away": round(float(away_exp), 1),
+                     "total": round(float(home_exp + away_exp), 1)}
+    out["note"] = STATS_NOTE
+    return out
+
+
+def active_teams(g: pd.DataFrame, cur: int, extra=()) -> set:
+    """Squadre della lega in questa stagione (per la posizione nei rating); a inizio stagione,
+    con pochi dati, si aggiungono le squadre in calendario."""
+    cur_g = g[g.season == cur]
+    teams = set(cur_g.HomeTeam) | set(cur_g.AwayTeam)
+    if len(teams) < 14:
+        teams |= {t for t in extra if t}
+    return teams
+
+
+def team_context(g: pd.DataFrame, state, team, match_date: str, today: pd.Timestamp, active: set):
+    """Giorni di riposo (solo campionato), forma ultime 5 (V/N/P) e posizione nei pi-rating."""
+    if team is None:
+        return None
+    played = g[(g.date < today) & ((g.HomeTeam == team) | (g.AwayTeam == team))].sort_values("date")
+    rest, form = None, []
+    if len(played):
+        rest = int((pd.Timestamp(match_date) - played.date.iloc[-1]).days)
+        for r in played.tail(5).itertuples():
+            is_home = r.HomeTeam == team
+            gf, ga = (r.hg, r.ag) if is_home else (r.ag, r.hg)
+            res = "V" if gf > ga else ("N" if gf == ga else "P")
+            opp = r.AwayTeam if is_home else r.HomeTeam
+            form.append({"r": res, "tip": f"{'vs' if is_home else 'a'} {opp} {int(gf)}-{int(ga)} "
+                                          f"({r.date.strftime('%d/%m')})"})
+    ratings = {t: (v[0] + v[1]) / 2 for t, v in state.pi_state.items()}
+    mine = ratings.get(team)
+    rank = n_pool = None
+    if mine is not None:
+        pool = {t: ratings[t] for t in active if t in ratings}
+        pool[team] = mine
+        rank, n_pool = 1 + sum(1 for v in pool.values() if v > mine), len(pool)
+    return {"rest_days": rest, "form": form,
+            "pi_rating": None if mine is None else round(float(mine), 2), "pi_rank": rank, "pi_n": n_pool}
+
+
+PANEL_CSS = r'''
+/* Card cliccabile e pannello di dettaglio */
+.match-card { cursor: pointer; touch-action: manipulation; }
+.match-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card-hint { text-align: center; font-size: .68rem; color: var(--muted); margin-top: 10px; }
+body.no-scroll { overflow: hidden; }
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 90;
+  opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s;
+}
+.overlay.visible { opacity: 1; visibility: visible; transition: opacity .2s ease, visibility 0s; }
+.panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 100vw); z-index: 100;
+  background: var(--surface); border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transform: translateX(100%); visibility: hidden;
+  transition: transform .25s ease, visibility 0s linear .25s;
+}
+.panel.open { transform: none; visibility: visible; transition: transform .25s ease, visibility 0s; }
+@media (prefers-reduced-motion: reduce) {
+  .overlay, .panel, .panel.open, .overlay.visible { transition: none; }
+}
+.panel-head {
+  display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px;
+  border-bottom: 1px solid var(--border); background: var(--surface);
+}
+.panel-head h2 { font-size: 1.05rem; font-weight: 800; line-height: 1.25; }
+.panel-sub { font-size: .74rem; color: var(--muted); margin-top: 3px; }
+.panel-close {
+  margin-left: auto; flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px;
+  background: var(--card); border: 1px solid var(--border); color: var(--text);
+  font-size: 1.1rem; cursor: pointer;
+}
+.panel-close:hover, .panel-close:focus-visible { border-color: var(--accent); outline: none; }
+.panel-body { flex: 1; overflow-y: auto; padding: 14px 18px 40px; -webkit-overflow-scrolling: touch; }
+.ps { margin-bottom: 18px; }
+.ps h3 {
+  font-size: .72rem; font-weight: 700; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .06em; margin-bottom: 8px;
+}
+.pill { display: inline-block; font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.pill-ok { background: rgba(74,222,128,.15); color: var(--green); }
+.pill-warn { background: rgba(251,191,36,.15); color: var(--yellow); }
+.pn-note { font-size: .72rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+.pn-note.warn { color: var(--yellow); }
+.pxg { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.pxg-side { text-align: center; flex: 1; }
+.pxg-val { font-size: 2rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.pxg-val.home { color: var(--accent); }
+.pxg-val.away { color: var(--green); }
+.pxg-team { font-size: .78rem; font-weight: 600; margin-top: 2px; }
+.pxg-sep { color: var(--muted); font-size: 1.4rem; }
+.pl-wide { width: 34px; }
+.pp-under { color: var(--muted); width: 62px; }
+.panel .prob-pct { width: auto; min-width: 44px; }
+.panel .mkt-grid { margin-top: 2px; }
+.mkt-sub { font-size: .66rem; color: var(--muted); }
+.kv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.kv { background: var(--bg); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+.kv-l { font-size: .68rem; color: var(--muted); }
+.kv-v { font-size: 1rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 6px 12px; text-align: center; min-width: 62px; }
+.chip.top { border-color: var(--accent); }
+.chip-s { font-size: 1.05rem; font-weight: 800; }
+.chip-p { font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.st-table { width: 100%; border-collapse: collapse; font-size: .82rem; font-variant-numeric: tabular-nums; }
+.st-table th { font-size: .68rem; color: var(--muted); font-weight: 600; text-align: right; padding: 4px 6px; }
+.st-table th:first-child, .st-table td:first-child { text-align: left; }
+.st-table td { text-align: right; padding: 6px; border-top: 1px solid var(--border); }
+.ctx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ctx-col { background: var(--bg); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.ctx-team { font-weight: 700; font-size: .84rem; }
+.ctx-l { font-size: .66rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.ctx-v { font-size: .84rem; font-weight: 600; }
+.fm { display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 6px;
+      font-size: .72rem; font-weight: 800; margin-right: 3px; color: #0d1117; }
+.fm-V { background: var(--green); }
+.fm-N { background: var(--yellow); }
+.fm-P { background: var(--red); }
+@media (max-width: 600px) {
+  .panel { width: 100vw; height: 100vh; height: 100dvh; border-left: 0; }
+  .panel-head { padding: 12px 14px; }
+  .panel-body { padding: 12px 14px 48px; }
+}
+'''
+
+PANEL_JS = r'''
+(function () {
+  "use strict";
+  var FX = {};
+  try { FX = JSON.parse(document.getElementById("fx-data").textContent); } catch (e) {}
+  var overlay = document.getElementById("overlay");
+  var panel = document.getElementById("panel");
+  var body = document.getElementById("panel-body");
+  var title = document.getElementById("panel-title");
+  var sub = document.getElementById("panel-sub");
+  var closeBtn = document.getElementById("panel-close");
+  var opener = null;
+
+  function esc(s) {
+    return String(s === null || s === undefined ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function pct(v) { return (v * 100).toFixed(1) + "%"; }
+  function color(v) { return v >= 0.5 ? "var(--green)" : v >= 0.35 ? "var(--yellow)" : "var(--red)"; }
+  function bar(v) {
+    return '<div class="bar-wrap"><div class="bar" style="width:' + (v * 100).toFixed(1) +
+           '%;background:' + color(v) + '"></div></div>';
+  }
+  function prow(label, v) {
+    return '<div class="prob-row"><span class="prob-lbl pl-wide">' + label + '</span>' + bar(v) +
+           '<span class="prob-pct" style="color:' + color(v) + '">' + pct(v) + '</span></div>';
+  }
+  function kv(label, v) {
+    return '<div class="kv"><span class="kv-l">' + label + '</span><span class="kv-v">' + pct(v) + '</span></div>';
+  }
+  function sec(name, inner) { return '<section class="ps"><h3>' + name + '</h3>' + inner + '</section>'; }
+
+  function ctxCol(name, c) {
+    var head = '<div class="ctx-team">' + name + '</div>';
+    if (!c) {
+      return '<div class="ctx-col">' + head + '<div class="pn-note">Dati non disponibili (squadra non presente nello storico).</div></div>';
+    }
+    var form = c.form.length ? c.form.map(function (r) {
+      return '<span class="fm fm-' + r.r + '" title="' + esc(r.tip) + '">' + r.r + '</span>';
+    }).join("") : "n/d";
+    var rest = c.rest_days === null ? "n/d" : c.rest_days + (c.rest_days === 1 ? " giorno" : " giorni");
+    var rating = c.pi_rank === null ? "n/d" :
+      "#" + c.pi_rank + " su " + c.pi_n + " (" + (c.pi_rating >= 0 ? "+" : "") + c.pi_rating.toFixed(2) + ")";
+    return '<div class="ctx-col">' + head +
+      '<div><div class="ctx-l">Riposo</div><div class="ctx-v">' + rest + '</div></div>' +
+      '<div><div class="ctx-l">Forma (ultime 5)</div><div class="ctx-v">' + form + '</div></div>' +
+      '<div><div class="ctx-l">Rating (pi-rating)</div><div class="ctx-v">' + rating + '</div></div></div>';
+  }
+
+  function render(f) {
+    var p = f.pred, m = f.market, st = f.stats, cx = f.ctx;
+    var h = esc(f.home), a = esc(f.away), out = "";
+
+    out += '<div class="ps">' + (p.model === "with_xg"
+      ? '<span class="pill pill-ok">Modello con xG (Understat)</span>'
+      : '<span class="pill pill-warn">Modello senza xG</span>' +
+        (p.fallback_reason ? '<div class="pn-note">Ripiego automatico: ' + esc(p.fallback_reason) + '</div>' : '')) + '</div>';
+
+    out += sec("Gol attesi",
+      '<div class="pxg"><div class="pxg-side"><div class="pxg-val home">' + p.exp_goals_home.toFixed(2) +
+      '</div><div class="pxg-team">' + h + '</div></div><div class="pxg-sep">–</div>' +
+      '<div class="pxg-side"><div class="pxg-val away">' + p.exp_goals_away.toFixed(2) +
+      '</div><div class="pxg-team">' + a + '</div></div></div>');
+
+    out += sec("Esito 1X2", prow("1", p.prob_home) + prow("X", p.prob_draw) + prow("2", p.prob_away));
+
+    if (m) {
+      var cells = [["1", "home"], ["X", "draw"], ["2", "away"]].map(function (x) {
+        var mp = m[x[1]], mod = p["prob_" + x[1]], d = (mod - mp) * 100;
+        var hi = Math.abs(Math.round(d * 10) / 10) > 5;
+        return '<div class="mkt-cell' + (hi ? " hi" : "") + '"><span class="mkt-lbl">' + x[0] + '</span>' +
+          '<span class="mkt-val">' + (mp * 100).toFixed(1) + '%</span>' +
+          '<span class="mkt-sub">modello ' + (mod * 100).toFixed(1) + '%</span>' +
+          '<span class="mkt-diff">' + (d >= 0 ? "+" : "") + d.toFixed(1) + ' pp</span></div>';
+      }).join("");
+      out += sec("Mercato (senza margine) e differenze",
+        '<div class="mkt-grid">' + cells + '</div><div class="pn-note">Δ = modello − mercato; evidenziati gli scarti ' +
+        'oltre 5 punti percentuali. Storicamente il mercato è più preciso del modello.</div>');
+    } else {
+      out += sec("Mercato", '<div class="pn-note">Quote di mercato non disponibili per questa partita ' +
+        '(football-data.co.uk/fixtures.csv).</div>');
+    }
+
+    var lines = [["0.5", p.prob_o05], ["1.5", p.prob_o15], ["2.5", p.prob_o25], ["3.5", p.prob_o35]];
+    out += sec("Over / Under", lines.map(function (l) {
+      return '<div class="prob-row"><span class="prob-lbl pl-wide">' + l[0] + '</span>' + bar(l[1]) +
+        '<span class="prob-pct" style="color:' + color(l[1]) + '">O ' + pct(l[1]) + '</span>' +
+        '<span class="prob-pct pp-under">U ' + pct(1 - l[1]) + '</span></div>';
+    }).join(""));
+
+    out += sec("BTTS e porta inviolata", '<div class="kv-grid">' +
+      kv("BTTS sì", p.prob_btts) + kv("BTTS no", 1 - p.prob_btts) +
+      kv("Porta inviolata " + h, p.prob_cs_home) + kv("Porta inviolata " + a, p.prob_cs_away) + '</div>');
+
+    out += sec("Risultati esatti più probabili", '<div class="chips">' + p.top_scores.slice(0, 5).map(function (s, i) {
+      return '<div class="chip' + (i === 0 ? " top" : "") + '"><div class="chip-s">' + s[0] + '–' + s[1] +
+             '</div><div class="chip-p">' + s[2].toFixed(1) + '%</div></div>';
+    }).join("") + '</div>');
+
+    if (st) {
+      var labels = [["shots", "Tiri totali"], ["corners", "Corner totali"], ["yellows", "Gialli totali"]];
+      var rows = labels.filter(function (l) { return st[l[0]]; }).map(function (l) {
+        var o = st[l[0]];
+        return '<tr><td>' + l[1] + '</td><td>' + o.home.toFixed(1) + '</td><td>' + o.away.toFixed(1) +
+               '</td><td><b>' + o.total.toFixed(1) + '</b></td></tr>';
+      }).join("");
+      out += sec("Statistiche attese",
+        '<table class="st-table"><thead><tr><th></th><th>' + h + '</th><th>' + a + '</th><th>Totale</th></tr></thead><tbody>' +
+        rows + '</tbody></table><div class="pn-note warn">' + esc(st.note) + '</div>');
+    }
+
+    if (cx) {
+      out += sec("Contesto", '<div class="ctx-grid">' + ctxCol(h, cx.home) + ctxCol(a, cx.away) + '</div>' +
+        '<div class="pn-note">Riposo calcolato solo sulle partite di campionato (coppe escluse). Forma: la partita più ' +
+        'recente è a destra. Rating: posizione tra le squadre della lega nel pi-rating (media casa/trasferta).</div>');
+    }
+    return out;
+  }
+
+  function open(card) {
+    var f = FX[card.getAttribute("data-id")];
+    if (!f) { return; }
+    opener = card;
+    title.textContent = f.home + " vs " + f.away;
+    sub.textContent = f.flag + " " + f.league + " · Giornata " + f.matchday + " · " + f.date + " " + f.time + " UTC";
+    body.innerHTML = render(f);
+    body.scrollTop = 0;
+    overlay.classList.add("visible");
+    panel.classList.add("open");
+    panel.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+    closeBtn.focus();
+  }
+
+  function close() {
+    if (!panel.classList.contains("open")) { return; }
+    overlay.classList.remove("visible");
+    panel.classList.remove("open");
+    panel.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+    if (opener) { try { opener.focus({ preventScroll: true }); } catch (e) {} opener = null; }
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("#panel-close") || e.target === overlay) { close(); return; }
+    if (panel.contains(e.target)) { return; }
+    var card = e.target.closest(".match-card");
+    if (card && card.hasAttribute("data-id")) { open(card); }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    var isOpen = panel.classList.contains("open");
+    if (e.key === "Escape") { close(); return; }
+    if ((e.key === "Enter" || e.key === " ") && !isOpen && e.target.classList &&
+        e.target.classList.contains("match-card")) {
+      e.preventDefault();
+      open(e.target);
+      return;
+    }
+    if (e.key === "Tab" && isOpen) {
+      var items = panel.querySelectorAll("button, [href], [tabindex]:not([tabindex='-1'])");
+      if (!items.length) { return; }
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+'''
+
+
 MARKET_DIFF_PP = 5.0   # scarto modello - mercato oltre il quale la cella viene evidenziata
 
 
@@ -185,6 +540,7 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
 
     # Costruisci le card per ogni lega
     cards_html = ""
+    fx_data = {}   # dati del pannello di dettaglio, incorporati nella pagina
     for lk, ld in leagues_data.items():
         has_preds = [f for f in ld["fixtures"] if f.get("prediction")]
         if not has_preds:
@@ -198,10 +554,17 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
                        f'</div>\n')
         cards_html += '<div class="matches-grid">\n'
 
-        for fix in ld["fixtures"]:
+        for i, fix in enumerate(ld["fixtures"]):
             pred = fix.get("prediction")
             if not pred:
                 continue
+
+            fid = f"{lk}-{i}"
+            fx_data[fid] = {"league": ld["name"], "flag": ld["flag"], "date": fix["date"], "time": fix["time"],
+                            "matchday": fix["matchday"], "home": fix["home"], "away": fix["away"],
+                            "pred": pred, "market": fix.get("market"), "stats": fix.get("expected_stats"),
+                            "ctx": fix.get("context")}
+            aria = _html.escape(f"Apri i dettagli di {fix['home']} contro {fix['away']}", quote=True)
 
             ph = pred["prob_home"]
             pd_ = pred["prob_draw"]
@@ -225,7 +588,7 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
 
             c = _prob_color
             cards_html += f"""
-<div class="match-card">
+<div class="match-card" data-id="{fid}" role="button" tabindex="0" aria-label="{aria}">
   <div class="match-meta">
     <span>Giornata {fix['matchday']}</span>
     <span>{fix['date']} {fix['time']} UTC{no_xg_tag}</span>
@@ -272,9 +635,12 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
       <span class="sec-val score-tip">{ts_str}</span>
     </div>
   </div>
+  <div class="card-hint">Tocca per i dettagli ›</div>
 </div>
 """
         cards_html += "</div>\n</div>\n"
+
+    fx_json = json.dumps(fx_data, ensure_ascii=False).replace("</", "<\\/")
 
     return f"""<!DOCTYPE html>
 <html lang="it">
@@ -543,6 +909,7 @@ main {{ padding: 24px 20px 60px; max-width: 1400px; margin: 0 auto; }}
 .mkt-val {{ font-size: .82rem; font-weight: 700; font-variant-numeric: tabular-nums; }}
 .mkt-diff {{ font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }}
 .mkt-cell.hi .mkt-diff {{ color: var(--text); font-weight: 700; }}
+{PANEL_CSS}
 .disclaimer {{
   font-size: .78rem; color: var(--muted); border-left: 3px solid var(--border);
   padding: 6px 12px; margin-top: 20px;
@@ -622,6 +989,20 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <a href="predictions.json" target="_blank">JSON grezzo</a>
 </footer>
 
+<script id="fx-data" type="application/json">{fx_json}</script>
+
+<div id="overlay" class="overlay"></div>
+<aside id="panel" class="panel" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="panel-title">
+  <div class="panel-head">
+    <div>
+      <h2 id="panel-title"></h2>
+      <div id="panel-sub" class="panel-sub"></div>
+    </div>
+    <button id="panel-close" class="panel-close" type="button" aria-label="Chiudi">✕</button>
+  </div>
+  <div id="panel-body" class="panel-body" tabindex="0"></div>
+</aside>
+
 <script>
 function switchTab(league, btn) {{
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -649,6 +1030,7 @@ try {{
   if (saved) document.documentElement.setAttribute('data-theme', saved);
 }} catch(e) {{}}
 </script>
+<script>{PANEL_JS}</script>
 </body>
 </html>"""
 
@@ -679,6 +1061,13 @@ def validate_output(all_data: dict) -> list:
                 problems.append(f"{tag}: Over non monotoni")
             if any(v > 1 for k, v in p.items() if k.startswith("prob_")):
                 problems.append(f"{tag}: probabilità > 1")
+            es = fix.get("expected_stats")
+            if es:
+                for k in ("shots", "corners", "yellows"):
+                    o = es.get(k)
+                    if o and (min(o["home"], o["away"], o["total"]) < 0
+                              or abs(o["home"] + o["away"] - o["total"]) > 0.11):
+                        problems.append(f"{tag}: statistiche attese '{k}' non valide")
             mk = fix.get("market")
             if mk and (abs(mk["home"] + mk["draw"] + mk["away"] - 1) > PROB_TOL
                        or min(mk["home"], mk["draw"], mk["away"]) <= 0):
@@ -692,6 +1081,7 @@ def main():
     os.makedirs("docs", exist_ok=True)
     generated_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     today = pd.Timestamp(datetime.utcnow().date())
+    cur = data.current_season()
 
     log.info("Football Predictor — Generazione statica (Poisson-stack)")
     log.info("=" * 55)
@@ -753,8 +1143,15 @@ def main():
                                              today.strftime("%Y-%m-%d")))
         league_rows = new_rows[n0:]
         monitor.attach_fixture_market(league_rows, fx_market)
+
+        # statistiche attese e contesto (indicative, non validate): non toccano il modello
+        tables = build_stat_tables(g, today, cur)
+        active = active_teams(g, cur, extra=[t for pair in names for t in pair])
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
-                       "prediction": pred, "market": _row_market(row)}
+                       "prediction": pred, "market": _row_market(row),
+                       "expected_stats": expected_stats(tables, h, a),
+                       "context": {"home": team_context(g, state, h, fix["date"], today, active),
+                                   "away": team_context(g, state, a, fix["date"], today, active)}}
                       for fix, (h, a), pred, row in zip(fixtures, names, preds, league_rows)]
 
         all_data[league_key] = {
