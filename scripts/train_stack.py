@@ -4,7 +4,7 @@ Allena il Poisson-stack e salva coefficienti, scaler e rho in models/stack.json
 (JSON, niente pickle). Il file contiene DUE modelli:
 
   without_xg  6 feature (dc_lmu, dc_lnu, sot_lmu, sot_lnu, pi_gd, pi_diff), dal 2013/14
-  with_xg     le stesse + xg_lmu, xg_lnu (DC sugli xG Understat), dal 2016/17
+  with_xg     le stesse + xg_lmu, xg_lnu (DC sugli xG Understat con ridge=2), dal 2016/17
 
 In produzione si usa with_xg; without_xg è il ripiego automatico (Understat non risponde
 o mancano gli xG di una squadra) — vedi predictions/stack_predictor.py.
@@ -96,7 +96,9 @@ def main():
         "meta": {
             "trained_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
             "leagues": sorted(feat.Division.unique().tolist()),
-            "note": ("Poisson-stack, feature in walk-forward (DC xi=0.0018, xG xi=0.003, finestra 5 anni). "
+            "xg_ridge": features.XG_RIDGE,
+            "note": ("Poisson-stack, feature in walk-forward (DC xi=0.0018, xG xi=0.003 con ridge sul solo "
+                     "DC degli xG, finestra 5 anni). "
                      "In produzione with_xg; without_xg e' il ripiego."),
         },
     }

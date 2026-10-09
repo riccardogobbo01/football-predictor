@@ -11,6 +11,11 @@ risponde o mancano gli xG di una squadra si passa automaticamente a "without_xg"
 partita), e lo si scrive nel log e in predictions.json. La logica è in
 predictions/stack_predictor.py, la stessa usata dall'app Flask.
 
+Monitoraggio (predictions/monitor.py): a ogni esecuzione le previsioni emesse vengono
+aggiunte a docs/history.csv (insieme alle probabilità di mercato) e, per le partite giocate,
+si aggiungono i risultati; la log-loss mobile di with_xg, without_xg e mercato compare in un
+riquadro della pagina.
+
 Scarica i CSV da football-data.co.uk e le fixture da football-data.org (serve
 FOOTBALL_DATA_ORG_KEY nell'ambiente). Usato da GitHub Actions ogni giorno; in locale:
   python scripts/generate_static.py
@@ -30,6 +35,7 @@ import pandas as pd
 import requests
 
 from backtest import data
+from predictions import monitor
 from predictions import stack_predictor as sp
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -101,12 +107,39 @@ def _bar(p: float, color: str) -> str:
             f'style="width:{p*100:.1f}%;background:{color}"></div></div>')
 
 
-def generate_html(leagues_data: dict, generated_at: str) -> str:
+def _monitor_html(mon: dict) -> str:
+    if mon["status"] != "ok":
+        return (f'<section class="monitor"><h2>📈 Monitoraggio</h2>'
+                f'<p class="mon-note">Dati in raccolta: {mon["tracked"]} previsioni registrate, '
+                f'{mon["with_result"]} giocate con risultato ({mon["n"]} con with_xg, without_xg e '
+                f'mercato disponibili). Il riquadro con la log-loss mobile (ultime {mon["window"]} partite) '
+                f'compare da {mon["min_n"]} partite in poi.</p></section>')
+
+    def cell(label, key, delta_key=None):
+        delta = (f'<span class="mon-delta">{mon[delta_key]:+.4f} vs mercato</span>' if delta_key
+                 else '<span class="mon-delta">riferimento</span>')
+        return (f'<div class="mon-cell"><span class="mon-lbl">{label}</span>'
+                f'<span class="mon-val">{mon[key]:.4f}</span>{delta}</div>')
+
+    return (f'<section class="monitor"><h2>📈 Monitoraggio — log-loss mobile</h2>'
+            f'<p class="mon-sub">Ultime {mon["n"]} partite giocate ({mon["since"]} → {mon["until"]}) con '
+            f'with_xg, without_xg e mercato disponibili · più basso = meglio</p>'
+            f'<div class="mon-grid">'
+            f'{cell("with_xg", "with_xg", "delta_with_xg_vs_market")}'
+            f'{cell("without_xg", "without_xg", "delta_without_xg_vs_market")}'
+            f'{cell("Mercato", "market")}</div>'
+            f'<p class="mon-note">Il mercato storicamente è più preciso del modello. '
+            f'{mon["tracked"]} previsioni registrate, {mon["with_result"]} giocate con risultato.</p></section>')
+
+
+def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
     # Conta totale previsioni
     total_preds = sum(
         sum(1 for f in ld["fixtures"] if f.get("prediction"))
         for ld in leagues_data.values()
     )
+
+    monitor_html = _monitor_html(mon)
 
     # Costruisci i tab buttons
     tabs_html = '<button class="tab active" onclick="switchTab(\'all\',this)">🌍 Tutte</button>\n'
@@ -455,6 +488,22 @@ main {{ padding: 24px 20px 60px; max-width: 1400px; margin: 0 auto; }}
 .sec-val {{ font-size: .82rem; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }}
 .score-tip {{ font-size: .76rem; }}
 
+/* Monitoraggio */
+.monitor {{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 28px;
+}}
+.monitor h2 {{ font-size: 1rem; font-weight: 700; margin-bottom: 4px; }}
+.mon-sub, .mon-note {{ font-size: .75rem; color: var(--muted); margin: 4px 0 10px; }}
+.mon-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }}
+.mon-cell {{ background: var(--bg); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; }}
+.mon-lbl {{ font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }}
+.mon-val {{ font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }}
+.mon-delta {{ font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }}
+
 /* Empty state */
 .empty-state {{
   text-align: center;
@@ -499,6 +548,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
 </div>
 
 <main id="main-content">
+  {monitor_html}
   <div id="leagues-container">
     {cards_html if cards_html else '<div class="empty-state"><div class="icon">🔍</div><h2>Nessuna partita trovata nei prossimi 14 giorni</h2><p>Le previsioni vengono aggiornate automaticamente ogni mattina.</p></div>'}
   </div>
@@ -598,6 +648,12 @@ def main():
     else:
         log.info("  xG caricati per %d partite", int(df.xg_h.notna().sum()))
 
+    history_path = os.path.join("docs", "history.csv")
+    history = monitor.load_history(history_path)
+    fx_market = monitor.fixtures_market()
+    log.info("Quote di mercato da fixtures.csv: %d partite dei 5 campionati", len(fx_market))
+    new_rows = []
+
     all_data = {}
 
     for league_key, league_info in LEAGUES.items():
@@ -625,6 +681,10 @@ def main():
             names.append((h, a))
 
         preds = sp.predict_pairs(state, model, pairs)
+        probs = sp.probs_by_model(state, model, pairs)
+        for fix, (h, a), pred, pr in zip(fixtures, names, preds, probs):
+            new_rows.append(monitor.make_row(league_key, {**fix, "home_dc": h, "away_dc": a}, pred, pr,
+                                             today.strftime("%Y-%m-%d")))
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
                        "prediction": pred}
                       for fix, (h, a), pred in zip(fixtures, names, preds)]
@@ -637,6 +697,21 @@ def main():
             "dc_teams":     state.teams,
             "fixtures":     preds_list,
         }
+
+    # ── Storico e monitoraggio ──
+    monitor.attach_fixture_market(new_rows, fx_market)
+    history = monitor.upsert(history, new_rows, today)
+    history = monitor.fill_results(history, df, today)
+    monitor.save_history(history, history_path)
+    mon = monitor.rolling_logloss(history)
+    log.info("Storico: %d partite registrate, %d con risultato, %d con quote di mercato",
+             len(history), int(history.result.notna().sum()), int(history.mkt_home.notna().sum()))
+    if mon["status"] == "ok":
+        log.info("Log-loss mobile (ultime %d): with_xg=%.4f without_xg=%.4f mercato=%.4f",
+                 mon["n"], mon["with_xg"], mon["without_xg"], mon["market"])
+    else:
+        log.info("Monitoraggio in raccolta: %d partite con tutti i modelli e il mercato (servono %d)",
+                 mon["n"], mon["min_n"])
 
     # ── Output ──
     log.info("\nScrittura output...")
@@ -660,10 +735,11 @@ def main():
                              "n_train": {k: v["meta"]["n_train"] for k, v in model["models"].items()}},
                    "xg_status": {"available": xg_error is None, "error": xg_error},
                    "model_counts": counts,
+                   "monitor": mon,
                    "leagues": all_data},
                   f, ensure_ascii=False, indent=2)
 
-    html = generate_html(all_data, generated_at)
+    html = generate_html(all_data, generated_at, mon)
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(html)
 

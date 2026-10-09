@@ -6,7 +6,7 @@ Per ogni lega, alla data di oggi:
   1. Dixon-Coles sui gol (xi=0.0018, finestra 5 anni, con tau)      -> dc_lmu, dc_lnu
   2. Dixon-Coles sui tiri in porta HST/AST (senza tau)               -> sot_lmu, sot_lnu
   3. pi-ratings correnti (stato dopo l'ultima partita giocata)       -> pi_gd, pi_diff
-  4. xG Understat: Dixon-Coles senza tau sugli xG (xi=0.003)         -> xg_lmu, xg_lnu
+  4. xG Understat: Dixon-Coles senza tau sugli xG (xi=0.003, ridge=2) -> xg_lmu, xg_lnu
   5. models/stack.json (coefficienti, scaler, rho)                   -> gol attesi (mu, nu)
   6. matrice dei punteggi con correzione tau -> 1X2, O/U, BTTS, clean sheet, risultati esatti
 
@@ -168,7 +168,7 @@ class LeagueState:
                 days_x = (c0 - trx.date).dt.days.values
                 self.xg = models.fit_dc(trx.HomeTeam.values, trx.AwayTeam.values, trx.xg_h.values,
                                         trx.xg_a.values, days_x, features.XG_XI, use_tau=False,
-                                        teams=teams_x)
+                                        teams=teams_x, ridge=features.XG_RIDGE)
             elif self.xg_reason is None:
                 self.xg_reason = f"xG Understat insufficienti ({len(trx)} partite nella finestra)"
         elif self.xg_reason is None:
@@ -274,6 +274,27 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
         extra = f" (+{len(matches) - 3} altre)" if len(matches) > 3 else ""
         log.warning("Ripiego su without_xg per %d partite: %s | es. %s%s",
                     len(matches), r, "; ".join(matches[:3]), extra)
+    return out
+
+
+def probs_by_model(state: LeagueState, model: dict, pairs) -> list[dict]:
+    """1X2 di ENTRAMBI i modelli per ogni partita, per il monitoraggio:
+    {"with_xg": (pH, pD, pA) oppure None se non utilizzabile, "without_xg": (pH, pD, pA)}."""
+    if not pairs:
+        return []
+    homes, aways = zip(*pairs)
+    X = state.features(homes, aways)
+    usable = [state.xg_fallback_reason(h, a) is None for h, a in pairs]
+    out = [{"with_xg": None, "without_xg": None} for _ in pairs]
+    for name in (WITH_XG, WITHOUT_XG):
+        rows = [i for i in range(len(pairs)) if name == WITHOUT_XG or usable[i]]
+        if not rows:
+            continue
+        m = model["models"][name]
+        mu, nu, rho = stack.predict_from_dict(m, X.iloc[rows][m["features"]].to_numpy())
+        P = models.probs_1x2(models.score_matrix(mu, nu, np.full(len(rows), rho)))
+        for k, i in enumerate(rows):
+            out[i][name] = tuple(round(float(v), 5) for v in P[k])
     return out
 
 

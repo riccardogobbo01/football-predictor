@@ -34,6 +34,7 @@ ACCEPT_DC = (0.994, 0.004)
 ACCEPT_MARKET = (0.973, 0.004)
 ACCEPT_STACK_MAX = 0.987
 ACCEPT_XG_MIN_GAIN = 0.0015     # atteso circa +0.002/+0.003
+ACCEPT_RIDGE_MIN_GAIN = 0.0003  # ridge sul DC xG: atteso circa +0.0007
 
 RESULTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results.md")
 
@@ -46,6 +47,7 @@ M_PI = "DC + pi-ratings"
 M_PROD = "Stack senza xG (produzione, training dal 2013/14)"
 M_CTRL = "Stack senza xG (training dal 2016/17) *"
 M_XG = "Stack + xG Understat (training dal 2016/17)"
+M_XGR = "Stack + xG con ridge=2 sul DC xG (training dal 2016/17)"
 M_ELO = "Stack + Elo (training dal 2013/14)"
 
 
@@ -86,7 +88,9 @@ def main():
 
     print("Feature walk-forward (DC gol, DC tiri in porta, pi-ratings, DC xG)...")
     feat = features.build_features(df, rebuild=args.rebuild)
-    feat = feat.join(features.build_xg_features(df, rebuild=args.rebuild)[["xg_lmu", "xg_lnu"]])
+    feat = feat.join(features.build_xg_features(df, ridge=0.0, rebuild=args.rebuild)[["xg_lmu", "xg_lnu"]])
+    xg_r = features.build_xg_features(df, ridge=features.XG_RIDGE, rebuild=args.rebuild)
+    feat_r = feat.assign(xg_lmu=xg_r.xg_lmu, xg_lnu=xg_r.xg_lnu)   # stesso frame, xG con ridge
 
     if args.elo:
         from backtest import elo
@@ -116,17 +120,18 @@ def main():
     }
 
     runs = [
-        (M_RECAL, BASE, None),
-        (M_PI, BASE + ["pi_gd", "pi_diff"], None),
-        (M_PROD, stack.PRODUCTION_FEATURES, None),
-        (M_CTRL, stack.PRODUCTION_FEATURES, stack.XG_FIRST_TRAIN_SEASON),
-        (M_XG, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON),
+        (M_RECAL, BASE, None, feat),
+        (M_PI, BASE + ["pi_gd", "pi_diff"], None, feat),
+        (M_PROD, stack.PRODUCTION_FEATURES, None, feat),
+        (M_CTRL, stack.PRODUCTION_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat),
+        (M_XG, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat),
+        (M_XGR, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat_r),
     ]
     if args.elo:
-        runs.append((M_ELO, stack.PRODUCTION_FEATURES + ["elo_diff"], None))
-    for name, cols, min_train in runs:
+        runs.append((M_ELO, stack.PRODUCTION_FEATURES + ["elo_diff"], None, feat))
+    for name, cols, min_train, frame in runs:
         print(f"  stack: {name}")
-        sp = stack.walk_forward_stack(feat, cols, FIRST_TEST_SEASON, min_train).reindex(ev.index)
+        sp = stack.walk_forward_stack(frame, cols, FIRST_TEST_SEASON, min_train).reindex(ev.index)
         preds[name] = (sp[["pH", "pD", "pA"]].to_numpy(), sp.pH.notna().to_numpy())
 
     y_all = ev.res.values
@@ -155,7 +160,8 @@ def main():
         f"Test: {ev.date.min().date()} → {ev.date.max().date()} "
         f"(stagioni 2019/20 → {cur}/{(cur + 1) % 100:02d}), {len(ev)} partite con quote medie valide. "
         f"DC rifittato ogni 7 giorni (finestra 5 anni, xi=0.0018); xG: DC senza tau su xG Understat, "
-        f"xi=0.003, finestra 5 anni. Lo stack è stimato stagione per stagione sulle sole stagioni "
+        f"xi=0.003, finestra 5 anni (nelle righe \"ridge\" con penalità ridge=2 sul solo DC degli xG; "
+        f"il DC dei gol non usa ridge). Lo stack è stimato stagione per stagione sulle sole stagioni "
         f"precedenti, 5 campionati insieme. Più basso = meglio (tranne accuratezza).",
         "",
         f"Copertura xG: {xg_cov[0]}/{xg_cov[1]} partite dal 2014/15 abbinate a Understat "
@@ -184,6 +190,9 @@ def main():
     comparisons = [
         (f"{M_PROD} → {M_XG}", M_PROD, M_XG),
         (f"{M_CTRL} → {M_XG}", M_CTRL, M_XG),
+        (f"{M_XG} → {M_XGR}", M_XG, M_XGR),
+        (f"{M_PROD} → {M_XGR}", M_PROD, M_XGR),
+        (f"{M_DC} → {M_XGR}", M_DC, M_XGR),
         (f"{M_DC} → {M_PROD}", M_DC, M_PROD),
         (f"{M_DC} → {M_XG}", M_DC, M_XG),
     ]
@@ -198,16 +207,19 @@ def main():
 
     # ── per stagione ──────────────────────────────────────────────────────────
     lines += ["## Per stagione (log-loss)", "",
-              "| Stagione | N | Quote medie | DC attuale | Stack senza xG | Stack + xG | Δ (senza xG − con xG) |",
-              "|---|---:|---:|---:|---:|---:|---:|"]
-    xg_better, stack_better, worse_notes = [], [], []
+              "| Stagione | N | Quote medie | DC attuale | Stack senza xG | Stack + xG | Stack + xG ridge | Δ (senza xG − con xG) | Δ (xG − xG ridge) |",
+              "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    xg_better, stack_better, worse_notes, ridge_better = [], [], [], []
     for s in sorted(ev.season.unique()):
         m = (ev.season == s).to_numpy()
         a, b, c, d_ = (ll_vec[M_MKT][m].mean(), ll_vec[M_DC][m].mean(),
                        ll_vec[M_PROD][m].mean(), ll_vec[M_XG][m].mean())
         xg_better.append(d_ < c)
         stack_better.append(c < b)
-        lines.append(f"| {s}/{(s + 1) % 100:02d} | {m.sum()} | {a:.4f} | {b:.4f} | {c:.4f} | {d_:.4f} | {c - d_:+.4f} |")
+        r_ = ll_vec[M_XGR][m].mean()
+        ridge_better.append(r_ < d_)
+        lines.append(f"| {s}/{(s + 1) % 100:02d} | {m.sum()} | {a:.4f} | {b:.4f} | {c:.4f} | {d_:.4f} | {r_:.4f} | "
+                     f"{c - d_:+.4f} | {d_ - r_:+.4f} |")
         if d_ >= c:
             diff = (ll_vec[M_PROD] - ll_vec[M_XG])[m]
             se = diff.std(ddof=1) / np.sqrt(m.sum())
@@ -217,11 +229,44 @@ def main():
     if worse_notes:
         lines += ["Stagioni in cui l'xG non migliora (Δ ≤ 0): " + "; ".join(worse_notes) + ".", ""]
 
+    # ── stagione in corso e neopromosse ───────────────────────────────────────
+    cur_m = (ev.season == cur).to_numpy()
+    teams_by = {(dv, ss): set(g.HomeTeam) | set(g.AwayTeam) for (dv, ss), g in feat.groupby(["Division", "season"])}
+    prev = lambda dv, ss: teams_by.get((dv, ss - 1), set())
+    promoted = np.array([(h not in prev(dv, ss)) or (a not in prev(dv, ss))
+                         for dv, ss, h, a in zip(ev.Division, ev.season, ev.HomeTeam, ev.AwayTeam)])
+    early = ev.date.dt.month.isin([8, 9]).to_numpy()
+
+    def sub_row(label, m):
+        if not m.any():
+            return None
+        cols_ = [ll_vec[k][m].mean() for k in (M_PROD, M_XG, M_XGR)]
+        diff = (ll_vec[M_XG] - ll_vec[M_XGR])[m]
+        se = diff.std(ddof=1) / np.sqrt(m.sum()) if m.sum() > 1 else float("nan")
+        return (f"| {label} | {m.sum()} | {cols_[0]:.4f} | {cols_[1]:.4f} | {cols_[2]:.4f} | "
+                f"{cols_[1] - cols_[2]:+.4f} (±{se:.4f}) |")
+
+    lines += ["## Stagione in corso e neopromosse (log-loss)", "",
+              "Neopromossa = squadra assente dallo stesso campionato nella stagione precedente. "
+              "Tra parentesi l'errore standard del Δ (xG − xG ridge).", "",
+              "| Sottoinsieme | N | Stack senza xG | Stack + xG | Stack + xG ridge | Δ (xG − xG ridge) |",
+              "|---|---:|---:|---:|---:|---:|"]
+    for label, m in ((f"{cur}/{(cur + 1) % 100:02d} (stagione in corso)", cur_m),
+                     (f"{cur}/{(cur + 1) % 100:02d} con ridge, solo partite con neopromosse", cur_m & promoted),
+                     ("Tutte le stagioni, neopromosse ad agosto-settembre", early & promoted),
+                     ("Tutte le stagioni, resto delle partite", ~(early & promoted))):
+        row_ = sub_row(label, m)
+        if row_:
+            lines.append(row_)
+    lines.append("")
+
     # ── check di accettazione ─────────────────────────────────────────────────
     get = lambda model: next(m for s, mod, m in rows if s == "Tutti" and mod == model)
     dc_all, mk_all, st_all = get(M_DC)["logloss"], get(M_MKT)["logloss"], get(M_PROD)["logloss"]
     xg_all = get(M_XG)["logloss"]
+    xgr_all = get(M_XGR)["logloss"]
     gain, lo, hi = boot[(M_PROD, M_XG)]
+    rgain, rlo, rhi = boot[(M_XG, M_XGR)]
     checks = [
         ("Step 1 — DC attuale", f"{dc_all:.4f} (atteso {ACCEPT_DC[0]} ± {ACCEPT_DC[1]})",
          abs(dc_all - ACCEPT_DC[0]) <= ACCEPT_DC[1]),
@@ -237,6 +282,11 @@ def main():
         ("Step 7.1 — IC 95% del guadagno xG esclude lo zero", f"[{lo:+.4f}, {hi:+.4f}]", lo > 0),
         ("Step 7.1 — stack + xG migliore in ogni stagione",
          f"{sum(xg_better)}/{len(xg_better)} stagioni", all(xg_better)),
+        (f"Ridge xG — guadagno ≥ +{ACCEPT_RIDGE_MIN_GAIN} (atteso circa +0.0007)",
+         f"{rgain:+.4f} (stack + xG {xg_all:.4f} → con ridge {xgr_all:.4f})", rgain >= ACCEPT_RIDGE_MIN_GAIN),
+        ("Ridge xG — IC 95% del guadagno esclude lo zero", f"[{rlo:+.4f}, {rhi:+.4f}]", rlo > 0),
+        ("Ridge xG — migliore in ogni stagione (informativo)",
+         f"{sum(ridge_better)}/{len(ridge_better)} stagioni", all(ridge_better)),
     ]
     lines += ["## Check di accettazione", ""]
     for label, value, passed in checks:

@@ -44,7 +44,7 @@ def metrics(P, y):
 
 
 # ─────────────────────────────── Dixon-Coles ─────────────────────────────────
-def _dc_negll_grad(p, hi, ai, x, y, w, n, use_tau):
+def _dc_negll_grad(p, hi, ai, x, y, w, n, use_tau, ridge=0.0):
     H, rho = p[0], p[1]
     a, d = p[2:2 + n], p[2 + n:]
     lmu = a[hi] + d[ai] + H
@@ -81,10 +81,16 @@ def _dc_negll_grad(p, hi, ai, x, y, w, n, use_tau):
     s = a.sum()
     f += pen * s * s
     g[2:2 + n] += 2 * pen * s
+    if ridge:
+        # penalità ridge: ridge * (sum(a^2) + sum(d^2)) -> riduce i valori estremi
+        # delle squadre con poche partite (neopromosse)
+        f += ridge * (np.dot(a, a) + np.dot(d, d))
+        g[2:2 + n] += 2 * ridge * a
+        g[2 + n:] += 2 * ridge * d
     return f, g
 
 
-def fit_dc(home, away, x, y, days_ago, xi, use_tau=True, x0=None, teams=None):
+def fit_dc(home, away, x, y, days_ago, xi, use_tau=True, x0=None, teams=None, ridge=0.0):
     if teams is None:
         teams = sorted(set(home) | set(away))
     idx = {t: i for i, t in enumerate(teams)}
@@ -94,7 +100,7 @@ def fit_dc(home, away, x, y, days_ago, xi, use_tau=True, x0=None, teams=None):
     if x0 is None:
         x0 = np.zeros(2 + 2 * n); x0[0] = 0.25; x0[1] = -0.05
     bounds = [(-1, 1.5), (-0.4, 0.4) if use_tau else (0, 0)] + [(-3, 3)] * (2 * n)
-    r = minimize(_dc_negll_grad, x0, args=(hi, ai, np.asarray(x, float), np.asarray(y, float), w, n, use_tau),
+    r = minimize(_dc_negll_grad, x0, args=(hi, ai, np.asarray(x, float), np.asarray(y, float), w, n, use_tau, ridge),
                  jac=True, method="L-BFGS-B", bounds=bounds, options=dict(maxiter=500))
     p = r.x
     return dict(teams=teams, idx=idx, H=p[0], rho=p[1], a=p[2:2 + n], d=p[2 + n:], x=p)
@@ -133,7 +139,7 @@ def probs_1x2(M):
 
 
 def walk_forward_dc(df, xi, years_window=5, step_days=7, start=None, use_tau=True,
-                    gx="hg", gy="ag"):
+                    gx="hg", gy="ag", ridge=0.0):
     """Previsioni out-of-sample: rifit ogni step_days usando solo partite precedenti.
     Restituisce DataFrame con mu, nu, rho, H per ogni partita da start in poi."""
     out = []
@@ -152,7 +158,8 @@ def walk_forward_dc(df, xi, years_window=5, step_days=7, start=None, use_tau=Tru
             if teams != prev_teams:
                 x0 = None
             m = fit_dc(tr.HomeTeam.values, tr.AwayTeam.values, tr[gx].values, tr[gy].values,
-                       (c0 - tr.date).dt.days.values, xi, use_tau=use_tau, x0=x0, teams=teams)
+                       (c0 - tr.date).dt.days.values, xi, use_tau=use_tau, x0=x0, teams=teams,
+                       ridge=ridge)
             x0, prev_teams = m["x"], teams
             mu, nu = dc_lambdas(m, test.HomeTeam.values, test.AwayTeam.values)
             o = pd.DataFrame(dict(mu=mu, nu=nu, rho=m["rho"], H=m["H"]), index=test.index)
