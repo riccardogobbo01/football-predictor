@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09 08:12 UTC",
+  "generated_at": "2026-10-09 08:24 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-10-09 07:37 UTC",
@@ -120,7 +120,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -180,7 +181,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -240,7 +242,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -300,7 +303,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -360,7 +364,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -420,7 +425,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -480,7 +486,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -540,7 +547,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-12",
@@ -600,7 +608,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-12",
@@ -660,7 +669,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-16",
@@ -720,7 +730,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -780,7 +791,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -840,7 +852,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -900,7 +913,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -960,7 +974,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -1020,7 +1035,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -1080,7 +1096,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -1140,7 +1157,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-19",
@@ -1200,7 +1218,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-19",
@@ -1260,7 +1279,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-23",
@@ -1320,7 +1340,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         }
       ]
     },
@@ -1381,10 +1402,10 @@
             "prob_o05": 0.93219,
             "prob_o15": 0.76985,
             "prob_o25": 0.52432,
-            "prob_o35": 0.30228,
+            "prob_o35": 0.30227,
             "prob_btts": 0.47848,
             "prob_cs_home": 0.45091,
-            "prob_cs_away": 0.13841,
+            "prob_cs_away": 0.13842,
             "top_scores": [
               [
                 2,
@@ -1419,7 +1440,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -1479,7 +1501,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -1496,7 +1519,7 @@
             "exp_goals_home": 1.67,
             "exp_goals_away": 1.49,
             "prob_home": 0.41505,
-            "prob_draw": 0.24688,
+            "prob_draw": 0.24689,
             "prob_away": 0.33807,
             "prob_o05": 0.95145,
             "prob_o15": 0.82833,
@@ -1539,7 +1562,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -1599,7 +1623,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -1659,7 +1684,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -1679,11 +1705,11 @@
             "prob_draw": 0.21964,
             "prob_away": 0.18055,
             "prob_o05": 0.94877,
-            "prob_o15": 0.81807,
+            "prob_o15": 0.81808,
             "prob_o25": 0.59486,
-            "prob_o35": 0.37106,
+            "prob_o35": 0.37107,
             "prob_btts": 0.56789,
-            "prob_cs_home": 0.35358,
+            "prob_cs_home": 0.35357,
             "prob_cs_away": 0.12976,
             "top_scores": [
               [
@@ -1719,7 +1745,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -1735,7 +1762,7 @@
           "prediction": {
             "exp_goals_home": 1.15,
             "exp_goals_away": 1.17,
-            "prob_home": 0.34811,
+            "prob_home": 0.34812,
             "prob_draw": 0.29651,
             "prob_away": 0.35538,
             "prob_o05": 0.89478,
@@ -1779,7 +1806,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -1839,7 +1867,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -1858,7 +1887,7 @@
             "prob_home": 0.34465,
             "prob_draw": 0.25198,
             "prob_away": 0.40337,
-            "prob_o05": 0.94685,
+            "prob_o05": 0.94684,
             "prob_o15": 0.81492,
             "prob_o25": 0.58898,
             "prob_o35": 0.36505,
@@ -1899,7 +1928,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-12",
@@ -1924,7 +1954,7 @@
             "prob_o35": 0.26085,
             "prob_btts": 0.52986,
             "prob_cs_home": 0.24588,
-            "prob_cs_away": 0.30648,
+            "prob_cs_away": 0.30647,
             "top_scores": [
               [
                 1,
@@ -1959,7 +1989,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -1979,7 +2010,7 @@
             "prob_draw": 0.262,
             "prob_away": 0.37677,
             "prob_o05": 0.93691,
-            "prob_o15": 0.78704,
+            "prob_o15": 0.78703,
             "prob_o25": 0.54714,
             "prob_o35": 0.32374,
             "prob_btts": 0.58686,
@@ -2019,7 +2050,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -2079,7 +2111,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -2104,7 +2137,7 @@
             "prob_o35": 0.50302,
             "prob_btts": 0.49662,
             "prob_cs_home": 0.47913,
-            "prob_cs_away": 0.05228,
+            "prob_cs_away": 0.05229,
             "top_scores": [
               [
                 2,
@@ -2139,7 +2172,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -2199,7 +2233,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -2218,7 +2253,7 @@
             "prob_home": 0.4523,
             "prob_draw": 0.24757,
             "prob_away": 0.30013,
-            "prob_o05": 0.94787,
+            "prob_o05": 0.94786,
             "prob_o15": 0.81761,
             "prob_o25": 0.59327,
             "prob_o35": 0.36943,
@@ -2259,7 +2294,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -2319,7 +2355,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -2344,7 +2381,7 @@
             "prob_o35": 0.33001,
             "prob_btts": 0.59118,
             "prob_cs_home": 0.22185,
-            "prob_cs_away": 0.24842,
+            "prob_cs_away": 0.24843,
             "top_scores": [
               [
                 1,
@@ -2379,7 +2416,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -2439,7 +2477,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -2457,7 +2496,7 @@
             "exp_goals_away": 1.63,
             "prob_home": 0.20155,
             "prob_draw": 0.2602,
-            "prob_away": 0.53826,
+            "prob_away": 0.53825,
             "prob_o05": 0.91377,
             "prob_o15": 0.72485,
             "prob_o25": 0.46339,
@@ -2499,7 +2538,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-19",
@@ -2519,8 +2559,8 @@
             "prob_draw": 0.28991,
             "prob_away": 0.27175,
             "prob_o05": 0.89641,
-            "prob_o15": 0.68494,
-            "prob_o25": 0.41406,
+            "prob_o15": 0.68495,
+            "prob_o25": 0.41407,
             "prob_o35": 0.20846,
             "prob_btts": 0.47322,
             "prob_cs_home": 0.36847,
@@ -2559,7 +2599,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-23",
@@ -2579,11 +2620,11 @@
             "prob_draw": 0.25787,
             "prob_away": 0.48389,
             "prob_o05": 0.9313,
-            "prob_o15": 0.77106,
+            "prob_o15": 0.77107,
             "prob_o25": 0.52465,
             "prob_o35": 0.30258,
             "prob_btts": 0.55366,
-            "prob_cs_home": 0.19437,
+            "prob_cs_home": 0.19436,
             "prob_cs_away": 0.32067,
             "top_scores": [
               [
@@ -2619,7 +2660,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         }
       ]
     },
@@ -2716,7 +2758,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -2776,7 +2819,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -2836,7 +2880,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -2896,7 +2941,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -2956,7 +3002,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -3016,7 +3063,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -3076,7 +3124,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -3136,7 +3185,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -3196,7 +3246,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-16",
@@ -3256,7 +3307,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -3316,7 +3368,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -3376,7 +3429,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -3436,7 +3490,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -3496,7 +3551,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -3556,7 +3612,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -3616,7 +3673,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -3676,7 +3734,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -3736,7 +3795,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-23",
@@ -3796,7 +3856,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         }
       ]
     },
@@ -3895,7 +3956,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -3955,7 +4017,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -4015,7 +4078,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -4075,7 +4139,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -4135,7 +4200,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -4195,7 +4261,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -4255,7 +4322,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -4315,7 +4383,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -4375,7 +4444,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-12",
@@ -4435,7 +4505,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-16",
@@ -4495,7 +4566,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -4555,7 +4627,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -4615,7 +4688,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -4675,7 +4749,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -4735,7 +4810,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -4795,7 +4871,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -4855,7 +4932,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -4915,7 +4993,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -4975,7 +5054,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-19",
@@ -5035,7 +5115,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-21",
@@ -5095,7 +5176,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-23",
@@ -5155,7 +5237,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         }
       ]
     },
@@ -5251,7 +5334,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -5311,7 +5395,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -5371,7 +5456,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -5431,7 +5517,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -5491,7 +5578,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-10",
@@ -5551,7 +5639,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -5611,7 +5700,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -5671,7 +5761,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-11",
@@ -5731,7 +5822,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-16",
@@ -5791,7 +5883,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -5851,7 +5944,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -5911,7 +6005,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-17",
@@ -5971,7 +6066,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -6031,7 +6127,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -6091,7 +6188,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -6151,7 +6249,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -6211,7 +6310,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-18",
@@ -6271,7 +6371,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         },
         {
           "date": "2026-10-23",
@@ -6331,7 +6432,8 @@
             ],
             "model": "with_xg",
             "fallback_reason": null
-          }
+          },
+          "market": null
         }
       ]
     }
