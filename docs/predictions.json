@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09 14:05 UTC",
+  "generated_at": "2026-10-10 13:15 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-10-09 07:37 UTC",
@@ -13,13 +13,13 @@
     "error": null
   },
   "model_counts": {
-    "with_xg": 102,
+    "with_xg": 116,
     "without_xg": 0
   },
   "monitor": {
     "window": 200,
     "min_n": 30,
-    "tracked": 102,
+    "tracked": 122,
     "with_result": 0,
     "n": 0,
     "status": "in_raccolta",
@@ -30,7 +30,7 @@
     "serie_a": {
       "name": "Serie A",
       "flag": "🇮🇹",
-      "dc_fitted_at": "2026-10-09",
+      "dc_fitted_at": "2026-10-10",
       "dc_n_matches": 1880,
       "dc_teams": [
         "Atalanta",
@@ -64,148 +64,6 @@
       "fixtures": [
         {
           "date": "2026-10-10",
-          "time": "13:00",
-          "home": "Genoa",
-          "away": "Fiorentina",
-          "home_full": "Genoa CFC",
-          "away_full": "ACF Fiorentina",
-          "matchday": 6,
-          "home_dc": "Genoa",
-          "away_dc": "Fiorentina",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.27,
-            "exp_goals_away": 1.26,
-            "prob_home": 0.36131,
-            "prob_draw": 0.28199,
-            "prob_away": 0.3567,
-            "prob_o05": 0.91354,
-            "prob_o15": 0.72629,
-            "prob_o25": 0.46448,
-            "prob_o35": 0.24938,
-            "prob_btts": 0.52266,
-            "prob_cs_home": 0.28327,
-            "prob_cs_away": 0.28053,
-            "top_scores": [
-              [
-                1,
-                1,
-                13.4
-              ],
-              [
-                1,
-                0,
-                9.4
-              ],
-              [
-                0,
-                1,
-                9.3
-              ],
-              [
-                0,
-                0,
-                8.6
-              ],
-              [
-                2,
-                1,
-                8.1
-              ],
-              [
-                1,
-                2,
-                8.0
-              ]
-            ],
-            "model": "with_xg",
-            "fallback_reason": null
-          },
-          "market": {
-            "home": 0.29387,
-            "draw": 0.28624,
-            "away": 0.41988,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "shots": {
-              "home": 13.8,
-              "away": 11.4,
-              "total": 25.2
-            },
-            "corners": {
-              "home": 4.4,
-              "away": 3.9,
-              "total": 8.3
-            },
-            "yellows": {
-              "home": 1.9,
-              "away": 2.4,
-              "total": 4.3
-            },
-            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
-          },
-          "context": {
-            "home": {
-              "rest_days": 20,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "vs Napoli 0-2 (22/08)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Lazio 0-1 (30/08)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Como 1-4 (04/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Frosinone 1-1 (12/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Parma 1-2 (20/09)"
-                }
-              ],
-              "pi_rating": 0.15,
-              "pi_rank": 16,
-              "pi_n": 20
-            },
-            "away": {
-              "rest_days": 20,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Roma 0-4 (24/08)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Frosinone 0-3 (29/08)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Torino 1-2 (05/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Venezia 4-2 (11/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Napoli 1-1 (20/09)"
-                }
-              ],
-              "pi_rating": 0.37,
-              "pi_rank": 12,
-              "pi_n": 20
-            }
-          }
-        },
-        {
-          "date": "2026-10-10",
           "time": "16:00",
           "home": "Inter",
           "away": "Parma",
@@ -218,16 +76,16 @@
           "prediction": {
             "exp_goals_home": 2.75,
             "exp_goals_away": 0.66,
-            "prob_home": 0.80539,
+            "prob_home": 0.80538,
             "prob_draw": 0.13334,
             "prob_away": 0.06128,
             "prob_o05": 0.96371,
             "prob_o15": 0.85776,
             "prob_o25": 0.66246,
-            "prob_o35": 0.44412,
-            "prob_btts": 0.45699,
-            "prob_cs_home": 0.51527,
-            "prob_cs_away": 0.06402,
+            "prob_o35": 0.44411,
+            "prob_btts": 0.457,
+            "prob_cs_home": 0.51526,
+            "prob_cs_away": 0.06403,
             "top_scores": [
               [
                 2,
@@ -360,16 +218,16 @@
           "prediction": {
             "exp_goals_home": 2.13,
             "exp_goals_away": 0.9,
-            "prob_home": 0.65152,
-            "prob_draw": 0.2061,
-            "prob_away": 0.14238,
-            "prob_o05": 0.94648,
-            "prob_o15": 0.81001,
-            "prob_o25": 0.58294,
-            "prob_o35": 0.35893,
-            "prob_btts": 0.52716,
-            "prob_cs_home": 0.40749,
-            "prob_cs_away": 0.11886,
+            "prob_home": 0.65161,
+            "prob_draw": 0.20605,
+            "prob_away": 0.14234,
+            "prob_o05": 0.9465,
+            "prob_o15": 0.81007,
+            "prob_o25": 0.58303,
+            "prob_o35": 0.35902,
+            "prob_btts": 0.52719,
+            "prob_cs_home": 0.4075,
+            "prob_cs_away": 0.11881,
             "top_scores": [
               [
                 2,
@@ -502,15 +360,15 @@
           "prediction": {
             "exp_goals_home": 1.46,
             "exp_goals_away": 1.36,
-            "prob_home": 0.38959,
+            "prob_home": 0.38963,
             "prob_draw": 0.26465,
-            "prob_away": 0.34576,
-            "prob_o05": 0.93366,
-            "prob_o15": 0.77816,
-            "prob_o25": 0.53438,
-            "prob_o35": 0.31165,
-            "prob_btts": 0.57653,
-            "prob_cs_home": 0.25676,
+            "prob_away": 0.34572,
+            "prob_o05": 0.93365,
+            "prob_o15": 0.77813,
+            "prob_o25": 0.53434,
+            "prob_o35": 0.31161,
+            "prob_btts": 0.5765,
+            "prob_cs_home": 0.25681,
             "prob_cs_away": 0.23305,
             "top_scores": [
               [
@@ -644,16 +502,16 @@
           "prediction": {
             "exp_goals_home": 0.96,
             "exp_goals_away": 1.48,
-            "prob_home": 0.23767,
-            "prob_draw": 0.27594,
-            "prob_away": 0.48639,
-            "prob_o05": 0.9062,
-            "prob_o15": 0.70734,
-            "prob_o25": 0.44117,
-            "prob_o35": 0.23006,
+            "prob_home": 0.23774,
+            "prob_draw": 0.27596,
+            "prob_away": 0.4863,
+            "prob_o05": 0.90619,
+            "prob_o15": 0.70732,
+            "prob_o25": 0.44114,
+            "prob_o35": 0.23004,
             "prob_btts": 0.4836,
-            "prob_cs_home": 0.22712,
-            "prob_cs_away": 0.38308,
+            "prob_cs_home": 0.22717,
+            "prob_cs_away": 0.38304,
             "top_scores": [
               [
                 1,
@@ -786,16 +644,16 @@
           "prediction": {
             "exp_goals_home": 1.86,
             "exp_goals_away": 0.89,
-            "prob_home": 0.59682,
-            "prob_draw": 0.23426,
-            "prob_away": 0.16892,
+            "prob_home": 0.59678,
+            "prob_draw": 0.23427,
+            "prob_away": 0.16894,
             "prob_o05": 0.92983,
-            "prob_o15": 0.76491,
-            "prob_o25": 0.51694,
-            "prob_o35": 0.29549,
+            "prob_o15": 0.7649,
+            "prob_o25": 0.51691,
+            "prob_o35": 0.29547,
             "prob_btts": 0.50172,
-            "prob_cs_home": 0.4124,
-            "prob_cs_away": 0.15604,
+            "prob_cs_home": 0.41239,
+            "prob_cs_away": 0.15606,
             "top_scores": [
               [
                 1,
@@ -928,16 +786,16 @@
           "prediction": {
             "exp_goals_home": 1.24,
             "exp_goals_away": 1.74,
-            "prob_home": 0.26518,
-            "prob_draw": 0.24756,
-            "prob_away": 0.48725,
-            "prob_o05": 0.94313,
-            "prob_o15": 0.80366,
-            "prob_o25": 0.57202,
-            "prob_o35": 0.34799,
-            "prob_btts": 0.59118,
-            "prob_cs_home": 0.1749,
-            "prob_cs_away": 0.29079,
+            "prob_home": 0.26526,
+            "prob_draw": 0.24759,
+            "prob_away": 0.48715,
+            "prob_o05": 0.94311,
+            "prob_o15": 0.80361,
+            "prob_o25": 0.57194,
+            "prob_o35": 0.34792,
+            "prob_btts": 0.59115,
+            "prob_cs_home": 0.17496,
+            "prob_cs_away": 0.29078,
             "top_scores": [
               [
                 1,
@@ -1070,16 +928,16 @@
           "prediction": {
             "exp_goals_home": 0.87,
             "exp_goals_away": 1.74,
-            "prob_home": 0.17958,
-            "prob_draw": 0.24683,
-            "prob_away": 0.57359,
-            "prob_o05": 0.92061,
-            "prob_o15": 0.7413,
-            "prob_o25": 0.48492,
-            "prob_o35": 0.26691,
-            "prob_btts": 0.4859,
-            "prob_cs_home": 0.17521,
-            "prob_cs_away": 0.41828,
+            "prob_home": 0.17966,
+            "prob_draw": 0.24687,
+            "prob_away": 0.57346,
+            "prob_o05": 0.92059,
+            "prob_o15": 0.74127,
+            "prob_o25": 0.48489,
+            "prob_o35": 0.26688,
+            "prob_btts": 0.48594,
+            "prob_cs_home": 0.17527,
+            "prob_cs_away": 0.4182,
             "top_scores": [
               [
                 0,
@@ -1212,16 +1070,16 @@
           "prediction": {
             "exp_goals_home": 2.31,
             "exp_goals_away": 0.96,
-            "prob_home": 0.67192,
-            "prob_draw": 0.1914,
-            "prob_away": 0.13668,
-            "prob_o05": 0.95735,
-            "prob_o15": 0.84227,
-            "prob_o25": 0.63439,
-            "prob_o35": 0.41289,
-            "prob_btts": 0.56007,
-            "prob_cs_home": 0.38339,
-            "prob_cs_away": 0.09919,
+            "prob_home": 0.67181,
+            "prob_draw": 0.19147,
+            "prob_away": 0.13672,
+            "prob_o05": 0.95731,
+            "prob_o15": 0.84216,
+            "prob_o25": 0.63421,
+            "prob_o35": 0.41269,
+            "prob_btts": 0.55998,
+            "prob_cs_home": 0.38345,
+            "prob_cs_away": 0.09926,
             "top_scores": [
               [
                 2,
@@ -1354,16 +1212,16 @@
           "prediction": {
             "exp_goals_home": 1.36,
             "exp_goals_away": 1.21,
-            "prob_home": 0.39665,
+            "prob_home": 0.39669,
             "prob_draw": 0.27857,
-            "prob_away": 0.32477,
+            "prob_away": 0.32473,
             "prob_o05": 0.91659,
-            "prob_o15": 0.73378,
-            "prob_o25": 0.47414,
-            "prob_o35": 0.25759,
-            "prob_btts": 0.52863,
-            "prob_cs_home": 0.29854,
-            "prob_cs_away": 0.25624,
+            "prob_o15": 0.73377,
+            "prob_o25": 0.47412,
+            "prob_o35": 0.25758,
+            "prob_btts": 0.52862,
+            "prob_cs_home": 0.29857,
+            "prob_cs_away": 0.25622,
             "top_scores": [
               [
                 1,
@@ -1496,21 +1354,21 @@
           "prediction": {
             "exp_goals_home": 1.64,
             "exp_goals_away": 1.6,
-            "prob_home": 0.38538,
-            "prob_draw": 0.24398,
-            "prob_away": 0.37064,
+            "prob_home": 0.38532,
+            "prob_draw": 0.24397,
+            "prob_away": 0.37071,
             "prob_o05": 0.95511,
-            "prob_o15": 0.83932,
-            "prob_o25": 0.62794,
-            "prob_o35": 0.4059,
-            "prob_btts": 0.64861,
-            "prob_cs_home": 0.20158,
-            "prob_cs_away": 0.1947,
+            "prob_o15": 0.83934,
+            "prob_o25": 0.62798,
+            "prob_o35": 0.40594,
+            "prob_btts": 0.64864,
+            "prob_cs_home": 0.20153,
+            "prob_cs_away": 0.19472,
             "top_scores": [
               [
                 1,
                 1,
-                10.9
+                10.8
               ],
               [
                 2,
@@ -1633,16 +1491,16 @@
           "prediction": {
             "exp_goals_home": 0.9,
             "exp_goals_away": 2.0,
-            "prob_home": 0.15515,
-            "prob_draw": 0.21918,
-            "prob_away": 0.62567,
-            "prob_o05": 0.93944,
-            "prob_o15": 0.79053,
-            "prob_o25": 0.55358,
-            "prob_o35": 0.32994,
-            "prob_btts": 0.51737,
-            "prob_cs_home": 0.13509,
-            "prob_cs_away": 0.40809,
+            "prob_home": 0.15526,
+            "prob_draw": 0.21928,
+            "prob_away": 0.62546,
+            "prob_o05": 0.93939,
+            "prob_o15": 0.79039,
+            "prob_o25": 0.55338,
+            "prob_o35": 0.32974,
+            "prob_btts": 0.51731,
+            "prob_cs_home": 0.13522,
+            "prob_cs_away": 0.40808,
             "top_scores": [
               [
                 0,
@@ -1770,16 +1628,16 @@
           "prediction": {
             "exp_goals_home": 1.0,
             "exp_goals_away": 1.75,
-            "prob_home": 0.2069,
+            "prob_home": 0.20692,
             "prob_draw": 0.2472,
-            "prob_away": 0.5459,
+            "prob_away": 0.54588,
             "prob_o05": 0.92989,
             "prob_o15": 0.76626,
             "prob_o25": 0.51834,
             "prob_o35": 0.29678,
-            "prob_btts": 0.52734,
-            "prob_cs_home": 0.17305,
-            "prob_cs_away": 0.36972,
+            "prob_btts": 0.52735,
+            "prob_cs_home": 0.17306,
+            "prob_cs_away": 0.3697,
             "top_scores": [
               [
                 1,
@@ -1907,16 +1765,16 @@
           "prediction": {
             "exp_goals_home": 2.17,
             "exp_goals_away": 0.8,
-            "prob_home": 0.68193,
-            "prob_draw": 0.19749,
-            "prob_away": 0.12058,
+            "prob_home": 0.68191,
+            "prob_draw": 0.1975,
+            "prob_away": 0.12059,
             "prob_o05": 0.94375,
-            "prob_o15": 0.80108,
-            "prob_o25": 0.56984,
-            "prob_o35": 0.34583,
-            "prob_btts": 0.4932,
-            "prob_cs_home": 0.44857,
-            "prob_cs_away": 0.11448,
+            "prob_o15": 0.80107,
+            "prob_o25": 0.56982,
+            "prob_o35": 0.34581,
+            "prob_btts": 0.49321,
+            "prob_cs_home": 0.44856,
+            "prob_cs_away": 0.11449,
             "top_scores": [
               [
                 2,
@@ -2045,15 +1903,15 @@
             "exp_goals_home": 1.64,
             "exp_goals_away": 0.94,
             "prob_home": 0.531,
-            "prob_draw": 0.25871,
+            "prob_draw": 0.25872,
             "prob_away": 0.21029,
             "prob_o05": 0.91835,
-            "prob_o15": 0.73652,
-            "prob_o25": 0.47832,
-            "prob_o35": 0.26119,
-            "prob_btts": 0.49938,
-            "prob_cs_home": 0.38871,
-            "prob_cs_away": 0.19356,
+            "prob_o15": 0.73651,
+            "prob_o25": 0.47831,
+            "prob_o35": 0.26118,
+            "prob_btts": 0.49936,
+            "prob_cs_home": 0.38872,
+            "prob_cs_away": 0.19357,
             "top_scores": [
               [
                 1,
@@ -2181,16 +2039,16 @@
           "prediction": {
             "exp_goals_home": 1.13,
             "exp_goals_away": 1.68,
-            "prob_home": 0.25115,
-            "prob_draw": 0.25422,
-            "prob_away": 0.49463,
-            "prob_o05": 0.93375,
-            "prob_o15": 0.77754,
-            "prob_o25": 0.53383,
-            "prob_o35": 0.31114,
-            "prob_btts": 0.55818,
-            "prob_cs_home": 0.18653,
-            "prob_cs_away": 0.32153,
+            "prob_home": 0.25121,
+            "prob_draw": 0.25425,
+            "prob_away": 0.49454,
+            "prob_o05": 0.93373,
+            "prob_o15": 0.77749,
+            "prob_o25": 0.53377,
+            "prob_o35": 0.31108,
+            "prob_btts": 0.55816,
+            "prob_cs_home": 0.18659,
+            "prob_cs_away": 0.32152,
             "top_scores": [
               [
                 1,
@@ -2318,16 +2176,16 @@
           "prediction": {
             "exp_goals_home": 1.66,
             "exp_goals_away": 1.27,
-            "prob_home": 0.45891,
+            "prob_home": 0.45894,
             "prob_draw": 0.25339,
-            "prob_away": 0.2877,
-            "prob_o05": 0.94067,
-            "prob_o15": 0.79704,
-            "prob_o25": 0.56199,
-            "prob_o35": 0.33811,
-            "prob_btts": 0.58953,
-            "prob_cs_home": 0.27988,
-            "prob_cs_away": 0.18992,
+            "prob_away": 0.28767,
+            "prob_o05": 0.94066,
+            "prob_o15": 0.797,
+            "prob_o25": 0.56194,
+            "prob_o35": 0.33806,
+            "prob_btts": 0.58949,
+            "prob_cs_home": 0.27992,
+            "prob_cs_away": 0.18993,
             "top_scores": [
               [
                 1,
@@ -2455,16 +2313,16 @@
           "prediction": {
             "exp_goals_home": 1.74,
             "exp_goals_away": 0.86,
-            "prob_home": 0.57592,
-            "prob_draw": 0.2471,
-            "prob_away": 0.17697,
-            "prob_o05": 0.91924,
-            "prob_o15": 0.73773,
-            "prob_o25": 0.48028,
-            "prob_o35": 0.26288,
-            "prob_btts": 0.48066,
-            "prob_cs_home": 0.42404,
-            "prob_cs_away": 0.17606,
+            "prob_home": 0.5759,
+            "prob_draw": 0.24711,
+            "prob_away": 0.17699,
+            "prob_o05": 0.91923,
+            "prob_o15": 0.73772,
+            "prob_o25": 0.48027,
+            "prob_o35": 0.26287,
+            "prob_btts": 0.48067,
+            "prob_cs_home": 0.42403,
+            "prob_cs_away": 0.17607,
             "top_scores": [
               [
                 1,
@@ -2592,16 +2450,16 @@
           "prediction": {
             "exp_goals_home": 1.29,
             "exp_goals_away": 1.35,
-            "prob_home": 0.34907,
+            "prob_home": 0.34912,
             "prob_draw": 0.27545,
-            "prob_away": 0.37548,
+            "prob_away": 0.37543,
             "prob_o05": 0.92139,
             "prob_o15": 0.74598,
             "prob_o25": 0.49011,
             "prob_o35": 0.27145,
             "prob_btts": 0.54257,
-            "prob_cs_home": 0.26042,
-            "prob_cs_away": 0.27562,
+            "prob_cs_home": 0.26046,
+            "prob_cs_away": 0.27559,
             "top_scores": [
               [
                 1,
@@ -2729,16 +2587,16 @@
           "prediction": {
             "exp_goals_home": 1.15,
             "exp_goals_away": 1.23,
-            "prob_home": 0.33492,
+            "prob_home": 0.33497,
             "prob_draw": 0.29233,
-            "prob_away": 0.37275,
-            "prob_o05": 0.89997,
-            "prob_o15": 0.69367,
-            "prob_o25": 0.42423,
-            "prob_o35": 0.21645,
-            "prob_btts": 0.49017,
-            "prob_cs_home": 0.2931,
-            "prob_cs_away": 0.31677,
+            "prob_away": 0.37269,
+            "prob_o05": 0.89996,
+            "prob_o15": 0.69366,
+            "prob_o25": 0.42422,
+            "prob_o35": 0.21644,
+            "prob_btts": 0.49016,
+            "prob_cs_home": 0.29313,
+            "prob_cs_away": 0.31674,
             "top_scores": [
               [
                 1,
@@ -2870,12 +2728,12 @@
             "prob_draw": 0.26417,
             "prob_away": 0.2467,
             "prob_o05": 0.92201,
-            "prob_o15": 0.74661,
-            "prob_o25": 0.49131,
-            "prob_o35": 0.27251,
-            "prob_btts": 0.52479,
+            "prob_o15": 0.7466,
+            "prob_o25": 0.4913,
+            "prob_o35": 0.2725,
+            "prob_btts": 0.52478,
             "prob_cs_home": 0.34783,
-            "prob_cs_away": 0.20537,
+            "prob_cs_away": 0.20538,
             "top_scores": [
               [
                 1,
@@ -2988,13 +2846,561 @@
               "pi_n": 20
             }
           }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:00",
+          "home": "Cagliari",
+          "away": "Bologna",
+          "home_full": "Cagliari Calcio",
+          "away_full": "Bologna FC 1909",
+          "matchday": 8,
+          "home_dc": "Cagliari",
+          "away_dc": "Bologna",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.14,
+            "exp_goals_away": 1.27,
+            "prob_home": 0.32475,
+            "prob_draw": 0.28941,
+            "prob_away": 0.38584,
+            "prob_o05": 0.90321,
+            "prob_o15": 0.70125,
+            "prob_o25": 0.43336,
+            "prob_o35": 0.22374,
+            "prob_btts": 0.49675,
+            "prob_cs_home": 0.28111,
+            "prob_cs_away": 0.31894,
+            "top_scores": [
+              [
+                1,
+                1,
+                13.7
+              ],
+              [
+                0,
+                1,
+                10.7
+              ],
+              [
+                0,
+                0,
+                9.7
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                1,
+                2,
+                8.2
+              ],
+              [
+                2,
+                1,
+                7.4
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 11.4,
+              "away": 11.9,
+              "total": 23.3
+            },
+            "corners": {
+              "home": 4.8,
+              "away": 4.2,
+              "total": 9.0
+            },
+            "yellows": {
+              "home": 1.7,
+              "away": 1.8,
+              "total": 3.4
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Parma 1-0 (22/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Inter 0-1 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Lecce 1-0 (07/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Atalanta 2-1 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Udinese 1-0 (19/09)"
+                }
+              ],
+              "pi_rating": 0.43,
+              "pi_rank": 10,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "vs Lazio 0-1 (24/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Atalanta 0-1 (31/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Sassuolo 2-2 (06/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Napoli 0-1 (13/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Torino 1-1 (19/09)"
+                }
+              ],
+              "pi_rating": 0.45,
+              "pi_rank": 9,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:00",
+          "home": "Como 1907",
+          "away": "Sassuolo",
+          "home_full": "Como 1907",
+          "away_full": "US Sassuolo Calcio",
+          "matchday": 8,
+          "home_dc": "Como",
+          "away_dc": "Sassuolo",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.16,
+            "exp_goals_away": 0.99,
+            "prob_home": 0.63667,
+            "prob_draw": 0.20664,
+            "prob_away": 0.15669,
+            "prob_o05": 0.95205,
+            "prob_o15": 0.82695,
+            "prob_o25": 0.60919,
+            "prob_o35": 0.38593,
+            "prob_btts": 0.56007,
+            "prob_cs_home": 0.3727,
+            "prob_cs_away": 0.11518,
+            "top_scores": [
+              [
+                2,
+                0,
+                10.0
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                1,
+                1,
+                9.7
+              ],
+              [
+                1,
+                0,
+                8.8
+              ],
+              [
+                3,
+                0,
+                7.2
+              ],
+              [
+                3,
+                1,
+                7.1
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 16.8,
+              "away": 9.9,
+              "total": 26.7
+            },
+            "corners": {
+              "home": 5.5,
+              "away": 3.1,
+              "total": 8.6
+            },
+            "yellows": {
+              "home": 1.9,
+              "away": 2.0,
+              "total": 4.0
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "N",
+                  "tip": "a Udinese 1-1 (22/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Napoli 2-1 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Genoa 4-1 (04/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Parma 2-1 (14/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Frosinone 0-2 (20/09)"
+                }
+              ],
+              "pi_rating": 1.05,
+              "pi_rank": 3,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 36,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Atalanta 1-2 (23/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Torino 2-1 (29/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Bologna 2-2 (06/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Juventus 3-2 (13/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Monza 1-2 (18/09)"
+                }
+              ],
+              "pi_rating": 0.3,
+              "pi_rank": 13,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "16:00",
+          "home": "Napoli",
+          "away": "Roma",
+          "home_full": "SSC Napoli",
+          "away_full": "AS Roma",
+          "matchday": 8,
+          "home_dc": "Napoli",
+          "away_dc": "Roma",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.3,
+            "exp_goals_away": 1.25,
+            "prob_home": 0.37269,
+            "prob_draw": 0.2806,
+            "prob_away": 0.34671,
+            "prob_o05": 0.91512,
+            "prob_o15": 0.73019,
+            "prob_o25": 0.46948,
+            "prob_o35": 0.25362,
+            "prob_btts": 0.5264,
+            "prob_cs_home": 0.28692,
+            "prob_cs_away": 0.27156,
+            "top_scores": [
+              [
+                1,
+                1,
+                13.4
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                0,
+                1,
+                9.0
+              ],
+              [
+                0,
+                0,
+                8.5
+              ],
+              [
+                2,
+                1,
+                8.3
+              ],
+              [
+                1,
+                2,
+                7.9
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 12.4,
+              "away": 11.3,
+              "total": 23.7
+            },
+            "corners": {
+              "home": 5.1,
+              "away": 3.6,
+              "total": 8.7
+            },
+            "yellows": {
+              "home": 1.3,
+              "away": 1.8,
+              "total": 3.2
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Genoa 2-0 (22/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Como 1-2 (30/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Inter 2-3 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Bologna 1-0 (13/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Fiorentina 1-1 (20/09)"
+                }
+              ],
+              "pi_rating": 0.95,
+              "pi_rank": 5,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Fiorentina 4-0 (24/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Lecce 4-0 (31/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Atalanta 2-1 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Torino 2-0 (14/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Inter 2-2 (19/09)"
+                }
+              ],
+              "pi_rating": 1.31,
+              "pi_rank": 2,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "18:45",
+          "home": "Lazio",
+          "away": "Parma",
+          "home_full": "SS Lazio",
+          "away_full": "Parma Calcio 1913",
+          "matchday": 8,
+          "home_dc": "Lazio",
+          "away_dc": "Parma",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.7,
+            "exp_goals_away": 0.8,
+            "prob_home": 0.58428,
+            "prob_draw": 0.2495,
+            "prob_away": 0.16622,
+            "prob_o05": 0.91183,
+            "prob_o15": 0.71888,
+            "prob_o25": 0.45627,
+            "prob_o35": 0.24249,
+            "prob_btts": 0.45503,
+            "prob_cs_home": 0.45132,
+            "prob_cs_away": 0.18182,
+            "top_scores": [
+              [
+                1,
+                0,
+                13.4
+              ],
+              [
+                2,
+                0,
+                11.9
+              ],
+              [
+                1,
+                1,
+                11.7
+              ],
+              [
+                2,
+                1,
+                9.5
+              ],
+              [
+                0,
+                0,
+                8.8
+              ],
+              [
+                3,
+                0,
+                6.8
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 14.3,
+              "away": 10.3,
+              "total": 24.6
+            },
+            "corners": {
+              "home": 5.5,
+              "away": 3.5,
+              "total": 9.0
+            },
+            "yellows": {
+              "home": 1.9,
+              "away": 1.9,
+              "total": 3.8
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Bologna 1-0 (24/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Genoa 1-0 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Udinese 2-1 (07/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Milan 2-2 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Venezia 2-0 (19/09)"
+                }
+              ],
+              "pi_rating": 0.71,
+              "pi_rank": 8,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "vs Cagliari 0-1 (22/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Juventus 0-2 (29/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Monza 1-1 (06/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Como 1-2 (14/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Genoa 2-1 (20/09)"
+                }
+              ],
+              "pi_rating": 0.16,
+              "pi_rank": 15,
+              "pi_n": 20
+            }
+          }
         }
       ]
     },
     "premier_league": {
       "name": "Premier League",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "dc_fitted_at": "2026-10-09",
+      "dc_fitted_at": "2026-10-10",
       "dc_n_matches": 1880,
       "dc_teams": [
         "Arsenal",
@@ -3030,148 +3436,6 @@
       "fixtures": [
         {
           "date": "2026-10-10",
-          "time": "11:30",
-          "home": "Arsenal",
-          "away": "Leeds United",
-          "home_full": "Arsenal FC",
-          "away_full": "Leeds United FC",
-          "matchday": 6,
-          "home_dc": "Arsenal",
-          "away_dc": "Leeds",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.98,
-            "exp_goals_away": 0.8,
-            "prob_home": 0.64528,
-            "prob_draw": 0.2177,
-            "prob_away": 0.13702,
-            "prob_o05": 0.93219,
-            "prob_o15": 0.76985,
-            "prob_o25": 0.52432,
-            "prob_o35": 0.30227,
-            "prob_btts": 0.47848,
-            "prob_cs_home": 0.45091,
-            "prob_cs_away": 0.13842,
-            "top_scores": [
-              [
-                2,
-                0,
-                12.2
-              ],
-              [
-                1,
-                0,
-                11.8
-              ],
-              [
-                1,
-                1,
-                10.4
-              ],
-              [
-                2,
-                1,
-                9.7
-              ],
-              [
-                3,
-                0,
-                8.0
-              ],
-              [
-                0,
-                0,
-                6.8
-              ]
-            ],
-            "model": "with_xg",
-            "fallback_reason": null
-          },
-          "market": {
-            "home": 0.70675,
-            "draw": 0.18528,
-            "away": 0.10797,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "shots": {
-              "home": 15.4,
-              "away": 9.2,
-              "total": 24.6
-            },
-            "corners": {
-              "home": 6.0,
-              "away": 3.1,
-              "total": 9.2
-            },
-            "yellows": {
-              "home": 1.4,
-              "away": 1.9,
-              "total": 3.3
-            },
-            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
-          },
-          "context": {
-            "home": {
-              "rest_days": 21,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Coventry 3-0 (21/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Aston Villa 1-0 (31/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Chelsea 2-1 (06/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Sunderland 2-0 (12/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Brighton 0-3 (19/09)"
-                }
-              ],
-              "pi_rating": 1.18,
-              "pi_rank": 2,
-              "pi_n": 20
-            },
-            "away": {
-              "rest_days": 20,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Nott'm Forest 1-0 (22/08)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Brentford 1-1 (30/08)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Brighton 1-1 (05/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Newcastle 4-1 (14/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Crystal Palace 0-0 (20/09)"
-                }
-              ],
-              "pi_rating": 0.5,
-              "pi_rank": 11,
-              "pi_n": 20
-            }
-          }
-        },
-        {
-          "date": "2026-10-10",
           "time": "14:00",
           "home": "Sunderland",
           "away": "Brighton Hove",
@@ -3184,16 +3448,16 @@
           "prediction": {
             "exp_goals_home": 1.21,
             "exp_goals_away": 1.56,
-            "prob_home": 0.28871,
-            "prob_draw": 0.26254,
-            "prob_away": 0.44875,
-            "prob_o05": 0.93122,
-            "prob_o15": 0.77126,
-            "prob_o25": 0.52477,
-            "prob_o35": 0.30269,
-            "prob_btts": 0.56178,
-            "prob_cs_home": 0.20917,
-            "prob_cs_away": 0.29782,
+            "prob_home": 0.28874,
+            "prob_draw": 0.26255,
+            "prob_away": 0.4487,
+            "prob_o05": 0.93121,
+            "prob_o15": 0.77123,
+            "prob_o25": 0.52473,
+            "prob_o35": 0.30266,
+            "prob_btts": 0.56176,
+            "prob_cs_home": 0.20921,
+            "prob_cs_away": 0.29781,
             "top_scores": [
               [
                 1,
@@ -3326,16 +3590,16 @@
           "prediction": {
             "exp_goals_home": 1.67,
             "exp_goals_away": 1.49,
-            "prob_home": 0.41505,
+            "prob_home": 0.41508,
             "prob_draw": 0.24689,
-            "prob_away": 0.33807,
-            "prob_o05": 0.95145,
-            "prob_o15": 0.82833,
-            "prob_o25": 0.61013,
-            "prob_o35": 0.38693,
-            "prob_btts": 0.63342,
-            "prob_cs_home": 0.22611,
-            "prob_cs_away": 0.18902,
+            "prob_away": 0.33803,
+            "prob_o05": 0.95144,
+            "prob_o15": 0.82831,
+            "prob_o25": 0.6101,
+            "prob_o35": 0.38689,
+            "prob_btts": 0.6334,
+            "prob_cs_home": 0.22615,
+            "prob_cs_away": 0.18901,
             "top_scores": [
               [
                 1,
@@ -3467,17 +3731,17 @@
           "new_team": false,
           "prediction": {
             "exp_goals_home": 1.19,
-            "exp_goals_away": 1.63,
-            "prob_home": 0.27418,
-            "prob_draw": 0.25799,
-            "prob_away": 0.46782,
+            "exp_goals_away": 1.62,
+            "prob_home": 0.27421,
+            "prob_draw": 0.258,
+            "prob_away": 0.46779,
             "prob_o05": 0.93396,
             "prob_o15": 0.77843,
-            "prob_o25": 0.53498,
-            "prob_o35": 0.31221,
+            "prob_o25": 0.53497,
+            "prob_o35": 0.3122,
             "prob_btts": 0.56601,
-            "prob_cs_home": 0.1969,
-            "prob_cs_away": 0.30313,
+            "prob_cs_home": 0.19692,
+            "prob_cs_away": 0.30311,
             "top_scores": [
               [
                 1,
@@ -3610,16 +3874,16 @@
           "prediction": {
             "exp_goals_home": 1.55,
             "exp_goals_away": 1.5,
-            "prob_home": 0.38509,
-            "prob_draw": 0.25291,
-            "prob_away": 0.362,
-            "prob_o05": 0.94641,
-            "prob_o15": 0.81369,
-            "prob_o25": 0.58707,
-            "prob_o35": 0.36311,
-            "prob_btts": 0.61736,
-            "prob_cs_home": 0.22388,
-            "prob_cs_away": 0.21235,
+            "prob_home": 0.38513,
+            "prob_draw": 0.25292,
+            "prob_away": 0.36195,
+            "prob_o05": 0.9464,
+            "prob_o15": 0.81368,
+            "prob_o25": 0.58705,
+            "prob_o35": 0.36308,
+            "prob_btts": 0.61734,
+            "prob_cs_home": 0.22391,
+            "prob_cs_away": 0.21234,
             "top_scores": [
               [
                 1,
@@ -3634,7 +3898,7 @@
               [
                 1,
                 2,
-                8.3
+                8.2
               ],
               [
                 1,
@@ -3756,11 +4020,11 @@
             "prob_draw": 0.21964,
             "prob_away": 0.18055,
             "prob_o05": 0.94877,
-            "prob_o15": 0.81808,
-            "prob_o25": 0.59486,
-            "prob_o35": 0.37107,
-            "prob_btts": 0.56789,
-            "prob_cs_home": 0.35357,
+            "prob_o15": 0.81807,
+            "prob_o25": 0.59485,
+            "prob_o35": 0.37106,
+            "prob_btts": 0.56788,
+            "prob_cs_home": 0.35358,
             "prob_cs_away": 0.12976,
             "top_scores": [
               [
@@ -3894,16 +4158,16 @@
           "prediction": {
             "exp_goals_home": 1.15,
             "exp_goals_away": 1.17,
-            "prob_home": 0.34812,
-            "prob_draw": 0.29651,
-            "prob_away": 0.35538,
-            "prob_o05": 0.89478,
-            "prob_o15": 0.68171,
-            "prob_o25": 0.4101,
-            "prob_o35": 0.20538,
-            "prob_btts": 0.47922,
+            "prob_home": 0.34816,
+            "prob_draw": 0.2965,
+            "prob_away": 0.35534,
+            "prob_o05": 0.8948,
+            "prob_o15": 0.68175,
+            "prob_o25": 0.41014,
+            "prob_o35": 0.20541,
+            "prob_btts": 0.47926,
             "prob_cs_home": 0.31069,
-            "prob_cs_away": 0.31531,
+            "prob_cs_away": 0.31526,
             "top_scores": [
               [
                 1,
@@ -4036,15 +4300,15 @@
           "prediction": {
             "exp_goals_home": 1.46,
             "exp_goals_away": 1.24,
-            "prob_home": 0.41472,
+            "prob_home": 0.41474,
             "prob_draw": 0.26999,
-            "prob_away": 0.31529,
-            "prob_o05": 0.92588,
-            "prob_o15": 0.75741,
-            "prob_o25": 0.50554,
-            "prob_o35": 0.28516,
-            "prob_btts": 0.55172,
-            "prob_cs_home": 0.28931,
+            "prob_away": 0.31527,
+            "prob_o05": 0.92587,
+            "prob_o15": 0.7574,
+            "prob_o25": 0.50553,
+            "prob_o35": 0.28514,
+            "prob_btts": 0.55171,
+            "prob_cs_home": 0.28933,
             "prob_cs_away": 0.23309,
             "top_scores": [
               [
@@ -4178,16 +4442,16 @@
           "prediction": {
             "exp_goals_home": 1.46,
             "exp_goals_away": 1.59,
-            "prob_home": 0.34465,
+            "prob_home": 0.34469,
             "prob_draw": 0.25198,
-            "prob_away": 0.40337,
+            "prob_away": 0.40333,
             "prob_o05": 0.94684,
             "prob_o15": 0.81492,
             "prob_o25": 0.58898,
             "prob_o35": 0.36505,
             "prob_btts": 0.61798,
-            "prob_cs_home": 0.20296,
-            "prob_cs_away": 0.23222,
+            "prob_cs_home": 0.20298,
+            "prob_cs_away": 0.2322,
             "top_scores": [
               [
                 1,
@@ -4320,16 +4584,16 @@
           "prediction": {
             "exp_goals_home": 1.18,
             "exp_goals_away": 1.4,
-            "prob_home": 0.31008,
+            "prob_home": 0.31015,
             "prob_draw": 0.27658,
-            "prob_away": 0.41333,
-            "prob_o05": 0.91778,
-            "prob_o15": 0.73667,
-            "prob_o25": 0.47793,
-            "prob_o35": 0.26085,
-            "prob_btts": 0.52986,
-            "prob_cs_home": 0.24588,
-            "prob_cs_away": 0.30647,
+            "prob_away": 0.41327,
+            "prob_o05": 0.91779,
+            "prob_o15": 0.73669,
+            "prob_o25": 0.47796,
+            "prob_o35": 0.26088,
+            "prob_btts": 0.52989,
+            "prob_cs_home": 0.2459,
+            "prob_cs_away": 0.30642,
             "top_scores": [
               [
                 1,
@@ -4462,16 +4726,16 @@
           "prediction": {
             "exp_goals_home": 1.42,
             "exp_goals_away": 1.45,
-            "prob_home": 0.36123,
+            "prob_home": 0.36127,
             "prob_draw": 0.262,
-            "prob_away": 0.37677,
+            "prob_away": 0.37673,
             "prob_o05": 0.93691,
-            "prob_o15": 0.78703,
-            "prob_o25": 0.54714,
-            "prob_o35": 0.32374,
-            "prob_btts": 0.58686,
-            "prob_cs_home": 0.23399,
-            "prob_cs_away": 0.24224,
+            "prob_o15": 0.78702,
+            "prob_o25": 0.54712,
+            "prob_o35": 0.32372,
+            "prob_btts": 0.58685,
+            "prob_cs_home": 0.23402,
+            "prob_cs_away": 0.24223,
             "top_scores": [
               [
                 1,
@@ -4599,16 +4863,16 @@
           "prediction": {
             "exp_goals_home": 1.43,
             "exp_goals_away": 0.98,
-            "prob_home": 0.46665,
-            "prob_draw": 0.28134,
-            "prob_away": 0.25201,
-            "prob_o05": 0.90311,
-            "prob_o15": 0.70026,
-            "prob_o25": 0.43244,
-            "prob_o35": 0.223,
-            "prob_btts": 0.48192,
-            "prob_cs_home": 0.37509,
-            "prob_cs_away": 0.23987,
+            "prob_home": 0.46668,
+            "prob_draw": 0.28132,
+            "prob_away": 0.252,
+            "prob_o05": 0.90313,
+            "prob_o15": 0.70029,
+            "prob_o25": 0.43248,
+            "prob_o35": 0.22303,
+            "prob_btts": 0.48195,
+            "prob_cs_home": 0.37508,
+            "prob_cs_away": 0.23984,
             "top_scores": [
               [
                 1,
@@ -4736,15 +5000,15 @@
           "prediction": {
             "exp_goals_home": 2.95,
             "exp_goals_away": 0.74,
-            "prob_home": 0.81614,
+            "prob_home": 0.81613,
             "prob_draw": 0.12314,
-            "prob_away": 0.06072,
+            "prob_away": 0.06073,
             "prob_o05": 0.97196,
             "prob_o15": 0.88557,
-            "prob_o25": 0.7123,
-            "prob_o35": 0.50302,
-            "prob_btts": 0.49662,
-            "prob_cs_home": 0.47913,
+            "prob_o25": 0.71229,
+            "prob_o35": 0.50301,
+            "prob_btts": 0.49663,
+            "prob_cs_home": 0.47912,
             "prob_cs_away": 0.05229,
             "top_scores": [
               [
@@ -4873,16 +5137,16 @@
           "prediction": {
             "exp_goals_home": 1.54,
             "exp_goals_away": 1.6,
-            "prob_home": 0.36285,
+            "prob_home": 0.36288,
             "prob_draw": 0.24829,
-            "prob_away": 0.38886,
+            "prob_away": 0.38883,
             "prob_o05": 0.95095,
-            "prob_o15": 0.82693,
-            "prob_o25": 0.60786,
-            "prob_o35": 0.38455,
-            "prob_btts": 0.63319,
-            "prob_cs_home": 0.20165,
-            "prob_cs_away": 0.21421,
+            "prob_o15": 0.82692,
+            "prob_o25": 0.60784,
+            "prob_o35": 0.38453,
+            "prob_btts": 0.63317,
+            "prob_cs_home": 0.20168,
+            "prob_cs_away": 0.2142,
             "top_scores": [
               [
                 1,
@@ -5010,15 +5274,15 @@
           "prediction": {
             "exp_goals_home": 1.71,
             "exp_goals_away": 1.36,
-            "prob_home": 0.4523,
+            "prob_home": 0.45232,
             "prob_draw": 0.24757,
-            "prob_away": 0.30013,
+            "prob_away": 0.3001,
             "prob_o05": 0.94786,
-            "prob_o15": 0.81761,
-            "prob_o25": 0.59327,
-            "prob_o35": 0.36943,
-            "prob_btts": 0.61551,
-            "prob_cs_home": 0.25629,
+            "prob_o15": 0.81759,
+            "prob_o25": 0.59324,
+            "prob_o35": 0.3694,
+            "prob_btts": 0.61549,
+            "prob_cs_home": 0.25631,
             "prob_cs_away": 0.18034,
             "top_scores": [
               [
@@ -5147,15 +5411,15 @@
           "prediction": {
             "exp_goals_home": 1.81,
             "exp_goals_away": 1.04,
-            "prob_home": 0.54778,
-            "prob_draw": 0.24239,
-            "prob_away": 0.20983,
+            "prob_home": 0.54779,
+            "prob_draw": 0.2424,
+            "prob_away": 0.20982,
             "prob_o05": 0.93578,
-            "prob_o15": 0.7822,
-            "prob_o25": 0.54083,
-            "prob_o35": 0.31773,
-            "prob_btts": 0.54557,
-            "prob_cs_home": 0.35431,
+            "prob_o15": 0.78218,
+            "prob_o25": 0.54081,
+            "prob_o35": 0.31771,
+            "prob_btts": 0.54554,
+            "prob_cs_home": 0.35433,
             "prob_cs_away": 0.16434,
             "top_scores": [
               [
@@ -5284,16 +5548,16 @@
           "prediction": {
             "exp_goals_home": 1.39,
             "exp_goals_away": 1.51,
-            "prob_home": 0.3447,
+            "prob_home": 0.34474,
             "prob_draw": 0.26009,
-            "prob_away": 0.39521,
+            "prob_away": 0.39517,
             "prob_o05": 0.93854,
-            "prob_o15": 0.79149,
-            "prob_o25": 0.55366,
-            "prob_o35": 0.33001,
-            "prob_btts": 0.59118,
-            "prob_cs_home": 0.22185,
-            "prob_cs_away": 0.24843,
+            "prob_o15": 0.79148,
+            "prob_o25": 0.55365,
+            "prob_o35": 0.33,
+            "prob_btts": 0.59117,
+            "prob_cs_home": 0.22187,
+            "prob_cs_away": 0.24841,
             "top_scores": [
               [
                 1,
@@ -5421,15 +5685,15 @@
           "prediction": {
             "exp_goals_home": 1.89,
             "exp_goals_away": 1.14,
-            "prob_home": 0.54416,
+            "prob_home": 0.54417,
             "prob_draw": 0.23526,
-            "prob_away": 0.22058,
+            "prob_away": 0.22057,
             "prob_o05": 0.94575,
-            "prob_o15": 0.81035,
-            "prob_o25": 0.58251,
-            "prob_o35": 0.35849,
-            "prob_btts": 0.58189,
-            "prob_cs_home": 0.32132,
+            "prob_o15": 0.81034,
+            "prob_o25": 0.58249,
+            "prob_o35": 0.35847,
+            "prob_btts": 0.58187,
+            "prob_cs_home": 0.32135,
             "prob_cs_away": 0.15104,
             "top_scores": [
               [
@@ -5558,24 +5822,24 @@
           "prediction": {
             "exp_goals_home": 0.9,
             "exp_goals_away": 1.63,
-            "prob_home": 0.20155,
-            "prob_draw": 0.2602,
-            "prob_away": 0.53825,
+            "prob_home": 0.20159,
+            "prob_draw": 0.26021,
+            "prob_away": 0.5382,
             "prob_o05": 0.91377,
             "prob_o15": 0.72485,
-            "prob_o25": 0.46339,
-            "prob_o35": 0.24846,
-            "prob_btts": 0.48357,
-            "prob_cs_home": 0.19648,
-            "prob_cs_away": 0.40617,
+            "prob_o25": 0.46338,
+            "prob_o35": 0.24845,
+            "prob_btts": 0.48359,
+            "prob_cs_home": 0.19651,
+            "prob_cs_away": 0.40613,
             "top_scores": [
               [
-                0,
+                1,
                 1,
                 12.3
               ],
               [
-                1,
+                0,
                 1,
                 12.3
               ],
@@ -5695,16 +5959,16 @@
           "prediction": {
             "exp_goals_home": 1.34,
             "exp_goals_away": 1.0,
-            "prob_home": 0.43834,
-            "prob_draw": 0.28991,
+            "prob_home": 0.43836,
+            "prob_draw": 0.2899,
             "prob_away": 0.27175,
-            "prob_o05": 0.89641,
-            "prob_o15": 0.68495,
-            "prob_o25": 0.41407,
-            "prob_o35": 0.20846,
-            "prob_btts": 0.47322,
-            "prob_cs_home": 0.36847,
-            "prob_cs_away": 0.2619,
+            "prob_o05": 0.89643,
+            "prob_o15": 0.68499,
+            "prob_o25": 0.41411,
+            "prob_o35": 0.2085,
+            "prob_btts": 0.47326,
+            "prob_cs_home": 0.36844,
+            "prob_cs_away": 0.26187,
             "top_scores": [
               [
                 1,
@@ -5832,16 +6096,16 @@
           "prediction": {
             "exp_goals_home": 1.14,
             "exp_goals_away": 1.64,
-            "prob_home": 0.25824,
-            "prob_draw": 0.25787,
-            "prob_away": 0.48389,
-            "prob_o05": 0.9313,
-            "prob_o15": 0.77107,
-            "prob_o25": 0.52465,
-            "prob_o35": 0.30258,
+            "prob_home": 0.25827,
+            "prob_draw": 0.25788,
+            "prob_away": 0.48385,
+            "prob_o05": 0.93129,
+            "prob_o15": 0.77106,
+            "prob_o25": 0.52464,
+            "prob_o35": 0.30257,
             "prob_btts": 0.55366,
-            "prob_cs_home": 0.19436,
-            "prob_cs_away": 0.32067,
+            "prob_cs_home": 0.19438,
+            "prob_cs_away": 0.32066,
             "top_scores": [
               [
                 1,
@@ -5954,13 +6218,561 @@
               "pi_n": 20
             }
           }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "11:30",
+          "home": "Aston Villa",
+          "away": "Man City",
+          "home_full": "Aston Villa FC",
+          "away_full": "Manchester City FC",
+          "matchday": 8,
+          "home_dc": "Aston Villa",
+          "away_dc": "Man City",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.2,
+            "exp_goals_away": 1.84,
+            "prob_home": 0.24108,
+            "prob_draw": 0.23958,
+            "prob_away": 0.51934,
+            "prob_o05": 0.94633,
+            "prob_o15": 0.81241,
+            "prob_o25": 0.58551,
+            "prob_o35": 0.36152,
+            "prob_btts": 0.59297,
+            "prob_cs_home": 0.15836,
+            "prob_cs_away": 0.30234,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.1
+              ],
+              [
+                1,
+                2,
+                9.7
+              ],
+              [
+                0,
+                1,
+                8.2
+              ],
+              [
+                0,
+                2,
+                8.1
+              ],
+              [
+                2,
+                1,
+                6.3
+              ],
+              [
+                1,
+                3,
+                6.0
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 11.9,
+              "away": 13.4,
+              "total": 25.2
+            },
+            "corners": {
+              "home": 4.8,
+              "away": 5.4,
+              "total": 10.2
+            },
+            "yellows": {
+              "home": 1.6,
+              "away": 2.3,
+              "total": 3.9
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Brighton 0-4 (23/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Arsenal 0-1 (31/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Hull 0-0 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Nott'm Forest 1-2 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Tottenham 3-2 (19/09)"
+                }
+              ],
+              "pi_rating": 0.5,
+              "pi_rank": 10,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Bournemouth 2-1 (23/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Crystal Palace 4-1 (28/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Coventry 1-0 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Man United 1-0 (13/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Sunderland 5-3 (20/09)"
+                }
+              ],
+              "pi_rating": 1.23,
+              "pi_rank": 1,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "14:00",
+          "home": "Arsenal",
+          "away": "Everton",
+          "home_full": "Arsenal FC",
+          "away_full": "Everton FC",
+          "matchday": 8,
+          "home_dc": "Arsenal",
+          "away_dc": "Everton",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.0,
+            "exp_goals_away": 0.73,
+            "prob_home": 0.66492,
+            "prob_draw": 0.21247,
+            "prob_away": 0.12261,
+            "prob_o05": 0.92958,
+            "prob_o15": 0.76209,
+            "prob_o25": 0.51385,
+            "prob_o35": 0.29267,
+            "prob_btts": 0.45472,
+            "prob_cs_home": 0.47988,
+            "prob_cs_away": 0.13582,
+            "top_scores": [
+              [
+                2,
+                0,
+                13.0
+              ],
+              [
+                1,
+                0,
+                12.5
+              ],
+              [
+                1,
+                1,
+                10.1
+              ],
+              [
+                2,
+                1,
+                9.5
+              ],
+              [
+                3,
+                0,
+                8.6
+              ],
+              [
+                0,
+                0,
+                7.0
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 16.4,
+              "away": 8.9,
+              "total": 25.3
+            },
+            "corners": {
+              "home": 5.9,
+              "away": 3.5,
+              "total": 9.4
+            },
+            "yellows": {
+              "home": 1.2,
+              "away": 2.0,
+              "total": 3.2
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Coventry 3-0 (21/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Aston Villa 1-0 (31/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Chelsea 2-1 (06/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Sunderland 2-0 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Brighton 0-3 (19/09)"
+                }
+              ],
+              "pi_rating": 1.18,
+              "pi_rank": 2,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Crystal Palace 2-0 (22/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Bournemouth 1-1 (29/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Man United 2-2 (06/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Tottenham 0-0 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Ipswich 1-0 (19/09)"
+                }
+              ],
+              "pi_rating": 0.54,
+              "pi_rank": 8,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "14:00",
+          "home": "Coventry City",
+          "away": "Fulham",
+          "home_full": "Coventry City FC",
+          "away_full": "Fulham FC",
+          "matchday": 8,
+          "home_dc": "Coventry",
+          "away_dc": "Fulham",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.17,
+            "exp_goals_away": 1.18,
+            "prob_home": 0.35012,
+            "prob_draw": 0.29445,
+            "prob_away": 0.35543,
+            "prob_o05": 0.89753,
+            "prob_o15": 0.68803,
+            "prob_o25": 0.41751,
+            "prob_o35": 0.21116,
+            "prob_btts": 0.48522,
+            "prob_cs_home": 0.30695,
+            "prob_cs_away": 0.3103,
+            "top_scores": [
+              [
+                1,
+                1,
+                13.9
+              ],
+              [
+                0,
+                1,
+                10.5
+              ],
+              [
+                1,
+                0,
+                10.4
+              ],
+              [
+                0,
+                0,
+                10.2
+              ],
+              [
+                1,
+                2,
+                7.8
+              ],
+              [
+                2,
+                1,
+                7.7
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 12.9,
+              "away": 12.6,
+              "total": 25.5
+            },
+            "corners": {
+              "home": 5.3,
+              "away": 3.6,
+              "total": 8.9
+            },
+            "yellows": {
+              "home": 0.7,
+              "away": 1.9,
+              "total": 2.7
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Arsenal 0-3 (21/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Hull 0-1 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Man City 0-1 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Brighton 0-5 (13/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Nott'm Forest 1-0 (19/09)"
+                }
+              ],
+              "pi_rating": -0.12,
+              "pi_rank": 18,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "vs Chelsea 2-3 (24/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Sunderland 0-1 (30/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Crystal Palace 2-3 (05/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Liverpool 0-0 (12/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Man United 1-1 (20/09)"
+                }
+              ],
+              "pi_rating": 0.36,
+              "pi_rank": 14,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "16:30",
+          "home": "Chelsea",
+          "away": "Tottenham",
+          "home_full": "Chelsea FC",
+          "away_full": "Tottenham Hotspur FC",
+          "matchday": 8,
+          "home_dc": "Chelsea",
+          "away_dc": "Tottenham",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.9,
+            "exp_goals_away": 1.14,
+            "prob_home": 0.54603,
+            "prob_draw": 0.23418,
+            "prob_away": 0.21979,
+            "prob_o05": 0.94658,
+            "prob_o15": 0.81273,
+            "prob_o25": 0.58616,
+            "prob_o35": 0.36219,
+            "prob_btts": 0.58423,
+            "prob_cs_home": 0.32002,
+            "prob_cs_away": 0.14917,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.9
+              ],
+              [
+                2,
+                1,
+                9.8
+              ],
+              [
+                2,
+                0,
+                8.6
+              ],
+              [
+                1,
+                0,
+                8.5
+              ],
+              [
+                3,
+                1,
+                6.2
+              ],
+              [
+                1,
+                2,
+                5.9
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 14.4,
+              "away": 10.5,
+              "total": 24.9
+            },
+            "corners": {
+              "home": 5.5,
+              "away": 4.6,
+              "total": 10.1
+            },
+            "yellows": {
+              "home": 1.9,
+              "away": 2.5,
+              "total": 4.4
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 36,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Fulham 3-2 (24/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Brighton 4-3 (30/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Arsenal 1-2 (06/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Hull 2-2 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Brentford 0-3 (18/09)"
+                }
+              ],
+              "pi_rating": 0.5,
+              "pi_rank": 12,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Brentford 0-3 (22/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Newcastle 0-2 (29/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Nott'm Forest 0-0 (05/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Everton 0-0 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Aston Villa 2-3 (19/09)"
+                }
+              ],
+              "pi_rating": 0.02,
+              "pi_rank": 17,
+              "pi_n": 20
+            }
+          }
         }
       ]
     },
     "bundesliga": {
       "name": "Bundesliga",
       "flag": "🇩🇪",
-      "dc_fitted_at": "2026-10-09",
+      "dc_fitted_at": "2026-10-10",
       "dc_n_matches": 1503,
       "dc_teams": [
         "Augsburg",
@@ -5993,148 +6805,6 @@
       ],
       "fixtures": [
         {
-          "date": "2026-10-09",
-          "time": "18:30",
-          "home": "Dortmund",
-          "away": "Bremen",
-          "home_full": "Borussia Dortmund",
-          "away_full": "SV Werder Bremen",
-          "matchday": 5,
-          "home_dc": "Dortmund",
-          "away_dc": "Werder Bremen",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 2.38,
-            "exp_goals_away": 0.82,
-            "prob_home": 0.71615,
-            "prob_draw": 0.17721,
-            "prob_away": 0.10664,
-            "prob_o05": 0.95507,
-            "prob_o15": 0.83379,
-            "prob_o25": 0.6211,
-            "prob_o35": 0.39854,
-            "prob_btts": 0.513,
-            "prob_cs_home": 0.43966,
-            "prob_cs_away": 0.09227,
-            "top_scores": [
-              [
-                2,
-                0,
-                11.5
-              ],
-              [
-                2,
-                1,
-                9.5
-              ],
-              [
-                1,
-                0,
-                9.2
-              ],
-              [
-                3,
-                0,
-                9.2
-              ],
-              [
-                1,
-                1,
-                8.4
-              ],
-              [
-                3,
-                1,
-                7.5
-              ]
-            ],
-            "model": "with_xg",
-            "fallback_reason": null
-          },
-          "market": {
-            "home": 0.74059,
-            "draw": 0.15604,
-            "away": 0.10338,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "shots": {
-              "home": 15.6,
-              "away": 10.1,
-              "total": 25.8
-            },
-            "corners": {
-              "home": 6.8,
-              "away": 3.7,
-              "total": 10.5
-            },
-            "yellows": {
-              "home": 1.6,
-              "away": 1.5,
-              "total": 3.1
-            },
-            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
-          },
-          "context": {
-            "home": {
-              "rest_days": 20,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Werder Bremen 2-0 (16/05)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Hamburg 2-0 (29/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Hoffenheim 3-2 (05/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Paderborn 3-0 (12/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Stuttgart 1-0 (19/09)"
-                }
-              ],
-              "pi_rating": 1.22,
-              "pi_rank": 2,
-              "pi_n": 18
-            },
-            "away": {
-              "rest_days": 20,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "vs Dortmund 0-2 (16/05)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Freiburg 1-4 (30/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs RB Leipzig 3-1 (05/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a FC Koln 1-1 (12/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Augsburg 3-2 (19/09)"
-                }
-              ],
-              "pi_rating": 0.05,
-              "pi_rank": 12,
-              "pi_n": 18
-            }
-          }
-        },
-        {
           "date": "2026-10-10",
           "time": "13:30",
           "home": "Mainz",
@@ -6148,15 +6818,15 @@
           "prediction": {
             "exp_goals_home": 1.49,
             "exp_goals_away": 1.72,
-            "prob_home": 0.32922,
-            "prob_draw": 0.2439,
-            "prob_away": 0.42687,
+            "prob_home": 0.32926,
+            "prob_draw": 0.24391,
+            "prob_away": 0.42682,
             "prob_o05": 0.95371,
-            "prob_o15": 0.83502,
-            "prob_o25": 0.62095,
-            "prob_o35": 0.39839,
-            "prob_btts": 0.64067,
-            "prob_cs_home": 0.17967,
+            "prob_o15": 0.835,
+            "prob_o25": 0.62092,
+            "prob_o35": 0.39835,
+            "prob_btts": 0.64065,
+            "prob_cs_home": 0.17971,
             "prob_cs_away": 0.22594,
             "top_scores": [
               [
@@ -6290,16 +6960,16 @@
           "prediction": {
             "exp_goals_home": 0.88,
             "exp_goals_away": 1.77,
-            "prob_home": 0.17702,
-            "prob_draw": 0.24324,
-            "prob_away": 0.57974,
-            "prob_o05": 0.92352,
-            "prob_o15": 0.74867,
-            "prob_o25": 0.49474,
-            "prob_o35": 0.27552,
-            "prob_btts": 0.49135,
-            "prob_cs_home": 0.16953,
-            "prob_cs_away": 0.41561,
+            "prob_home": 0.17706,
+            "prob_draw": 0.24331,
+            "prob_away": 0.57962,
+            "prob_o05": 0.92346,
+            "prob_o15": 0.74852,
+            "prob_o25": 0.49453,
+            "prob_o35": 0.27534,
+            "prob_btts": 0.49123,
+            "prob_cs_home": 0.16964,
+            "prob_cs_away": 0.41567,
             "top_scores": [
               [
                 0,
@@ -6324,7 +6994,7 @@
               [
                 0,
                 0,
-                7.6
+                7.7
               ],
               [
                 0,
@@ -6432,15 +7102,15 @@
           "prediction": {
             "exp_goals_home": 1.44,
             "exp_goals_away": 1.3,
-            "prob_home": 0.39771,
-            "prob_draw": 0.26852,
-            "prob_away": 0.33376,
-            "prob_o05": 0.92882,
-            "prob_o15": 0.7652,
-            "prob_o25": 0.5162,
-            "prob_o35": 0.29482,
-            "prob_btts": 0.56181,
-            "prob_cs_home": 0.27246,
+            "prob_home": 0.39777,
+            "prob_draw": 0.26853,
+            "prob_away": 0.3337,
+            "prob_o05": 0.9288,
+            "prob_o15": 0.76516,
+            "prob_o25": 0.51615,
+            "prob_o35": 0.29477,
+            "prob_btts": 0.56176,
+            "prob_cs_home": 0.27252,
             "prob_cs_away": 0.23691,
             "top_scores": [
               [
@@ -6570,14 +7240,14 @@
           "prediction": {
             "exp_goals_home": 2.18,
             "exp_goals_away": 1.05,
-            "prob_home": 0.62584,
-            "prob_draw": 0.20683,
-            "prob_away": 0.16734,
+            "prob_home": 0.62585,
+            "prob_draw": 0.20682,
+            "prob_away": 0.16733,
             "prob_o05": 0.9558,
-            "prob_o15": 0.83864,
-            "prob_o25": 0.62796,
-            "prob_o35": 0.40591,
-            "prob_btts": 0.58296,
+            "prob_o15": 0.83865,
+            "prob_o25": 0.62797,
+            "prob_o35": 0.40592,
+            "prob_btts": 0.58297,
             "prob_cs_home": 0.3487,
             "prob_cs_away": 0.11254,
             "top_scores": [
@@ -6712,16 +7382,16 @@
           "prediction": {
             "exp_goals_home": 1.02,
             "exp_goals_away": 2.69,
-            "prob_home": 0.11505,
-            "prob_draw": 0.16159,
-            "prob_away": 0.72336,
-            "prob_o05": 0.97201,
-            "prob_o15": 0.88899,
-            "prob_o25": 0.71737,
-            "prob_o35": 0.5093,
-            "prob_btts": 0.60062,
-            "prob_cs_home": 0.06758,
-            "prob_cs_away": 0.3598,
+            "prob_home": 0.1151,
+            "prob_draw": 0.16164,
+            "prob_away": 0.72326,
+            "prob_o05": 0.972,
+            "prob_o15": 0.88896,
+            "prob_o25": 0.7173,
+            "prob_o35": 0.50921,
+            "prob_btts": 0.60063,
+            "prob_cs_home": 0.06761,
+            "prob_cs_away": 0.35976,
             "top_scores": [
               [
                 1,
@@ -6854,15 +7524,15 @@
           "prediction": {
             "exp_goals_home": 2.19,
             "exp_goals_away": 1.26,
-            "prob_home": 0.58058,
+            "prob_home": 0.5806,
             "prob_draw": 0.21148,
-            "prob_away": 0.20794,
-            "prob_o05": 0.96344,
-            "prob_o15": 0.86351,
-            "prob_o25": 0.66974,
-            "prob_o35": 0.45247,
-            "prob_btts": 0.64089,
-            "prob_cs_home": 0.28377,
+            "prob_away": 0.20792,
+            "prob_o05": 0.96343,
+            "prob_o15": 0.86349,
+            "prob_o25": 0.66972,
+            "prob_o35": 0.45244,
+            "prob_btts": 0.64086,
+            "prob_cs_home": 0.2838,
             "prob_cs_away": 0.11191,
             "top_scores": [
               [
@@ -6996,15 +7666,15 @@
           "prediction": {
             "exp_goals_home": 1.91,
             "exp_goals_away": 1.36,
-            "prob_home": 0.49851,
-            "prob_draw": 0.23322,
-            "prob_away": 0.26827,
+            "prob_home": 0.49854,
+            "prob_draw": 0.23321,
+            "prob_away": 0.26825,
             "prob_o05": 0.95686,
-            "prob_o15": 0.844,
-            "prob_o25": 0.63595,
-            "prob_o35": 0.4146,
-            "prob_btts": 0.63979,
-            "prob_cs_home": 0.25586,
+            "prob_o15": 0.84399,
+            "prob_o25": 0.63594,
+            "prob_o35": 0.41458,
+            "prob_btts": 0.63977,
+            "prob_cs_home": 0.25588,
             "prob_cs_away": 0.14749,
             "top_scores": [
               [
@@ -7138,16 +7808,16 @@
           "prediction": {
             "exp_goals_home": 2.19,
             "exp_goals_away": 1.0,
-            "prob_home": 0.63974,
-            "prob_draw": 0.20431,
-            "prob_away": 0.15595,
-            "prob_o05": 0.95385,
-            "prob_o15": 0.83236,
-            "prob_o25": 0.61787,
-            "prob_o35": 0.39511,
-            "prob_btts": 0.56596,
-            "prob_cs_home": 0.36833,
-            "prob_cs_away": 0.11185,
+            "prob_home": 0.63973,
+            "prob_draw": 0.20433,
+            "prob_away": 0.15593,
+            "prob_o05": 0.95383,
+            "prob_o15": 0.83228,
+            "prob_o25": 0.61774,
+            "prob_o35": 0.39497,
+            "prob_btts": 0.56585,
+            "prob_cs_home": 0.36843,
+            "prob_cs_away": 0.11189,
             "top_scores": [
               [
                 2,
@@ -7280,16 +7950,16 @@
           "prediction": {
             "exp_goals_home": 1.96,
             "exp_goals_away": 1.26,
-            "prob_home": 0.53156,
-            "prob_draw": 0.23001,
-            "prob_away": 0.23843,
+            "prob_home": 0.53161,
+            "prob_draw": 0.23,
+            "prob_away": 0.23839,
             "prob_o05": 0.95455,
             "prob_o15": 0.83656,
             "prob_o25": 0.62386,
             "prob_o35": 0.4015,
-            "prob_btts": 0.6205,
-            "prob_cs_home": 0.28399,
-            "prob_cs_away": 0.14096,
+            "prob_btts": 0.62048,
+            "prob_cs_home": 0.28403,
+            "prob_cs_away": 0.14094,
             "top_scores": [
               [
                 1,
@@ -7417,16 +8087,16 @@
           "prediction": {
             "exp_goals_home": 1.03,
             "exp_goals_away": 1.91,
-            "prob_home": 0.19377,
-            "prob_draw": 0.23208,
-            "prob_away": 0.57415,
-            "prob_o05": 0.94121,
-            "prob_o15": 0.7968,
-            "prob_o25": 0.56232,
-            "prob_o35": 0.33843,
+            "prob_home": 0.19382,
+            "prob_draw": 0.23211,
+            "prob_away": 0.57407,
+            "prob_o05": 0.9412,
+            "prob_o15": 0.79677,
+            "prob_o25": 0.56227,
+            "prob_o35": 0.33838,
             "prob_btts": 0.55235,
-            "prob_cs_home": 0.14814,
-            "prob_cs_away": 0.3583,
+            "prob_cs_home": 0.14818,
+            "prob_cs_away": 0.35828,
             "top_scores": [
               [
                 1,
@@ -7553,17 +8223,17 @@
           "new_team": false,
           "prediction": {
             "exp_goals_home": 1.27,
-            "exp_goals_away": 2.1,
-            "prob_home": 0.22316,
-            "prob_draw": 0.21925,
-            "prob_away": 0.55759,
-            "prob_o05": 0.96055,
-            "prob_o15": 0.8547,
-            "prob_o25": 0.65433,
-            "prob_o35": 0.43495,
+            "exp_goals_away": 2.09,
+            "prob_home": 0.22322,
+            "prob_draw": 0.21927,
+            "prob_away": 0.55751,
+            "prob_o05": 0.96054,
+            "prob_o15": 0.85468,
+            "prob_o25": 0.6543,
+            "prob_o35": 0.43492,
             "prob_btts": 0.63677,
-            "prob_cs_home": 0.12305,
-            "prob_cs_away": 0.27964,
+            "prob_cs_home": 0.12308,
+            "prob_cs_away": 0.27961,
             "top_scores": [
               [
                 1,
@@ -7691,16 +8361,16 @@
           "prediction": {
             "exp_goals_home": 1.48,
             "exp_goals_away": 0.73,
-            "prob_home": 0.54499,
-            "prob_draw": 0.27672,
-            "prob_away": 0.17829,
-            "prob_o05": 0.88482,
-            "prob_o15": 0.65664,
-            "prob_o25": 0.38248,
-            "prob_o35": 0.18448,
-            "prob_btts": 0.4089,
-            "prob_cs_home": 0.47977,
-            "prob_cs_away": 0.22652,
+            "prob_home": 0.54496,
+            "prob_draw": 0.27676,
+            "prob_away": 0.17828,
+            "prob_o05": 0.88476,
+            "prob_o15": 0.65651,
+            "prob_o25": 0.38234,
+            "prob_o35": 0.18437,
+            "prob_btts": 0.40878,
+            "prob_cs_home": 0.47987,
+            "prob_cs_away": 0.22659,
             "top_scores": [
               [
                 1,
@@ -7829,15 +8499,15 @@
             "exp_goals_home": 1.66,
             "exp_goals_away": 1.3,
             "prob_home": 0.45112,
-            "prob_draw": 0.25295,
-            "prob_away": 0.29594,
-            "prob_o05": 0.94213,
-            "prob_o15": 0.80119,
-            "prob_o25": 0.56817,
-            "prob_o35": 0.34418,
-            "prob_btts": 0.59589,
-            "prob_cs_home": 0.27129,
-            "prob_cs_away": 0.19069,
+            "prob_draw": 0.25296,
+            "prob_away": 0.29592,
+            "prob_o05": 0.94212,
+            "prob_o15": 0.80116,
+            "prob_o25": 0.56812,
+            "prob_o35": 0.34413,
+            "prob_btts": 0.59585,
+            "prob_cs_home": 0.27132,
+            "prob_cs_away": 0.19071,
             "top_scores": [
               [
                 1,
@@ -7961,16 +8631,16 @@
           "prediction": {
             "exp_goals_home": 1.34,
             "exp_goals_away": 1.94,
-            "prob_home": 0.26036,
-            "prob_draw": 0.2316,
-            "prob_away": 0.50804,
-            "prob_o05": 0.95705,
-            "prob_o15": 0.84449,
-            "prob_o25": 0.63681,
-            "prob_o35": 0.41554,
-            "prob_btts": 0.63803,
-            "prob_cs_home": 0.14404,
-            "prob_cs_away": 0.26088,
+            "prob_home": 0.26044,
+            "prob_draw": 0.23164,
+            "prob_away": 0.50792,
+            "prob_o05": 0.95702,
+            "prob_o15": 0.8444,
+            "prob_o25": 0.63667,
+            "prob_o35": 0.41537,
+            "prob_btts": 0.63794,
+            "prob_cs_home": 0.14413,
+            "prob_cs_away": 0.26091,
             "top_scores": [
               [
                 1,
@@ -8099,15 +8769,15 @@
             "exp_goals_home": 3.13,
             "exp_goals_away": 1.17,
             "prob_home": 0.75625,
-            "prob_draw": 0.13814,
+            "prob_draw": 0.13815,
             "prob_away": 0.1056,
-            "prob_o05": 0.98367,
-            "prob_o15": 0.9307,
-            "prob_o25": 0.80236,
-            "prob_o35": 0.62239,
-            "prob_btts": 0.66291,
-            "prob_cs_home": 0.3095,
-            "prob_cs_away": 0.04393,
+            "prob_o05": 0.98366,
+            "prob_o15": 0.93068,
+            "prob_o25": 0.80233,
+            "prob_o35": 0.62235,
+            "prob_btts": 0.66288,
+            "prob_cs_home": 0.30952,
+            "prob_cs_away": 0.04394,
             "top_scores": [
               [
                 3,
@@ -8233,18 +8903,18 @@
           "away_dc": "Freiburg",
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 2.13,
+            "exp_goals_home": 2.12,
             "exp_goals_away": 1.07,
-            "prob_home": 0.60973,
+            "prob_home": 0.60975,
             "prob_draw": 0.21279,
-            "prob_away": 0.17748,
+            "prob_away": 0.17746,
             "prob_o05": 0.95397,
-            "prob_o15": 0.83342,
-            "prob_o25": 0.61931,
-            "prob_o35": 0.39664,
-            "prob_btts": 0.58402,
-            "prob_cs_home": 0.34258,
-            "prob_cs_away": 0.11943,
+            "prob_o15": 0.8334,
+            "prob_o25": 0.61928,
+            "prob_o35": 0.39661,
+            "prob_btts": 0.58398,
+            "prob_cs_home": 0.34262,
+            "prob_cs_away": 0.11944,
             "top_scores": [
               [
                 2,
@@ -8372,16 +9042,16 @@
           "prediction": {
             "exp_goals_home": 1.59,
             "exp_goals_away": 1.74,
-            "prob_home": 0.3487,
+            "prob_home": 0.34875,
             "prob_draw": 0.23968,
-            "prob_away": 0.41162,
-            "prob_o05": 0.95845,
-            "prob_o15": 0.84945,
-            "prob_o25": 0.64487,
-            "prob_o35": 0.4244,
-            "prob_btts": 0.66049,
-            "prob_cs_home": 0.17628,
-            "prob_cs_away": 0.20479,
+            "prob_away": 0.41157,
+            "prob_o05": 0.95844,
+            "prob_o15": 0.84944,
+            "prob_o25": 0.64484,
+            "prob_o35": 0.42437,
+            "prob_btts": 0.66047,
+            "prob_cs_home": 0.17631,
+            "prob_cs_away": 0.20478,
             "top_scores": [
               [
                 1,
@@ -8509,16 +9179,16 @@
           "prediction": {
             "exp_goals_home": 2.6,
             "exp_goals_away": 1.13,
-            "prob_home": 0.68473,
-            "prob_draw": 0.17452,
-            "prob_away": 0.14075,
+            "prob_home": 0.68476,
+            "prob_draw": 0.17451,
+            "prob_away": 0.14073,
             "prob_o05": 0.97223,
-            "prob_o15": 0.89073,
-            "prob_o25": 0.72025,
-            "prob_o35": 0.51288,
-            "prob_btts": 0.63159,
-            "prob_cs_home": 0.32194,
-            "prob_cs_away": 0.07424,
+            "prob_o15": 0.89072,
+            "prob_o25": 0.72023,
+            "prob_o35": 0.51286,
+            "prob_btts": 0.63156,
+            "prob_cs_home": 0.32198,
+            "prob_cs_away": 0.07423,
             "top_scores": [
               [
                 2,
@@ -8631,13 +9301,831 @@
               "pi_n": 18
             }
           }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:30",
+          "home": "Mainz",
+          "away": "Bremen",
+          "home_full": "1. FSV Mainz 05",
+          "away_full": "SV Werder Bremen",
+          "matchday": 7,
+          "home_dc": "Mainz",
+          "away_dc": "Werder Bremen",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.93,
+            "exp_goals_away": 1.05,
+            "prob_home": 0.57363,
+            "prob_draw": 0.2301,
+            "prob_away": 0.19627,
+            "prob_o05": 0.94394,
+            "prob_o15": 0.80457,
+            "prob_o25": 0.57394,
+            "prob_o35": 0.3499,
+            "prob_btts": 0.56249,
+            "prob_cs_home": 0.34915,
+            "prob_cs_away": 0.14443,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.8
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                2,
+                0,
+                9.4
+              ],
+              [
+                1,
+                0,
+                9.2
+              ],
+              [
+                3,
+                1,
+                6.4
+              ],
+              [
+                3,
+                0,
+                6.1
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 15.3,
+              "away": 11.5,
+              "total": 26.8
+            },
+            "corners": {
+              "home": 6.5,
+              "away": 4.1,
+              "total": 10.6
+            },
+            "yellows": {
+              "home": 1.5,
+              "away": 2.0,
+              "total": 3.5
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Heidenheim 2-0 (16/05)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Paderborn 0-0 (29/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Hamburg 5-0 (06/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Ein Frankfurt 1-3 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a M'gladbach 4-3 (19/09)"
+                }
+              ],
+              "pi_rating": 0.54,
+              "pi_rank": 7,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "vs Dortmund 0-2 (16/05)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Freiburg 1-4 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs RB Leipzig 3-1 (05/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a FC Koln 1-1 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Augsburg 3-2 (19/09)"
+                }
+              ],
+              "pi_rating": 0.05,
+              "pi_rank": 12,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:30",
+          "home": "1. FC Köln",
+          "away": "Schalke",
+          "home_full": "1. FC Köln",
+          "away_full": "FC Schalke 04",
+          "matchday": 7,
+          "home_dc": "FC Koln",
+          "away_dc": "Schalke 04",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.04,
+            "exp_goals_away": 1.23,
+            "prob_home": 0.55494,
+            "prob_draw": 0.22356,
+            "prob_away": 0.22149,
+            "prob_o05": 0.95657,
+            "prob_o15": 0.84238,
+            "prob_o25": 0.63357,
+            "prob_o35": 0.412,
+            "prob_btts": 0.6204,
+            "prob_cs_home": 0.29249,
+            "prob_cs_away": 0.13055,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.1
+              ],
+              [
+                2,
+                1,
+                9.7
+              ],
+              [
+                2,
+                0,
+                7.9
+              ],
+              [
+                1,
+                0,
+                7.2
+              ],
+              [
+                3,
+                1,
+                6.6
+              ],
+              [
+                2,
+                2,
+                6.0
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 18.7,
+              "away": 13.7,
+              "total": 32.3
+            },
+            "corners": {
+              "home": 6.3,
+              "away": 4.5,
+              "total": 10.8
+            },
+            "yellows": {
+              "home": 1.9,
+              "away": 1.4,
+              "total": 3.3
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Bayern Munich 1-5 (16/05)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Hoffenheim 3-2 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Stuttgart 1-4 (04/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Werder Bremen 1-1 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Hamburg 1-2 (19/09)"
+                }
+              ],
+              "pi_rating": -0.13,
+              "pi_rank": 14,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a RB Leipzig 2-4 (27/05)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Augsburg 0-3 (30/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Bayern Munich 0-0 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Union Berlin 3-1 (11/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Elversberg 0-0 (20/09)"
+                }
+              ],
+              "pi_rating": -0.46,
+              "pi_rank": 17,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:30",
+          "home": "RB Leipzig",
+          "away": "Elversberg",
+          "home_full": "RB Leipzig",
+          "away_full": "SV 07 Elversberg",
+          "matchday": 7,
+          "home_dc": "RB Leipzig",
+          "away_dc": "Elversberg",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.24,
+            "exp_goals_away": 1.07,
+            "prob_home": 0.63286,
+            "prob_draw": 0.2026,
+            "prob_away": 0.16454,
+            "prob_o05": 0.95847,
+            "prob_o15": 0.84676,
+            "prob_o25": 0.64147,
+            "prob_o35": 0.42064,
+            "prob_btts": 0.59098,
+            "prob_cs_home": 0.34373,
+            "prob_cs_away": 0.10682,
+            "top_scores": [
+              [
+                2,
+                1,
+                9.8
+              ],
+              [
+                1,
+                1,
+                9.3
+              ],
+              [
+                2,
+                0,
+                9.2
+              ],
+              [
+                1,
+                0,
+                7.7
+              ],
+              [
+                3,
+                1,
+                7.3
+              ],
+              [
+                3,
+                0,
+                6.8
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 18.5,
+              "away": 11.9,
+              "total": 30.4
+            },
+            "corners": {
+              "home": 7.3,
+              "away": 4.4,
+              "total": 11.6
+            },
+            "yellows": {
+              "home": 1.6,
+              "away": 1.7,
+              "total": 3.3
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Freiburg 1-4 (16/05)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs M'gladbach 3-0 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Werder Bremen 1-3 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Hamburg 5-0 (13/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Leverkusen 0-2 (20/09)"
+                }
+              ],
+              "pi_rating": 0.78,
+              "pi_rank": 5,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Leverkusen 3-2 (29/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a M'gladbach 4-3 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Bayern Munich 1-2 (13/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Schalke 04 0-0 (20/09)"
+                }
+              ],
+              "pi_rating": 0.14,
+              "pi_rank": 11,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:30",
+          "home": "SC Paderborn",
+          "away": "HSV",
+          "home_full": "SC Paderborn 07",
+          "away_full": "Hamburger SV",
+          "matchday": 7,
+          "home_dc": "Paderborn",
+          "away_dc": "Hamburg",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.13,
+            "exp_goals_away": 1.07,
+            "prob_home": 0.36196,
+            "prob_draw": 0.30646,
+            "prob_away": 0.33158,
+            "prob_o05": 0.881,
+            "prob_o15": 0.65095,
+            "prob_o25": 0.37527,
+            "prob_o35": 0.17917,
+            "prob_btts": 0.45045,
+            "prob_cs_home": 0.34435,
+            "prob_cs_away": 0.32421,
+            "top_scores": [
+              [
+                1,
+                1,
+                14.1
+              ],
+              [
+                0,
+                0,
+                11.9
+              ],
+              [
+                1,
+                0,
+                11.8
+              ],
+              [
+                0,
+                1,
+                11.2
+              ],
+              [
+                2,
+                1,
+                7.6
+              ],
+              [
+                1,
+                2,
+                7.1
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 15.4,
+              "away": 15.2,
+              "total": 30.6
+            },
+            "corners": {
+              "home": 5.8,
+              "away": 4.1,
+              "total": 9.8
+            },
+            "yellows": {
+              "home": 1.8,
+              "away": 2.1,
+              "total": 3.9
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Ein Frankfurt 2-3 (27/06)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Mainz 0-0 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Freiburg 0-1 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Dortmund 0-3 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Hoffenheim 3-1 (20/09)"
+                }
+              ],
+              "pi_rating": -0.59,
+              "pi_rank": 18,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "N",
+                  "tip": "a Leverkusen 1-1 (16/05)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Dortmund 0-2 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Mainz 0-5 (06/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a RB Leipzig 0-5 (13/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs FC Koln 2-1 (19/09)"
+                }
+              ],
+              "pi_rating": -0.19,
+              "pi_rank": 15,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "13:30",
+          "home": "Augsburg",
+          "away": "Union Berlin",
+          "home_full": "FC Augsburg",
+          "away_full": "1. FC Union Berlin",
+          "matchday": 7,
+          "home_dc": "Augsburg",
+          "away_dc": "Union Berlin",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.79,
+            "exp_goals_away": 1.14,
+            "prob_home": 0.51859,
+            "prob_draw": 0.24453,
+            "prob_away": 0.23687,
+            "prob_o05": 0.94059,
+            "prob_o15": 0.79606,
+            "prob_o25": 0.56084,
+            "prob_o35": 0.33698,
+            "prob_btts": 0.57295,
+            "prob_cs_home": 0.31897,
+            "prob_cs_away": 0.16748,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.5
+              ],
+              [
+                2,
+                1,
+                9.7
+              ],
+              [
+                1,
+                0,
+                8.9
+              ],
+              [
+                2,
+                0,
+                8.5
+              ],
+              [
+                1,
+                2,
+                6.2
+              ],
+              [
+                0,
+                0,
+                5.9
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 14.8,
+              "away": 12.9,
+              "total": 27.7
+            },
+            "corners": {
+              "home": 5.7,
+              "away": 5.0,
+              "total": 10.7
+            },
+            "yellows": {
+              "home": 2.0,
+              "away": 1.8,
+              "total": 3.8
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Union Berlin 0-4 (16/05)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Schalke 04 3-0 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Ein Frankfurt 4-1 (06/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Leverkusen 2-2 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Werder Bremen 2-3 (19/09)"
+                }
+              ],
+              "pi_rating": 0.31,
+              "pi_rank": 10,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 36,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Augsburg 4-0 (16/05)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Ein Frankfurt 3-3 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Leverkusen 0-4 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Schalke 04 1-3 (11/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Bayern Munich 0-7 (18/09)"
+                }
+              ],
+              "pi_rating": -0.25,
+              "pi_rank": 16,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "16:30",
+          "home": "Dortmund",
+          "away": "Frankfurt",
+          "home_full": "Borussia Dortmund",
+          "away_full": "Eintracht Frankfurt",
+          "matchday": 7,
+          "home_dc": "Dortmund",
+          "away_dc": "Ein Frankfurt",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.31,
+            "exp_goals_away": 1.04,
+            "prob_home": 0.65475,
+            "prob_draw": 0.19459,
+            "prob_away": 0.15066,
+            "prob_o05": 0.96024,
+            "prob_o15": 0.85181,
+            "prob_o25": 0.65019,
+            "prob_o35": 0.43031,
+            "prob_btts": 0.5858,
+            "prob_cs_home": 0.35496,
+            "prob_cs_away": 0.099,
+            "top_scores": [
+              [
+                2,
+                1,
+                9.7
+              ],
+              [
+                2,
+                0,
+                9.4
+              ],
+              [
+                1,
+                1,
+                8.9
+              ],
+              [
+                1,
+                0,
+                7.7
+              ],
+              [
+                3,
+                1,
+                7.5
+              ],
+              [
+                3,
+                0,
+                7.2
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 15.1,
+              "away": 10.1,
+              "total": 25.2
+            },
+            "corners": {
+              "home": 6.1,
+              "away": 3.5,
+              "total": 9.5
+            },
+            "yellows": {
+              "home": 1.6,
+              "away": 1.5,
+              "total": 3.1
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Werder Bremen 2-0 (16/05)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Hamburg 2-0 (29/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Hoffenheim 3-2 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Paderborn 3-0 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Stuttgart 1-0 (19/09)"
+                }
+              ],
+              "pi_rating": 1.22,
+              "pi_rank": 2,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "N",
+                  "tip": "vs Stuttgart 2-2 (16/05)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Union Berlin 3-3 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Augsburg 1-4 (06/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Mainz 3-1 (12/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Freiburg 2-2 (19/09)"
+                }
+              ],
+              "pi_rating": 0.41,
+              "pi_rank": 9,
+              "pi_n": 18
+            }
+          }
         }
       ]
     },
     "la_liga": {
       "name": "La Liga",
       "flag": "🇪🇸",
-      "dc_fitted_at": "2026-10-09",
+      "dc_fitted_at": "2026-10-10",
       "dc_n_matches": 1891,
       "dc_teams": [
         "Alaves",
@@ -8672,290 +10160,6 @@
       ],
       "fixtures": [
         {
-          "date": "2026-10-09",
-          "time": "19:00",
-          "home": "Málaga",
-          "away": "Espanyol",
-          "home_full": "Málaga CF",
-          "away_full": "RCD Espanyol de Barcelona",
-          "matchday": 8,
-          "home_dc": "Malaga",
-          "away_dc": "Espanol",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.05,
-            "exp_goals_away": 1.26,
-            "prob_home": 0.30004,
-            "prob_draw": 0.29532,
-            "prob_away": 0.40464,
-            "prob_o05": 0.89354,
-            "prob_o15": 0.67867,
-            "prob_o25": 0.40663,
-            "prob_o35": 0.2027,
-            "prob_btts": 0.4728,
-            "prob_cs_home": 0.28328,
-            "prob_cs_away": 0.35038,
-            "top_scores": [
-              [
-                1,
-                1,
-                13.9
-              ],
-              [
-                0,
-                1,
-                11.8
-              ],
-              [
-                0,
-                0,
-                10.6
-              ],
-              [
-                1,
-                0,
-                9.7
-              ],
-              [
-                1,
-                2,
-                8.3
-              ],
-              [
-                0,
-                2,
-                7.9
-              ]
-            ],
-            "model": "with_xg",
-            "fallback_reason": null
-          },
-          "market": {
-            "home": 0.33682,
-            "draw": 0.29443,
-            "away": 0.36875,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "shots": {
-              "home": 12.5,
-              "away": 11.4,
-              "total": 23.9
-            },
-            "corners": {
-              "home": 5.3,
-              "away": 4.8,
-              "total": 10.0
-            },
-            "yellows": {
-              "home": 2.0,
-              "away": 2.4,
-              "total": 4.4
-            },
-            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
-          },
-          "context": {
-            "home": {
-              "rest_days": 19,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Real Madrid 0-4 (30/08)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Levante 0-0 (06/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Celta 1-1 (13/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Villarreal 1-3 (17/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Getafe 0-1 (20/09)"
-                }
-              ],
-              "pi_rating": -0.5,
-              "pi_rank": 20,
-              "pi_n": 20
-            },
-            "away": {
-              "rest_days": 21,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Sociedad 1-2 (29/08)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Sevilla 1-1 (06/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Osasuna 2-0 (12/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Vallecano 1-2 (15/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Elche 1-3 (18/09)"
-                }
-              ],
-              "pi_rating": -0.06,
-              "pi_rank": 16,
-              "pi_n": 20
-            }
-          }
-        },
-        {
-          "date": "2026-10-10",
-          "time": "12:00",
-          "home": "Rayo Vallecano",
-          "away": "Athletic",
-          "home_full": "Rayo Vallecano de Madrid",
-          "away_full": "Athletic Club",
-          "matchday": 8,
-          "home_dc": "Vallecano",
-          "away_dc": "Ath Bilbao",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.39,
-            "exp_goals_away": 1.24,
-            "prob_home": 0.39674,
-            "prob_draw": 0.27528,
-            "prob_away": 0.32798,
-            "prob_o05": 0.92071,
-            "prob_o15": 0.74417,
-            "prob_o25": 0.48775,
-            "prob_o35": 0.26938,
-            "prob_btts": 0.53945,
-            "prob_cs_home": 0.28979,
-            "prob_cs_away": 0.25005,
-            "top_scores": [
-              [
-                1,
-                1,
-                13.1
-              ],
-              [
-                1,
-                0,
-                9.4
-              ],
-              [
-                2,
-                1,
-                8.6
-              ],
-              [
-                0,
-                1,
-                8.3
-              ],
-              [
-                0,
-                0,
-                7.9
-              ],
-              [
-                1,
-                2,
-                7.7
-              ]
-            ],
-            "model": "with_xg",
-            "fallback_reason": null
-          },
-          "market": {
-            "home": 0.34955,
-            "draw": 0.27909,
-            "away": 0.37135,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "shots": {
-              "home": 13.9,
-              "away": 12.1,
-              "total": 26.0
-            },
-            "corners": {
-              "home": 5.6,
-              "away": 5.2,
-              "total": 10.8
-            },
-            "yellows": {
-              "home": 1.9,
-              "away": 2.3,
-              "total": 4.2
-            },
-            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
-          },
-          "context": {
-            "home": {
-              "rest_days": 21,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Barcelona 2-5 (31/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Santander 3-2 (05/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Real Madrid 1-4 (12/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Espanol 2-1 (15/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Osasuna 1-1 (19/09)"
-                }
-              ],
-              "pi_rating": 0.27,
-              "pi_rank": 7,
-              "pi_n": 20
-            },
-            "away": {
-              "rest_days": 21,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Barcelona 0-2 (27/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Celta 2-0 (30/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Ath Madrid 3-0 (05/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Elche 1-1 (12/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Alaves 0-0 (19/09)"
-                }
-              ],
-              "pi_rating": 0.21,
-              "pi_rank": 9,
-              "pi_n": 20
-            }
-          }
-        },
-        {
           "date": "2026-10-10",
           "time": "14:15",
           "home": "Alavés",
@@ -8969,16 +10173,16 @@
           "prediction": {
             "exp_goals_home": 1.27,
             "exp_goals_away": 1.44,
-            "prob_home": 0.32734,
-            "prob_draw": 0.26988,
-            "prob_away": 0.40278,
-            "prob_o05": 0.9269,
-            "prob_o15": 0.76014,
-            "prob_o25": 0.50925,
-            "prob_o35": 0.2885,
-            "prob_btts": 0.55592,
-            "prob_cs_home": 0.23741,
-            "prob_cs_away": 0.27977,
+            "prob_home": 0.32738,
+            "prob_draw": 0.26989,
+            "prob_away": 0.40273,
+            "prob_o05": 0.92689,
+            "prob_o15": 0.76013,
+            "prob_o25": 0.50923,
+            "prob_o35": 0.28848,
+            "prob_btts": 0.5559,
+            "prob_cs_home": 0.23744,
+            "prob_cs_away": 0.27976,
             "top_scores": [
               [
                 1,
@@ -9111,16 +10315,16 @@
           "prediction": {
             "exp_goals_home": 3.02,
             "exp_goals_away": 0.63,
-            "prob_home": 0.84347,
-            "prob_draw": 0.11018,
-            "prob_away": 0.04634,
+            "prob_home": 0.84344,
+            "prob_draw": 0.1102,
+            "prob_away": 0.04636,
             "prob_o05": 0.97115,
-            "prob_o15": 0.88136,
-            "prob_o25": 0.70507,
-            "prob_o35": 0.49417,
-            "prob_btts": 0.44655,
-            "prob_cs_home": 0.53331,
-            "prob_cs_away": 0.04899,
+            "prob_o15": 0.88134,
+            "prob_o25": 0.70503,
+            "prob_o35": 0.49412,
+            "prob_btts": 0.44656,
+            "prob_cs_home": 0.53329,
+            "prob_cs_away": 0.049,
             "top_scores": [
               [
                 3,
@@ -9253,15 +10457,15 @@
           "prediction": {
             "exp_goals_home": 2.42,
             "exp_goals_away": 1.23,
-            "prob_home": 0.63069,
+            "prob_home": 0.6307,
             "prob_draw": 0.19287,
-            "prob_away": 0.17644,
+            "prob_away": 0.17642,
             "prob_o05": 0.9697,
-            "prob_o15": 0.88322,
-            "prob_o25": 0.70568,
-            "prob_o35": 0.49495,
-            "prob_btts": 0.64939,
-            "prob_cs_home": 0.29161,
+            "prob_o15": 0.88321,
+            "prob_o25": 0.70566,
+            "prob_o35": 0.49493,
+            "prob_btts": 0.64936,
+            "prob_cs_home": 0.29164,
             "prob_cs_away": 0.0893,
             "top_scores": [
               [
@@ -9395,15 +10599,15 @@
           "prediction": {
             "exp_goals_home": 1.36,
             "exp_goals_away": 1.42,
-            "prob_home": 0.3541,
-            "prob_draw": 0.26685,
-            "prob_away": 0.37905,
-            "prob_o05": 0.93144,
-            "prob_o15": 0.77222,
-            "prob_o25": 0.52597,
-            "prob_o35": 0.30381,
-            "prob_btts": 0.57044,
-            "prob_cs_home": 0.24223,
+            "prob_home": 0.35412,
+            "prob_draw": 0.26686,
+            "prob_away": 0.37902,
+            "prob_o05": 0.93143,
+            "prob_o15": 0.7722,
+            "prob_o25": 0.52595,
+            "prob_o35": 0.30379,
+            "prob_btts": 0.57042,
+            "prob_cs_home": 0.24226,
             "prob_cs_away": 0.25589,
             "top_scores": [
               [
@@ -9537,16 +10741,16 @@
           "prediction": {
             "exp_goals_home": 1.82,
             "exp_goals_away": 0.97,
-            "prob_home": 0.56631,
-            "prob_draw": 0.24039,
-            "prob_away": 0.19329,
-            "prob_o05": 0.93262,
-            "prob_o15": 0.77318,
-            "prob_o25": 0.52816,
-            "prob_o35": 0.30584,
-            "prob_btts": 0.52678,
+            "prob_home": 0.56628,
+            "prob_draw": 0.24041,
+            "prob_away": 0.19331,
+            "prob_o05": 0.93261,
+            "prob_o15": 0.77315,
+            "prob_o25": 0.52812,
+            "prob_o35": 0.3058,
+            "prob_btts": 0.52676,
             "prob_cs_home": 0.3782,
-            "prob_cs_away": 0.1624,
+            "prob_cs_away": 0.16243,
             "top_scores": [
               [
                 1,
@@ -9679,16 +10883,16 @@
           "prediction": {
             "exp_goals_home": 1.91,
             "exp_goals_away": 1.0,
-            "prob_home": 0.57865,
+            "prob_home": 0.57866,
             "prob_draw": 0.232,
-            "prob_away": 0.18935,
+            "prob_away": 0.18934,
             "prob_o05": 0.93984,
-            "prob_o15": 0.79284,
-            "prob_o25": 0.55652,
-            "prob_o35": 0.33278,
-            "prob_btts": 0.54529,
-            "prob_cs_home": 0.36624,
-            "prob_cs_away": 0.14863,
+            "prob_o15": 0.79283,
+            "prob_o25": 0.5565,
+            "prob_o35": 0.33276,
+            "prob_btts": 0.54527,
+            "prob_cs_home": 0.36625,
+            "prob_cs_away": 0.14864,
             "top_scores": [
               [
                 1,
@@ -9821,16 +11025,16 @@
           "prediction": {
             "exp_goals_home": 1.53,
             "exp_goals_away": 1.44,
-            "prob_home": 0.39126,
-            "prob_draw": 0.25701,
-            "prob_away": 0.35174,
-            "prob_o05": 0.942,
-            "prob_o15": 0.80116,
-            "prob_o25": 0.56799,
-            "prob_o35": 0.34401,
-            "prob_btts": 0.60247,
-            "prob_cs_home": 0.23793,
-            "prob_cs_away": 0.21759,
+            "prob_home": 0.3913,
+            "prob_draw": 0.25702,
+            "prob_away": 0.35168,
+            "prob_o05": 0.94199,
+            "prob_o15": 0.80111,
+            "prob_o25": 0.56792,
+            "prob_o35": 0.34393,
+            "prob_btts": 0.60241,
+            "prob_cs_home": 0.238,
+            "prob_cs_away": 0.21761,
             "top_scores": [
               [
                 1,
@@ -9964,15 +11168,15 @@
             "exp_goals_home": 1.61,
             "exp_goals_away": 1.16,
             "prob_home": 0.4721,
-            "prob_draw": 0.26013,
-            "prob_away": 0.26777,
+            "prob_draw": 0.26014,
+            "prob_away": 0.26776,
             "prob_o05": 0.93061,
-            "prob_o15": 0.76938,
-            "prob_o25": 0.52224,
-            "prob_o35": 0.30036,
-            "prob_btts": 0.55471,
-            "prob_cs_home": 0.31451,
-            "prob_cs_away": 0.20017,
+            "prob_o15": 0.76937,
+            "prob_o25": 0.52222,
+            "prob_o35": 0.30034,
+            "prob_btts": 0.55469,
+            "prob_cs_home": 0.31452,
+            "prob_cs_away": 0.20018,
             "top_scores": [
               [
                 1,
@@ -10105,16 +11309,16 @@
           "prediction": {
             "exp_goals_home": 1.49,
             "exp_goals_away": 1.44,
-            "prob_home": 0.38242,
-            "prob_draw": 0.25873,
-            "prob_away": 0.35885,
-            "prob_o05": 0.94037,
-            "prob_o15": 0.7966,
-            "prob_o25": 0.56118,
-            "prob_o35": 0.33732,
-            "prob_btts": 0.59755,
-            "prob_cs_home": 0.23717,
-            "prob_cs_away": 0.22492,
+            "prob_home": 0.38248,
+            "prob_draw": 0.25874,
+            "prob_away": 0.35878,
+            "prob_o05": 0.94036,
+            "prob_o15": 0.79656,
+            "prob_o25": 0.56112,
+            "prob_o35": 0.33726,
+            "prob_btts": 0.5975,
+            "prob_cs_home": 0.23723,
+            "prob_cs_away": 0.22491,
             "top_scores": [
               [
                 1,
@@ -10242,16 +11446,16 @@
           "prediction": {
             "exp_goals_home": 1.15,
             "exp_goals_away": 1.76,
-            "prob_home": 0.24346,
-            "prob_draw": 0.24683,
-            "prob_away": 0.50971,
+            "prob_home": 0.24351,
+            "prob_draw": 0.24685,
+            "prob_away": 0.50964,
             "prob_o05": 0.93973,
-            "prob_o15": 0.79379,
-            "prob_o25": 0.55743,
-            "prob_o35": 0.33366,
+            "prob_o15": 0.79377,
+            "prob_o25": 0.5574,
+            "prob_o35": 0.33364,
             "prob_btts": 0.57299,
-            "prob_cs_home": 0.17195,
-            "prob_cs_away": 0.31532,
+            "prob_cs_home": 0.17199,
+            "prob_cs_away": 0.31529,
             "top_scores": [
               [
                 1,
@@ -10379,16 +11583,16 @@
           "prediction": {
             "exp_goals_home": 2.47,
             "exp_goals_away": 1.01,
-            "prob_home": 0.68797,
-            "prob_draw": 0.17998,
-            "prob_away": 0.13204,
-            "prob_o05": 0.96493,
-            "prob_o15": 0.86607,
-            "prob_o25": 0.67519,
-            "prob_o35": 0.45875,
-            "prob_btts": 0.58669,
-            "prob_cs_home": 0.36353,
-            "prob_cs_away": 0.08485,
+            "prob_home": 0.68796,
+            "prob_draw": 0.17999,
+            "prob_away": 0.13205,
+            "prob_o05": 0.96492,
+            "prob_o15": 0.86605,
+            "prob_o25": 0.67516,
+            "prob_o35": 0.45871,
+            "prob_btts": 0.58667,
+            "prob_cs_home": 0.36355,
+            "prob_cs_away": 0.08486,
             "top_scores": [
               [
                 2,
@@ -10516,16 +11720,16 @@
           "prediction": {
             "exp_goals_home": 1.26,
             "exp_goals_away": 2.16,
-            "prob_home": 0.21124,
-            "prob_draw": 0.21411,
-            "prob_away": 0.57464,
-            "prob_o05": 0.9621,
-            "prob_o15": 0.85934,
-            "prob_o25": 0.66244,
-            "prob_o35": 0.44411,
-            "prob_btts": 0.63708,
-            "prob_cs_home": 0.11575,
-            "prob_cs_away": 0.28507,
+            "prob_home": 0.21129,
+            "prob_draw": 0.21414,
+            "prob_away": 0.57457,
+            "prob_o05": 0.96209,
+            "prob_o15": 0.85931,
+            "prob_o25": 0.66239,
+            "prob_o35": 0.44405,
+            "prob_btts": 0.63706,
+            "prob_cs_home": 0.11579,
+            "prob_cs_away": 0.28506,
             "top_scores": [
               [
                 1,
@@ -10653,16 +11857,16 @@
           "prediction": {
             "exp_goals_home": 1.18,
             "exp_goals_away": 1.26,
-            "prob_home": 0.33575,
+            "prob_home": 0.33579,
             "prob_draw": 0.28816,
-            "prob_away": 0.37609,
+            "prob_away": 0.37605,
             "prob_o05": 0.90534,
-            "prob_o15": 0.70637,
-            "prob_o25": 0.43959,
+            "prob_o15": 0.70636,
+            "prob_o25": 0.43958,
             "prob_o35": 0.22877,
             "prob_btts": 0.5024,
-            "prob_cs_home": 0.28374,
-            "prob_cs_away": 0.30852,
+            "prob_cs_home": 0.28376,
+            "prob_cs_away": 0.30849,
             "top_scores": [
               [
                 1,
@@ -10790,16 +11994,16 @@
           "prediction": {
             "exp_goals_home": 1.96,
             "exp_goals_away": 1.17,
-            "prob_home": 0.5524,
-            "prob_draw": 0.22908,
-            "prob_away": 0.21852,
-            "prob_o05": 0.951,
-            "prob_o15": 0.8256,
-            "prob_o25": 0.60632,
-            "prob_o35": 0.38294,
-            "prob_btts": 0.59862,
-            "prob_cs_home": 0.31006,
-            "prob_cs_away": 0.14032,
+            "prob_home": 0.55239,
+            "prob_draw": 0.2291,
+            "prob_away": 0.21851,
+            "prob_o05": 0.95098,
+            "prob_o15": 0.82555,
+            "prob_o25": 0.60625,
+            "prob_o35": 0.38286,
+            "prob_btts": 0.59856,
+            "prob_cs_home": 0.31011,
+            "prob_cs_away": 0.14035,
             "top_scores": [
               [
                 1,
@@ -10927,16 +12131,16 @@
           "prediction": {
             "exp_goals_home": 1.41,
             "exp_goals_away": 1.09,
-            "prob_home": 0.43846,
+            "prob_home": 0.43848,
             "prob_draw": 0.27943,
-            "prob_away": 0.28212,
+            "prob_away": 0.28209,
             "prob_o05": 0.91099,
-            "prob_o15": 0.7196,
-            "prob_o25": 0.45616,
+            "prob_o15": 0.71959,
+            "prob_o25": 0.45615,
             "prob_o35": 0.2424,
             "prob_btts": 0.50817,
-            "prob_cs_home": 0.33785,
-            "prob_cs_away": 0.24299,
+            "prob_cs_home": 0.33787,
+            "prob_cs_away": 0.24298,
             "top_scores": [
               [
                 1,
@@ -11064,16 +12268,16 @@
           "prediction": {
             "exp_goals_home": 0.97,
             "exp_goals_away": 1.46,
-            "prob_home": 0.2424,
-            "prob_draw": 0.27767,
-            "prob_away": 0.47993,
-            "prob_o05": 0.90531,
-            "prob_o15": 0.70529,
-            "prob_o25": 0.43863,
-            "prob_o35": 0.22799,
-            "prob_btts": 0.4834,
-            "prob_cs_home": 0.2311,
-            "prob_cs_away": 0.3802,
+            "prob_home": 0.24248,
+            "prob_draw": 0.27769,
+            "prob_away": 0.47983,
+            "prob_o05": 0.9053,
+            "prob_o15": 0.70528,
+            "prob_o25": 0.43862,
+            "prob_o35": 0.22798,
+            "prob_btts": 0.48342,
+            "prob_cs_home": 0.23114,
+            "prob_cs_away": 0.38013,
             "top_scores": [
               [
                 1,
@@ -11201,15 +12405,15 @@
           "prediction": {
             "exp_goals_home": 2.57,
             "exp_goals_away": 0.75,
-            "prob_home": 0.76274,
-            "prob_draw": 0.15487,
+            "prob_home": 0.76272,
+            "prob_draw": 0.15488,
             "prob_away": 0.08239,
             "prob_o05": 0.96015,
-            "prob_o15": 0.84803,
-            "prob_o25": 0.64521,
-            "prob_o35": 0.42477,
-            "prob_btts": 0.49111,
-            "prob_cs_home": 0.47248,
+            "prob_o15": 0.84802,
+            "prob_o25": 0.6452,
+            "prob_o35": 0.42476,
+            "prob_btts": 0.49112,
+            "prob_cs_home": 0.47246,
             "prob_cs_away": 0.07627,
             "top_scores": [
               [
@@ -11338,16 +12542,16 @@
           "prediction": {
             "exp_goals_home": 1.13,
             "exp_goals_away": 1.14,
-            "prob_home": 0.34572,
-            "prob_draw": 0.30043,
-            "prob_away": 0.35385,
+            "prob_home": 0.34575,
+            "prob_draw": 0.30044,
+            "prob_away": 0.35381,
             "prob_o05": 0.88949,
-            "prob_o15": 0.66973,
-            "prob_o25": 0.39628,
-            "prob_o35": 0.1948,
-            "prob_btts": 0.46799,
-            "prob_cs_home": 0.31863,
-            "prob_cs_away": 0.32389,
+            "prob_o15": 0.66972,
+            "prob_o25": 0.39627,
+            "prob_o35": 0.19479,
+            "prob_btts": 0.46798,
+            "prob_cs_home": 0.31866,
+            "prob_cs_away": 0.32387,
             "top_scores": [
               [
                 1,
@@ -11475,16 +12679,16 @@
           "prediction": {
             "exp_goals_home": 1.39,
             "exp_goals_away": 1.48,
-            "prob_home": 0.3492,
-            "prob_draw": 0.26198,
-            "prob_away": 0.38882,
-            "prob_o05": 0.93667,
-            "prob_o15": 0.78635,
-            "prob_o25": 0.54615,
-            "prob_o35": 0.32279,
-            "prob_btts": 0.5857,
-            "prob_cs_home": 0.22828,
-            "prob_cs_away": 0.24935,
+            "prob_home": 0.34924,
+            "prob_draw": 0.26199,
+            "prob_away": 0.38877,
+            "prob_o05": 0.93666,
+            "prob_o15": 0.78633,
+            "prob_o25": 0.54612,
+            "prob_o35": 0.32277,
+            "prob_btts": 0.58568,
+            "prob_cs_home": 0.22832,
+            "prob_cs_away": 0.24934,
             "top_scores": [
               [
                 1,
@@ -11612,15 +12816,15 @@
           "prediction": {
             "exp_goals_home": 1.83,
             "exp_goals_away": 0.63,
-            "prob_home": 0.65821,
-            "prob_draw": 0.22639,
-            "prob_away": 0.1154,
-            "prob_o05": 0.90949,
-            "prob_o15": 0.71057,
-            "prob_o25": 0.44685,
-            "prob_o35": 0.2347,
-            "prob_btts": 0.39775,
-            "prob_cs_home": 0.53309,
+            "prob_home": 0.65818,
+            "prob_draw": 0.2264,
+            "prob_away": 0.11542,
+            "prob_o05": 0.9095,
+            "prob_o15": 0.71058,
+            "prob_o25": 0.44686,
+            "prob_o35": 0.23471,
+            "prob_btts": 0.39779,
+            "prob_cs_home": 0.53304,
             "prob_cs_away": 0.15967,
             "top_scores": [
               [
@@ -11734,13 +12938,561 @@
               "pi_n": 20
             }
           }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "12:00",
+          "home": "Rayo Vallecano",
+          "away": "Elche",
+          "home_full": "Rayo Vallecano de Madrid",
+          "away_full": "Elche CF",
+          "matchday": 10,
+          "home_dc": "Vallecano",
+          "away_dc": "Elche",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.92,
+            "exp_goals_away": 1.07,
+            "prob_home": 0.56646,
+            "prob_draw": 0.23201,
+            "prob_away": 0.20153,
+            "prob_o05": 0.94368,
+            "prob_o15": 0.804,
+            "prob_o25": 0.57301,
+            "prob_o35": 0.34898,
+            "prob_btts": 0.56488,
+            "prob_cs_home": 0.34442,
+            "prob_cs_away": 0.14702,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.9
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                2,
+                0,
+                9.3
+              ],
+              [
+                1,
+                0,
+                9.1
+              ],
+              [
+                3,
+                1,
+                6.3
+              ],
+              [
+                3,
+                0,
+                5.9
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 15.6,
+              "away": 10.3,
+              "total": 25.9
+            },
+            "corners": {
+              "home": 5.9,
+              "away": 4.2,
+              "total": 10.1
+            },
+            "yellows": {
+              "home": 2.2,
+              "away": 2.4,
+              "total": 4.5
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Barcelona 2-5 (31/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Santander 3-2 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Real Madrid 1-4 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Espanol 2-1 (15/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Osasuna 1-1 (19/09)"
+                }
+              ],
+              "pi_rating": 0.27,
+              "pi_rank": 7,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 36,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Santander 2-3 (28/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Sociedad 2-3 (07/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Ath Bilbao 1-1 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Real Madrid 2-3 (15/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Espanol 3-1 (18/09)"
+                }
+              ],
+              "pi_rating": -0.08,
+              "pi_rank": 17,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "14:15",
+          "home": "Santander",
+          "away": "Espanyol",
+          "home_full": "Real Racing Club de Santander",
+          "away_full": "RCD Espanyol de Barcelona",
+          "matchday": 10,
+          "home_dc": "Santander",
+          "away_dc": "Espanol",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.66,
+            "exp_goals_away": 1.46,
+            "prob_home": 0.41868,
+            "prob_draw": 0.24793,
+            "prob_away": 0.33339,
+            "prob_o05": 0.95021,
+            "prob_o15": 0.82465,
+            "prob_o25": 0.60427,
+            "prob_o35": 0.3808,
+            "prob_btts": 0.62856,
+            "prob_cs_home": 0.23138,
+            "prob_cs_away": 0.18985,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.3
+              ],
+              [
+                2,
+                1,
+                8.9
+              ],
+              [
+                1,
+                2,
+                7.8
+              ],
+              [
+                1,
+                0,
+                6.7
+              ],
+              [
+                2,
+                2,
+                6.5
+              ],
+              [
+                2,
+                0,
+                6.1
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 14.7,
+              "away": 13.5,
+              "total": 28.2
+            },
+            "corners": {
+              "home": 4.9,
+              "away": 6.4,
+              "total": 11.3
+            },
+            "yellows": {
+              "home": 2.2,
+              "away": 2.7,
+              "total": 4.9
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Elche 3-2 (28/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Vallecano 2-3 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Alaves 2-1 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Barcelona 2-7 (16/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Celta 0-5 (19/09)"
+                }
+              ],
+              "pi_rating": -0.15,
+              "pi_rank": 18,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 36,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Sociedad 1-2 (29/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Sevilla 1-1 (06/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Osasuna 2-0 (12/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Vallecano 1-2 (15/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Elche 1-3 (18/09)"
+                }
+              ],
+              "pi_rating": -0.06,
+              "pi_rank": 16,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "16:30",
+          "home": "Valencia",
+          "away": "Villarreal",
+          "home_full": "Valencia CF",
+          "away_full": "Villarreal CF",
+          "matchday": 10,
+          "home_dc": "Valencia",
+          "away_dc": "Villarreal",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.28,
+            "exp_goals_away": 1.62,
+            "prob_home": 0.29571,
+            "prob_draw": 0.25629,
+            "prob_away": 0.448,
+            "prob_o05": 0.9387,
+            "prob_o15": 0.79163,
+            "prob_o25": 0.55397,
+            "prob_o35": 0.33031,
+            "prob_btts": 0.58519,
+            "prob_cs_home": 0.19767,
+            "prob_cs_away": 0.27844,
+            "top_scores": [
+              [
+                1,
+                1,
+                12.0
+              ],
+              [
+                1,
+                2,
+                9.2
+              ],
+              [
+                0,
+                1,
+                8.3
+              ],
+              [
+                2,
+                1,
+                7.3
+              ],
+              [
+                0,
+                2,
+                7.2
+              ],
+              [
+                1,
+                0,
+                6.4
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 13.7,
+              "away": 11.1,
+              "total": 24.9
+            },
+            "corners": {
+              "home": 5.3,
+              "away": 4.1,
+              "total": 9.4
+            },
+            "yellows": {
+              "home": 1.9,
+              "away": 2.5,
+              "total": 4.4
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a La Coruna 1-3 (30/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Barcelona 0-5 (06/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Sevilla 0-1 (11/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Alaves 1-0 (15/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Sociedad 2-3 (20/09)"
+                }
+              ],
+              "pi_rating": 0.02,
+              "pi_rank": 13,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Alaves 0-1 (28/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs La Coruna 2-3 (05/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Betis 1-2 (14/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Malaga 3-1 (17/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Levante 3-1 (20/09)"
+                }
+              ],
+              "pi_rating": 0.7,
+              "pi_rank": 4,
+              "pi_n": 20
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "19:00",
+          "home": "Atleti",
+          "away": "Deportivo",
+          "home_full": "Club Atlético de Madrid",
+          "away_full": "RC Deportivo La Coruña",
+          "matchday": 10,
+          "home_dc": "Ath Madrid",
+          "away_dc": "La Coruna",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.38,
+            "exp_goals_away": 0.8,
+            "prob_home": 0.7224,
+            "prob_draw": 0.17547,
+            "prob_away": 0.10214,
+            "prob_o05": 0.95404,
+            "prob_o15": 0.83035,
+            "prob_o25": 0.61567,
+            "prob_o35": 0.39276,
+            "prob_btts": 0.50221,
+            "prob_cs_home": 0.45156,
+            "prob_cs_away": 0.0922,
+            "top_scores": [
+              [
+                2,
+                0,
+                11.8
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                2,
+                1,
+                9.4
+              ],
+              [
+                3,
+                0,
+                9.4
+              ],
+              [
+                1,
+                1,
+                8.3
+              ],
+              [
+                3,
+                1,
+                7.5
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 15.7,
+              "away": 8.7,
+              "total": 24.4
+            },
+            "corners": {
+              "home": 6.4,
+              "away": 3.6,
+              "total": 10.0
+            },
+            "yellows": {
+              "home": 2.0,
+              "away": 2.1,
+              "total": 4.1
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Sevilla 3-1 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Ath Bilbao 0-3 (05/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Sociedad 3-0 (13/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Osasuna 4-0 (16/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Real Madrid 2-1 (20/09)"
+                }
+              ],
+              "pi_rating": 0.82,
+              "pi_rank": 3,
+              "pi_n": 20
+            },
+            "away": {
+              "rest_days": 34,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Valencia 3-1 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Villarreal 3-2 (05/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Getafe 1-1 (13/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Sevilla 0-1 (16/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Betis 1-1 (20/09)"
+                }
+              ],
+              "pi_rating": -0.25,
+              "pi_rank": 19,
+              "pi_n": 20
+            }
+          }
         }
       ]
     },
     "ligue_1": {
       "name": "Ligue 1",
       "flag": "🇫🇷",
-      "dc_fitted_at": "2026-10-09",
+      "dc_fitted_at": "2026-10-10",
       "dc_n_matches": 1634,
       "dc_teams": [
         "Ajaccio",
@@ -11772,148 +13524,6 @@
       ],
       "fixtures": [
         {
-          "date": "2026-10-09",
-          "time": "18:45",
-          "home": "RC Lens",
-          "away": "Olympique Lyon",
-          "home_full": "Racing Club de Lens",
-          "away_full": "Olympique Lyonnais",
-          "matchday": 6,
-          "home_dc": "Lens",
-          "away_dc": "Lyon",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.86,
-            "exp_goals_away": 1.29,
-            "prob_home": 0.50254,
-            "prob_draw": 0.23765,
-            "prob_away": 0.25981,
-            "prob_o05": 0.95161,
-            "prob_o15": 0.82813,
-            "prob_o25": 0.61008,
-            "prob_o35": 0.38688,
-            "prob_btts": 0.61789,
-            "prob_cs_home": 0.27511,
-            "prob_cs_away": 0.15538,
-            "top_scores": [
-              [
-                1,
-                1,
-                10.8
-              ],
-              [
-                2,
-                1,
-                9.6
-              ],
-              [
-                2,
-                0,
-                7.4
-              ],
-              [
-                1,
-                0,
-                7.4
-              ],
-              [
-                1,
-                2,
-                6.6
-              ],
-              [
-                2,
-                2,
-                6.2
-              ]
-            ],
-            "model": "with_xg",
-            "fallback_reason": null
-          },
-          "market": {
-            "home": 0.39917,
-            "draw": 0.25159,
-            "away": 0.34924,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "shots": {
-              "home": 15.7,
-              "away": 10.4,
-              "total": 26.1
-            },
-            "corners": {
-              "home": 6.2,
-              "away": 4.4,
-              "total": 10.6
-            },
-            "yellows": {
-              "home": 2.1,
-              "away": 1.8,
-              "total": 3.9
-            },
-            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
-          },
-          "context": {
-            "home": {
-              "rest_days": 21,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Auxerre 5-2 (22/08)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Strasbourg 1-2 (29/08)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Lorient 0-1 (05/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Le Mans 2-2 (13/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Monaco 1-2 (18/09)"
-                }
-              ],
-              "pi_rating": 0.83,
-              "pi_rank": 5,
-              "pi_n": 18
-            },
-            "away": {
-              "rest_days": 20,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Toulouse 2-0 (22/08)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Le Havre 1-1 (29/08)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Auxerre 3-1 (04/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Paris FC 0-0 (12/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Rennes 4-0 (19/09)"
-                }
-              ],
-              "pi_rating": 0.88,
-              "pi_rank": 3,
-              "pi_n": 18
-            }
-          }
-        },
-        {
           "date": "2026-10-10",
           "time": "15:15",
           "home": "Lille",
@@ -11930,7 +13540,7 @@
             "prob_home": 0.64668,
             "prob_draw": 0.21806,
             "prob_away": 0.13526,
-            "prob_o05": 0.93087,
+            "prob_o05": 0.93088,
             "prob_o15": 0.76623,
             "prob_o25": 0.51931,
             "prob_o35": 0.29766,
@@ -12073,11 +13683,11 @@
             "prob_draw": 0.24023,
             "prob_away": 0.18898,
             "prob_o05": 0.93129,
-            "prob_o15": 0.76948,
-            "prob_o25": 0.52302,
-            "prob_o35": 0.30108,
-            "prob_btts": 0.52028,
-            "prob_cs_home": 0.38576,
+            "prob_o15": 0.76947,
+            "prob_o25": 0.52301,
+            "prob_o35": 0.30107,
+            "prob_btts": 0.52027,
+            "prob_cs_home": 0.38577,
             "prob_cs_away": 0.16267,
             "top_scores": [
               [
@@ -12211,16 +13821,16 @@
           "prediction": {
             "exp_goals_home": 1.25,
             "exp_goals_away": 1.28,
-            "prob_home": 0.35049,
+            "prob_home": 0.35052,
             "prob_draw": 0.2821,
-            "prob_away": 0.36741,
+            "prob_away": 0.36737,
             "prob_o05": 0.91334,
             "prob_o15": 0.7258,
             "prob_o25": 0.46385,
             "prob_o35": 0.24885,
             "prob_btts": 0.52208,
-            "prob_cs_home": 0.27725,
-            "prob_cs_away": 0.28732,
+            "prob_cs_home": 0.27727,
+            "prob_cs_away": 0.2873,
             "top_scores": [
               [
                 1,
@@ -12353,16 +13963,16 @@
           "prediction": {
             "exp_goals_home": 2.98,
             "exp_goals_away": 0.85,
-            "prob_home": 0.79818,
-            "prob_draw": 0.12898,
-            "prob_away": 0.07284,
-            "prob_o05": 0.9753,
-            "prob_o15": 0.89823,
-            "prob_o25": 0.73604,
-            "prob_o35": 0.53276,
-            "prob_btts": 0.54642,
+            "prob_home": 0.79814,
+            "prob_draw": 0.129,
+            "prob_away": 0.07286,
+            "prob_o05": 0.97529,
+            "prob_o15": 0.89821,
+            "prob_o25": 0.73599,
+            "prob_o35": 0.5327,
+            "prob_btts": 0.54641,
             "prob_cs_home": 0.42756,
-            "prob_cs_away": 0.05073,
+            "prob_cs_away": 0.05074,
             "top_scores": [
               [
                 2,
@@ -12495,15 +14105,15 @@
           "prediction": {
             "exp_goals_home": 1.78,
             "exp_goals_away": 1.11,
-            "prob_home": 0.52445,
+            "prob_home": 0.52447,
             "prob_draw": 0.24553,
-            "prob_away": 0.23002,
+            "prob_away": 0.23,
             "prob_o05": 0.93798,
-            "prob_o15": 0.7887,
-            "prob_o25": 0.55006,
-            "prob_o35": 0.32654,
-            "prob_btts": 0.56207,
-            "prob_cs_home": 0.33066,
+            "prob_o15": 0.78868,
+            "prob_o25": 0.55004,
+            "prob_o35": 0.32652,
+            "prob_btts": 0.56205,
+            "prob_cs_home": 0.33069,
             "prob_cs_away": 0.16928,
             "top_scores": [
               [
@@ -12636,16 +14246,16 @@
           "new_team": false,
           "prediction": {
             "exp_goals_home": 1.46,
-            "exp_goals_away": 1.51,
-            "prob_home": 0.36135,
-            "prob_draw": 0.25704,
-            "prob_away": 0.38161,
-            "prob_o05": 0.94218,
-            "prob_o15": 0.80167,
-            "prob_o25": 0.56876,
-            "prob_o35": 0.34477,
-            "prob_btts": 0.6034,
-            "prob_cs_home": 0.22201,
+            "exp_goals_away": 1.5,
+            "prob_home": 0.36138,
+            "prob_draw": 0.25705,
+            "prob_away": 0.38157,
+            "prob_o05": 0.94217,
+            "prob_o15": 0.80165,
+            "prob_o25": 0.56873,
+            "prob_o35": 0.34473,
+            "prob_btts": 0.60337,
+            "prob_cs_home": 0.22204,
             "prob_cs_away": 0.23241,
             "top_scores": [
               [
@@ -12779,16 +14389,16 @@
           "prediction": {
             "exp_goals_home": 1.95,
             "exp_goals_away": 1.13,
-            "prob_home": 0.55893,
+            "prob_home": 0.55895,
             "prob_draw": 0.22975,
-            "prob_away": 0.21132,
+            "prob_away": 0.21131,
             "prob_o05": 0.94856,
             "prob_o15": 0.81829,
             "prob_o25": 0.59487,
             "prob_o35": 0.37107,
-            "prob_btts": 0.58647,
-            "prob_cs_home": 0.32287,
-            "prob_cs_away": 0.1421,
+            "prob_btts": 0.58646,
+            "prob_cs_home": 0.32289,
+            "prob_cs_away": 0.14209,
             "top_scores": [
               [
                 1,
@@ -12921,16 +14531,16 @@
           "prediction": {
             "exp_goals_home": 1.14,
             "exp_goals_away": 2.3,
-            "prob_home": 0.17098,
-            "prob_draw": 0.19928,
-            "prob_away": 0.62974,
-            "prob_o05": 0.96328,
-            "prob_o15": 0.86211,
-            "prob_o25": 0.66767,
-            "prob_o35": 0.45009,
-            "prob_btts": 0.61597,
-            "prob_cs_home": 0.10013,
-            "prob_cs_away": 0.32062,
+            "prob_home": 0.17109,
+            "prob_draw": 0.19934,
+            "prob_away": 0.62957,
+            "prob_o05": 0.96327,
+            "prob_o15": 0.86207,
+            "prob_o25": 0.66761,
+            "prob_o35": 0.45001,
+            "prob_btts": 0.616,
+            "prob_cs_home": 0.10019,
+            "prob_cs_away": 0.32053,
             "top_scores": [
               [
                 1,
@@ -13063,16 +14673,16 @@
           "prediction": {
             "exp_goals_home": 1.36,
             "exp_goals_away": 1.51,
-            "prob_home": 0.33408,
-            "prob_draw": 0.26113,
-            "prob_away": 0.40479,
+            "prob_home": 0.33415,
+            "prob_draw": 0.26115,
+            "prob_away": 0.4047,
             "prob_o05": 0.93693,
-            "prob_o15": 0.78703,
-            "prob_o25": 0.54716,
-            "prob_o35": 0.32376,
-            "prob_btts": 0.58545,
-            "prob_cs_home": 0.22001,
-            "prob_cs_away": 0.25761,
+            "prob_o15": 0.787,
+            "prob_o25": 0.54712,
+            "prob_o35": 0.32373,
+            "prob_btts": 0.58543,
+            "prob_cs_home": 0.22006,
+            "prob_cs_away": 0.25758,
             "top_scores": [
               [
                 1,
@@ -13200,16 +14810,16 @@
           "prediction": {
             "exp_goals_home": 1.18,
             "exp_goals_away": 2.03,
-            "prob_home": 0.21014,
-            "prob_draw": 0.22305,
-            "prob_away": 0.56681,
-            "prob_o05": 0.95432,
-            "prob_o15": 0.83531,
-            "prob_o25": 0.62204,
-            "prob_o35": 0.39955,
-            "prob_btts": 0.60611,
-            "prob_cs_home": 0.13078,
-            "prob_cs_away": 0.30879,
+            "prob_home": 0.2102,
+            "prob_draw": 0.22308,
+            "prob_away": 0.56672,
+            "prob_o05": 0.95431,
+            "prob_o15": 0.83528,
+            "prob_o25": 0.62199,
+            "prob_o35": 0.3995,
+            "prob_btts": 0.6061,
+            "prob_cs_home": 0.13082,
+            "prob_cs_away": 0.30877,
             "top_scores": [
               [
                 1,
@@ -13337,16 +14947,16 @@
           "prediction": {
             "exp_goals_home": 0.99,
             "exp_goals_away": 2.4,
-            "prob_home": 0.13358,
-            "prob_draw": 0.18454,
-            "prob_away": 0.68188,
-            "prob_o05": 0.96185,
-            "prob_o15": 0.85625,
-            "prob_o25": 0.65806,
-            "prob_o35": 0.43914,
-            "prob_btts": 0.57498,
-            "prob_cs_home": 0.0906,
-            "prob_cs_away": 0.37257,
+            "prob_home": 0.13367,
+            "prob_draw": 0.18461,
+            "prob_away": 0.68172,
+            "prob_o05": 0.96184,
+            "prob_o15": 0.85621,
+            "prob_o25": 0.65798,
+            "prob_o35": 0.43906,
+            "prob_btts": 0.57502,
+            "prob_cs_home": 0.09065,
+            "prob_cs_away": 0.37248,
             "top_scores": [
               [
                 0,
@@ -13474,15 +15084,15 @@
           "prediction": {
             "exp_goals_home": 1.84,
             "exp_goals_away": 0.97,
-            "prob_home": 0.57038,
-            "prob_draw": 0.23849,
-            "prob_away": 0.19114,
+            "prob_home": 0.57039,
+            "prob_draw": 0.23848,
+            "prob_away": 0.19113,
             "prob_o05": 0.93386,
-            "prob_o15": 0.77647,
-            "prob_o25": 0.53284,
-            "prob_o35": 0.31021,
-            "prob_btts": 0.5289,
-            "prob_cs_home": 0.37783,
+            "prob_o15": 0.77646,
+            "prob_o25": 0.53283,
+            "prob_o35": 0.31019,
+            "prob_btts": 0.52888,
+            "prob_cs_home": 0.37785,
             "prob_cs_away": 0.1594,
             "top_scores": [
               [
@@ -13611,16 +15221,16 @@
           "prediction": {
             "exp_goals_home": 1.13,
             "exp_goals_away": 1.95,
-            "prob_home": 0.21225,
-            "prob_draw": 0.22986,
-            "prob_away": 0.55789,
-            "prob_o05": 0.9487,
-            "prob_o15": 0.81871,
-            "prob_o25": 0.59552,
-            "prob_o35": 0.37174,
+            "prob_home": 0.2123,
+            "prob_draw": 0.22989,
+            "prob_away": 0.55782,
+            "prob_o05": 0.94869,
+            "prob_o15": 0.81868,
+            "prob_o25": 0.59548,
+            "prob_o35": 0.3717,
             "prob_btts": 0.58743,
-            "prob_cs_home": 0.14221,
-            "prob_cs_away": 0.32166,
+            "prob_cs_home": 0.14224,
+            "prob_cs_away": 0.32164,
             "top_scores": [
               [
                 1,
@@ -13748,16 +15358,16 @@
           "prediction": {
             "exp_goals_home": 1.25,
             "exp_goals_away": 1.58,
-            "prob_home": 0.29594,
-            "prob_draw": 0.2603,
-            "prob_away": 0.44375,
+            "prob_home": 0.29599,
+            "prob_draw": 0.26031,
+            "prob_away": 0.4437,
             "prob_o05": 0.93453,
             "prob_o15": 0.78022,
-            "prob_o25": 0.53744,
-            "prob_o35": 0.31453,
+            "prob_o25": 0.53743,
+            "prob_o35": 0.31452,
             "prob_btts": 0.5728,
-            "prob_cs_home": 0.20619,
-            "prob_cs_away": 0.28647,
+            "prob_cs_home": 0.20622,
+            "prob_cs_away": 0.28645,
             "top_scores": [
               [
                 1,
@@ -13885,16 +15495,16 @@
           "prediction": {
             "exp_goals_home": 1.67,
             "exp_goals_away": 1.26,
-            "prob_home": 0.46457,
+            "prob_home": 0.4646,
             "prob_draw": 0.25325,
-            "prob_away": 0.28219,
+            "prob_away": 0.28216,
             "prob_o05": 0.94007,
-            "prob_o15": 0.79529,
-            "prob_o25": 0.55943,
-            "prob_o35": 0.33561,
-            "prob_btts": 0.58634,
-            "prob_cs_home": 0.28497,
-            "prob_cs_away": 0.18862,
+            "prob_o15": 0.79528,
+            "prob_o25": 0.55941,
+            "prob_o35": 0.3356,
+            "prob_btts": 0.58632,
+            "prob_cs_home": 0.285,
+            "prob_cs_away": 0.18861,
             "top_scores": [
               [
                 1,
@@ -14022,16 +15632,16 @@
           "prediction": {
             "exp_goals_home": 1.36,
             "exp_goals_away": 1.22,
-            "prob_home": 0.39515,
-            "prob_draw": 0.27815,
-            "prob_away": 0.3267,
-            "prob_o05": 0.91722,
-            "prob_o15": 0.73537,
-            "prob_o25": 0.4762,
+            "prob_home": 0.39519,
+            "prob_draw": 0.27814,
+            "prob_away": 0.32667,
+            "prob_o05": 0.91723,
+            "prob_o15": 0.73538,
+            "prob_o25": 0.47621,
             "prob_o35": 0.25937,
             "prob_btts": 0.53041,
-            "prob_cs_home": 0.29627,
-            "prob_cs_away": 0.2561,
+            "prob_cs_home": 0.29628,
+            "prob_cs_away": 0.25608,
             "top_scores": [
               [
                 1,
@@ -14159,16 +15769,16 @@
           "prediction": {
             "exp_goals_home": 2.04,
             "exp_goals_away": 1.07,
-            "prob_home": 0.59213,
+            "prob_home": 0.59214,
             "prob_draw": 0.22044,
-            "prob_away": 0.18743,
-            "prob_o05": 0.95027,
-            "prob_o15": 0.82267,
-            "prob_o25": 0.602,
-            "prob_o35": 0.37844,
-            "prob_btts": 0.57783,
-            "prob_cs_home": 0.34215,
-            "prob_cs_away": 0.12975,
+            "prob_away": 0.18742,
+            "prob_o05": 0.95026,
+            "prob_o15": 0.82265,
+            "prob_o25": 0.60197,
+            "prob_o35": 0.37841,
+            "prob_btts": 0.57781,
+            "prob_cs_home": 0.34218,
+            "prob_cs_away": 0.12976,
             "top_scores": [
               [
                 1,
@@ -14296,15 +15906,15 @@
           "prediction": {
             "exp_goals_home": 1.68,
             "exp_goals_away": 1.24,
-            "prob_home": 0.47168,
+            "prob_home": 0.4717,
             "prob_draw": 0.25226,
-            "prob_away": 0.27606,
-            "prob_o05": 0.94018,
-            "prob_o15": 0.79553,
-            "prob_o25": 0.55981,
-            "prob_o35": 0.33598,
-            "prob_btts": 0.58509,
-            "prob_cs_home": 0.28912,
+            "prob_away": 0.27604,
+            "prob_o05": 0.94017,
+            "prob_o15": 0.79551,
+            "prob_o25": 0.55978,
+            "prob_o35": 0.33595,
+            "prob_btts": 0.58506,
+            "prob_cs_home": 0.28915,
             "prob_cs_away": 0.18561,
             "top_scores": [
               [
@@ -14415,6 +16025,280 @@
               ],
               "pi_rating": 0.09,
               "pi_rank": 14,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "15:15",
+          "home": "Toulouse",
+          "away": "Troyes",
+          "home_full": "Toulouse FC",
+          "away_full": "ES Troyes AC",
+          "matchday": 8,
+          "home_dc": "Toulouse",
+          "away_dc": "Troyes",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.16,
+            "exp_goals_away": 0.81,
+            "prob_home": 0.67793,
+            "prob_draw": 0.19871,
+            "prob_away": 0.12337,
+            "prob_o05": 0.9441,
+            "prob_o15": 0.80223,
+            "prob_o25": 0.57151,
+            "prob_o35": 0.34748,
+            "prob_btts": 0.49785,
+            "prob_cs_home": 0.44298,
+            "prob_cs_away": 0.11507,
+            "top_scores": [
+              [
+                2,
+                0,
+                11.9
+              ],
+              [
+                1,
+                0,
+                10.5
+              ],
+              [
+                2,
+                1,
+                9.7
+              ],
+              [
+                1,
+                1,
+                9.5
+              ],
+              [
+                3,
+                0,
+                8.6
+              ],
+              [
+                3,
+                1,
+                7.0
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 14.4,
+              "away": 11.8,
+              "total": 26.2
+            },
+            "corners": {
+              "home": 3.6,
+              "away": 5.7,
+              "total": 9.3
+            },
+            "yellows": {
+              "home": 1.6,
+              "away": 1.3,
+              "total": 3.0
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "vs Lyon 0-2 (22/08)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Brest 2-2 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Lille 0-1 (03/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Lorient 2-2 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Le Havre 3-2 (19/09)"
+                }
+              ],
+              "pi_rating": 0.41,
+              "pi_rank": 10,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "N",
+                  "tip": "vs Paris FC 0-0 (22/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Lorient 2-1 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Strasbourg 2-6 (06/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Lille 0-2 (13/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Angers 0-2 (19/09)"
+                }
+              ],
+              "pi_rating": -0.62,
+              "pi_rank": 18,
+              "pi_n": 18
+            }
+          }
+        },
+        {
+          "date": "2026-10-24",
+          "time": "18:45",
+          "home": "RC Lens",
+          "away": "Paris FC",
+          "home_full": "Racing Club de Lens",
+          "away_full": "Paris FC",
+          "matchday": 8,
+          "home_dc": "Lens",
+          "away_dc": "Paris FC",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.8,
+            "exp_goals_away": 1.09,
+            "prob_home": 0.53349,
+            "prob_draw": 0.24307,
+            "prob_away": 0.22344,
+            "prob_o05": 0.93883,
+            "prob_o15": 0.79088,
+            "prob_o25": 0.55331,
+            "prob_o35": 0.32967,
+            "prob_btts": 0.56155,
+            "prob_cs_home": 0.33473,
+            "prob_cs_away": 0.1649,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.5
+              ],
+              [
+                2,
+                1,
+                9.8
+              ],
+              [
+                1,
+                0,
+                9.4
+              ],
+              [
+                2,
+                0,
+                9.0
+              ],
+              [
+                0,
+                0,
+                6.1
+              ],
+              [
+                1,
+                2,
+                6.0
+              ]
+            ],
+            "model": "with_xg",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": {
+            "shots": {
+              "home": 15.6,
+              "away": 10.4,
+              "total": 26.0
+            },
+            "corners": {
+              "home": 6.7,
+              "away": 3.5,
+              "total": 10.2
+            },
+            "yellows": {
+              "home": 1.4,
+              "away": 1.8,
+              "total": 3.2
+            },
+            "note": "Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. Non è stata verificata con un backtest."
+          },
+          "context": {
+            "home": {
+              "rest_days": 36,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "vs Auxerre 5-2 (22/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Strasbourg 1-2 (29/08)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Lorient 0-1 (05/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Le Mans 2-2 (13/09)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Monaco 1-2 (18/09)"
+                }
+              ],
+              "pi_rating": 0.83,
+              "pi_rank": 5,
+              "pi_n": 18
+            },
+            "away": {
+              "rest_days": 35,
+              "form": [
+                {
+                  "r": "N",
+                  "tip": "a Troyes 0-0 (22/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Nice 3-0 (30/08)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Marseille 3-2 (06/09)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Lyon 0-0 (12/09)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Strasbourg 2-1 (19/09)"
+                }
+              ],
+              "pi_rating": 0.63,
+              "pi_rank": 8,
               "pi_n": 18
             }
           }
