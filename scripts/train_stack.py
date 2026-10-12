@@ -9,6 +9,10 @@ Allena il Poisson-stack e salva coefficienti, scaler e rho in models/stack.json
 In produzione si usa with_xg; without_xg è il ripiego automatico (Understat non risponde
 o mancano gli xG di una squadra) — vedi predictions/stack_predictor.py.
 
+Salva anche "stats_models": per tiri, corner e gialli, i due Poisson (casa, ospite) e l'alpha della
+Binomiale Negativa del totale (backtest/stats_model.py), in due varianti (with_xg / without_xg)
+come lo stack 1X2.
+
 Costruisce lo storico delle feature in walk-forward (ognuna calcolata solo con dati
 precedenti alla partita) per i 5 campionati, poi stima le due regressioni di Poisson e
 rho su tutto lo storico disponibile. Se Understat non risponde l'allenamento FALLISCE
@@ -31,7 +35,7 @@ sys.path.insert(0, REPO_ROOT)
 
 import numpy as np
 
-from backtest import data, features, stack, understat
+from backtest import data, features, stack, stats_model as sm, understat
 
 OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 
@@ -71,6 +75,28 @@ def train_one(name, cols, min_season, feat):
     return d
 
 
+def train_stats(feat):
+    """Modelli delle statistiche attese: {variante: {statistica: dict JSON}}."""
+    out = {}
+    for variant, with_xg in (("with_xg", True), ("without_xg", False)):
+        out[variant] = {}
+        for stat, (hc, ac, _, _) in sm.STATS.items():
+            X = sm.design(feat, stat, with_xg)
+            ok = (X.notna().all(axis=1) & np.isfinite(X).all(axis=1) & feat[hc].notna() & feat[ac].notna()
+                  & (feat.season >= sm.FIRST_TRAIN_SEASON))
+            model = sm.fit_stat_model(X[ok], feat[hc][ok], feat[ac][ok])
+            d = sm.model_to_dict(model, X.columns, meta={"n_train": int(ok.sum())})
+
+            sample = X[ok].iloc[:: max(int(ok.sum()) // 500, 1)]
+            mh, ma = sm.means_from_dict(d, sample.to_numpy())
+            ph, pa = sm.predict_means(model, sample)
+            if not (np.allclose(mh, ph) and np.allclose(ma, pa)):
+                raise SystemExit(f"ERRORE: il modello {stat}/{variant} serializzato non coincide con scikit-learn")
+            print(f"  [stats {variant}/{stat}] {int(ok.sum())} partite, alpha NB={d['alpha']:.4f}", flush=True)
+            out[variant][stat] = d
+    return out
+
+
 def main():
     t0 = time.time()
     print("Download/lettura dati football-data.co.uk...", flush=True)
@@ -87,9 +113,11 @@ def main():
     print("Feature walk-forward (può richiedere diversi minuti)...", flush=True)
     feat = features.build_features(df)
     feat = feat.join(features.build_xg_features(df)[["xg_lmu", "xg_lnu"]])
+    feat = feat.join(features.build_stat_features(df))
 
     print("Stima degli stack...", flush=True)
     out = {
+        "stats_models": train_stats(feat),
         "version": 2,
         "models": {name: train_one(name, cols, min_season, feat)
                    for name, (cols, min_season) in MODELS.items()},

@@ -10,6 +10,9 @@ Per ogni lega, alla data di oggi:
   5. models/stack.json (coefficienti, scaler, rho)                   -> gol attesi (mu, nu)
   6. matrice dei punteggi con correzione tau -> 1X2, O/U, BTTS, clean sheet, risultati esatti
 
+Statistiche attese (tiri, corner, gialli): modelli in models/stack.json["stats_models"]
+(backtest/stats_model.py), applicati con la stessa variante (with_xg / without_xg) dello stack 1X2.
+
 Due modelli in models/stack.json: "with_xg" (usa gli xG, modello di produzione) e
 "without_xg" (ripiego). Si passa automaticamente a without_xg, partita per partita, se
 Understat non risponde o se mancano gli xG di una delle due squadre: il motivo viene scritto
@@ -36,6 +39,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from backtest import data, features, models, stack, understat  # noqa: E402
+from backtest import stats_model as sm  # noqa: E402
 
 log = logging.getLogger(__name__)
 
@@ -178,6 +182,7 @@ class LeagueState:
         self.teams = teams
         self.n_matches = int(len(tr))
         self.fitted_at = c0.strftime("%Y-%m-%d")
+        self._tr, self._c0, self._stat_fits = tr, c0, None
 
     def resolve(self, *names: str) -> str | None:
         """Nome CSV per una squadra (prova nome breve e completo); None se sconosciuta."""
@@ -196,6 +201,25 @@ class LeagueState:
         if missing:
             return "xG Understat mancanti per " + " e ".join(missing)
         return None
+
+    def stat_logs(self, homes, aways) -> pd.DataFrame:
+        """log mu / log nu di tiri, corner, gialli e falli (Poisson attacco/difesa senza tau,
+        ridge=1, finestra 5 anni): sono le feature proprie/ausiliarie dei modelli delle statistiche.
+        I fit si calcolano alla prima richiesta (servono solo alla pagina statica)."""
+        if self._stat_fits is None:
+            self._stat_fits = {}
+            for name, (cx, cy) in features.STAT_FITS.items():
+                sub = self._tr.dropna(subset=[cx, cy])
+                teams = sorted(set(sub.HomeTeam) | set(sub.AwayTeam))
+                days = (self._c0 - sub.date).dt.days.values
+                self._stat_fits[name] = models.fit_dc(
+                    sub.HomeTeam.values, sub.AwayTeam.values, sub[cx].values, sub[cy].values, days,
+                    features.STAT_XI, use_tau=False, teams=teams, ridge=features.STAT_RIDGE)
+        cols = {}
+        for name, fit in self._stat_fits.items():
+            mu, nu = models.dc_lambdas(fit, list(homes), list(aways))
+            cols[f"{name}_lh"], cols[f"{name}_la"] = np.log(mu), np.log(nu)
+        return pd.DataFrame(cols)
 
     def features(self, homes, aways) -> pd.DataFrame:
         homes, aways = list(homes), list(aways)
@@ -274,6 +298,43 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
         extra = f" (+{len(matches) - 3} altre)" if len(matches) > 3 else ""
         log.warning("Ripiego su without_xg per %d partite: %s | es. %s%s",
                     len(matches), r, "; ".join(matches[:3]), extra)
+    return out
+
+
+STATS_NOTE = ("Modello validato con backtest. Queste statistiche variano molto da partita a partita: "
+              "guarda l'intervallo e le probabilità, non solo il numero medio.")
+
+
+def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str) -> list:
+    """Statistiche attese (tiri, corner, gialli) per ogni partita: valore per squadra, totale,
+    intervallo 80% del totale (Binomiale Negativa) e probabilità Over delle linee. Si usa la stessa
+    variante dello stack 1X2 (with_xg se gli xG ci sono per entrambe le squadre, altrimenti without_xg).
+    Restituisce None per ogni partita se models/stack.json non contiene "stats_models"."""
+    stats_models = model.get("stats_models")
+    if not stats_models or not pairs:
+        return [None] * len(pairs)
+    homes, aways = zip(*pairs)
+    frame = state.features(homes, aways).join(state.stat_logs(homes, aways))
+    frame["Division"] = CSV_CODE[league_key]
+    for c in sm.XG_COLS:
+        if c not in frame:
+            frame[c] = np.nan
+    variant = [WITH_XG if state.xg_fallback_reason(h, a) is None else WITHOUT_XG for h, a in pairs]
+
+    out = [{"model": v, "note": STATS_NOTE} for v in variant]
+    for stat in sm.STATS:
+        for name in (WITH_XG, WITHOUT_XG):
+            rows = [i for i, v in enumerate(variant) if v == name]
+            if not rows:
+                continue
+            d = stats_models[name][stat]
+            if d["features"] != sm.feature_names(stat, name == WITH_XG):
+                raise ValueError(f"models/stack.json: feature di stats_models/{name}/{stat} non coerenti "
+                                 f"con backtest/stats_model.py")
+            X = sm.design(frame.iloc[rows], stat, name == WITH_XG)
+            mh, ma = sm.means_from_dict(d, X.to_numpy())
+            for i, row in zip(rows, sm.page_stats(stat, mh, ma, d["alpha"])):
+                out[i][sm.PAGE_KEY[stat]] = row
     return out
 
 

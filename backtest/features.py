@@ -33,6 +33,12 @@ def _xg_cache_path(ridge):
     return os.path.join(CACHE_DIR, name)
 
 
+STAT_XI = 0.0018                      # modelli delle statistiche attese (tiri, corner, gialli)
+STAT_RIDGE = 1.0
+STAT_FITS = {                         # nome: (colonna casa, colonna ospite)
+    "tiri": ("HS", "AS"), "corner": ("HC", "AC"), "gialli": ("HY", "AY"), "falli": ("HF", "AF"),
+}
+STAT_CACHE_PATH = os.path.join(CACHE_DIR, "stat_features.pkl")
 CORE_COLS = ["dc_lmu", "dc_lnu", "dc_pH", "dc_pD", "dc_pA",
              "sot_lmu", "sot_lnu", "pi_gd", "pi_diff"]
 
@@ -112,3 +118,29 @@ def build_xg_features(df, ridge=XG_RIDGE, rebuild=False, verbose=True):
     os.makedirs(CACHE_DIR, exist_ok=True)
     pd.to_pickle({"key": key, "xg": xg}, cache_path)
     return xg
+
+
+def build_stat_features(df, rebuild=False, verbose=True):
+    """Walk-forward dei Poisson attacco/difesa (senza tau) sui conteggi di tiri, corner, gialli e falli
+    (xi=0.0018, finestra 5 anni, ridge=1): colonne {nome}_lh, {nome}_la = log mu / log nu, dal 2016/17."""
+    key = (len(df), str(df.date.max().date()), STAT_RIDGE, STAT_XI)
+    cached = _cached(STAT_CACHE_PATH, key, rebuild)
+    if cached is not None:
+        if verbose:
+            print("  feature statistiche lette dalla cache")
+        return cached["stat"]
+
+    parts = []
+    for lg, g in df.groupby("Division"):
+        cols = {}
+        for name, (cx, cy) in STAT_FITS.items():
+            if verbose:
+                print(f"  [{lg}] Poisson su {cx}/{cy} (senza tau, ridge={STAT_RIDGE:g})...", flush=True)
+            w = models.walk_forward_dc(g, STAT_XI, start=XG_START, use_tau=False, gx=cx, gy=cy,
+                                       ridge=STAT_RIDGE)
+            cols[f"{name}_lh"], cols[f"{name}_la"] = np.log(w.mu), np.log(w.nu)
+        parts.append(pd.DataFrame(cols))
+    stat = pd.concat(parts).sort_index()
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    pd.to_pickle({"key": key, "stat": stat}, STAT_CACHE_PATH)
+    return stat

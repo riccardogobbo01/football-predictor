@@ -17,8 +17,8 @@ probabilità dei bookmaker senza margine (metodo power) e la differenza modello 
 non usa le quote. Se la partita non c'è la card mostra solo il modello.
 
 Pannello di dettaglio: cliccando (o toccando) una card si apre un pannello con tutti i mercati,
-il confronto col mercato, le "Statistiche attese" (tiri, corner, gialli: medie con decadimento
-temporale da football-data.co.uk, indicative e NON validate) e il "Contesto" (riposo, forma, rating
+il confronto col mercato, le "Statistiche attese" (tiri, corner, gialli: modello validato con backtest, vedi
+backtest/stats_model.py, con intervallo 80% e probabilità Over/Under) e il "Contesto" (riposo, forma, rating
 pi-rating). I dati del pannello sono incorporati nella pagina e salvati in predictions.json.
 
 Monitoraggio (predictions/monitor.py): a ogni esecuzione le previsioni emesse vengono
@@ -118,58 +118,7 @@ def _bar(p: float, color: str) -> str:
             f'style="width:{p*100:.1f}%;background:{color}"></div></div>')
 
 
-# ── Statistiche attese e contesto (indicative, NON validate) ───────────────────
-
-STATS_XI = 0.0018      # decadimento temporale, come il modello
-STATS_SEASONS = 2      # stagione in corso + precedente
-STAT_COLS = {"shots": ("HS", "AS"), "corners": ("HC", "AC"), "yellows": ("HY", "AY")}
-STATS_NOTE = ("Stima indicativa, non validata: media con decadimento temporale (ξ=0,0018, ultime 2 stagioni) "
-              "di quanto ciascuna squadra produce e concede in casa/trasferta, dai CSV di football-data.co.uk. "
-              "Non è stata verificata con un backtest.")
-
-
-def _wmean(frame: pd.DataFrame, col: str, by: str) -> pd.Series:
-    w = frame["_w"]
-    return (frame[col] * w).groupby(frame[by]).sum() / w.groupby(frame[by]).sum()
-
-
-def build_stat_tables(g: pd.DataFrame, today: pd.Timestamp, cur: int) -> dict:
-    """Per ogni statistica (tiri, corner, gialli): medie pesate nel tempo di cio' che ogni squadra
-    produce e concede in casa e in trasferta, piu' le medie di lega (usate se manca la squadra)."""
-    win = g[(g.season >= cur - STATS_SEASONS + 1) & (g.date < today)].copy()
-    if win.empty:
-        return {}
-    win["_w"] = np.exp(-STATS_XI * (today - win.date).dt.days.to_numpy(float))
-    tables = {}
-    for name, (hc, ac) in STAT_COLS.items():
-        if hc not in win.columns or ac not in win.columns:
-            continue
-        sub = win.dropna(subset=[hc, ac])
-        if sub.empty:
-            continue
-        w = sub["_w"]
-        tables[name] = {
-            "home_for": _wmean(sub, hc, "HomeTeam"), "home_against": _wmean(sub, ac, "HomeTeam"),
-            "away_for": _wmean(sub, ac, "AwayTeam"), "away_against": _wmean(sub, hc, "AwayTeam"),
-            "lg_home": float((sub[hc] * w).sum() / w.sum()), "lg_away": float((sub[ac] * w).sum() / w.sum()),
-        }
-    return tables
-
-
-def expected_stats(tables: dict, home, away):
-    """Tiri / corner / gialli attesi per la partita: la produzione di una squadra e' la media tra
-    quanto fa di solito (in casa o in trasferta) e quanto l'avversario concede (in trasferta o in casa).
-    Squadra sconosciuta (None) o senza dati = media di lega. None se non ci sono dati."""
-    if not tables:
-        return None
-    out = {}
-    for name, t in tables.items():
-        home_exp = (t["home_for"].get(home, t["lg_home"]) + t["away_against"].get(away, t["lg_home"])) / 2
-        away_exp = (t["away_for"].get(away, t["lg_away"]) + t["home_against"].get(home, t["lg_away"])) / 2
-        out[name] = {"home": round(float(home_exp), 1), "away": round(float(away_exp), 1),
-                     "total": round(float(home_exp + away_exp), 1)}
-    out["note"] = STATS_NOTE
-    return out
+# ── Contesto ───────────────────────────────────────────────────────────────────
 
 
 def active_teams(g: pd.DataFrame, cur: int, extra=()) -> set:
@@ -274,10 +223,15 @@ body.no-scroll { overflow: hidden; }
 .chip.top { border-color: var(--accent); }
 .chip-s { font-size: 1.05rem; font-weight: 800; }
 .chip-p { font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.st-table { width: 100%; border-collapse: collapse; font-size: .82rem; font-variant-numeric: tabular-nums; }
-.st-table th { font-size: .68rem; color: var(--muted); font-weight: 600; text-align: right; padding: 4px 6px; }
-.st-table th:first-child, .st-table td:first-child { text-align: left; }
-.st-table td { text-align: right; padding: 6px; border-top: 1px solid var(--border); }
+.stat-block { background: var(--bg); border-radius: 10px; padding: 10px 12px 8px; margin-bottom: 10px; }
+.stat-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.stat-name { font-weight: 700; font-size: .86rem; }
+.stat-total { font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--accent); }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
+.stat-cell { background: var(--card); border-radius: 8px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.stat-l { font-size: .64rem; color: var(--muted); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stat-v { font-size: .95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stat-cap { font-size: .64rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 2px 0 6px; }
 .ctx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .ctx-col { background: var(--bg); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
 .ctx-team { font-weight: 700; font-size: .84rem; }
@@ -397,14 +351,24 @@ PANEL_JS = r'''
 
     if (st) {
       var labels = [["shots", "Tiri totali"], ["corners", "Corner totali"], ["yellows", "Gialli totali"]];
-      var rows = labels.filter(function (l) { return st[l[0]]; }).map(function (l) {
+      var blocks = labels.filter(function (l) { return st[l[0]]; }).map(function (l) {
         var o = st[l[0]];
-        return '<tr><td>' + l[1] + '</td><td>' + o.home.toFixed(1) + '</td><td>' + o.away.toFixed(1) +
-               '</td><td><b>' + o.total.toFixed(1) + '</b></td></tr>';
+        var ou = Object.keys(o.over).map(function (L) {
+          var po = o.over[L];
+          return '<div class="prob-row"><span class="prob-lbl pl-wide">' + L + '</span>' + bar(po) +
+            '<span class="prob-pct" style="color:' + color(po) + '">O ' + pct(po) + '</span>' +
+            '<span class="prob-pct pp-under">U ' + pct(1 - po) + '</span></div>';
+        }).join("");
+        return '<div class="stat-block"><div class="stat-head"><span class="stat-name">' + l[1] + '</span>' +
+          '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' +
+          '<div class="stat-grid">' +
+          '<div class="stat-cell"><span class="stat-l">' + h + '</span><span class="stat-v">' + o.home.toFixed(1) + '</span></div>' +
+          '<div class="stat-cell"><span class="stat-l">' + a + '</span><span class="stat-v">' + o.away.toFixed(1) + '</span></div>' +
+          '<div class="stat-cell"><span class="stat-l">Intervallo 80%</span><span class="stat-v">' + o.lo80 + '–' + o.hi80 + '</span></div>' +
+          '</div><div class="stat-cap">Over / Under sul totale</div>' + ou + '</div>';
       }).join("");
-      out += sec("Statistiche attese",
-        '<table class="st-table"><thead><tr><th></th><th>' + h + '</th><th>' + a + '</th><th>Totale</th></tr></thead><tbody>' +
-        rows + '</tbody></table><div class="pn-note warn">' + esc(st.note) + '</div>');
+      out += sec("Statistiche attese", blocks + '<div class="pn-note">' + esc(st.note) + '</div>' +
+        (st.model === "without_xg" ? '<div class="pn-note">Variante senza xG (la stessa usata dal modello 1X2 per questa partita).</div>' : ''));
     }
 
     if (cx) {
@@ -1065,8 +1029,16 @@ def validate_output(all_data: dict) -> list:
             if es:
                 for k in ("shots", "corners", "yellows"):
                     o = es.get(k)
-                    if o and (min(o["home"], o["away"], o["total"]) < 0
-                              or abs(o["home"] + o["away"] - o["total"]) > 0.11):
+                    if not o:
+                        problems.append(f"{tag}: statistiche attese '{k}' mancanti")
+                        continue
+                    ov = [o["over"][L] for L in o["over"]]
+                    if (min(o["home"], o["away"], o["total"]) < 0
+                            or abs(o["home"] + o["away"] - o["total"]) > 0.11
+                            or not (0 <= o["lo80"] <= o["total"] + 0.5 and o["total"] - 0.5 <= o["hi80"])
+                            or o["lo80"] > o["hi80"]
+                            or any(v < 0 or v > 1 for v in ov)
+                            or any(b > a + 1e-9 for a, b in zip(ov, ov[1:]))):
                         problems.append(f"{tag}: statistiche attese '{k}' non valide")
             mk = fix.get("market")
             if mk and (abs(mk["home"] + mk["draw"] + mk["away"] - 1) > PROB_TOL
@@ -1144,15 +1116,15 @@ def main():
         league_rows = new_rows[n0:]
         monitor.attach_fixture_market(league_rows, fx_market)
 
-        # statistiche attese e contesto (indicative, non validate): non toccano il modello
-        tables = build_stat_tables(g, today, cur)
+        # statistiche attese (modello validato, models/stack.json["stats_models"]) e contesto
+        stats_list = sp.stats_for_pairs(state, model, pairs, league_key)
         active = active_teams(g, cur, extra=[t for pair in names for t in pair])
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
                        "prediction": pred, "market": _row_market(row),
-                       "expected_stats": expected_stats(tables, h, a),
+                       "expected_stats": st,
                        "context": {"home": team_context(g, state, h, fix["date"], today, active),
                                    "away": team_context(g, state, a, fix["date"], today, active)}}
-                      for fix, (h, a), pred, row in zip(fixtures, names, preds, league_rows)]
+                      for fix, (h, a), pred, row, st in zip(fixtures, names, preds, league_rows, stats_list)]
 
         all_data[league_key] = {
             "name":         league_info["name"],
