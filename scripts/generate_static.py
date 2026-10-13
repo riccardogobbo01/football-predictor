@@ -21,6 +21,13 @@ il confronto col mercato, le "Statistiche attese" (tiri, corner, gialli: modello
 backtest/stats_model.py, con intervallo 80% e probabilità Over/Under) e il "Contesto" (riposo, forma, rating
 pi-rating). I dati del pannello sono incorporati nella pagina e salvati in predictions.json.
 
+Coppe europee (predictions/cups.py): Champions, Europa e Conference League con il modello Elo di
+models/cups_model.json (rating e partite da clubelo.com, una scaricata al giorno). Stesse card e stesso
+pannello dei campionati, senza statistiche attese né quote; le gare di ritorno a eliminazione diretta
+portano la nota "Previsione della singola partita, non tiene conto del risultato dell'andata". Se
+clubelo.com non risponde la sezione mostra "Dati delle coppe non disponibili oggi" e il resto della
+pagina si genera normalmente. Le partite di coppa entrano anche in docs/history.csv (league=ucl/uel/uecl).
+
 Monitoraggio (predictions/monitor.py): a ogni esecuzione le previsioni emesse vengono
 aggiunte a docs/history.csv (insieme alle probabilità di mercato) e, per le partite giocate,
 si aggiungono i risultati; la log-loss mobile di with_xg, without_xg e mercato compare in un
@@ -46,7 +53,7 @@ import pandas as pd
 import requests
 
 from backtest import data
-from predictions import monitor
+from predictions import cups, monitor
 from predictions import stack_predictor as sp
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -80,13 +87,21 @@ def get_fixtures(league_code: str) -> list[dict]:
     url   = f"https://api.football-data.org/v4/competitions/{league_code}/matches"
 
     try:
-        resp = requests.get(
-            url,
-            headers={"X-Auth-Token": FOOTBALL_DATA_ORG_KEY},
-            params={"dateFrom": today, "dateTo": end, "status": "SCHEDULED,TIMED"},
-            timeout=20,
-        )
-        resp.raise_for_status()
+        for attempt in range(3):          # un errore di rete momentaneo non deve lasciare una lega senza partite
+            try:
+                resp = requests.get(
+                    url,
+                    headers={"X-Auth-Token": FOOTBALL_DATA_ORG_KEY},
+                    params={"dateFrom": today, "dateTo": end, "status": "SCHEDULED,TIMED"},
+                    timeout=20,
+                )
+                resp.raise_for_status()
+                break
+            except (requests.ConnectionError, requests.Timeout) as e:
+                if attempt == 2:
+                    raise
+                log.info("  fixture %s: %s - nuovo tentativo", league_code, type(e).__name__)
+                time.sleep(5 * (attempt + 1))
         matches = []
         for m in resp.json().get("matches", []):
             home = m["homeTeam"].get("shortName") or m["homeTeam"]["name"]
@@ -107,6 +122,40 @@ def get_fixtures(league_code: str) -> list[dict]:
 
 
 # ── Generazione HTML ───────────────────────────────────────────────────────────
+
+def get_finished(league_code: str, cup_key: str, days_back: int = 10) -> list[dict]:
+    """Partite finite di una coppa da football-data.org (risultato dei 90 minuti). Il piano gratuito copre la
+    Champions League; per le altre coppe l'API risponde 403 e la funzione ritorna [] senza errori."""
+    if not FOOTBALL_DATA_ORG_KEY:
+        return []
+    end = datetime.utcnow()
+    try:
+        resp = requests.get(
+            f"https://api.football-data.org/v4/competitions/{league_code}/matches",
+            headers={"X-Auth-Token": FOOTBALL_DATA_ORG_KEY},
+            params={"dateFrom": (end - timedelta(days=days_back)).strftime("%Y-%m-%d"),
+                    "dateTo": end.strftime("%Y-%m-%d"), "status": "FINISHED"},
+            timeout=20)
+        if resp.status_code in (400, 403, 404):
+            log.info("  football-data.org: risultati %s non disponibili (HTTP %s)", league_code, resp.status_code)
+            return []
+        resp.raise_for_status()
+        out = []
+        for m in resp.json().get("matches", []):
+            sc = m.get("score", {})
+            ft = sc.get("regularTime") or sc.get("fullTime") or {}
+            if ft.get("home") is None or ft.get("away") is None:
+                continue
+            out.append({"cup": cup_key, "date": m["utcDate"][:10],
+                        "home": m["homeTeam"].get("shortName") or m["homeTeam"]["name"],
+                        "away": m["awayTeam"].get("shortName") or m["awayTeam"]["name"],
+                        "home_full": m["homeTeam"]["name"], "away_full": m["awayTeam"]["name"],
+                        "hg": int(ft["home"]), "ag": int(ft["away"])})
+        return out
+    except Exception as e:   # servizio esterno: i risultati sono solo un di più per il monitoraggio
+        log.warning("  Errore risultati %s: %s", league_code, e)
+        return []
+
 
 def _prob_color(p: float) -> str:
     if p >= 0.50: return "#4ade80"
@@ -303,10 +352,19 @@ PANEL_JS = r'''
     var p = f.pred, m = f.market, st = f.stats, cx = f.ctx;
     var h = esc(f.home), a = esc(f.away), out = "";
 
-    out += '<div class="ps">' + (p.model === "with_xg"
-      ? '<span class="pill pill-ok">Modello con xG (Understat)</span>'
-      : '<span class="pill pill-warn">Modello senza xG</span>' +
-        (p.fallback_reason ? '<div class="pn-note">Ripiego automatico: ' + esc(p.fallback_reason) + '</div>' : '')) + '</div>';
+    var pill;
+    if (p.model === "cups_elo") {
+      pill = '<span class="pill pill-ok">Modello Elo (coppe europee)</span>';
+    } else if (p.model === "with_xg") {
+      pill = '<span class="pill pill-ok">Modello con xG (Understat)</span>';
+    } else {
+      pill = '<span class="pill pill-warn">Modello senza xG</span>' +
+        (p.fallback_reason ? '<div class="pn-note">Ripiego automatico: ' + esc(p.fallback_reason) + '</div>' : '');
+    }
+    out += '<div class="ps">' + pill +
+      (f.return_leg ? '<div class="pn-note warn">Previsione della singola partita, non tiene conto del risultato dell\'andata</div>' : '') +
+      (f.neutral ? '<div class="pn-note">Finale in campo neutro: media delle due orientazioni (casa/ospite scambiate).</div>' : '') +
+      '</div>';
 
     out += sec("Gol attesi",
       '<div class="pxg"><div class="pxg-side"><div class="pxg-val home">' + p.exp_goals_home.toFixed(2) +
@@ -315,6 +373,14 @@ PANEL_JS = r'''
       '</div><div class="pxg-team">' + a + '</div></div></div>');
 
     out += sec("Esito 1X2", prow("1", p.prob_home) + prow("X", p.prob_draw) + prow("2", p.prob_away));
+
+    if (f.cup && f.elo) {
+      var ed = f.elo.home - f.elo.away;
+      out += sec("Rating Elo (ClubElo)", '<div class="stat-grid">' +
+        '<div class="stat-cell"><span class="stat-l">' + h + '</span><span class="stat-v">' + Math.round(f.elo.home) + '</span></div>' +
+        '<div class="stat-cell"><span class="stat-l">' + a + '</span><span class="stat-v">' + Math.round(f.elo.away) + '</span></div>' +
+        '<div class="stat-cell"><span class="stat-l">Differenza</span><span class="stat-v">' + (ed >= 0 ? "+" : "") + Math.round(ed) + '</span></div></div>');
+    }
 
     if (m) {
       var cells = [["1", "home"], ["X", "draw"], ["2", "away"]].map(function (x) {
@@ -328,7 +394,7 @@ PANEL_JS = r'''
       out += sec("Mercato (senza margine) e differenze",
         '<div class="mkt-grid">' + cells + '</div><div class="pn-note">Δ = modello − mercato; evidenziati gli scarti ' +
         'oltre 5 punti percentuali. Storicamente il mercato è più preciso del modello.</div>');
-    } else {
+    } else if (!f.cup) {
       out += sec("Mercato", '<div class="pn-note">Quote di mercato non disponibili per questa partita ' +
         '(football-data.co.uk/fixtures.csv).</div>');
     }
@@ -371,6 +437,10 @@ PANEL_JS = r'''
         (st.model === "without_xg" ? '<div class="pn-note">Variante senza xG (la stessa usata dal modello 1X2 per questa partita).</div>' : ''));
     }
 
+    if (f.cup) {
+      out += sec("Statistiche e quote", '<div class="pn-note">Statistiche e quote non disponibili per le coppe europee</div>');
+    }
+
     if (cx) {
       out += sec("Contesto", '<div class="ctx-grid">' + ctxCol(h, cx.home) + ctxCol(a, cx.away) + '</div>' +
         '<div class="pn-note">Riposo calcolato solo sulle partite di campionato (coppe escluse). Forma: la partita più ' +
@@ -384,7 +454,7 @@ PANEL_JS = r'''
     if (!f) { return; }
     opener = card;
     title.textContent = f.home + " vs " + f.away;
-    sub.textContent = f.flag + " " + f.league + " · Giornata " + f.matchday + " · " + f.date + " " + f.time + " UTC";
+    sub.textContent = f.flag + " " + f.league + " · " + f.round + " · " + f.date + " " + f.time + " UTC";
     body.innerHTML = render(f);
     body.scrollTop = 0;
     overlay.classList.add("visible");
@@ -486,6 +556,15 @@ def _monitor_html(mon: dict) -> str:
             f'{mon["tracked"]} previsioni registrate, {mon["with_result"]} giocate con risultato.</p></section>')
 
 
+def _skipped_html(ld: dict) -> str:
+    """Partite di coppa non previste perché per un club manca l'Elo su ClubElo (invece di ometterle in silenzio)."""
+    skipped = ld.get("skipped") or []
+    if not skipped:
+        return ""
+    return ('<div class="cup-skipped">Non previste (Elo ClubElo non disponibile per un club): '
+            + _html.escape("; ".join(skipped)) + '</div>')
+
+
 def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
     # Conta totale previsioni
     total_preds = sum(
@@ -505,16 +584,24 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
     # Costruisci le card per ogni lega
     cards_html = ""
     fx_data = {}   # dati del pannello di dettaglio, incorporati nella pagina
+    cups_unavailable = any(ld.get("cup") and ld.get("unavailable") for ld in leagues_data.values())
     for lk, ld in leagues_data.items():
+        if ld.get("cup") and ld.get("unavailable"):
+            continue                                    # un solo avviso per tutte le coppe (vedi sotto)
         has_preds = [f for f in ld["fixtures"] if f.get("prediction")]
         if not has_preds:
+            if ld.get("cup"):
+                cards_html += (f'<div class="league-section" data-league="{lk}"><div class="league-header">'
+                               f'<span class="league-flag">{ld["flag"]}</span><span class="league-name">{ld["name"]}</span>'
+                               f'</div><div class="cups-banner">Nessuna partita di {ld["name"]} nei prossimi '
+                               f'{DAYS_AHEAD} giorni</div>{_skipped_html(ld)}</div>\n')
             continue
 
         cards_html += f'<div class="league-section" data-league="{lk}">\n'
         cards_html += (f'<div class="league-header">'
                        f'<span class="league-flag">{ld["flag"]}</span>'
                        f'<span class="league-name">{ld["name"]}</span>'
-                       f'<span class="league-meta">Stack su {ld["dc_n_matches"]} partite recenti · {ld["dc_fitted_at"]}</span>'
+                       f'<span class="league-meta">{ld["meta_text"]}</span>'
                        f'</div>\n')
         cards_html += '<div class="matches-grid">\n'
 
@@ -524,10 +611,13 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
                 continue
 
             fid = f"{lk}-{i}"
+            round_label = fix.get("stage") or f"Giornata {fix['matchday']}"
             fx_data[fid] = {"league": ld["name"], "flag": ld["flag"], "date": fix["date"], "time": fix["time"],
-                            "matchday": fix["matchday"], "home": fix["home"], "away": fix["away"],
+                            "matchday": fix["matchday"], "round": round_label,
+                            "home": fix["home"], "away": fix["away"],
                             "pred": pred, "market": fix.get("market"), "stats": fix.get("expected_stats"),
-                            "ctx": fix.get("context")}
+                            "ctx": fix.get("context"), "cup": bool(fix.get("cup")), "elo": fix.get("elo"),
+                            "neutral": bool(fix.get("neutral")), "return_leg": bool(fix.get("return_leg"))}
             aria = _html.escape(f"Apri i dettagli di {fix['home']} contro {fix['away']}", quote=True)
 
             ph = pred["prob_home"]
@@ -543,18 +633,24 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
             else:
                 outcome_label, outcome_color = "2 Ospite", "#f87171" if pa > 0.5 else "#fbbf24"
 
-            no_xg_tag = ("" if pred["model"] == "with_xg" else
+            no_xg_tag = ("" if pred["model"] != "without_xg" else
                          ' · <span title="' + _html.escape(pred["fallback_reason"] or "") + '">senza xG</span>')
             top_score = pred["top_scores"][0]
             ts_str = f"{top_score[0]}–{top_score[1]} ({top_score[2]:.1f}%)"
 
             mkt_html = _market_html(pred, fix.get("market"))
+            cup_html = ""
+            if fix.get("cup"):
+                cup_html = (f'<div class="cup-elo">Elo {fix["elo"]["home"]:.0f} · {fix["elo"]["away"]:.0f}'
+                            f'{" · campo neutro" if fix.get("neutral") else ""}</div>')
+                if fix.get("return_leg"):
+                    cup_html += f'<div class="cup-note">{cups.RETURN_LEG_NOTE}</div>'
 
             c = _prob_color
             cards_html += f"""
 <div class="match-card" data-id="{fid}" role="button" tabindex="0" aria-label="{aria}">
   <div class="match-meta">
-    <span>Giornata {fix['matchday']}</span>
+    <span>{round_label}</span>
     <span>{fix['date']} {fix['time']} UTC{no_xg_tag}</span>
   </div>
   <div class="teams-row">
@@ -567,6 +663,7 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
     <div class="team away-team">{fix['away']}</div>
   </div>
   <div class="outcome-badge" style="color:{outcome_color}">{outcome_label} — {max_p*100:.1f}%</div>
+  {cup_html}
   <div class="probs-section">
     <div class="prob-row">
       <span class="prob-lbl">1</span>
@@ -602,7 +699,11 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
   <div class="card-hint">Tocca per i dettagli ›</div>
 </div>
 """
-        cards_html += "</div>\n</div>\n"
+        cards_html += "</div>\n" + _skipped_html(ld) + "</div>\n"
+
+    if cups_unavailable:
+        cards_html += (f'<div class="league-section" data-league="{" ".join(cups.CUPS)}">'
+                       f'<div class="cups-banner">{cups.NOT_AVAILABLE_MSG}</div></div>\n')
 
     fx_json = json.dumps(fx_data, ensure_ascii=False).replace("</", "<\\/")
 
@@ -874,6 +975,16 @@ main {{ padding: 24px 20px 60px; max-width: 1400px; margin: 0 auto; }}
 .mkt-diff {{ font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }}
 .mkt-cell.hi .mkt-diff {{ color: var(--text); font-weight: 700; }}
 {PANEL_CSS}
+.cups-banner {{
+  background: var(--card); border: 1px dashed var(--border); border-radius: var(--radius);
+  padding: 18px; color: var(--muted); font-size: .9rem; text-align: center;
+}}
+.cup-skipped {{ font-size: .74rem; color: var(--muted); margin-top: 10px; }}
+.cup-elo {{ text-align: center; font-size: .72rem; color: var(--muted); margin: -6px 0 8px; }}
+.cup-note {{
+  font-size: .72rem; color: var(--yellow); background: rgba(251,191,36,.10); border-radius: 8px;
+  padding: 5px 8px; margin: 0 0 10px; text-align: center;
+}}
 .disclaimer {{
   font-size: .78rem; color: var(--muted); border-left: 3px solid var(--border);
   padding: 6px 12px; margin-top: 20px;
@@ -929,7 +1040,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
     <strong>{total_preds} previsioni</strong> · aggiornato {generated_at}<br>
-    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat)
+    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat) · coppe: modello Elo
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
 </header>
@@ -949,7 +1060,8 @@ footer a {{ color: var(--accent); text-decoration: none; }}
 <footer>
   Dati: <a href="https://football-data.co.uk" target="_blank">football-data.co.uk</a> ·
   <a href="https://football-data.org" target="_blank">football-data.org</a> ·
-  xG: <a href="https://understat.com" target="_blank">understat.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) ·
+  xG: <a href="https://understat.com" target="_blank">understat.com</a> ·
+  Elo: <a href="https://clubelo.com" target="_blank">clubelo.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) ·
   <a href="predictions.json" target="_blank">JSON grezzo</a>
 </footer>
 
@@ -976,7 +1088,7 @@ function switchTab(league, btn) {{
     if (league === 'all') {{
       sec.style.display = '';
     }} else {{
-      sec.style.display = sec.dataset.league === league ? '' : 'none';
+      sec.style.display = sec.dataset.league.split(' ').indexOf(league) >= 0 ? '' : 'none';
     }}
   }});
 }}
@@ -1011,7 +1123,7 @@ def validate_output(all_data: dict) -> list:
             if not p:
                 problems.append(f"{tag}: nessuna previsione")
                 continue
-            if p.get("model") not in ("with_xg", "without_xg"):
+            if p.get("model") not in ("with_xg", "without_xg", "cups_elo"):
                 problems.append(f"{tag}: modello non indicato")
             if p.get("model") == "without_xg" and not p.get("fallback_reason"):
                 problems.append(f"{tag}: without_xg senza motivo del ripiego")
@@ -1025,6 +1137,11 @@ def validate_output(all_data: dict) -> list:
                 problems.append(f"{tag}: Over non monotoni")
             if any(v > 1 for k, v in p.items() if k.startswith("prob_")):
                 problems.append(f"{tag}: probabilità > 1")
+            if p.get("model") == "cups_elo":
+                if fix.get("expected_stats") or fix.get("market"):
+                    problems.append(f"{tag}: coppa con statistiche o quote")
+                if not fix.get("elo") or min(fix["elo"].values()) < 1000:
+                    problems.append(f"{tag}: Elo non valido")
             es = fix.get("expected_stats")
             if es:
                 for k in ("shots", "corners", "yellows"):
@@ -1132,12 +1249,71 @@ def main():
             "dc_fitted_at": state.fitted_at,
             "dc_n_matches": state.n_matches,
             "dc_teams":     state.teams,
+            "meta_text":    f"Stack su {state.n_matches} partite recenti · {state.fitted_at}",
             "fixtures":     preds_list,
+        }
+
+    # ── Coppe europee (ClubElo) ──
+    cups_status = {"available": False, "error": None, "skipped": [], "cross_check": None,
+                   "fetched_on": None, "clubs": None}
+    cup_fixtures = {k: [] for k in cups.CUPS}
+    cup_model = cups.load_model()                       # file del repo: un errore qui è un bug, non "dati non disponibili"
+    try:
+        cup_data = cups.load_cup_data(today.date())
+        known_pairs = {}
+        for r in history[history.league.isin(list(cups.CUPS))].itertuples():
+            k = (r.league, r.home, r.away)
+            known_pairs[k] = max(known_pairs.get(k, ""), str(r.match_date))
+        cup_fixtures, cups_status["skipped"] = cups.build_fixtures(cup_data, cup_model, today.date(),
+                                                                   DAYS_AHEAD, known_pairs)
+        cups_status.update(available=True, fetched_on=cup_data["fetched_on"], clubs=len(cup_data["ranking"]))
+        log.info("\nCoppe europee (ClubElo del %s, %d club): %s", cup_data["fetched_on"], len(cup_data["ranking"]),
+                 ", ".join(f"{cups.CUPS[k]['name']}={len(v)}" for k, v in cup_fixtures.items()))
+        for msg in cups_status["skipped"]:
+            log.warning("  Coppe: partita non prevista (%s) - %s", msg["cup"], msg["text"])
+
+        # controllo incrociato della Champions con football-data.org
+        if cup_fixtures["ucl"] and FOOTBALL_DATA_ORG_KEY:
+            time.sleep(7)
+            cc = cups.cross_check(cup_fixtures["ucl"], get_fixtures(cups.CUPS["ucl"]["fdo"]))
+            cups_status["cross_check"] = {k: cc[k] for k in ("clubelo", "fdo", "matched")}
+            if cc["only_clubelo"] or cc["only_fdo"]:
+                log.warning("  Champions: controllo incrociato con football-data.org - %d/%d abbinate; "
+                            "solo ClubElo: %s; solo football-data.org: %s", cc["matched"], cc["clubelo"],
+                            cc["only_clubelo"], cc["only_fdo"])
+            else:
+                log.info("  Champions: controllo incrociato con football-data.org OK (%d/%d partite)",
+                         cc["matched"], cc["clubelo"])
+    except Exception as e:   # confine con un sito esterno: qualsiasi problema -> "non disponibili oggi", il resto resta
+        cups_status["error"] = f"{type(e).__name__}: {e}"
+        cup_fixtures = {k: [] for k in cups.CUPS}
+        log.warning("Coppe europee: %s -> sezione coppe 'non disponibile oggi'", cups_status["error"])
+
+    for cup_key, info in cups.CUPS.items():
+        fl = cup_fixtures[cup_key]
+        for fix in fl:
+            new_rows.append(monitor.make_row(cup_key, {**fix, "matchday": fix["stage"]}, fix["prediction"],
+                                             {"with_xg": None, "without_xg": None}, today.strftime("%Y-%m-%d")))
+        all_data[cup_key] = {
+            "name": info["name"], "flag": info["flag"], "cup": True, "unavailable": not cups_status["available"],
+            "meta_text": (f"Modello Elo · ClubElo del {cups_status['fetched_on']}" if cups_status["available"] else ""),
+            "skipped": [x["text"] for x in cups_status["skipped"] if x["cup"] == cup_key],
+            "fixtures": fl,
         }
 
     # ── Storico e monitoraggio ──
     history = monitor.upsert(history, new_rows, today)
     history = monitor.fill_results(history, df, today)
+
+    # risultati delle coppe (football-data.org: di fatto solo la Champions League)
+    today_s = today.strftime("%Y-%m-%d")
+    pending = history[history.league.isin(list(cups.CUPS)) & history.result.isna() & (history.match_date <= today_s)]
+    if len(pending):
+        finished = []
+        for cup_key in sorted(set(pending.league)):
+            time.sleep(7)
+            finished += get_finished(cups.CUPS[cup_key]["fdo"], cup_key)
+        history = cups.apply_results(history, finished, today)
     monitor.save_history(history, history_path)
     mon = monitor.rolling_logloss(history)
     log.info("Storico: %d partite registrate, %d con risultato, %d con quote di mercato",
@@ -1152,7 +1328,7 @@ def main():
     # ── Output ──
     log.info("\nScrittura output...")
 
-    counts = {"with_xg": 0, "without_xg": 0}
+    counts = {"with_xg": 0, "without_xg": 0, "cups_elo": 0}
     for ld in all_data.values():
         for fix in ld["fixtures"]:
             counts[fix["prediction"]["model"]] += 1
@@ -1162,7 +1338,7 @@ def main():
                           for fix in ld["fixtures"] if fix["prediction"]["fallback_reason"]})
         log.warning("   %d partite su %d con ripiego without_xg (dettaglio per partita in "
                     "docs/predictions.json). Motivi: %s",
-                    counts["without_xg"], sum(counts.values()), " | ".join(reasons))
+                    counts["without_xg"], counts["with_xg"] + counts["without_xg"], " | ".join(reasons))
 
     with open("docs/predictions.json", "w", encoding="utf-8") as f:
         json.dump({"generated_at": generated_at,
@@ -1171,6 +1347,7 @@ def main():
                              "n_train": {k: v["meta"]["n_train"] for k, v in model["models"].items()}},
                    "xg_status": {"available": xg_error is None, "error": xg_error},
                    "model_counts": counts,
+                   "cups_status": cups_status,
                    "monitor": mon,
                    "leagues": all_data},
                   f, ensure_ascii=False, indent=2)
