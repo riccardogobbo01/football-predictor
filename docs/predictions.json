@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15 12:25 UTC",
+  "generated_at": "2026-10-15 12:36 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-10-12 10:33 UTC",
@@ -149,6 +149,12 @@
                 0,
                 5.4
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.6
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -311,6 +317,12 @@
                 6.9
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              2,
+              10.8
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -471,6 +483,12 @@
                 0,
                 5.8
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -633,6 +651,12 @@
                 6.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              12.1
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -793,6 +817,12 @@
                 1,
                 6.6
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              11.6
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -955,6 +985,12 @@
                 6.4
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              9.7
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -1115,6 +1151,12 @@
                 1,
                 6.0
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.3
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -1277,6 +1319,12 @@
                 6.5
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              12.2
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -1437,6 +1485,12 @@
                 0,
                 7.5
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              8.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -1599,6 +1653,12 @@
                 7.3
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -1759,6 +1819,12 @@
                 1,
                 6.5
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              10.5
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -1921,6 +1987,12 @@
                 7.4
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -2081,6 +2153,12 @@
                 1,
                 7.1
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -2243,6 +2321,12 @@
                 7.7
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              9.7
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -2403,6 +2487,12 @@
                 0,
                 7.0
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              13.4
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -2565,6 +2655,12 @@
                 7.5
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.4
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -2725,6 +2821,12 @@
                 0,
                 6.5
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -2887,6 +2989,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              10.1
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -3047,6 +3155,12 @@
                 0,
                 6.6
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              2,
+              13.0
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -3209,6 +3323,12 @@
                 6.6
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              9.7
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -3369,6 +3489,12 @@
                 0,
                 6.8
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.8
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -3531,6 +3657,12 @@
                 7.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              11.4
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -3691,6 +3823,12 @@
                 0,
                 6.3
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.6
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -3853,6 +3991,12 @@
                 6.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              11.1
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -4013,6 +4157,12 @@
                 1,
                 6.4
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              2,
+              9.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -4175,6 +4325,12 @@
                 7.4
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -4335,6 +4491,12 @@
                 3,
                 6.3
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              13.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -4497,6 +4659,12 @@
                 6.9
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              11.4
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -4658,6 +4826,12 @@
                 5.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.5
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -4818,6 +4992,12 @@
                 0,
                 6.6
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.0
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -5020,6 +5200,12 @@
                 6.1
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.5
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -5180,6 +5366,12 @@
                 1,
                 6.8
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              11.0
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -5342,6 +5534,12 @@
                 7.0
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -5502,6 +5700,12 @@
                 0,
                 6.2
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.5
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -5664,6 +5868,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.1
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -5824,6 +6034,12 @@
                 1,
                 5.9
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              10.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -5986,6 +6202,12 @@
                 6.2
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -6146,6 +6368,12 @@
                 2,
                 5.8
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -6308,6 +6536,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              11.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -6468,6 +6702,12 @@
                 1,
                 7.7
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              10.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -6630,6 +6870,12 @@
                 6.4
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -6790,6 +7036,12 @@
                 3,
                 6.0
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.8
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -6952,6 +7204,12 @@
                 6.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              12.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -7112,6 +7370,12 @@
                 2,
                 8.0
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              9.4
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -7274,6 +7538,12 @@
                 6.0
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.8
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -7434,6 +7704,12 @@
                 2,
                 6.2
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -7596,6 +7872,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              8.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -7756,6 +8038,12 @@
                 2,
                 6.3
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.3
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -7918,6 +8206,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.5
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -8078,6 +8372,12 @@
                 1,
                 7.9
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              9.3
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -8278,6 +8578,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.5
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -8438,6 +8744,12 @@
                 0,
                 6.1
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -8600,6 +8912,12 @@
                 6.2
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -8760,6 +9078,12 @@
                 1,
                 6.6
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              13.3
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -8922,6 +9246,12 @@
                 6.6
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              8.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -9082,6 +9412,12 @@
                 2,
                 6.2
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.6
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -9244,6 +9580,12 @@
                 5.2
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              3,
+              1,
+              8.0
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -9404,6 +9746,12 @@
                 0,
                 6.6
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -9566,6 +9914,12 @@
                 5.5
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.5
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -9726,6 +10080,12 @@
                 0,
                 5.7
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -9888,6 +10248,12 @@
                 5.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -10048,6 +10414,12 @@
                 2,
                 5.7
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -10210,6 +10582,12 @@
                 7.6
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              9.8
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -10370,6 +10748,12 @@
                 2,
                 7.8
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              10.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -10532,6 +10916,12 @@
                 5.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.7
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -10692,6 +11082,12 @@
                 0,
                 7.4
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.6
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -10854,6 +11250,12 @@
                 6.4
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.2
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -11014,6 +11416,12 @@
                 3,
                 6.7
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -11216,6 +11624,12 @@
                 6.4
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.0
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -11376,6 +11790,12 @@
                 0,
                 6.0
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -11538,6 +11958,12 @@
                 7.7
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              9.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -11698,6 +12124,12 @@
                 2,
                 6.1
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.6
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -11860,6 +12292,12 @@
                 7.6
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.3
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -12020,6 +12458,12 @@
                 2,
                 6.1
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.7
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -12182,6 +12626,12 @@
                 8.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              11.2
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -12342,6 +12792,12 @@
                 0,
                 7.5
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              11.4
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -12504,6 +12960,12 @@
                 7.6
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              11.8
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -12664,6 +13126,12 @@
                 1,
                 7.4
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              11.2
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -12826,6 +13294,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.8
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -12986,6 +13460,12 @@
                 0,
                 8.5
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              14.4
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -13148,6 +13628,12 @@
                 6.0
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -13308,6 +13794,12 @@
                 0,
                 5.9
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              8.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -13470,6 +13962,12 @@
                 6.5
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.3
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -13630,6 +14128,12 @@
                 1,
                 7.5
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              11.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -13792,6 +14296,12 @@
                 6.7
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              15.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -13952,6 +14462,12 @@
                 0,
                 7.0
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              8.4
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -14114,6 +14630,12 @@
                 6.2
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.6
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -14275,6 +14797,12 @@
                 5.4
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.0
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -14435,6 +14963,12 @@
                 1,
                 8.1
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              11.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -14634,6 +15168,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -14794,6 +15334,12 @@
                 3,
                 5.8
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.8
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -14956,6 +15502,12 @@
                 7.5
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              2,
+              10.2
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -15116,6 +15668,12 @@
                 1,
                 5.9
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              10.2
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -15278,6 +15836,12 @@
                 6.0
               ]
             ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -15438,6 +16002,12 @@
                 0,
                 7.0
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -15600,6 +16170,12 @@
                 6.2
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.3
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -15760,6 +16336,12 @@
                 2,
                 7.5
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              1,
+              0,
+              9.9
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -15922,6 +16504,12 @@
                 6.2
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -16082,6 +16670,12 @@
                 2,
                 5.9
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.5
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -16244,6 +16838,12 @@
                 6.8
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              12.4
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -16404,6 +17004,12 @@
                 1,
                 5.9
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.8
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -16566,6 +17172,12 @@
                 7.1
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.1
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -16726,6 +17338,12 @@
                 1,
                 7.2
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.2
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -16888,6 +17506,12 @@
                 6.5
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.2
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -17048,6 +17672,12 @@
                 2,
                 7.6
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              0,
+              1,
+              10.1
             ],
             "model": "with_xg",
             "fallback_reason": null
@@ -17210,6 +17840,12 @@
                 6.3
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.0
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -17371,6 +18007,12 @@
                 6.9
               ]
             ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.7
+            ],
             "model": "with_xg",
             "fallback_reason": null
           },
@@ -17512,49 +18154,55 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.82,
-            "exp_goals_away": 1.19,
-            "prob_home": 0.52267,
-            "prob_draw": 0.22736,
-            "prob_away": 0.24997,
-            "prob_o05": 0.95177,
-            "prob_o15": 0.80016,
-            "prob_o25": 0.57778,
-            "prob_o35": 0.35374,
-            "prob_btts": 0.58066,
-            "prob_cs_home": 0.30509,
-            "prob_cs_away": 0.16248,
+            "exp_goals_home": 1.85,
+            "exp_goals_away": 1.14,
+            "prob_home": 0.54015,
+            "prob_draw": 0.22466,
+            "prob_away": 0.23518,
+            "prob_o05": 0.95106,
+            "prob_o15": 0.79776,
+            "prob_o25": 0.57429,
+            "prob_o35": 0.35025,
+            "prob_btts": 0.57193,
+            "prob_cs_home": 0.31935,
+            "prob_cs_away": 0.15767,
             "top_scores": [
               [
                 1,
                 1,
-                10.6
+                10.5
               ],
               [
                 2,
                 1,
-                9.7
+                9.8
               ],
               [
                 1,
                 0,
-                9.1
+                9.4
               ],
               [
                 2,
                 0,
-                8.2
+                8.6
               ],
               [
                 1,
                 2,
-                6.3
+                6.1
               ],
               [
-                0,
+                3,
                 1,
                 6.0
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.8
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -17567,6 +18215,8 @@
             "home": 1686.0,
             "away": 1629.0
           },
+          "home_elo": 1686.0,
+          "away_elo": 1629.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -17588,18 +18238,18 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.41,
-            "exp_goals_away": 1.53,
-            "prob_home": 0.35039,
-            "prob_draw": 0.24242,
-            "prob_away": 0.40718,
-            "prob_o05": 0.94855,
-            "prob_o15": 0.79024,
-            "prob_o25": 0.56317,
-            "prob_o35": 0.33927,
-            "prob_btts": 0.5906,
-            "prob_cs_home": 0.2157,
-            "prob_cs_away": 0.24516,
+            "exp_goals_home": 1.29,
+            "exp_goals_away": 1.6,
+            "prob_home": 0.30842,
+            "prob_draw": 0.24168,
+            "prob_away": 0.44991,
+            "prob_o05": 0.94603,
+            "prob_o15": 0.78252,
+            "prob_o25": 0.55206,
+            "prob_o35": 0.32847,
+            "prob_btts": 0.57687,
+            "prob_cs_home": 0.20097,
+            "prob_cs_away": 0.27613,
             "top_scores": [
               [
                 1,
@@ -17609,28 +18259,34 @@
               [
                 1,
                 2,
-                8.7
+                9.2
               ],
               [
                 0,
                 1,
-                8.3
+                9.1
               ],
               [
                 2,
                 1,
-                8.0
+                7.4
               ],
               [
                 1,
                 0,
-                7.6
+                7.3
               ],
               [
                 0,
                 2,
-                6.2
+                7.1
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.2
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -17643,6 +18299,8 @@
             "home": 1517.0,
             "away": 1645.0
           },
+          "home_elo": 1517.0,
+          "away_elo": 1645.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -17664,49 +18322,55 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.28,
-            "exp_goals_away": 1.69,
-            "prob_home": 0.29259,
-            "prob_draw": 0.23641,
-            "prob_away": 0.47099,
-            "prob_o05": 0.94982,
-            "prob_o15": 0.79412,
-            "prob_o25": 0.56885,
-            "prob_o35": 0.34485,
-            "prob_btts": 0.58657,
-            "prob_cs_home": 0.18537,
-            "prob_cs_away": 0.27824,
+            "exp_goals_home": 1.13,
+            "exp_goals_away": 1.82,
+            "prob_home": 0.23597,
+            "prob_draw": 0.22699,
+            "prob_away": 0.53704,
+            "prob_o05": 0.94885,
+            "prob_o15": 0.7911,
+            "prob_o25": 0.56445,
+            "prob_o35": 0.34052,
+            "prob_btts": 0.56481,
+            "prob_cs_home": 0.16226,
+            "prob_cs_away": 0.32408,
             "top_scores": [
               [
                 1,
                 1,
-                11.0
+                10.6
               ],
               [
                 1,
                 2,
-                9.4
+                9.8
               ],
               [
                 0,
                 1,
-                8.8
+                9.7
               ],
               [
                 0,
                 2,
-                7.3
+                8.7
               ],
               [
                 2,
                 1,
-                7.1
+                6.1
               ],
               [
                 1,
                 0,
-                6.7
+                6.1
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.8
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -17719,6 +18383,8 @@
             "home": 1680.0,
             "away": 1876.0
           },
+          "home_elo": 1680.0,
+          "away_elo": 1876.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -17740,49 +18406,55 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.6,
+            "exp_goals_home": 1.54,
             "exp_goals_away": 1.35,
-            "prob_home": 0.43524,
-            "prob_draw": 0.2405,
-            "prob_away": 0.32426,
-            "prob_o05": 0.94897,
-            "prob_o15": 0.79152,
-            "prob_o25": 0.56505,
-            "prob_o35": 0.34111,
-            "prob_btts": 0.58939,
-            "prob_cs_home": 0.25963,
-            "prob_cs_away": 0.20201,
+            "prob_home": 0.42082,
+            "prob_draw": 0.24366,
+            "prob_away": 0.33551,
+            "prob_o05": 0.94626,
+            "prob_o15": 0.78315,
+            "prob_o25": 0.55299,
+            "prob_o35": 0.32936,
+            "prob_btts": 0.58139,
+            "prob_cs_home": 0.25869,
+            "prob_cs_away": 0.21367,
             "top_scores": [
               [
                 1,
                 1,
-                11.2
+                11.4
               ],
               [
                 2,
                 1,
-                9.0
+                8.9
               ],
               [
                 1,
                 0,
-                8.5
+                8.7
               ],
               [
                 1,
                 2,
+                7.8
+              ],
+              [
+                0,
+                1,
                 7.6
               ],
               [
-                0,
-                1,
-                7.2
-              ],
-              [
                 2,
                 0,
-                6.7
+                6.6
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              8.9
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -17795,6 +18467,8 @@
             "home": 1795.0,
             "away": 1830.0
           },
+          "home_elo": 1795.0,
+          "away_elo": 1830.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -17816,49 +18490,55 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.34,
-            "exp_goals_away": 1.61,
-            "prob_home": 0.31841,
-            "prob_draw": 0.23991,
-            "prob_away": 0.44168,
-            "prob_o05": 0.94908,
-            "prob_o15": 0.79185,
-            "prob_o25": 0.56553,
-            "prob_o35": 0.34158,
-            "prob_btts": 0.58892,
-            "prob_cs_home": 0.19898,
-            "prob_cs_away": 0.26302,
+            "exp_goals_home": 1.2,
+            "exp_goals_away": 1.72,
+            "prob_home": 0.26779,
+            "prob_draw": 0.23496,
+            "prob_away": 0.49724,
+            "prob_o05": 0.94727,
+            "prob_o15": 0.78628,
+            "prob_o25": 0.55746,
+            "prob_o35": 0.33369,
+            "prob_btts": 0.57119,
+            "prob_cs_home": 0.17948,
+            "prob_cs_away": 0.30206,
             "top_scores": [
               [
                 1,
                 1,
-                11.1
+                11.0
               ],
               [
                 1,
                 2,
-                9.1
+                9.6
               ],
               [
                 0,
                 1,
-                8.6
-              ],
-              [
-                2,
-                1,
-                7.5
-              ],
-              [
-                1,
-                0,
-                7.1
+                9.5
               ],
               [
                 0,
                 2,
-                6.8
+                8.0
+              ],
+              [
+                2,
+                1,
+                6.7
+              ],
+              [
+                1,
+                0,
+                6.6
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              9.6
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -17871,6 +18551,8 @@
             "home": 1654.0,
             "away": 1819.0
           },
+          "home_elo": 1654.0,
+          "away_elo": 1819.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -17892,19 +18574,24 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 2.03,
-            "exp_goals_away": 1.06,
-            "prob_home": 0.5995,
-            "prob_draw": 0.20781,
-            "prob_away": 0.19269,
-            "prob_o05": 0.95593,
-            "prob_o15": 0.8133,
-            "prob_o25": 0.59764,
-            "prob_o35": 0.37392,
-            "prob_btts": 0.56712,
-            "prob_cs_home": 0.34606,
-            "prob_cs_away": 0.1309,
+            "exp_goals_home": 2.16,
+            "exp_goals_away": 0.98,
+            "prob_home": 0.6443,
+            "prob_draw": 0.19377,
+            "prob_away": 0.16192,
+            "prob_o05": 0.95825,
+            "prob_o15": 0.8206,
+            "prob_o25": 0.60901,
+            "prob_o35": 0.38575,
+            "prob_btts": 0.55284,
+            "prob_cs_home": 0.37405,
+            "prob_cs_away": 0.11486,
             "top_scores": [
+              [
+                2,
+                0,
+                10.1
+              ],
               [
                 2,
                 1,
@@ -17912,29 +18599,30 @@
               ],
               [
                 1,
-                1,
-                9.7
-              ],
-              [
-                2,
                 0,
                 9.4
               ],
               [
                 1,
+                1,
+                9.0
+              ],
+              [
+                3,
                 0,
-                9.3
+                7.3
               ],
               [
                 3,
                 1,
-                6.7
-              ],
-              [
-                3,
-                0,
-                6.3
+                7.1
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.1
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -17947,6 +18635,8 @@
             "home": 1654.0,
             "away": 1516.0
           },
+          "home_elo": 1654.0,
+          "away_elo": 1516.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -17968,18 +18658,18 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.76,
-            "exp_goals_away": 1.23,
-            "prob_home": 0.50069,
-            "prob_draw": 0.23163,
-            "prob_away": 0.26769,
-            "prob_o05": 0.95086,
-            "prob_o15": 0.79734,
-            "prob_o25": 0.5736,
-            "prob_o35": 0.34956,
-            "prob_btts": 0.58353,
-            "prob_cs_home": 0.29359,
-            "prob_cs_away": 0.17202,
+            "exp_goals_home": 1.77,
+            "exp_goals_away": 1.19,
+            "prob_home": 0.51007,
+            "prob_draw": 0.23122,
+            "prob_away": 0.25871,
+            "prob_o05": 0.94947,
+            "prob_o15": 0.79288,
+            "prob_o25": 0.56709,
+            "prob_o35": 0.34312,
+            "prob_btts": 0.57556,
+            "prob_cs_home": 0.30396,
+            "prob_cs_away": 0.171,
             "top_scores": [
               [
                 1,
@@ -17989,28 +18679,34 @@
               [
                 2,
                 1,
-                9.6
+                9.7
               ],
               [
                 1,
                 0,
-                9.0
+                9.3
               ],
               [
                 2,
                 0,
-                7.8
+                8.1
               ],
               [
                 1,
                 2,
-                6.7
+                6.5
               ],
               [
                 0,
                 1,
                 6.3
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.7
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18023,6 +18719,8 @@
             "home": 1808.0,
             "away": 1774.0
           },
+          "home_elo": 1808.0,
+          "away_elo": 1774.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18044,49 +18742,55 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 2.16,
-            "exp_goals_away": 1.0,
-            "prob_home": 0.63835,
-            "prob_draw": 0.19534,
-            "prob_away": 0.16631,
-            "prob_o05": 0.95858,
-            "prob_o15": 0.82189,
-            "prob_o25": 0.61094,
-            "prob_o35": 0.38777,
-            "prob_btts": 0.55811,
-            "prob_cs_home": 0.36744,
-            "prob_cs_away": 0.11587,
+            "exp_goals_home": 2.35,
+            "exp_goals_away": 0.91,
+            "prob_home": 0.69559,
+            "prob_draw": 0.17423,
+            "prob_away": 0.13018,
+            "prob_o05": 0.96268,
+            "prob_o15": 0.83529,
+            "prob_o25": 0.63233,
+            "prob_o35": 0.41065,
+            "prob_btts": 0.53943,
+            "prob_cs_home": 0.40244,
+            "prob_cs_away": 0.09545,
             "top_scores": [
               [
                 2,
-                1,
-                9.9
+                0,
+                10.6
               ],
               [
                 2,
-                0,
-                9.9
+                1,
+                9.6
               ],
               [
                 1,
                 0,
-                9.3
-              ],
-              [
-                1,
-                1,
                 9.1
               ],
               [
                 3,
+                0,
+                8.3
+              ],
+              [
                 1,
-                7.1
+                1,
+                8.1
               ],
               [
                 3,
-                0,
-                7.1
+                1,
+                7.6
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.6
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18099,6 +18803,8 @@
             "home": 1856.0,
             "away": 1676.0
           },
+          "home_elo": 1856.0,
+          "away_elo": 1676.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18120,49 +18826,55 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 2.26,
-            "exp_goals_away": 0.96,
-            "prob_home": 0.6681,
-            "prob_draw": 0.18467,
-            "prob_away": 0.14723,
-            "prob_o05": 0.96084,
-            "prob_o15": 0.82936,
-            "prob_o25": 0.62274,
-            "prob_o35": 0.4003,
-            "prob_btts": 0.55016,
-            "prob_cs_home": 0.38425,
-            "prob_cs_away": 0.10474,
+            "exp_goals_home": 2.51,
+            "exp_goals_away": 0.86,
+            "prob_home": 0.73381,
+            "prob_draw": 0.1579,
+            "prob_away": 0.10829,
+            "prob_o05": 0.96633,
+            "prob_o15": 0.84781,
+            "prob_o25": 0.65289,
+            "prob_o35": 0.43332,
+            "prob_btts": 0.52742,
+            "prob_cs_home": 0.42462,
+            "prob_cs_away": 0.08163,
             "top_scores": [
               [
                 2,
                 0,
-                10.2
+                10.9
               ],
               [
                 2,
                 1,
-                9.8
-              ],
-              [
-                1,
-                0,
-                9.2
-              ],
-              [
-                1,
-                1,
-                8.6
+                9.3
               ],
               [
                 3,
                 0,
-                7.7
+                9.1
+              ],
+              [
+                1,
+                0,
+                8.8
               ],
               [
                 3,
                 1,
-                7.4
+                7.8
+              ],
+              [
+                1,
+                1,
+                7.3
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              0,
+              10.9
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18175,6 +18887,8 @@
             "home": 1850.0,
             "away": 1637.0
           },
+          "home_elo": 1850.0,
+          "away_elo": 1637.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18196,33 +18910,38 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.49,
-            "exp_goals_away": 1.45,
-            "prob_home": 0.38804,
-            "prob_draw": 0.24302,
-            "prob_away": 0.36894,
-            "prob_o05": 0.94843,
-            "prob_o15": 0.78987,
-            "prob_o25": 0.56264,
-            "prob_o35": 0.33874,
-            "prob_btts": 0.59101,
-            "prob_cs_home": 0.23523,
-            "prob_cs_away": 0.22533,
+            "exp_goals_home": 1.4,
+            "exp_goals_away": 1.49,
+            "prob_home": 0.3576,
+            "prob_draw": 0.24528,
+            "prob_away": 0.39712,
+            "prob_o05": 0.94553,
+            "prob_o15": 0.781,
+            "prob_o25": 0.5499,
+            "prob_o35": 0.32639,
+            "prob_btts": 0.58067,
+            "prob_cs_home": 0.22645,
+            "prob_cs_away": 0.24735,
             "top_scores": [
               [
                 1,
                 1,
-                11.3
+                11.5
               ],
               [
+                1,
                 2,
+                8.6
+              ],
+              [
+                0,
                 1,
                 8.5
               ],
               [
-                1,
                 2,
-                8.3
+                1,
+                8.1
               ],
               [
                 1,
@@ -18231,14 +18950,15 @@
               ],
               [
                 0,
-                1,
-                7.8
-              ],
-              [
-                2,
                 2,
                 6.2
               ]
+            ],
+            "rec_outcome": "2",
+            "rec_score": [
+              1,
+              2,
+              8.6
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18251,6 +18971,8 @@
             "home": 1752.0,
             "away": 1838.0
           },
+          "home_elo": 1752.0,
+          "away_elo": 1838.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18272,38 +18994,38 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.68,
-            "exp_goals_away": 1.28,
-            "prob_home": 0.46924,
-            "prob_draw": 0.23663,
-            "prob_away": 0.29413,
-            "prob_o05": 0.9498,
-            "prob_o15": 0.79406,
-            "prob_o25": 0.56876,
-            "prob_o35": 0.34476,
-            "prob_btts": 0.58685,
-            "prob_cs_home": 0.27723,
-            "prob_cs_away": 0.18612,
+            "exp_goals_home": 1.66,
+            "exp_goals_away": 1.27,
+            "prob_home": 0.46706,
+            "prob_draw": 0.23859,
+            "prob_away": 0.29435,
+            "prob_o05": 0.94763,
+            "prob_o15": 0.78728,
+            "prob_o25": 0.55893,
+            "prob_o35": 0.33513,
+            "prob_btts": 0.57931,
+            "prob_cs_home": 0.28212,
+            "prob_cs_away": 0.19094,
             "top_scores": [
               [
                 1,
                 1,
-                11.0
+                11.1
               ],
               [
                 2,
                 1,
-                9.4
+                9.3
               ],
               [
                 1,
                 0,
-                8.8
+                9.1
               ],
               [
                 2,
                 0,
-                7.3
+                7.4
               ],
               [
                 1,
@@ -18313,8 +19035,14 @@
               [
                 0,
                 1,
-                6.8
+                7.0
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.3
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18327,6 +19055,8 @@
             "home": 1668.0,
             "away": 1667.0
           },
+          "home_elo": 1668.0,
+          "away_elo": 1667.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18349,17 +19079,17 @@
           "new_team": false,
           "prediction": {
             "exp_goals_home": 1.75,
-            "exp_goals_away": 1.23,
-            "prob_home": 0.49687,
-            "prob_draw": 0.23231,
-            "prob_away": 0.27083,
-            "prob_o05": 0.95072,
-            "prob_o15": 0.7969,
-            "prob_o25": 0.57294,
-            "prob_o35": 0.34891,
-            "prob_btts": 0.58398,
-            "prob_cs_home": 0.2916,
-            "prob_cs_away": 0.17371,
+            "exp_goals_away": 1.2,
+            "prob_home": 0.50484,
+            "prob_draw": 0.23225,
+            "prob_away": 0.26291,
+            "prob_o05": 0.94922,
+            "prob_o15": 0.79211,
+            "prob_o25": 0.56597,
+            "prob_o35": 0.34201,
+            "prob_btts": 0.57611,
+            "prob_cs_home": 0.3013,
+            "prob_cs_away": 0.17337,
             "top_scores": [
               [
                 1,
@@ -18374,23 +19104,29 @@
               [
                 1,
                 0,
-                9.0
+                9.3
               ],
               [
                 2,
                 0,
-                7.8
+                8.0
               ],
               [
                 1,
                 2,
-                6.7
+                6.6
               ],
               [
                 0,
                 1,
                 6.4
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.6
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18403,6 +19139,8 @@
             "home": 1661.0,
             "away": 1631.0
           },
+          "home_elo": 1661.0,
+          "away_elo": 1631.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18424,18 +19162,18 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.73,
-            "exp_goals_away": 1.25,
-            "prob_home": 0.48828,
-            "prob_draw": 0.23376,
-            "prob_away": 0.27796,
-            "prob_o05": 0.95041,
-            "prob_o15": 0.79594,
-            "prob_o25": 0.57153,
-            "prob_o35": 0.34751,
-            "prob_btts": 0.58495,
-            "prob_cs_home": 0.28712,
-            "prob_cs_away": 0.17752,
+            "exp_goals_home": 1.72,
+            "exp_goals_away": 1.22,
+            "prob_home": 0.49308,
+            "prob_draw": 0.23442,
+            "prob_away": 0.27249,
+            "prob_o05": 0.94868,
+            "prob_o15": 0.79047,
+            "prob_o25": 0.56357,
+            "prob_o35": 0.33966,
+            "prob_btts": 0.57725,
+            "prob_cs_home": 0.29532,
+            "prob_cs_away": 0.17875,
             "top_scores": [
               [
                 1,
@@ -18450,23 +19188,29 @@
               [
                 1,
                 0,
-                8.9
+                9.2
               ],
               [
                 2,
                 0,
-                7.6
+                7.8
               ],
               [
                 1,
                 2,
-                6.9
+                6.8
               ],
               [
                 0,
                 1,
-                6.5
+                6.6
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.5
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18479,6 +19223,8 @@
             "home": 1721.0,
             "away": 1700.0
           },
+          "home_elo": 1721.0,
+          "away_elo": 1700.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18500,18 +19246,18 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.78,
-            "exp_goals_away": 1.21,
-            "prob_home": 0.50928,
-            "prob_draw": 0.23003,
-            "prob_away": 0.26068,
-            "prob_o05": 0.9512,
-            "prob_o15": 0.79839,
-            "prob_o25": 0.57516,
-            "prob_o35": 0.35112,
-            "prob_btts": 0.58246,
-            "prob_cs_home": 0.29808,
-            "prob_cs_away": 0.16826,
+            "exp_goals_home": 1.8,
+            "exp_goals_away": 1.17,
+            "prob_home": 0.52184,
+            "prob_draw": 0.22879,
+            "prob_away": 0.24937,
+            "prob_o05": 0.95007,
+            "prob_o15": 0.79469,
+            "prob_o25": 0.56976,
+            "prob_o35": 0.34576,
+            "prob_btts": 0.57424,
+            "prob_cs_home": 0.30997,
+            "prob_cs_away": 0.16572,
             "top_scores": [
               [
                 1,
@@ -18521,28 +19267,34 @@
               [
                 2,
                 1,
-                9.6
+                9.7
               ],
               [
                 1,
                 0,
-                9.1
+                9.4
               ],
               [
                 2,
                 0,
-                8.0
+                8.3
               ],
               [
                 1,
                 2,
-                6.5
+                6.3
               ],
               [
                 0,
                 1,
                 6.2
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.7
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18555,6 +19307,8 @@
             "home": 1767.0,
             "away": 1724.0
           },
+          "home_elo": 1767.0,
+          "away_elo": 1724.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
@@ -18576,23 +19330,23 @@
           "away_dc": null,
           "new_team": false,
           "prediction": {
-            "exp_goals_home": 1.7,
-            "exp_goals_away": 1.27,
-            "prob_home": 0.47494,
-            "prob_draw": 0.23582,
-            "prob_away": 0.28924,
-            "prob_o05": 0.94997,
-            "prob_o15": 0.79459,
-            "prob_o25": 0.56953,
-            "prob_o35": 0.34553,
-            "prob_btts": 0.58632,
-            "prob_cs_home": 0.28019,
-            "prob_cs_away": 0.18352,
+            "exp_goals_home": 1.68,
+            "exp_goals_away": 1.25,
+            "prob_home": 0.47485,
+            "prob_draw": 0.23744,
+            "prob_away": 0.28772,
+            "prob_o05": 0.94793,
+            "prob_o15": 0.78817,
+            "prob_o25": 0.56023,
+            "prob_o35": 0.33639,
+            "prob_btts": 0.57876,
+            "prob_cs_home": 0.28607,
+            "prob_cs_away": 0.18725,
             "top_scores": [
               [
                 1,
                 1,
-                11.0
+                11.1
               ],
               [
                 2,
@@ -18602,23 +19356,29 @@
               [
                 1,
                 0,
-                8.9
+                9.1
               ],
               [
                 2,
                 0,
-                7.4
+                7.5
               ],
               [
                 1,
                 2,
-                7.1
+                7.0
               ],
               [
                 0,
                 1,
-                6.7
+                6.9
               ]
+            ],
+            "rec_outcome": "1",
+            "rec_score": [
+              2,
+              1,
+              9.4
             ],
             "model": "cups_elo",
             "fallback_reason": null
@@ -18631,6 +19391,8 @@
             "home": 1589.0,
             "away": 1582.0
           },
+          "home_elo": 1589.0,
+          "away_elo": 1582.0,
           "neutral": false,
           "return_leg": false,
           "clubelo_1x2": [
