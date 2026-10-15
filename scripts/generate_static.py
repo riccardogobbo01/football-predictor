@@ -55,6 +55,7 @@ import requests
 from backtest import data
 from predictions import cups, monitor
 from predictions import stack_predictor as sp
+from config import REC_DRAW_THRESHOLD
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -415,8 +416,10 @@ PANEL_JS = r'''
     var rs = p.rec_score, outName = {"1": "Vittoria " + h, "X": "Pareggio", "2": "Vittoria " + a}[p.rec_outcome];
     out += sec("Risultato consigliato", '<div class="chips"><div class="chip top"><div class="chip-s">' + rs[0] + '-' + rs[1] +
       '</div><div class="chip-p">' + rs[2].toFixed(1) + '%</div></div></div>' +
-      '<div class="pn-note">Prima l’esito più probabile (' + esc(outName) + ', ' + pct({"1": p.prob_home, "X": p.prob_draw, "2": p.prob_away}[p.rec_outcome]) +
-      '), poi il punteggio più probabile dentro quell’esito.</div>');
+      '<div class="pn-note">' + (Math.max(p.prob_home, p.prob_draw, p.prob_away) <= p.rec_threshold ?
+      'Nessun esito supera il ' + Math.round(p.rec_threshold * 100) + '%: si consiglia il pareggio più probabile.' :
+      'Prima l’esito più probabile (' + esc(outName) + ', ' + pct({"1": p.prob_home, "X": p.prob_draw, "2": p.prob_away}[p.rec_outcome]) +
+      '), poi il punteggio più probabile dentro quell’esito.') + '</div>');
 
     out += sec("Risultati esatti più probabili", '<div class="chips">' + p.top_scores.slice(0, 5).map(function (s) {
       return '<div class="chip' + (s[0] === rs[0] && s[1] === rs[1] ? " top" : "") + '"><div class="chip-s">' + s[0] + '–' + s[1] +
@@ -1150,10 +1153,15 @@ def validate_output(all_data: dict) -> list:
             if not rs or ro not in ("1", "X", "2"):
                 problems.append(f"{tag}: risultato consigliato mancante")
             else:
-                fav = max((("1", p["prob_home"]), ("X", p["prob_draw"]), ("2", p["prob_away"])), key=lambda t: t[1])[0]
+                top, fav = max(((p["prob_home"], "1"), (p["prob_draw"], "X"), (p["prob_away"], "2")))
                 sc = "1" if rs[0] > rs[1] else ("X" if rs[0] == rs[1] else "2")
-                if not (ro == fav == sc):
-                    problems.append(f"{tag}: risultato consigliato {rs[0]}-{rs[1]} incoerente con l'esito favorito {fav}")
+                tol = 2e-5                                           # le probabilita' del JSON sono arrotondate a 5 decimali
+                if ro != sc:
+                    problems.append(f"{tag}: risultato consigliato {rs[0]}-{rs[1]} incoerente con l'esito {ro}")
+                elif ro == "X" and top > REC_DRAW_THRESHOLD + tol and fav != "X":
+                    problems.append(f"{tag}: pareggio consigliato ma {fav} supera la soglia {REC_DRAW_THRESHOLD:.0%} ({top:.3f})")
+                elif ro != "X" and (ro != fav or top <= REC_DRAW_THRESHOLD - tol):
+                    problems.append(f"{tag}: esito consigliato {ro} ma il favorito e' {fav} ({top:.3f}, soglia {REC_DRAW_THRESHOLD:.0%})")
             if p.get("model") == "cups_elo":
                 if fix.get("expected_stats") or fix.get("market"):
                     problems.append(f"{tag}: coppa con statistiche o quote")

@@ -38,6 +38,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
+from config import REC_DRAW_THRESHOLD  # noqa: E402
 from backtest import data, features, models, stack, understat  # noqa: E402
 from backtest import stats_model as sm  # noqa: E402
 
@@ -242,13 +243,14 @@ class LeagueState:
 # ── Mercati dalla matrice dei punteggi ─────────────────────────────────────────
 
 def recommended_score(M: np.ndarray, P=None) -> tuple:
-    """Risultato consigliato: prima l'esito piu' probabile (1/X/2) dalla matrice dei punteggi, poi il punteggio piu'
-    probabile DENTRO quell'esito (il punteggio con probabilita' massima in assoluto e' 1-1 nel ~58% dei casi anche
-    quando l'esito favorito e' un altro). Restituisce (esito, gol casa, gol ospite, probabilita' del punteggio)."""
+    """Risultato consigliato. Se nessun esito (1/X/2) supera REC_DRAW_THRESHOLD si consiglia il pareggio piu' probabile
+    (di solito 1-1); altrimenti si prende l'esito favorito e il punteggio piu' probabile DENTRO quell'esito (il punteggio
+    con probabilita' massima in assoluto e' 1-1 nel ~58% dei casi anche quando l'esito favorito e' un altro).
+    Restituisce (esito, gol casa, gol ospite, probabilita' del punteggio)."""
     G = M.shape[0]
     if P is None:
         P = models.probs_1x2(M[None])[0]
-    k = int(np.argmax(P))                                  # 0 = casa, 1 = pareggio, 2 = ospite
+    k = int(np.argmax(P)) if float(np.max(P)) > REC_DRAW_THRESHOLD else 1     # 0 = casa, 1 = pareggio, 2 = ospite
     i_idx, j_idx = np.indices((G, G))
     mask = (i_idx > j_idx, i_idx == j_idx, i_idx < j_idx)[k]
     flat_i = int(np.argmax(np.where(mask, M, -1.0)))
@@ -279,6 +281,7 @@ def markets(M: np.ndarray, mu: float, nu: float) -> dict:
         "prob_cs_away": round(float(M[0, :].sum()), 5),
         "top_scores": [[s[0], s[1], round(s[2] * 100, 1)] for s in flat],
         "rec_outcome": rec[0],
+        "rec_threshold": REC_DRAW_THRESHOLD,
         "rec_score": [rec[1], rec[2], round(rec[3] * 100, 1)],
     }
 

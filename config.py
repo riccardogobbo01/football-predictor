@@ -59,6 +59,12 @@ UNDERSTAT_LEAGUES = {
 DC_XI   = 0.0018   # tasso di decadimento temporale (≈ 1/556 giorni)
 DC_MAX_GOALS = 8   # massimo gol per lato nella matrice punteggi
 
+# ─── Risultato consigliato (tutte le competizioni) ────────────────────────────
+# Se nessun esito (1, X, 2) supera questa probabilita' si consiglia il pareggio piu' probabile (di solito 1-1);
+# altrimenti il punteggio piu' probabile dentro l'esito favorito. Backtest campionati 2019->oggi: pareggi consigliati
+# 23% (reali 25%), esito giusto 50.0%, risultato esatto 11.9%.
+REC_DRAW_THRESHOLD = 0.42
+
 # ─── Aggiustamenti contestuali NON validati (disattivati) ─────────────────────
 # Il backtest walk-forward (backtest/results.md) non li ha confermati: il riposo
 # sotto i 3 giorni, testato sui soli giorni di riposo di campionato, ha effetto nullo;
