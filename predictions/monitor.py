@@ -50,7 +50,7 @@ P3 = ["home", "draw", "away"]
 COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "home_dc", "away_dc",
             "model_used", "fallback_reason"]
            + [f"p_{k}" for k in P3] + [f"pw_{k}" for k in P3] + [f"po_{k}" for k in P3]
-           + [f"mkt_{k}" for k in P3] + ["mkt_source", "hg", "ag", "result"])
+           + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"])
 PROB_COLS = [c for c in COLUMNS if c.split("_")[0] in ("p", "pw", "po", "mkt") and c != "mkt_source"]
 
 
@@ -62,10 +62,11 @@ def load_history(path: str = HISTORY_PATH) -> pd.DataFrame:
     if not os.path.exists(path):
         return empty_history()
     h = pd.read_csv(path, dtype={"matchday": str, "home_dc": str, "away_dc": str,
-                                 "fallback_reason": str, "mkt_source": str, "result": str})
+                                 "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str})
     for c in COLUMNS:
         if c not in h.columns:
             h[c] = np.nan
+    h["rec_score"] = h["rec_score"].astype(object)      # colonna di testo ("2-1"): se manca nel CSV nasce float
     return h[COLUMNS]
 
 
@@ -143,6 +144,9 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
                home=fix["home"], away=fix["away"], home_dc=fix.get("home_dc"), away_dc=fix.get("away_dc"),
                model_used=pred["model"], fallback_reason=pred["fallback_reason"] or np.nan,
                p_home=pred["prob_home"], p_draw=pred["prob_draw"], p_away=pred["prob_away"])
+    if pred.get("rec_score"):
+        row["rec_score"] = f"{pred['rec_score'][0]}-{pred['rec_score'][1]}"      # risultato consigliato (esito piu' probabile, poi punteggio)
+        row["rec_prob"] = pred["rec_score"][2] / 100
     for tag, name in (("pw", "with_xg"), ("po", "without_xg")):
         if probs.get(name) is not None:
             row[f"{tag}_home"], row[f"{tag}_draw"], row[f"{tag}_away"] = probs[name]

@@ -1,19 +1,20 @@
 {
-  "version": 1,
+  "version": 2,
   "feature": "elo_diff = (Elo casa - Elo ospite)/100, Elo ClubElo del giorno",
   "home_goals": {
-    "intercept": 0.5182199979535962,
-    "coef_elo_diff": 0.13873298018138655
+    "intercept": 0.5023335174836664,
+    "coef_elo_diff": 0.19540418461668332
   },
   "away_goals": {
-    "intercept": 0.25050589664072404,
-    "coef_elo_diff": -0.13851285455842255
+    "intercept": 0.2372540225728234,
+    "coef_elo_diff": -0.18408177024611241
   },
-  "rho": 0.012529066842207887,
+  "rho": 0.013276864396158376,
   "neutral_venue": "finale: media delle due orientazioni (casa/ospite scambiate)",
   "trained_on": "1796 partite UCL/UEL/UECL 2011-12..2025-26 con Elo ClubElo pre-partita; pesi emivita 3 stagioni",
+  "fix": "v2: corretto abbinamento 'Paris Saint-Germain FC' (era mappato su Paris FC)",
   "backtest": {
-    "logloss_1x2": 0.9809,
+    "logloss_1x2": 0.9651,
     "n": 1414,
     "periodo": "walk-forward 2016/17->2025/26"
   }

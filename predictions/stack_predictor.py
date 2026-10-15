@@ -241,6 +241,21 @@ class LeagueState:
 
 # ── Mercati dalla matrice dei punteggi ─────────────────────────────────────────
 
+def recommended_score(M: np.ndarray, P=None) -> tuple:
+    """Risultato consigliato: prima l'esito piu' probabile (1/X/2) dalla matrice dei punteggi, poi il punteggio piu'
+    probabile DENTRO quell'esito (il punteggio con probabilita' massima in assoluto e' 1-1 nel ~58% dei casi anche
+    quando l'esito favorito e' un altro). Restituisce (esito, gol casa, gol ospite, probabilita' del punteggio)."""
+    G = M.shape[0]
+    if P is None:
+        P = models.probs_1x2(M[None])[0]
+    k = int(np.argmax(P))                                  # 0 = casa, 1 = pareggio, 2 = ospite
+    i_idx, j_idx = np.indices((G, G))
+    mask = (i_idx > j_idx, i_idx == j_idx, i_idx < j_idx)[k]
+    flat_i = int(np.argmax(np.where(mask, M, -1.0)))
+    i, j = divmod(flat_i, G)
+    return ("1", "X", "2")[k], int(i), int(j), float(M[i, j])
+
+
 def markets(M: np.ndarray, mu: float, nu: float) -> dict:
     """Tutti i mercati da UNA matrice (G+1)x(G+1): sono coerenti tra loro per costruzione."""
     G = M.shape[0]
@@ -248,6 +263,7 @@ def markets(M: np.ndarray, mu: float, nu: float) -> dict:
     P = models.probs_1x2(M[None])[0]
     flat = sorted(((int(i), int(j), float(M[i, j])) for i in range(G) for j in range(G)),
                   key=lambda s: s[2], reverse=True)[:6]
+    rec = recommended_score(M, P)
     return {
         "exp_goals_home": round(float(mu), 2),
         "exp_goals_away": round(float(nu), 2),
@@ -262,6 +278,8 @@ def markets(M: np.ndarray, mu: float, nu: float) -> dict:
         "prob_cs_home": round(float(M[:, 0].sum()), 5),
         "prob_cs_away": round(float(M[0, :].sum()), 5),
         "top_scores": [[s[0], s[1], round(s[2] * 100, 1)] for s in flat],
+        "rec_outcome": rec[0],
+        "rec_score": [rec[1], rec[2], round(rec[3] * 100, 1)],
     }
 
 

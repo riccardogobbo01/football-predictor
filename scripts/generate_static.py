@@ -399,6 +399,7 @@ PANEL_JS = r'''
         '(football-data.co.uk/fixtures.csv).</div>');
     }
 
+    if (!f.cup) {
     var lines = [["0.5", p.prob_o05], ["1.5", p.prob_o15], ["2.5", p.prob_o25], ["3.5", p.prob_o35]];
     out += sec("Over / Under", lines.map(function (l) {
       return '<div class="prob-row"><span class="prob-lbl pl-wide">' + l[0] + '</span>' + bar(l[1]) +
@@ -409,9 +410,16 @@ PANEL_JS = r'''
     out += sec("BTTS e porta inviolata", '<div class="kv-grid">' +
       kv("BTTS sì", p.prob_btts) + kv("BTTS no", 1 - p.prob_btts) +
       kv("Porta inviolata " + h, p.prob_cs_home) + kv("Porta inviolata " + a, p.prob_cs_away) + '</div>');
+    }
 
-    out += sec("Risultati esatti più probabili", '<div class="chips">' + p.top_scores.slice(0, 5).map(function (s, i) {
-      return '<div class="chip' + (i === 0 ? " top" : "") + '"><div class="chip-s">' + s[0] + '–' + s[1] +
+    var rs = p.rec_score, outName = {"1": "Vittoria " + h, "X": "Pareggio", "2": "Vittoria " + a}[p.rec_outcome];
+    out += sec("Risultato consigliato", '<div class="chips"><div class="chip top"><div class="chip-s">' + rs[0] + '-' + rs[1] +
+      '</div><div class="chip-p">' + rs[2].toFixed(1) + '%</div></div></div>' +
+      '<div class="pn-note">Prima l’esito più probabile (' + esc(outName) + ', ' + pct({"1": p.prob_home, "X": p.prob_draw, "2": p.prob_away}[p.rec_outcome]) +
+      '), poi il punteggio più probabile dentro quell’esito.</div>');
+
+    out += sec("Risultati esatti più probabili", '<div class="chips">' + p.top_scores.slice(0, 5).map(function (s) {
+      return '<div class="chip' + (s[0] === rs[0] && s[1] === rs[1] ? " top" : "") + '"><div class="chip-s">' + s[0] + '–' + s[1] +
              '</div><div class="chip-p">' + s[2].toFixed(1) + '%</div></div>';
     }).join("") + '</div>');
 
@@ -635,8 +643,8 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
 
             no_xg_tag = ("" if pred["model"] != "without_xg" else
                          ' · <span title="' + _html.escape(pred["fallback_reason"] or "") + '">senza xG</span>')
-            top_score = pred["top_scores"][0]
-            ts_str = f"{top_score[0]}–{top_score[1]} ({top_score[2]:.1f}%)"
+            rec = pred["rec_score"]
+            ts_str = f"{rec[0]}-{rec[1]} ({rec[2]:.1f}%)"
 
             mkt_html = _market_html(pred, fix.get("market"))
             cup_html = ""
@@ -647,6 +655,15 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
                     cup_html += f'<div class="cup-note">{cups.RETURN_LEG_NOTE}</div>'
 
             c = _prob_color
+            ou_btts_html = "" if fix.get("cup") else f"""
+    <div class="sec-item">
+      <span class="sec-lbl">Over 2.5</span>
+      <span class="sec-val" style="color:{c(pred['prob_o25'])}">{pred['prob_o25']*100:.1f}%</span>
+    </div>
+    <div class="sec-item">
+      <span class="sec-lbl">BTTS</span>
+      <span class="sec-val" style="color:{c(pred['prob_btts'])}">{pred['prob_btts']*100:.1f}%</span>
+    </div>"""
             cards_html += f"""
 <div class="match-card" data-id="{fid}" role="button" tabindex="0" aria-label="{aria}">
   <div class="match-meta">
@@ -682,17 +699,9 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
     </div>
   </div>
   {mkt_html}
-  <div class="secondaries">
+  <div class="secondaries">{ou_btts_html}
     <div class="sec-item">
-      <span class="sec-lbl">Over 2.5</span>
-      <span class="sec-val" style="color:{c(pred['prob_o25'])}">{pred['prob_o25']*100:.1f}%</span>
-    </div>
-    <div class="sec-item">
-      <span class="sec-lbl">BTTS</span>
-      <span class="sec-val" style="color:{c(pred['prob_btts'])}">{pred['prob_btts']*100:.1f}%</span>
-    </div>
-    <div class="sec-item">
-      <span class="sec-lbl">Risultato più probabile</span>
+      <span class="sec-lbl">Risultato consigliato</span>
       <span class="sec-val score-tip">{ts_str}</span>
     </div>
   </div>
@@ -1137,6 +1146,14 @@ def validate_output(all_data: dict) -> list:
                 problems.append(f"{tag}: Over non monotoni")
             if any(v > 1 for k, v in p.items() if k.startswith("prob_")):
                 problems.append(f"{tag}: probabilità > 1")
+            rs, ro = p.get("rec_score"), p.get("rec_outcome")
+            if not rs or ro not in ("1", "X", "2"):
+                problems.append(f"{tag}: risultato consigliato mancante")
+            else:
+                fav = max((("1", p["prob_home"]), ("X", p["prob_draw"]), ("2", p["prob_away"])), key=lambda t: t[1])[0]
+                sc = "1" if rs[0] > rs[1] else ("X" if rs[0] == rs[1] else "2")
+                if not (ro == fav == sc):
+                    problems.append(f"{tag}: risultato consigliato {rs[0]}-{rs[1]} incoerente con l'esito favorito {fav}")
             if p.get("model") == "cups_elo":
                 if fix.get("expected_stats") or fix.get("market"):
                     problems.append(f"{tag}: coppa con statistiche o quote")

@@ -316,7 +316,8 @@ def build_fixtures(data: dict, model: dict, today: date, days_ahead: int = 14, k
             "home_full": h["name"], "away_full": a["name"], "matchday": None, "stage": m["stage"],
             "home_dc": None, "away_dc": None, "new_team": False,
             "prediction": pred, "market": None, "expected_stats": None, "context": None,
-            "cup": m["cup"], "elo": {"home": h["elo"], "away": a["elo"]}, "neutral": m["final"],
+            "cup": m["cup"], "elo": {"home": h["elo"], "away": a["elo"]}, "home_elo": h["elo"], "away_elo": a["elo"],
+            "neutral": m["final"],
             "return_leg": is_return_leg(m, fixtures, known_pairs),
             "clubelo_1x2": [m.get("clubelo_p1"), m.get("clubelo_px"), m.get("clubelo_p2")],
         })
