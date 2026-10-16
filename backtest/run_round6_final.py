@@ -63,6 +63,10 @@ def main():
             "", "---", ""]
     with open(os.path.join(HERE, "results_round6.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(head) + "\n\n".join(parts[:4]) + "\n\n" + "\n".join(S) + "\n" + parts[4] + "\n" + cm)
+        for fn in ("prereg_gap2.md", "GAP2.md", "gap2_conclusione.md", "prod_check.md"):          # fase 1 (estensione della griglia GAP)
+            fp = os.path.join(P6, fn)
+            if os.path.exists(fp):
+                fh.write("\n\n---\n\n" + open(fp, encoding="utf-8").read())
     print("\n".join(S))
 
 

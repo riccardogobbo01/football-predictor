@@ -38,6 +38,9 @@ def _sot_job(g):
 
 
 def sot_features(df):
+    st = features.build_stat_features(df, verbose=False)
+    if {"sot_lh", "sot_la"} <= set(st.columns):                       # dalla produzione s3-gap: stesso Poisson (xi, ridge, finestra) dei tiri in porta
+        return st[["sot_lh", "sot_la"]]
     path = os.path.join(R6_DIR, "r6_sot.pkl")
     key = (len(df), str(df.date.max()))
     if os.path.exists(path):
@@ -130,7 +133,7 @@ def prepare():
     """feat con tutte le colonne necessarie ai round 6 (statistiche, sot, HT, arbitro, gol attesi v6)."""
     c = C3.get_ctx3()
     df = c.df
-    feat = c.feat.join(features.build_stat_features(df)).join(sot_features(df)).join(ht_columns(df)).join(v6_goals(c.feat))
+    feat = c.feat.join(features.build_stat_features(df).drop(columns=["sot_lh", "sot_la"], errors="ignore")).join(sot_features(df)).join(ht_columns(df)).join(v6_goals(c.feat))
     keys = refeffect.load_history_keys(df).reindex(feat.index)
     mh0, ma0 = refeffect.base_predictions(feat)
     R, _ = refeffect.referee_ratio(feat, feat.HY + feat.AY, mh0 + ma0, keys, REFEREE_K, refeffect.mbar_by_league(feat, mh0 + ma0))
