@@ -1080,7 +1080,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <div id="leagues-container">
     {cards_html if cards_html else '<div class="empty-state"><div class="icon">🔍</div><h2>Nessuna partita trovata nei prossimi 14 giorni</h2><p>Le previsioni vengono aggiornate automaticamente ogni mattina.</p></div>'}
   </div>
-  <p class="disclaimer">Storicamente il mercato è più preciso del modello (log-loss 0,973 contro 0,983): le differenze indicano dove il modello e i bookmaker non sono d'accordo, non scommesse sicure</p>
+  <p class="disclaimer">Storicamente il mercato è più preciso del modello (log-loss: modello 0,980, quote medie 0,973, quote di chiusura 0,970): le differenze indicano dove il modello e i bookmaker non sono d'accordo, non scommesse sicure</p>
 </main>
 
 <footer>
