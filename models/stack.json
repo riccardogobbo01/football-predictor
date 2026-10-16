@@ -2,46 +2,46 @@
   "referees": {
     "k": 20.0,
     "mbar": {
-      "D1": 3.5243241604324544,
-      "E0": 3.2957785741232275,
-      "F1": 3.6032064510199384,
-      "I1": 4.373376593127827,
-      "SP1": 5.061300208010979
+      "D1": 3.5242896851264356,
+      "E0": 3.2958036246828475,
+      "F1": 3.6032237018586373,
+      "I1": 4.373346952403756,
+      "SP1": 5.061271694761567
     },
     "effects": {
       "F1|frank schneider": [
         367.0,
-        322.943,
+        322.944,
         89
       ],
       "F1|jerome miguelgorry": [
         271.0,
-        250.856,
+        250.859,
         69
       ],
       "E0|jonathan moss": [
         532.0,
-        526.379,
+        526.382,
         161
       ],
       "E0|craig pawson": [
         867.0,
-        805.088,
+        805.09,
         233
       ],
       "E0|martin atkinson": [
         497.0,
-        566.459,
+        566.465,
         168
       ],
       "E0|mike dean": [
         609.0,
-        528.068,
+        528.074,
         161
       ],
       "E0|bobby madley": [
         191.0,
-        170.491,
+        170.493,
         51
       ],
       "E0|kevin friend": [
@@ -51,27 +51,27 @@
       ],
       "E0|roger east": [
         135.0,
-        128.238,
+        128.239,
         39
       ],
       "F1|lionel jaffredo": [
         25.0,
-        29.515,
+        29.516,
         8
       ],
       "F1|johan hamel": [
         409.0,
-        423.426,
+        423.424,
         117
       ],
       "F1|karim abed": [
         301.0,
-        314.087,
+        314.093,
         86
       ],
       "F1|mikael lesage": [
         444.0,
-        430.327,
+        430.334,
         118
       ],
       "F1|bartolomeu varela": [
@@ -81,22 +81,22 @@
       ],
       "E0|michael oliver": [
         951.0,
-        1009.183,
+        1009.188,
         293
       ],
       "E0|andre marriner": [
         466.0,
-        538.496,
+        538.5,
         163
       ],
       "F1|benoit millot": [
         698.0,
-        656.628,
+        656.635,
         176
       ],
       "F1|amaury delerue": [
         446.0,
-        380.574,
+        380.576,
         105
       ],
       "F1|antony gautier": [
@@ -106,62 +106,62 @@
       ],
       "E0|anthony taylor": [
         1060.0,
-        1028.143,
+        1028.145,
         296
       ],
       "SP1|mario melero lopez": [
         765.0,
-        803.724,
+        803.725,
         162
       ],
       "SP1|santiago jaime latre": [
         544.0,
-        560.535,
+        560.534,
         112
       ],
       "E0|lee mason": [
         259.0,
-        271.282,
+        271.283,
         84
       ],
       "E0|mark clattenburg": [
         72.0,
-        72.738,
+        72.739,
         22
       ],
       "E0|stuart attwell": [
         752.0,
-        682.325,
+        682.33,
         198
       ],
       "E0|neil swarbrick": [
         143.0,
-        144.18,
+        144.181,
         44
       ],
       "F1|olivier thual": [
         188.0,
-        234.563,
+        234.567,
         66
       ],
       "F1|stephane lannoy": [
         24.0,
-        25.544,
+        25.545,
         7
       ],
       "F1|tony chapron": [
         80.0,
-        95.806,
+        95.809,
         27
       ],
       "I1|davide massa": [
         839.0,
-        764.399,
+        764.397,
         169
       ],
       "I1|marco di bello": [
         622.0,
-        663.709,
+        663.71,
         150
       ],
       "SP1|undiano mallenco": [
@@ -171,7 +171,7 @@
       ],
       "SP1|estrada fernandez": [
         558.0,
-        507.835,
+        507.84,
         99
       ],
       "SP1|gonzalez gonzalez": [
@@ -181,22 +181,22 @@
       ],
       "F1|benoit bastien": [
         773.0,
-        703.528,
+        703.531,
         187
       ],
       "F1|francois letexier": [
         751.0,
-        685.016,
+        685.02,
         184
       ],
       "F1|ruddy buquet": [
         709.0,
-        670.719,
+        670.72,
         181
       ],
       "I1|luca banti": [
         217.0,
-        224.766,
+        224.763,
         51
       ],
       "I1|claudio gavillucci": [
@@ -211,17 +211,17 @@
       ],
       "I1|maurizio mariani": [
         732.0,
-        739.015,
+        739.017,
         164
       ],
       "I1|daniele orsato": [
         636.0,
-        595.228,
+        595.224,
         128
       ],
       "I1|antonio damato": [
         141.0,
-        142.388,
+        142.386,
         32
       ],
       "I1|luca pairetto": [
@@ -231,17 +231,17 @@
       ],
       "I1|piero giacomelli": [
         341.0,
-        401.6,
+        401.596,
         90
       ],
       "SP1|nacho iglesias villanueva": [
         306.0,
-        298.869,
+        298.87,
         59
       ],
       "SP1|juan martinez munuera": [
         916.0,
-        913.51,
+        913.504,
         185
       ],
       "SP1|carlos clos gomez": [
@@ -251,47 +251,47 @@
       ],
       "SP1|jose luis munuera montero": [
         892.0,
-        969.329,
+        969.328,
         196
       ],
       "SP1|inaki bikandi garrido": [
         72.0,
-        94.397,
+        94.394,
         19
       ],
       "D1|christian dingert": [
         553.0,
-        485.291,
+        485.289,
         135
       ],
       "SP1|jesus gil manzano": [
         1047.0,
-        976.129,
+        976.13,
         198
       ],
       "D1|sascha stegemann": [
         555.0,
-        558.127,
+        558.124,
         151
       ],
       "D1|robert hartmann": [
         448.0,
-        452.488,
+        452.484,
         124
       ],
       "D1|wolfgang stark": [
         80.0,
-        65.77,
+        65.769,
         18
       ],
       "D1|patrick ittrich": [
         367.0,
-        329.204,
+        329.202,
         91
       ],
       "D1|marco fritz": [
         433.0,
-        416.32,
+        416.317,
         117
       ],
       "D1|felix brych": [
@@ -301,57 +301,57 @@
       ],
       "I1|marco guida": [
         652.0,
-        626.985,
+        626.989,
         136
       ],
       "I1|paolo valeri": [
         477.0,
-        440.083,
+        440.092,
         98
       ],
       "SP1|alejandro hernandez hernandez": [
         1026.0,
-        865.498,
+        865.5,
         175
       ],
       "SP1|jose maria sanchez martinez": [
         1047.0,
-        999.261,
+        999.26,
         199
       ],
       "SP1|alvarez izquierdo": [
         175.0,
-        165.253,
+        165.252,
         33
       ],
       "SP1|de burgos bengoetxea": [
         907.0,
-        979.571,
+        979.569,
         197
       ],
       "D1|benjamin brand": [
         350.0,
-        350.293,
+        350.289,
         92
       ],
       "D1|tobias stieler": [
         520.0,
-        561.101,
+        561.1,
         154
       ],
       "I1|paolo silvio mazzoleni": [
         190.0,
-        225.433,
+        225.429,
         52
       ],
       "I1|nicola rizzoli": [
         91.0,
-        76.527,
+        76.525,
         17
       ],
       "I1|michael fabbri": [
         671.0,
-        666.213,
+        666.21,
         150
       ],
       "I1|carmine russo": [
@@ -366,27 +366,27 @@
       ],
       "I1|paolo tagliavento": [
         146.0,
-        146.692,
+        146.691,
         32
       ],
       "I1|gianluca rocchi": [
         339.0,
-        295.838,
+        295.839,
         65
       ],
       "I1|fabio maresca": [
         779.0,
-        669.355,
+        669.353,
         148
       ],
       "SP1|mateu lahoz": [
         653.0,
-        657.882,
+        657.878,
         131
       ],
       "SP1|daniel ocon arraiz": [
         78.0,
-        85.589,
+        85.59,
         17
       ],
       "SP1|carlos del cerro grande": [
@@ -396,7 +396,7 @@
       ],
       "D1|manuel grafe": [
         235.0,
-        305.654,
+        305.655,
         86
       ],
       "D1|felix zwayer": [
@@ -406,7 +406,7 @@
       ],
       "D1|harm osmers": [
         504.0,
-        505.506,
+        505.504,
         139
       ],
       "D1|jochen drees": [
@@ -416,52 +416,52 @@
       ],
       "D1|tobias welz": [
         331.0,
-        287.45,
+        287.451,
         77
       ],
       "D1|guido winkmann": [
         242.0,
-        222.605,
+        222.604,
         63
       ],
       "E0|paul tierney": [
         657.0,
-        646.38,
+        646.383,
         193
       ],
       "F1|clement turpin": [
         584.0,
-        690.722,
+        690.726,
         183
       ],
       "SP1|david fernandez borbalan": [
         209.0,
-        192.445,
+        192.443,
         39
       ],
       "D1|markus schmidt": [
         260.0,
-        228.247,
+        228.245,
         65
       ],
       "D1|daniel siebert": [
         617.0,
-        595.831,
+        595.829,
         162
       ],
       "I1|rosario abisso": [
         545.0,
-        525.441,
+        525.444,
         120
       ],
       "I1|gianpaolo calvarese": [
         359.0,
-        363.143,
+        363.135,
         84
       ],
       "SP1|daniel jesus trujillo suarez": [
         186.0,
-        185.541,
+        185.54,
         36
       ],
       "E0|mike jones": [
@@ -471,12 +471,12 @@
       ],
       "D1|robert kampka": [
         147.0,
-        123.342,
+        123.341,
         35
       ],
       "D1|gunter perl": [
         49.0,
-        52.345,
+        52.344,
         14
       ],
       "D1|bastian dankert": [
@@ -486,12 +486,12 @@
       ],
       "D1|deniz aytekin": [
         536.0,
-        517.615,
+        517.613,
         140
       ],
       "I1|domenico celi": [
         55.0,
-        64.317,
+        64.316,
         15
       ],
       "I1|daniele chiffi": [
@@ -501,7 +501,7 @@
       ],
       "D1|frank willenborg": [
         436.0,
-        399.035,
+        399.034,
         110
       ],
       "I1|davide ghersini": [
@@ -511,37 +511,37 @@
       ],
       "E0|graham scott": [
         262.0,
-        332.977,
+        332.98,
         102
       ],
       "F1|sebastien moreira": [
         53.0,
-        55.642,
+        55.643,
         15
       ],
       "D1|benjamin cortus": [
         283.0,
-        270.35,
+        270.349,
         75
       ],
       "F1|nicolas rainville": [
         142.0,
-        135.567,
+        135.568,
         38
       ],
       "F1|sebastien desiage": [
         116.0,
-        116.336,
+        116.337,
         32
       ],
       "I1|gianluca manganiello": [
         438.0,
-        522.498,
+        522.499,
         119
       ],
       "F1|said ennjimi": [
         4.0,
-        13.452,
+        13.453,
         4
       ],
       "I1|fabrizio pasqua": [
@@ -556,7 +556,7 @@
       ],
       "I1|juan luca sacchi": [
         304.0,
-        346.162,
+        346.166,
         78
       ],
       "I1|federico la penna": [
@@ -566,7 +566,7 @@
       ],
       "F1|jerome brisard": [
         642.0,
-        673.883,
+        673.886,
         180
       ],
       "SP1|miguel lopez lopez": [
@@ -576,7 +576,7 @@
       ],
       "I1|gianluca aureliano": [
         198.0,
-        209.576,
+        209.577,
         46
       ],
       "SP1|angel alvarez pinardo": [
@@ -591,17 +591,17 @@
       ],
       "E0|lee probert": [
         78.0,
-        117.502,
+        117.505,
         36
       ],
       "E0|chris kavanagh": [
         715.0,
-        686.225,
+        686.229,
         198
       ],
       "I1|valerio marini": [
         44.0,
-        44.105,
+        44.104,
         10
       ],
       "F1|bastien courbet": [
@@ -616,17 +616,17 @@
       ],
       "I1|marco serra": [
         64.0,
-        50.612,
+        50.613,
         12
       ],
       "I1|antonio di martino": [
         42.0,
-        35.959,
+        35.96,
         8
       ],
       "I1|luigi nasca": [
         13.0,
-        13.76,
+        13.759,
         3
       ],
       "I1|riccardo pinzani": [
@@ -646,22 +646,22 @@
       ],
       "I1|antonio rapuano": [
         309.0,
-        298.672,
+        298.67,
         66
       ],
       "F1|thomas leonard": [
         582.0,
-        574.991,
+        574.997,
         154
       ],
       "F1|hakim ben el hadj": [
         517.0,
-        512.863,
+        512.864,
         139
       ],
       "F1|stephane jochem": [
         58.0,
-        62.273,
+        62.274,
         17
       ],
       "SP1|medie jimenez": [
@@ -670,13 +670,13 @@
         70
       ],
       "SP1|javier alberola rojas": [
-        618.0,
-        868.117,
-        173
+        622.0,
+        872.813,
+        174
       ],
       "SP1|pablo gonzalez fuertes": [
         800.0,
-        786.167,
+        786.172,
         157
       ],
       "D1|bibiana steinhaus-webb": [
@@ -686,7 +686,7 @@
       ],
       "D1|sven jablonski": [
         445.0,
-        468.652,
+        468.65,
         128
       ],
       "D1|soren storks": [
@@ -696,17 +696,17 @@
       ],
       "D1|martin petersen": [
         364.0,
-        347.26,
+        347.257,
         92
       ],
       "I1|marco piccinini": [
         362.0,
-        376.598,
+        376.597,
         86
       ],
       "I1|livio marinelli": [
         270.0,
-        314.956,
+        314.954,
         72
       ],
       "I1|ivano pezzuto": [
@@ -716,12 +716,12 @@
       ],
       "I1|francesco fourneau": [
         305.0,
-        293.428,
+        293.426,
         67
       ],
       "E0|simon hooper": [
         512.0,
-        491.956,
+        491.961,
         140
       ],
       "F1|sandro scharer": [
@@ -731,12 +731,12 @@
       ],
       "I1|antonio giua": [
         279.0,
-        256.195,
+        256.198,
         58
       ],
       "E0|andrew madley": [
         445.0,
-        482.351,
+        482.352,
         137
       ],
       "F1|stephan klossner": [
@@ -746,7 +746,7 @@
       ],
       "E0|david coote": [
         432.0,
-        377.231,
+        377.232,
         112
       ],
       "I1|lorenzo illuzzi": [
@@ -756,27 +756,27 @@
       ],
       "F1|willy delajod": [
         547.0,
-        551.562,
+        551.566,
         147
       ],
       "F1|florent batta": [
         338.0,
-        385.556,
+        385.56,
         103
       ],
       "SP1|guillermo cuadra fernandez": [
         724.0,
-        738.525,
+        738.526,
         149
       ],
       "F1|eric wattellier": [
         439.0,
-        534.913,
+        534.916,
         144
       ],
       "F1|jeremy stinat": [
         516.0,
-        502.227,
+        502.231,
         136
       ],
       "SP1|eduardo prieto iglesias": [
@@ -786,17 +786,17 @@
       ],
       "SP1|adrian cordero vega": [
         543.0,
-        571.154,
+        571.157,
         115
       ],
       "D1|daniel schlager": [
         435.0,
-        397.448,
+        397.45,
         106
       ],
       "D1|robert schroder": [
         355.0,
-        334.499,
+        334.5,
         92
       ],
       "I1|manuel volpi": [
@@ -806,22 +806,22 @@
       ],
       "I1|luca massimi": [
         170.0,
-        174.446,
+        174.447,
         39
       ],
       "I1|federico dionisi": [
         149.0,
-        165.205,
+        165.206,
         37
       ],
       "I1|lorenzo maggioni": [
         29.0,
-        32.444,
+        32.443,
         7
       ],
       "F1|stephanie frappart": [
         414.0,
-        412.596,
+        412.6,
         109
       ],
       "I1|riccardo ros": [
@@ -831,17 +831,17 @@
       ],
       "F1|jeremie pignard": [
         504.0,
-        455.486,
+        455.488,
         122
       ],
       "SP1|cesar soto grado": [
         730.0,
-        710.131,
+        710.138,
         145
       ],
       "SP1|valentin pizarro gomez": [
         304.0,
-        351.007,
+        351.013,
         70
       ],
       "E0|peter bankes": [
@@ -856,7 +856,7 @@
       ],
       "SP1|andres hernandez": [
         38.0,
-        42.196,
+        42.197,
         8
       ],
       "F1|alain bieri": [
@@ -866,12 +866,12 @@
       ],
       "E0|tim robinson": [
         201.0,
-        173.475,
+        173.474,
         48
       ],
       "E0|robert jones": [
         434.0,
-        408.112,
+        408.111,
         113
       ],
       "F1|anthony ustaritz": [
@@ -881,17 +881,17 @@
       ],
       "E0|darren england": [
         410.0,
-        368.393,
+        368.395,
         104
       ],
       "I1|giovanni ayroldi": [
         336.0,
-        275.079,
+        275.081,
         62
       ],
       "I1|simone sozza": [
         331.0,
-        364.613,
+        364.614,
         80
       ],
       "I1|daniel amabile": [
@@ -901,17 +901,17 @@
       ],
       "SP1|isidro diaz de mera escuderos": [
         621.0,
-        569.734,
+        569.738,
         117
       ],
       "F1|bastien dechepy": [
         391.0,
-        369.636,
+        369.64,
         100
       ],
       "F1|aurelien petit": [
         65.0,
-        63.176,
+        63.175,
         17
       ],
       "SP1|jorge figueroa vazquez": [
@@ -921,12 +921,12 @@
       ],
       "D1|florian badstubner": [
         266.0,
-        303.567,
+        303.568,
         80
       ],
       "D1|matthias jollenbeck": [
         270.0,
-        274.369,
+        274.365,
         72
       ],
       "D1|arne aarnink": [
@@ -936,7 +936,7 @@
       ],
       "D1|tobias reichel": [
         222.0,
-        227.096,
+        227.095,
         60
       ],
       "I1|alberto santoro": [
@@ -946,7 +946,7 @@
       ],
       "I1|matteo marchetti": [
         221.0,
-        248.451,
+        248.453,
         57
       ],
       "I1|giacomo camplone": [
@@ -971,22 +971,22 @@
       ],
       "SP1|miguel angel ortiz arias": [
         405.0,
-        469.968,
+        469.971,
         96
       ],
       "F1|romain lissorgue": [
         205.0,
-        208.767,
+        208.769,
         56
       ],
       "SP1|alejandro muniz ruiz": [
         469.0,
-        450.436,
+        450.44,
         93
       ],
       "F1|pierre gaillouste": [
         183.0,
-        184.106,
+        184.109,
         49
       ],
       "F1|luis godinho": [
@@ -996,7 +996,7 @@
       ],
       "E0|jarred gillett": [
         324.0,
-        317.52,
+        317.522,
         87
       ],
       "F1|antonio nobre": [
@@ -1006,17 +1006,17 @@
       ],
       "I1|niccolo baroni": [
         22.0,
-        24.016,
+        24.017,
         5
       ],
       "E0|michael salisbury": [
         232.0,
-        217.48,
+        217.482,
         61
       ],
       "I1|matteo marcenaro": [
         235.0,
-        218.624,
+        218.622,
         50
       ],
       "E0|john brooks": [
@@ -1061,17 +1061,17 @@
       ],
       "I1|gianpiero miele": [
         4.0,
-        4.923,
+        4.922,
         1
       ],
       "F1|marc bollengier": [
         248.0,
-        254.827,
+        254.829,
         69
       ],
       "SP1|javier iglesias villanueva": [
         183.0,
-        198.991,
+        198.993,
         40
       ],
       "SP1|juan luis pulido santana": [
@@ -1086,12 +1086,12 @@
       ],
       "F1|gustavo correia": [
         3.0,
-        3.63,
+        3.629,
         1
       ],
       "E0|thomas bramall": [
         212.0,
-        204.341,
+        204.342,
         56
       ],
       "I1|maria sole ferrieri caputi": [
@@ -1106,7 +1106,7 @@
       ],
       "I1|ermanno feliciani": [
         124.0,
-        185.28,
+        185.282,
         43
       ],
       "F1|miguel nogueira": [
@@ -1116,7 +1116,7 @@
       ],
       "E0|darren bond": [
         93.0,
-        79.823,
+        79.824,
         23
       ],
       "D1|timo gerach": [
@@ -1126,37 +1126,37 @@
       ],
       "I1|luca zufferli": [
         125.0,
-        188.806,
+        188.809,
         44
       ],
       "D1|robin braun": [
         53.0,
-        49.239,
+        49.238,
         13
       ],
       "E0|josh smith": [
         36.0,
-        30.494,
+        30.489,
         9
       ],
       "SP1|francisco jose hernandez maeso": [
         249.0,
-        295.923,
+        295.924,
         61
       ],
       "SP1|victor garcia verdura": [
         235.0,
-        291.271,
+        291.273,
         59
       ],
       "I1|andrea colombo": [
         223.0,
-        215.636,
+        215.635,
         48
       ],
       "SP1|mateo busquets ferrer": [
         333.0,
-        293.985,
+        293.986,
         61
       ],
       "SP1|alejandro ruiz aguilera": [
@@ -1201,17 +1201,17 @@
       ],
       "E0|sunny gill": [
         5.0,
-        3.639,
+        3.64,
         1
       ],
       "D1|florian exner": [
         121.0,
-        101.027,
+        101.026,
         26
       ],
       "I1|davide di marco": [
         22.0,
-        32.43,
+        32.431,
         8
       ],
       "E0|matthew donohue": [
@@ -1221,7 +1221,7 @@
       ],
       "SP1|alejandro quintero gonzalez": [
         183.0,
-        191.591,
+        191.588,
         40
       ],
       "E0|sam allison": [
@@ -1231,7 +1231,7 @@
       ],
       "F1|abdelatif kherradji": [
         106.0,
-        99.058,
+        99.057,
         28
       ],
       "D1|max burda": [
@@ -1246,7 +1246,7 @@
       ],
       "I1|kevin bonacina": [
         54.0,
-        75.968,
+        75.967,
         18
       ],
       "E0|andrew kitchen": [
@@ -1256,7 +1256,7 @@
       ],
       "I1|alberto ruben arena": [
         42.0,
-        58.523,
+        58.522,
         14
       ],
       "E0|david webb": [
@@ -1280,9 +1280,9 @@
         1
       ],
       "SP1|miguel sesma espinosa": [
-        88.0,
-        111.369,
-        23
+        91.0,
+        115.56,
+        24
       ],
       "SP1|iosu galech apezteguia": [
         92.0,
@@ -1291,7 +1291,7 @@
       ],
       "SP1|jose luis guzman mansilla": [
         92.0,
-        79.243,
+        79.242,
         17
       ],
       "F1|guillaume paradis": [
@@ -1311,7 +1311,7 @@
       ],
       "I1|giuseppe mucera": [
         9.0,
-        16.358,
+        16.357,
         4
       ],
       "I1|andrea calzavara": [
@@ -1321,7 +1321,7 @@
       ],
       "E0|farai hallam": [
         22.0,
-        24.735,
+        24.733,
         7
       ],
       "I1|simone galipo": [
@@ -1355,9 +1355,9 @@
         3
       ],
       "SP1|carlos muniz munoz": [
-        5.0,
-        9.329,
-        2
+        12.0,
+        13.706,
+        3
       ],
       "E0|adrian gillett": [
         7.0,
@@ -1385,9 +1385,9 @@
         2
       ],
       "SP1|luis bestard servera": [
-        11.0,
-        9.141,
-        2
+        17.0,
+        13.927,
+        3
       ],
       "D1|richard hempel": [
         5.0,
@@ -1406,813 +1406,2830 @@
       ]
     },
     "asof": "2026-10-11",
-    "n_matches_with_referee": 18203,
+    "n_matches_with_referee": 18207,
     "n_referees": 279
   },
-  "stats_models": {
-    "with_xg": {
-      "tiri": {
-        "features": [
-          "tiri_lh",
-          "tiri_la",
-          "tiri_aux_lh",
-          "tiri_aux_la",
-          "dc_lmu",
-          "dc_lnu",
-          "xg_lmu",
-          "xg_lnu",
-          "pi_diff",
-          "abs_pi",
-          "gd_exp",
-          "abs_gd",
-          "lg_E0",
-          "lg_D1",
-          "lg_SP1",
-          "lg_F1"
+  "referees_fouls": {
+    "k": 20.0,
+    "mbar": {
+      "D1": 25.905280283719936,
+      "E0": 21.29374679828243,
+      "F1": 25.846407207218046,
+      "I1": 26.52555800108286,
+      "SP1": 27.552632850130347
+    },
+    "effects": {
+      "F1|frank schneider": [
+        2437.0,
+        2291.032,
+        89
+      ],
+      "F1|jerome miguelgorry": [
+        1801.0,
+        1794.845,
+        69
+      ],
+      "E0|jonathan moss": [
+        3415.0,
+        3431.785,
+        161
+      ],
+      "E0|craig pawson": [
+        5293.0,
+        4993.491,
+        233
+      ],
+      "E0|martin atkinson": [
+        3381.0,
+        3602.292,
+        168
+      ],
+      "E0|mike dean": [
+        3413.0,
+        3390.304,
+        161
+      ],
+      "E0|bobby madley": [
+        1182.0,
+        1103.094,
+        51
+      ],
+      "E0|kevin friend": [
+        2789.0,
+        2840.685,
+        136
+      ],
+      "E0|roger east": [
+        860.0,
+        833.621,
+        39
+      ],
+      "F1|lionel jaffredo": [
+        233.0,
+        211.342,
+        8
+      ],
+      "F1|johan hamel": [
+        2954.0,
+        2949.564,
+        117
+      ],
+      "F1|karim abed": [
+        1944.0,
+        2226.145,
+        86
+      ],
+      "F1|mikael lesage": [
+        2778.0,
+        3029.201,
+        118
+      ],
+      "F1|bartolomeu varela": [
+        549.0,
+        543.081,
+        21
+      ],
+      "E0|michael oliver": [
+        6384.0,
+        6226.405,
+        293
+      ],
+      "E0|andre marriner": [
+        3031.0,
+        3439.756,
+        163
+      ],
+      "F1|benoit millot": [
+        4577.0,
+        4475.104,
+        176
+      ],
+      "F1|amaury delerue": [
+        2667.0,
+        2659.504,
+        105
+      ],
+      "F1|antony gautier": [
+        2887.0,
+        2834.6,
+        111
+      ],
+      "E0|anthony taylor": [
+        6258.0,
+        6321.856,
+        296
+      ],
+      "SP1|mario melero lopez": [
+        4492.0,
+        4386.199,
+        162
+      ],
+      "SP1|santiago jaime latre": [
+        3063.0,
+        3059.687,
+        112
+      ],
+      "E0|lee mason": [
+        1827.0,
+        1776.729,
+        84
+      ],
+      "E0|mark clattenburg": [
+        463.0,
+        472.005,
+        22
+      ],
+      "E0|stuart attwell": [
+        4084.0,
+        4209.557,
+        198
+      ],
+      "E0|neil swarbrick": [
+        884.0,
+        944.753,
+        44
+      ],
+      "F1|olivier thual": [
+        1689.0,
+        1671.536,
+        66
+      ],
+      "F1|stephane lannoy": [
+        215.0,
+        184.298,
+        7
+      ],
+      "F1|tony chapron": [
+        707.0,
+        692.966,
+        27
+      ],
+      "I1|davide massa": [
+        4634.0,
+        4417.869,
+        169
+      ],
+      "I1|marco di bello": [
+        3952.0,
+        3854.957,
+        150
+      ],
+      "SP1|undiano mallenco": [
+        1744.0,
+        1584.93,
+        58
+      ],
+      "SP1|estrada fernandez": [
+        2856.0,
+        2727.069,
+        99
+      ],
+      "SP1|gonzalez gonzalez": [
+        2139.0,
+        2235.309,
+        81
+      ],
+      "F1|benoit bastien": [
+        4740.0,
+        4714.302,
+        187
+      ],
+      "F1|francois letexier": [
+        4503.0,
+        4636.438,
+        184
+      ],
+      "F1|ruddy buquet": [
+        4429.0,
+        4579.298,
+        181
+      ],
+      "I1|luca banti": [
+        1193.0,
+        1323.248,
+        51
+      ],
+      "I1|claudio gavillucci": [
+        875.0,
+        858.255,
+        32
+      ],
+      "I1|massimiliano irrati": [
+        2697.0,
+        2496.63,
+        95
+      ],
+      "I1|maurizio mariani": [
+        4330.0,
+        4342.806,
+        164
+      ],
+      "I1|daniele orsato": [
+        3256.0,
+        3381.574,
+        128
+      ],
+      "I1|antonio damato": [
+        978.0,
+        853.879,
+        32
+      ],
+      "I1|luca pairetto": [
+        3787.0,
+        3665.999,
+        141
+      ],
+      "I1|piero giacomelli": [
+        2442.0,
+        2393.466,
+        90
+      ],
+      "SP1|nacho iglesias villanueva": [
+        1543.0,
+        1640.107,
+        59
+      ],
+      "SP1|juan martinez munuera": [
+        5111.0,
+        4949.33,
+        185
+      ],
+      "SP1|carlos clos gomez": [
+        598.0,
+        549.088,
+        20
+      ],
+      "SP1|jose luis munuera montero": [
+        4951.0,
+        5271.72,
+        196
+      ],
+      "SP1|inaki bikandi garrido": [
+        531.0,
+        522.168,
+        19
+      ],
+      "D1|christian dingert": [
+        3177.0,
+        3209.382,
+        135
+      ],
+      "SP1|jesus gil manzano": [
+        5229.0,
+        5241.807,
+        198
+      ],
+      "D1|sascha stegemann": [
+        3560.0,
+        3648.897,
+        151
+      ],
+      "D1|robert hartmann": [
+        3012.0,
+        2978.673,
+        124
+      ],
+      "D1|wolfgang stark": [
+        468.0,
+        478.442,
+        18
+      ],
+      "D1|patrick ittrich": [
+        2452.0,
+        2197.846,
+        91
+      ],
+      "D1|marco fritz": [
+        2830.0,
+        2830.6,
+        117
+      ],
+      "D1|felix brych": [
+        3398.0,
+        3614.024,
+        145
+      ],
+      "I1|marco guida": [
+        3545.0,
+        3605.328,
+        136
+      ],
+      "I1|paolo valeri": [
+        2721.0,
+        2599.579,
+        98
+      ],
+      "SP1|alejandro hernandez hernandez": [
+        4589.0,
+        4650.869,
+        175
+      ],
+      "SP1|jose maria sanchez martinez": [
+        5515.0,
+        5330.416,
+        199
+      ],
+      "SP1|alvarez izquierdo": [
+        952.0,
+        915.833,
+        33
+      ],
+      "SP1|de burgos bengoetxea": [
+        4741.0,
+        5247.002,
+        197
+      ],
+      "D1|benjamin brand": [
+        2232.0,
+        2218.973,
+        92
+      ],
+      "D1|tobias stieler": [
+        3680.0,
+        3671.856,
+        154
+      ],
+      "I1|paolo silvio mazzoleni": [
+        1442.0,
+        1342.778,
+        52
+      ],
+      "I1|nicola rizzoli": [
+        460.0,
+        460.405,
+        17
+      ],
+      "I1|michael fabbri": [
+        3658.0,
+        3908.372,
+        150
+      ],
+      "I1|carmine russo": [
+        470.0,
+        469.267,
+        17
+      ],
+      "I1|daniele doveri": [
+        4672.0,
+        4624.55,
+        175
+      ],
+      "I1|paolo tagliavento": [
+        824.0,
+        880.625,
+        32
+      ],
+      "I1|gianluca rocchi": [
+        1818.0,
+        1702.25,
+        65
+      ],
+      "I1|fabio maresca": [
+        3830.0,
+        3896.229,
+        148
+      ],
+      "SP1|mateu lahoz": [
+        3516.0,
+        3565.096,
+        131
+      ],
+      "SP1|daniel ocon arraiz": [
+        454.0,
+        473.132,
+        17
+      ],
+      "SP1|carlos del cerro grande": [
+        3618.0,
+        3742.723,
+        137
+      ],
+      "D1|manuel grafe": [
+        1737.0,
+        2136.017,
+        86
+      ],
+      "D1|felix zwayer": [
+        3777.0,
+        3770.386,
+        159
+      ],
+      "D1|harm osmers": [
+        3088.0,
+        3289.669,
+        139
+      ],
+      "D1|jochen drees": [
+        309.0,
+        298.414,
+        11
+      ],
+      "D1|tobias welz": [
+        1899.0,
+        1811.159,
+        77
+      ],
+      "D1|guido winkmann": [
+        1588.0,
+        1589.39,
+        63
+      ],
+      "E0|paul tierney": [
+        4263.0,
+        4089.754,
+        193
+      ],
+      "F1|clement turpin": [
+        4515.0,
+        4622.294,
+        183
+      ],
+      "SP1|david fernandez borbalan": [
+        998.0,
+        1058.159,
+        39
+      ],
+      "D1|markus schmidt": [
+        1613.0,
+        1622.292,
+        65
+      ],
+      "D1|daniel siebert": [
+        3810.0,
+        3837.33,
+        162
+      ],
+      "I1|rosario abisso": [
+        3047.0,
+        3076.914,
+        120
+      ],
+      "I1|gianpaolo calvarese": [
+        2194.0,
+        2148.698,
+        84
+      ],
+      "SP1|daniel jesus trujillo suarez": [
+        1024.0,
+        1011.281,
+        36
+      ],
+      "E0|mike jones": [
+        718.0,
+        634.791,
+        30
+      ],
+      "D1|robert kampka": [
+        1027.0,
+        894.322,
+        35
+      ],
+      "D1|gunter perl": [
+        398.0,
+        385.053,
+        14
+      ],
+      "D1|bastian dankert": [
+        3604.0,
+        3387.268,
+        141
+      ],
+      "D1|deniz aytekin": [
+        3314.0,
+        3409.975,
+        140
+      ],
+      "I1|domenico celi": [
+        343.0,
+        400.246,
+        15
+      ],
+      "I1|daniele chiffi": [
+        3086.0,
+        3266.669,
+        127
+      ],
+      "D1|frank willenborg": [
+        2497.0,
+        2636.129,
+        110
+      ],
+      "I1|davide ghersini": [
+        648.0,
+        713.438,
+        27
+      ],
+      "E0|graham scott": [
+        2045.0,
+        2160.199,
+        102
+      ],
+      "F1|sebastien moreira": [
+        401.0,
+        391.922,
+        15
+      ],
+      "D1|benjamin cortus": [
+        1966.0,
+        1866.196,
+        75
+      ],
+      "F1|nicolas rainville": [
+        941.0,
+        968.048,
+        38
+      ],
+      "F1|sebastien desiage": [
+        730.0,
+        824.87,
+        32
+      ],
+      "I1|gianluca manganiello": [
+        2821.0,
+        3053.266,
+        119
+      ],
+      "F1|said ennjimi": [
+        86.0,
+        100.412,
+        4
+      ],
+      "I1|fabrizio pasqua": [
+        1490.0,
+        1653.408,
+        63
+      ],
+      "F1|fredy fautrel": [
+        94.0,
+        76.566,
+        3
+      ],
+      "I1|juan luca sacchi": [
+        2033.0,
+        2008.95,
+        78
+      ],
+      "I1|federico la penna": [
+        2673.0,
+        2538.956,
+        99
+      ],
+      "F1|jerome brisard": [
+        4460.0,
+        4501.498,
+        180
+      ],
+      "SP1|miguel lopez lopez": [
+        48.0,
+        55.351,
+        2
+      ],
+      "I1|gianluca aureliano": [
+        1226.0,
+        1208.676,
+        46
+      ],
+      "SP1|angel alvarez pinardo": [
+        24.0,
+        25.852,
+        1
+      ],
+      "I1|eugenio abbattista": [
+        353.0,
+        350.034,
+        13
+      ],
+      "E0|lee probert": [
+        721.0,
+        760.231,
+        36
+      ],
+      "E0|chris kavanagh": [
+        4233.0,
+        4209.097,
+        198
+      ],
+      "I1|valerio marini": [
+        297.0,
+        264.815,
+        10
+      ],
+      "F1|bastien courbet": [
+        21.0,
+        28.868,
+        1
+      ],
+      "I1|daniele minelli": [
+        59.0,
+        55.461,
+        2
+      ],
+      "I1|marco serra": [
+        334.0,
+        304.992,
+        12
+      ],
+      "I1|antonio di martino": [
+        227.0,
+        215.899,
+        8
+      ],
+      "I1|luigi nasca": [
+        86.0,
+        82.292,
+        3
+      ],
+      "I1|riccardo pinzani": [
+        44.0,
+        49.996,
+        2
+      ],
+      "I1|daniele martinelli": [
+        28.0,
+        26.081,
+        1
+      ],
+      "I1|aleandro di paolo": [
+        35.0,
+        48.354,
+        2
+      ],
+      "I1|antonio rapuano": [
+        1676.0,
+        1713.085,
+        66
+      ],
+      "F1|thomas leonard": [
+        3755.0,
+        3873.234,
+        154
+      ],
+      "F1|hakim ben el hadj": [
+        3601.0,
+        3453.802,
+        139
+      ],
+      "F1|stephane jochem": [
+        445.0,
+        436.669,
+        17
+      ],
+      "SP1|medie jimenez": [
+        1858.0,
+        1936.62,
+        70
+      ],
+      "SP1|javier alberola rojas": [
+        4483.0,
+        4693.83,
+        174
+      ],
+      "SP1|pablo gonzalez fuertes": [
+        4496.0,
+        4261.469,
+        157
+      ],
+      "D1|bibiana steinhaus-webb": [
+        572.0,
+        559.208,
+        23
+      ],
+      "D1|sven jablonski": [
+        2785.0,
+        2999.534,
+        128
+      ],
+      "D1|soren storks": [
+        1572.0,
+        1682.856,
+        70
+      ],
+      "D1|martin petersen": [
+        2250.0,
+        2218.496,
+        92
+      ],
+      "I1|marco piccinini": [
+        2189.0,
+        2195.284,
+        86
+      ],
+      "I1|livio marinelli": [
+        1737.0,
+        1852.231,
+        72
+      ],
+      "I1|ivano pezzuto": [
+        637.0,
+        587.932,
+        22
+      ],
+      "I1|francesco fourneau": [
+        1776.0,
+        1730.03,
+        67
+      ],
+      "E0|simon hooper": [
+        3024.0,
+        3001.942,
+        140
+      ],
+      "F1|sandro scharer": [
+        12.0,
+        25.466,
+        1
+      ],
+      "I1|antonio giua": [
+        1492.0,
+        1496.968,
+        58
+      ],
+      "E0|andrew madley": [
+        3140.0,
+        2951.133,
+        137
+      ],
+      "F1|stephan klossner": [
+        28.0,
+        26.38,
+        1
+      ],
+      "E0|david coote": [
+        2630.0,
+        2387.518,
+        112
+      ],
+      "I1|lorenzo illuzzi": [
+        21.0,
+        29.464,
+        1
+      ],
+      "F1|willy delajod": [
+        3785.0,
+        3652.136,
+        147
+      ],
+      "F1|florent batta": [
+        2912.0,
+        2604.428,
+        103
+      ],
+      "SP1|guillermo cuadra fernandez": [
+        3934.0,
+        3961.798,
+        149
+      ],
+      "F1|eric wattellier": [
+        3088.0,
+        3571.449,
+        144
+      ],
+      "F1|jeremy stinat": [
+        3401.0,
+        3370.62,
+        136
+      ],
+      "SP1|eduardo prieto iglesias": [
+        1076.0,
+        1035.801,
+        37
+      ],
+      "SP1|adrian cordero vega": [
+        2880.0,
+        3106.066,
+        115
+      ],
+      "D1|daniel schlager": [
+        2411.0,
+        2494.183,
+        106
+      ],
+      "D1|robert schroder": [
+        2198.0,
+        2147.675,
+        92
+      ],
+      "I1|manuel volpi": [
+        605.0,
+        535.572,
+        20
+      ],
+      "I1|luca massimi": [
+        1036.0,
+        1019.298,
+        39
+      ],
+      "I1|federico dionisi": [
+        1024.0,
+        962.962,
+        37
+      ],
+      "I1|lorenzo maggioni": [
+        195.0,
+        190.351,
+        7
+      ],
+      "F1|stephanie frappart": [
+        2668.0,
+        2733.726,
+        109
+      ],
+      "I1|riccardo ros": [
+        92.0,
+        83.25,
+        3
+      ],
+      "F1|jeremie pignard": [
+        2761.0,
+        3012.392,
+        122
+      ],
+      "SP1|cesar soto grado": [
+        3707.0,
+        3818.46,
+        145
+      ],
+      "SP1|valentin pizarro gomez": [
+        1753.0,
+        1883.128,
+        70
+      ],
+      "E0|peter bankes": [
+        2571.0,
+        2553.495,
+        119
+      ],
+      "I1|alessandro prontera": [
+        860.0,
+        865.082,
+        34
+      ],
+      "SP1|andres hernandez": [
+        221.0,
+        217.171,
+        8
+      ],
+      "F1|alain bieri": [
+        15.0,
+        26.438,
+        1
+      ],
+      "E0|tim robinson": [
+        1121.0,
+        1041.676,
+        48
+      ],
+      "E0|robert jones": [
+        2576.0,
+        2455.91,
+        113
+      ],
+      "F1|anthony ustaritz": [
+        24.0,
+        26.308,
+        1
+      ],
+      "E0|darren england": [
+        2275.0,
+        2232.79,
+        104
+      ],
+      "I1|giovanni ayroldi": [
+        1732.0,
+        1591.39,
+        62
+      ],
+      "I1|simone sozza": [
+        2018.0,
+        2044.509,
+        80
+      ],
+      "I1|daniel amabile": [
+        20.0,
+        26.308,
+        1
+      ],
+      "SP1|isidro diaz de mera escuderos": [
+        3043.0,
+        3075.914,
+        117
+      ],
+      "F1|bastien dechepy": [
+        2543.0,
+        2448.987,
+        100
+      ],
+      "F1|aurelien petit": [
+        468.0,
+        435.872,
+        17
+      ],
+      "SP1|jorge figueroa vazquez": [
+        2093.0,
+        2069.527,
+        76
+      ],
+      "D1|florian badstubner": [
+        1795.0,
+        1852.417,
+        80
+      ],
+      "D1|matthias jollenbeck": [
+        1622.0,
+        1671.776,
+        72
+      ],
+      "D1|arne aarnink": [
+        21.0,
+        21.133,
+        1
+      ],
+      "D1|tobias reichel": [
+        1498.0,
+        1392.46,
+        60
+      ],
+      "I1|alberto santoro": [
+        353.0,
+        364.433,
+        14
+      ],
+      "I1|matteo marchetti": [
+        1461.0,
+        1452.298,
+        57
+      ],
+      "I1|giacomo camplone": [
+        203.0,
+        222.721,
+        8
+      ],
+      "I1|daniele paterna": [
+        102.0,
+        107.898,
+        4
+      ],
+      "I1|matteo gariglio": [
+        100.0,
+        110.068,
+        4
+      ],
+      "I1|francesco meraviglia": [
+        75.0,
+        82.191,
+        3
+      ],
+      "SP1|miguel angel ortiz arias": [
+        2224.0,
+        2523.757,
+        96
+      ],
+      "F1|romain lissorgue": [
+        1442.0,
+        1365.533,
+        56
+      ],
+      "SP1|alejandro muniz ruiz": [
+        2394.0,
+        2436.821,
+        93
+      ],
+      "F1|pierre gaillouste": [
+        1298.0,
+        1215.829,
+        49
+      ],
+      "F1|luis godinho": [
+        19.0,
+        26.868,
+        1
+      ],
+      "E0|jarred gillett": [
+        1746.0,
+        1895.189,
+        87
+      ],
+      "F1|antonio nobre": [
+        20.0,
+        23.401,
+        1
+      ],
+      "I1|niccolo baroni": [
+        128.0,
+        136.317,
+        5
+      ],
+      "E0|michael salisbury": [
+        1393.0,
+        1321.18,
+        61
+      ],
+      "I1|matteo marcenaro": [
+        1164.0,
+        1270.025,
+        50
+      ],
+      "E0|john brooks": [
+        1660.0,
+        1632.704,
+        76
+      ],
+      "I1|andrea airaghi colombo": [
+        335.0,
+        385.646,
+        15
+      ],
+      "F1|gael angoula": [
+        715.0,
+        831.237,
+        34
+      ],
+      "E0|tony harrington": [
+        1112.0,
+        1114.075,
+        52
+      ],
+      "F1|hugo miguel": [
+        26.0,
+        26.077,
+        1
+      ],
+      "I1|francesco cosso": [
+        230.0,
+        263.899,
+        10
+      ],
+      "D1|martin thomsen": [
+        20.0,
+        23.91,
+        1
+      ],
+      "F1|vitor ferreira": [
+        21.0,
+        24.962,
+        1
+      ],
+      "I1|gianpiero miele": [
+        27.0,
+        28.444,
+        1
+      ],
+      "F1|marc bollengier": [
+        1812.0,
+        1684.313,
+        69
+      ],
+      "SP1|javier iglesias villanueva": [
+        918.0,
+        1053.7,
+        40
+      ],
+      "SP1|juan luis pulido santana": [
+        1433.0,
+        1460.886,
+        55
+      ],
+      "F1|mathieu vernice": [
+        1657.0,
+        1520.18,
+        62
+      ],
+      "F1|gustavo correia": [
+        24.0,
+        25.622,
+        1
+      ],
+      "E0|thomas bramall": [
+        1254.0,
+        1214.239,
+        56
+      ],
+      "I1|maria sole ferrieri caputi": [
+        352.0,
+        377.603,
+        15
+      ],
+      "I1|daniele perenzoni": [
+        204.0,
+        204.09,
+        8
+      ],
+      "I1|ermanno feliciani": [
+        988.0,
+        1083.714,
+        43
+      ],
+      "F1|miguel nogueira": [
+        57.0,
+        47.792,
+        2
+      ],
+      "E0|darren bond": [
+        495.0,
+        491.597,
+        23
+      ],
+      "D1|timo gerach": [
+        625.0,
+        681.713,
+        30
+      ],
+      "I1|luca zufferli": [
+        1030.0,
+        1096.143,
+        44
+      ],
+      "D1|robin braun": [
+        280.0,
+        290.775,
+        13
+      ],
+      "E0|josh smith": [
+        196.0,
+        188.307,
+        9
+      ],
+      "SP1|francisco jose hernandez maeso": [
+        1512.0,
+        1591.527,
+        61
+      ],
+      "SP1|victor garcia verdura": [
+        1541.0,
+        1558.227,
+        59
+      ],
+      "I1|andrea colombo": [
+        1230.0,
+        1219.804,
+        48
+      ],
+      "SP1|mateo busquets ferrer": [
+        1532.0,
+        1574.723,
+        61
+      ],
+      "SP1|alejandro ruiz aguilera": [
+        26.0,
+        26.439,
+        1
+      ],
+      "E0|samuel barrott": [
+        1332.0,
+        1425.901,
+        66
+      ],
+      "I1|paride tremolada": [
+        274.0,
+        269.277,
+        11
+      ],
+      "I1|giuseppe collu": [
+        561.0,
+        575.862,
+        23
+      ],
+      "F1|mickael leleu": [
+        25.0,
+        24.454,
+        1
+      ],
+      "E0|rebecca welch": [
+        53.0,
+        41.993,
+        2
+      ],
+      "E0|samuel allison": [
+        76.0,
+        65.868,
+        3
+      ],
+      "E0|lewis smith": [
+        257.0,
+        233.662,
+        11
+      ],
+      "E0|sunny gill": [
+        31.0,
+        24.489,
+        1
+      ],
+      "D1|florian exner": [
+        563.0,
+        581.236,
+        26
+      ],
+      "I1|davide di marco": [
+        175.0,
+        195.453,
+        8
+      ],
+      "E0|matthew donohue": [
+        142.0,
+        104.6,
+        5
+      ],
+      "SP1|alejandro quintero gonzalez": [
+        1077.0,
+        1041.881,
+        40
+      ],
+      "E0|sam allison": [
+        51.0,
+        40.315,
+        2
+      ],
+      "F1|abdelatif kherradji": [
+        779.0,
+        662.462,
+        28
+      ],
+      "D1|max burda": [
+        92.0,
+        87.242,
+        4
+      ],
+      "D1|wolfgang haslberger": [
+        23.0,
+        21.874,
+        1
+      ],
+      "I1|kevin bonacina": [
+        460.0,
+        465.021,
+        18
+      ],
+      "E0|andrew kitchen": [
+        147.0,
+        129.03,
+        6
+      ],
+      "I1|alberto ruben arena": [
+        312.0,
+        356.284,
+        14
+      ],
+      "E0|david webb": [
+        47.0,
+        46.418,
+        2
+      ],
+      "I1|valerio crezzini": [
+        312.0,
+        293.671,
+        12
+      ],
+      "I1|marco monaldi": [
+        36.0,
+        27.544,
+        1
+      ],
+      "I1|daniele rutella": [
+        17.0,
+        23.361,
+        1
+      ],
+      "SP1|miguel sesma espinosa": [
+        648.0,
+        623.618,
+        24
+      ],
+      "SP1|iosu galech apezteguia": [
+        545.0,
+        495.829,
+        19
+      ],
+      "SP1|jose luis guzman mansilla": [
+        432.0,
+        431.677,
+        17
+      ],
+      "F1|guillaume paradis": [
+        482.0,
+        461.348,
+        19
+      ],
+      "SP1|victor garcia acosta": [
+        13.0,
+        21.045,
+        1
+      ],
+      "E0|thomas kirk": [
+        144.0,
+        131.215,
+        6
+      ],
+      "I1|giuseppe mucera": [
+        93.0,
+        102.448,
+        4
+      ],
+      "I1|andrea calzavara": [
+        82.0,
+        71.539,
+        3
+      ],
+      "E0|farai hallam": [
+        154.0,
+        146.641,
+        7
+      ],
+      "I1|simone galipo": [
+        22.0,
+        24.766,
+        1
+      ],
+      "I1|mario perri": [
+        57.0,
+        51.721,
+        2
+      ],
+      "SP1|jose sanchez santos": [
+        18.0,
+        25.652,
+        1
+      ],
+      "I1|niccolo turrini": [
+        24.0,
+        24.618,
+        1
+      ],
+      "I1|andrea zanotti": [
+        16.0,
+        24.336,
+        1
+      ],
+      "SP1|manuel orellana cid": [
+        86.0,
+        84.399,
+        3
+      ],
+      "SP1|carlos muniz munoz": [
+        68.0,
+        74.905,
+        3
+      ],
+      "E0|adrian gillett": [
+        45.0,
+        44.282,
+        2
+      ],
+      "SP1|jon gonzalez esteban": [
+        66.0,
+        75.571,
+        3
+      ],
+      "F1|azzedine souifi": [
+        49.0,
+        44.249,
+        2
+      ],
+      "I1|claudio allegretta": [
+        22.0,
+        25.561,
+        1
+      ],
+      "F1|geoffrey kubler": [
+        55.0,
+        46.765,
+        2
+      ],
+      "SP1|luis bestard servera": [
+        85.0,
+        75.586,
+        3
+      ],
+      "D1|richard hempel": [
+        23.0,
+        21.998,
+        1
+      ],
+      "SP1|miguel chua": [
+        27.0,
+        23.483,
+        1
+      ],
+      "E0|adam herczeg": [
+        22.0,
+        21.986,
+        1
+      ]
+    },
+    "asof": "2026-10-11",
+    "n_matches_with_referee": 18207,
+    "n_referees": 279
+  },
+  "stats_v3": {
+    "version": 3,
+    "gap": {
+      "params": {
+        "tiri": [
+          0.1,
+          1.0
         ],
-        "alpha": 0.010572209816226022,
-        "home": {
-          "mean": [
-            2.5792547214711243,
-            2.357665594338218,
-            1.540576102712967,
-            1.3458375719832059,
-            0.36101954834211103,
-            0.13552690500185097,
-            0.4061048370868286,
-            0.14237409255194297,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
+        "sot": [
+          0.05,
+          1.0
+        ]
+      },
+      "priors": {
+        "tiri": [
+          14.122774480712167,
+          11.313056379821958
+        ],
+        "sot": [
+          5.432121661721069,
+          4.311201780415431
+        ]
+      }
+    },
+    "models": {
+      "with_xg": {
+        "tiri": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "xg_lmu",
+            "xg_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1"
           ],
-          "scale": [
-            0.21958123759953024,
-            0.22136441857133887,
-            0.26676267038574575,
-            0.2661841119648373,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.2856812117570164,
-            0.28767824047262797,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            0.14589100152765044,
-            -0.007800570426428926,
-            -0.017250926604348755,
-            0.009499207611592569,
-            -0.014523550880083422,
-            -0.006114334422454758,
-            0.04303223676126669,
-            -0.008082699417420774,
-            0.05609623358902682,
-            -0.0019941356418312775,
-            -0.023901940627752406,
-            0.00268036939692943,
-            0.0063792476767097215,
-            0.011509404171760537,
-            0.00404184160686917,
-            0.005030562584204006
-          ],
-          "intercept": 2.5893832238934196
+          "alpha": 0.008832563690492644,
+          "home": {
+            "mean": [
+              2.5886181642530577,
+              2.357821849910109,
+              1.5405751173047948,
+              1.34583716967281,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.22858748181649494,
+              0.3008927188955979,
+              0.2667621626834116,
+              0.26618502941490063,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.14760111167105544,
+              0.010151256025401035,
+              0.017562014225430952,
+              -0.01935389968372872,
+              0.004225636132267878,
+              0.004368452586850622,
+              0.013089522708984936,
+              -0.012705537760203278,
+              0.02660596272016172,
+              0.007498786586075799,
+              -0.004930488403795514,
+              -0.005095526046361775,
+              0.004800586140491542,
+              0.009379713657208999,
+              0.00235591980638074,
+              0.0011569059795293595
+            ],
+            "intercept": 2.5875539625001096
+          },
+          "away": {
+            "mean": [
+              2.5886181642530577,
+              2.357821849910109,
+              1.5405751173047948,
+              1.34583716967281,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.22858748181649494,
+              0.3008927188955979,
+              0.2667621626834116,
+              0.26618502941490063,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.0008287108851904451,
+              0.14141932454101536,
+              -0.01755718641500704,
+              0.023788735049289765,
+              0.009553808578002688,
+              -0.006353812025229895,
+              0.007922076436425236,
+              0.01057307086076466,
+              -0.02053921729199409,
+              0.012293464855730572,
+              -0.03561651274356654,
+              0.0018729133573873408,
+              0.011479737334615063,
+              0.009871520206124775,
+              -0.0052073192707381595,
+              0.0054050732570626574
+            ],
+            "intercept": 2.3903807977557823
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.040242928955727515
         },
-        "away": {
-          "mean": [
-            2.5792547214711243,
-            2.357665594338218,
-            1.540576102712967,
-            1.3458375719832059,
-            0.36101954834211103,
-            0.13552690500185097,
-            0.4061048370868286,
-            0.14237409255194297,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
+        "sot": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "xg_lmu",
+            "xg_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1"
           ],
-          "scale": [
-            0.21958123759953024,
-            0.22136441857133887,
-            0.26676267038574575,
-            0.2661841119648373,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.2856812117570164,
-            0.28767824047262797,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            -0.012427209423346177,
-            0.1305622395073306,
-            0.0017200279209955516,
-            -0.0024799681000883655,
-            -0.0038952421175026263,
-            -0.02633767127051078,
-            0.011557056777867156,
-            0.04401488070989005,
-            -0.05898140809911289,
-            -0.0007807903515601061,
-            -0.0015834569656545234,
-            0.008673282495489747,
-            0.009013773254877662,
-            0.01135147515987315,
-            -0.0027314774045764274,
-            0.009027496129267001
-          ],
-          "intercept": 2.3924234865288905
+          "alpha": 0.009312359396479343,
+          "home": {
+            "mean": [
+              1.5562552509229046,
+              1.3200749233371365,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.2574833956810635,
+              0.33586934143308794,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.12233152730812646,
+              0.017044756138219656,
+              0.04679260175353504,
+              -0.023943802282857682,
+              -0.00314980368644707,
+              0.003167508165128006,
+              0.04946299520284166,
+              -0.018455519022277628,
+              0.019563800267313695,
+              -0.00022865498851754477,
+              -0.006119699688033553,
+              0.011897969093219562,
+              -0.015720478290236237,
+              0.0017762955780827345,
+              -0.012630777351570716,
+              -0.010962004021506629
+            ],
+            "intercept": 1.551319788599447
+          },
+          "away": {
+            "mean": [
+              1.5562552509229046,
+              1.3200749233371365,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.2574833956810635,
+              0.33586934143308794,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.025456269023852177,
+              0.12210881589038441,
+              -0.028924376722791904,
+              0.031182186285282076,
+              -0.010966096157863287,
+              0.0238427876059559,
+              -0.01461469682685355,
+              0.05315127212815392,
+              -0.02586751275000155,
+              0.023899229698351666,
+              0.024015005632264597,
+              -0.004839642462076876,
+              -0.00828407693766019,
+              -0.004055437431038449,
+              -0.024425726131504854,
+              -0.010117118070911186
+            ],
+            "intercept": 1.357734579489655
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.024750884343662658
         },
-        "meta": {
-          "n_train": 18228
+        "corner": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "xg_lmu",
+            "xg_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1"
+          ],
+          "alpha": 0.014403651678960233,
+          "home": {
+            "mean": [
+              1.6622508748062466,
+              1.4222965645348085,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.23448443151609394,
+              0.2360689598824447,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.09172176042418875,
+              -0.00019507446037020018,
+              0.03136544171977722,
+              -0.0067320445478898615,
+              -0.0019556799813619697,
+              4.100668809031458e-05,
+              0.022880009557212744,
+              -0.025692464350130013,
+              0.05208641986592608,
+              -0.003188207218904207,
+              -0.009316401308020087,
+              -0.0005869989977834683,
+              0.009001378839588896,
+              -0.003694316439262186,
+              -0.003922045107493245,
+              -0.005780054409524838
+            ],
+            "intercept": 1.664049355769332
+          },
+          "away": {
+            "mean": [
+              1.6622508748062466,
+              1.4222965645348085,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.23448443151609394,
+              0.2360689598824447,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.007279033808333944,
+              0.08380166646707592,
+              -0.017932138893373036,
+              0.013758460174017339,
+              -0.005187690999621023,
+              -0.015648693652788103,
+              -0.0013545759757378785,
+              0.04832128732830757,
+              -0.06707066057520951,
+              -0.00529858075524956,
+              0.005608679598036029,
+              0.0049231033823860515,
+              0.010583976347997065,
+              -0.0031305622554949754,
+              -0.01573200823089494,
+              -0.0032527788060812543
+            ],
+            "intercept": 1.4657103871482415
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.07937517495361181
+        },
+        "gialli": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "xg_lmu",
+            "xg_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1",
+            "ref_logR"
+          ],
+          "alpha": 0.0006651047650083078,
+          "home": {
+            "mean": [
+              0.6259323597251751,
+              0.7098421432753028,
+              2.4982011270143634,
+              2.4987612647331736,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.005111930584980562
+            ],
+            "scale": [
+              0.24920483252268005,
+              0.24254689412698405,
+              0.16735318202057425,
+              0.16527212375924477,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.07638994097493373
+            ],
+            "coef": [
+              0.10610574946295535,
+              0.01307994838505214,
+              0.028282758076812933,
+              -0.015350946268876807,
+              -0.019154295144091508,
+              0.005411264404099778,
+              -0.015081391460913241,
+              0.031476696657099554,
+              -0.07944652399615883,
+              -0.04311001092455961,
+              0.06985393613354937,
+              -0.02130587091115137,
+              -0.03403095591295281,
+              -0.02675516796959506,
+              0.02989976477958312,
+              -0.028512377436618393,
+              0.07277850929399678
+            ],
+            "intercept": 0.623103462072554
+          },
+          "away": {
+            "mean": [
+              0.6259323597251751,
+              0.7098421432753028,
+              2.4982011270143634,
+              2.4987612647331736,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.005111930584980562
+            ],
+            "scale": [
+              0.24920483252268005,
+              0.24254689412698405,
+              0.16735318202057425,
+              0.16527212375924477,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.07638994097493373
+            ],
+            "coef": [
+              -0.014410073590800371,
+              0.1221843469883387,
+              0.0030388079631156243,
+              0.013738947263153686,
+              -0.028185494663015714,
+              0.005978335917522333,
+              0.004826056009017472,
+              0.017042966694518304,
+              0.031621436080360374,
+              -0.04832572121392322,
+              0.014797968048909349,
+              -0.016791683712969054,
+              -0.039137885424794835,
+              -0.027931029814931712,
+              0.021154194422996018,
+              -0.03191168993436107,
+              0.06318155323365433
+            ],
+            "intercept": 0.7448058382034883
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.0001
+        },
+        "falli": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "xg_lmu",
+            "xg_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1",
+            "ref_logR_f"
+          ],
+          "alpha": 0.005951144531776187,
+          "home": {
+            "mean": [
+              2.4982011270143634,
+              2.4987612647331736,
+              0.6259323597251751,
+              0.7098421432753028,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.0018885872088530915
+            ],
+            "scale": [
+              0.16735318202057425,
+              0.16527212375924477,
+              0.24920483252268005,
+              0.24254689412698405,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.04049034482506915
+            ],
+            "coef": [
+              0.11617093754920683,
+              -0.008683745513011102,
+              -0.001769761544391244,
+              -0.0027148041132980666,
+              -0.022535009381660764,
+              0.013265683295991875,
+              -0.005457430616717787,
+              -0.004546252028180447,
+              -0.02021509454783614,
+              -0.022267760279241808,
+              0.029237546708173703,
+              -0.00046956003926646703,
+              -0.026172888216885792,
+              -0.017304299457110272,
+              0.007186013167621988,
+              -0.003390416001241222,
+              0.03885349577573527
+            ],
+            "intercept": 2.4878935978888577
+          },
+          "away": {
+            "mean": [
+              2.4982011270143634,
+              2.4987612647331736,
+              0.6259323597251751,
+              0.7098421432753028,
+              0.36102192457263543,
+              0.1355309667567572,
+              0.40610501487962714,
+              0.14237366487408395,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.0018885872088530915
+            ],
+            "scale": [
+              0.16735318202057425,
+              0.16527212375924477,
+              0.24920483252268005,
+              0.24254689412698405,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.2856801536710666,
+              0.28767806703377446,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.04049034482506915
+            ],
+            "coef": [
+              -0.00459092325991307,
+              0.10932861681329568,
+              -0.008761399297117185,
+              0.011569111215470504,
+              -0.0203012931203553,
+              -0.023525132763407983,
+              -0.008691135744764615,
+              0.02432914769625218,
+              0.001016179645880791,
+              -0.03418786711822911,
+              0.01763518296357119,
+              0.0008404213736473932,
+              -0.024840377935705635,
+              -0.013173142475710756,
+              0.002247170205738053,
+              -0.004044645885000466,
+              0.039765354351304606
+            ],
+            "intercept": 2.5086120693810927
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.005009708371925882
         }
       },
-      "corner": {
-        "features": [
-          "corner_lh",
-          "corner_la",
-          "corner_aux_lh",
-          "corner_aux_la",
-          "dc_lmu",
-          "dc_lnu",
-          "xg_lmu",
-          "xg_lnu",
-          "pi_diff",
-          "abs_pi",
-          "gd_exp",
-          "abs_gd",
-          "lg_E0",
-          "lg_D1",
-          "lg_SP1",
-          "lg_F1"
-        ],
-        "alpha": 0.014403813902240329,
-        "home": {
-          "mean": [
-            1.662251736338369,
-            1.4222976991663623,
-            2.5792547214711243,
-            2.357665594338218,
-            0.36101954834211103,
-            0.13552690500185097,
-            0.4061048370868286,
-            0.14237409255194297,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
+      "without_xg": {
+        "tiri": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1"
           ],
-          "scale": [
-            0.23448523114973646,
-            0.2360674347486693,
-            0.21958123759953024,
-            0.22136441857133887,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.2856812117570164,
-            0.28767824047262797,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            0.09171683626813658,
-            -0.00020397920014557703,
-            0.031369330068824496,
-            -0.006730391128131722,
-            -0.0020260849692572648,
-            0.00010978434969892336,
-            0.02287166791434895,
-            -0.025693472393348384,
-            0.0521027449379074,
-            -0.0031654791067770908,
-            -0.0091989063886385,
-            -0.0006235022329307426,
-            0.009002648194613171,
-            -0.0036962831142490927,
-            -0.003923249980250297,
-            -0.0057813519214767375
-          ],
-          "intercept": 1.6640494183799706
+          "alpha": 0.008856872327904884,
+          "home": {
+            "mean": [
+              2.5886181642530577,
+              2.357821849910109,
+              1.5405751173047948,
+              1.34583716967281,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.22858748181649494,
+              0.3008927188955979,
+              0.2667621626834116,
+              0.26618502941490063,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.1502315929435958,
+              0.008162168613145468,
+              0.0222041427581279,
+              -0.023981967920264653,
+              0.003366092943697137,
+              0.004215071165531013,
+              0.032077090700853614,
+              0.007400711303899429,
+              0.0015119235438001409,
+              -0.005269906943692327,
+              0.004851910481381309,
+              0.009858946122106017,
+              0.0029987976438578434,
+              0.0015607347578586246
+            ],
+            "intercept": 2.5875752756198094
+          },
+          "away": {
+            "mean": [
+              2.5886181642530577,
+              2.357821849910109,
+              1.5405751173047948,
+              1.34583716967281,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.22858748181649494,
+              0.3008927188955979,
+              0.2667621626834116,
+              0.26618502941490063,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.0024886616998267257,
+              0.1434926936868065,
+              -0.01502946903560466,
+              0.027548537170753715,
+              0.011903257967356072,
+              -0.0028884149704242893,
+              -0.02003138284597134,
+              0.01202658335513833,
+              -0.03670100674962835,
+              0.0029209431568454026,
+              0.01244102768957314,
+              0.01061792201128282,
+              -0.0042697252211801725,
+              0.005626155421301548
+            ],
+            "intercept": 2.3903825111648627
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.04028565169361628
         },
-        "away": {
-          "mean": [
-            1.662251736338369,
-            1.4222976991663623,
-            2.5792547214711243,
-            2.357665594338218,
-            0.36101954834211103,
-            0.13552690500185097,
-            0.4061048370868286,
-            0.14237409255194297,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
+        "sot": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1"
           ],
-          "scale": [
-            0.23448523114973646,
-            0.2360674347486693,
-            0.21958123759953024,
-            0.22136441857133887,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.2856812117570164,
-            0.28767824047262797,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            0.007290448521764301,
-            0.08379748584998717,
-            -0.017939822268267593,
-            0.013761628558029357,
-            -0.00516692602418229,
-            -0.01563077407659808,
-            -0.0013679976474177318,
-            0.048297207068992716,
-            -0.06705850476041418,
-            -0.00531634490003188,
-            0.005571452752735084,
-            0.004948037779082062,
-            0.010585215971919798,
-            -0.0031281364065349664,
-            -0.0157293877899862,
-            -0.003251375358439791
-          ],
-          "intercept": 1.4657108812657744
+          "alpha": 0.009428534066674725,
+          "home": {
+            "mean": [
+              1.5562552509229046,
+              1.3200749233371365,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.2574833956810635,
+              0.33586934143308794,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.13595458501978952,
+              0.013716712371948464,
+              0.06004220490252808,
+              -0.028702234524958462,
+              0.0012277500273302367,
+              0.005746467611974172,
+              0.031700145374417586,
+              -0.0014719742502676168,
+              0.009914349378368936,
+              0.014096993321989265,
+              -0.014344184347064496,
+              0.0041447392672033165,
+              -0.009247487363541931,
+              -0.00945753796103084
+            ],
+            "intercept": 1.551505141834499
+          },
+          "away": {
+            "mean": [
+              1.5562552509229046,
+              1.3200749233371365,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.2574833956810635,
+              0.33586934143308794,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.02199054912391888,
+              0.1366411323810374,
+              -0.034080637670823005,
+              0.043126126594820076,
+              -0.005486011225781268,
+              0.035188716170774445,
+              -0.0326923368131648,
+              0.02413784273545554,
+              0.003975503792440584,
+              -0.002651388670774373,
+              -0.006908974377288155,
+              -0.004029054206325499,
+              -0.02434875427324523,
+              -0.01049511879470031
+            ],
+            "intercept": 1.3579047382041076
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.0251234584314303
         },
-        "meta": {
-          "n_train": 18228
-        }
-      },
-      "gialli": {
-        "features": [
-          "gialli_lh",
-          "gialli_la",
-          "gialli_aux_lh",
-          "gialli_aux_la",
-          "dc_lmu",
-          "dc_lnu",
-          "xg_lmu",
-          "xg_lnu",
-          "pi_diff",
-          "abs_pi",
-          "gd_exp",
-          "abs_gd",
-          "lg_E0",
-          "lg_D1",
-          "lg_SP1",
-          "lg_F1",
-          "ref_logR"
-        ],
-        "alpha": 0.0006670860439149613,
-        "home": {
-          "mean": [
-            0.6259318450606244,
-            0.7098413144007577,
-            2.498201025255379,
-            2.4987613475504125,
-            0.36101954834211103,
-            0.13552690500185097,
-            0.4061048370868286,
-            0.14237409255194297,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522,
-            0.005137003176521678
+        "corner": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1"
           ],
-          "scale": [
-            0.2492045671786309,
-            0.24254640772953484,
-            0.16735279015184384,
-            0.16527258317012836,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.2856812117570164,
-            0.28767824047262797,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078,
-            0.07635034342277745
-          ],
-          "coef": [
-            0.10612990345958566,
-            0.013152872363702588,
-            0.028278953333493985,
-            -0.0153791787486503,
-            -0.019187483260051298,
-            0.005455791246045683,
-            -0.015124405791278923,
-            0.03144931914098794,
-            -0.07941496151809509,
-            -0.04317045271209147,
-            0.0698514877032707,
-            -0.021209508031961727,
-            -0.03399109577812333,
-            -0.026716858752821756,
-            0.029843733151758433,
-            -0.02848513169194004,
-            0.0726017219236664
-          ],
-          "intercept": 0.6231172167662552
+          "alpha": 0.01440086097663996,
+          "home": {
+            "mean": [
+              1.6622508748062466,
+              1.4222965645348085,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.23448443151609394,
+              0.2360689598824447,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.09374910202543658,
+              -0.0018014598974764658,
+              0.039381150454349347,
+              -0.014278309293335088,
+              -0.002413719290320199,
+              -0.00271187765008459,
+              0.06536051033256286,
+              -0.003111742047919697,
+              0.00272829174505635,
+              -0.0012983118678955262,
+              0.008876510318175383,
+              -0.0029610305705932063,
+              -0.002679668019984995,
+              -0.0050826593354286005
+            ],
+            "intercept": 1.6641274496324296
+          },
+          "away": {
+            "mean": [
+              1.6622508748062466,
+              1.4222965645348085,
+              2.5792550280959867,
+              2.357665828094933,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522
+            ],
+            "scale": [
+              0.23448443151609394,
+              0.2360689598824447,
+              0.21958041715681706,
+              0.22136408419704698,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078
+            ],
+            "coef": [
+              0.005552217517147282,
+              0.08567529915951366,
+              -0.019711734101528787,
+              0.02813255149689453,
+              0.0035913750892802563,
+              -0.0008101864580699044,
+              -0.078842145193461,
+              -0.007048055000439991,
+              -0.006856536970712619,
+              0.009172922940189688,
+              0.010956226572403964,
+              -0.002934352083144419,
+              -0.01623573770844211,
+              -0.004294349969515162
+            ],
+            "intercept": 1.4658668014967238
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.07957253926026006
         },
-        "away": {
-          "mean": [
-            0.6259318450606244,
-            0.7098413144007577,
-            2.498201025255379,
-            2.4987613475504125,
-            0.36101954834211103,
-            0.13552690500185097,
-            0.4061048370868286,
-            0.14237409255194297,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522,
-            0.005137003176521678
+        "gialli": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1",
+            "ref_logR"
           ],
-          "scale": [
-            0.2492045671786309,
-            0.24254640772953484,
-            0.16735279015184384,
-            0.16527258317012836,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.2856812117570164,
-            0.28767824047262797,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078,
-            0.07635034342277745
-          ],
-          "coef": [
-            -0.01438277549334492,
-            0.12220516149106538,
-            0.0030448551782310393,
-            0.01372199491094299,
-            -0.02824369223190382,
-            0.005937798558152908,
-            0.004768869042677678,
-            0.017077124926331552,
-            0.031633640156864734,
-            -0.04837955958151863,
-            0.014857361284510746,
-            -0.01670787059922484,
-            -0.039160848782656896,
-            -0.027936093771320426,
-            0.021099943423763336,
-            -0.03190932459026494,
-            0.06331486196912166
-          ],
-          "intercept": 0.7447947158063843
+          "alpha": 0.0007515268475087955,
+          "home": {
+            "mean": [
+              0.6259323597251751,
+              0.7098421432753028,
+              2.4982011270143634,
+              2.4987612647331736,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.005111930584980562
+            ],
+            "scale": [
+              0.24920483252268005,
+              0.24254689412698405,
+              0.16735318202057425,
+              0.16527212375924477,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.07638994097493373
+            ],
+            "coef": [
+              0.10983941125862692,
+              0.01059748175303433,
+              0.02405775500935516,
+              -0.014679872159579372,
+              -0.015455730850037123,
+              0.01297607675049744,
+              -0.09395094989555693,
+              -0.04368496361462299,
+              0.048182870292886516,
+              -0.01967210438345825,
+              -0.03513724637879616,
+              -0.027094165863256237,
+              0.028179362972460792,
+              -0.02916758835197405,
+              0.07299995078018721
+            ],
+            "intercept": 0.6232139999742183
+          },
+          "away": {
+            "mean": [
+              0.6259323597251751,
+              0.7098421432753028,
+              2.4982011270143634,
+              2.4987612647331736,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.005111930584980562
+            ],
+            "scale": [
+              0.24920483252268005,
+              0.24254689412698405,
+              0.16735318202057425,
+              0.16527212375924477,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.07638994097493373
+            ],
+            "coef": [
+              -0.012708110526662632,
+              0.12237144255542849,
+              0.0002658405879685431,
+              0.012252121134554933,
+              -0.022978966254587983,
+              0.013925654920123102,
+              0.02856812450281953,
+              -0.04874513191424362,
+              0.009429504034985381,
+              -0.01563721203709163,
+              -0.03978492486669406,
+              -0.0272648981161011,
+              0.02062286898384232,
+              -0.03218269872116121,
+              0.06333539585446793
+            ],
+            "intercept": 0.7448532303631932
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.0001
         },
-        "meta": {
-          "n_train": 18228
+        "falli": {
+          "features": [
+            "own_lh",
+            "own_la",
+            "aux_lh",
+            "aux_la",
+            "dc_lmu",
+            "dc_lnu",
+            "pi_diff",
+            "abs_pi",
+            "gd_exp",
+            "abs_gd",
+            "lg_E0",
+            "lg_D1",
+            "lg_SP1",
+            "lg_F1",
+            "ref_logR_f"
+          ],
+          "alpha": 0.005975458429730056,
+          "home": {
+            "mean": [
+              2.4982011270143634,
+              2.4987612647331736,
+              0.6259323597251751,
+              0.7098421432753028,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.0018885872088530915
+            ],
+            "scale": [
+              0.16735318202057425,
+              0.16527212375924477,
+              0.24920483252268005,
+              0.24254689412698405,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.04049034482506915
+            ],
+            "coef": [
+              0.11703563669281986,
+              -0.007655588657972524,
+              -0.0021021001724942086,
+              -0.0032935164722232937,
+              -0.024994100953920528,
+              0.010061039940626315,
+              -0.020822047353666908,
+              -0.022033425369116896,
+              0.02871687178329175,
+              -0.0009720399798937017,
+              -0.02596333970292772,
+              -0.017736934494480695,
+              0.007241575088032852,
+              -0.0033320935893452726,
+              0.03891281530752894
+            ],
+            "intercept": 2.4878943389351655
+          },
+          "away": {
+            "mean": [
+              2.4982011270143634,
+              2.4987612647331736,
+              0.6259323597251751,
+              0.7098421432753028,
+              0.36102192457263543,
+              0.1355309667567572,
+              -8.079004329303099e-05,
+              0.6030352461085936,
+              0.3093654526300475,
+              0.734670877923776,
+              0.21170726355058153,
+              0.17028746982664034,
+              0.21269475532148344,
+              0.1936581084046522,
+              0.0018885872088530915
+            ],
+            "scale": [
+              0.16735318202057425,
+              0.16527212375924477,
+              0.24920483252268005,
+              0.24254689412698405,
+              0.3855344063475745,
+              0.38669869536757545,
+              0.7468412421162047,
+              0.44059089800341383,
+              0.9038784072814404,
+              0.6107060336703216,
+              0.4085184183246896,
+              0.3758851519369732,
+              0.40921350952799407,
+              0.3951640740930078,
+              0.04049034482506915
+            ],
+            "coef": [
+              -0.00791288520451444,
+              0.10945854357696953,
+              -0.005921616866973675,
+              0.010117309219405117,
+              -0.016374802396703268,
+              -0.016917366910954433,
+              -0.009122750285570786,
+              -0.03471365324089538,
+              0.0019494703636156695,
+              0.002330470770860555,
+              -0.025585811302364314,
+              -0.013174056507003725,
+              0.0010218943413940473,
+              -0.004451121758383413,
+              0.03971144789038536
+            ],
+            "intercept": 2.508676703643508
+          },
+          "meta": {
+            "n_train": 18228
+          },
+          "alpha_team": 0.005073180837527476
         }
       }
     },
-    "without_xg": {
+    "copula": {
       "tiri": {
-        "features": [
-          "tiri_lh",
-          "tiri_la",
-          "tiri_aux_lh",
-          "tiri_aux_la",
-          "dc_lmu",
-          "dc_lnu",
-          "pi_diff",
-          "abs_pi",
-          "gd_exp",
-          "abs_gd",
-          "lg_E0",
-          "lg_D1",
-          "lg_SP1",
-          "lg_F1"
-        ],
-        "alpha": 0.010726585117430604,
-        "home": {
-          "mean": [
-            2.5792547214711243,
-            2.357665594338218,
-            1.540576102712967,
-            1.3458375719832059,
-            0.36101954834211103,
-            0.13552690500185097,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
-          ],
-          "scale": [
-            0.21958123759953024,
-            0.22136441857133887,
-            0.26676267038574575,
-            0.2661841119648373,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            0.15611029195729276,
-            -0.0103867562013516,
-            -0.005129134746464922,
-            0.008936902594563279,
-            -0.011410027402580172,
-            -0.000833516496678542,
-            0.07089365872929444,
-            -0.0033071381866381336,
-            -0.014548449987367451,
-            0.005154239835185793,
-            0.008453090059571958,
-            0.014091768131740932,
-            0.007359388825086785,
-            0.006446892633351706
-          ],
-          "intercept": 2.5895016201261694
+        "per_league": true,
+        "rho": {
+          "D1": -0.18694423385931225,
+          "E0": -0.23304332269767128,
+          "F1": -0.2031222032663083,
+          "I1": -0.16485351565574977,
+          "SP1": -0.2165659347556165
         },
-        "away": {
-          "mean": [
-            2.5792547214711243,
-            2.357665594338218,
-            1.540576102712967,
-            1.3458375719832059,
-            0.36101954834211103,
-            0.13552690500185097,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
-          ],
-          "scale": [
-            0.21958123759953024,
-            0.22136441857133887,
-            0.26676267038574575,
-            0.2661841119648373,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            -0.011328837218025472,
-            0.13814519799166988,
-            0.00645543101913313,
-            0.012786112521206072,
-            0.003340155041299591,
-            -0.01617176870837307,
-            -0.06413804563976484,
-            -0.002401302035397545,
-            -0.00983635593737036,
-            0.012373320936060726,
-            0.011941128716965357,
-            0.013328464843211808,
-            -8.923602842147059e-05,
-            0.009847611695507451
-          ],
-          "intercept": 2.392547028932596
-        },
-        "meta": {
-          "n_train": 18228
-        }
+        "M": 60
       },
       "corner": {
-        "features": [
-          "corner_lh",
-          "corner_la",
-          "corner_aux_lh",
-          "corner_aux_la",
-          "dc_lmu",
-          "dc_lnu",
-          "pi_diff",
-          "abs_pi",
-          "gd_exp",
-          "abs_gd",
-          "lg_E0",
-          "lg_D1",
-          "lg_SP1",
-          "lg_F1"
-        ],
-        "alpha": 0.014400979480709376,
-        "home": {
-          "mean": [
-            1.662251736338369,
-            1.4222976991663623,
-            2.5792547214711243,
-            2.357665594338218,
-            0.36101954834211103,
-            0.13552690500185097,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
-          ],
-          "scale": [
-            0.23448523114973646,
-            0.2360674347486693,
-            0.21958123759953024,
-            0.22136441857133887,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            0.09370586125665661,
-            -0.0017512461033360593,
-            0.03944503970423894,
-            -0.014331138502083018,
-            -0.0025502144984277378,
-            -0.0026321196702925953,
-            0.0653592544447422,
-            -0.003080020371913517,
-            0.002906710619020556,
-            -0.001337455183376287,
-            0.00889752184895299,
-            -0.0029287377179410138,
-            -0.0026585961960844074,
-            -0.005054748034276705
-          ],
-          "intercept": 1.6641274509826713
-        },
-        "away": {
-          "mean": [
-            1.662251736338369,
-            1.4222976991663623,
-            2.5792547214711243,
-            2.357665594338218,
-            0.36101954834211103,
-            0.13552690500185097,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522
-          ],
-          "scale": [
-            0.23448523114973646,
-            0.2360674347486693,
-            0.21958123759953024,
-            0.22136441857133887,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078
-          ],
-          "coef": [
-            0.005563582896147024,
-            0.08566927795941126,
-            -0.019722274872022508,
-            0.028128820878354454,
-            0.0036110830053035195,
-            -0.0008030160307580653,
-            -0.07882942971884792,
-            -0.007064888229407015,
-            -0.006896646717726967,
-            0.009194616746303669,
-            0.010956866869170967,
-            -0.002933606767952162,
-            -0.016233471199305568,
-            -0.004292813001092694
-          ],
-          "intercept": 1.4658669726420606
-        },
-        "meta": {
-          "n_train": 18228
-        }
+        "per_league": false,
+        "rho": -0.19203325107677421,
+        "M": 36
       },
       "gialli": {
-        "features": [
-          "gialli_lh",
-          "gialli_la",
-          "gialli_aux_lh",
-          "gialli_aux_la",
-          "dc_lmu",
-          "dc_lnu",
-          "pi_diff",
-          "abs_pi",
-          "gd_exp",
-          "abs_gd",
-          "lg_E0",
-          "lg_D1",
-          "lg_SP1",
-          "lg_F1",
-          "ref_logR"
-        ],
-        "alpha": 0.0007541203720379969,
-        "home": {
-          "mean": [
-            0.6259318450606244,
-            0.7098413144007577,
-            2.498201025255379,
-            2.4987613475504125,
-            0.36101954834211103,
-            0.13552690500185097,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522,
-            0.005137003176521678
-          ],
-          "scale": [
-            0.2492045671786309,
-            0.24254640772953484,
-            0.16735279015184384,
-            0.16527258317012836,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078,
-            0.07635034342277745
-          ],
-          "coef": [
-            0.10985857509737587,
-            0.01066898829888566,
-            0.024065702341600485,
-            -0.014705730731889827,
-            -0.01551043993097006,
-            0.012985245351017478,
-            -0.0939300143450192,
-            -0.043736494295273654,
-            0.048162570197793075,
-            -0.01958267069594937,
-            -0.035093924979744444,
-            -0.02705680253089302,
-            0.028121377085124112,
-            -0.029137825644646304,
-            0.0728262164589678
-          ],
-          "intercept": 0.6232252869715791
-        },
-        "away": {
-          "mean": [
-            0.6259318450606244,
-            0.7098413144007577,
-            2.498201025255379,
-            2.4987613475504125,
-            0.36101954834211103,
-            0.13552690500185097,
-            -8.079004329303098e-05,
-            0.6030352461085936,
-            0.30936791556459486,
-            0.7346752761076215,
-            0.21170726355058153,
-            0.17028746982664034,
-            0.21269475532148344,
-            0.1936581084046522,
-            0.005137003176521678
-          ],
-          "scale": [
-            0.2492045671786309,
-            0.24254640772953484,
-            0.16735279015184384,
-            0.16527258317012836,
-            0.38552363463560546,
-            0.38669706355095834,
-            0.7468412421162047,
-            0.44059089800341383,
-            0.9038751541911568,
-            0.610697175546981,
-            0.4085184183246896,
-            0.3758851519369732,
-            0.40921350952799407,
-            0.3951640740930078,
-            0.07635034342277745
-          ],
-          "coef": [
-            -0.012702526002102735,
-            0.12239718385535837,
-            0.00029000172434115776,
-            0.012244996188881205,
-            -0.022999908250022353,
-            0.013823604975530574,
-            0.02846713151432857,
-            -0.04879803792354249,
-            0.009429199208466573,
-            -0.015545649705694003,
-            -0.03977971438727832,
-            -0.027262651918377283,
-            0.020569474865981055,
-            -0.03218298267182066,
-            0.06346733016246024
-          ],
-          "intercept": 0.7448422112529332
-        },
-        "meta": {
-          "n_train": 18228
-        }
+        "per_league": false,
+        "rho": 0.16706638653390815,
+        "M": 16
       }
+    },
+    "first_half": {
+      "share": {
+        "D1": 0.4459767731231854,
+        "E0": 0.4445865692096848,
+        "F1": 0.4421161825726141,
+        "I1": 0.4342938119981105,
+        "SP1": 0.4353460972017673
+      },
+      "all": 0.4404007921723955,
+      "n": 18227
     }
   },
   "version": 2,
@@ -2228,66 +4245,66 @@
         "pi_diff",
         "eo_diff"
       ],
-      "rho": -0.050554927454881514,
+      "rho": -0.05055681452991998,
       "home": {
         "mean": [
-          0.35519444211489426,
-          0.11693958585242012,
-          1.5470082690491955,
-          1.343489258466946,
+          0.35516852523713577,
+          0.11693978955811697,
+          1.5470076617693584,
+          1.3434889737006845,
           0.2829827707111468,
-          -0.0007090447903398784,
-          -0.10741839014027432
+          -0.0007090447903398777,
+          -0.1074183901402752
         ],
         "scale": [
-          0.39503268735907504,
-          0.4000257815888002,
-          0.2711914760731381,
-          0.27006243440927585,
+          0.3952556239920648,
+          0.4000189772919669,
+          0.2711895028479175,
+          0.2700634241610498,
           0.8977600143931163,
           0.7405488144611403,
-          147.6299506422358
+          147.62995064223577
         ],
         "coef": [
-          0.041436902518172516,
-          0.03896242171517856,
-          0.061827581674346994,
-          0.0475903681635905,
-          0.04344270179445388,
-          -0.005680203825817562,
-          0.2583509582678575
+          0.04123482846536625,
+          0.03902627369246628,
+          0.06191052527541889,
+          0.04758254822692059,
+          0.043494748403955334,
+          -0.005590252650415475,
+          0.2583668875031797
         ],
-        "intercept": 0.3825177406246377
+        "intercept": 0.3825181954753503
       },
       "away": {
         "mean": [
-          0.35519444211489426,
-          0.11693958585242012,
-          1.5470082690491955,
-          1.343489258466946,
+          0.35516852523713577,
+          0.11693978955811697,
+          1.5470076617693584,
+          1.3434889737006845,
           0.2829827707111468,
-          -0.0007090447903398784,
-          -0.10741839014027432
+          -0.0007090447903398777,
+          -0.1074183901402752
         ],
         "scale": [
-          0.39503268735907504,
-          0.4000257815888002,
-          0.2711914760731381,
-          0.27006243440927585,
+          0.3952556239920648,
+          0.4000189772919669,
+          0.2711895028479175,
+          0.2700634241610498,
           0.8977600143931163,
           0.7405488144611403,
-          147.6299506422358
+          147.62995064223577
         ],
         "coef": [
-          0.02077872422613154,
-          0.04629825572698019,
-          0.05011071560317724,
-          0.08514675274761159,
-          0.0617067033445511,
-          -0.07471394238888376,
-          -0.24724077943163447
+          0.02049725598408415,
+          0.04653051990793474,
+          0.050311473454861894,
+          0.08505106141897162,
+          0.06166784586585159,
+          -0.07433776478106434,
+          -0.24740463114008507
         ],
-        "intercept": 0.1524699928501174
+        "intercept": 0.1524428710586567
       },
       "meta": {
         "n_train": 23708,
@@ -2308,78 +4325,78 @@
         "xg_lnu",
         "eo_diff"
       ],
-      "rho": -0.05642070901845591,
+      "rho": -0.05642068673482692,
       "home": {
         "mean": [
-          0.36100713822862646,
-          0.13552986344195878,
-          1.5405591968729264,
-          1.3458500624047922,
+          0.3610095185126346,
+          0.13553391651496172,
+          1.5405582086380976,
+          1.3458496617756406,
           0.2872610980379507,
-          -0.00010027417815086802,
-          0.40608873507026594,
-          0.14239231961067125,
-          0.19756944556431696
+          -0.00010027417815086842,
+          0.40608891300100985,
+          0.14239189205048663,
+          0.19756944556431633
         ],
         "scale": [
-          0.3855151647245845,
-          0.38669396449919224,
-          0.26676617806051345,
-          0.26618081708484315,
+          0.3855259384436468,
+          0.38669560181868246,
+          0.2667656692479122,
+          0.2661817339027342,
           0.9132210705641688,
           0.7468807060699503,
-          0.2856936601910006,
-          0.2876837380724342,
+          0.28569260200165986,
+          0.2876835647949836,
           148.38783678420296
         ],
         "coef": [
-          0.01720054951900957,
-          0.018922504401737428,
-          0.034819660354049424,
-          0.030714131135949663,
-          0.0381511964812918,
-          -0.008351871181890442,
-          0.09847960373562047,
-          0.025628518990261088,
-          0.20940301161929
+          0.017151034618479416,
+          0.01891753002778207,
+          0.03483223224556359,
+          0.03072895021843569,
+          0.03815887188829587,
+          -0.008345302547050456,
+          0.09850804648820047,
+          0.025612589199434727,
+          0.20938817782801528
         ],
-        "intercept": 0.3861280799948554
+        "intercept": 0.3861284825098444
       },
       "away": {
         "mean": [
-          0.36100713822862646,
-          0.13552986344195878,
-          1.5405591968729264,
-          1.3458500624047922,
+          0.3610095185126346,
+          0.13553391651496172,
+          1.5405582086380976,
+          1.3458496617756406,
           0.2872610980379507,
-          -0.00010027417815086802,
-          0.40608873507026594,
-          0.14239231961067125,
-          0.19756944556431696
+          -0.00010027417815086842,
+          0.40608891300100985,
+          0.14239189205048663,
+          0.19756944556431633
         ],
         "scale": [
-          0.3855151647245845,
-          0.38669396449919224,
-          0.26676617806051345,
-          0.26618081708484315,
+          0.3855259384436468,
+          0.38669560181868246,
+          0.2667656692479122,
+          0.2661817339027342,
           0.9132210705641688,
           0.7468807060699503,
-          0.2856936601910006,
-          0.2876837380724342,
+          0.28569260200165986,
+          0.2876835647949836,
           148.38783678420296
         ],
         "coef": [
-          0.005463085462407586,
-          0.008792289689693434,
-          0.048451192555662784,
-          0.04262602319673396,
-          0.0866269465366947,
-          -0.09174978833142138,
-          0.03443659047111017,
-          0.11861855698543845,
-          -0.2321881580558651
+          0.0054270422274126035,
+          0.008790318074993716,
+          0.04847032242577745,
+          0.04264978353600357,
+          0.08664047278183602,
+          -0.09175507462066776,
+          0.03444628764874361,
+          0.11859318886014406,
+          -0.23219850598685296
         ],
-        "intercept": 0.16819378982216515
+        "intercept": 0.16819058761862998
       },
       "meta": {
         "n_train": 18230,
@@ -2389,7 +4406,7 @@
     }
   },
   "meta": {
-    "trained_at": "2026-10-16 13:11 UTC",
+    "trained_at": "2026-10-16 13:54 UTC",
     "leagues": [
       "D1",
       "E0",
@@ -2408,7 +4425,7 @@
         "none": 0
       }
     },
-    "stats_version": "s2-arbitro",
+    "stats_version": "s3-gap",
     "note": "Poisson-stack, feature in walk-forward (DC xi=0.0018, xG xi=0.003 con ridge sul solo DC degli xG, finestra 5 anni, Elo-Odds K=200 sulle quote di chiusura). In produzione with_xg; without_xg e' il ripiego."
   }
 }

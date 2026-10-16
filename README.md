@@ -49,8 +49,20 @@ football-data.org (lo stesso della chiave già usata per le partite); lo storico
 (Transfermarkt 2016/17-2025/26 + football-data.org 2026/27, creato da `scripts/build_referee_history.py`) e prosegue nella colonna
 `referee` di `docs/history.csv`. L'abbinamento dei nomi arbitro tra le fonti è la tabella esplicita `backtest/referee_aliases.py`.
 Il training settimanale ricalcola gli effetti con le sole partite passate e li salva in `models/stack.json["referees"]`.
-`history.csv` registra anche arbitro, data/ora della prima comparsa, gialli previsti e reali e `stats_version`
-(`config.STATS_VERSION`, separata da `MODEL_VERSION`, che riguarda solo il modello 1X2).
+`history.csv` registra anche arbitro, data/ora della prima comparsa, gialli, tiri, tiri in porta e falli (totali) previsti e reali, i gol
+del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, separata da `MODEL_VERSION`, che riguarda solo il modello 1X2).
+
+**Versione `s3-gap` delle statistiche** (round 6, `backtest/stats_v3.py`, risultati in `backtest/results_round6.md`):
+- **Tiri e tiri in porta**: i rating di attacco/difesa sono sostituiti dai **GAP ratings** di Wheatcroft (`backtest/gap.py`, quattro rating
+  per squadra aggiornati partita dopo partita; parametri scelti sulle sole stagioni di validazione, `config.GAP_PARAMS`: tiri η=0.10, γ=1.0,
+  tiri in porta η=0.05, γ=1.0). Per tiri, tiri in porta e totale il pannello mostra valore atteso e intervallo all'80%, più le linee Over/Under del totale.
+  Lo stato dei GAP viene ricostruito ogni giorno dallo storico.
+- **Falli**: blocco nuovo con effetto arbitro (stessa formula dei gialli, `models/stack.json["referees_fouls"]`). **Gialli**: solo il totale, con la riga dell'arbitro.
+- **«Chi ne fa di più»** (più tiri, più gialli, più corner) e **handicap corner ±1,5** dalla copula gaussiana con marginali Binomiali Negative,
+  integrazione numerica (nessuna simulazione); ρ stimato in training (tiri per campionato, corner e gialli unico).
+- **Primo tempo**: quota dei gol del primo tempo per campionato stimata in training × gol attesi del modello 1X2; 1X2 al riposo e Over 0,5 / 1,5.
+- Il pannello è diviso in sezioni richiudibili: Gol e risultati → Primo tempo → Tiri → Corner → Cartellini e falli → Contesto (le prime due aperte).
+- `python -I -X utf8 backtest/run_round6_prod.py` riproduce con il codice di produzione i risultati della fase 1 del round 6.
 
 ## Avvio locale
 

@@ -12,9 +12,10 @@ probabilita' implicite delle quote di CHIUSURA di football-data.co.uk (senza mar
 In produzione si usa with_xg; without_xg è il ripiego automatico (Understat non risponde
 o mancano gli xG di una squadra) — vedi predictions/stack_predictor.py.
 
-Salva anche "stats_models": per tiri, corner e gialli, i due Poisson (casa, ospite) e l'alpha della
-Binomiale Negativa del totale (backtest/stats_model.py), in due varianti (with_xg / without_xg)
-come lo stack 1X2. Il modello dei gialli ha in più l'effetto arbitro (backtest/refeffect.py, round 5): il training
+Salva anche "stats_v3" (backtest/stats_v3.py, versione s3-gap): per tiri, tiri in porta, corner, gialli e falli i due Poisson
+(casa, ospite), gli alpha della Binomiale Negativa (totale e per squadra) in due varianti (with_xg / without_xg) come lo stack 1X2;
+tiri e tiri in porta usano i GAP ratings (backtest/gap.py), la copula gaussiana (rho) per i mercati «chi ne fa di più», e la quota
+dei gol nel primo tempo per lega. Il modello dei gialli ha in più l'effetto arbitro (backtest/refeffect.py, round 5): il training
 ricalcola con le sole partite passate l'effetto di ogni arbitro e lo salva in "referees" (somme per arbitro, usate dal serving).
 Lo storico degli arbitri viene da data/referees/matches.csv e da docs/history.csv (nessuna chiamata di rete).
 
@@ -41,8 +42,8 @@ sys.path.insert(0, REPO_ROOT)
 
 import numpy as np
 
-from backtest import data, eloodds, features, refeffect, stack, stats_model as sm, understat
-from config import REFEREE_K, STATS_VERSION
+from backtest import data, eloodds, features, refeffect, stack, stats_v3, understat
+from config import GAP_PARAMS, REFEREE_K, STATS_VERSION
 
 OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 
@@ -82,26 +83,28 @@ def train_one(name, cols, min_season, feat):
     return d
 
 
-def train_stats(feat):
-    """Modelli delle statistiche attese: {variante: {statistica: dict JSON}}."""
-    out = {}
+def train_stats_v3(feat, priors):
+    """Modelli delle statistiche attese s3-gap (backtest/stats_v3.py): {variante: {statistica: dict JSON}}, ρ della copula, quota del
+    primo tempo e parametri dei GAP ratings."""
+    models = {}
+    copula = {}
     for variant, with_xg in (("with_xg", True), ("without_xg", False)):
-        out[variant] = {}
-        for stat, (hc, ac, _, _) in sm.STATS.items():
-            X = sm.design(feat, stat, with_xg, referee=True)       # referee agisce solo sui gialli
-            ok = (X.notna().all(axis=1) & np.isfinite(X).all(axis=1) & feat[hc].notna() & feat[ac].notna()
-                  & (feat.season >= sm.FIRST_TRAIN_SEASON))
-            model = sm.fit_stat_model(X[ok], feat[hc][ok], feat[ac][ok])
-            d = sm.model_to_dict(model, X.columns, meta={"n_train": int(ok.sum())})
-
-            sample = X[ok].iloc[:: max(int(ok.sum()) // 500, 1)]
-            mh, ma = sm.means_from_dict(d, sample.to_numpy())
-            ph, pa = sm.predict_means(model, sample)
-            if not (np.allclose(mh, ph) and np.allclose(ma, pa)):
-                raise SystemExit(f"ERRORE: il modello {stat}/{variant} serializzato non coincide con scikit-learn")
-            print(f"  [stats {variant}/{stat}] {int(ok.sum())} partite, alpha NB={d['alpha']:.4f}", flush=True)
-            out[variant][stat] = d
-    return out
+        models[variant] = {}
+        for stat in stats_v3.ORDER:
+            d, mh, ma, ok = stats_v3.train_stat(feat, stat, with_xg)
+            spec = stats_v3.STATS3[stat]
+            print(f"  [stats {variant}/{stat}] {d['meta']['n_train']} partite, alpha NB totale={d['alpha']:.4f}, per squadra={d['alpha_team']:.4f}", flush=True)
+            models[variant][stat] = d
+            if with_xg and stat in stats_v3.COPULA_PER_LEAGUE:
+                per_league = stats_v3.COPULA_PER_LEAGUE[stat]
+                rho = stats_v3.estimate_rho(feat[spec["hc"]][ok].to_numpy(), feat[spec["ac"]][ok].to_numpy(), mh, ma, d["alpha_team"],
+                                            division=feat.Division[ok].to_numpy() if per_league else None)
+                copula[stat] = {"per_league": per_league, "rho": rho, "M": spec["M"]}
+                print(f"  [copula {stat}] rho = {rho}", flush=True)
+    fh = stats_v3.train_first_half(feat)
+    print(f"  [primo tempo] quota dei gol per lega: {', '.join(f'{k} {v:.3f}' for k, v in fh['share'].items())} ({fh['n']} partite)", flush=True)
+    return {"version": 3, "gap": {"params": {k: list(v) for k, v in GAP_PARAMS.items()}, "priors": priors},
+            "models": models, "copula": copula, "first_half": fh}
 
 
 def main():
@@ -153,11 +156,17 @@ def main():
         sys.exit(1)
     feat["ref_logR"], ref_state = refeffect.compute(feat, keys, REFEREE_K)
     print(f"  {ref_state['n_referees']} arbitri con storico, k={REFEREE_K}", flush=True)
+    priors = stats_v3.gap_priors(df)
+    feat = feat.join(stats_v3.gap_features(df, priors))
+    mhf, maf = stats_v3.base_predictions(feat, "falli")
+    feat["ref_logR_f"], ref_state_f = refeffect.compute_stat(feat, keys, mhf, maf, feat["HF"] + feat["AF"], REFEREE_K)
+    print(f"  falli: {ref_state_f['n_referees']} arbitri con storico", flush=True)
 
     print("Stima degli stack...", flush=True)
     out = {
         "referees": ref_state,
-        "stats_models": train_stats(feat),
+        "referees_fouls": ref_state_f,
+        "stats_v3": train_stats_v3(feat, priors),
         "version": 2,
         "models": {name: train_one(name, cols, min_season, feat)
                    for name, (cols, min_season) in MODELS.items()},

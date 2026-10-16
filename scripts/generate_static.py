@@ -326,6 +326,18 @@ body.no-scroll { overflow: hidden; }
 .stat-l { font-size: .64rem; color: var(--muted); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .stat-v { font-size: .95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .stat-cap { font-size: .64rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 2px 0 6px; }
+.grp { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; background: var(--card); }
+.grp > summary {
+  cursor: pointer; list-style: none; padding: 12px 14px; font-weight: 800; font-size: .92rem;
+  display: flex; justify-content: space-between; align-items: center; min-height: 44px;
+}
+.grp > summary::-webkit-details-marker { display: none; }
+.grp > summary::after { content: "▾"; color: var(--muted); transition: transform .15s ease; }
+.grp:not([open]) > summary::after { transform: rotate(-90deg); }
+.grp > summary:focus-visible { outline: 2px solid var(--accent); border-radius: 12px; }
+.grp-body { padding: 2px 14px 6px; }
+.kv-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.stat-sub { font-size: .62rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .ctx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .ctx-col { background: var(--bg); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
 .ctx-team { font-weight: 700; font-size: .84rem; }
@@ -376,7 +388,7 @@ PANEL_JS = r'''
   }
   function sec(name, inner) { return '<section class="ps"><h3>' + name + '</h3>' + inner + '</section>'; }
 
-  function refLine(o) {
+  function refLine(o, unit) {
     var r = o.referee;
     if (!r) { return ""; }
     if (!r.name) { return '<div class="pn-note">Arbitro: non ancora designato</div>'; }
@@ -384,7 +396,7 @@ PANEL_JS = r'''
       return '<div class="pn-note">Arbitro: ' + esc(r.name) + ' (senza storico sufficiente: nessun effetto sul modello)</div>';
     }
     var s = (r.delta >= 0 ? "+" : "−") + Math.abs(r.delta).toFixed(1).replace(".", ",");
-    return '<div class="pn-note">Arbitro: ' + esc(r.name) + ' (' + s + ' gialli rispetto alla media)</div>';
+    return '<div class="pn-note">Arbitro: ' + esc(r.name) + ' (' + s + ' ' + unit + ' rispetto alla media)</div>';
   }
 
   function ctxCol(name, c) {
@@ -407,9 +419,35 @@ PANEL_JS = r'''
       '<div><div class="ctx-l">Rating Elo-Odds</div><div class="ctx-v">' + eoRating + '</div></div></div>';
   }
 
+  function grp(title, inner, isOpen) {
+    return '<details class="grp"' + (isOpen ? ' open' : '') + '><summary>' + title + '</summary><div class="grp-body">' + inner + '</div></details>';
+  }
+  function ouRows(over) {
+    return Object.keys(over).map(function (L) {
+      var po = over[L];
+      return '<div class="prob-row"><span class="prob-lbl pl-wide">' + L + '</span>' + bar(po) +
+        '<span class="prob-pct" style="color:' + color(po) + '">O ' + pct(po) + '</span>' +
+        '<span class="prob-pct pp-under">U ' + pct(1 - po) + '</span></div>';
+    }).join("");
+  }
+  function statCell(label, v, lo, hi) {
+    return '<div class="stat-cell"><span class="stat-l">' + label + '</span><span class="stat-v">' + v.toFixed(1) + '</span>' +
+      (lo === undefined || lo === null ? '' : '<span class="stat-sub">80%: ' + lo + '–' + hi + '</span>') + '</div>';
+  }
+  function statBlock(name, o, h, a, unit) {
+    return '<div class="stat-block"><div class="stat-head"><span class="stat-name">' + name + '</span>' +
+      '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' + refLine(o, unit) +
+      '<div class="stat-grid">' + statCell(h, o.home, o.home_lo80, o.home_hi80) + statCell(a, o.away, o.away_lo80, o.away_hi80) +
+      statCell('Totale', o.total, o.lo80, o.hi80) +
+      '</div><div class="stat-cap">Over / Under sul totale</div>' + ouRows(o.over) + '</div>';
+  }
+  function more3(title, arr, h, a) {
+    return '<div class="stat-cap">' + title + '</div><div class="kv-grid3">' + kv(h, arr[0]) + kv("Pari", arr[1]) + kv(a, arr[2]) + '</div>';
+  }
+
   function render(f) {
     var p = f.pred, m = f.market, st = f.stats, cx = f.ctx;
-    var h = esc(f.home), a = esc(f.away), out = "";
+    var h = esc(f.home), a = esc(f.away), out = "", g1 = "";
 
     var pill;
     if (p.model === "cups_elo") {
@@ -420,22 +458,22 @@ PANEL_JS = r'''
       pill = '<span class="pill pill-warn">Modello senza xG</span>' +
         (p.fallback_reason ? '<div class="pn-note">Ripiego automatico: ' + esc(p.fallback_reason) + '</div>' : '');
     }
-    out += '<div class="ps">' + pill +
+    g1 += '<div class="ps">' + pill +
       (f.return_leg ? '<div class="pn-note warn">Previsione della singola partita, non tiene conto del risultato dell\'andata</div>' : '') +
       (f.neutral ? '<div class="pn-note">Finale in campo neutro: media delle due orientazioni (casa/ospite scambiate).</div>' : '') +
       '</div>';
 
-    out += sec("Gol attesi",
+    g1 += sec("Gol attesi",
       '<div class="pxg"><div class="pxg-side"><div class="pxg-val home">' + p.exp_goals_home.toFixed(2) +
       '</div><div class="pxg-team">' + h + '</div></div><div class="pxg-sep">–</div>' +
       '<div class="pxg-side"><div class="pxg-val away">' + p.exp_goals_away.toFixed(2) +
       '</div><div class="pxg-team">' + a + '</div></div></div>');
 
-    out += sec("Esito 1X2", prow("1", p.prob_home) + prow("X", p.prob_draw) + prow("2", p.prob_away));
+    g1 += sec("Esito 1X2", prow("1", p.prob_home) + prow("X", p.prob_draw) + prow("2", p.prob_away));
 
     if (f.cup && f.elo) {
       var ed = f.elo.home - f.elo.away;
-      out += sec("Rating Elo (ClubElo)", '<div class="stat-grid">' +
+      g1 += sec("Rating Elo (ClubElo)", '<div class="stat-grid">' +
         '<div class="stat-cell"><span class="stat-l">' + h + '</span><span class="stat-v">' + Math.round(f.elo.home) + '</span></div>' +
         '<div class="stat-cell"><span class="stat-l">' + a + '</span><span class="stat-v">' + Math.round(f.elo.away) + '</span></div>' +
         '<div class="stat-cell"><span class="stat-l">Differenza</span><span class="stat-v">' + (ed >= 0 ? "+" : "") + Math.round(ed) + '</span></div></div>');
@@ -450,71 +488,91 @@ PANEL_JS = r'''
           '<span class="mkt-sub">modello ' + (mod * 100).toFixed(1) + '%</span>' +
           '<span class="mkt-diff">' + (d >= 0 ? "+" : "") + d.toFixed(1) + ' pp</span></div>';
       }).join("");
-      out += sec("Mercato (senza margine) e differenze",
+      g1 += sec("Mercato (senza margine) e differenze",
         '<div class="mkt-grid">' + cells + '</div><div class="pn-note">Δ = modello − mercato; evidenziati gli scarti ' +
         'oltre 5 punti percentuali. Storicamente il mercato è più preciso del modello.</div>');
     } else if (!f.cup) {
-      out += sec("Mercato", '<div class="pn-note">Quote di mercato non disponibili per questa partita ' +
+      g1 += sec("Mercato", '<div class="pn-note">Quote di mercato non disponibili per questa partita ' +
         '(football-data.co.uk/fixtures.csv).</div>');
     }
 
     if (!f.cup) {
     var lines = [["0.5", p.prob_o05], ["1.5", p.prob_o15], ["2.5", p.prob_o25], ["3.5", p.prob_o35]];
-    out += sec("Over / Under", lines.map(function (l) {
+    g1 += sec("Over / Under", lines.map(function (l) {
       return '<div class="prob-row"><span class="prob-lbl pl-wide">' + l[0] + '</span>' + bar(l[1]) +
         '<span class="prob-pct" style="color:' + color(l[1]) + '">O ' + pct(l[1]) + '</span>' +
         '<span class="prob-pct pp-under">U ' + pct(1 - l[1]) + '</span></div>';
     }).join(""));
 
-    out += sec("BTTS e porta inviolata", '<div class="kv-grid">' +
+    g1 += sec("BTTS e porta inviolata", '<div class="kv-grid">' +
       kv("BTTS sì", p.prob_btts) + kv("BTTS no", 1 - p.prob_btts) +
       kv("Porta inviolata " + h, p.prob_cs_home) + kv("Porta inviolata " + a, p.prob_cs_away) + '</div>');
     }
 
     var rs = p.rec_score, outName = {"1": "Vittoria " + h, "X": "Pareggio", "2": "Vittoria " + a}[p.rec_outcome];
-    out += sec("Risultato consigliato", '<div class="chips"><div class="chip top"><div class="chip-s">' + rs[0] + '-' + rs[1] +
+    g1 += sec("Risultato consigliato", '<div class="chips"><div class="chip top"><div class="chip-s">' + rs[0] + '-' + rs[1] +
       '</div><div class="chip-p">' + rs[2].toFixed(1) + '%</div></div></div>' +
       '<div class="pn-note">' + (Math.max(p.prob_home, p.prob_draw, p.prob_away) <= p.rec_threshold ?
       'Nessun esito supera il ' + Math.round(p.rec_threshold * 100) + '%: si consiglia il pareggio più probabile.' :
       'Prima l’esito più probabile (' + esc(outName) + ', ' + pct({"1": p.prob_home, "X": p.prob_draw, "2": p.prob_away}[p.rec_outcome]) +
       '), poi il punteggio più probabile dentro quell’esito.') + '</div>');
 
-    out += sec("Risultati esatti più probabili", '<div class="chips">' + p.top_scores.slice(0, 5).map(function (s) {
+    g1 += sec("Risultati esatti più probabili", '<div class="chips">' + p.top_scores.slice(0, 5).map(function (s) {
       return '<div class="chip' + (s[0] === rs[0] && s[1] === rs[1] ? " top" : "") + '"><div class="chip-s">' + s[0] + '–' + s[1] +
              '</div><div class="chip-p">' + s[2].toFixed(1) + '%</div></div>';
     }).join("") + '</div>');
+    out += grp("Gol e risultati", g1, true);
+
+    // Primo tempo
+    var fh = p.first_half;
+    if (fh && !f.cup) {
+      var g2 = sec("Esito al riposo", prow("1", fh.p_home) + prow("X", fh.p_draw) + prow("2", fh.p_away)) +
+        sec("Over / Under primo tempo", [["0.5", fh.o05], ["1.5", fh.o15]].map(function (l) {
+          return '<div class="prob-row"><span class="prob-lbl pl-wide">' + l[0] + '</span>' + bar(l[1]) +
+            '<span class="prob-pct" style="color:' + color(l[1]) + '">O ' + pct(l[1]) + '</span>' +
+            '<span class="prob-pct pp-under">U ' + pct(1 - l[1]) + '</span></div>';
+        }).join("")) +
+        '<div class="pn-note">Gol attesi nel primo tempo: ' + fh.exp_home.toFixed(2) + ' – ' + fh.exp_away.toFixed(2) + ' (' +
+        (fh.share * 100).toFixed(1).replace(".", ",") + '% dei gol attesi della partita, quota stimata per campionato sullo storico).</div>';
+      out += grp("Primo tempo", g2, true);
+    }
 
     if (st) {
-      var labels = [["shots", "Tiri totali"], ["corners", "Corner totali"], ["yellows", "Gialli totali"]];
-      var blocks = labels.filter(function (l) { return st[l[0]]; }).map(function (l) {
-        var o = st[l[0]];
-        var ou = Object.keys(o.over).map(function (L) {
-          var po = o.over[L];
-          return '<div class="prob-row"><span class="prob-lbl pl-wide">' + L + '</span>' + bar(po) +
-            '<span class="prob-pct" style="color:' + color(po) + '">O ' + pct(po) + '</span>' +
-            '<span class="prob-pct pp-under">U ' + pct(1 - po) + '</span></div>';
-        }).join("");
-        return '<div class="stat-block"><div class="stat-head"><span class="stat-name">' + l[1] + '</span>' +
-          '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' + refLine(o) +
-          '<div class="stat-grid">' +
-          '<div class="stat-cell"><span class="stat-l">' + h + '</span><span class="stat-v">' + o.home.toFixed(1) + '</span></div>' +
-          '<div class="stat-cell"><span class="stat-l">' + a + '</span><span class="stat-v">' + o.away.toFixed(1) + '</span></div>' +
-          '<div class="stat-cell"><span class="stat-l">Intervallo 80%</span><span class="stat-v">' + o.lo80 + '–' + o.hi80 + '</span></div>' +
-          '</div><div class="stat-cap">Over / Under sul totale</div>' + ou + '</div>';
-      }).join("");
-      out += sec("Statistiche attese", blocks + '<div class="pn-note">' + esc(st.note) + '</div>' +
-        (st.model === "without_xg" ? '<div class="pn-note">Variante senza xG (la stessa usata dal modello 1X2 per questa partita).</div>' : ''));
+      var wm = st.who_more || {};
+      var noteHtml = '<div class="pn-note">' + esc(st.note) + '</div>' +
+        (st.model === "without_xg" ? '<div class="pn-note">Variante senza xG (la stessa usata dal modello 1X2 per questa partita).</div>' : '');
+      var g3 = "";
+      if (st.shots) { g3 += statBlock("Tiri totali", st.shots, h, a); }
+      if (st.sot) { g3 += statBlock("Tiri in porta totali", st.sot, h, a); }
+      if (wm.shots) { g3 += more3("Chi fa più tiri", wm.shots, h, a); }
+      if (g3) { out += grp("Tiri", g3 + noteHtml, false); }
+
+      var g4 = "";
+      if (st.corners) { g4 += statBlock("Corner totali", st.corners, h, a); }
+      if (wm.corners) { g4 += more3("Chi fa più corner", wm.corners, h, a); }
+      var hc = wm.corner_handicap;
+      if (hc) {
+        g4 += '<div class="stat-cap">Handicap corner ±1,5</div><div class="kv-grid">' +
+          kv(h + " −1,5", hc.home_m15) + kv(a + " +1,5", hc.away_p15) + kv(a + " −1,5", hc.away_m15) + kv(h + " +1,5", hc.home_p15) + '</div>';
+      }
+      if (g4) { out += grp("Corner", g4 + noteHtml, false); }
+
+      var g5 = "";
+      if (st.yellows) { g5 += statBlock("Gialli totali", st.yellows, h, a, "gialli"); }
+      if (wm.yellows) { g5 += more3("Chi prende più gialli", wm.yellows, h, a); }
+      if (st.fouls) { g5 += statBlock("Falli totali", st.fouls, h, a, "falli"); }
+      if (g5) { out += grp("Cartellini e falli", g5 + noteHtml, false); }
     }
 
     if (f.cup) {
-      out += sec("Statistiche e quote", '<div class="pn-note">Statistiche e quote non disponibili per le coppe europee</div>');
+      out += grp("Statistiche e quote", '<div class="pn-note">Statistiche e quote non disponibili per le coppe europee</div>', false);
     }
 
     if (cx) {
-      out += sec("Contesto", '<div class="ctx-grid">' + ctxCol(h, cx.home) + ctxCol(a, cx.away) + '</div>' +
+      out += grp("Contesto", '<div class="ctx-grid">' + ctxCol(h, cx.home) + ctxCol(a, cx.away) + '</div>' +
         '<div class="pn-note">Riposo calcolato solo sulle partite di campionato (coppe escluse). Forma: la partita più ' +
         'recente è a destra. Rating: posizione tra le squadre della lega nel pi-rating (media casa/trasferta). ' +
-        'Elo-Odds: Elo aggiornato con le probabilità implicite delle quote di chiusura (conta la differenza tra squadre della stessa lega: più alto = più forte).</div>');
+        'Elo-Odds: Elo aggiornato con le probabilità implicite delle quote di chiusura (conta la differenza tra squadre della stessa lega: più alto = più forte).</div>', false);
     }
     return out;
   }
@@ -1230,19 +1288,42 @@ def validate_output(all_data: dict) -> list:
                     problems.append(f"{tag}: Elo non valido")
             es = fix.get("expected_stats")
             if es:
-                for k in ("shots", "corners", "yellows"):
+                for k in ("shots", "sot", "corners", "yellows", "fouls"):
                     o = es.get(k)
                     if not o:
                         problems.append(f"{tag}: statistiche attese '{k}' mancanti")
                         continue
                     ov = [o["over"][L] for L in o["over"]]
-                    if (min(o["home"], o["away"], o["total"]) < 0
-                            or abs(o["home"] + o["away"] - o["total"]) > 0.11
-                            or not (0 <= o["lo80"] <= o["total"] + 0.5 and o["total"] - 0.5 <= o["hi80"])
-                            or o["lo80"] > o["hi80"]
-                            or any(v < 0 or v > 1 for v in ov)
-                            or any(b > a + 1e-9 for a, b in zip(ov, ov[1:]))):
+                    bad = (min(o["home"], o["away"], o["total"]) < 0
+                           or abs(o["home"] + o["away"] - o["total"]) > 0.11
+                           or not (0 <= o["lo80"] <= o["total"] + 0.5 and o["total"] - 0.5 <= o["hi80"])
+                           or o["lo80"] > o["hi80"]
+                           or any(v < 0 or v > 1 for v in ov)
+                           or any(b > a + 1e-9 for a, b in zip(ov, ov[1:])))
+                    if k in ("shots", "sot"):                         # intervalli 80% anche per squadra
+                        for side in ("home", "away"):
+                            lo, hi = o.get(f"{side}_lo80"), o.get(f"{side}_hi80")
+                            if lo is None or hi is None or lo > hi or not (lo <= o[side] + 0.5 and o[side] - 0.5 <= hi):
+                                bad = True
+                    if k in ("yellows", "fouls") and "referee" not in o:
+                        bad = True
+                    if bad:
                         problems.append(f"{tag}: statistiche attese '{k}' non valide")
+                wm = es.get("who_more") or {}
+                for k in ("shots", "corners", "yellows"):
+                    t = wm.get(k)
+                    if not t or len(t) != 3 or min(t) < 0 or abs(sum(t) - 1) > 1e-3:
+                        problems.append(f"{tag}: 'chi ne fa di più' '{k}' non valido")
+                hc = wm.get("corner_handicap")
+                if not hc or any(not (0 <= v <= 1) for v in hc.values()):
+                    problems.append(f"{tag}: handicap corner non valido")
+            fh = p.get("first_half")
+            if p.get("model") != "cups_elo":
+                if not fh:
+                    problems.append(f"{tag}: primo tempo mancante")
+                elif (abs(fh["p_home"] + fh["p_draw"] + fh["p_away"] - 1) > 1e-3 or not (0 < fh["o15"] < fh["o05"] < 1)
+                        or not (0.3 < fh["share"] < 0.6)):
+                    problems.append(f"{tag}: primo tempo non valido")
             mk = fix.get("market")
             if mk and (abs(mk["home"] + mk["draw"] + mk["away"] - 1) > PROB_TOL
                        or min(mk["home"], mk["draw"], mk["away"]) <= 0):
@@ -1327,7 +1408,7 @@ def main():
 
         g = df[df.Division == sp.CSV_CODE[league_key]]
         t0 = time.time()
-        state = sp.LeagueState(g, today, xg_error=xg_error)
+        state = sp.LeagueState(g, today, xg_error=xg_error, gap_priors=model["stats_v3"]["gap"]["priors"])
         log.info("  Feature calcolate in %.1fs - %d partite nella finestra, %d squadre",
                  time.time() - t0, state.n_matches, len(state.teams))
 
@@ -1364,7 +1445,7 @@ def main():
 
         # statistiche attese (modello validato, models/stack.json["stats_models"]) e contesto
         stats_list = sp.stats_for_pairs(state, model, pairs, league_key, referees=[fix.get("referee") for fix in fixtures])
-        monitor.attach_yellows(league_rows, stats_list)
+        monitor.attach_yellows(league_rows, stats_list, preds)
         active = active_teams(g, cur, extra=[t for pair in names for t in pair])
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
                        "prediction": pred, "market": _row_market(row),

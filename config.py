@@ -74,9 +74,12 @@ LEGACY_MODEL_VERSION = "v5-pre-eloodds"
 
 # ─── Versione del modello delle statistiche attese (tiri, corner, gialli) ─────
 # Separata da MODEL_VERSION (che riguarda solo il modello 1X2: cambiarla farebbe ripartire il monitoraggio 1X2).
-# s2-arbitro: modello dei gialli con effetto arbitro (regressore log R, k=20). Righe di history.csv precedenti = s1-base.
-STATS_VERSION = "s2-arbitro"
+# s2-arbitro: modello dei gialli con effetto arbitro (regressore log R, k=20). s3-gap: tiri e tiri in porta con GAP ratings, nuovo
+# modello dei falli con arbitro, copula per i mercati «chi ne fa di più», primo tempo. Righe di history.csv precedenti = s1-base / s2-arbitro.
+STATS_VERSION = "s3-gap"
 LEGACY_STATS_VERSION = "s1-base"
+# GAP ratings (Wheatcroft) dei modelli dei tiri e dei tiri in porta: (eta, gamma) scelti sulle sole stagioni di validazione (round 6, fase 1: backtest/round6_parts/GAP2.md)
+GAP_PARAMS = {"tiri": (0.10, 1.0), "sot": (0.05, 1.0)}
 REFEREE_K = 20            # partite equivalenti di shrinkage dell'effetto arbitro (scelto in validazione, round 5)
 
 # ─── Aggiustamenti contestuali NON validati (disattivati) ─────────────────────

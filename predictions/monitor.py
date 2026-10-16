@@ -59,7 +59,11 @@ COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "ho
             "model_used", "model_version", "fallback_reason"]
            + [f"p_{k}" for k in P3] + [f"pw_{k}" for k in P3] + [f"po_{k}" for k in P3]
            + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"]
-           + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"])
+           + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"]
+           + ["shots_pred", "shots_real", "sot_pred", "sot_real", "fouls_pred", "fouls_real", "ht_goals_pred", "ht_goals_real"])
+# totali previsti (ultima emissione) e reali per tiri, tiri in porta, falli e gol del primo tempo: serve al monitoraggio dei modelli delle statistiche
+REAL_COLS = {"yellow_real": ("HY", "AY"), "shots_real": ("HS", "AS"), "sot_real": ("HST", "AST"),
+             "fouls_real": ("HF", "AF"), "ht_goals_real": ("HTHG", "HTAG")}
 PROB_COLS = [c for c in COLUMNS if c.split("_")[0] in ("p", "pw", "po", "mkt") and c != "mkt_source"]
 
 
@@ -204,12 +208,17 @@ def upsert(history: pd.DataFrame, new_rows: list[dict], today) -> pd.DataFrame:
     return h
 
 
-def attach_yellows(rows: list[dict], stats_list: list) -> None:
-    """Mette in ogni riga (in place) i gialli totali previsti dal modello delle statistiche (con l'effetto arbitro)."""
-    for r, st in zip(rows, stats_list):
-        y = (st or {}).get("yellows")
-        if y:
-            r["yellow_pred"] = float(y["total"])
+def attach_yellows(rows: list[dict], stats_list: list, preds: list | None = None) -> None:
+    """Mette in ogni riga (in place) i totali previsti dal modello delle statistiche: gialli (con l'effetto arbitro), tiri, tiri in porta,
+    falli e, da `preds` (previsioni 1X2 con il primo tempo), i gol attesi del primo tempo."""
+    for i, (r, st) in enumerate(zip(rows, stats_list)):
+        for key, col in (("yellows", "yellow_pred"), ("shots", "shots_pred"), ("sot", "sot_pred"), ("fouls", "fouls_pred")):
+            y = (st or {}).get(key)
+            if y:
+                r[col] = float(y["total"])
+        fh = ((preds or [None] * len(rows))[i] or {}).get("first_half")
+        if fh:
+            r["ht_goals_pred"] = float(fh["exp_total"])
 
 
 def fill_referees(history: pd.DataFrame, found: list[dict], max_days_apart: int = 3) -> int:
@@ -252,8 +261,9 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
         r = min(cands, key=lambda c: abs((c.date - d).days))
         h.at[i, "hg"], h.at[i, "ag"] = int(r.hg), int(r.ag)
         h.at[i, "result"] = "H" if r.hg > r.ag else ("D" if r.hg == r.ag else "A")
-        if all(hasattr(r, c) for c in ("HY", "AY")) and np.isfinite(r.HY) and np.isfinite(r.AY):
-            h.at[i, "yellow_real"] = float(r.HY + r.AY)
+        for col, (a_, b_) in REAL_COLS.items():
+            if hasattr(r, a_) and hasattr(r, b_) and np.isfinite(getattr(r, a_)) and np.isfinite(getattr(r, b_)):
+                h.at[i, col] = float(getattr(r, a_) + getattr(r, b_))
         n_new += 1
         if pd.isna(row["mkt_home"]):
             o = np.array([r.odds_h, r.odds_d, r.odds_a], float)
@@ -261,17 +271,22 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
                 P = _market_from_odds(o[:1], o[1:2], o[2:])[0]
                 h.at[i, "mkt_home"], h.at[i, "mkt_draw"], h.at[i, "mkt_away"] = P
                 h.at[i, "mkt_source"] = "csv_avg"
-    # gialli reali anche per le righe giocate prima dell'introduzione della colonna (o con risultato ma senza gialli)
-    if "HY" in results.columns:
-        for i, row in h[h["result"].notna() & h["yellow_real"].isna()].iterrows():
+    # valori reali anche per le righe giocate prima dell'introduzione delle colonne (o con risultato ma senza valori)
+    cols_here = [c for c, (a_, b_) in REAL_COLS.items() if a_ in results.columns and b_ in results.columns]
+    if cols_here:
+        missing = h["result"].notna() & h[cols_here].isna().any(axis=1)
+        for i, row in h[missing].iterrows():
             if not isinstance(row["home_dc"], str) or not isinstance(row["away_dc"], str) or row["league"] not in LEAGUE_CODE:
                 continue
             d = pd.Timestamp(row["match_date"])
             cands = [r for r in by_key.get((LEAGUE_CODE[row["league"]], row["home_dc"], row["away_dc"]), [])
-                     if abs((r.date - d).days) <= max_days_apart and np.isfinite(r.HY) and np.isfinite(r.AY)]
+                     if abs((r.date - d).days) <= max_days_apart]
             if cands:
                 r = min(cands, key=lambda c: abs((c.date - d).days))
-                h.at[i, "yellow_real"] = float(r.HY + r.AY)
+                for col in cols_here:
+                    a_, b_ = REAL_COLS[col]
+                    if pd.isna(h.at[i, col]) and np.isfinite(getattr(r, a_)) and np.isfinite(getattr(r, b_)):
+                        h.at[i, col] = float(getattr(r, a_) + getattr(r, b_))
     if n_new:
         log.info("Storico: %d risultati nuovi", n_new)
     return h

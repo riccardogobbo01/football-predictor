@@ -40,8 +40,9 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
-from config import REC_DRAW_THRESHOLD  # noqa: E402
-from backtest import data, eloodds, features, models, refeffect, stack, understat  # noqa: E402
+from config import GAP_PARAMS, REC_DRAW_THRESHOLD  # noqa: E402
+from backtest import data, eloodds, features, models, refeffect, stack, stats_v3, understat  # noqa: E402
+from backtest import gap as gap_mod  # noqa: E402
 from backtest import stats_model as sm  # noqa: E402
 
 log = logging.getLogger(__name__)
@@ -151,7 +152,7 @@ class LeagueState:
 
     MIN_XG_MATCHES = 200
 
-    def __init__(self, g: pd.DataFrame, today: pd.Timestamp, xg_error: str | None = None):
+    def __init__(self, g: pd.DataFrame, today: pd.Timestamp, xg_error: str | None = None, gap_priors: dict | None = None):
         c0 = pd.Timestamp(today).normalize()
         g = g.sort_values("date")
         tr = g[(g.date < c0) & (g.date >= c0 - pd.Timedelta(days=365 * YEARS_WINDOW))]
@@ -184,6 +185,13 @@ class LeagueState:
         _, self.pi_state = models.pi_ratings(g[g.date < c0], return_state=True)
         played = g[g.date < c0].dropna(subset=["hg", "ag"])
         self.eo = eloodds.EloOddsState.from_matches(played)          # tutto lo storico, non solo la finestra di 5 anni
+        # GAP ratings (tiri e tiri in porta): stato dopo l'ultima partita giocata, da tutto lo storico del campionato
+        self.division = str(g.Division.iloc[0])
+        self.gap_priors = gap_priors or {k: gap_mod.priors(played, hc, ac) for k, (hc, ac) in stats_v3.GAP_STATS.items()}
+        self.gap = {}
+        for k, (hc, ac) in stats_v3.GAP_STATS.items():
+            eta, gam = GAP_PARAMS[k]
+            self.gap[k] = gap_mod.run_league(played, hc, ac, eta, gam, self.gap_priors[k])[1]
         self.teams = teams
         self.n_matches = int(len(tr))
         self.fitted_at = c0.strftime("%Y-%m-%d")
@@ -239,6 +247,9 @@ class LeagueState:
                 "sot_lmu": np.log(mu_s), "sot_lnu": np.log(nu_s),
                 "pi_gd": pi.pi_gd.values, "pi_diff": pi.pi_diff.values,
                 eloodds.FEATURE: self.eo.diff(homes, aways)}
+        for k in stats_v3.GAP_STATS:
+            ph, pa = gap_mod.predict(self.gap[k], homes, aways, self.gap_priors[k])
+            cols[f"gap_{k}_lh"], cols[f"gap_{k}_la"] = np.log(ph), np.log(pa)
         if self.xg is not None:
             mu_x, nu_x = models.dc_lambdas(self.xg, homes, aways)
             cols["xg_lmu"], cols["xg_lnu"] = np.log(mu_x), np.log(nu_x)
@@ -310,10 +321,21 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
         m = model["models"][name]
         mu, nu, rho = stack.predict_from_dict(m, X.iloc[rows][m["features"]].to_numpy())
         M = models.score_matrix(mu, nu, np.full(len(rows), rho))
+        fh = None
+        v3 = model.get("stats_v3")
+        if v3 and v3.get("first_half"):
+            share = v3["first_half"]["share"].get(state.division, v3["first_half"]["all"])
+            fh = stats_v3.first_half(mu, nu, share)
         for k, i in enumerate(rows):
             pred = markets(M[k], mu[k], nu[k])
             pred["model"] = name
             pred["fallback_reason"] = reasons[i]
+            if fh is not None:
+                pred["first_half"] = {"p_home": round(float(fh["home"][k]), 5), "p_draw": round(float(fh["draw"][k]), 5),
+                                      "p_away": round(float(fh["away"][k]), 5), "o05": round(float(fh["o05"][k]), 5),
+                                      "o15": round(float(fh["o15"][k]), 5), "exp_home": round(float(fh["exp_home"][k]), 3),
+                                      "exp_away": round(float(fh["exp_away"][k]), 3), "exp_total": round(float(fh["exp_total"][k]), 3),
+                                      "share": round(float(share), 4)}
             out[i] = pred
 
     by_reason = {}
@@ -327,60 +349,76 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
     return out
 
 
-STATS_NOTE = ("Modello validato con backtest. Queste statistiche variano molto da partita a partita: "
-              "guarda l'intervallo e le probabilità, non solo il numero medio.")
-
-
 def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, referees=None) -> list:
-    """Statistiche attese (tiri, corner, gialli) per ogni partita: valore per squadra, totale,
-    intervallo 80% del totale (Binomiale Negativa) e probabilità Over delle linee. Si usa la stessa
-    variante dello stack 1X2 (with_xg se gli xG ci sono per entrambe le squadre, altrimenti without_xg).
-    Restituisce None per ogni partita se models/stack.json non contiene "stats_models".
+    """Statistiche attese (tiri, tiri in porta, corner, gialli, falli) per ogni partita, più i mercati «chi ne fa di più» e l'handicap
+    dei corner dalla copula gaussiana (backtest/stats_v3.py, versione s3-gap). Si usa la stessa variante dello stack 1X2
+    (with_xg se gli xG ci sono per entrambe le squadre, altrimenti without_xg). Restituisce None per ogni partita se
+    models/stack.json non contiene "stats_v3".
 
     referees: lista (una per partita) con il nome dell'arbitro designato secondo football-data.org, o None. L'effetto arbitro
-    (models/stack.json["referees"], backtest/refeffect.py) entra solo nel modello dei gialli; arbitro assente, sconosciuto o senza
-    storico = effetto zero. Nella riga dei gialli si aggiunge {"referee": {"name", "delta"}} con delta = gialli attesi con
-    l'arbitro meno gialli attesi con un arbitro nella media."""
-    stats_models = model.get("stats_models")
-    if not stats_models or not pairs:
+    (models/stack.json["referees"] per i gialli, ["referees_fouls"] per i falli) entra solo nei modelli dei gialli e dei falli;
+    arbitro assente, sconosciuto o senza storico = effetto zero. Nelle righe dei gialli e dei falli: {"referee": {"name", "delta"}}
+    con delta = valori attesi con l'arbitro meno valori attesi con un arbitro nella media."""
+    v3 = model.get("stats_v3")
+    if not v3 or not pairs:
         return [None] * len(pairs)
     homes, aways = zip(*pairs)
+    n = len(pairs)
     frame = state.features(homes, aways).join(state.stat_logs(homes, aways))
-    frame["Division"] = CSV_CODE[league_key]
-    ref_state = model.get("referees")
-    names = list(referees) if referees is not None else [None] * len(pairs)
-    ratios = [refeffect.ratio(ref_state, CSV_CODE[league_key], nm) for nm in names]
-    frame[sm.REFEREE_COL] = np.log([r[0] for r in ratios])
+    div = CSV_CODE[league_key]
+    frame["Division"] = div
     for c in sm.XG_COLS:
         if c not in frame:
             frame[c] = np.nan
+    names = list(referees) if referees is not None else [None] * n
+    ratios = {"gialli": [refeffect.ratio(model.get("referees"), div, nm) for nm in names],
+              "falli": [refeffect.ratio(model.get("referees_fouls"), div, nm) for nm in names]}
+    frame["ref_logR"] = np.log([r[0] for r in ratios["gialli"]])
+    frame["ref_logR_f"] = np.log([r[0] for r in ratios["falli"]])
     variant = [WITH_XG if state.xg_fallback_reason(h, a) is None else WITHOUT_XG for h, a in pairs]
-
-    out = [{"model": v, "note": STATS_NOTE} for v in variant]
-    for stat in sm.STATS:
+    out = [{"model": v, "note": stats_v3.PAGE_NOTE} for v in variant]
+    means = {st: np.zeros((n, 2)) for st in stats_v3.ORDER}
+    for stat in stats_v3.ORDER:
+        spec = stats_v3.STATS3[stat]
         for name in (WITH_XG, WITHOUT_XG):
             rows = [i for i, v in enumerate(variant) if v == name]
             if not rows:
                 continue
-            d = stats_models[name][stat]
-            use_ref = stat in sm.REFEREE_STATS and bool(d["features"]) and d["features"][-1] == sm.REFEREE_COL
-            if d["features"] != sm.feature_names(stat, name == WITH_XG, use_ref):
-                raise ValueError(f"models/stack.json: feature di stats_models/{name}/{stat} non coerenti "
-                                 f"con backtest/stats_model.py")
-            X = sm.design(frame.iloc[rows], stat, name == WITH_XG, referee=use_ref)
+            d = v3["models"][name][stat]
+            if d["features"] != stats_v3.feature_names(stat, name == WITH_XG):
+                raise ValueError(f"models/stack.json: feature di stats_v3/{name}/{stat} non coerenti con backtest/stats_v3.py")
+            X = stats_v3.design(frame.iloc[rows], stat, name == WITH_XG)
             mh, ma = sm.means_from_dict(d, X.to_numpy())
             delta = None
-            if use_ref:
+            if "referee" in spec:
                 X0 = X.copy()
-                X0[sm.REFEREE_COL] = 0.0                      # arbitro «nella media»
+                X0[spec["referee"]] = 0.0                      # arbitro «nella media»
                 mh0, ma0 = sm.means_from_dict(d, X0.to_numpy())
                 delta = (mh + ma) - (mh0 + ma0)
-            for j, (i, row) in enumerate(zip(rows, sm.page_stats(stat, mh, ma, d["alpha"]))):
-                if use_ref:
-                    known = ratios[i][2]
-                    row["referee"] = {"name": names[i] or None,
-                                      "delta": round(float(delta[j]), 2) if (names[i] and known) else None}
-                out[i][sm.PAGE_KEY[stat]] = row
+            means[stat][rows, 0], means[stat][rows, 1] = mh, ma
+            for j, (i, row) in enumerate(zip(rows, stats_v3.page_rows(stat, mh, ma, d))):
+                if delta is not None:
+                    known = ratios[stat][i][2]
+                    row["referee"] = {"name": names[i] or None, "delta": round(float(delta[j]), 2) if (names[i] and known) else None}
+                out[i][spec["key"]] = row
+    # mercati «chi ne fa di più» e handicap dei corner (copula gaussiana)
+    for i in range(n):
+        out[i]["who_more"] = {}
+    for stat in v3["copula"]:
+        spec = stats_v3.STATS3[stat]
+        rho = stats_v3.rho_for(v3["copula"], stat, div)
+        for name in (WITH_XG, WITHOUT_XG):
+            rows = [i for i, v in enumerate(variant) if v == name]
+            if not rows:
+                continue
+            at = v3["models"][name][stat]["alpha_team"]
+            dif = stats_v3.diff_pmf(means[stat][rows, 0], means[stat][rows, 1], at, rho, spec["M"])
+            P = stats_v3.who_more(dif, spec["M"])
+            hc15 = stats_v3.handicap_15(dif, spec["M"]) if stat == "corner" else None
+            for j, i in enumerate(rows):
+                out[i]["who_more"][spec["key"]] = [round(float(x), 4) for x in P[j]]
+                if hc15 is not None:
+                    out[i]["who_more"]["corner_handicap"] = {k: round(float(v[j]), 4) for k, v in hc15.items()}
     return out
 
 
@@ -435,11 +473,12 @@ def league_state(league_key: str, today=None) -> LeagueState:
     with _lock:
         df = _history()
         key = (league_key, str(today.date()))
-        if key not in _cache["states"]:
-            g = df[df.Division == CSV_CODE[league_key]]
-            _cache["states"][key] = LeagueState(g, today, xg_error=_cache["xg_error"])
         if _cache["model"] is None:
             _cache["model"] = load_stack()
+        if key not in _cache["states"]:
+            g = df[df.Division == CSV_CODE[league_key]]
+            priors = (_cache["model"].get("stats_v3") or {}).get("gap", {}).get("priors")
+            _cache["states"][key] = LeagueState(g, today, xg_error=_cache["xg_error"], gap_priors=priors)
         return _cache["states"][key]
 
 

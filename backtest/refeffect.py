@@ -125,18 +125,23 @@ def referee_ratio(feat, y, m, keys, k, mbar):
     return pd.Series(out, index=feat.index), sums
 
 
-def compute(feat: pd.DataFrame, keys: pd.Series, k: float = REFEREE_K):
-    """feat: feature del training con anche le feature delle statistiche (build_stat_features); keys: chiave arbitro per riga.
-    Restituisce (ref_logR per riga, stato per il serving)."""
-    mh, ma = base_predictions(feat)
-    m_tot = mh + ma
-    y = feat["HY"] + feat["AY"]
+def compute_stat(feat: pd.DataFrame, keys: pd.Series, mh0, ma0, y, k: float = REFEREE_K):
+    """Effetto arbitro per una statistica generica: mh0/ma0 = medie attese del modello SENZA arbitro (come base_predictions), y = totale
+    osservato. Restituisce (log R per riga, stato per il serving)."""
+    m_tot = mh0 + ma0
     mbar = mbar_by_league(feat, m_tot)
     R, sums = referee_ratio(feat, y, m_tot, keys, k, mbar)
     state = {"k": float(k), "mbar": mbar, "effects": {kk: [round(v[0], 3), round(v[1], 3), int(v[2])] for kk, v in sums.items() if v[2] > 0},
              "asof": str(feat.date.max().date()), "n_matches_with_referee": int(keys.notna().sum()),
              "n_referees": int(len(sums))}
     return np.log(R), state
+
+
+def compute(feat: pd.DataFrame, keys: pd.Series, k: float = REFEREE_K):
+    """feat: feature del training con anche le feature delle statistiche (build_stat_features); keys: chiave arbitro per riga.
+    Restituisce (ref_logR per riga, stato per il serving) per i GIALLI."""
+    mh, ma = base_predictions(feat)
+    return compute_stat(feat, keys, mh, ma, feat["HY"] + feat["AY"], k)
 
 
 # ───────────────────────────── serving ─────────────────────────────
