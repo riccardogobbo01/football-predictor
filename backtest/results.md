@@ -133,7 +133,7 @@ Rating Elo-Odds K=200 sulle quote di chiusura (metodo power); quote usate: chius
 | La Liga | 2737 | 0.9798 | 0.9782 | +0.0017 |
 | Ligue 1 | 2391 | 0.9977 | 0.9950 | +0.0026 |
 
-Δ medio 2019/20-2021/22: +0.0005; dal 2022/23: +0.0054. Nelle prime stagioni lo stack con xG ha solo 3-4 stagioni di training (gli xG partono dal 2014): poche per stimare bene il peso di una feature rumorosa; in produzione il training copre circa 10 stagioni.
+Δ medio 2019/20-2021/22: +0.0005; dal 2022/23: +0.0054. La causa non è chiarita: il round 3 (esperimento A, backtest/results_round3.md) esclude che dipenda dalla lunghezza del training dello stack.
 
 
 ### Modello di ripiego without_xg: guadagno di eo_diff

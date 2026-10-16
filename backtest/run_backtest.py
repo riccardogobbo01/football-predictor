@@ -262,9 +262,9 @@ def main():
     seas = sorted(ev.season.unique())
     d_by = {s_: (ll_vec[M_XGR][(ev.season == s_).to_numpy()] - ll_vec[M_EO][(ev.season == s_).to_numpy()]).mean() for s_ in seas}
     w_ = lambda sel: np.average([d_by[s_] for s_ in seas if sel(s_)], weights=[(ev.season == s_).sum() for s_ in seas if sel(s_)])
-    lines += ["", f"Δ medio 2019/20-2021/22: {w_(lambda s_: s_ <= 2021):+.4f}; dal 2022/23: {w_(lambda s_: s_ >= 2022):+.4f}. Nelle prime "
-                  "stagioni lo stack con xG ha solo 3-4 stagioni di training (gli xG partono dal 2014): poche per stimare bene il peso "
-                  "di una feature rumorosa; in produzione il training copre circa 10 stagioni.", ""]
+    lines += ["", f"Δ medio 2019/20-2021/22: {w_(lambda s_: s_ <= 2021):+.4f}; dal 2022/23: {w_(lambda s_: s_ >= 2022):+.4f}. La causa "
+                  "non è chiarita: il round 3 (esperimento A, backtest/results_round3.md) esclude che dipenda dalla lunghezza del "
+                  "training dello stack.", ""]
 
     # modello di ripiego without_xg
     pm_, plo_, phi_ = boot[(M_PROD, M_PROD_EO)]
