@@ -411,7 +411,7 @@ def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, ref
             rows = [i for i, v in enumerate(variant) if v == name]
             if not rows:
                 continue
-            at = v3["models"][name][stat]["alpha_team"]
+            at = stats_v3.team_alphas(v3["models"][name][stat])
             dif = stats_v3.diff_pmf(means[stat][rows, 0], means[stat][rows, 1], at, rho, spec["M"])
             P = stats_v3.who_more(dif, spec["M"])
             hc15 = stats_v3.handicap_15(dif, spec["M"]) if stat == "corner" else None

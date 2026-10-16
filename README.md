@@ -52,7 +52,7 @@ Il training settimanale ricalcola gli effetti con le sole partite passate e li s
 `history.csv` registra anche arbitro, data/ora della prima comparsa, gialli, tiri, tiri in porta e falli (totali) previsti e reali, i gol
 del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, separata da `MODEL_VERSION`, che riguarda solo il modello 1X2).
 
-**Versione `s3-gap` delle statistiche** (round 6, `backtest/stats_v3.py`, risultati in `backtest/results_round6.md`):
+**Versioni `s3-gap` e `s4-intervalli` delle statistiche** (round 6, `backtest/stats_v3.py`, risultati in `backtest/results_round6.md`):
 - **Tiri e tiri in porta**: i rating di attacco/difesa sono sostituiti dai **GAP ratings** di Wheatcroft (`backtest/gap.py`, quattro rating
   per squadra aggiornati partita dopo partita; parametri scelti sulle sole stagioni di validazione, `config.GAP_PARAMS`: tiri η=0.10, γ=1.0,
   tiri in porta η=0.05, γ=1.0). Per tiri, tiri in porta e totale il pannello mostra valore atteso e intervallo all'80%, più le linee Over/Under del totale.
@@ -62,6 +62,11 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   integrazione numerica (nessuna simulazione); ρ stimato in training (tiri per campionato, corner e gialli unico).
 - **Primo tempo**: quota dei gol del primo tempo per campionato stimata in training × gol attesi del modello 1X2; 1X2 al riposo e Over 0,5 / 1,5.
 - Il pannello è diviso in sezioni richiudibili: Gol e risultati → Primo tempo → Tiri → Corner → Cartellini e falli → Contesto (le prime due aperte).
+- **Intervalli** (`s4-intervalli`): per ogni statistica (tiri, tiri in porta, corner, gialli, falli), per squadra e totale, il pannello mostra l'intervallo di valori
+  interi consecutivi centrato sui più probabili la cui probabilità reale è la più vicina all'80% (a parità la maggiore), con la probabilità accanto, ad es. «1–3 (78%)»
+  (`stats_v3.nb_interval`). Verifica walk-forward in `backtest/results_intervals.md` (`python -I -X utf8 backtest/run_intervals.py`): scarto massimo tra probabilità
+  dichiarata e frequenza reale 2,3 punti. I tiri hanno la dispersione (alpha) separata per casa e ospite (`alpha_home`/`alpha_away` in `models/stack.json`);
+  con un solo alpha l'ospite era fuori dal criterio dei 3 punti. `python -I -X utf8 backtest/run_intervals_alpha.py` verifica che non peggiori le log-loss.
 - `python -I -X utf8 backtest/run_round6_prod.py` riproduce con il codice di produzione i risultati della fase 1 del round 6.
 
 ## Avvio locale

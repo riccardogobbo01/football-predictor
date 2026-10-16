@@ -29,6 +29,7 @@ STATS3 = {
                    referee="ref_logR_f", team_interval=False),
 }
 ORDER = ["tiri", "sot", "corner", "gialli", "falli"]
+SIDE_ALPHA = ("tiri",)           # statistiche con dispersione separata per casa e ospite (s4-intervalli); le altre hanno un alpha per squadra
 COPULA_PER_LEAGUE = {"tiri": True, "corner": False, "gialli": False}      # scelta del round 6 (regola J3 in validazione)
 FIRST_TRAIN = sm.FIRST_TRAIN_SEASON
 XG_COLS = sm.XG_COLS
@@ -105,12 +106,19 @@ def moments(y, m) -> float:
     return max(float(((y - m) ** 2 - m).sum() / (m ** 2).sum()), 1e-4)
 
 
+def team_alphas(d: dict) -> tuple:
+    """(alpha casa, alpha ospite) di un modello salvato: separati se presenti (tiri, s4-intervalli), altrimenti l'alpha per squadra."""
+    return d.get("alpha_home", d["alpha_team"]), d.get("alpha_away", d["alpha_team"])
+
+
 def estimate_rho(yh, ya, mh, ma, alpha, division=None, seed=17):
-    """Correlazione tra i punteggi normali di una PIT randomizzata dei residui (campione di training). Scalare, oppure dict per lega."""
+    """Correlazione tra i punteggi normali di una PIT randomizzata dei residui (campione di training). Scalare, oppure dict per lega.
+    alpha: scalare o coppia (casa, ospite)."""
     rng = np.random.default_rng(seed)
     zs = []
-    for y, m in ((yh.astype(int), mh), (ya.astype(int), ma)):
-        n = 1.0 / alpha
+    ah, aa = alpha if isinstance(alpha, (tuple, list)) else (alpha, alpha)
+    for y, m, a in ((yh.astype(int), mh, ah), (ya.astype(int), ma, aa)):
+        n = 1.0 / a
         p = n / (n + m)
         lo, hi = nbinom.cdf(y - 1, n, p), nbinom.cdf(y, n, p)
         zs.append(ndtri(np.clip(lo + rng.uniform(size=len(y)) * (hi - lo), 1e-9, 1 - 1e-9)))
@@ -128,6 +136,8 @@ def train_stat(feat: pd.DataFrame, stat: str, with_xg: bool):
     d = sm.model_to_dict(model, X.columns, meta={"n_train": int(ok.sum())})
     mh, ma = sm.predict_means(model, X[ok])
     d["alpha_team"] = moments(np.r_[feat[spec["hc"]][ok], feat[spec["ac"]][ok]], np.r_[mh, ma])
+    if stat in SIDE_ALPHA:
+        d["alpha_home"], d["alpha_away"] = moments(feat[spec["hc"]][ok], mh), moments(feat[spec["ac"]][ok], ma)
     sample = X[ok].iloc[:: max(int(ok.sum()) // 500, 1)]
     a, b = sm.means_from_dict(d, sample.to_numpy())
     pa, pb = sm.predict_means(model, sample)
@@ -153,24 +163,58 @@ def _q(m, alpha, q):
     return nbinom.ppf(q, n, n / (n + m))
 
 
+INTERVAL_TARGET = 0.80
+INTERVAL_K = {"tiri": 60, "sot": 30, "corner": 36, "gialli": 16, "falli": 44}          # massimo dei valori considerati per squadra (il totale usa 2K)
+
+
+def interval_from_pmf(pmf, target: float = INTERVAL_TARGET):
+    """Intervallo di valori interi consecutivi centrato sui valori più probabili, con probabilità reale più vicina a `target`.
+    pmf: (n, K+1) probabilità dei valori 0..K. Per ogni ampiezza w si prende la finestra di probabilità massima (attorno alla moda);
+    tra le ampiezze si sceglie quella con |P − target| minimo, a parità la probabilità maggiore. Restituisce (lo, hi, P) di lunghezza n."""
+    pmf = np.atleast_2d(np.asarray(pmf, float))
+    n, k1 = pmf.shape
+    C = np.concatenate([np.zeros((n, 1)), np.cumsum(pmf, axis=1)], axis=1)
+    best = np.empty((n, k1))
+    start = np.empty((n, k1), dtype=int)
+    for w in range(1, k1 + 1):
+        win = C[:, w:] - C[:, :-w]
+        start[:, w - 1] = win.argmax(1)
+        best[:, w - 1] = win.max(1)
+    dist = np.round(np.abs(best - target), 9)
+    cand = dist == dist.min(1, keepdims=True)
+    w = np.argmax(np.where(cand, best, -1.0), axis=1)
+    r = np.arange(n)
+    lo = start[r, w]
+    return lo, lo + w, best[r, w]
+
+
+def nb_interval(mean, alpha, K: int, target: float = INTERVAL_TARGET):
+    """Intervallo (lo, hi, probabilità reale) della Binomiale Negativa con media `mean` e dispersione `alpha` (valori 0..K)."""
+    m = np.asarray(mean, float)
+    n = 1.0 / alpha
+    pmf = nbinom.pmf(np.arange(K + 1)[None, :], n, (n / (n + m))[:, None])
+    return interval_from_pmf(pmf, target)
+
+
 def page_rows(stat: str, mh, ma, d: dict) -> list:
-    """Una riga per partita: valore per squadra, totale, intervallo all'80% del totale (e delle squadre per tiri e tiri in porta),
-    probabilità Over delle linee del totale (Binomiale Negativa)."""
+    """Una riga per partita: valore per squadra e totale, intervalli (squadre e totale, con la probabilità reale), probabilità Over delle
+    linee del totale (Binomiale Negativa). `int_*`: [minimo, massimo, probabilità che il valore cada nell'intervallo]."""
     spec = STATS3[stat]
     mh, ma = np.asarray(mh, float), np.asarray(ma, float)
-    at, aT = d["alpha_team"], d["alpha"]
+    (ah_, aa_), aT = team_alphas(d), d["alpha"]
     m = mh + ma
     n = 1.0 / aT
     p = n / (n + m)
-    lo, hi = nbinom.ppf(0.10, n, p), nbinom.ppf(0.90, n, p)
     over = {L: 1 - nbinom.cdf(np.floor(L), n, p) for L in spec["lines"]}
+    K = INTERVAL_K[stat]
+    ih, ia, it = nb_interval(mh, ah_, K), nb_interval(ma, aa_, K), nb_interval(m, aT, 2 * K)
     rows = []
     for i in range(len(m)):
         r = {"home": round(float(mh[i]), 1), "away": round(float(ma[i]), 1), "total": round(float(m[i]), 1),
-             "lo80": int(lo[i]), "hi80": int(hi[i]), "over": {f"{L:g}": round(float(over[L][i]), 4) for L in spec["lines"]}}
-        if spec["team_interval"]:
-            r["home_lo80"], r["home_hi80"] = int(_q(mh[i], at, 0.10)), int(_q(mh[i], at, 0.90))
-            r["away_lo80"], r["away_hi80"] = int(_q(ma[i], at, 0.10)), int(_q(ma[i], at, 0.90))
+             "int_home": [int(ih[0][i]), int(ih[1][i]), round(float(ih[2][i]), 4)],
+             "int_away": [int(ia[0][i]), int(ia[1][i]), round(float(ia[2][i]), 4)],
+             "int_total": [int(it[0][i]), int(it[1][i]), round(float(it[2][i]), 4)],
+             "over": {f"{L:g}": round(float(over[L][i]), 4) for L in spec["lines"]}}
         rows.append(r)
     return rows
 
@@ -197,16 +241,18 @@ def _joint_pmf(F_h, F_a, rho):
 
 
 def diff_pmf(mh, ma, alpha_team, rho, M):
-    """pmf di (casa − ospite) per ogni partita (indice M = differenza 0), marginali NB(media, alpha_team) e copula gaussiana."""
+    """pmf di (casa − ospite) per ogni partita (indice M = differenza 0), marginali NB(media, alpha) e copula gaussiana.
+    alpha_team: scalare o coppia (alpha casa, alpha ospite)."""
+    ah, aa = alpha_team if isinstance(alpha_team, (tuple, list)) else (alpha_team, alpha_team)
     mh, ma = np.asarray(mh, float), np.asarray(ma, float)
     n = len(mh)
     rho = np.broadcast_to(np.asarray(rho, float), (n,))
     k = np.arange(M + 1)
     i, j = np.meshgrid(k, k, indexing="ij")
     idx = (i - j + M).ravel()
-    nb = 1.0 / alpha_team
-    Fh = nbinom.cdf(k[None, :], nb, (nb / (nb + mh))[:, None])
-    Fa = nbinom.cdf(k[None, :], nb, (nb / (nb + ma))[:, None])
+    nbh, nba = 1.0 / ah, 1.0 / aa
+    Fh = nbinom.cdf(k[None, :], nbh, (nbh / (nbh + mh))[:, None])
+    Fa = nbinom.cdf(k[None, :], nba, (nba / (nba + ma))[:, None])
     out = np.zeros((n, 2 * M + 1))
     for r in range(n):
         pmf = np.clip(_joint_pmf(Fh[r], Fa[r], rho[r]), 0, None)

@@ -430,15 +430,18 @@ PANEL_JS = r'''
         '<span class="prob-pct pp-under">U ' + pct(1 - po) + '</span></div>';
     }).join("");
   }
-  function statCell(label, v, lo, hi) {
+  function ivText(iv) {
+    return (iv[0] === iv[1] ? String(iv[0]) : iv[0] + '–' + iv[1]) + ' (' + Math.round(iv[2] * 100) + '%)';
+  }
+  function statCell(label, v, iv) {
     return '<div class="stat-cell"><span class="stat-l">' + label + '</span><span class="stat-v">' + v.toFixed(1) + '</span>' +
-      (lo === undefined || lo === null ? '' : '<span class="stat-sub">80%: ' + lo + '–' + hi + '</span>') + '</div>';
+      '<span class="stat-sub">' + ivText(iv) + '</span></div>';
   }
   function statBlock(name, o, h, a, unit) {
     return '<div class="stat-block"><div class="stat-head"><span class="stat-name">' + name + '</span>' +
       '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' + refLine(o, unit) +
-      '<div class="stat-grid">' + statCell(h, o.home, o.home_lo80, o.home_hi80) + statCell(a, o.away, o.away_lo80, o.away_hi80) +
-      statCell('Totale', o.total, o.lo80, o.hi80) +
+      '<div class="stat-grid">' + statCell(h, o.home, o.int_home) + statCell(a, o.away, o.int_away) +
+      statCell('Totale', o.total, o.int_total) +
       '</div><div class="stat-cap">Over / Under sul totale</div>' + ouRows(o.over) + '</div>';
   }
   function more3(title, arr, h, a) {
@@ -540,6 +543,7 @@ PANEL_JS = r'''
     if (st) {
       var wm = st.who_more || {};
       var noteHtml = '<div class="pn-note">' + esc(st.note) + '</div>' +
+        '<div class="pn-note">Intervallo: valori che il modello considera più probabili, con la probabilità che il risultato reale cada al suo interno.</div>' +
         (st.model === "without_xg" ? '<div class="pn-note">Variante senza xG (la stessa usata dal modello 1X2 per questa partita).</div>' : '');
       var g3 = "";
       if (st.shots) { g3 += statBlock("Tiri totali", st.shots, h, a); }
@@ -1296,15 +1300,13 @@ def validate_output(all_data: dict) -> list:
                     ov = [o["over"][L] for L in o["over"]]
                     bad = (min(o["home"], o["away"], o["total"]) < 0
                            or abs(o["home"] + o["away"] - o["total"]) > 0.11
-                           or not (0 <= o["lo80"] <= o["total"] + 0.5 and o["total"] - 0.5 <= o["hi80"])
-                           or o["lo80"] > o["hi80"]
                            or any(v < 0 or v > 1 for v in ov)
                            or any(b > a + 1e-9 for a, b in zip(ov, ov[1:])))
-                    if k in ("shots", "sot"):                         # intervalli 80% anche per squadra
-                        for side in ("home", "away"):
-                            lo, hi = o.get(f"{side}_lo80"), o.get(f"{side}_hi80")
-                            if lo is None or hi is None or lo > hi or not (lo <= o[side] + 0.5 and o[side] - 0.5 <= hi):
-                                bad = True
+                    for side in ("home", "away", "total"):            # intervalli: [min, max, probabilità reale] attorno al valore atteso
+                        iv = o.get(f"int_{side}")
+                        if (not iv or len(iv) != 3 or not (0 <= iv[0] <= iv[1]) or not (0.5 < iv[2] <= 1)
+                                or not (iv[0] - 1 <= o[side] <= iv[1] + 1)):
+                            bad = True
                     if k in ("yellows", "fouls") and "referee" not in o:
                         bad = True
                     if bad:

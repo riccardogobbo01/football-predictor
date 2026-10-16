@@ -93,11 +93,12 @@ def train_stats_v3(feat, priors):
         for stat in stats_v3.ORDER:
             d, mh, ma, ok = stats_v3.train_stat(feat, stat, with_xg)
             spec = stats_v3.STATS3[stat]
-            print(f"  [stats {variant}/{stat}] {d['meta']['n_train']} partite, alpha NB totale={d['alpha']:.4f}, per squadra={d['alpha_team']:.4f}", flush=True)
+            print(f"  [stats {variant}/{stat}] {d['meta']['n_train']} partite, alpha NB totale={d['alpha']:.4f}, per squadra={d['alpha_team']:.4f}"
+                  + (f" (casa {d['alpha_home']:.4f}, ospite {d['alpha_away']:.4f})" if 'alpha_home' in d else ""), flush=True)
             models[variant][stat] = d
             if with_xg and stat in stats_v3.COPULA_PER_LEAGUE:
                 per_league = stats_v3.COPULA_PER_LEAGUE[stat]
-                rho = stats_v3.estimate_rho(feat[spec["hc"]][ok].to_numpy(), feat[spec["ac"]][ok].to_numpy(), mh, ma, d["alpha_team"],
+                rho = stats_v3.estimate_rho(feat[spec["hc"]][ok].to_numpy(), feat[spec["ac"]][ok].to_numpy(), mh, ma, stats_v3.team_alphas(d),
                                             division=feat.Division[ok].to_numpy() if per_league else None)
                 copula[stat] = {"per_league": per_league, "rho": rho, "M": spec["M"]}
                 print(f"  [copula {stat}] rho = {rho}", flush=True)
