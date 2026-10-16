@@ -14,7 +14,9 @@ o mancano gli xG di una squadra) — vedi predictions/stack_predictor.py.
 
 Salva anche "stats_models": per tiri, corner e gialli, i due Poisson (casa, ospite) e l'alpha della
 Binomiale Negativa del totale (backtest/stats_model.py), in due varianti (with_xg / without_xg)
-come lo stack 1X2.
+come lo stack 1X2. Il modello dei gialli ha in più l'effetto arbitro (backtest/refeffect.py, round 5): il training
+ricalcola con le sole partite passate l'effetto di ogni arbitro e lo salva in "referees" (somme per arbitro, usate dal serving).
+Lo storico degli arbitri viene da data/referees/matches.csv e da docs/history.csv (nessuna chiamata di rete).
 
 Costruisce lo storico delle feature in walk-forward (ognuna calcolata solo con dati
 precedenti alla partita) per i 5 campionati, poi stima le due regressioni di Poisson e
@@ -39,7 +41,8 @@ sys.path.insert(0, REPO_ROOT)
 
 import numpy as np
 
-from backtest import data, eloodds, features, stack, stats_model as sm, understat
+from backtest import data, eloodds, features, refeffect, stack, stats_model as sm, understat
+from config import REFEREE_K, STATS_VERSION
 
 OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 
@@ -85,7 +88,7 @@ def train_stats(feat):
     for variant, with_xg in (("with_xg", True), ("without_xg", False)):
         out[variant] = {}
         for stat, (hc, ac, _, _) in sm.STATS.items():
-            X = sm.design(feat, stat, with_xg)
+            X = sm.design(feat, stat, with_xg, referee=True)       # referee agisce solo sui gialli
             ok = (X.notna().all(axis=1) & np.isfinite(X).all(axis=1) & feat[hc].notna() & feat[ac].notna()
                   & (feat.season >= sm.FIRST_TRAIN_SEASON))
             model = sm.fit_stat_model(X[ok], feat[hc][ok], feat[ac][ok])
@@ -129,8 +132,31 @@ def main():
     feat = feat.join(features.build_xg_features(df)[["xg_lmu", "xg_lnu"]])
     feat = feat.join(features.build_stat_features(df))
 
+    print("Effetto arbitro sui gialli...", flush=True)
+    try:
+        keys = refeffect.load_history_keys(df).reindex(feat.index)
+    except refeffect.RefereeDataError as e:
+        print(f"ERRORE: {e}", file=sys.stderr)
+        sys.exit(1)
+    cur = data.current_season()
+    cur_rows = (feat.season == cur)
+    print(f"  arbitro noto per {int(keys.notna().sum())} partite (dal 2016/17: {int(keys[feat.season >= 2016].notna().sum())}/"
+          f"{int((feat.season >= 2016).sum())}); stagione corrente: {int(keys[cur_rows].notna().sum())}/{int(cur_rows.sum())}", flush=True)
+    chk = refeffect.check_premier_league(df, keys.reindex(df.index))
+    if chk["agree"] is not None:
+        print(f"  coerenza con la colonna Referee di football-data.co.uk (Premier League, cognome): {chk['agree']:.1%} su {chk['n']} partite", flush=True)
+        if chk["agree"] < 0.95:
+            print("ERRORE: abbinamento degli arbitri incoerente con football-data.co.uk (< 95%)", file=sys.stderr)
+            sys.exit(1)
+    if keys[feat.season >= 2016].notna().mean() < 0.9:
+        print("ERRORE: storico degli arbitri troppo incompleto (< 90% delle partite dal 2016/17)", file=sys.stderr)
+        sys.exit(1)
+    feat["ref_logR"], ref_state = refeffect.compute(feat, keys, REFEREE_K)
+    print(f"  {ref_state['n_referees']} arbitri con storico, k={REFEREE_K}", flush=True)
+
     print("Stima degli stack...", flush=True)
     out = {
+        "referees": ref_state,
         "stats_models": train_stats(feat),
         "version": 2,
         "models": {name: train_one(name, cols, min_season, feat)
@@ -140,6 +166,7 @@ def main():
             "leagues": sorted(feat.Division.unique().tolist()),
             "xg_ridge": features.XG_RIDGE,
             "elo_odds": {"k": eloodds.ELO_ODDS_K, "odds_rows": odds_cov},
+            "stats_version": STATS_VERSION,
             "note": ("Poisson-stack, feature in walk-forward (DC xi=0.0018, xG xi=0.003 con ridge sul solo "
                      "DC degli xG, finestra 5 anni, Elo-Odds K=200 sulle quote di chiusura). "
                      "In produzione with_xg; without_xg e' il ripiego."),

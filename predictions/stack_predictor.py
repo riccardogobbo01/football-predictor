@@ -41,7 +41,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from config import REC_DRAW_THRESHOLD  # noqa: E402
-from backtest import data, eloodds, features, models, stack, understat  # noqa: E402
+from backtest import data, eloodds, features, models, refeffect, stack, understat  # noqa: E402
 from backtest import stats_model as sm  # noqa: E402
 
 log = logging.getLogger(__name__)
@@ -331,17 +331,26 @@ STATS_NOTE = ("Modello validato con backtest. Queste statistiche variano molto d
               "guarda l'intervallo e le probabilità, non solo il numero medio.")
 
 
-def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str) -> list:
+def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, referees=None) -> list:
     """Statistiche attese (tiri, corner, gialli) per ogni partita: valore per squadra, totale,
     intervallo 80% del totale (Binomiale Negativa) e probabilità Over delle linee. Si usa la stessa
     variante dello stack 1X2 (with_xg se gli xG ci sono per entrambe le squadre, altrimenti without_xg).
-    Restituisce None per ogni partita se models/stack.json non contiene "stats_models"."""
+    Restituisce None per ogni partita se models/stack.json non contiene "stats_models".
+
+    referees: lista (una per partita) con il nome dell'arbitro designato secondo football-data.org, o None. L'effetto arbitro
+    (models/stack.json["referees"], backtest/refeffect.py) entra solo nel modello dei gialli; arbitro assente, sconosciuto o senza
+    storico = effetto zero. Nella riga dei gialli si aggiunge {"referee": {"name", "delta"}} con delta = gialli attesi con
+    l'arbitro meno gialli attesi con un arbitro nella media."""
     stats_models = model.get("stats_models")
     if not stats_models or not pairs:
         return [None] * len(pairs)
     homes, aways = zip(*pairs)
     frame = state.features(homes, aways).join(state.stat_logs(homes, aways))
     frame["Division"] = CSV_CODE[league_key]
+    ref_state = model.get("referees")
+    names = list(referees) if referees is not None else [None] * len(pairs)
+    ratios = [refeffect.ratio(ref_state, CSV_CODE[league_key], nm) for nm in names]
+    frame[sm.REFEREE_COL] = np.log([r[0] for r in ratios])
     for c in sm.XG_COLS:
         if c not in frame:
             frame[c] = np.nan
@@ -354,12 +363,23 @@ def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str) -> 
             if not rows:
                 continue
             d = stats_models[name][stat]
-            if d["features"] != sm.feature_names(stat, name == WITH_XG):
+            use_ref = stat in sm.REFEREE_STATS and bool(d["features"]) and d["features"][-1] == sm.REFEREE_COL
+            if d["features"] != sm.feature_names(stat, name == WITH_XG, use_ref):
                 raise ValueError(f"models/stack.json: feature di stats_models/{name}/{stat} non coerenti "
                                  f"con backtest/stats_model.py")
-            X = sm.design(frame.iloc[rows], stat, name == WITH_XG)
+            X = sm.design(frame.iloc[rows], stat, name == WITH_XG, referee=use_ref)
             mh, ma = sm.means_from_dict(d, X.to_numpy())
-            for i, row in zip(rows, sm.page_stats(stat, mh, ma, d["alpha"])):
+            delta = None
+            if use_ref:
+                X0 = X.copy()
+                X0[sm.REFEREE_COL] = 0.0                      # arbitro «nella media»
+                mh0, ma0 = sm.means_from_dict(d, X0.to_numpy())
+                delta = (mh + ma) - (mh0 + ma0)
+            for j, (i, row) in enumerate(zip(rows, sm.page_stats(stat, mh, ma, d["alpha"]))):
+                if use_ref:
+                    known = ratios[i][2]
+                    row["referee"] = {"name": names[i] or None,
+                                      "delta": round(float(delta[j]), 2) if (names[i] and known) else None}
                 out[i][sm.PAGE_KEY[stat]] = row
     return out
 

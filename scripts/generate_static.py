@@ -55,7 +55,7 @@ import requests
 from backtest import data, eloodds
 from predictions import cups, monitor
 from predictions import stack_predictor as sp
-from config import REC_DRAW_THRESHOLD
+from config import REC_DRAW_THRESHOLD, STATS_VERSION
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -77,6 +77,41 @@ PROB_TOL = 1e-4   # tolleranza sulla somma delle probabilità 1X2 (arrotondament
 
 
 # ── Fixture da football-data.org ──────────────────────────────────────────────
+
+def _referee_name(m: dict):
+    """Arbitro designato indicato da football-data.org (campo `referees`), None se non ancora noto."""
+    for r in (m.get("referees") or []):
+        if r.get("type") == "REFEREE" and r.get("name"):
+            return r["name"]
+    return None
+
+
+def get_referees_finished(league_code: str, days_back: int = 10) -> list[dict]:
+    """Arbitro delle partite di campionato finite negli ultimi giorni (football-data.org): serve a completare lo storico
+    degli arbitri delle partite giocate quando l'arbitro non era ancora noto al momento dell'ultima previsione.
+    Se l'API non risponde ritorna [] (nessun effetto sul resto della generazione)."""
+    if not FOOTBALL_DATA_ORG_KEY:
+        return []
+    end = datetime.utcnow()
+    try:
+        resp = requests.get(
+            f"https://api.football-data.org/v4/competitions/{league_code}/matches",
+            headers={"X-Auth-Token": FOOTBALL_DATA_ORG_KEY},
+            params={"dateFrom": (end - timedelta(days=days_back)).strftime("%Y-%m-%d"),
+                    "dateTo": end.strftime("%Y-%m-%d"), "status": "FINISHED"}, timeout=20)
+        resp.raise_for_status()
+        out = []
+        for m in resp.json().get("matches", []):
+            ref = _referee_name(m)
+            if ref:
+                out.append({"date": m["utcDate"][:10], "home": m["homeTeam"].get("shortName") or m["homeTeam"]["name"],
+                            "away": m["awayTeam"].get("shortName") or m["awayTeam"]["name"],
+                            "home_full": m["homeTeam"]["name"], "away_full": m["awayTeam"]["name"], "referee": ref})
+        return out
+    except Exception as e:     # servizio esterno: solo un di più per lo storico
+        log.warning("  Errore arbitri partite finite %s: %s", league_code, e)
+        return []
+
 
 def get_fixtures(league_code: str) -> list[dict]:
     """Scarica le prossime partite da football-data.org (free tier)."""
@@ -115,6 +150,7 @@ def get_fixtures(league_code: str) -> list[dict]:
                 "home_full": m["homeTeam"]["name"],
                 "away_full": m["awayTeam"]["name"],
                 "matchday":  m.get("matchday", "?"),
+                "referee":   _referee_name(m),
             })
         return matches
     except Exception as e:
@@ -340,6 +376,17 @@ PANEL_JS = r'''
   }
   function sec(name, inner) { return '<section class="ps"><h3>' + name + '</h3>' + inner + '</section>'; }
 
+  function refLine(o) {
+    var r = o.referee;
+    if (!r) { return ""; }
+    if (!r.name) { return '<div class="pn-note">Arbitro: non ancora designato</div>'; }
+    if (r.delta === null || r.delta === undefined) {
+      return '<div class="pn-note">Arbitro: ' + esc(r.name) + ' (senza storico sufficiente: nessun effetto sul modello)</div>';
+    }
+    var s = (r.delta >= 0 ? "+" : "−") + Math.abs(r.delta).toFixed(1).replace(".", ",");
+    return '<div class="pn-note">Arbitro: ' + esc(r.name) + ' (' + s + ' gialli rispetto alla media)</div>';
+  }
+
   function ctxCol(name, c) {
     var head = '<div class="ctx-team">' + name + '</div>';
     if (!c) {
@@ -448,7 +495,7 @@ PANEL_JS = r'''
             '<span class="prob-pct pp-under">U ' + pct(1 - po) + '</span></div>';
         }).join("");
         return '<div class="stat-block"><div class="stat-head"><span class="stat-name">' + l[1] + '</span>' +
-          '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' +
+          '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' + refLine(o) +
           '<div class="stat-grid">' +
           '<div class="stat-cell"><span class="stat-l">' + h + '</span><span class="stat-v">' + o.home.toFixed(1) + '</span></div>' +
           '<div class="stat-cell"><span class="stat-l">' + a + '</span><span class="stat-v">' + o.away.toFixed(1) + '</span></div>' +
@@ -1203,6 +1250,28 @@ def validate_output(all_data: dict) -> list:
     return problems
 
 
+def _referee_status(all_data: dict, today) -> dict:
+    """Quante partite dei prossimi giorni hanno già l'arbitro, per lega e per giorni mancanti al calcio d'inizio."""
+    n = k = 0
+    by_league, by_days = {}, {}
+    for lk, ld in all_data.items():
+        if ld.get("cup"):
+            continue
+        for fix in ld["fixtures"]:
+            has = bool(fix.get("referee"))
+            d = (pd.Timestamp(fix["date"]) - pd.Timestamp(today)).days
+            n += 1
+            k += has
+            bl = by_league.setdefault(ld["name"], [0, 0])
+            bl[0] += 1
+            bl[1] += has
+            bd = by_days.setdefault(str(d), [0, 0])
+            bd[0] += 1
+            bd[1] += has
+    return {"n": n, "with_referee": k, "by_league": by_league,
+            "by_days_ahead": dict(sorted(by_days.items(), key=lambda x: int(x[0])))}
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1251,6 +1320,7 @@ def main():
     new_rows = []
 
     all_data = {}
+    recent_refs = []        # arbitri delle partite finite negli ultimi giorni (per completare lo storico)
 
     for league_key, league_info in LEAGUES.items():
         log.info("\n%s", league_info["name"])
@@ -1264,7 +1334,14 @@ def main():
         log.info("  Fixture da football-data.org...")
         time.sleep(7)  # rate limit: 10 req/min
         fixtures = get_fixtures(league_info["code"])
-        log.info("  %d partite nei prossimi %d giorni", len(fixtures), DAYS_AHEAD)
+        log.info("  %d partite nei prossimi %d giorni, %d con arbitro già designato", len(fixtures), DAYS_AHEAD,
+                 sum(1 for f_ in fixtures if f_.get("referee")))
+        time.sleep(7)
+        for rec in get_referees_finished(league_info["code"]):
+            rh = state.resolve(rec["home"], rec["home_full"])
+            ra = state.resolve(rec["away"], rec["away_full"])
+            if rh and ra:
+                recent_refs.append({"league": league_key, "date": rec["date"], "home_dc": rh, "away_dc": ra, "referee": rec["referee"]})
 
         pairs, names = [], []
         for fix in fixtures:
@@ -1286,7 +1363,8 @@ def main():
         monitor.attach_fixture_market(league_rows, fx_market)
 
         # statistiche attese (modello validato, models/stack.json["stats_models"]) e contesto
-        stats_list = sp.stats_for_pairs(state, model, pairs, league_key)
+        stats_list = sp.stats_for_pairs(state, model, pairs, league_key, referees=[fix.get("referee") for fix in fixtures])
+        monitor.attach_yellows(league_rows, stats_list)
         active = active_teams(g, cur, extra=[t for pair in names for t in pair])
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,
                        "prediction": pred, "market": _row_market(row),
@@ -1356,6 +1434,9 @@ def main():
     # ── Storico e monitoraggio ──
     history = monitor.upsert(history, new_rows, today)
     history = monitor.fill_results(history, df, today)
+    n_ref = monitor.fill_referees(history, recent_refs)
+    if n_ref:
+        log.info("Storico: arbitro aggiunto a %d partite giocate", n_ref)
 
     # risultati delle coppe (football-data.org: di fatto solo la Champions League)
     today_s = today.strftime("%Y-%m-%d")
@@ -1392,6 +1473,10 @@ def main():
                     "docs/predictions.json). Motivi: %s",
                     counts["without_xg"], counts["with_xg"] + counts["without_xg"], " | ".join(reasons))
 
+    referee_status = _referee_status(all_data, today)
+    log.info("Arbitro già designato per %d delle %d partite dei prossimi %d giorni (%s)", referee_status["with_referee"],
+             referee_status["n"], DAYS_AHEAD, "; ".join(f"{k}: {v[1]}/{v[0]}" for k, v in referee_status["by_league"].items()))
+
     with open("docs/predictions.json", "w", encoding="utf-8") as f:
         json.dump({"generated_at": generated_at,
                    "model": {"name": "Poisson-stack (with_xg, ripiego without_xg)",
@@ -1399,6 +1484,8 @@ def main():
                              "n_train": {k: v["meta"]["n_train"] for k, v in model["models"].items()}},
                    "xg_status": {"available": xg_error is None, "error": xg_error},
                    "elo_odds_status": eo_status,
+                   "stats_version": STATS_VERSION,
+                   "referee_status": referee_status,
                    "model_counts": counts,
                    "cups_status": cups_status,
                    "monitor": mon,

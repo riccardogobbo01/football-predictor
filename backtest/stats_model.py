@@ -49,8 +49,13 @@ def own_features(stat):
     return [f"{stat}_lh", f"{stat}_la", f"{stat}_aux_lh", f"{stat}_aux_la"]
 
 
-def feature_names(stat, with_xg=True):
-    return own_features(stat) + [c for c in COMMON if with_xg or c not in XG_COLS]
+REFEREE_STATS = ("gialli",)     # statistiche con effetto arbitro (round 5: log R come regressore, ultima colonna)
+REFEREE_COL = "ref_logR"
+
+
+def feature_names(stat, with_xg=True, referee=False):
+    names = own_features(stat) + [c for c in COMMON if with_xg or c not in XG_COLS]
+    return names + ([REFEREE_COL] if referee and stat in REFEREE_STATS else [])
 
 
 def common_frame(feat) -> pd.DataFrame:
@@ -67,13 +72,16 @@ def common_frame(feat) -> pd.DataFrame:
     return out
 
 
-def design(feat, stat, with_xg=True) -> pd.DataFrame:
-    """Matrice delle feature (nell'ordine di feature_names) per una statistica."""
+def design(feat, stat, with_xg=True, referee=False) -> pd.DataFrame:
+    """Matrice delle feature (nell'ordine di feature_names) per una statistica. referee=True aggiunge, per le statistiche in
+    REFEREE_STATS, la colonna ref_logR (log dell'effetto arbitro, backtest/refeffect.py) che deve essere in feat."""
     own, aux = OWN_COLS[stat], AUX_COLS[stat]
     X = pd.DataFrame({f"{stat}_lh": feat[own[0]], f"{stat}_la": feat[own[1]],
                       f"{stat}_aux_lh": feat[aux[0]], f"{stat}_aux_la": feat[aux[1]]}, index=feat.index)
     X = X.join(common_frame(feat))
-    return X[feature_names(stat, with_xg)]
+    if referee and stat in REFEREE_STATS:
+        X[REFEREE_COL] = feat[REFEREE_COL]
+    return X[feature_names(stat, with_xg, referee)]
 
 
 def fit_stat_model(X_train, y_home, y_away):

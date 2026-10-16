@@ -9,6 +9,10 @@ i risultati. Per ogni partita si salvano le probabilità:
 
   model_version  versione del modello che ha emesso la riga (config.MODEL_VERSION); le righe precedenti alla
          colonna valgono config.LEGACY_MODEL_VERSION. La log-loss mobile usa solo la versione corrente.
+  referee, referee_first_seen   arbitro designato (football-data.org) e data/ora UTC in cui e' comparso per la prima volta per
+         quella partita (serve a misurare con quanto anticipo vengono designati); yellow_pred / yellow_real = gialli totali
+         previsti (ultima emissione) e reali; stats_version = versione del modello delle statistiche (config.STATS_VERSION,
+         separata da MODEL_VERSION, che riguarda solo il modello 1X2; le righe precedenti valgono config.LEGACY_STATS_VERSION)
   p_*    del modello EMESSO (model_used: with_xg, o without_xg se è scattato il ripiego)
   pw_*   di with_xg (vuote se non utilizzabile per quella partita)
   po_*   di without_xg
@@ -26,6 +30,7 @@ import io
 import logging
 import os
 import sys
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
@@ -36,7 +41,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from backtest import models  # noqa: E402
-from config import LEGACY_MODEL_VERSION, MODEL_VERSION  # noqa: E402
+from config import LEGACY_MODEL_VERSION, LEGACY_STATS_VERSION, MODEL_VERSION, STATS_VERSION  # noqa: E402
 
 log = logging.getLogger(__name__)
 
@@ -53,7 +58,8 @@ P3 = ["home", "draw", "away"]
 COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "home_dc", "away_dc",
             "model_used", "model_version", "fallback_reason"]
            + [f"p_{k}" for k in P3] + [f"pw_{k}" for k in P3] + [f"po_{k}" for k in P3]
-           + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"])
+           + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"]
+           + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"])
 PROB_COLS = [c for c in COLUMNS if c.split("_")[0] in ("p", "pw", "po", "mkt") and c != "mkt_source"]
 
 
@@ -66,11 +72,14 @@ def load_history(path: str = HISTORY_PATH) -> pd.DataFrame:
         return empty_history()
     h = pd.read_csv(path, dtype={"matchday": str, "home_dc": str, "away_dc": str,
                                  "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str,
-                                 "model_version": str})
+                                 "model_version": str, "referee": str, "referee_first_seen": str, "stats_version": str})
     for c in COLUMNS:
         if c not in h.columns:
             h[c] = np.nan
     h["model_version"] = h["model_version"].astype(object).where(h["model_version"].notna(), LEGACY_MODEL_VERSION)
+    h["stats_version"] = h["stats_version"].astype(object).where(h["stats_version"].notna(), LEGACY_STATS_VERSION)
+    for c in ("referee", "referee_first_seen"):                # colonne di testo: se mancano nel CSV nascono float
+        h[c] = h[c].astype(object)
     h["rec_score"] = h["rec_score"].astype(object)      # colonna di testo ("2-1"): se manca nel CSV nasce float
     return h[COLUMNS]
 
@@ -147,11 +156,15 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
     row = {c: np.nan for c in COLUMNS}
     row.update(issued_on=issued_on, league=league, match_date=fix["date"], matchday=str(fix["matchday"]),
                home=fix["home"], away=fix["away"], home_dc=fix.get("home_dc"), away_dc=fix.get("away_dc"),
-               model_used=pred["model"], model_version=MODEL_VERSION, fallback_reason=pred["fallback_reason"] or np.nan,
+               model_used=pred["model"], model_version=MODEL_VERSION, stats_version=STATS_VERSION, fallback_reason=pred["fallback_reason"] or np.nan,
                p_home=pred["prob_home"], p_draw=pred["prob_draw"], p_away=pred["prob_away"])
     if pred.get("rec_score"):
         row["rec_score"] = f"{pred['rec_score'][0]}-{pred['rec_score'][1]}"      # risultato consigliato (esito piu' probabile, poi punteggio)
         row["rec_prob"] = pred["rec_score"][2] / 100
+    ref = fix.get("referee")
+    if isinstance(ref, str) and ref.strip():
+        row["referee"] = ref.strip()
+        row["referee_first_seen"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
     for tag, name in (("pw", "with_xg"), ("po", "without_xg")):
         if probs.get(name) is not None:
             row[f"{tag}_home"], row[f"{tag}_draw"], row[f"{tag}_away"] = probs[name]
@@ -175,15 +188,43 @@ def upsert(history: pd.DataFrame, new_rows: list[dict], today) -> pd.DataFrame:
         if pd.notna(h.at[i, "result"]) or str(h.at[i, "match_date"]) < today:
             continue
         old_mkt = {c: h.at[i, c] for c in ("mkt_home", "mkt_draw", "mkt_away", "mkt_source")}
+        old_ref = {c: h.at[i, c] for c in ("referee", "referee_first_seen")}
         for c in COLUMNS:
             if c in r:
                 h.at[i, c] = r[c]
+        if pd.notna(old_ref["referee_first_seen"]):            # la prima comparsa dell'arbitro non si perde mai
+            h.at[i, "referee_first_seen"] = old_ref["referee_first_seen"]
+        if pd.isna(r.get("referee")) and pd.notna(old_ref["referee"]):
+            h.at[i, "referee"] = old_ref["referee"]            # l'API ha smesso di indicarlo: si tiene l'ultimo noto
         if pd.isna(r.get("mkt_home")) and pd.notna(old_mkt["mkt_home"]):
             for c, v in old_mkt.items():
                 h.at[i, c] = v
     if add:
         h = pd.concat([h, pd.DataFrame(add, columns=COLUMNS)], ignore_index=True)
     return h
+
+
+def attach_yellows(rows: list[dict], stats_list: list) -> None:
+    """Mette in ogni riga (in place) i gialli totali previsti dal modello delle statistiche (con l'effetto arbitro)."""
+    for r, st in zip(rows, stats_list):
+        y = (st or {}).get("yellows")
+        if y:
+            r["yellow_pred"] = float(y["total"])
+
+
+def fill_referees(history: pd.DataFrame, found: list[dict], max_days_apart: int = 3) -> int:
+    """Riempie (in place) l'arbitro delle righe giocate che non lo hanno, da football-data.org (partite finite recenti).
+    found: [{"league", "date", "home_dc", "away_dc", "referee"}]. Non imposta referee_first_seen: l'arbitro non è stato
+    visto prima della partita, quindi non entra nella misura dell'anticipo. Restituisce il numero di righe riempite."""
+    n = 0
+    for f in found:
+        m = history[(history.league == f["league"]) & (history.home_dc == f["home_dc"]) & (history.away_dc == f["away_dc"])
+                    & history.referee.isna()]
+        m = m[(pd.to_datetime(m.match_date) - pd.Timestamp(f["date"])).abs() <= pd.Timedelta(days=max_days_apart)]
+        for i in m.index:
+            history.at[i, "referee"] = f["referee"]
+            n += 1
+    return n
 
 
 def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_apart: int = 3) -> pd.DataFrame:
@@ -211,6 +252,8 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
         r = min(cands, key=lambda c: abs((c.date - d).days))
         h.at[i, "hg"], h.at[i, "ag"] = int(r.hg), int(r.ag)
         h.at[i, "result"] = "H" if r.hg > r.ag else ("D" if r.hg == r.ag else "A")
+        if all(hasattr(r, c) for c in ("HY", "AY")) and np.isfinite(r.HY) and np.isfinite(r.AY):
+            h.at[i, "yellow_real"] = float(r.HY + r.AY)
         n_new += 1
         if pd.isna(row["mkt_home"]):
             o = np.array([r.odds_h, r.odds_d, r.odds_a], float)
@@ -218,6 +261,17 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
                 P = _market_from_odds(o[:1], o[1:2], o[2:])[0]
                 h.at[i, "mkt_home"], h.at[i, "mkt_draw"], h.at[i, "mkt_away"] = P
                 h.at[i, "mkt_source"] = "csv_avg"
+    # gialli reali anche per le righe giocate prima dell'introduzione della colonna (o con risultato ma senza gialli)
+    if "HY" in results.columns:
+        for i, row in h[h["result"].notna() & h["yellow_real"].isna()].iterrows():
+            if not isinstance(row["home_dc"], str) or not isinstance(row["away_dc"], str) or row["league"] not in LEAGUE_CODE:
+                continue
+            d = pd.Timestamp(row["match_date"])
+            cands = [r for r in by_key.get((LEAGUE_CODE[row["league"]], row["home_dc"], row["away_dc"]), [])
+                     if abs((r.date - d).days) <= max_days_apart and np.isfinite(r.HY) and np.isfinite(r.AY)]
+            if cands:
+                r = min(cands, key=lambda c: abs((c.date - d).days))
+                h.at[i, "yellow_real"] = float(r.HY + r.AY)
     if n_new:
         log.info("Storico: %d risultati nuovi", n_new)
     return h

@@ -39,6 +39,19 @@ incomplete (file di stagione mancanti, meno del 95% di partite con quote in una 
 l'allenamento esce con errore senza toccare `models/stack.json`. Il job giornaliero si ferma (senza riscrivere `docs/`)
 se nelle partite degli ultimi 60 giorni mancano le quote per più della metà.
 
+**Statistiche attese e arbitro**: tiri, corner e gialli hanno un loro modello (Poisson attacco/difesa + regressioni di Poisson +
+Binomiale Negativa sul totale, `backtest/stats_model.py`). Il modello dei **gialli** ha in più l'**effetto arbitro** (round 5,
+`backtest/refeffect.py`): `log R`, con R = (Σ gialli osservati + k·m̄) / (Σ gialli attesi + k·m̄) sulle partite passate dell'arbitro
+(k = 20 partite equivalenti di shrinkage, m̄ = media della lega), come regressore. Arbitro non ancora designato, sconosciuto o senza
+storico = effetto zero. Backtest walk-forward (`python -m backtest.run_referee_backtest`): log-loss del totale gialli da 2.1186 a
+2.1082, Δ +0.0104, IC 95% a blocchi per settimana [+0.0080, +0.0128]. L'arbitro designato viene dal campo `referees` di
+football-data.org (lo stesso della chiave già usata per le partite); lo storico degli arbitri è in `data/referees/matches.csv`
+(Transfermarkt 2016/17-2025/26 + football-data.org 2026/27, creato da `scripts/build_referee_history.py`) e prosegue nella colonna
+`referee` di `docs/history.csv`. L'abbinamento dei nomi arbitro tra le fonti è la tabella esplicita `backtest/referee_aliases.py`.
+Il training settimanale ricalcola gli effetti con le sole partite passate e li salva in `models/stack.json["referees"]`.
+`history.csv` registra anche arbitro, data/ora della prima comparsa, gialli previsti e reali e `stats_version`
+(`config.STATS_VERSION`, separata da `MODEL_VERSION`, che riguarda solo il modello 1X2).
+
 ## Avvio locale
 
 ```bash

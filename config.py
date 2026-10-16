@@ -72,6 +72,13 @@ REC_DRAW_THRESHOLD = 0.42
 MODEL_VERSION = "v6-eloodds"
 LEGACY_MODEL_VERSION = "v5-pre-eloodds"
 
+# ─── Versione del modello delle statistiche attese (tiri, corner, gialli) ─────
+# Separata da MODEL_VERSION (che riguarda solo il modello 1X2: cambiarla farebbe ripartire il monitoraggio 1X2).
+# s2-arbitro: modello dei gialli con effetto arbitro (regressore log R, k=20). Righe di history.csv precedenti = s1-base.
+STATS_VERSION = "s2-arbitro"
+LEGACY_STATS_VERSION = "s1-base"
+REFEREE_K = 20            # partite equivalenti di shrinkage dell'effetto arbitro (scelto in validazione, round 5)
+
 # ─── Aggiustamenti contestuali NON validati (disattivati) ─────────────────────
 # Il backtest walk-forward (backtest/results.md) non li ha confermati: il riposo
 # sotto i 3 giorni, testato sui soli giorni di riposo di campionato, ha effetto nullo;
