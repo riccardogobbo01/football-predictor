@@ -420,8 +420,8 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="logo">⚽</div>
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
-    <strong>111 previsioni</strong> · aggiornato 2026-10-16 11:04 UTC<br>
-    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat) · coppe: modello Elo
+    <strong>111 previsioni</strong> · aggiornato 2026-10-16 11:48 UTC<br>
+    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat + Elo-Odds) · coppe: modello Elo
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
 </header>
@@ -440,7 +440,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </div>
 
 <main id="main-content">
-  <section class="monitor"><h2>📈 Monitoraggio — log-loss mobile</h2><p class="mon-sub">Ultime 47 partite giocate (2026-10-09 → 2026-10-12) con with_xg, without_xg e mercato disponibili · più basso = meglio</p><div class="mon-grid"><div class="mon-cell"><span class="mon-lbl">with_xg</span><span class="mon-val">0.9042</span><span class="mon-delta">-0.0055 vs mercato</span></div><div class="mon-cell"><span class="mon-lbl">without_xg</span><span class="mon-val">0.9061</span><span class="mon-delta">-0.0036 vs mercato</span></div><div class="mon-cell"><span class="mon-lbl">Mercato</span><span class="mon-val">0.9097</span><span class="mon-delta">riferimento</span></div></div><p class="mon-note">Il mercato storicamente è più preciso del modello. 192 previsioni registrate, 65 giocate con risultato.</p></section>
+  <section class="monitor"><h2>📈 Monitoraggio</h2><p class="mon-note">Dati in raccolta per la versione v6-eloodds del modello: 111 previsioni registrate, 0 giocate con risultato (0 con with_xg, without_xg e mercato disponibili). Il riquadro con la log-loss mobile (ultime 200 partite) compare da 30 partite in poi; le previsioni delle versioni precedenti non sono incluse.</p></section>
   <div id="leagues-container">
     <div class="league-section" data-league="serie_a">
 <div class="league-header"><span class="league-flag">🇮🇹</span><span class="league-name">Serie A</span><span class="league-meta">Stack su 1887 partite recenti · 2026-10-16</span></div>
@@ -6140,7 +6140,7 @@ footer a { color: var(--accent); text-decoration: none; }
   Dati: <a href="https://football-data.co.uk" target="_blank">football-data.co.uk</a> ·
   <a href="https://football-data.org" target="_blank">football-data.org</a> ·
   xG: <a href="https://understat.com" target="_blank">understat.com</a> ·
-  Elo: <a href="https://clubelo.com" target="_blank">clubelo.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) ·
+  Elo: <a href="https://clubelo.com" target="_blank">clubelo.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) con Elo-Odds (Wunderlich &amp; Memmert) su quote di chiusura ·
   <a href="predictions.json" target="_blank">JSON grezzo</a>
 </footer>
 

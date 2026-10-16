@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16 11:04 UTC",
+  "generated_at": "2026-10-16 11:48 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-10-16 11:03 UTC",
@@ -34,20 +34,16 @@
     "clubs": 749
   },
   "monitor": {
+    "version": "v6-eloodds",
     "window": 200,
     "min_n": 30,
-    "tracked": 192,
-    "with_result": 65,
-    "n": 47,
-    "status": "ok",
-    "since": "2026-10-09",
-    "until": "2026-10-12",
-    "with_xg": 0.904191936083341,
-    "without_xg": 0.906087817452609,
-    "market": 0.9096900562039169,
-    "delta_with_xg_vs_market": -0.005498120120575822,
-    "delta_without_xg_vs_market": -0.003602238751307829,
-    "delta_with_xg_vs_without_xg": -0.0018958813692679932
+    "tracked": 111,
+    "with_result": 0,
+    "tracked_all_versions": 192,
+    "n": 0,
+    "status": "in_raccolta",
+    "since": null,
+    "until": null
   },
   "leagues": {
     "serie_a": {
