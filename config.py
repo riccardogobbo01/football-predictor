@@ -65,6 +65,13 @@ DC_MAX_GOALS = 8   # massimo gol per lato nella matrice punteggi
 # 23% (reali 25%), esito giusto 50.0%, risultato esatto 11.9%.
 REC_DRAW_THRESHOLD = 0.42
 
+# ─── Versione del modello (docs/history.csv, riquadro di monitoraggio) ────────
+# Da cambiare quando cambia il modello che emette le previsioni (nuove feature, nuovo allenamento strutturale):
+# il riquadro di monitoraggio calcola la log-loss solo sulle previsioni della versione corrente.
+# LEGACY_MODEL_VERSION = valore assegnato alle righe di history.csv emesse prima che la colonna esistesse.
+MODEL_VERSION = "v6-eloodds"
+LEGACY_MODEL_VERSION = "v5-pre-eloodds"
+
 # ─── Aggiustamenti contestuali NON validati (disattivati) ─────────────────────
 # Il backtest walk-forward (backtest/results.md) non li ha confermati: il riposo
 # sotto i 3 giorni, testato sui soli giorni di riposo di campionato, ha effetto nullo;

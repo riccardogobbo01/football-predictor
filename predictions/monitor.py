@@ -7,6 +7,8 @@ stata giocata la riga viene riscritta a ogni esecuzione con l'ultima previsione 
 emessa più vicina al calcio d'inizio); una volta giocata resta congelata e si aggiungono
 i risultati. Per ogni partita si salvano le probabilità:
 
+  model_version  versione del modello che ha emesso la riga (config.MODEL_VERSION); le righe precedenti alla
+         colonna valgono config.LEGACY_MODEL_VERSION. La log-loss mobile usa solo la versione corrente.
   p_*    del modello EMESSO (model_used: with_xg, o without_xg se è scattato il ripiego)
   pw_*   di with_xg (vuote se non utilizzabile per quella partita)
   po_*   di without_xg
@@ -17,8 +19,8 @@ i risultati. Per ogni partita si salvano le probabilità:
 Salvare entrambi i modelli per ogni partita permette di confrontarli sulle STESSE partite
 anche quando in produzione ne viene emesso uno solo.
 
-La log-loss mobile usa le ultime `window` partite giocate per cui sono disponibili
-contemporaneamente with_xg, without_xg e mercato (stesso insieme per tutti e tre).
+La log-loss mobile usa le ultime `window` partite giocate, della versione corrente del modello, per cui sono
+disponibili contemporaneamente with_xg, without_xg e mercato (stesso insieme per tutti e tre).
 """
 import io
 import logging
@@ -34,6 +36,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from backtest import models  # noqa: E402
+from config import LEGACY_MODEL_VERSION, MODEL_VERSION  # noqa: E402
 
 log = logging.getLogger(__name__)
 
@@ -48,7 +51,7 @@ KEY = ["league", "match_date", "home", "away"]
 
 P3 = ["home", "draw", "away"]
 COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "home_dc", "away_dc",
-            "model_used", "fallback_reason"]
+            "model_used", "model_version", "fallback_reason"]
            + [f"p_{k}" for k in P3] + [f"pw_{k}" for k in P3] + [f"po_{k}" for k in P3]
            + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"])
 PROB_COLS = [c for c in COLUMNS if c.split("_")[0] in ("p", "pw", "po", "mkt") and c != "mkt_source"]
@@ -62,10 +65,12 @@ def load_history(path: str = HISTORY_PATH) -> pd.DataFrame:
     if not os.path.exists(path):
         return empty_history()
     h = pd.read_csv(path, dtype={"matchday": str, "home_dc": str, "away_dc": str,
-                                 "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str})
+                                 "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str,
+                                 "model_version": str})
     for c in COLUMNS:
         if c not in h.columns:
             h[c] = np.nan
+    h["model_version"] = h["model_version"].astype(object).where(h["model_version"].notna(), LEGACY_MODEL_VERSION)
     h["rec_score"] = h["rec_score"].astype(object)      # colonna di testo ("2-1"): se manca nel CSV nasce float
     return h[COLUMNS]
 
@@ -142,7 +147,7 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
     row = {c: np.nan for c in COLUMNS}
     row.update(issued_on=issued_on, league=league, match_date=fix["date"], matchday=str(fix["matchday"]),
                home=fix["home"], away=fix["away"], home_dc=fix.get("home_dc"), away_dc=fix.get("away_dc"),
-               model_used=pred["model"], fallback_reason=pred["fallback_reason"] or np.nan,
+               model_used=pred["model"], model_version=MODEL_VERSION, fallback_reason=pred["fallback_reason"] or np.nan,
                p_home=pred["prob_home"], p_draw=pred["prob_draw"], p_away=pred["prob_away"])
     if pred.get("rec_score"):
         row["rec_score"] = f"{pred['rec_score'][0]}-{pred['rec_score'][1]}"      # risultato consigliato (esito piu' probabile, poi punteggio)
@@ -221,10 +226,12 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
 # ── Log-loss mobile ────────────────────────────────────────────────────────────
 
 def rolling_logloss(history: pd.DataFrame, window: int = WINDOW, min_n: int = MIN_N) -> dict:
-    """Log-loss delle ultime `window` partite giocate con with_xg, without_xg e mercato disponibili."""
-    h = history
+    """Log-loss delle ultime `window` partite giocate con with_xg, without_xg e mercato disponibili,
+    solo tra le previsioni emesse dalla versione corrente del modello (config.MODEL_VERSION)."""
+    h = history[history["model_version"] == MODEL_VERSION]
     played = h[h["result"].isin(["H", "D", "A"])]
-    out = {"window": window, "min_n": min_n, "tracked": int(len(h)), "with_result": int(len(played)),
+    out = {"version": MODEL_VERSION, "window": window, "min_n": min_n, "tracked": int(len(h)),
+           "with_result": int(len(played)), "tracked_all_versions": int(len(history)),
            "n": 0, "status": "in_raccolta", "since": None, "until": None}
     need = [f"{t}_{k}" for t in ("pw", "po", "mkt") for k in P3]
     full = played.dropna(subset=need).sort_values(["match_date", "league", "home"]).tail(window)

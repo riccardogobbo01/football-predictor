@@ -52,6 +52,7 @@ M_XG = "Stack + xG Understat (training dal 2016/17)"
 M_XGR = "Stack + xG con ridge=2 sul DC xG (training dal 2016/17)"
 M_ELO = "Stack + Elo (training dal 2013/14)"
 M_EO = "Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17)"
+M_PROD_EO = "Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14)"
 
 
 def _valid_odds(df, prefix):
@@ -133,6 +134,7 @@ def main():
         (M_XG, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat),
         (M_XGR, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat_r),
         (M_EO, stack.XG_FEATURES_EO, stack.XG_FIRST_TRAIN_SEASON, feat_eo),
+        (M_PROD_EO, stack.PRODUCTION_FEATURES_EO, None, feat_eo),
     ]
     if args.elo:
         runs.append((M_ELO, stack.PRODUCTION_FEATURES + ["elo_diff"], None, feat))
@@ -203,6 +205,7 @@ def main():
         (f"{M_DC} → {M_PROD}", M_DC, M_PROD),
         (f"{M_DC} → {M_XG}", M_DC, M_XG),
         (f"{M_XGR} → {M_EO}", M_XGR, M_EO),
+        (f"{M_PROD} → {M_PROD_EO}", M_PROD, M_PROD_EO),
         (f"{M_PROD} → {M_EO}", M_PROD, M_EO),
         (f"{M_DC} → {M_EO}", M_DC, M_EO),
     ]
@@ -262,6 +265,29 @@ def main():
     lines += ["", f"Δ medio 2019/20-2021/22: {w_(lambda s_: s_ <= 2021):+.4f}; dal 2022/23: {w_(lambda s_: s_ >= 2022):+.4f}. Nelle prime "
                   "stagioni lo stack con xG ha solo 3-4 stagioni di training (gli xG partono dal 2014): poche per stimare bene il peso "
                   "di una feature rumorosa; in produzione il training copre circa 10 stagioni.", ""]
+
+    # modello di ripiego without_xg
+    pm_, plo_, phi_ = boot[(M_PROD, M_PROD_EO)]
+    lines += ["", "### Modello di ripiego without_xg: guadagno di eo_diff", "",
+              "Stesso confronto sul modello senza xG (training dal 2013/14, come in produzione per il ripiego).", "",
+              "| Modello | Log-loss | RPS | Brier |", "|---|---:|---:|---:|"]
+    for name_ in (M_PROD, M_PROD_EO):
+        m_ = next(m for s_, mod, m in rows if s_ == "Tutti" and mod == name_)
+        lines.append(f"| {name_} | {m_['logloss']:.4f} | {m_['rps']:.4f} | {m_['brier']:.4f} |")
+    lines += ["", f"Δ log-loss (senza eo_diff − con eo_diff) = {pm_:+.4f}, IC 95% a blocchi per settimana [{plo_:+.4f}, {phi_:+.4f}].", "",
+              "| Stagione | N | Senza Elo-Odds | Con Elo-Odds | Δ |", "|---|---:|---:|---:|---:|"]
+    pe_better = []
+    for s_ in sorted(ev.season.unique()):
+        m = (ev.season == s_).to_numpy()
+        a_, b_ = ll_vec[M_PROD][m].mean(), ll_vec[M_PROD_EO][m].mean()
+        pe_better.append(b_ < a_)
+        lines.append(f"| {s_}/{(s_ + 1) % 100:02d} | {m.sum()} | {a_:.4f} | {b_:.4f} | {a_ - b_:+.4f} |")
+    lines += ["", "| Campionato | N | Senza Elo-Odds | Con Elo-Odds | Δ |", "|---|---:|---:|---:|---:|"]
+    for code, name in data.LEAGUE_NAMES.items():
+        m = (ev.Division == code).to_numpy()
+        a_, b_ = ll_vec[M_PROD][m].mean(), ll_vec[M_PROD_EO][m].mean()
+        lines.append(f"| {name} | {m.sum()} | {a_:.4f} | {b_:.4f} | {a_ - b_:+.4f} |")
+    lines.append("")
 
     # ── stagione in corso e neopromosse ───────────────────────────────────────
     cur_m = (ev.season == cur).to_numpy()
@@ -328,6 +354,10 @@ def main():
         (f"Elo-Odds — guadagno ≥ +{ACCEPT_EO_MIN_GAIN} (round 2: +0.0033)",
          f"{egain:+.4f} (stack + xG ridge {xgr_all:.4f} → con Elo-Odds {eo_all:.4f})", egain >= ACCEPT_EO_MIN_GAIN),
         ("Elo-Odds — IC 95% a blocchi per settimana del guadagno esclude lo zero", f"[{elo:+.4f}, {ehi:+.4f}]", elo > 0),
+        ("Elo-Odds su without_xg (ripiego) — IC 95% a blocchi per settimana del guadagno esclude lo zero "
+         "(altrimenti togliere eo_diff dal ripiego)", f"{pm_:+.4f} [{plo_:+.4f}, {phi_:+.4f}]", plo_ > 0),
+        ("Elo-Odds su without_xg — migliore in ogni stagione (informativo)",
+         f"{sum(pe_better)}/{len(pe_better)} stagioni", all(pe_better)),
         ("Elo-Odds — migliore in ogni stagione (informativo)",
          f"{sum(eo_better)}/{len(eo_better)} stagioni", all(eo_better)),
     ]

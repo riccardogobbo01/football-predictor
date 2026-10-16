@@ -18,6 +18,7 @@ Copertura xG: 21883/21886 partite dal 2014/15 abbinate a Understat (99.99%).
 | Tutti | Stack + xG Understat (training dal 2016/17) | 12751 | 0.9841 | 0.1998 | 0.5861 | 52.8% |
 | Tutti | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) | 12751 | 0.9831 | 0.1995 | 0.5855 | 52.8% |
 | Tutti | Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | 12751 | 0.9798 | 0.1984 | 0.5831 | 53.0% |
+| Tutti | Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 12751 | 0.9805 | 0.1986 | 0.5835 | 53.0% |
 | Serie A | Quote medie senza margine (power) | 2717 | 0.9628 | 0.1908 | 0.5719 | 54.3% |
 | Serie A | Quote chiusura senza margine (power) | 2717 | 0.9606 | 0.1903 | 0.5707 | 54.7% |
 | Serie A | Dixon-Coles attuale (xi=0.0018) | 2717 | 0.9844 | 0.1969 | 0.5848 | 53.4% |
@@ -28,6 +29,7 @@ Copertura xG: 21883/21886 partite dal 2014/15 abbinate a Understat (99.99%).
 | Serie A | Stack + xG Understat (training dal 2016/17) | 2717 | 0.9749 | 0.1944 | 0.5801 | 53.7% |
 | Serie A | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) | 2717 | 0.9748 | 0.1944 | 0.5799 | 53.7% |
 | Serie A | Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | 2717 | 0.9701 | 0.1930 | 0.5767 | 54.1% |
+| Serie A | Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 2717 | 0.9701 | 0.1930 | 0.5768 | 54.1% |
 | Premier League | Quote medie senza margine (power) | 2719 | 0.9697 | 0.1983 | 0.5759 | 54.3% |
 | Premier League | Quote chiusura senza margine (power) | 2719 | 0.9659 | 0.1969 | 0.5731 | 54.8% |
 | Premier League | Dixon-Coles attuale (xi=0.0018) | 2719 | 0.9896 | 0.2040 | 0.5873 | 52.8% |
@@ -38,6 +40,7 @@ Copertura xG: 21883/21886 partite dal 2014/15 abbinate a Understat (99.99%).
 | Premier League | Stack + xG Understat (training dal 2016/17) | 2719 | 0.9780 | 0.2010 | 0.5816 | 53.6% |
 | Premier League | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) | 2719 | 0.9771 | 0.2008 | 0.5811 | 53.3% |
 | Premier League | Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | 2719 | 0.9733 | 0.1997 | 0.5787 | 53.7% |
+| Premier League | Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 2719 | 0.9738 | 0.1999 | 0.5789 | 53.3% |
 | Bundesliga | Quote medie senza margine (power) | 2187 | 0.9768 | 0.1985 | 0.5805 | 52.8% |
 | Bundesliga | Quote chiusura senza margine (power) | 2187 | 0.9748 | 0.1980 | 0.5791 | 53.3% |
 | Bundesliga | Dixon-Coles attuale (xi=0.0018) | 2187 | 1.0057 | 0.2059 | 0.5983 | 51.6% |
@@ -48,6 +51,7 @@ Copertura xG: 21883/21886 partite dal 2014/15 abbinate a Understat (99.99%).
 | Bundesliga | Stack + xG Understat (training dal 2016/17) | 2187 | 0.9898 | 0.2025 | 0.5897 | 52.0% |
 | Bundesliga | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) | 2187 | 0.9892 | 0.2024 | 0.5894 | 51.9% |
 | Bundesliga | Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | 2187 | 0.9853 | 0.2012 | 0.5867 | 51.8% |
+| Bundesliga | Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 2187 | 0.9855 | 0.2012 | 0.5869 | 52.1% |
 | La Liga | Quote medie senza margine (power) | 2737 | 0.9689 | 0.1923 | 0.5759 | 53.8% |
 | La Liga | Quote chiusura senza margine (power) | 2737 | 0.9669 | 0.1916 | 0.5745 | 54.1% |
 | La Liga | Dixon-Coles attuale (xi=0.0018) | 2737 | 0.9926 | 0.1987 | 0.5900 | 52.1% |
@@ -58,6 +62,7 @@ Copertura xG: 21883/21886 partite dal 2014/15 abbinate a Understat (99.99%).
 | La Liga | Stack + xG Understat (training dal 2016/17) | 2737 | 0.9826 | 0.1963 | 0.5848 | 53.1% |
 | La Liga | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) | 2737 | 0.9798 | 0.1955 | 0.5829 | 53.0% |
 | La Liga | Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | 2737 | 0.9782 | 0.1948 | 0.5817 | 53.5% |
+| La Liga | Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 2737 | 0.9799 | 0.1952 | 0.5828 | 53.2% |
 | Ligue 1 | Quote medie senza margine (power) | 2391 | 0.9868 | 0.2024 | 0.5882 | 52.5% |
 | Ligue 1 | Quote chiusura senza margine (power) | 2391 | 0.9849 | 0.2018 | 0.5873 | 52.5% |
 | Ligue 1 | Dixon-Coles attuale (xi=0.0018) | 2391 | 1.0064 | 0.2083 | 0.6015 | 51.7% |
@@ -68,6 +73,7 @@ Copertura xG: 21883/21886 partite dal 2014/15 abbinate a Understat (99.99%).
 | Ligue 1 | Stack + xG Understat (training dal 2016/17) | 2391 | 0.9982 | 0.2061 | 0.5964 | 51.2% |
 | Ligue 1 | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) | 2391 | 0.9977 | 0.2060 | 0.5961 | 51.7% |
 | Ligue 1 | Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | 2391 | 0.9950 | 0.2050 | 0.5937 | 51.7% |
+| Ligue 1 | Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 2391 | 0.9959 | 0.2051 | 0.5940 | 51.9% |
 
 \* Righe di controllo: servono a separare l'effetto delle feature nuove da quello della semplice ricalibrazione (DC ricalibrato) e della finestra di training più corta (stack senza xG dal 2016/17).
 
@@ -85,6 +91,7 @@ Bootstrap a blocchi per settimana ISO (tutte le leghe della stessa settimana res
 | Dixon-Coles attuale (xi=0.0018) → Stack senza xG (produzione, training dal 2013/14) | +0.0086 | [+0.0056, +0.0119] | 271 |
 | Dixon-Coles attuale (xi=0.0018) → Stack + xG Understat (training dal 2016/17) | +0.0109 | [+0.0076, +0.0145] | 271 |
 | Stack + xG con ridge=2 sul DC xG (training dal 2016/17) → Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | +0.0033 | [+0.0018, +0.0048] | 271 |
+| Stack senza xG (produzione, training dal 2013/14) → Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | +0.0059 | [+0.0040, +0.0078] | 271 |
 | Stack senza xG (produzione, training dal 2013/14) → Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | +0.0066 | [+0.0045, +0.0086] | 271 |
 | Dixon-Coles attuale (xi=0.0018) → Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17) | +0.0152 | [+0.0119, +0.0188] | 271 |
 
@@ -128,6 +135,37 @@ Rating Elo-Odds K=200 sulle quote di chiusura (metodo power); quote usate: chius
 
 Δ medio 2019/20-2021/22: +0.0005; dal 2022/23: +0.0054. Nelle prime stagioni lo stack con xG ha solo 3-4 stagioni di training (gli xG partono dal 2014): poche per stimare bene il peso di una feature rumorosa; in produzione il training copre circa 10 stagioni.
 
+
+### Modello di ripiego without_xg: guadagno di eo_diff
+
+Stesso confronto sul modello senza xG (training dal 2013/14, come in produzione per il ripiego).
+
+| Modello | Log-loss | RPS | Brier |
+|---|---:|---:|---:|
+| Stack senza xG (produzione, training dal 2013/14) | 0.9864 | 0.2005 | 0.5876 |
+| Stack senza xG + Elo-Odds K=200 (ripiego without_xg, training dal 2013/14) | 0.9805 | 0.1986 | 0.5835 |
+
+Δ log-loss (senza eo_diff − con eo_diff) = +0.0059, IC 95% a blocchi per settimana [+0.0040, +0.0078].
+
+| Stagione | N | Senza Elo-Odds | Con Elo-Odds | Δ |
+|---|---:|---:|---:|---:|
+| 2019/20 | 1725 | 0.9871 | 0.9839 | +0.0031 |
+| 2020/21 | 1826 | 0.9994 | 0.9973 | +0.0021 |
+| 2021/22 | 1825 | 0.9886 | 0.9843 | +0.0043 |
+| 2022/23 | 1826 | 0.9873 | 0.9822 | +0.0051 |
+| 2023/24 | 1752 | 0.9719 | 0.9621 | +0.0097 |
+| 2024/25 | 1752 | 0.9802 | 0.9706 | +0.0096 |
+| 2025/26 | 1752 | 0.9916 | 0.9840 | +0.0076 |
+| 2026/27 | 293 | 0.9743 | 0.9682 | +0.0061 |
+
+| Campionato | N | Senza Elo-Odds | Con Elo-Odds | Δ |
+|---|---:|---:|---:|---:|
+| Serie A | 2717 | 0.9758 | 0.9701 | +0.0057 |
+| Premier League | 2719 | 0.9806 | 0.9738 | +0.0068 |
+| Bundesliga | 2187 | 0.9929 | 0.9855 | +0.0073 |
+| La Liga | 2737 | 0.9848 | 0.9799 | +0.0049 |
+| Ligue 1 | 2391 | 1.0009 | 0.9959 | +0.0050 |
+
 ## Stagione in corso e neopromosse (log-loss)
 
 Neopromossa = squadra assente dallo stesso campionato nella stagione precedente. Tra parentesi l'errore standard del Δ (xG − xG ridge).
@@ -155,4 +193,6 @@ Neopromossa = squadra assente dallo stesso campionato nella stagione precedente.
 - Elo-Odds — log-loss coerente col round 2 (0.9798 ± 0.0008): 0.9798 → OK
 - Elo-Odds — guadagno ≥ +0.002 (round 2: +0.0033): +0.0033 (stack + xG ridge 0.9831 → con Elo-Odds 0.9798) → OK
 - Elo-Odds — IC 95% a blocchi per settimana del guadagno esclude lo zero: [+0.0018, +0.0048] → OK
+- Elo-Odds su without_xg (ripiego) — IC 95% a blocchi per settimana del guadagno esclude lo zero (altrimenti togliere eo_diff dal ripiego): +0.0059 [+0.0040, +0.0078] → OK
+- Elo-Odds su without_xg — migliore in ogni stagione (informativo): 8/8 stagioni → OK
 - Elo-Odds — migliore in ogni stagione (informativo): 6/8 stagioni → NON SUPERATO

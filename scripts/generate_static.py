@@ -557,10 +557,12 @@ def _row_market(row: dict):
 def _monitor_html(mon: dict) -> str:
     if mon["status"] != "ok":
         return (f'<section class="monitor"><h2>📈 Monitoraggio</h2>'
-                f'<p class="mon-note">Dati in raccolta: {mon["tracked"]} previsioni registrate, '
+                f'<p class="mon-note">Dati in raccolta per la versione {mon["version"]} del modello: '
+                f'{mon["tracked"]} previsioni registrate, '
                 f'{mon["with_result"]} giocate con risultato ({mon["n"]} con with_xg, without_xg e '
                 f'mercato disponibili). Il riquadro con la log-loss mobile (ultime {mon["window"]} partite) '
-                f'compare da {mon["min_n"]} partite in poi.</p></section>')
+                f'compare da {mon["min_n"]} partite in poi; le previsioni delle versioni precedenti non sono '
+                f'incluse.</p></section>')
 
     def cell(label, key, delta_key=None):
         delta = (f'<span class="mon-delta">{mon[delta_key]:+.4f} vs mercato</span>' if delta_key
@@ -569,14 +571,14 @@ def _monitor_html(mon: dict) -> str:
                 f'<span class="mon-val">{mon[key]:.4f}</span>{delta}</div>')
 
     return (f'<section class="monitor"><h2>📈 Monitoraggio — log-loss mobile</h2>'
-            f'<p class="mon-sub">Ultime {mon["n"]} partite giocate ({mon["since"]} → {mon["until"]}) con '
+            f'<p class="mon-sub">Modello {mon["version"]} · {mon["n"]} partite giocate ({mon["since"]} → {mon["until"]}) con '
             f'with_xg, without_xg e mercato disponibili · più basso = meglio</p>'
             f'<div class="mon-grid">'
             f'{cell("with_xg", "with_xg", "delta_with_xg_vs_market")}'
             f'{cell("without_xg", "without_xg", "delta_without_xg_vs_market")}'
             f'{cell("Mercato", "market")}</div>'
             f'<p class="mon-note">Il mercato storicamente è più preciso del modello. '
-            f'{mon["tracked"]} previsioni registrate, {mon["with_result"]} giocate con risultato.</p></section>')
+            f'Versione {mon["version"]}: {mon["tracked"]} previsioni registrate, {mon["with_result"]} giocate con risultato.</p></section>')
 
 
 def _skipped_html(ld: dict) -> str:
@@ -1064,7 +1066,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
     <strong>{total_preds} previsioni</strong> · aggiornato {generated_at}<br>
-    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat) · coppe: modello Elo
+    Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat + Elo-Odds) · coppe: modello Elo
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
 </header>
@@ -1085,7 +1087,7 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   Dati: <a href="https://football-data.co.uk" target="_blank">football-data.co.uk</a> ·
   <a href="https://football-data.org" target="_blank">football-data.org</a> ·
   xG: <a href="https://understat.com" target="_blank">understat.com</a> ·
-  Elo: <a href="https://clubelo.com" target="_blank">clubelo.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) ·
+  Elo: <a href="https://clubelo.com" target="_blank">clubelo.com</a> · Modello: Poisson-stack su Dixon-Coles (1997) con Elo-Odds (Wunderlich &amp; Memmert) su quote di chiusura ·
   <a href="predictions.json" target="_blank">JSON grezzo</a>
 </footer>
 
