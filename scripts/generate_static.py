@@ -52,7 +52,7 @@ import numpy as np
 import pandas as pd
 import requests
 
-from backtest import data
+from backtest import data, eloodds
 from predictions import cups, monitor
 from predictions import stack_predictor as sp
 from config import REC_DRAW_THRESHOLD
@@ -203,8 +203,16 @@ def team_context(g: pd.DataFrame, state, team, match_date: str, today: pd.Timest
         pool = {t: ratings[t] for t in active if t in ratings}
         pool[team] = mine
         rank, n_pool = 1 + sum(1 for v in pool.values() if v > mine), len(pool)
+    eo = state.eo.R                                      # rating Elo-Odds (backtest/eloodds.py)
+    mine_eo = eo.get(team)
+    eo_rank = eo_n = None
+    if mine_eo is not None:
+        pool_eo = {t: eo[t] for t in active if t in eo}
+        pool_eo[team] = mine_eo
+        eo_rank, eo_n = 1 + sum(1 for v in pool_eo.values() if v > mine_eo), len(pool_eo)
     return {"rest_days": rest, "form": form,
-            "pi_rating": None if mine is None else round(float(mine), 2), "pi_rank": rank, "pi_n": n_pool}
+            "pi_rating": None if mine is None else round(float(mine), 2), "pi_rank": rank, "pi_n": n_pool,
+            "eo_rating": None if mine_eo is None else round(float(mine_eo), 1), "eo_rank": eo_rank, "eo_n": eo_n}
 
 
 PANEL_CSS = r'''
@@ -343,10 +351,13 @@ PANEL_JS = r'''
     var rest = c.rest_days === null ? "n/d" : c.rest_days + (c.rest_days === 1 ? " giorno" : " giorni");
     var rating = c.pi_rank === null ? "n/d" :
       "#" + c.pi_rank + " su " + c.pi_n + " (" + (c.pi_rating >= 0 ? "+" : "") + c.pi_rating.toFixed(2) + ")";
+    var eoRating = (c.eo_rank === null || c.eo_rank === undefined) ? "n/d" :
+      "#" + c.eo_rank + " su " + c.eo_n + " (" + c.eo_rating.toFixed(0) + ")";
     return '<div class="ctx-col">' + head +
       '<div><div class="ctx-l">Riposo</div><div class="ctx-v">' + rest + '</div></div>' +
       '<div><div class="ctx-l">Forma (ultime 5)</div><div class="ctx-v">' + form + '</div></div>' +
-      '<div><div class="ctx-l">Rating (pi-rating)</div><div class="ctx-v">' + rating + '</div></div></div>';
+      '<div><div class="ctx-l">Rating (pi-rating)</div><div class="ctx-v">' + rating + '</div></div>' +
+      '<div><div class="ctx-l">Rating Elo-Odds</div><div class="ctx-v">' + eoRating + '</div></div></div>';
   }
 
   function render(f) {
@@ -455,7 +466,8 @@ PANEL_JS = r'''
     if (cx) {
       out += sec("Contesto", '<div class="ctx-grid">' + ctxCol(h, cx.home) + ctxCol(a, cx.away) + '</div>' +
         '<div class="pn-note">Riposo calcolato solo sulle partite di campionato (coppe escluse). Forma: la partita più ' +
-        'recente è a destra. Rating: posizione tra le squadre della lega nel pi-rating (media casa/trasferta).</div>');
+        'recente è a destra. Rating: posizione tra le squadre della lega nel pi-rating (media casa/trasferta). ' +
+        'Elo-Odds: Elo aggiornato con le probabilità implicite delle quote di chiusura (conta la differenza tra squadre della stessa lega: più alto = più forte).</div>');
     }
     return out;
   }
@@ -1210,6 +1222,19 @@ def main():
     df = data.load_matches(verbose=False)
     log.info("  %d partite", len(df))
 
+    eo_status = eloodds.recent_coverage(df, today)
+    log.info("Elo-Odds: quote di chiusura per %d delle %d partite degli ultimi %d giorni (ripiego su quote pre-partita: %d, "
+             "senza quote: %d)", eo_status["closing"], eo_status["n"], eo_status["days"],
+             eo_status["prematch_fallback"], eo_status["none"])
+    if not eo_status["ok"]:
+        log.error("Elo-Odds: quote storiche quasi assenti nelle ultime partite (%d su %d): i rating sarebbero obsoleti. "
+                  "Generazione interrotta, docs/ resta com'e'.", eo_status["closing"] + eo_status["prematch_fallback"],
+                  eo_status["n"])
+        sys.exit(1)
+    elif eo_status["none"] or eo_status["prematch_fallback"]:
+        log.warning("Elo-Odds: %d partite recenti senza chiusura (%d con ripiego pre-partita, %d senza quote: non aggiornano i rating)",
+                    eo_status["prematch_fallback"] + eo_status["none"], eo_status["prematch_fallback"], eo_status["none"])
+
     log.info("xG Understat (ultime stagioni)...")
     df, xg_error = sp.attach_recent_xg(df)
     if xg_error:
@@ -1371,6 +1396,7 @@ def main():
                              "trained_at": model["meta"].get("trained_at"),
                              "n_train": {k: v["meta"]["n_train"] for k, v in model["models"].items()}},
                    "xg_status": {"available": xg_error is None, "error": xg_error},
+                   "elo_odds_status": eo_status,
                    "model_counts": counts,
                    "cups_status": cups_status,
                    "monitor": mon,

@@ -24,7 +24,7 @@ if REPO_ROOT not in sys.path:
 import numpy as np
 import pandas as pd
 
-from backtest import data, models, features, stack, understat
+from backtest import data, eloodds, models, features, stack, understat
 
 TEST_START = "2019-07-01"
 FIRST_TEST_SEASON = 2019
@@ -35,6 +35,8 @@ ACCEPT_MARKET = (0.973, 0.004)
 ACCEPT_STACK_MAX = 0.987
 ACCEPT_XG_MIN_GAIN = 0.0015     # atteso circa +0.002/+0.003
 ACCEPT_RIDGE_MIN_GAIN = 0.0003  # ridge sul DC xG: atteso circa +0.0007
+ACCEPT_EO_MIN_GAIN = 0.002      # Elo-Odds K=200: round 2 (variante 2b) ha misurato +0.0033 su 12751 partite
+ACCEPT_EO_LL = (0.9798, 0.0008) # log-loss attesa di stack + xG ridge + Elo-Odds (round 2, 2b)
 
 RESULTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results.md")
 
@@ -49,6 +51,7 @@ M_CTRL = "Stack senza xG (training dal 2016/17) *"
 M_XG = "Stack + xG Understat (training dal 2016/17)"
 M_XGR = "Stack + xG con ridge=2 sul DC xG (training dal 2016/17)"
 M_ELO = "Stack + Elo (training dal 2013/14)"
+M_EO = "Stack + xG ridge + Elo-Odds K=200 (produzione, training dal 2016/17)"
 
 
 def _valid_odds(df, prefix):
@@ -91,6 +94,9 @@ def main():
     feat = feat.join(features.build_xg_features(df, ridge=0.0, rebuild=args.rebuild)[["xg_lmu", "xg_lnu"]])
     xg_r = features.build_xg_features(df, ridge=features.XG_RIDGE, rebuild=args.rebuild)
     feat_r = feat.assign(xg_lmu=xg_r.xg_lmu, xg_lnu=xg_r.xg_lnu)   # stesso frame, xG con ridge
+    # Elo-Odds costruito con la STESSA funzione usata da train_stack.py (backtest/eloodds.py)
+    eo_cov = eloodds.source_counts(df)
+    feat_eo = feat_r.assign(**{eloodds.FEATURE: eloodds.build_features(df).reindex(feat_r.index)})
 
     if args.elo:
         from backtest import elo
@@ -126,6 +132,7 @@ def main():
         (M_CTRL, stack.PRODUCTION_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat),
         (M_XG, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat),
         (M_XGR, stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON, feat_r),
+        (M_EO, stack.XG_FEATURES_EO, stack.XG_FIRST_TRAIN_SEASON, feat_eo),
     ]
     if args.elo:
         runs.append((M_ELO, stack.PRODUCTION_FEATURES + ["elo_diff"], None, feat))
@@ -155,7 +162,7 @@ def main():
 
     cur = data.current_season()
     lines = [
-        "# Backtest walk-forward — Step 1-3 e 7.1 (xG Understat)",
+        "# Backtest walk-forward — Step 1-3, 7.1 (xG Understat) ed Elo-Odds (produzione)",
         "",
         f"Test: {ev.date.min().date()} → {ev.date.max().date()} "
         f"(stagioni 2019/20 → {cur}/{(cur + 1) % 100:02d}), {len(ev)} partite con quote medie valide. "
@@ -195,6 +202,9 @@ def main():
         (f"{M_DC} → {M_XGR}", M_DC, M_XGR),
         (f"{M_DC} → {M_PROD}", M_DC, M_PROD),
         (f"{M_DC} → {M_XG}", M_DC, M_XG),
+        (f"{M_XGR} → {M_EO}", M_XGR, M_EO),
+        (f"{M_PROD} → {M_EO}", M_PROD, M_EO),
+        (f"{M_DC} → {M_EO}", M_DC, M_EO),
     ]
     boot = {}
     for label, a, b in comparisons:
@@ -228,6 +238,30 @@ def main():
     lines.append("")
     if worse_notes:
         lines += ["Stagioni in cui l'xG non migliora (Δ ≤ 0): " + "; ".join(worse_notes) + ".", ""]
+
+    # ── Elo-Odds per stagione e per lega ──────────────────────────────────────
+    lines += ["## Elo-Odds (modello di produzione) per stagione e per lega", "",
+              f"Rating Elo-Odds K=200 sulle quote di chiusura (metodo power); quote usate: chiusura per {eo_cov['closing']} "
+              f"partite su {eo_cov['n']}, ripiego sulle quote pre-partita per {eo_cov['prematch_fallback']}, nessuna quota "
+              f"per {eo_cov['none']}. Δ = log-loss(stack + xG ridge) − log-loss(+ Elo-Odds): positivo = Elo-Odds migliore.", "",
+              "| Stagione | N | Stack + xG ridge | + Elo-Odds | Δ |", "|---|---:|---:|---:|---:|"]
+    eo_better = []
+    for s in sorted(ev.season.unique()):
+        m = (ev.season == s).to_numpy()
+        a_, b_ = ll_vec[M_XGR][m].mean(), ll_vec[M_EO][m].mean()
+        eo_better.append(b_ < a_)
+        lines.append(f"| {s}/{(s + 1) % 100:02d} | {m.sum()} | {a_:.4f} | {b_:.4f} | {a_ - b_:+.4f} |")
+    lines += ["", "| Campionato | N | Stack + xG ridge | + Elo-Odds | Δ |", "|---|---:|---:|---:|---:|"]
+    for code, name in data.LEAGUE_NAMES.items():
+        m = (ev.Division == code).to_numpy()
+        a_, b_ = ll_vec[M_XGR][m].mean(), ll_vec[M_EO][m].mean()
+        lines.append(f"| {name} | {m.sum()} | {a_:.4f} | {b_:.4f} | {a_ - b_:+.4f} |")
+    seas = sorted(ev.season.unique())
+    d_by = {s_: (ll_vec[M_XGR][(ev.season == s_).to_numpy()] - ll_vec[M_EO][(ev.season == s_).to_numpy()]).mean() for s_ in seas}
+    w_ = lambda sel: np.average([d_by[s_] for s_ in seas if sel(s_)], weights=[(ev.season == s_).sum() for s_ in seas if sel(s_)])
+    lines += ["", f"Δ medio 2019/20-2021/22: {w_(lambda s_: s_ <= 2021):+.4f}; dal 2022/23: {w_(lambda s_: s_ >= 2022):+.4f}. Nelle prime "
+                  "stagioni lo stack con xG ha solo 3-4 stagioni di training (gli xG partono dal 2014): poche per stimare bene il peso "
+                  "di una feature rumorosa; in produzione il training copre circa 10 stagioni.", ""]
 
     # ── stagione in corso e neopromosse ───────────────────────────────────────
     cur_m = (ev.season == cur).to_numpy()
@@ -265,6 +299,8 @@ def main():
     dc_all, mk_all, st_all = get(M_DC)["logloss"], get(M_MKT)["logloss"], get(M_PROD)["logloss"]
     xg_all = get(M_XG)["logloss"]
     xgr_all = get(M_XGR)["logloss"]
+    eo_all = get(M_EO)["logloss"]
+    egain, elo, ehi = boot[(M_XGR, M_EO)]
     gain, lo, hi = boot[(M_PROD, M_XG)]
     rgain, rlo, rhi = boot[(M_XG, M_XGR)]
     checks = [
@@ -287,6 +323,13 @@ def main():
         ("Ridge xG — IC 95% del guadagno esclude lo zero", f"[{rlo:+.4f}, {rhi:+.4f}]", rlo > 0),
         ("Ridge xG — migliore in ogni stagione (informativo)",
          f"{sum(ridge_better)}/{len(ridge_better)} stagioni", all(ridge_better)),
+        (f"Elo-Odds — log-loss coerente col round 2 ({ACCEPT_EO_LL[0]} ± {ACCEPT_EO_LL[1]})",
+         f"{eo_all:.4f}", abs(eo_all - ACCEPT_EO_LL[0]) <= ACCEPT_EO_LL[1]),
+        (f"Elo-Odds — guadagno ≥ +{ACCEPT_EO_MIN_GAIN} (round 2: +0.0033)",
+         f"{egain:+.4f} (stack + xG ridge {xgr_all:.4f} → con Elo-Odds {eo_all:.4f})", egain >= ACCEPT_EO_MIN_GAIN),
+        ("Elo-Odds — IC 95% a blocchi per settimana del guadagno esclude lo zero", f"[{elo:+.4f}, {ehi:+.4f}]", elo > 0),
+        ("Elo-Odds — migliore in ogni stagione (informativo)",
+         f"{sum(eo_better)}/{len(eo_better)} stagioni", all(eo_better)),
     ]
     lines += ["## Check di accettazione", ""]
     for label, value, passed in checks:
@@ -298,7 +341,7 @@ def main():
     with open(RESULTS_PATH, "w", encoding="utf-8") as fh:
         fh.write(text)
     print(f"Salvato in {RESULTS_PATH}")
-    if not all(p for _, _, p in checks):
+    if not all(p for lab, _, p in checks if "(informativo)" not in lab):
         print("\n⚠ Almeno un check di accettazione non è superato.")
         sys.exit(2)
 

@@ -17,6 +17,12 @@ PRODUCTION_FEATURES = ["dc_lmu", "dc_lnu", "sot_lmu", "sot_lnu", "pi_gd", "pi_di
 # Stack + xG Understat (Step 7.1): si allena dalla stagione 2016/17, gli xG partono dal 2014
 XG_FEATURES = PRODUCTION_FEATURES + ["xg_lmu", "xg_lnu"]
 XG_FIRST_TRAIN_SEASON = 2016
+# Elo-Odds (backtest/eloodds.py): rating Elo aggiornato con le probabilita' implicite delle quote di chiusura.
+# Le feature in produzione sono le precedenti + eo_diff (round 2, variante 2b); le liste senza eo_diff restano
+# come baseline per i backtest.
+EO_FEATURE = "eo_diff"
+PRODUCTION_FEATURES_EO = PRODUCTION_FEATURES + [EO_FEATURE]
+XG_FEATURES_EO = XG_FEATURES + [EO_FEATURE]
 
 
 def fit_stack(X_train, hg, ag):

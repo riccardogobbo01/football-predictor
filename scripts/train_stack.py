@@ -3,8 +3,11 @@
 Allena il Poisson-stack e salva coefficienti, scaler e rho in models/stack.json
 (JSON, niente pickle). Il file contiene DUE modelli:
 
-  without_xg  6 feature (dc_lmu, dc_lnu, sot_lmu, sot_lnu, pi_gd, pi_diff), dal 2013/14
+  without_xg  7 feature (dc_lmu, dc_lnu, sot_lmu, sot_lnu, pi_gd, pi_diff, eo_diff), dal 2013/14
   with_xg     le stesse + xg_lmu, xg_lnu (DC sugli xG Understat con ridge=2), dal 2016/17
+
+eo_diff e' il rating Elo-Odds (backtest/eloodds.py, K=200): Elo per campionato aggiornato con le
+probabilita' implicite delle quote di CHIUSURA di football-data.co.uk (senza margine, metodo power).
 
 In produzione si usa with_xg; without_xg è il ripiego automatico (Understat non risponde
 o mancano gli xG di una squadra) — vedi predictions/stack_predictor.py.
@@ -16,7 +19,8 @@ come lo stack 1X2.
 Costruisce lo storico delle feature in walk-forward (ognuna calcolata solo con dati
 precedenti alla partita) per i 5 campionati, poi stima le due regressioni di Poisson e
 rho su tutto lo storico disponibile. Se Understat non risponde l'allenamento FALLISCE
-(exit 1) senza toccare models/stack.json: meglio un modello vecchio che uno monco.
+(exit 1) senza toccare models/stack.json: meglio un modello vecchio che uno monco. Lo stesso vale se le quote
+storiche (chiusura) di football-data.co.uk non si scaricano o sono troppo incomplete (Elo-Odds).
 Pensato per girare una volta a settimana (.github/workflows/train.yml).
 
 Richiede scikit-learn (solo per l'allenamento: il serving usa solo numpy).
@@ -35,14 +39,14 @@ sys.path.insert(0, REPO_ROOT)
 
 import numpy as np
 
-from backtest import data, features, stack, stats_model as sm, understat
+from backtest import data, eloodds, features, stack, stats_model as sm, understat
 
 OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 
 # nome -> (feature, prima stagione di training o None)
 MODELS = {
-    "without_xg": (stack.PRODUCTION_FEATURES, None),
-    "with_xg": (stack.XG_FEATURES, stack.XG_FIRST_TRAIN_SEASON),
+    "without_xg": (stack.PRODUCTION_FEATURES_EO, None),
+    "with_xg": (stack.XG_FEATURES_EO, stack.XG_FIRST_TRAIN_SEASON),
 }
 
 
@@ -110,8 +114,18 @@ def main():
         print(f"ERRORE: xG Understat non disponibili o abbinamento insufficiente:\n{e}", file=sys.stderr)
         sys.exit(1)
 
+    print("Controllo quote di chiusura (Elo-Odds)...", flush=True)
+    try:
+        odds_cov = eloodds.check_training_coverage(df)
+    except eloodds.EloOddsError as e:
+        print(f"ERRORE: {e}", file=sys.stderr)
+        sys.exit(1)
+    print(f"  {odds_cov['closing']} partite con quote di chiusura, {odds_cov['prematch_fallback']} con ripiego "
+          f"pre-partita, {odds_cov['none']} senza quote (su {odds_cov['matches']})", flush=True)
+
     print("Feature walk-forward (può richiedere diversi minuti)...", flush=True)
     feat = features.build_features(df)
+    feat = feat.join(eloodds.build_features(df))
     feat = feat.join(features.build_xg_features(df)[["xg_lmu", "xg_lnu"]])
     feat = feat.join(features.build_stat_features(df))
 
@@ -125,8 +139,9 @@ def main():
             "trained_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
             "leagues": sorted(feat.Division.unique().tolist()),
             "xg_ridge": features.XG_RIDGE,
+            "elo_odds": {"k": eloodds.ELO_ODDS_K, "odds_rows": odds_cov},
             "note": ("Poisson-stack, feature in walk-forward (DC xi=0.0018, xG xi=0.003 con ridge sul solo "
-                     "DC degli xG, finestra 5 anni). "
+                     "DC degli xG, finestra 5 anni, Elo-Odds K=200 sulle quote di chiusura). "
                      "In produzione with_xg; without_xg e' il ripiego."),
         },
     }

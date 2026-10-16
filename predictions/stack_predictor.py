@@ -7,6 +7,8 @@ Per ogni lega, alla data di oggi:
   2. Dixon-Coles sui tiri in porta HST/AST (senza tau)               -> sot_lmu, sot_lnu
   3. pi-ratings correnti (stato dopo l'ultima partita giocata)       -> pi_gd, pi_diff
   4. xG Understat: Dixon-Coles senza tau sugli xG (xi=0.003, ridge=2) -> xg_lmu, xg_lnu
+  4b. Elo-Odds (backtest/eloodds.py): rating ricostruiti da tutto lo storico con le quote di
+      chiusura delle partite GIA' giocate (mai quelle della partita da prevedere)  -> eo_diff
   5. models/stack.json (coefficienti, scaler, rho)                   -> gol attesi (mu, nu)
   6. matrice dei punteggi con correzione tau -> 1X2, O/U, BTTS, clean sheet, risultati esatti
 
@@ -39,7 +41,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from config import REC_DRAW_THRESHOLD  # noqa: E402
-from backtest import data, features, models, stack, understat  # noqa: E402
+from backtest import data, eloodds, features, models, stack, understat  # noqa: E402
 from backtest import stats_model as sm  # noqa: E402
 
 log = logging.getLogger(__name__)
@@ -130,7 +132,7 @@ def load_stack(path: str = STACK_PATH) -> dict:
     if d.get("version") != 2:
         raise ValueError("models/stack.json non e' nel formato v2 (due modelli: with_xg / without_xg): "
                          "rilanciare scripts/train_stack.py")
-    expected = {WITHOUT_XG: stack.PRODUCTION_FEATURES, WITH_XG: stack.XG_FEATURES}
+    expected = {WITHOUT_XG: stack.PRODUCTION_FEATURES_EO, WITH_XG: stack.XG_FEATURES_EO}
     for name, feats in expected.items():
         if d["models"][name]["features"] != feats:
             raise ValueError(f"models/stack.json: il modello {name} usa feature "
@@ -180,6 +182,8 @@ class LeagueState:
             self.xg_reason = "xG Understat non caricati"
 
         _, self.pi_state = models.pi_ratings(g[g.date < c0], return_state=True)
+        played = g[g.date < c0].dropna(subset=["hg", "ag"])
+        self.eo = eloodds.EloOddsState.from_matches(played)          # tutto lo storico, non solo la finestra di 5 anni
         self.teams = teams
         self.n_matches = int(len(tr))
         self.fitted_at = c0.strftime("%Y-%m-%d")
@@ -233,7 +237,8 @@ class LeagueState:
             "pi_ah": [r[0] for r in ra], "pi_aa": [r[1] for r in ra]}))
         cols = {"dc_lmu": np.log(mu_g), "dc_lnu": np.log(nu_g),
                 "sot_lmu": np.log(mu_s), "sot_lnu": np.log(nu_s),
-                "pi_gd": pi.pi_gd.values, "pi_diff": pi.pi_diff.values}
+                "pi_gd": pi.pi_gd.values, "pi_diff": pi.pi_diff.values,
+                eloodds.FEATURE: self.eo.diff(homes, aways)}
         if self.xg is not None:
             mu_x, nu_x = models.dc_lambdas(self.xg, homes, aways)
             cols["xg_lmu"], cols["xg_lnu"] = np.log(mu_x), np.log(nu_x)
