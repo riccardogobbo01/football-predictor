@@ -13,6 +13,8 @@ i risultati. Per ogni partita si salvano le probabilità:
          quella partita (serve a misurare con quanto anticipo vengono designati); yellow_pred / yellow_real = gialli totali
          previsti (ultima emissione) e reali; stats_version = versione del modello delle statistiche (config.STATS_VERSION,
          separata da MODEL_VERSION, che riguarda solo il modello 1X2; le righe precedenti valgono config.LEGACY_STATS_VERSION)
+  kickoff  calcio d'inizio (UTC) secondo football-data.org: dopo quell'istante la riga non si riscrive piu' (upsert) e una partita
+         gia' iniziata e senza previsione non viene aggiunta: nello storico resta la previsione emessa prima del calcio d'inizio
   p_*    del modello EMESSO (model_used: with_xg, o without_xg se è scattato il ripiego)
   pw_*   di with_xg (vuote se non utilizzabile per quella partita)
   po_*   di without_xg
@@ -60,10 +62,12 @@ COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "ho
            + [f"p_{k}" for k in P3] + [f"pw_{k}" for k in P3] + [f"po_{k}" for k in P3]
            + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"]
            + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"]
-           + ["shots_pred", "shots_real", "sot_pred", "sot_real", "fouls_pred", "fouls_real", "ht_goals_pred", "ht_goals_real"])
+           + ["shots_pred", "shots_real", "sot_pred", "sot_real", "fouls_pred", "fouls_real", "ht_goals_pred", "ht_goals_real"]
+           + ["kickoff"])
 # totali previsti (ultima emissione) e reali per tiri, tiri in porta, falli e gol del primo tempo: serve al monitoraggio dei modelli delle statistiche
 REAL_COLS = {"yellow_real": ("HY", "AY"), "shots_real": ("HS", "AS"), "sot_real": ("HST", "AST"),
              "fouls_real": ("HF", "AF"), "ht_goals_real": ("HTHG", "HTAG")}
+# kickoff = calcio d'inizio (UTC, "AAAA-MM-GG HH:MM") secondo football-data.org: dopo quell'istante la riga non si riscrive piu' (upsert)
 PROB_COLS = [c for c in COLUMNS if c.split("_")[0] in ("p", "pw", "po", "mkt") and c != "mkt_source"]
 
 
@@ -76,13 +80,13 @@ def load_history(path: str = HISTORY_PATH) -> pd.DataFrame:
         return empty_history()
     h = pd.read_csv(path, dtype={"matchday": str, "home_dc": str, "away_dc": str,
                                  "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str,
-                                 "model_version": str, "referee": str, "referee_first_seen": str, "stats_version": str})
+                                 "model_version": str, "referee": str, "referee_first_seen": str, "stats_version": str, "kickoff": str})
     for c in COLUMNS:
         if c not in h.columns:
             h[c] = np.nan
     h["model_version"] = h["model_version"].astype(object).where(h["model_version"].notna(), LEGACY_MODEL_VERSION)
     h["stats_version"] = h["stats_version"].astype(object).where(h["stats_version"].notna(), LEGACY_STATS_VERSION)
-    for c in ("referee", "referee_first_seen"):                # colonne di testo: se mancano nel CSV nascono float
+    for c in ("referee", "referee_first_seen", "kickoff"):     # colonne di testo: se mancano nel CSV nascono float
         h[c] = h[c].astype(object)
     h["rec_score"] = h["rec_score"].astype(object)      # colonna di testo ("2-1"): se manca nel CSV nasce float
     return h[COLUMNS]
@@ -165,6 +169,8 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
     if pred.get("rec_score"):
         row["rec_score"] = f"{pred['rec_score'][0]}-{pred['rec_score'][1]}"      # risultato consigliato (esito piu' probabile, poi punteggio)
         row["rec_prob"] = pred["rec_score"][2] / 100
+    if fix.get("time"):
+        row["kickoff"] = f"{fix['date']} {fix['time']}"
     ref = fix.get("referee")
     if isinstance(ref, str) and ref.strip():
         row["referee"] = ref.strip()
@@ -175,21 +181,40 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
     return row
 
 
-def upsert(history: pd.DataFrame, new_rows: list[dict], today) -> pd.DataFrame:
-    """Aggiunge le partite nuove e riscrive quelle non ancora giocate (match_date >= oggi) con
-    l'ultima previsione. Le righe già con risultato non si toccano. Se la nuova riga non ha
-    quote di mercato si tiene quella già salvata."""
+def _started(kickoff, now) -> bool:
+    """True se il calcio d'inizio (UTC, "AAAA-MM-GG HH:MM") e' gia' passato. Calcio d'inizio ignoto = False."""
+    if not isinstance(kickoff, str) or not kickoff:
+        return False
+    return pd.Timestamp(kickoff) <= now
+
+
+def upsert(history: pd.DataFrame, new_rows: list[dict], today, now=None) -> pd.DataFrame:
+    """Aggiunge le partite nuove e riscrive quelle non ancora giocate (match_date >= oggi) con l'ultima previsione. Le righe già con
+    risultato non si toccano. Se la nuova riga non ha quote di mercato si tiene quella già salvata.
+
+    Nessuna previsione emessa dopo il calcio d'inizio: se la partita è già iniziata (kickoff <= now, UTC) la riga esistente resta quella
+    emessa prima del calcio d'inizio (si completa solo il campo kickoff se mancava) e una partita già iniziata che non è nello storico
+    non viene aggiunta. now = istante corrente in UTC (default: adesso)."""
     today = pd.Timestamp(today).strftime("%Y-%m-%d")
+    now = pd.Timestamp(now) if now is not None else pd.Timestamp.now(tz="UTC").tz_localize(None)
     h = history.copy()
     idx = {tuple(r): i for i, r in enumerate(h[KEY].itertuples(index=False, name=None))}
     add = []
     for r in new_rows:
         k = (r["league"], r["match_date"], r["home"], r["away"])
         if k not in idx:
+            if _started(r.get("kickoff"), now):
+                log.info("  Partita gia' iniziata e senza previsione precedente, non registrata: %s - %s (%s)", r["home"], r["away"], r["kickoff"])
+                continue
             add.append(r)
             continue
         i = idx[k]
         if pd.notna(h.at[i, "result"]) or str(h.at[i, "match_date"]) < today:
+            continue
+        ko = h.at[i, "kickoff"] if pd.notna(h.at[i, "kickoff"]) else r.get("kickoff")
+        if _started(ko, now):                                  # partita iniziata: resta la previsione emessa prima del calcio d'inizio
+            if pd.isna(h.at[i, "kickoff"]) and isinstance(ko, str):
+                h.at[i, "kickoff"] = ko
             continue
         old_mkt = {c: h.at[i, c] for c in ("mkt_home", "mkt_draw", "mkt_away", "mkt_source")}
         old_ref = {c: h.at[i, c] for c in ("referee", "referee_first_seen")}
