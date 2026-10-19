@@ -54,7 +54,14 @@ def _download(season: int, league: str, session: requests.Session) -> bytes | No
                 return fh.read()
 
     url = BASE_URL.format(code=season_code(season), league=league)
-    resp = session.get(url, timeout=30)
+    for attempt in range(4):           # football-data.co.uk a volte e' lento: un timeout non deve far fallire training e job giornaliero
+        try:
+            resp = session.get(url, timeout=60)
+            break
+        except (requests.ConnectionError, requests.Timeout) as e:
+            if attempt == 3:
+                raise
+            time.sleep(5 * 3 ** attempt)
     if resp.status_code != 200 or len(resp.content) < 200:
         return None
     with open(path, "wb") as fh:
