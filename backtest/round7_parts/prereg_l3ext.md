@@ -1,0 +1,9 @@
+## Round 7, fase 2 — estensione della griglia di L3 (criteri fissati PRIMA di guardare i risultati)
+
+Nella fase 1 la configurazione scelta per L3 stava sul bordo della griglia (H ∈ {4, 8, 12} settimane, k ∈ {5, 15, 40}): tiri (H=12, k=40), tiri in porta (H=8, k=40), corner (H=12, k=40), falli (H=4, k=15), gialli (H=4, k=15). Per ciascuna statistica si estende la griglia SOLO nelle dimensioni in cui l'ottimo stava sul bordo, senza guardare altro che la scelta già fatta; definizioni, metriche, validazione (2019/20-2021/22), held-out (dal 2022/23), IC a blocchi per settimana ISO, regola di scelta (massimo Δ log-loss del totale in validazione; parità entro 0,0002 → la più semplice: k più alto, poi H più alto) e verdetto sono quelli del prereg del round 7.
+
+**Estensione 1.** Se l'ottimo ha H = 12 si aggiungono H ∈ {16, 24}; se ha H = 4 si aggiungono H ∈ {2, 3}; se ha k = 40 si aggiungono k ∈ {80, 160}. La griglia è il prodotto completo dei valori di H e di k così ottenuti (le configurazioni già valutate non si ricalcolano). Si sceglie di nuovo sulle sole validazioni sull'unione.
+
+**Estensione 2 (ultima).** Se dopo l'estensione 1 l'ottimo sta ancora sul nuovo bordo in una dimensione estesa, si estende UNA SOLA volta ancora: H in alto {32, 48}, H in basso {1}, k in alto {320, 640}; si sceglie di nuovo e ci si ferma, anche se l'ottimo fosse ancora sul bordo. Un ottimo sul bordo di una dimensione che non è stata estesa non innesca estensioni.
+
+**Verifica.** Per la configurazione finale: Δ log-loss del totale e per squadra (tutte, validazione, held-out) con IC a blocchi, Δ O/U del totale, e copertura degli intervalli (probabilità dichiarata contro frequenza reale per squadra e totale, tutte le stagioni e 2026/27; criterio: scarto ≤ 3 punti su tutte le stagioni). La configurazione finale è quella messa in produzione.

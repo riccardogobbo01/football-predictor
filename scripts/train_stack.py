@@ -43,7 +43,7 @@ sys.path.insert(0, REPO_ROOT)
 import numpy as np
 
 from backtest import data, eloodds, features, refeffect, stack, stats_v3, understat
-from config import GAP_PARAMS, REFEREE_K, STATS_VERSION
+from config import GAP_PARAMS, LEVEL_PARAMS, REFEREE_K, STATS_VERSION
 
 OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 
@@ -102,10 +102,13 @@ def train_stats_v3(feat, priors):
                                             division=feat.Division[ok].to_numpy() if per_league else None)
                 copula[stat] = {"per_league": per_league, "rho": rho, "M": spec["M"]}
                 print(f"  [copula {stat}] rho = {rho}", flush=True)
+    level = stats_v3.build_level(feat, LEVEL_PARAMS)
+    print(f"  [livello] registro fino al {', '.join(f'{k} {v}' for k, v in level['asof'].items())}; parametri (H, k): "
+          + ", ".join(f"{s} {tuple(v)}" for s, v in level["params"].items()), flush=True)
     fh = stats_v3.train_first_half(feat)
     print(f"  [primo tempo] quota dei gol per lega: {', '.join(f'{k} {v:.3f}' for k, v in fh['share'].items())} ({fh['n']} partite)", flush=True)
     return {"version": 3, "gap": {"params": {k: list(v) for k, v in GAP_PARAMS.items()}, "priors": priors},
-            "models": models, "copula": copula, "first_half": fh}
+            "models": models, "copula": copula, "first_half": fh, "level": level}
 
 
 def main():

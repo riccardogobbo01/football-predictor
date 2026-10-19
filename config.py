@@ -77,10 +77,13 @@ LEGACY_MODEL_VERSION = "v5-pre-eloodds"
 # s2-arbitro: modello dei gialli con effetto arbitro (regressore log R, k=20). s3-gap: tiri e tiri in porta con GAP ratings, nuovo
 # modello dei falli con arbitro, copula per i mercati «chi ne fa di più», primo tempo. s4-intervalli: intervalli per squadra e totale
 # di tutte le statistiche (valori consecutivi più probabili, con la probabilità reale) e dispersione separata per casa e ospite sui tiri. Righe di history.csv precedenti = s1-base / s2-arbitro.
-STATS_VERSION = "s4-intervalli"
+STATS_VERSION = "s5-livello"
 LEGACY_STATS_VERSION = "s1-base"
 # GAP ratings (Wheatcroft) dei modelli dei tiri e dei tiri in porta: (eta, gamma) scelti sulle sole stagioni di validazione (round 6, fase 1: backtest/round6_parts/GAP2.md)
 GAP_PARAMS = {"tiri": (0.10, 1.0), "sot": (0.05, 1.0)}
+# Livello stagionale dinamico delle statistiche (s5-livello): (H = emivita in settimane, k = pseudo-partite di shrinkage verso 1) per statistica,
+# scelti sulle sole stagioni di validazione dopo un'estensione della griglia (round 7, fase 2: backtest/round7_parts/L3EXT.md).
+LEVEL_PARAMS = {"tiri": (12, 80), "sot": (8, 40), "corner": (16, 80), "falli": (3, 15), "gialli": (4, 15)}
 REFEREE_K = 20            # partite equivalenti di shrinkage dell'effetto arbitro (scelto in validazione, round 5)
 
 # ─── Aggiustamenti contestuali NON validati (disattivati) ─────────────────────

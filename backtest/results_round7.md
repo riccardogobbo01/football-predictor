@@ -346,3 +346,220 @@ Confronto sulle 10 partite di Serie A del 10-12/10/2026 presenti in entrambe le 
 - **Gol: nessuna correzione e nessuna riga «ritmo stagionale».** Dato che L1 non migliora, mostrare un +x% corretto sarebbe una correzione non validata. Se si vuole una nota di contesto puramente descrittiva (non un'etichetta del modello): in «Contesto» una riga per la lega della partita, ad es. «Bundesliga 2026/27: 3,8 gol a partita (media 2019-25: 3,2)», mostrata solo quando lo scarto tra la media della stagione in corso e quella delle stagioni precedenti supera, ad esempio, il 15% e le partite giocate sono almeno 40.
 - **Statistiche, se L3 va in produzione:** nella sezione di ciascuna statistica una riga «Livello stagionale Serie A: tiri +5% (casa e ospite)», mostrata solo quando almeno uno dei due moltiplicatori della lega si discosta da 1 per più del 5%. Ai valori attuali comparirebbe per i tiri (Serie A +5%, Bundesliga +6%), per i gialli ospite (Serie A −18%, Ligue 1 −11%, Bundesliga −8%) e per i falli ospite della Serie A (−12%); i valori sono nella tabella dei moltiplicatori correnti. La riga è una spiegazione della correzione già applicata ai valori attesi, non un'aggiunta ulteriore.
 
+---
+
+## Round 7, fase 2 — estensione di L3 e messa in produzione
+
+
+Nella fase 1 la configurazione scelta per L3 stava sul bordo della griglia (H ∈ {4, 8, 12} settimane, k ∈ {5, 15, 40}): tiri (H=12, k=40), tiri in porta (H=8, k=40), corner (H=12, k=40), falli (H=4, k=15), gialli (H=4, k=15). Per ciascuna statistica si estende la griglia SOLO nelle dimensioni in cui l'ottimo stava sul bordo, senza guardare altro che la scelta già fatta; definizioni, metriche, validazione (2019/20-2021/22), held-out (dal 2022/23), IC a blocchi per settimana ISO, regola di scelta (massimo Δ log-loss del totale in validazione; parità entro 0,0002 → la più semplice: k più alto, poi H più alto) e verdetto sono quelli del prereg del round 7.
+
+**Estensione 1.** Se l'ottimo ha H = 12 si aggiungono H ∈ {16, 24}; se ha H = 4 si aggiungono H ∈ {2, 3}; se ha k = 40 si aggiungono k ∈ {80, 160}. La griglia è il prodotto completo dei valori di H e di k così ottenuti (le configurazioni già valutate non si ricalcolano). Si sceglie di nuovo sulle sole validazioni sull'unione.
+
+**Estensione 2 (ultima).** Se dopo l'estensione 1 l'ottimo sta ancora sul nuovo bordo in una dimensione estesa, si estende UNA SOLA volta ancora: H in alto {32, 48}, H in basso {1}, k in alto {320, 640}; si sceglie di nuovo e ci si ferma, anche se l'ottimo fosse ancora sul bordo. Un ottimo sul bordo di una dimensione che non è stata estesa non innesca estensioni.
+
+**Verifica.** Per la configurazione finale: Δ log-loss del totale e per squadra (tutte, validazione, held-out) con IC a blocchi, Δ O/U del totale, e copertura degli intervalli (probabilità dichiarata contro frequenza reale per squadra e totale, tutte le stagioni e 2026/27; criterio: scarto ≤ 3 punti su tutte le stagioni). La configurazione finale è quella messa in produzione.
+
+
+
+### Tiri
+
+- Fase 1: scelta H=12, k=40.
+- Estensione 1 (dimensioni Hmax, Kmax): H ∈ [4, 8, 12, 16, 24], k ∈ [5, 15, 40, 80, 160]; scelta H=12, k=80.
+- Scelta finale: **H = 12, k = 80** (interna alla griglia); verdetto: migliora.
+
+| H (sett.) | k | Δ ll totale (tutte) [IC a blocchi] | Δ totale validazione | Δ totale held-out [IC a blocchi] | Δ per squadra held-out | Verdetto |
+|---:|---:|---|---:|---|---:|---|
+| 4 | 5 | +0.00098 [-0.00238, +0.00440] | +0.00207 | +0.00020 [-0.00355, +0.00424] | -0.00163 | non distinguibile dal rumore |
+| 4 | 15 | +0.00238 [-0.00047, +0.00523] | +0.00357 | +0.00152 [-0.00158, +0.00492] | -0.00004 | non distinguibile dal rumore |
+| 4 | 40 | +0.00305 [+0.00098, +0.00514] | +0.00425 | +0.00218 [+0.00001, +0.00464] | +0.00108 | migliora |
+| 4 | 80 | +0.00275 [+0.00130, +0.00421] | +0.00379 | +0.00200 [+0.00052, +0.00370] | +0.00125 | migliora |
+| 4 | 160 | +0.00202 [+0.00113, +0.00293] | +0.00278 | +0.00147 [+0.00056, +0.00252] | +0.00102 | migliora |
+| 8 | 5 | +0.00254 [-0.00063, +0.00556] | +0.00323 | +0.00203 [-0.00120, +0.00560] | +0.00012 | non distinguibile dal rumore |
+| 8 | 15 | +0.00298 [+0.00015, +0.00567] | +0.00378 | +0.00240 [-0.00049, +0.00561] | +0.00063 | non distinguibile dal rumore |
+| 8 | 40 | +0.00332 [+0.00105, +0.00547] | +0.00420 | +0.00267 [+0.00039, +0.00520] | +0.00119 | migliora |
+| 8 | 80 | +0.00316 [+0.00144, +0.00484] | +0.00403 | +0.00253 [+0.00082, +0.00442] | +0.00137 | migliora |
+| 8 | 160 | +0.00257 [+0.00140, +0.00371] | +0.00330 | +0.00204 [+0.00087, +0.00331] | +0.00123 | migliora |
+| 12 | 5 | +0.00291 [+0.00005, +0.00564] | +0.00356 | +0.00243 [-0.00046, +0.00549] | +0.00066 | non distinguibile dal rumore |
+| 12 | 15 | +0.00312 [+0.00044, +0.00566] | +0.00383 | +0.00260 [-0.00008, +0.00543] | +0.00091 | non distinguibile dal rumore |
+| 12 | 40 | +0.00332 [+0.00107, +0.00547] | +0.00411 | +0.00275 [+0.00047, +0.00514] | +0.00123 | migliora |
+| 12 | 80 | +0.00325 [+0.00143, +0.00498] | +0.00405 | +0.00267 [+0.00088, +0.00459] | +0.00138 | migliora ← scelta |
+| 12 | 160 | +0.00281 [+0.00150, +0.00406] | +0.00352 | +0.00229 [+0.00101, +0.00370] | +0.00131 | migliora |
+| 16 | 5 | +0.00294 [+0.00033, +0.00551] | +0.00351 | +0.00252 [-0.00016, +0.00535] | +0.00088 | non distinguibile dal rumore |
+| 16 | 15 | +0.00306 [+0.00060, +0.00549] | +0.00368 | +0.00262 [+0.00008, +0.00528] | +0.00102 | migliora |
+| 16 | 40 | +0.00320 [+0.00103, +0.00532] | +0.00388 | +0.00271 [+0.00049, +0.00501] | +0.00123 | migliora |
+| 16 | 80 | +0.00318 [+0.00135, +0.00495] | +0.00387 | +0.00267 [+0.00084, +0.00461] | +0.00136 | migliora |
+| 16 | 160 | +0.00286 [+0.00148, +0.00419] | +0.00351 | +0.00239 [+0.00102, +0.00386] | +0.00132 | migliora |
+| 24 | 5 | +0.00274 [+0.00041, +0.00498] | +0.00303 | +0.00252 [+0.00015, +0.00499] | +0.00102 | migliora |
+| 24 | 15 | +0.00279 [+0.00056, +0.00495] | +0.00311 | +0.00256 [+0.00028, +0.00494] | +0.00108 | migliora |
+| 24 | 40 | +0.00287 [+0.00083, +0.00483] | +0.00323 | +0.00260 [+0.00052, +0.00477] | +0.00119 | migliora |
+| 24 | 80 | +0.00287 [+0.00109, +0.00459] | +0.00327 | +0.00258 [+0.00075, +0.00447] | +0.00127 | migliora |
+| 24 | 160 | +0.00270 [+0.00128, +0.00408] | +0.00311 | +0.00241 [+0.00094, +0.00392] | +0.00127 | migliora |
+
+### Tiri in porta
+
+- Fase 1: scelta H=8, k=40.
+- Estensione 1 (dimensioni Kmax): H ∈ [4, 8, 12], k ∈ [5, 15, 40, 80, 160]; scelta H=8, k=40.
+- Scelta finale: **H = 8, k = 40** (interna alla griglia); verdetto: migliora.
+
+| H (sett.) | k | Δ ll totale (tutte) [IC a blocchi] | Δ totale validazione | Δ totale held-out [IC a blocchi] | Δ per squadra held-out | Verdetto |
+|---:|---:|---|---:|---|---:|---|
+| 4 | 5 | +0.00598 [+0.00282, +0.00924] | +0.00805 | +0.00447 [+0.00099, +0.00797] | +0.00093 | migliora |
+| 4 | 15 | +0.00715 [+0.00451, +0.00986] | +0.00917 | +0.00567 [+0.00284, +0.00852] | +0.00234 | migliora |
+| 4 | 40 | +0.00706 [+0.00513, +0.00906] | +0.00885 | +0.00576 [+0.00376, +0.00774] | +0.00302 | migliora |
+| 4 | 80 | +0.00583 [+0.00447, +0.00725] | +0.00727 | +0.00478 [+0.00344, +0.00612] | +0.00270 | migliora |
+| 4 | 160 | +0.00408 [+0.00322, +0.00498] | +0.00509 | +0.00334 [+0.00251, +0.00416] | +0.00197 | migliora |
+| 8 | 5 | +0.00729 [+0.00422, +0.01038] | +0.00877 | +0.00621 [+0.00303, +0.00933] | +0.00266 | migliora |
+| 8 | 15 | +0.00770 [+0.00491, +0.01051] | +0.00921 | +0.00661 [+0.00378, +0.00942] | +0.00313 | migliora |
+| 8 | 40 | +0.00772 [+0.00547, +0.01000] | +0.00916 | +0.00666 [+0.00442, +0.00888] | +0.00347 | migliora ← scelta |
+| 8 | 80 | +0.00695 [+0.00522, +0.00872] | +0.00824 | +0.00600 [+0.00432, +0.00766] | +0.00329 | migliora |
+| 8 | 160 | +0.00543 [+0.00424, +0.00668] | +0.00645 | +0.00469 [+0.00356, +0.00581] | +0.00266 | migliora |
+| 12 | 5 | +0.00744 [+0.00448, +0.01043] | +0.00865 | +0.00656 [+0.00348, +0.00953] | +0.00314 | migliora |
+| 12 | 15 | +0.00766 [+0.00489, +0.01044] | +0.00887 | +0.00677 [+0.00391, +0.00950] | +0.00337 | migliora |
+| 12 | 40 | +0.00771 [+0.00534, +0.01010] | +0.00890 | +0.00684 [+0.00444, +0.00916] | +0.00359 | migliora |
+| 12 | 80 | +0.00724 [+0.00531, +0.00921] | +0.00834 | +0.00644 [+0.00451, +0.00828] | +0.00350 | migliora |
+| 12 | 160 | +0.00606 [+0.00466, +0.00750] | +0.00698 | +0.00539 [+0.00399, +0.00673] | +0.00301 | migliora |
+
+### Corner
+
+- Fase 1: scelta H=12, k=40.
+- Estensione 1 (dimensioni Hmax, Kmax): H ∈ [4, 8, 12, 16, 24], k ∈ [5, 15, 40, 80, 160]; scelta H=16, k=80.
+- Scelta finale: **H = 16, k = 80** (interna alla griglia); verdetto: migliora.
+
+| H (sett.) | k | Δ ll totale (tutte) [IC a blocchi] | Δ totale validazione | Δ totale held-out [IC a blocchi] | Δ per squadra held-out | Verdetto |
+|---:|---:|---|---:|---|---:|---|
+| 4 | 5 | -0.00027 [-0.00283, +0.00230] | +0.00000 | -0.00047 [-0.00374, +0.00282] | -0.00298 | non distinguibile dal rumore |
+| 4 | 15 | +0.00140 [-0.00072, +0.00348] | +0.00171 | +0.00117 [-0.00146, +0.00382] | -0.00119 | non distinguibile dal rumore |
+| 4 | 40 | +0.00242 [+0.00095, +0.00388] | +0.00276 | +0.00218 [+0.00035, +0.00404] | +0.00026 | migliora |
+| 4 | 80 | +0.00235 [+0.00135, +0.00336] | +0.00265 | +0.00213 [+0.00089, +0.00341] | +0.00069 | migliora |
+| 4 | 160 | +0.00179 [+0.00117, +0.00242] | +0.00202 | +0.00163 [+0.00086, +0.00242] | +0.00067 | migliora |
+| 8 | 5 | +0.00189 [-0.00023, +0.00400] | +0.00189 | +0.00189 [-0.00080, +0.00453] | -0.00049 | non distinguibile dal rumore |
+| 8 | 15 | +0.00243 [+0.00055, +0.00433] | +0.00250 | +0.00239 [-0.00003, +0.00479] | +0.00012 | non distinguibile dal rumore |
+| 8 | 40 | +0.00294 [+0.00143, +0.00446] | +0.00309 | +0.00283 [+0.00092, +0.00476] | +0.00083 | migliora |
+| 8 | 80 | +0.00293 [+0.00178, +0.00409] | +0.00313 | +0.00279 [+0.00135, +0.00427] | +0.00113 | migliora |
+| 8 | 160 | +0.00246 [+0.00167, +0.00324] | +0.00265 | +0.00232 [+0.00133, +0.00333] | +0.00109 | migliora |
+| 12 | 5 | +0.00257 [+0.00065, +0.00446] | +0.00244 | +0.00266 [+0.00027, +0.00508] | +0.00044 | migliora |
+| 12 | 15 | +0.00283 [+0.00106, +0.00459] | +0.00274 | +0.00289 [+0.00069, +0.00514] | +0.00074 | migliora |
+| 12 | 40 | +0.00312 [+0.00162, +0.00462] | +0.00309 | +0.00314 [+0.00126, +0.00503] | +0.00115 | migliora |
+| 12 | 80 | +0.00313 [+0.00191, +0.00433] | +0.00315 | +0.00310 [+0.00159, +0.00463] | +0.00136 | migliora |
+| 12 | 160 | +0.00276 [+0.00187, +0.00363] | +0.00283 | +0.00270 [+0.00160, +0.00381] | +0.00133 | migliora |
+| 16 | 5 | +0.00282 [+0.00105, +0.00459] | +0.00257 | +0.00300 [+0.00076, +0.00528] | +0.00090 | migliora |
+| 16 | 15 | +0.00296 [+0.00129, +0.00463] | +0.00273 | +0.00313 [+0.00101, +0.00528] | +0.00107 | migliora |
+| 16 | 40 | +0.00314 [+0.00167, +0.00460] | +0.00296 | +0.00328 [+0.00143, +0.00516] | +0.00134 | migliora |
+| 16 | 80 | +0.00316 [+0.00192, +0.00437] | +0.00302 | +0.00325 [+0.00170, +0.00482] | +0.00149 | migliora ← scelta |
+| 16 | 160 | +0.00287 [+0.00194, +0.00380] | +0.00280 | +0.00293 [+0.00176, +0.00411] | +0.00147 | migliora |
+| 24 | 5 | +0.00293 [+0.00131, +0.00449] | +0.00245 | +0.00328 [+0.00124, +0.00536] | +0.00133 | migliora |
+| 24 | 15 | +0.00299 [+0.00144, +0.00450] | +0.00252 | +0.00334 [+0.00137, +0.00532] | +0.00141 | migliora |
+| 24 | 40 | +0.00307 [+0.00166, +0.00445] | +0.00262 | +0.00340 [+0.00161, +0.00521] | +0.00154 | migliora |
+| 24 | 80 | +0.00308 [+0.00183, +0.00428] | +0.00266 | +0.00338 [+0.00180, +0.00497] | +0.00163 | migliora |
+| 24 | 160 | +0.00290 [+0.00190, +0.00387] | +0.00255 | +0.00315 [+0.00189, +0.00445] | +0.00161 | migliora |
+
+### Falli
+
+- Fase 1: scelta H=4, k=15.
+- Estensione 1 (dimensioni Hmin): H ∈ [2, 3, 4, 8, 12], k ∈ [5, 15, 40]; scelta H=3, k=15.
+- Scelta finale: **H = 3, k = 15** (interna alla griglia); verdetto: migliora.
+
+| H (sett.) | k | Δ ll totale (tutte) [IC a blocchi] | Δ totale validazione | Δ totale held-out [IC a blocchi] | Δ per squadra held-out | Verdetto |
+|---:|---:|---|---:|---|---:|---|
+| 2 | 5 | +0.00736 [+0.00436, +0.01032] | +0.00977 | +0.00559 [+0.00194, +0.00944] | -0.00070 | non distinguibile dal rumore |
+| 2 | 15 | +0.00865 [+0.00646, +0.01086] | +0.01083 | +0.00706 [+0.00438, +0.00982] | +0.00196 | migliora |
+| 2 | 40 | +0.00718 [+0.00583, +0.00858] | +0.00882 | +0.00600 [+0.00432, +0.00771] | +0.00257 | migliora |
+| 3 | 5 | +0.00802 [+0.00510, +0.01086] | +0.01017 | +0.00645 [+0.00285, +0.01030] | +0.00048 | migliora |
+| 3 | 15 | +0.00904 [+0.00679, +0.01127] | +0.01113 | +0.00751 [+0.00473, +0.01045] | +0.00232 | migliora ← scelta |
+| 3 | 40 | +0.00800 [+0.00650, +0.00950] | +0.00974 | +0.00673 [+0.00487, +0.00868] | +0.00290 | migliora |
+| 4 | 5 | +0.00821 [+0.00539, +0.01097] | +0.01014 | +0.00680 [+0.00329, +0.01052] | +0.00123 | migliora |
+| 4 | 15 | +0.00900 [+0.00675, +0.01122] | +0.01092 | +0.00761 [+0.00478, +0.01061] | +0.00253 | migliora |
+| 4 | 40 | +0.00827 [+0.00669, +0.00984] | +0.00998 | +0.00703 [+0.00506, +0.00912] | +0.00304 | migliora |
+| 8 | 5 | +0.00760 [+0.00514, +0.01002] | +0.00917 | +0.00645 [+0.00328, +0.00978] | +0.00215 | migliora |
+| 8 | 15 | +0.00795 [+0.00580, +0.01010] | +0.00951 | +0.00681 [+0.00401, +0.00975] | +0.00262 | migliora |
+| 8 | 40 | +0.00781 [+0.00612, +0.00951] | +0.00930 | +0.00673 [+0.00454, +0.00904] | +0.00297 | migliora |
+| 12 | 5 | +0.00665 [+0.00443, +0.00891] | +0.00806 | +0.00563 [+0.00280, +0.00866] | +0.00214 | migliora |
+| 12 | 15 | +0.00685 [+0.00480, +0.00894] | +0.00824 | +0.00584 [+0.00328, +0.00864] | +0.00239 | migliora |
+| 12 | 40 | +0.00688 [+0.00516, +0.00862] | +0.00821 | +0.00591 [+0.00375, +0.00826] | +0.00265 | migliora |
+
+### Gialli
+
+- Fase 1: scelta H=4, k=15.
+- Estensione 1 (dimensioni Hmin): H ∈ [2, 3, 4, 8, 12], k ∈ [5, 15, 40]; scelta H=4, k=15.
+- Scelta finale: **H = 4, k = 15** (interna alla griglia); verdetto: migliora.
+
+| H (sett.) | k | Δ ll totale (tutte) [IC a blocchi] | Δ totale validazione | Δ totale held-out [IC a blocchi] | Δ per squadra held-out | Verdetto |
+|---:|---:|---|---:|---|---:|---|
+| 2 | 5 | +0.00705 [+0.00388, +0.01030] | +0.00679 | +0.00725 [+0.00308, +0.01157] | +0.00107 | migliora |
+| 2 | 15 | +0.00894 [+0.00655, +0.01137] | +0.00875 | +0.00908 [+0.00597, +0.01236] | +0.00338 | migliora |
+| 2 | 40 | +0.00772 [+0.00618, +0.00929] | +0.00770 | +0.00774 [+0.00577, +0.00981] | +0.00354 | migliora |
+| 3 | 5 | +0.00805 [+0.00490, +0.01123] | +0.00766 | +0.00834 [+0.00431, +0.01260] | +0.00228 | migliora |
+| 3 | 15 | +0.00945 [+0.00692, +0.01202] | +0.00914 | +0.00967 [+0.00642, +0.01306] | +0.00386 | migliora |
+| 3 | 40 | +0.00862 [+0.00688, +0.01039] | +0.00849 | +0.00872 [+0.00649, +0.01103] | +0.00406 | migliora |
+| 4 | 5 | +0.00852 [+0.00542, +0.01160] | +0.00808 | +0.00883 [+0.00491, +0.01291] | +0.00297 | migliora |
+| 4 | 15 | +0.00955 [+0.00699, +0.01210] | +0.00918 | +0.00982 [+0.00653, +0.01319] | +0.00409 | migliora ← scelta |
+| 4 | 40 | +0.00897 [+0.00710, +0.01083] | +0.00875 | +0.00914 [+0.00678, +0.01159] | +0.00429 | migliora |
+| 8 | 5 | +0.00831 [+0.00547, +0.01115] | +0.00748 | +0.00892 [+0.00545, +0.01246] | +0.00380 | migliora |
+| 8 | 15 | +0.00869 [+0.00611, +0.01126] | +0.00789 | +0.00928 [+0.00615, +0.01247] | +0.00419 | migliora |
+| 8 | 40 | +0.00858 [+0.00653, +0.01065] | +0.00787 | +0.00909 [+0.00658, +0.01161] | +0.00436 | migliora |
+| 12 | 5 | +0.00748 [+0.00480, +0.01021] | +0.00612 | +0.00846 [+0.00523, +0.01168] | +0.00385 | migliora |
+| 12 | 15 | +0.00767 [+0.00519, +0.01020] | +0.00635 | +0.00863 [+0.00563, +0.01163] | +0.00403 | migliora |
+| 12 | 40 | +0.00767 [+0.00556, +0.00982] | +0.00645 | +0.00856 [+0.00603, +0.01111] | +0.00415 | migliora |
+
+### Riepilogo finale (configurazioni messe in produzione)
+
+| Statistica | H | k | Δ ll totale tutte [IC] | Δ totale held-out [IC] | Δ per squadra held-out [IC] | Δ O/U totale held-out | Δ totale 2026/27 | Verdetto |
+|---|---:|---:|---|---|---|---:|---:|---|
+| Tiri | 12 | 80 | +0.00325 [+0.00143, +0.00498] | +0.00267 [+0.00088, +0.00459] | +0.00138 [+0.00026, +0.00256] | +0.00141 | +0.03131 | migliora |
+| Tiri in porta | 8 | 40 | +0.00772 [+0.00547, +0.01000] | +0.00666 [+0.00442, +0.00888] | +0.00347 [+0.00213, +0.00477] | +0.00419 | +0.00582 | migliora |
+| Corner | 16 | 80 | +0.00316 [+0.00192, +0.00437] | +0.00325 [+0.00170, +0.00482] | +0.00149 [+0.00044, +0.00257] | +0.00178 | +0.00061 | migliora |
+| Falli | 3 | 15 | +0.00904 [+0.00679, +0.01127] | +0.00751 [+0.00473, +0.01045] | +0.00232 [+0.00056, +0.00408] | +0.00574 | +0.01563 | migliora |
+| Gialli | 4 | 15 | +0.00955 [+0.00699, +0.01210] | +0.00982 [+0.00653, +0.01319] | +0.00409 [+0.00235, +0.00595] | +0.00526 | +0.00456 | migliora |
+
+**Copertura degli intervalli con la configurazione finale** (frequenza reale − probabilità dichiarata; base → con livello):
+
+| Statistica | Squadra, tutte | Totale, tutte | Squadra, 2026/27 | Totale, 2026/27 |
+|---|---|---|---|---|
+| Tiri | -1.9 → -1.6 pp | -1.2 → -1.0 pp | -7.6 → -5.3 pp | -8.8 → -7.7 pp |
+| Tiri in porta | +0.1 → -0.1 pp | +0.2 → +0.3 pp | -1.5 → -2.5 pp | -4.3 → -3.7 pp |
+| Corner | -0.4 → -0.7 pp | -0.3 → -0.4 pp | -1.3 → -1.4 pp | -3.8 → -4.7 pp |
+| Falli | +0.2 → +0.3 pp | +0.7 → +1.0 pp | -4.1 → -3.8 pp | -3.5 → -4.0 pp |
+| Gialli | +1.9 → +2.3 pp | -0.8 → -0.3 pp | +3.2 → +1.9 pp | +0.7 → -0.3 pp |
+
+
+
+Codice di produzione (`stats_v3.walk_forward_means`, `stats_v3.build_level` con il registro come lo salva il training, `predictions.levels.Levels` come lo usa il sito) sul backtest walk-forward; parametri da `config.LEVEL_PARAMS`.
+
+| Statistica | (H, k) | Medie di base: scarto massimo vs backtest | Δ ll totale produzione (tutte) | Δ round 7 esteso | Differenza | Δ held-out produzione [IC a blocchi] | Verdetto |
+|---|---|---:|---:|---:|---:|---|---|
+| Tiri | 12, 80 | 0.0e+00 | +0.00325 | +0.00325 | -5.6e-10 | +0.00267 [+0.00088, +0.00459] | migliora |
+| Tiri in porta | 8, 40 | 0.0e+00 | +0.00772 | +0.00772 | +2.1e-08 | +0.00666 [+0.00442, +0.00888] | migliora |
+| Corner | 16, 80 | 0.0e+00 | +0.00316 | +0.00316 | +1.3e-08 | +0.00325 [+0.00170, +0.00482] | migliora |
+| Falli | 3, 15 | 0.0e+00 | +0.00904 | +0.00904 | +3.9e-08 | +0.00751 [+0.00473, +0.01045] | migliora |
+| Gialli | 4, 15 | 0.0e+00 | +0.00955 | +0.00955 | +2.7e-08 | +0.00982 [+0.00653, +0.01319] | migliora |
+
+**Esito della riproduzione: riprodotto** (tolleranza sul Δ: 2e-4, dovuta all'arrotondamento del registro; medie di base identiche; scarto degli intervalli ≤ 3 punti).
+
+**Copertura degli intervalli con il livello di produzione (frequenza reale − probabilità dichiarata, punti percentuali)**
+
+| Statistica | Squadra, tutte | Totale, tutte | Squadra, 2026/27 | Totale, 2026/27 | Criterio ≤ 3 pp (tutte) |
+|---|---:|---:|---:|---:|---|
+| Tiri | -1.6 | -1.0 | -5.3 | -7.7 | ok |
+| Tiri in porta | -0.1 | +0.3 | -2.5 | -3.7 | ok |
+| Corner | -0.7 | -0.4 | -1.4 | -4.7 | ok |
+| Falli | +0.3 | +1.0 | -3.8 | -4.0 | ok |
+| Gialli | +2.3 | -0.3 | +1.9 | -0.3 | ok |
+
+**Robustezza: riallenamento ogni 28 giorni** (le medie di base vengono da modelli rifatti ogni 28 giorni con tutte le partite precedenti, come il training settimanale di produzione, invece di un fit per stagione; il livello è ricalcolato su quelle previsioni. Δ rispetto allo stesso baseline a riallenamento periodico; alpha del baseline a un fit per stagione).
+
+| Statistica | Δ ll totale tutte [IC a blocchi] | Δ totale held-out [IC a blocchi] | Δ per squadra held-out | Δ totale 2026/27 | Scarto intervalli squadra / totale (base → livello) | Verdetto |
+|---|---|---|---:|---:|---|---|
+| Tiri | +0.00253 [+0.00084, +0.00417] | +0.00217 [+0.00050, +0.00396] | +0.00097 | +0.02980 | -1.9 → -1.7 / -1.2 → -1.0 | migliora |
+| Tiri in porta | +0.00530 [+0.00340, +0.00719] | +0.00538 [+0.00329, +0.00745] | +0.00268 | +0.00618 | +0.1 → -0.1 / +0.3 → +0.3 | migliora |
+| Corner | +0.00245 [+0.00130, +0.00359] | +0.00267 [+0.00121, +0.00415] | +0.00110 | +0.00074 | -0.4 → -0.7 / -0.3 → -0.4 | migliora |
+| Falli | +0.00795 [+0.00577, +0.01017] | +0.00691 [+0.00416, +0.00979] | +0.00195 | +0.01535 | +0.3 → +0.3 / +0.7 → +0.9 | migliora |
+| Gialli | +0.00803 [+0.00563, +0.01042] | +0.00864 [+0.00545, +0.01195] | +0.00343 | +0.00421 | +2.0 → +2.3 / -0.7 → -0.3 | migliora |
+
+
+## Messa in produzione del livello stagionale (s5-livello)
+
+- **Configurazioni** (`config.LEVEL_PARAMS`, scelte sulle sole validazioni dopo l'estensione della griglia; nessun ottimo è rimasto sul bordo dopo la prima estensione, quindi la seconda non è servita): tiri H=12, k=80; tiri in porta H=8, k=40; corner H=16, k=80; falli H=3, k=15; gialli H=4, k=15. Tutte con verdetto «migliora».
+- **Come funziona nel sito**: il training settimanale salva in `models/stack.json["stats_v3"]["level"]` le somme giornaliere per lega e statistica (osservati e attesi, casa e ospite) calcolate con le previsioni fuori campione per stagione; a ogni esecuzione i moltiplicatori R si ricalcolano per ogni partita da quel registro più le partite giocate dopo l'ultimo allenamento, prese da `docs/history.csv` (medie di base salvate all'emissione in `bm_<statistica>_h/_a`, congelate al calcio d'inizio) e dai risultati. Le medie dei due lati si moltiplicano per R prima di intervalli, Over/Under, copula (chi ne fa di più, handicap corner) ed effetto arbitro.
+- **Limite noto**: il livello è stimato rispetto a modelli rifatti una volta a stagione (come nel backtest), mentre il sito li riallena ogni settimana con le partite della stagione in corso. Il controllo di robustezza (riallenamento ogni 28 giorni) conferma il guadagno (Δ held-out tra +0,0022 e +0,0086, IC a blocchi che esclude lo zero per tutte e cinque), un po' più piccolo di quello a un fit per stagione.
+- **Quanto del problema del 2026/27 risolve**: poco. Sui tiri la copertura degli intervalli 2026/27 passa da −7,6 a −5,3 punti per squadra (−8,8 → −7,7 sul totale); sulle altre statistiche il 2026/27 resta dentro il rumore di un campione di 293 partite. Il guadagno medio è piccolo (log-loss del totale +0,003 / +0,010) ma robusto sull'held-out.
+- **Pannello**: riga «Livello stagionale <statistica> <lega>: ±X%» solo se il totale della partita cambia di oltre il 5%.

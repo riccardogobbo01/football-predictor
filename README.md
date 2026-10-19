@@ -67,6 +67,18 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   (`stats_v3.nb_interval`). Verifica walk-forward in `backtest/results_intervals.md` (`python -I -X utf8 backtest/run_intervals.py`): scarto massimo tra probabilità
   dichiarata e frequenza reale 2,3 punti. I tiri hanno la dispersione (alpha) separata per casa e ospite (`alpha_home`/`alpha_away` in `models/stack.json`);
   con un solo alpha l'ospite era fuori dal criterio dei 3 punti. `python -I -X utf8 backtest/run_intervals_alpha.py` verifica che non peggiori le log-loss.
+- **Livello stagionale** (`s5-livello`, round 7 fase 2, `backtest/results_round7.md`): per ogni lega, statistica e lato (casa/ospite) un moltiplicatore sulle medie
+  attese, R = (Σ w·y + k·m̄)/(Σ w·μ + k·m̄) sulle partite precedenti della lega (w = 0,5^(giorni/(7·H)), μ = previsione fuori campione del modello), (H, k) per
+  statistica in `config.LEVEL_PARAMS`, scelti sulle sole stagioni di validazione. Il registro delle somme giornaliere sta in `models/stack.json["stats_v3"]["level"]`
+  (costruito dal training); ogni giorno le partite giocate dopo l'ultimo allenamento si aggiungono dallo storico (`bm_<statistica>_h/_a` = medie di base salvate
+  al momento dell'emissione, `predictions/levels.py`). Nel pannello compare «Livello stagionale <statistica> <lega>: +X%» solo se il totale cambia di più del 5%.
+- **Arbitri della Serie A** (`predictions/referee_sources.py`): AIA (`aia-figc.it/designazioni/can/`, 2 richieste per run, designazioni di solito il mercoledì per
+  le partite da venerdì a lunedì) → fantacalcio.it (solo se l'AIA non e' utilizzabile) → football-data.org. Un cambio di struttura della pagina AIA non blocca il
+  job: avviso nel log e ripiego. `history.csv` registra la fonte (`referee_source`); un arbitro nuovo ha effetto zero (alias in `AIA_ALIASES` per i cognomi ambigui,
+  es. Colombo). Se football-data.org indica un arbitro diverso da quello AIA (cambio dell'ultimo momento) prevale football-data.org e il conflitto e' nel log.
+- **Storico congelato al calcio d'inizio**: `history.csv` ha la colonna `kickoff` (UTC); dopo quell'istante una riga non si riscrive piu' e una partita gia' iniziata
+  senza previsione non viene aggiunta. `p_o25` = probabilita' di Over 2,5 emessa, usata dal riquadro di monitoraggio (calibrazione dell'Over 2,5: previsto medio
+  contro reale); `scripts/backfill_o25.py` la ricostruisce dalle copie di `predictions.json` in git per le righe precedenti.
 - `python -I -X utf8 backtest/run_round6_prod.py` riproduce con il codice di produzione i risultati della fase 1 del round 6.
 
 ## Avvio locale

@@ -292,3 +292,81 @@ def first_half(mu, nu, share: float, G_=8) -> dict:
     lam = m1 + n1
     return {"home": (J * (i > j)).sum((1, 2)), "draw": (J * (i == j)).sum((1, 2)), "away": (J * (i < j)).sum((1, 2)),
             "o05": 1 - np.exp(-lam), "o15": 1 - np.exp(-lam) * (1 + lam), "exp_home": m1, "exp_away": n1, "exp_total": lam}
+
+
+# ───────────────────────────── livello stagionale (s5-livello) ─────────────────────────────
+# Per ogni lega e lato (casa/ospite) un moltiplicatore sulle medie attese: R = (Σ w·y + k·m̄) / (Σ w·μ + k·m̄) sulle partite PRECEDENTI della
+# lega, w = 0,5^(giorni / (7·H)), μ = media attesa del modello (previsione fuori campione per stagione, vedi `walk_forward_means`),
+# m̄ = Σ w·μ / Σ w. (H, k) per statistica in config.LEVEL_PARAMS (round 7, fase 2: backtest/results_round7.md).
+EPOCH = pd.Timestamp("2000-01-01")
+LEVEL_FIELDS = ("d", "yh", "mh", "ya", "ma", "n")
+
+
+def walk_forward_means(feat: pd.DataFrame, stat: str, with_xg: bool = True, refit_days: int | None = None):
+    """Medie attese (mh, ma) per riga: fuori campione dal 2019/20 (training dal 2016/17 sulle sole stagioni precedenti: un fit per stagione, oppure,
+    con `refit_days`, un nuovo fit ogni `refit_days` giorni con tutte le partite precedenti); in campione per il 2016/17-2018/19 (previsioni del
+    primo fit). Serve a stimare il livello stagionale senza usare il risultato della partita stessa."""
+    spec = STATS3[stat]
+    X = design(feat, stat, with_xg)
+    has = X.notna().all(axis=1)
+    ok = has & feat[spec["hc"]].notna() & feat[spec["ac"]].notna()
+    mh = pd.Series(np.nan, index=feat.index)
+    ma = pd.Series(np.nan, index=feat.index)
+    first = True
+    for s in sorted(feat.season.unique()):
+        if s < FIRST_TEST:
+            continue
+        in_s = feat.season == s
+        if refit_days is None:
+            segments = [(in_s, (feat.season >= FIRST_TRAIN) & (feat.season < s))]
+        else:
+            d0 = feat.date[in_s].min()
+            seg = ((feat.date - d0).dt.days // refit_days).where(in_s, -1)
+            segments = [(seg == g, (feat.season >= FIRST_TRAIN) & (feat.date < feat.date[seg == g].min())) for g in sorted(seg[in_s].unique())]
+        for te_m, tr_m in segments:
+            tr, te = ok & tr_m, has & te_m
+            if not te.any() or tr.sum() < 100:
+                continue
+            m = sm.fit_stat_model(X[tr], feat[spec["hc"]][tr], feat[spec["ac"]][tr])
+            mh[te], ma[te] = sm.predict_means(m, X[te])
+            if first:
+                mh[tr], ma[tr] = sm.predict_means(m, X[tr])
+                first = False
+    return mh, ma
+
+
+def level_multiplier(days, y, m, n, asof_day: float, H: float, k: float) -> float:
+    """R per il giorno `asof_day` (giorni dall'epoca) dalle somme giornaliere: days, y = Σ osservati, m = Σ attesi, n = partite; solo i giorni PRECEDENTI."""
+    days = np.asarray(days, float)
+    sel = days < asof_day
+    if not sel.any():
+        return 1.0
+    w = 0.5 ** ((asof_day - days[sel]) / (7.0 * H))
+    sy, sm_, sw = (w * np.asarray(y, float)[sel]).sum(), (w * np.asarray(m, float)[sel]).sum(), (w * np.asarray(n, float)[sel]).sum()
+    if sw <= 0 or sm_ <= 0:
+        return 1.0
+    mbar = sm_ / sw
+    return float((sy + k * mbar) / (sm_ + k * mbar))
+
+
+def _csv(a, nd=3):
+    return ",".join(f"{x:.{nd}f}".rstrip("0").rstrip(".") if nd else str(int(x)) for x in a)
+
+
+def build_level(feat: pd.DataFrame, params: dict, means: dict | None = None) -> dict:
+    """Registro del livello per models/stack.json: somme giornaliere per lega e statistica (osservati e attesi, casa e ospite) dalle previsioni
+    fuori campione, più (H, k) e l'ultimo giorno incluso. Le liste sono stringhe CSV (file compatto)."""
+    ledger, asof = {}, {}
+    day = ((feat.date - EPOCH).dt.days).to_numpy(float)
+    for stat in ORDER:
+        spec = STATS3[stat]
+        mh, ma = (means or {}).get(stat) or walk_forward_means(feat, stat)
+        yh, ya = feat[spec["hc"]].to_numpy(float), feat[spec["ac"]].to_numpy(float)
+        ok = np.isfinite(mh.to_numpy()) & np.isfinite(ma.to_numpy()) & np.isfinite(yh) & np.isfinite(ya)
+        df = pd.DataFrame({"div": feat.Division.to_numpy()[ok], "d": day[ok], "yh": yh[ok], "mh": mh.to_numpy()[ok], "ya": ya[ok], "ma": ma.to_numpy()[ok], "n": 1.0})
+        for div, g in df.groupby("div"):
+            a = g.groupby("d")[["yh", "mh", "ya", "ma", "n"]].sum().reset_index()
+            ledger.setdefault(div, {})[stat] = {"d": _csv(a.d, 0), "yh": _csv(a.yh, 0), "mh": _csv(a.mh), "ya": _csv(a.ya, 0), "ma": _csv(a.ma), "n": _csv(a.n, 0)}
+            asof[div] = max(asof.get(div, 0), float(a.d.max()))
+    return {"version": 1, "epoch": str(EPOCH.date()), "params": {s: [params[s][0], params[s][1]] for s in ORDER},
+            "asof": {div: str((EPOCH + pd.Timedelta(days=int(v))).date()) for div, v in asof.items()}, "ledger": ledger}

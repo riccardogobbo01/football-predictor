@@ -349,7 +349,7 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
     return out
 
 
-def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, referees=None) -> list:
+def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, referees=None, levels=None, dates=None) -> list:
     """Statistiche attese (tiri, tiri in porta, corner, gialli, falli) per ogni partita, più i mercati «chi ne fa di più» e l'handicap
     dei corner dalla copula gaussiana (backtest/stats_v3.py, versione s3-gap). Si usa la stessa variante dello stack 1X2
     (with_xg se gli xG ci sono per entrambe le squadre, altrimenti without_xg). Restituisce None per ogni partita se
@@ -358,7 +358,11 @@ def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, ref
     referees: lista (una per partita) con il nome dell'arbitro designato secondo football-data.org, o None. L'effetto arbitro
     (models/stack.json["referees"] per i gialli, ["referees_fouls"] per i falli) entra solo nei modelli dei gialli e dei falli;
     arbitro assente, sconosciuto o senza storico = effetto zero. Nelle righe dei gialli e dei falli: {"referee": {"name", "delta"}}
-    con delta = valori attesi con l'arbitro meno valori attesi con un arbitro nella media."""
+    con delta = valori attesi con l'arbitro meno valori attesi con un arbitro nella media.
+
+    levels: predictions.levels.Levels (livello stagionale s5-livello), dates: data ISO di ogni partita. Con `levels` le medie dei due lati si
+    moltiplicano per R casa / R ospite della lega prima di intervalli, Over/Under e copula; ogni riga porta `base` (medie prima del livello,
+    con effetto arbitro) e `level` {home, away, pct} (pct = variazione del totale)."""
     v3 = model.get("stats_v3")
     if not v3 or not pairs:
         return [None] * len(pairs)
@@ -389,14 +393,23 @@ def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, ref
                 raise ValueError(f"models/stack.json: feature di stats_v3/{name}/{stat} non coerenti con backtest/stats_v3.py")
             X = stats_v3.design(frame.iloc[rows], stat, name == WITH_XG)
             mh, ma = sm.means_from_dict(d, X.to_numpy())
+            base_h, base_a = mh.copy(), ma.copy()
+            rh = ra = np.ones(len(rows))
+            if levels is not None and stat in levels.stats and dates is not None:
+                rh, ra = levels.multipliers(div, stat, [dates[i] for i in rows])
+            mh, ma = mh * rh, ma * ra
             delta = None
             if "referee" in spec:
                 X0 = X.copy()
                 X0[spec["referee"]] = 0.0                      # arbitro «nella media»
                 mh0, ma0 = sm.means_from_dict(d, X0.to_numpy())
-                delta = (mh + ma) - (mh0 + ma0)
+                delta = (mh + ma) - (mh0 * rh + ma0 * ra)
             means[stat][rows, 0], means[stat][rows, 1] = mh, ma
             for j, (i, row) in enumerate(zip(rows, stats_v3.page_rows(stat, mh, ma, d))):
+                row["base"] = [round(float(base_h[j]), 4), round(float(base_a[j]), 4)]
+                if levels is not None and stat in levels.stats:
+                    row["level"] = {"home": round(float(rh[j]), 4), "away": round(float(ra[j]), 4),
+                                    "pct": round(100 * ((rh[j] * base_h[j] + ra[j] * base_a[j]) / (base_h[j] + base_a[j]) - 1), 1)}
                 if delta is not None:
                     known = ratios[stat][i][2]
                     row["referee"] = {"name": names[i] or None, "delta": round(float(delta[j]), 2) if (names[i] and known) else None}

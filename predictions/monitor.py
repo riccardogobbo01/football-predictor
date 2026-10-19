@@ -9,6 +9,7 @@ i risultati. Per ogni partita si salvano le probabilità:
 
   model_version  versione del modello che ha emesso la riga (config.MODEL_VERSION); le righe precedenti alla
          colonna valgono config.LEGACY_MODEL_VERSION. La log-loss mobile usa solo la versione corrente.
+  referee_source   fonte dell'arbitro: aia | fantacalcio | football-data.org (predictions/referee_sources.py)
   referee, referee_first_seen   arbitro designato (football-data.org) e data/ora UTC in cui e' comparso per la prima volta per
          quella partita (serve a misurare con quanto anticipo vengono designati); yellow_pred / yellow_real = gialli totali
          previsti (ultima emissione) e reali; stats_version = versione del modello delle statistiche (config.STATS_VERSION,
@@ -63,7 +64,10 @@ COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "ho
            + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"]
            + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"]
            + ["shots_pred", "shots_real", "sot_pred", "sot_real", "fouls_pred", "fouls_real", "ht_goals_pred", "ht_goals_real"]
-           + ["kickoff"])
+           + ["kickoff", "referee_source", "p_o25"]
+           + [f"bm_{s}_{x}" for s in ("tiri", "sot", "corner", "falli", "gialli") for x in ("h", "a")])
+# bm_<statistica>_h/_a = medie attese di base (casa/ospite, con effetto arbitro, PRIMA del livello stagionale) al momento dell'emissione: servono a
+# ricalcolare ogni giorno il livello stagionale dalle partite giocate dopo l'ultimo allenamento (predictions/levels.py)
 # totali previsti (ultima emissione) e reali per tiri, tiri in porta, falli e gol del primo tempo: serve al monitoraggio dei modelli delle statistiche
 REAL_COLS = {"yellow_real": ("HY", "AY"), "shots_real": ("HS", "AS"), "sot_real": ("HST", "AST"),
              "fouls_real": ("HF", "AF"), "ht_goals_real": ("HTHG", "HTAG")}
@@ -80,13 +84,14 @@ def load_history(path: str = HISTORY_PATH) -> pd.DataFrame:
         return empty_history()
     h = pd.read_csv(path, dtype={"matchday": str, "home_dc": str, "away_dc": str,
                                  "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str,
-                                 "model_version": str, "referee": str, "referee_first_seen": str, "stats_version": str, "kickoff": str})
+                                 "model_version": str, "referee": str, "referee_first_seen": str, "stats_version": str, "kickoff": str,
+                                 "referee_source": str})
     for c in COLUMNS:
         if c not in h.columns:
             h[c] = np.nan
     h["model_version"] = h["model_version"].astype(object).where(h["model_version"].notna(), LEGACY_MODEL_VERSION)
     h["stats_version"] = h["stats_version"].astype(object).where(h["stats_version"].notna(), LEGACY_STATS_VERSION)
-    for c in ("referee", "referee_first_seen", "kickoff"):     # colonne di testo: se mancano nel CSV nascono float
+    for c in ("referee", "referee_first_seen", "kickoff", "referee_source"):     # colonne di testo: se mancano nel CSV nascono float
         h[c] = h[c].astype(object)
     h["rec_score"] = h["rec_score"].astype(object)      # colonna di testo ("2-1"): se manca nel CSV nasce float
     return h[COLUMNS]
@@ -166,6 +171,8 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
                home=fix["home"], away=fix["away"], home_dc=fix.get("home_dc"), away_dc=fix.get("away_dc"),
                model_used=pred["model"], model_version=MODEL_VERSION, stats_version=STATS_VERSION, fallback_reason=pred["fallback_reason"] or np.nan,
                p_home=pred["prob_home"], p_draw=pred["prob_draw"], p_away=pred["prob_away"])
+    if pred.get("prob_o25") is not None:
+        row["p_o25"] = float(pred["prob_o25"])                   # probabilita' di Over 2,5 al momento dell'emissione (monitoraggio della calibrazione)
     if pred.get("rec_score"):
         row["rec_score"] = f"{pred['rec_score'][0]}-{pred['rec_score'][1]}"      # risultato consigliato (esito piu' probabile, poi punteggio)
         row["rec_prob"] = pred["rec_score"][2] / 100
@@ -174,6 +181,7 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
     ref = fix.get("referee")
     if isinstance(ref, str) and ref.strip():
         row["referee"] = ref.strip()
+        row["referee_source"] = fix.get("referee_source") or "football-data.org"
         row["referee_first_seen"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
     for tag, name in (("pw", "with_xg"), ("po", "without_xg")):
         if probs.get(name) is not None:
@@ -217,14 +225,15 @@ def upsert(history: pd.DataFrame, new_rows: list[dict], today, now=None) -> pd.D
                 h.at[i, "kickoff"] = ko
             continue
         old_mkt = {c: h.at[i, c] for c in ("mkt_home", "mkt_draw", "mkt_away", "mkt_source")}
-        old_ref = {c: h.at[i, c] for c in ("referee", "referee_first_seen")}
+        old_ref = {c: h.at[i, c] for c in ("referee", "referee_first_seen", "referee_source")}
         for c in COLUMNS:
             if c in r:
                 h.at[i, c] = r[c]
         if pd.notna(old_ref["referee_first_seen"]):            # la prima comparsa dell'arbitro non si perde mai
             h.at[i, "referee_first_seen"] = old_ref["referee_first_seen"]
         if pd.isna(r.get("referee")) and pd.notna(old_ref["referee"]):
-            h.at[i, "referee"] = old_ref["referee"]            # l'API ha smesso di indicarlo: si tiene l'ultimo noto
+            h.at[i, "referee"] = old_ref["referee"]            # l'API ha smesso di indicarlo: si tiene l'ultimo noto (e la sua fonte)
+            h.at[i, "referee_source"] = old_ref["referee_source"]
         if pd.isna(r.get("mkt_home")) and pd.notna(old_mkt["mkt_home"]):
             for c, v in old_mkt.items():
                 h.at[i, c] = v
@@ -241,6 +250,10 @@ def attach_yellows(rows: list[dict], stats_list: list, preds: list | None = None
             y = (st or {}).get(key)
             if y:
                 r[col] = float(y["total"])
+        for stat, key in (("tiri", "shots"), ("sot", "sot"), ("corner", "corners"), ("falli", "fouls"), ("gialli", "yellows")):
+            b = ((st or {}).get(key) or {}).get("base")
+            if b:
+                r[f"bm_{stat}_h"], r[f"bm_{stat}_a"] = float(b[0]), float(b[1])
         fh = ((preds or [None] * len(rows))[i] or {}).get("first_half")
         if fh:
             r["ht_goals_pred"] = float(fh["exp_total"])
@@ -257,6 +270,7 @@ def fill_referees(history: pd.DataFrame, found: list[dict], max_days_apart: int 
         m = m[(pd.to_datetime(m.match_date) - pd.Timestamp(f["date"])).abs() <= pd.Timedelta(days=max_days_apart)]
         for i in m.index:
             history.at[i, "referee"] = f["referee"]
+            history.at[i, "referee_source"] = "football-data.org"
             n += 1
     return n
 
@@ -319,6 +333,25 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
 
 # ── Log-loss mobile ────────────────────────────────────────────────────────────
 
+def over25_calibration(history: pd.DataFrame) -> dict:
+    """Calibrazione dell'Over 2,5 della versione corrente del modello (config.MODEL_VERSION): probabilita' media prevista (emessa prima del calcio
+    d'inizio) contro frequenza reale, sulle partite di campionato giocate con p_o25 registrata. Scarto = previsto - reale."""
+    played = history[history["result"].isin(["H", "D", "A"]) & history["p_o25"].notna() & history["hg"].notna() & history["ag"].notna()]
+
+    def calc(h):
+        n = int(len(h))
+        out = {"n": n, "pred": None, "real": None, "diff_pp": None, "se_pp": None}
+        if n:
+            p = h["p_o25"].to_numpy(float)
+            o = ((h["hg"] + h["ag"]) >= 3).to_numpy(float)
+            out.update(pred=float(p.mean()), real=float(o.mean()), diff_pp=float(100 * (p.mean() - o.mean())),
+                       se_pp=float(100 * np.sqrt(((p - o) ** 2).mean() / n)) if n > 1 else None, since=str(h["match_date"].min()), until=str(h["match_date"].max()))
+        return out
+    cur = calc(played[played["model_version"] == MODEL_VERSION])
+    cur["all_versions"] = calc(played)                  # contesto: tutte le versioni registrate (le precedenti non sono la versione corrente)
+    return cur
+
+
 def rolling_logloss(history: pd.DataFrame, window: int = WINDOW, min_n: int = MIN_N) -> dict:
     """Log-loss delle ultime `window` partite giocate con with_xg, without_xg e mercato disponibili,
     solo tra le previsioni emesse dalla versione corrente del modello (config.MODEL_VERSION)."""
@@ -330,6 +363,7 @@ def rolling_logloss(history: pd.DataFrame, window: int = WINDOW, min_n: int = MI
     need = [f"{t}_{k}" for t in ("pw", "po", "mkt") for k in P3]
     full = played.dropna(subset=need).sort_values(["match_date", "league", "home"]).tail(window)
     out["n"] = int(len(full))
+    out["over25"] = over25_calibration(history)
     if len(full) < min_n:
         return out
 

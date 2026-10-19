@@ -53,7 +53,7 @@ import pandas as pd
 import requests
 
 from backtest import data, eloodds
-from predictions import cups, monitor
+from predictions import cups, levels as levels_mod, monitor, referee_sources
 from predictions import stack_predictor as sp
 from config import REC_DRAW_THRESHOLD, STATS_VERSION
 
@@ -437,9 +437,14 @@ PANEL_JS = r'''
     return '<div class="stat-cell"><span class="stat-l">' + label + '</span><span class="stat-v">' + v.toFixed(1) + '</span>' +
       '<span class="stat-sub">' + ivText(iv) + '</span></div>';
   }
-  function statBlock(name, o, h, a, unit) {
+  function levelLine(o, what, league) {
+    if (!o.level || Math.abs(o.level.pct) <= 5) { return ""; }
+    var p = o.level.pct;
+    return '<div class="pn-note">Livello stagionale ' + what + ' ' + league + ': ' + (p >= 0 ? "+" : "−") + Math.round(Math.abs(p)) + '%</div>';
+  }
+  function statBlock(name, o, h, a, unit, what, league) {
     return '<div class="stat-block"><div class="stat-head"><span class="stat-name">' + name + '</span>' +
-      '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' + refLine(o, unit) +
+      '<span class="stat-total">' + o.total.toFixed(1) + '</span></div>' + refLine(o, unit) + levelLine(o, what, league) +
       '<div class="stat-grid">' + statCell(h, o.home, o.int_home) + statCell(a, o.away, o.int_away) +
       statCell('Totale', o.total, o.int_total) +
       '</div><div class="stat-cap">Over / Under sul totale</div>' + ouRows(o.over) + '</div>';
@@ -450,7 +455,7 @@ PANEL_JS = r'''
 
   function render(f) {
     var p = f.pred, m = f.market, st = f.stats, cx = f.ctx;
-    var h = esc(f.home), a = esc(f.away), out = "", g1 = "";
+    var h = esc(f.home), a = esc(f.away), lg = esc(f.league), out = "", g1 = "";
 
     var pill;
     if (p.model === "cups_elo") {
@@ -546,13 +551,13 @@ PANEL_JS = r'''
         '<div class="pn-note">Intervallo: valori che il modello considera più probabili, con la probabilità che il risultato reale cada al suo interno.</div>' +
         (st.model === "without_xg" ? '<div class="pn-note">Variante senza xG (la stessa usata dal modello 1X2 per questa partita).</div>' : '');
       var g3 = "";
-      if (st.shots) { g3 += statBlock("Tiri totali", st.shots, h, a); }
-      if (st.sot) { g3 += statBlock("Tiri in porta totali", st.sot, h, a); }
+      if (st.shots) { g3 += statBlock("Tiri totali", st.shots, h, a, "", "tiri", lg); }
+      if (st.sot) { g3 += statBlock("Tiri in porta totali", st.sot, h, a, "", "tiri in porta", lg); }
       if (wm.shots) { g3 += more3("Chi fa più tiri", wm.shots, h, a); }
       if (g3) { out += grp("Tiri", g3 + noteHtml, false); }
 
       var g4 = "";
-      if (st.corners) { g4 += statBlock("Corner totali", st.corners, h, a); }
+      if (st.corners) { g4 += statBlock("Corner totali", st.corners, h, a, "", "corner", lg); }
       if (wm.corners) { g4 += more3("Chi fa più corner", wm.corners, h, a); }
       var hc = wm.corner_handicap;
       if (hc) {
@@ -562,9 +567,9 @@ PANEL_JS = r'''
       if (g4) { out += grp("Corner", g4 + noteHtml, false); }
 
       var g5 = "";
-      if (st.yellows) { g5 += statBlock("Gialli totali", st.yellows, h, a, "gialli"); }
+      if (st.yellows) { g5 += statBlock("Gialli totali", st.yellows, h, a, "gialli", "gialli", lg); }
       if (wm.yellows) { g5 += more3("Chi prende più gialli", wm.yellows, h, a); }
-      if (st.fouls) { g5 += statBlock("Falli totali", st.fouls, h, a, "falli"); }
+      if (st.fouls) { g5 += statBlock("Falli totali", st.fouls, h, a, "falli", "falli", lg); }
       if (g5) { out += grp("Cartellini e falli", g5 + noteHtml, false); }
     }
 
@@ -663,6 +668,25 @@ def _row_market(row: dict):
             "away": round(float(row["mkt_away"]), 5), "source": "fixtures"}
 
 
+def _over25_html(mon: dict) -> str:
+    """Calibrazione dell'Over 2,5 della versione corrente: previsto medio contro reale, con il numero di partite."""
+    o = (mon or {}).get("over25") or {}
+    av = o.get("all_versions") or {}
+    ctx = (f" Per contesto, tutte le versioni registrate: {av['n']} partite, previsto {100 * av['pred']:.1f}%, reale {100 * av['real']:.1f}% "
+           f"({av['diff_pp']:+.1f} pp)." if av.get("n") else "")
+    if not o.get("n"):
+        return ('<p class="mon-note"><b>Calibrazione Over 2,5</b> (versione ' + str(mon.get("version")) + '): ancora nessuna partita giocata con la probabilità registrata.' + ctx + '</p>')
+    se = f" {o['se_pp']:.1f}" if o.get("se_pp") is not None else " n/d"
+    small = " Campione ancora piccolo." if o["n"] < 100 else ""
+    return (f'<div class="mon-grid"><div class="mon-cell"><span class="mon-lbl">Over 2,5 previsto</span><span class="mon-val">{100 * o["pred"]:.1f}%</span>'
+            f'<span class="mon-delta">media delle probabilità emesse</span></div>'
+            f'<div class="mon-cell"><span class="mon-lbl">Over 2,5 reale</span><span class="mon-val">{100 * o["real"]:.1f}%</span>'
+            f'<span class="mon-delta">{o["n"]} partite ({o["since"]} → {o["until"]})</span></div>'
+            f'<div class="mon-cell"><span class="mon-lbl">Scarto (previsto − reale)</span><span class="mon-val">{o["diff_pp"]:+.1f} pp</span>'
+            f'<span class="mon-delta">errore standard{se} pp</span></div></div>'
+            f'<p class="mon-note">Calibrazione dell’Over 2,5 della versione {mon.get("version")} (campionati; senza coppe).{small}{ctx}</p>')
+
+
 def _monitor_html(mon: dict) -> str:
     if mon["status"] != "ok":
         return (f'<section class="monitor"><h2>📈 Monitoraggio</h2>'
@@ -671,7 +695,7 @@ def _monitor_html(mon: dict) -> str:
                 f'{mon["with_result"]} giocate con risultato ({mon["n"]} con with_xg, without_xg e '
                 f'mercato disponibili). Il riquadro con la log-loss mobile (ultime {mon["window"]} partite) '
                 f'compare da {mon["min_n"]} partite in poi; le previsioni delle versioni precedenti non sono '
-                f'incluse.</p></section>')
+                f'incluse.</p>' + _over25_html(mon) + '</section>')
 
     def cell(label, key, delta_key=None):
         delta = (f'<span class="mon-delta">{mon[delta_key]:+.4f} vs mercato</span>' if delta_key
@@ -687,7 +711,7 @@ def _monitor_html(mon: dict) -> str:
             f'{cell("without_xg", "without_xg", "delta_without_xg_vs_market")}'
             f'{cell("Mercato", "market")}</div>'
             f'<p class="mon-note">Il mercato storicamente è più preciso del modello. '
-            f'Versione {mon["version"]}: {mon["tracked"]} previsioni registrate, {mon["with_result"]} giocate con risultato.</p></section>')
+            f'Versione {mon["version"]}: {mon["tracked"]} previsioni registrate, {mon["with_result"]} giocate con risultato.</p>' + _over25_html(mon) + '</section>')
 
 
 def _skipped_html(ld: dict) -> str:
@@ -1309,6 +1333,11 @@ def validate_output(all_data: dict) -> list:
                             bad = True
                     if k in ("yellows", "fouls") and "referee" not in o:
                         bad = True
+                    lv = o.get("level")
+                    if lv is not None and not (0.5 < lv["home"] < 2 and 0.5 < lv["away"] < 2 and abs(lv["pct"]) < 100):
+                        bad = True
+                    if not (isinstance(o.get("base"), list) and len(o["base"]) == 2 and min(o["base"]) > 0):
+                        bad = True
                     if bad:
                         problems.append(f"{tag}: statistiche attese '{k}' non valide")
                 wm = es.get("who_more") or {}
@@ -1351,7 +1380,13 @@ def _referee_status(all_data: dict, today) -> dict:
             bd = by_days.setdefault(str(d), [0, 0])
             bd[0] += 1
             bd[1] += has
-    return {"n": n, "with_referee": k, "by_league": by_league,
+    by_source = {}
+    for lk, ld in all_data.items():
+        if not ld.get("cup"):
+            for fix in ld["fixtures"]:
+                if fix.get("referee"):
+                    by_source[fix.get("referee_source") or "football-data.org"] = by_source.get(fix.get("referee_source") or "football-data.org", 0) + 1
+    return {"n": n, "with_referee": k, "by_league": by_league, "by_source": by_source,
             "by_days_ahead": dict(sorted(by_days.items(), key=lambda x: int(x[0])))}
 
 
@@ -1398,6 +1433,16 @@ def main():
 
     history_path = os.path.join("docs", "history.csv")
     history = monitor.load_history(history_path)
+    # livello stagionale delle statistiche (s5-livello): registro del training + partite giocate dopo (dallo storico)
+    level_cfg = model["stats_v3"].get("level")
+    if level_cfg:
+        extra_lv = levels_mod.extra_from_history(history, df, level_cfg)
+        stat_levels = levels_mod.Levels(level_cfg, extra_lv)
+        log.info("Livello stagionale: registro fino al %s, %d righe (lega, statistica, partita) dallo storico dopo l'ultimo allenamento",
+                 max(level_cfg["asof"].values()), len(extra_lv))
+    else:
+        stat_levels = None
+        log.warning("Livello stagionale: models/stack.json senza registro (stats_v3.level): statistiche senza correzione di livello")
     fx_market = monitor.fixtures_market()
     log.info("Quote di mercato da fixtures.csv: %d partite dei 5 campionati", len(fx_market))
     new_rows = []
@@ -1419,6 +1464,14 @@ def main():
         fixtures = get_fixtures(league_info["code"])
         log.info("  %d partite nei prossimi %d giorni, %d con arbitro già designato", len(fixtures), DAYS_AHEAD,
                  sum(1 for f_ in fixtures if f_.get("referee")))
+        if league_key == "serie_a":                  # arbitri: AIA -> fantacalcio.it -> football-data.org (predictions/referee_sources.py)
+            known = [k.split("|", 1)[1] for k in (model.get("referees") or {}).get("effects", {}) if k.startswith("I1|")]
+            cnt = referee_sources.apply_serie_a(fixtures, today, known_keys=known)
+            log.info("  Arbitri Serie A per fonte: %s", ", ".join(f"{k} {v}" for k, v in cnt.items()))
+        else:
+            for f_ in fixtures:
+                if f_.get("referee"):
+                    f_["referee_source"] = "football-data.org"
         time.sleep(7)
         for rec in get_referees_finished(league_info["code"]):
             rh = state.resolve(rec["home"], rec["home_full"])
@@ -1446,7 +1499,8 @@ def main():
         monitor.attach_fixture_market(league_rows, fx_market)
 
         # statistiche attese (modello validato, models/stack.json["stats_models"]) e contesto
-        stats_list = sp.stats_for_pairs(state, model, pairs, league_key, referees=[fix.get("referee") for fix in fixtures])
+        stats_list = sp.stats_for_pairs(state, model, pairs, league_key, referees=[fix.get("referee") for fix in fixtures],
+                                      levels=stat_levels, dates=[fix["date"] for fix in fixtures])
         monitor.attach_yellows(league_rows, stats_list, preds)
         active = active_teams(g, cur, extra=[t for pair in names for t in pair])
         preds_list = [{**fix, "home_dc": h, "away_dc": a, "new_team": h is None or a is None,

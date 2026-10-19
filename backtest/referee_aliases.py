@@ -143,3 +143,10 @@ NEW_REFEREES_2026 = [
     ("F1", "Azzedine Souifi"),
     ("F1", "Geoffrey Kubler"),
 ]
+
+
+# Cognomi AIA ambigui -> chiave canonica (predictions/referee_sources.py). «Colombo»: Andrea Colombo (Transfermarkt «andrea colombo»,
+# 48 partite di Serie A 2023-2026); «andrea airaghi colombo» e' una vecchia chiave dello stesso nome con 15 partite nel 2021-22.
+AIA_ALIASES = {
+    "I1": {"colombo": "andrea colombo"},
+}
