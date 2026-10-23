@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23 09:25 UTC",
+  "generated_at": "2026-10-23 14:13 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-10-19 10:35 UTC",
@@ -59,11 +59,11 @@
         4
       ],
       "2": [
-        23,
+        22,
         5
       ],
       "3": [
-        1,
+        2,
         0
       ],
       "4": [
@@ -117,9 +117,9 @@
     "version": "v6-eloodds",
     "window": 200,
     "min_n": 30,
-    "tracked": 194,
+    "tracked": 195,
     "with_result": 67,
-    "tracked_all_versions": 275,
+    "tracked_all_versions": 276,
     "n": 49,
     "status": "ok",
     "since": "2026-10-16",
@@ -265,7 +265,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.45856,
+            "draw": 0.26989,
+            "away": 0.27155,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -618,7 +623,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.30535,
+            "draw": 0.30535,
+            "away": 0.38931,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -971,7 +981,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.65234,
+            "draw": 0.19499,
+            "away": 0.15268,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -1324,7 +1339,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.34152,
+            "draw": 0.28087,
+            "away": 0.37761,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -1677,7 +1697,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.70125,
+            "draw": 0.19491,
+            "away": 0.10383,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -2030,7 +2055,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.72778,
+            "draw": 0.16321,
+            "away": 0.10902,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -2383,7 +2413,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.5364,
+            "draw": 0.22044,
+            "away": 0.24316,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -2736,7 +2771,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.45861,
+            "draw": 0.27702,
+            "away": 0.26437,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -3089,7 +3129,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.11603,
+            "draw": 0.20507,
+            "away": 0.6789,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -3442,7 +3487,12 @@
               "share": 0.4343
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.17737,
+            "draw": 0.24179,
+            "away": 0.58084,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -11226,7 +11276,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.31153,
+            "draw": 0.27047,
+            "away": 0.418,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -11578,7 +11633,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.19012,
+            "draw": 0.21261,
+            "away": 0.59727,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -11930,7 +11990,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.6801,
+            "draw": 0.20203,
+            "away": 0.11787,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -12282,7 +12347,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.30659,
+            "draw": 0.26718,
+            "away": 0.42623,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -12634,7 +12704,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.57116,
+            "draw": 0.22063,
+            "away": 0.2082,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -12986,7 +13061,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.45718,
+            "draw": 0.24507,
+            "away": 0.29775,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -13338,7 +13418,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.32677,
+            "draw": 0.2573,
+            "away": 0.41592,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -13690,7 +13775,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.4545,
+            "draw": 0.25405,
+            "away": 0.29145,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -14042,7 +14132,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.19616,
+            "draw": 0.23268,
+            "away": 0.57117,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -14394,7 +14489,12 @@
               "share": 0.4446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.3069,
+            "draw": 0.28966,
+            "away": 0.40344,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -18656,7 +18756,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.72803,
+            "draw": 0.15115,
+            "away": 0.12082,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -18686,7 +18791,7 @@
               },
               "base": [
                 19.3435,
-                11.5904
+                11.5903
               ],
               "level": {
                 "home": 1.0397,
@@ -19008,7 +19113,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.55947,
+            "draw": 0.226,
+            "away": 0.21452,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -19360,7 +19470,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.46767,
+            "draw": 0.24579,
+            "away": 0.28655,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -19712,7 +19827,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.68886,
+            "draw": 0.16899,
+            "away": 0.14215,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -20064,7 +20184,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.42804,
+            "draw": 0.25219,
+            "away": 0.31977,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -20416,7 +20541,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.5211,
+            "draw": 0.23408,
+            "away": 0.24483,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -20768,7 +20898,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.66902,
+            "draw": 0.17765,
+            "away": 0.15333,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -21120,7 +21255,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.34579,
+            "draw": 0.23855,
+            "away": 0.41566,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -21472,7 +21612,12 @@
               "share": 0.446
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.13253,
+            "draw": 0.15135,
+            "away": 0.71612,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -25384,42 +25529,47 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.59832,
+            "draw": 0.24344,
+            "away": 0.15824,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 17.2,
-              "away": 9.2,
+              "away": 9.3,
               "total": 26.4,
               "int_home": [
                 11,
                 23,
-                0.7887
+                0.7888
               ],
               "int_away": [
                 5,
                 13,
-                0.7961
+                0.7952
               ],
               "int_total": [
                 19,
                 33,
-                0.814
+                0.8136
               ],
               "over": {
-                "23.5": 0.6841,
-                "25.5": 0.5472,
-                "27.5": 0.4087
+                "23.5": 0.6859,
+                "25.5": 0.5493,
+                "27.5": 0.4107
               },
               "base": [
                 16.661,
                 8.9617
               ],
               "level": {
-                "home": 1.0312,
-                "away": 1.0307,
-                "pct": 3.1
+                "home": 1.0309,
+                "away": 1.0345,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -25429,32 +25579,32 @@
               "int_home": [
                 3,
                 9,
-                0.8269
+                0.8262
               ],
               "int_away": [
                 1,
                 4,
-                0.7815
+                0.7819
               ],
               "int_total": [
                 5,
                 12,
-                0.8143
+                0.8136
               ],
               "over": {
-                "7.5": 0.6333,
-                "8.5": 0.5024,
-                "9.5": 0.3764,
-                "10.5": 0.2663
+                "7.5": 0.6362,
+                "8.5": 0.5055,
+                "9.5": 0.3794,
+                "10.5": 0.2689
               },
               "base": [
                 5.6736,
                 2.6468
               ],
               "level": {
-                "home": 1.0557,
-                "away": 1.0293,
-                "pct": 4.7
+                "home": 1.0607,
+                "away": 1.0277,
+                "pct": 5.0
               }
             },
             "corners": {
@@ -25464,12 +25614,12 @@
               "int_home": [
                 3,
                 9,
-                0.7732
+                0.7734
               ],
               "int_away": [
                 1,
                 6,
-                0.8447
+                0.8436
               ],
               "int_total": [
                 6,
@@ -25477,19 +25627,19 @@
                 0.8238
               ],
               "over": {
-                "8.5": 0.6345,
-                "9.5": 0.5145,
-                "10.5": 0.3977,
-                "11.5": 0.293
+                "8.5": 0.6354,
+                "9.5": 0.5155,
+                "10.5": 0.3987,
+                "11.5": 0.2939
               },
               "base": [
                 5.9278,
                 3.7631
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0174,
-                "pct": 1.5
+                "home": 1.0124,
+                "away": 1.0215,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -25499,32 +25649,32 @@
               "int_home": [
                 0,
                 3,
-                0.8609
+                0.8612
               ],
               "int_away": [
                 0,
                 3,
-                0.8376
+                0.8427
               ],
               "int_total": [
                 2,
                 6,
-                0.7942
+                0.7953
               ],
               "over": {
-                "2.5": 0.7735,
-                "3.5": 0.5825,
-                "4.5": 0.3875,
-                "5.5": 0.2283
+                "2.5": 0.7695,
+                "3.5": 0.577,
+                "4.5": 0.3819,
+                "5.5": 0.2238
               },
               "base": [
                 1.9682,
                 2.169
               ],
               "level": {
-                "home": 1.0053,
-                "away": 0.9706,
-                "pct": -1.3
+                "home": 1.0044,
+                "away": 0.9582,
+                "pct": -2.0
               },
               "referee": {
                 "name": null,
@@ -25536,14 +25686,14 @@
               "away": 11.7,
               "total": 24.5,
               "int_home": [
-                8,
-                16,
-                0.7785
+                9,
+                17,
+                0.7777
               ],
               "int_away": [
                 7,
                 15,
-                0.7995
+                0.8012
               ],
               "int_total": [
                 18,
@@ -25551,17 +25701,17 @@
                 0.8158
               ],
               "over": {
-                "22.5": 0.6323,
-                "24.5": 0.482,
-                "26.5": 0.3385
+                "22.5": 0.6317,
+                "24.5": 0.4813,
+                "26.5": 0.3378
               },
               "base": [
                 12.8231,
                 11.9407
               ],
               "level": {
-                "home": 0.9952,
-                "away": 0.9812,
+                "home": 0.9982,
+                "away": 0.9772,
                 "pct": -1.2
               },
               "referee": {
@@ -25571,25 +25721,25 @@
             },
             "who_more": {
               "shots": [
-                0.8569,
-                0.031,
-                0.1121
+                0.8554,
+                0.0312,
+                0.1134
               ],
               "corners": [
-                0.6552,
-                0.0906,
-                0.2542
+                0.653,
+                0.0908,
+                0.2562
               ],
               "corner_handicap": {
-                "home_m15": 0.5555,
-                "home_p15": 0.8222,
-                "away_m15": 0.1778,
-                "away_p15": 0.4445
+                "home_m15": 0.5532,
+                "home_p15": 0.8206,
+                "away_m15": 0.1794,
+                "away_p15": 0.4468
               },
               "yellows": [
-                0.3573,
-                0.2258,
-                0.4169
+                0.3619,
+                0.2269,
+                0.4112
               ]
             }
           },
@@ -25736,13 +25886,18 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.54451,
+            "draw": 0.24694,
+            "away": 0.20855,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 17.6,
-              "away": 10.8,
+              "away": 10.9,
               "total": 28.5,
               "int_home": [
                 11,
@@ -25752,26 +25907,26 @@
               "int_away": [
                 6,
                 15,
-                0.796
+                0.795
               ],
               "int_total": [
                 21,
                 35,
-                0.794
+                0.7936
               ],
               "over": {
-                "23.5": 0.7935,
-                "25.5": 0.6785,
-                "27.5": 0.5473
+                "23.5": 0.7951,
+                "25.5": 0.6805,
+                "27.5": 0.5496
               },
               "base": [
                 17.0893,
                 10.5137
               ],
               "level": {
-                "home": 1.0311,
-                "away": 1.0305,
-                "pct": 3.1
+                "home": 1.0308,
+                "away": 1.0344,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -25781,32 +25936,32 @@
               "int_home": [
                 3,
                 9,
-                0.8234
+                0.8225
               ],
               "int_away": [
                 1,
                 5,
-                0.8137
+                0.8142
               ],
               "int_total": [
                 6,
                 13,
-                0.789
+                0.7886
               ],
               "over": {
-                "7.5": 0.7326,
-                "8.5": 0.6149,
-                "9.5": 0.4907,
-                "10.5": 0.3719
+                "7.5": 0.7349,
+                "8.5": 0.6176,
+                "9.5": 0.4936,
+                "10.5": 0.3746
               },
               "base": [
                 5.7917,
                 3.411
               ],
               "level": {
-                "home": 1.0555,
-                "away": 1.0291,
-                "pct": 4.6
+                "home": 1.0604,
+                "away": 1.0276,
+                "pct": 4.8
               }
             },
             "corners": {
@@ -25816,32 +25971,32 @@
               "int_home": [
                 3,
                 9,
-                0.7713
+                0.7715
               ],
               "int_away": [
                 1,
                 6,
-                0.8376
+                0.8363
               ],
               "int_total": [
                 6,
                 14,
-                0.8219
+                0.8218
               ],
               "over": {
-                "8.5": 0.6521,
-                "9.5": 0.5336,
-                "10.5": 0.4167,
-                "11.5": 0.3104
+                "8.5": 0.653,
+                "9.5": 0.5346,
+                "10.5": 0.4177,
+                "11.5": 0.3113
               },
               "base": [
                 5.997,
                 3.8539
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0124,
+                "away": 1.0215,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -25856,27 +26011,27 @@
               "int_away": [
                 1,
                 4,
-                0.8072
+                0.8089
               ],
               "int_total": [
                 2,
                 7,
-                0.8309
+                0.8331
               ],
               "over": {
-                "2.5": 0.8683,
-                "3.5": 0.7235,
-                "4.5": 0.5456,
-                "5.5": 0.3705
+                "2.5": 0.8652,
+                "3.5": 0.7185,
+                "4.5": 0.5395,
+                "5.5": 0.3645
               },
               "base": [
                 2.3756,
                 2.6108
               ],
               "level": {
-                "home": 1.0053,
-                "away": 0.9709,
-                "pct": -1.3
+                "home": 1.0044,
+                "away": 0.9585,
+                "pct": -2.0
               },
               "referee": {
                 "name": null,
@@ -25885,36 +26040,36 @@
             },
             "fouls": {
               "home": 14.5,
-              "away": 12.9,
+              "away": 12.8,
               "total": 27.3,
               "int_home": [
                 10,
                 19,
-                0.7983
+                0.7979
               ],
               "int_away": [
                 9,
                 17,
-                0.7774
+                0.7776
               ],
               "int_total": [
                 21,
                 34,
-                0.7864
+                0.7865
               ],
               "over": {
-                "22.5": 0.8024,
-                "24.5": 0.6826,
-                "26.5": 0.5443
+                "22.5": 0.8019,
+                "24.5": 0.682,
+                "26.5": 0.5436
               },
               "base": [
                 14.5433,
                 13.1136
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9815,
-                "pct": -1.1
+                "home": 0.9982,
+                "away": 0.9775,
+                "pct": -1.2
               },
               "referee": {
                 "name": null,
@@ -25923,25 +26078,25 @@
             },
             "who_more": {
               "shots": [
-                0.8025,
-                0.0366,
-                0.161
+                0.8005,
+                0.0368,
+                0.1627
               ],
               "corners": [
-                0.6516,
-                0.0901,
-                0.2583
+                0.6494,
+                0.0903,
+                0.2603
               ],
               "corner_handicap": {
-                "home_m15": 0.5528,
-                "home_p15": 0.8181,
-                "away_m15": 0.1819,
-                "away_p15": 0.4472
+                "home_m15": 0.5505,
+                "home_p15": 0.8164,
+                "away_m15": 0.1836,
+                "away_p15": 0.4495
               },
               "yellows": [
-                0.3667,
-                0.2036,
-                0.4297
+                0.3719,
+                0.2046,
+                0.4236
               ]
             }
           },
@@ -26088,7 +26243,12 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.40106,
+            "draw": 0.25762,
+            "away": 0.34132,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -26099,31 +26259,31 @@
               "int_home": [
                 8,
                 19,
-                0.8061
+                0.8062
               ],
               "int_away": [
                 7,
                 17,
-                0.7906
+                0.7892
               ],
               "int_total": [
                 20,
                 34,
-                0.8071
+                0.8068
               ],
               "over": {
-                "23.5": 0.7229,
-                "25.5": 0.5919,
-                "27.5": 0.4541
+                "23.5": 0.7253,
+                "25.5": 0.5948,
+                "27.5": 0.457
               },
               "base": [
                 13.9699,
                 12.2975
               ],
               "level": {
-                "home": 1.0311,
-                "away": 1.0305,
-                "pct": 3.1
+                "home": 1.0308,
+                "away": 1.0344,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -26131,34 +26291,34 @@
               "away": 4.4,
               "total": 9.7,
               "int_home": [
-                2,
-                7,
-                0.7826
+                3,
+                8,
+                0.7812
               ],
               "int_away": [
                 2,
                 7,
-                0.8356
+                0.8357
               ],
               "int_total": [
                 6,
                 13,
-                0.7882
+                0.7878
               ],
               "over": {
-                "7.5": 0.7368,
-                "8.5": 0.6198,
-                "9.5": 0.496,
-                "10.5": 0.3769
+                "7.5": 0.7385,
+                "8.5": 0.6219,
+                "9.5": 0.4982,
+                "10.5": 0.3791
               },
               "base": [
                 5.0217,
                 4.2421
               ],
               "level": {
-                "home": 1.0555,
-                "away": 1.0291,
-                "pct": 4.3
+                "home": 1.0604,
+                "away": 1.0276,
+                "pct": 4.5
               }
             },
             "corners": {
@@ -26168,67 +26328,67 @@
               "int_home": [
                 2,
                 8,
-                0.8149
+                0.8153
               ],
               "int_away": [
                 2,
                 7,
-                0.7716
+                0.7704
               ],
               "int_total": [
                 6,
                 14,
-                0.8163
+                0.8159
               ],
               "over": {
-                "8.5": 0.6815,
-                "9.5": 0.5663,
-                "10.5": 0.4497,
-                "11.5": 0.3412
+                "8.5": 0.6828,
+                "9.5": 0.5678,
+                "10.5": 0.4513,
+                "11.5": 0.3426
               },
               "base": [
                 5.2961,
                 4.8306
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0124,
+                "away": 1.0215,
+                "pct": 1.7
               }
             },
             "yellows": {
               "home": 2.5,
-              "away": 2.7,
-              "total": 5.2,
+              "away": 2.6,
+              "total": 5.1,
               "int_home": [
                 1,
                 4,
-                0.8095
+                0.8096
               ],
               "int_away": [
                 1,
                 4,
-                0.7988
+                0.8012
               ],
               "int_total": [
                 2,
                 7,
-                0.8141
+                0.817
               ],
               "over": {
-                "2.5": 0.8871,
-                "3.5": 0.7551,
-                "4.5": 0.5854,
-                "5.5": 0.4106
+                "2.5": 0.8843,
+                "3.5": 0.7504,
+                "4.5": 0.5792,
+                "5.5": 0.4043
               },
               "base": [
                 2.4781,
                 2.7405
               ],
               "level": {
-                "home": 1.0053,
-                "away": 0.9709,
-                "pct": -1.3
+                "home": 1.0044,
+                "away": 0.9585,
+                "pct": -2.0
               },
               "referee": {
                 "name": null,
@@ -26236,37 +26396,37 @@
               }
             },
             "fouls": {
-              "home": 12.9,
+              "home": 13.0,
               "away": 14.2,
               "total": 27.1,
               "int_home": [
                 9,
                 17,
-                0.7771
+                0.7768
               ],
               "int_away": [
                 9,
                 18,
-                0.8005
+                0.8022
               ],
               "int_total": [
                 20,
                 33,
-                0.7892
+                0.7895
               ],
               "over": {
-                "22.5": 0.7927,
-                "24.5": 0.6701,
-                "26.5": 0.5302
+                "22.5": 0.7917,
+                "24.5": 0.6689,
+                "26.5": 0.5289
               },
               "base": [
                 12.9808,
                 14.4946
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9815,
-                "pct": -1.2
+                "home": 0.9982,
+                "away": 0.9775,
+                "pct": -1.3
               },
               "referee": {
                 "name": null,
@@ -26275,25 +26435,25 @@
             },
             "who_more": {
               "shots": [
-                0.5664,
+                0.5635,
                 0.0552,
-                0.3784
+                0.3813
               ],
               "corners": [
-                0.4899,
-                0.0993,
-                0.4108
+                0.4874,
+                0.0992,
+                0.4133
               ],
               "corner_handicap": {
-                "home_m15": 0.3916,
-                "home_p15": 0.6829,
-                "away_m15": 0.3171,
-                "away_p15": 0.6084
+                "home_m15": 0.3893,
+                "home_p15": 0.6805,
+                "away_m15": 0.3195,
+                "away_p15": 0.6107
               },
               "yellows": [
-                0.3656,
-                0.1985,
-                0.436
+                0.3709,
+                0.1994,
+                0.4297
               ]
             }
           },
@@ -26440,42 +26600,47 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.29565,
+            "draw": 0.25981,
+            "away": 0.44454,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 12.6,
               "away": 13.5,
-              "total": 26.1,
+              "total": 26.2,
               "int_home": [
                 7,
                 17,
-                0.8085
+                0.8086
               ],
               "int_away": [
                 8,
                 19,
-                0.8077
+                0.807
               ],
               "int_total": [
                 19,
                 32,
-                0.7856
+                0.7849
               ],
               "over": {
-                "23.5": 0.6657,
-                "25.5": 0.5266,
-                "27.5": 0.3883
+                "23.5": 0.6686,
+                "25.5": 0.5298,
+                "27.5": 0.3915
               },
               "base": [
                 12.2459,
                 13.0935
               ],
               "level": {
-                "home": 1.0311,
-                "away": 1.0305,
-                "pct": 3.1
+                "home": 1.0308,
+                "away": 1.0344,
+                "pct": 3.3
               }
             },
             "sot": {
@@ -26485,32 +26650,32 @@
               "int_home": [
                 2,
                 6,
-                0.7781
+                0.7775
               ],
               "int_away": [
                 2,
                 7,
-                0.8336
+                0.8338
               ],
               "int_total": [
                 5,
                 12,
-                0.8201
+                0.8199
               ],
               "over": {
-                "7.5": 0.5965,
-                "8.5": 0.4632,
-                "9.5": 0.3389,
-                "10.5": 0.2338
+                "7.5": 0.598,
+                "8.5": 0.4647,
+                "9.5": 0.3404,
+                "10.5": 0.2351
               },
               "base": [
                 3.7663,
                 4.3153
               ],
               "level": {
-                "home": 1.0555,
-                "away": 1.0291,
-                "pct": 4.1
+                "home": 1.0604,
+                "away": 1.0276,
+                "pct": 4.3
               }
             },
             "corners": {
@@ -26520,32 +26685,32 @@
               "int_home": [
                 2,
                 8,
-                0.8318
+                0.832
               ],
               "int_away": [
                 2,
                 7,
-                0.7826
+                0.7817
               ],
               "int_total": [
                 6,
                 13,
-                0.778
+                0.7777
               ],
               "over": {
-                "8.5": 0.6182,
-                "9.5": 0.4969,
-                "10.5": 0.3805,
-                "11.5": 0.2775
+                "8.5": 0.6196,
+                "9.5": 0.4985,
+                "10.5": 0.382,
+                "11.5": 0.2788
               },
               "base": [
                 4.9172,
                 4.6255
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0124,
+                "away": 1.0215,
+                "pct": 1.7
               }
             },
             "yellows": {
@@ -26555,32 +26720,32 @@
               "int_home": [
                 1,
                 4,
-                0.8154
+                0.8155
               ],
               "int_away": [
                 1,
                 4,
-                0.8137
+                0.8146
               ],
               "int_total": [
                 2,
                 7,
-                0.8427
+                0.8443
               ],
               "over": {
-                "2.5": 0.8491,
-                "3.5": 0.6928,
-                "4.5": 0.5086,
-                "5.5": 0.3349
+                "2.5": 0.8459,
+                "3.5": 0.6877,
+                "4.5": 0.5026,
+                "5.5": 0.3293
               },
               "base": [
                 2.3152,
                 2.4631
               ],
               "level": {
-                "home": 1.0053,
-                "away": 0.9709,
-                "pct": -1.2
+                "home": 1.0044,
+                "away": 0.9585,
+                "pct": -1.9
               },
               "referee": {
                 "name": null,
@@ -26594,30 +26759,30 @@
               "int_home": [
                 8,
                 16,
-                0.7902
+                0.7894
               ],
               "int_away": [
                 8,
                 16,
-                0.797
+                0.7974
               ],
               "int_total": [
                 18,
                 30,
-                0.785
+                0.7851
               ],
               "over": {
-                "22.5": 0.6197,
-                "24.5": 0.4686,
-                "26.5": 0.3261
+                "22.5": 0.6189,
+                "24.5": 0.4677,
+                "26.5": 0.3253
               },
               "base": [
                 12.4218,
                 12.1625
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9815,
+                "home": 0.9982,
+                "away": 0.9775,
                 "pct": -1.2
               },
               "referee": {
@@ -26627,25 +26792,25 @@
             },
             "who_more": {
               "shots": [
-                0.4213,
-                0.0577,
-                0.5211
+                0.4183,
+                0.0575,
+                0.5241
               ],
               "corners": [
-                0.4723,
-                0.1035,
-                0.4242
+                0.4699,
+                0.1034,
+                0.4267
               ],
               "corner_handicap": {
-                "home_m15": 0.371,
-                "home_p15": 0.6741,
-                "away_m15": 0.3259,
-                "away_p15": 0.629
+                "home_m15": 0.3688,
+                "home_p15": 0.6717,
+                "away_m15": 0.3283,
+                "away_p15": 0.6312
               },
               "yellows": [
-                0.3795,
-                0.2088,
-                0.4116
+                0.3845,
+                0.2097,
+                0.4057
               ]
             }
           },
@@ -26792,77 +26957,82 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.77733,
+            "draw": 0.14693,
+            "away": 0.07575,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 19.1,
               "away": 9.4,
-              "total": 28.4,
+              "total": 28.5,
               "int_home": [
                 12,
                 25,
-                0.7902
+                0.7903
               ],
               "int_away": [
                 5,
                 13,
-                0.7926
+                0.7915
               ],
               "int_total": [
                 21,
                 35,
-                0.7942
+                0.7939
               ],
               "over": {
-                "23.5": 0.7927,
-                "25.5": 0.6774,
-                "27.5": 0.5462
+                "23.5": 0.794,
+                "25.5": 0.6791,
+                "27.5": 0.5481
               },
               "base": [
                 18.4953,
                 9.0897
               ],
               "level": {
-                "home": 1.0311,
-                "away": 1.0305,
-                "pct": 3.1
+                "home": 1.0308,
+                "away": 1.0344,
+                "pct": 3.2
               }
             },
             "sot": {
-              "home": 6.5,
+              "home": 6.6,
               "away": 3.1,
               "total": 9.7,
               "int_home": [
                 3,
                 9,
-                0.8052
+                0.8035
               ],
               "int_away": [
                 1,
                 5,
-                0.8464
+                0.8467
               ],
               "int_total": [
                 6,
                 13,
-                0.7883
+                0.7878
               ],
               "over": {
-                "7.5": 0.736,
-                "8.5": 0.6189,
-                "9.5": 0.495,
-                "10.5": 0.376
+                "7.5": 0.7385,
+                "8.5": 0.6218,
+                "9.5": 0.4981,
+                "10.5": 0.379
               },
               "base": [
                 6.1926,
                 3.0333
               ],
               "level": {
-                "home": 1.0555,
-                "away": 1.0291,
-                "pct": 4.7
+                "home": 1.0604,
+                "away": 1.0276,
+                "pct": 5.0
               }
             },
             "corners": {
@@ -26872,31 +27042,31 @@
               "int_home": [
                 3,
                 10,
-                0.7949
+                0.7953
               ],
               "int_away": [
                 1,
                 5,
-                0.7932
+                0.7919
               ],
               "int_total": [
                 6,
                 14,
-                0.8122
+                0.812
               ],
               "over": {
-                "8.5": 0.6963,
-                "9.5": 0.583,
-                "10.5": 0.467,
-                "11.5": 0.3576
+                "8.5": 0.6968,
+                "9.5": 0.5836,
+                "10.5": 0.4676,
+                "11.5": 0.3582
               },
               "base": [
                 6.8779,
                 3.4013
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
+                "home": 1.0124,
+                "away": 1.0215,
                 "pct": 1.5
               }
             },
@@ -26907,32 +27077,32 @@
               "int_home": [
                 0,
                 2,
-                0.7992
+                0.7995
               ],
               "int_away": [
                 0,
                 2,
-                0.7321
+                0.7382
               ],
               "int_total": [
                 1,
                 5,
-                0.8429
+                0.8449
               ],
               "over": {
-                "2.5": 0.6468,
-                "3.5": 0.4268,
-                "4.5": 0.2435,
-                "5.5": 0.1213
+                "2.5": 0.642,
+                "3.5": 0.4214,
+                "4.5": 0.2391,
+                "5.5": 0.1184
               },
               "base": [
                 1.5301,
                 1.8482
               ],
               "level": {
-                "home": 1.0053,
-                "away": 0.9709,
-                "pct": -1.4
+                "home": 1.0044,
+                "away": 0.9585,
+                "pct": -2.1
               },
               "referee": {
                 "name": null,
@@ -26941,35 +27111,35 @@
             },
             "fouls": {
               "home": 10.4,
-              "away": 10.6,
+              "away": 10.5,
               "total": 21.0,
               "int_home": [
                 7,
                 14,
-                0.7755
+                0.7752
               ],
               "int_away": [
-                6,
+                7,
                 14,
-                0.8257
+                0.7745
               ],
               "int_total": [
                 15,
                 26,
-                0.7861
+                0.7863
               ],
               "over": {
-                "22.5": 0.3621,
-                "24.5": 0.2275,
-                "26.5": 0.1294
+                "22.5": 0.3612,
+                "24.5": 0.2268,
+                "26.5": 0.1289
               },
               "base": [
                 10.4647,
                 10.7584
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9815,
+                "home": 0.9982,
+                "away": 0.9775,
                 "pct": -1.2
               },
               "referee": {
@@ -26979,25 +27149,25 @@
             },
             "who_more": {
               "shots": [
-                0.8964,
-                0.0235,
-                0.0801
+                0.8952,
+                0.0237,
+                0.0811
               ],
               "corners": [
-                0.7601,
-                0.0724,
-                0.1675
+                0.7583,
+                0.0727,
+                0.169
               ],
               "corner_handicap": {
-                "home_m15": 0.6742,
-                "home_p15": 0.8893,
-                "away_m15": 0.1107,
-                "away_p15": 0.3258
+                "home_m15": 0.6722,
+                "home_p15": 0.8881,
+                "away_m15": 0.1119,
+                "away_p15": 0.3278
               },
               "yellows": [
-                0.313,
-                0.2514,
-                0.4356
+                0.3169,
+                0.2529,
+                0.4302
               ]
             }
           },
@@ -27144,7 +27314,12 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.6199,
+            "draw": 0.2373,
+            "away": 0.1428,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -27155,31 +27330,31 @@
               "int_home": [
                 10,
                 22,
-                0.7959
+                0.796
               ],
               "int_away": [
                 4,
                 11,
-                0.7989
+                0.7982
               ],
               "int_total": [
                 18,
                 31,
-                0.803
+                0.8029
               ],
               "over": {
-                "23.5": 0.5497,
-                "25.5": 0.4047,
-                "27.5": 0.2755
+                "23.5": 0.5514,
+                "25.5": 0.4064,
+                "27.5": 0.277
               },
               "base": [
                 16.3051,
                 7.3799
               ],
               "level": {
-                "home": 1.031,
-                "away": 1.0304,
-                "pct": 3.1
+                "home": 1.0307,
+                "away": 1.0343,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -27189,67 +27364,67 @@
               "int_home": [
                 3,
                 8,
-                0.7812
+                0.781
               ],
               "int_away": [
                 1,
                 4,
-                0.7997
+                0.7999
               ],
               "int_total": [
                 4,
                 10,
-                0.7763
+                0.7751
               ],
               "over": {
-                "7.5": 0.5092,
-                "8.5": 0.375,
-                "9.5": 0.2591,
-                "10.5": 0.1682
+                "7.5": 0.5121,
+                "8.5": 0.3778,
+                "9.5": 0.2615,
+                "10.5": 0.1701
               },
               "base": [
                 5.0415,
                 2.3709
               ],
               "level": {
-                "home": 1.0552,
-                "away": 1.029,
-                "pct": 4.7
+                "home": 1.0601,
+                "away": 1.0274,
+                "pct": 5.0
               }
             },
             "corners": {
               "home": 6.2,
               "away": 3.4,
-              "total": 9.6,
+              "total": 9.7,
               "int_home": [
                 2,
                 9,
-                0.8248
+                0.8253
               ],
               "int_away": [
                 1,
                 5,
-                0.7988
+                0.7975
               ],
               "int_total": [
                 6,
                 13,
-                0.7789
+                0.7788
               ],
               "over": {
-                "8.5": 0.6131,
-                "9.5": 0.4915,
-                "10.5": 0.3753,
-                "11.5": 0.2728
+                "8.5": 0.6138,
+                "9.5": 0.4923,
+                "10.5": 0.376,
+                "11.5": 0.2735
               },
               "base": [
                 6.1628,
                 3.3408
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0123,
+                "away": 1.0214,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -27264,27 +27439,27 @@
               "int_away": [
                 1,
                 4,
-                0.7863
+                0.7896
               ],
               "int_total": [
                 2,
                 7,
-                0.8186
+                0.8215
               ],
               "over": {
-                "2.5": 0.8827,
-                "3.5": 0.7475,
-                "4.5": 0.5756,
-                "5.5": 0.4006
+                "2.5": 0.8797,
+                "3.5": 0.7424,
+                "4.5": 0.5692,
+                "5.5": 0.394
               },
               "base": [
                 2.2768,
                 2.8893
               ],
               "level": {
-                "home": 1.0052,
-                "away": 0.9711,
-                "pct": -1.4
+                "home": 1.0043,
+                "away": 0.9589,
+                "pct": -2.1
               },
               "referee": {
                 "name": null,
@@ -27298,31 +27473,31 @@
               "int_home": [
                 9,
                 18,
-                0.8015
+                0.8002
               ],
               "int_away": [
                 9,
                 18,
-                0.8065
+                0.8079
               ],
               "int_total": [
                 21,
                 35,
-                0.8111
+                0.8113
               ],
               "over": {
-                "22.5": 0.8402,
-                "24.5": 0.7332,
-                "26.5": 0.6028
+                "22.5": 0.8396,
+                "24.5": 0.7324,
+                "26.5": 0.6019
               },
               "base": [
                 14.2596,
                 14.2695
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9817,
-                "pct": -1.1
+                "home": 0.9982,
+                "away": 0.9778,
+                "pct": -1.2
               },
               "referee": {
                 "name": null,
@@ -27331,25 +27506,25 @@
             },
             "who_more": {
               "shots": [
-                0.9078,
-                0.0237,
-                0.0685
+                0.9068,
+                0.0239,
+                0.0693
               ],
               "corners": [
-                0.717,
-                0.0832,
-                0.1997
+                0.7151,
+                0.0835,
+                0.2014
               ],
               "corner_handicap": {
-                "home_m15": 0.621,
-                "home_p15": 0.867,
-                "away_m15": 0.133,
-                "away_p15": 0.379
+                "home_m15": 0.6189,
+                "home_p15": 0.8657,
+                "away_m15": 0.1343,
+                "away_p15": 0.3811
               },
               "yellows": [
-                0.3034,
-                0.1944,
-                0.5022
+                0.3084,
+                0.1959,
+                0.4957
               ]
             }
           },
@@ -27496,77 +27671,82 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.32306,
+            "draw": 0.2743,
+            "away": 0.40264,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 12.8,
-              "away": 13.2,
+              "away": 13.3,
               "total": 26.1,
               "int_home": [
                 7,
                 17,
-                0.8028
+                0.8029
               ],
               "int_away": [
                 7,
                 18,
-                0.8154
+                0.8139
               ],
               "int_total": [
                 19,
                 32,
-                0.7865
+                0.7859
               ],
               "over": {
-                "23.5": 0.6613,
-                "25.5": 0.5217,
-                "27.5": 0.3836
+                "23.5": 0.6642,
+                "25.5": 0.5249,
+                "27.5": 0.3867
               },
               "base": [
                 12.4294,
                 12.8459
               ],
               "level": {
-                "home": 1.031,
-                "away": 1.0304,
-                "pct": 3.1
+                "home": 1.0307,
+                "away": 1.0343,
+                "pct": 3.2
               }
             },
             "sot": {
               "home": 4.9,
-              "away": 4.6,
+              "away": 4.5,
               "total": 9.5,
               "int_home": [
                 2,
                 7,
-                0.8117
+                0.8102
               ],
               "int_away": [
                 2,
                 7,
-                0.8298
+                0.8301
               ],
               "int_total": [
                 6,
                 13,
-                0.7914
+                0.7912
               ],
               "over": {
-                "7.5": 0.717,
-                "8.5": 0.5965,
-                "9.5": 0.4713,
-                "10.5": 0.3533
+                "7.5": 0.7186,
+                "8.5": 0.5984,
+                "9.5": 0.4733,
+                "10.5": 0.3551
               },
               "base": [
                 4.6545,
                 4.4272
               ],
               "level": {
-                "home": 1.0552,
-                "away": 1.029,
-                "pct": 4.2
+                "home": 1.0601,
+                "away": 1.0274,
+                "pct": 4.4
               }
             },
             "corners": {
@@ -27576,38 +27756,38 @@
               "int_home": [
                 2,
                 7,
-                0.7756
+                0.776
               ],
               "int_away": [
                 1,
                 6,
-                0.7978
+                0.7961
               ],
               "int_total": [
                 5,
                 12,
-                0.7885
+                0.7879
               ],
               "over": {
-                "8.5": 0.5609,
-                "9.5": 0.4372,
-                "10.5": 0.3237,
-                "11.5": 0.2277
+                "8.5": 0.5623,
+                "9.5": 0.4386,
+                "10.5": 0.325,
+                "11.5": 0.2289
               },
               "base": [
                 4.7772,
                 4.284
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0123,
+                "away": 1.0214,
+                "pct": 1.7
               }
             },
             "yellows": {
-              "home": 2.4,
+              "home": 2.3,
               "away": 2.3,
-              "total": 4.7,
+              "total": 4.6,
               "int_home": [
                 1,
                 4,
@@ -27616,27 +27796,27 @@
               "int_away": [
                 1,
                 4,
-                0.8159
+                0.8163
               ],
               "int_total": [
                 2,
                 6,
-                0.7566
+                0.7594
               ],
               "over": {
-                "2.5": 0.8424,
-                "3.5": 0.6823,
-                "4.5": 0.4963,
-                "5.5": 0.3233
+                "2.5": 0.8392,
+                "3.5": 0.6773,
+                "4.5": 0.4905,
+                "5.5": 0.318
               },
               "base": [
                 2.3384,
                 2.37
               ],
               "level": {
-                "home": 1.0052,
-                "away": 0.9711,
-                "pct": -1.2
+                "home": 1.0043,
+                "away": 0.9589,
+                "pct": -1.9
               },
               "referee": {
                 "name": null,
@@ -27644,36 +27824,36 @@
               }
             },
             "fouls": {
-              "home": 13.1,
-              "away": 11.8,
+              "home": 13.2,
+              "away": 11.7,
               "total": 24.9,
               "int_home": [
                 8,
                 17,
-                0.8205
+                0.8193
               ],
               "int_away": [
                 7,
                 15,
-                0.798
+                0.7998
               ],
               "int_total": [
                 18,
                 31,
-                0.8123
+                0.8124
               ],
               "over": {
-                "22.5": 0.66,
-                "24.5": 0.5122,
-                "26.5": 0.367
+                "22.5": 0.6594,
+                "24.5": 0.5116,
+                "26.5": 0.3664
               },
               "base": [
                 13.1865,
                 11.9742
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9817,
+                "home": 0.9982,
+                "away": 0.9778,
                 "pct": -1.1
               },
               "referee": {
@@ -27683,25 +27863,25 @@
             },
             "who_more": {
               "shots": [
-                0.446,
-                0.0581,
-                0.4959
+                0.4431,
+                0.058,
+                0.4989
               ],
               "corners": [
-                0.4924,
-                0.1066,
-                0.401
+                0.49,
+                0.1065,
+                0.4034
               ],
               "corner_handicap": {
-                "home_m15": 0.3868,
-                "home_p15": 0.6985,
-                "away_m15": 0.3015,
-                "away_p15": 0.6132
+                "home_m15": 0.3846,
+                "home_p15": 0.6962,
+                "away_m15": 0.3038,
+                "away_p15": 0.6154
               },
               "yellows": [
-                0.4006,
-                0.2106,
-                0.3888
+                0.4055,
+                0.2113,
+                0.3831
               ]
             }
           },
@@ -27848,7 +28028,12 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.5889,
+            "draw": 0.22201,
+            "away": 0.18909,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -27859,66 +28044,66 @@
               "int_home": [
                 10,
                 22,
-                0.8029
+                0.803
               ],
               "int_away": [
                 7,
                 18,
-                0.8142
+                0.8127
               ],
               "int_total": [
                 22,
                 37,
-                0.8109
+                0.8105
               ],
               "over": {
-                "23.5": 0.8473,
-                "25.5": 0.7495,
-                "27.5": 0.6299
+                "23.5": 0.8489,
+                "25.5": 0.7517,
+                "27.5": 0.6326
               },
               "base": [
                 15.9827,
                 12.8842
               ],
               "level": {
-                "home": 1.031,
-                "away": 1.0304,
-                "pct": 3.1
+                "home": 1.0307,
+                "away": 1.0343,
+                "pct": 3.2
               }
             },
             "sot": {
-              "home": 6.0,
+              "home": 6.1,
               "away": 4.4,
               "total": 10.4,
               "int_home": [
                 3,
                 9,
-                0.8255
+                0.8247
               ],
               "int_away": [
                 2,
                 7,
-                0.8354
+                0.8355
               ],
               "int_total": [
                 6,
                 14,
-                0.8221
+                0.8214
               ],
               "over": {
-                "7.5": 0.8024,
-                "8.5": 0.7007,
-                "9.5": 0.5853,
-                "10.5": 0.4665
+                "7.5": 0.8041,
+                "8.5": 0.7028,
+                "9.5": 0.5877,
+                "10.5": 0.4691
               },
               "base": [
                 5.7264,
                 4.2511
               ],
               "level": {
-                "home": 1.0552,
-                "away": 1.029,
-                "pct": 4.4
+                "home": 1.0601,
+                "away": 1.0274,
+                "pct": 4.6
               }
             },
             "corners": {
@@ -27928,32 +28113,32 @@
               "int_home": [
                 2,
                 9,
-                0.8185
+                0.819
               ],
               "int_away": [
                 1,
                 6,
-                0.8305
+                0.8291
               ],
               "int_total": [
                 6,
                 14,
-                0.8144
+                0.8142
               ],
               "over": {
-                "8.5": 0.6885,
-                "9.5": 0.5742,
-                "10.5": 0.4578,
-                "11.5": 0.3488
+                "8.5": 0.6893,
+                "9.5": 0.5751,
+                "10.5": 0.4588,
+                "11.5": 0.3498
               },
               "base": [
                 6.2596,
                 3.9397
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0123,
+                "away": 1.0214,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -27963,32 +28148,32 @@
               "int_home": [
                 1,
                 4,
-                0.8129
+                0.813
               ],
               "int_away": [
                 1,
                 4,
-                0.8128
+                0.8138
               ],
               "int_total": [
                 2,
                 7,
-                0.8367
+                0.8385
               ],
               "over": {
-                "2.5": 0.8598,
-                "3.5": 0.7098,
-                "4.5": 0.5289,
-                "5.5": 0.3542
+                "2.5": 0.8568,
+                "3.5": 0.7049,
+                "4.5": 0.523,
+                "5.5": 0.3485
               },
               "base": [
                 2.4002,
                 2.4889
               ],
               "level": {
-                "home": 1.0052,
-                "away": 0.9711,
-                "pct": -1.2
+                "home": 1.0043,
+                "away": 0.9589,
+                "pct": -1.9
               },
               "referee": {
                 "name": null,
@@ -27997,35 +28182,35 @@
             },
             "fouls": {
               "home": 13.9,
-              "away": 11.9,
+              "away": 11.8,
               "total": 25.7,
               "int_home": [
                 9,
                 18,
-                0.8097
+                0.8089
               ],
               "int_away": [
                 8,
                 16,
-                0.7976
+                0.7978
               ],
               "int_total": [
                 19,
                 32,
-                0.8039
+                0.804
               ],
               "over": {
-                "22.5": 0.714,
-                "24.5": 0.5736,
-                "26.5": 0.4276
+                "22.5": 0.7135,
+                "24.5": 0.5731,
+                "26.5": 0.4271
               },
               "base": [
                 13.9323,
                 12.0727
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9817,
+                "home": 0.9982,
+                "away": 0.9778,
                 "pct": -1.1
               },
               "referee": {
@@ -28035,25 +28220,25 @@
             },
             "who_more": {
               "shots": [
-                0.6365,
-                0.0489,
-                0.3146
+                0.6337,
+                0.049,
+                0.3173
               ],
               "corners": [
-                0.6642,
-                0.0867,
-                0.2491
+                0.662,
+                0.0869,
+                0.2511
               ],
               "corner_handicap": {
-                "home_m15": 0.5684,
-                "home_p15": 0.8242,
-                "away_m15": 0.1758,
-                "away_p15": 0.4316
+                "home_m15": 0.5661,
+                "home_p15": 0.8225,
+                "away_m15": 0.1775,
+                "away_p15": 0.4339
               },
               "yellows": [
-                0.3923,
-                0.2063,
-                0.4013
+                0.3974,
+                0.2071,
+                0.3955
               ]
             }
           },
@@ -28200,42 +28385,47 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.60375,
+            "draw": 0.16928,
+            "away": 0.22697,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 18.9,
-              "away": 10.5,
-              "total": 29.4,
+              "away": 10.6,
+              "total": 29.5,
               "int_home": [
                 12,
                 25,
-                0.7926
+                0.7927
               ],
               "int_away": [
                 6,
                 15,
-                0.8023
+                0.8016
               ],
               "int_total": [
                 22,
                 37,
-                0.8128
+                0.8127
               ],
               "over": {
-                "23.5": 0.8355,
-                "25.5": 0.7335,
-                "27.5": 0.6108
+                "23.5": 0.8368,
+                "25.5": 0.7353,
+                "27.5": 0.6129
               },
               "base": [
                 18.346,
                 10.2182
               ],
               "level": {
-                "home": 1.031,
-                "away": 1.0304,
-                "pct": 3.1
+                "home": 1.0307,
+                "away": 1.0343,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -28245,32 +28435,32 @@
               "int_home": [
                 4,
                 10,
-                0.7836
+                0.7828
               ],
               "int_away": [
                 2,
                 7,
-                0.8365
+                0.8366
               ],
               "int_total": [
                 7,
                 15,
-                0.8003
+                0.7996
               ],
               "over": {
-                "7.5": 0.8678,
-                "8.5": 0.7875,
-                "9.5": 0.6886,
-                "10.5": 0.5782
+                "7.5": 0.8693,
+                "8.5": 0.7895,
+                "9.5": 0.6911,
+                "10.5": 0.5811
               },
               "base": [
                 6.7044,
                 4.1975
               ],
               "level": {
-                "home": 1.0552,
-                "away": 1.029,
-                "pct": 4.5
+                "home": 1.0601,
+                "away": 1.0274,
+                "pct": 4.8
               }
             },
             "corners": {
@@ -28280,32 +28470,32 @@
               "int_home": [
                 2,
                 9,
-                0.8254
+                0.8259
               ],
               "int_away": [
                 1,
                 6,
-                0.8154
+                0.8138
               ],
               "int_total": [
                 6,
                 14,
-                0.8127
+                0.8124
               ],
               "over": {
-                "8.5": 0.6946,
-                "9.5": 0.5811,
-                "10.5": 0.465,
-                "11.5": 0.3556
+                "8.5": 0.6955,
+                "9.5": 0.5821,
+                "10.5": 0.466,
+                "11.5": 0.3566
               },
               "base": [
                 6.1532,
                 4.1063
               ],
               "level": {
-                "home": 1.0136,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0123,
+                "away": 1.0214,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -28315,32 +28505,32 @@
               "int_home": [
                 0,
                 3,
-                0.8626
+                0.8629
               ],
               "int_away": [
                 0,
                 3,
-                0.8309
+                0.8361
               ],
               "int_total": [
                 2,
                 6,
-                0.7932
+                0.7943
               ],
               "over": {
-                "2.5": 0.7771,
-                "3.5": 0.5874,
-                "4.5": 0.3926,
-                "5.5": 0.2324
+                "2.5": 0.7731,
+                "3.5": 0.5819,
+                "4.5": 0.387,
+                "5.5": 0.2279
               },
               "base": [
                 1.9589,
                 2.2042
               ],
               "level": {
-                "home": 1.0052,
-                "away": 0.9711,
-                "pct": -1.3
+                "home": 1.0043,
+                "away": 0.9589,
+                "pct": -2.0
               },
               "referee": {
                 "name": null,
@@ -28349,35 +28539,35 @@
             },
             "fouls": {
               "home": 11.6,
-              "away": 9.9,
+              "away": 9.8,
               "total": 21.4,
               "int_home": [
                 7,
                 15,
-                0.8051
+                0.804
               ],
               "int_away": [
                 6,
                 13,
-                0.7913
+                0.7924
               ],
               "int_total": [
                 15,
                 27,
-                0.8166
+                0.8167
               ],
               "over": {
-                "22.5": 0.3982,
-                "24.5": 0.2577,
-                "26.5": 0.1512
+                "22.5": 0.3978,
+                "24.5": 0.2573,
+                "26.5": 0.1509
               },
               "base": [
                 11.6073,
                 10.0621
               ],
               "level": {
-                "home": 0.9953,
-                "away": 0.9817,
+                "home": 0.9982,
+                "away": 0.9778,
                 "pct": -1.1
               },
               "referee": {
@@ -28387,25 +28577,25 @@
             },
             "who_more": {
               "shots": [
-                0.8527,
-                0.0295,
-                0.1178
+                0.8511,
+                0.0297,
+                0.1192
               ],
               "corners": [
-                0.639,
-                0.0892,
-                0.2718
+                0.6367,
+                0.0894,
+                0.2739
               ],
               "corner_handicap": {
-                "home_m15": 0.5422,
-                "home_p15": 0.8049,
-                "away_m15": 0.1951,
-                "away_p15": 0.4578
+                "home_m15": 0.5398,
+                "home_p15": 0.8031,
+                "away_m15": 0.1969,
+                "away_p15": 0.4602
               },
               "yellows": [
-                0.3488,
-                0.2246,
-                0.4266
+                0.3533,
+                0.2258,
+                0.4209
               ]
             }
           },
@@ -28552,42 +28742,47 @@
               "share": 0.4353
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.4983,
+            "draw": 0.27414,
+            "away": 0.22757,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 14.1,
               "away": 9.5,
-              "total": 23.6,
+              "total": 23.7,
               "int_home": [
                 8,
                 19,
-                0.8139
+                0.814
               ],
               "int_away": [
                 5,
                 13,
-                0.7881
+                0.7869
               ],
               "int_total": [
                 17,
                 30,
-                0.8127
+                0.8124
               ],
               "over": {
-                "23.5": 0.4918,
-                "25.5": 0.3486,
-                "27.5": 0.2277
+                "23.5": 0.4941,
+                "25.5": 0.3508,
+                "27.5": 0.2295
               },
               "base": [
                 13.6963,
                 9.2285
               ],
               "level": {
-                "home": 1.0309,
-                "away": 1.0303,
-                "pct": 3.1
+                "home": 1.0306,
+                "away": 1.0341,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -28597,32 +28792,32 @@
               "int_home": [
                 2,
                 7,
-                0.8198
+                0.8186
               ],
               "int_away": [
                 1,
                 5,
-                0.8133
+                0.8138
               ],
               "int_total": [
                 5,
                 12,
-                0.8213
+                0.8212
               ],
               "over": {
-                "7.5": 0.58,
-                "8.5": 0.4459,
-                "9.5": 0.3228,
-                "10.5": 0.2202
+                "7.5": 0.5821,
+                "8.5": 0.4482,
+                "9.5": 0.3249,
+                "10.5": 0.2219
               },
               "base": [
                 4.5238,
                 3.416
               ],
               "level": {
-                "home": 1.0549,
-                "away": 1.0289,
-                "pct": 4.4
+                "home": 1.0598,
+                "away": 1.0273,
+                "pct": 4.6
               }
             },
             "corners": {
@@ -28632,32 +28827,32 @@
               "int_home": [
                 2,
                 8,
-                0.8165
+                0.8169
               ],
               "int_away": [
                 1,
                 5,
-                0.7634
+                0.7617
               ],
               "int_total": [
                 5,
                 12,
-                0.7932
+                0.7928
               ],
               "over": {
-                "8.5": 0.5477,
-                "9.5": 0.4238,
-                "10.5": 0.3113,
-                "11.5": 0.2172
+                "8.5": 0.5488,
+                "9.5": 0.4249,
+                "10.5": 0.3123,
+                "11.5": 0.218
               },
               "base": [
                 5.2664,
                 3.6904
               ],
               "level": {
-                "home": 1.0135,
-                "away": 1.0173,
-                "pct": 1.5
+                "home": 1.0123,
+                "away": 1.0214,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -28667,32 +28862,32 @@
               "int_home": [
                 1,
                 4,
-                0.8067
+                0.8068
               ],
               "int_away": [
                 1,
                 4,
-                0.8067
+                0.8084
               ],
               "int_total": [
                 2,
                 7,
-                0.8193
+                0.8219
               ],
               "over": {
-                "2.5": 0.882,
-                "3.5": 0.7463,
-                "4.5": 0.5741,
-                "5.5": 0.399
+                "2.5": 0.8792,
+                "3.5": 0.7417,
+                "4.5": 0.5682,
+                "5.5": 0.3931
               },
               "base": [
                 2.5294,
                 2.6181
               ],
               "level": {
-                "home": 1.0052,
-                "away": 0.9713,
-                "pct": -1.2
+                "home": 1.0043,
+                "away": 0.9592,
+                "pct": -1.9
               },
               "referee": {
                 "name": null,
@@ -28706,30 +28901,30 @@
               "int_home": [
                 9,
                 17,
-                0.7768
+                0.7765
               ],
               "int_away": [
                 9,
                 18,
-                0.8136
+                0.8144
               ],
               "int_total": [
                 20,
                 33,
-                0.795
+                0.7951
               ],
               "over": {
-                "22.5": 0.7649,
-                "24.5": 0.6349,
-                "26.5": 0.4917
+                "22.5": 0.764,
+                "24.5": 0.6338,
+                "26.5": 0.4905
               },
               "base": [
                 13.0173,
                 13.8984
               ],
               "level": {
-                "home": 0.9954,
-                "away": 0.982,
+                "home": 0.9983,
+                "away": 0.9781,
                 "pct": -1.2
               },
               "referee": {
@@ -28739,25 +28934,25 @@
             },
             "who_more": {
               "shots": [
-                0.7344,
-                0.0491,
-                0.2165
+                0.7322,
+                0.0492,
+                0.2185
               ],
               "corners": [
-                0.6045,
-                0.1006,
-                0.2949
+                0.6023,
+                0.1007,
+                0.297
               ],
               "corner_handicap": {
-                "home_m15": 0.4972,
-                "home_p15": 0.792,
-                "away_m15": 0.208,
-                "away_p15": 0.5028
+                "home_m15": 0.4949,
+                "home_p15": 0.7902,
+                "away_m15": 0.2098,
+                "away_p15": 0.5051
               },
               "yellows": [
-                0.3959,
-                0.2006,
-                0.4035
+                0.4011,
+                0.2013,
+                0.3976
               ]
             }
           },
@@ -28910,36 +29105,36 @@
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 17.4,
-              "away": 10.0,
+              "away": 10.1,
               "total": 27.4,
               "int_home": [
                 11,
                 23,
-                0.7856
+                0.7857
               ],
               "int_away": [
                 5,
                 14,
-                0.8194
+                0.8182
               ],
               "int_total": [
                 20,
                 34,
-                0.8041
+                0.8038
               ],
               "over": {
-                "23.5": 0.7415,
-                "25.5": 0.6141,
-                "27.5": 0.4772
+                "23.5": 0.7432,
+                "25.5": 0.6161,
+                "27.5": 0.4794
               },
               "base": [
                 16.883,
                 9.7279
               ],
               "level": {
-                "home": 1.0304,
-                "away": 1.0299,
-                "pct": 3.0
+                "home": 1.0301,
+                "away": 1.0336,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -28949,32 +29144,32 @@
               "int_home": [
                 3,
                 9,
-                0.802
+                0.8003
               ],
               "int_away": [
                 1,
                 5,
-                0.8352
+                0.8356
               ],
               "int_total": [
                 6,
                 13,
-                0.7832
+                0.7824
               ],
               "over": {
-                "7.5": 0.7557,
-                "8.5": 0.6426,
-                "9.5": 0.5205,
-                "10.5": 0.401
+                "7.5": 0.758,
+                "8.5": 0.6454,
+                "9.5": 0.5235,
+                "10.5": 0.404
               },
               "base": [
                 6.2561,
                 3.1838
               ],
               "level": {
-                "home": 1.0539,
-                "away": 1.0283,
-                "pct": 4.5
+                "home": 1.0586,
+                "away": 1.0268,
+                "pct": 4.8
               }
             },
             "corners": {
@@ -28984,31 +29179,31 @@
               "int_home": [
                 2,
                 9,
-                0.8183
+                0.8188
               ],
               "int_away": [
                 1,
                 5,
-                0.7734
+                0.7719
               ],
               "int_total": [
                 6,
                 14,
-                0.8218
+                0.8217
               ],
               "over": {
-                "8.5": 0.653,
-                "9.5": 0.5346,
-                "10.5": 0.4177,
-                "11.5": 0.3113
+                "8.5": 0.6537,
+                "9.5": 0.5354,
+                "10.5": 0.4185,
+                "11.5": 0.312
               },
               "base": [
                 6.2632,
                 3.599
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.0171,
+                "home": 1.0122,
+                "away": 1.0212,
                 "pct": 1.5
               }
             },
@@ -29019,32 +29214,32 @@
               "int_home": [
                 0,
                 3,
-                0.8561
+                0.8564
               ],
               "int_away": [
                 1,
                 4,
-                0.8094
+                0.8109
               ],
               "int_total": [
                 2,
                 6,
-                0.7696
+                0.772
               ],
               "over": {
-                "2.5": 0.8258,
-                "3.5": 0.657,
-                "4.5": 0.4674,
-                "5.5": 0.2969
+                "2.5": 0.8222,
+                "3.5": 0.6516,
+                "4.5": 0.4613,
+                "5.5": 0.2914
               },
               "base": [
                 1.9957,
                 2.5632
               ],
               "level": {
-                "home": 1.005,
-                "away": 0.9724,
-                "pct": -1.3
+                "home": 1.0042,
+                "away": 0.9606,
+                "pct": -2.0
               },
               "referee": {
                 "name": null,
@@ -29053,36 +29248,36 @@
             },
             "fouls": {
               "home": 11.5,
-              "away": 13.1,
+              "away": 13.0,
               "total": 24.5,
               "int_home": [
                 7,
                 15,
-                0.8074
+                0.8064
               ],
               "int_away": [
-                8,
+                9,
                 17,
-                0.8226
+                0.7764
               ],
               "int_total": [
                 18,
                 31,
-                0.8155
+                0.8156
               ],
               "over": {
-                "22.5": 0.6361,
-                "24.5": 0.4861,
-                "26.5": 0.3423
+                "22.5": 0.6349,
+                "24.5": 0.4848,
+                "26.5": 0.3411
               },
               "base": [
                 11.5288,
                 13.2784
               ],
               "level": {
-                "home": 0.9957,
-                "away": 0.983,
-                "pct": -1.1
+                "home": 0.9984,
+                "away": 0.9793,
+                "pct": -1.2
               },
               "referee": {
                 "name": null,
@@ -29091,25 +29286,25 @@
             },
             "who_more": {
               "shots": [
-                0.8308,
-                0.0339,
-                0.1353
+                0.8291,
+                0.0341,
+                0.1368
               ],
               "corners": [
-                0.6985,
-                0.0841,
-                0.2174
+                0.6965,
+                0.0843,
+                0.2192
               ],
               "corner_handicap": {
-                "home_m15": 0.6031,
-                "home_p15": 0.8515,
-                "away_m15": 0.1485,
-                "away_p15": 0.3969
+                "home_m15": 0.6009,
+                "home_p15": 0.85,
+                "away_m15": 0.15,
+                "away_p15": 0.3991
               },
               "yellows": [
-                0.2968,
-                0.2083,
-                0.495
+                0.3013,
+                0.2097,
+                0.489
               ]
             }
           },
@@ -29262,36 +29457,36 @@
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 13.0,
-              "away": 15.5,
+              "away": 15.6,
               "total": 28.5,
               "int_home": [
                 8,
                 18,
-                0.7981
+                0.7982
               ],
               "int_away": [
                 9,
                 21,
-                0.802
+                0.8008
               ],
               "int_total": [
                 21,
                 35,
-                0.7936
+                0.793
               ],
               "over": {
-                "23.5": 0.7952,
-                "25.5": 0.6806,
-                "27.5": 0.5498
+                "23.5": 0.7976,
+                "25.5": 0.6837,
+                "27.5": 0.5532
               },
               "base": [
                 12.5954,
                 15.067
               ],
               "level": {
-                "home": 1.0303,
-                "away": 1.0298,
-                "pct": 3.0
+                "home": 1.03,
+                "away": 1.0335,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -29301,67 +29496,67 @@
               "int_home": [
                 2,
                 7,
-                0.8299
+                0.8291
               ],
               "int_away": [
                 3,
                 8,
-                0.7808
+                0.7809
               ],
               "int_total": [
                 6,
                 13,
-                0.7818
+                0.7815
               ],
               "over": {
-                "7.5": 0.7598,
-                "8.5": 0.6476,
-                "9.5": 0.526,
-                "10.5": 0.4064
+                "7.5": 0.761,
+                "8.5": 0.649,
+                "9.5": 0.5275,
+                "10.5": 0.4079
               },
               "base": [
                 4.3205,
                 5.2133
               ],
               "level": {
-                "home": 1.0536,
-                "away": 1.0282,
-                "pct": 4.0
+                "home": 1.0584,
+                "away": 1.0266,
+                "pct": 4.1
               }
             },
             "corners": {
               "home": 4.4,
               "away": 5.5,
-              "total": 9.8,
+              "total": 9.9,
               "int_home": [
                 1,
                 6,
-                0.7964
+                0.797
               ],
               "int_away": [
                 2,
                 8,
-                0.8089
+                0.8076
               ],
               "int_total": [
                 6,
                 14,
-                0.8237
+                0.8236
               ],
               "over": {
-                "8.5": 0.6359,
-                "9.5": 0.516,
-                "10.5": 0.3991,
-                "11.5": 0.2943
+                "8.5": 0.6377,
+                "9.5": 0.5179,
+                "10.5": 0.4011,
+                "11.5": 0.2961
               },
               "base": [
                 4.3144,
                 5.3853
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.0171,
-                "pct": 1.5
+                "home": 1.0122,
+                "away": 1.0211,
+                "pct": 1.7
               }
             },
             "yellows": {
@@ -29371,32 +29566,32 @@
               "int_home": [
                 0,
                 3,
-                0.8474
+                0.8477
               ],
               "int_away": [
                 1,
                 4,
-                0.8161
+                0.8164
               ],
               "int_total": [
                 2,
                 6,
-                0.7806
+                0.7824
               ],
               "over": {
-                "2.5": 0.8077,
-                "3.5": 0.6303,
-                "4.5": 0.4379,
-                "5.5": 0.2708
+                "2.5": 0.8041,
+                "3.5": 0.6251,
+                "4.5": 0.4323,
+                "5.5": 0.2659
               },
               "base": [
                 2.0432,
                 2.3549
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9726,
-                "pct": -1.2
+                "home": 1.0041,
+                "away": 0.961,
+                "pct": -1.9
               },
               "referee": {
                 "name": null,
@@ -29410,30 +29605,30 @@
               "int_home": [
                 7,
                 15,
-                0.8164
+                0.816
               ],
               "int_away": [
                 8,
                 16,
-                0.7978
+                0.7979
               ],
               "int_total": [
                 17,
                 29,
-                0.799
+                0.7991
               ],
               "over": {
-                "22.5": 0.5136,
-                "24.5": 0.3618,
-                "26.5": 0.2327
+                "22.5": 0.5125,
+                "24.5": 0.3607,
+                "26.5": 0.2319
               },
               "base": [
                 11.119,
                 12.016
               ],
               "level": {
-                "home": 0.9957,
-                "away": 0.9833,
+                "home": 0.9984,
+                "away": 0.9797,
                 "pct": -1.1
               },
               "referee": {
@@ -29443,25 +29638,25 @@
             },
             "who_more": {
               "shots": [
-                0.3404,
-                0.0518,
-                0.6079
+                0.3376,
+                0.0516,
+                0.6108
               ],
               "corners": [
-                0.3414,
-                0.099,
-                0.5596
+                0.3391,
+                0.0988,
+                0.5622
               ],
               "corner_handicap": {
-                "home_m15": 0.2523,
-                "home_p15": 0.5428,
-                "away_m15": 0.4572,
-                "away_p15": 0.7477
+                "home_m15": 0.2503,
+                "home_p15": 0.5401,
+                "away_m15": 0.4599,
+                "away_p15": 0.7497
               },
               "yellows": [
-                0.3403,
-                0.2171,
-                0.4427
+                0.3447,
+                0.2182,
+                0.4371
               ]
             }
           },
@@ -29614,36 +29809,36 @@
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 17.2,
-              "away": 10.3,
-              "total": 27.5,
+              "away": 10.4,
+              "total": 27.6,
               "int_home": [
                 11,
                 23,
-                0.7883
+                0.7884
               ],
               "int_away": [
                 5,
                 14,
-                0.8082
+                0.8067
               ],
               "int_total": [
                 20,
                 34,
-                0.8027
+                0.8023
               ],
               "over": {
-                "23.5": 0.748,
-                "25.5": 0.6219,
-                "27.5": 0.4855
+                "23.5": 0.7497,
+                "25.5": 0.624,
+                "27.5": 0.4878
               },
               "base": [
                 16.7066,
                 10.0256
               ],
               "level": {
-                "home": 1.0303,
-                "away": 1.0298,
-                "pct": 3.0
+                "home": 1.03,
+                "away": 1.0335,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -29653,32 +29848,32 @@
               "int_home": [
                 3,
                 8,
-                0.7749
+                0.774
               ],
               "int_away": [
                 1,
                 5,
-                0.8048
+                0.8053
               ],
               "int_total": [
                 5,
                 12,
-                0.7959
+                0.7949
               ],
               "over": {
-                "7.5": 0.6906,
-                "8.5": 0.566,
-                "9.5": 0.4398,
-                "10.5": 0.3236
+                "7.5": 0.6928,
+                "8.5": 0.5685,
+                "9.5": 0.4423,
+                "10.5": 0.326
               },
               "base": [
                 5.3339,
                 3.4974
               ],
               "level": {
-                "home": 1.0536,
-                "away": 1.0282,
-                "pct": 4.4
+                "home": 1.0584,
+                "away": 1.0266,
+                "pct": 4.6
               }
             },
             "corners": {
@@ -29688,67 +29883,67 @@
               "int_home": [
                 2,
                 8,
-                0.7961
+                0.7966
               ],
               "int_away": [
                 1,
                 6,
-                0.8322
+                0.8309
               ],
               "int_total": [
                 6,
                 13,
-                0.7784
+                0.7782
               ],
               "over": {
-                "8.5": 0.6159,
-                "9.5": 0.4945,
-                "10.5": 0.3781,
-                "11.5": 0.2754
+                "8.5": 0.6169,
+                "9.5": 0.4956,
+                "10.5": 0.3792,
+                "11.5": 0.2763
               },
               "base": [
                 5.6074,
                 3.9203
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.0171,
-                "pct": 1.5
+                "home": 1.0122,
+                "away": 1.0211,
+                "pct": 1.6
               }
             },
             "yellows": {
-              "home": 2.6,
+              "home": 2.5,
               "away": 2.3,
-              "total": 4.9,
+              "total": 4.8,
               "int_home": [
                 1,
                 4,
-                0.8063
+                0.8064
               ],
               "int_away": [
                 1,
                 4,
-                0.8155
+                0.816
               ],
               "int_total": [
                 2,
                 7,
-                0.8341
+                0.8359
               ],
               "over": {
-                "2.5": 0.8638,
-                "3.5": 0.7162,
-                "4.5": 0.5367,
-                "5.5": 0.3618
+                "2.5": 0.8611,
+                "3.5": 0.7118,
+                "4.5": 0.5313,
+                "5.5": 0.3565
               },
               "base": [
                 2.5376,
                 2.3881
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9726,
-                "pct": -1.1
+                "home": 1.0041,
+                "away": 0.961,
+                "pct": -1.7
               },
               "referee": {
                 "name": null,
@@ -29762,12 +29957,12 @@
               "int_home": [
                 9,
                 18,
-                0.8113
+                0.8106
               ],
               "int_away": [
                 8,
                 16,
-                0.7961
+                0.7966
               ],
               "int_total": [
                 19,
@@ -29775,17 +29970,17 @@
                 0.8031
               ],
               "over": {
-                "22.5": 0.7195,
-                "24.5": 0.5801,
-                "26.5": 0.4342
+                "22.5": 0.7191,
+                "24.5": 0.5796,
+                "26.5": 0.4337
               },
               "base": [
                 13.8457,
                 12.2287
               ],
               "level": {
-                "home": 0.9957,
-                "away": 0.9833,
+                "home": 0.9984,
+                "away": 0.9797,
                 "pct": -1.0
               },
               "referee": {
@@ -29795,25 +29990,25 @@
             },
             "who_more": {
               "shots": [
-                0.8119,
-                0.0362,
-                0.1519
+                0.8101,
+                0.0364,
+                0.1535
               ],
               "corners": [
-                0.6112,
-                0.0962,
-                0.2926
+                0.609,
+                0.0963,
+                0.2947
               ],
               "corner_handicap": {
-                "home_m15": 0.5083,
-                "home_p15": 0.7909,
-                "away_m15": 0.2091,
-                "away_p15": 0.4917
+                "home_m15": 0.5061,
+                "home_p15": 0.7891,
+                "away_m15": 0.2109,
+                "away_p15": 0.4939
               },
               "yellows": [
-                0.4375,
-                0.2044,
-                0.3581
+                0.4423,
+                0.2048,
+                0.3529
               ]
             }
           },
@@ -29966,36 +30161,36 @@
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 19.2,
-              "away": 9.6,
-              "total": 28.8,
+              "away": 9.7,
+              "total": 28.9,
               "int_home": [
                 12,
                 25,
-                0.7879
+                0.788
               ],
               "int_away": [
                 5,
                 13,
-                0.7838
+                0.7825
               ],
               "int_total": [
                 21,
                 35,
-                0.7891
+                0.7887
               ],
               "over": {
-                "23.5": 0.8101,
-                "25.5": 0.6998,
-                "27.5": 0.5716
+                "23.5": 0.8114,
+                "25.5": 0.7015,
+                "27.5": 0.5735
               },
               "base": [
                 18.632,
                 9.3512
               ],
               "level": {
-                "home": 1.0303,
-                "away": 1.0298,
-                "pct": 3.0
+                "home": 1.03,
+                "away": 1.0335,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -30005,32 +30200,32 @@
               "int_home": [
                 4,
                 10,
-                0.783
+                0.7822
               ],
               "int_away": [
                 1,
                 5,
-                0.8432
+                0.8435
               ],
               "int_total": [
                 6,
                 14,
-                0.8261
+                0.8254
               ],
               "over": {
-                "7.5": 0.7905,
-                "8.5": 0.6855,
-                "9.5": 0.5681,
-                "10.5": 0.4489
+                "7.5": 0.7927,
+                "8.5": 0.6884,
+                "9.5": 0.5713,
+                "10.5": 0.4521
               },
               "base": [
                 6.7384,
                 3.0814
               ],
               "level": {
-                "home": 1.0536,
-                "away": 1.0282,
-                "pct": 4.6
+                "home": 1.0584,
+                "away": 1.0266,
+                "pct": 4.8
               }
             },
             "corners": {
@@ -30040,31 +30235,31 @@
               "int_home": [
                 2,
                 9,
-                0.8175
+                0.818
               ],
               "int_away": [
                 1,
                 5,
-                0.7633
+                0.7617
               ],
               "int_total": [
                 6,
                 14,
-                0.82
+                0.8198
               ],
               "over": {
-                "8.5": 0.6643,
-                "9.5": 0.5471,
-                "10.5": 0.4302,
-                "11.5": 0.3229
+                "8.5": 0.665,
+                "9.5": 0.5479,
+                "10.5": 0.431,
+                "11.5": 0.3237
               },
               "base": [
                 6.2757,
                 3.6921
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.0171,
+                "home": 1.0122,
+                "away": 1.0211,
                 "pct": 1.5
               }
             },
@@ -30075,32 +30270,32 @@
               "int_home": [
                 0,
                 2,
-                0.7884
+                0.7887
               ],
               "int_away": [
                 0,
                 3,
-                0.85
+                0.8545
               ],
               "int_total": [
                 1,
                 5,
-                0.8143
+                0.8171
               ],
               "over": {
-                "2.5": 0.7003,
-                "3.5": 0.4888,
-                "4.5": 0.2974,
-                "5.5": 0.1588
+                "2.5": 0.6958,
+                "3.5": 0.4833,
+                "4.5": 0.2925,
+                "5.5": 0.1553
               },
               "base": [
                 1.5727,
                 2.0964
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9726,
-                "pct": -1.4
+                "home": 1.0041,
+                "away": 0.961,
+                "pct": -2.1
               },
               "referee": {
                 "name": null,
@@ -30114,31 +30309,31 @@
               "int_home": [
                 6,
                 13,
-                0.7885
+                0.7876
               ],
               "int_away": [
                 7,
                 15,
-                0.8059
+                0.8072
               ],
               "int_total": [
                 15,
                 27,
-                0.8157
+                0.8159
               ],
               "over": {
-                "22.5": 0.4031,
-                "24.5": 0.2618,
-                "26.5": 0.1543
+                "22.5": 0.4019,
+                "24.5": 0.2608,
+                "26.5": 0.1535
               },
               "base": [
                 10.0074,
                 11.7244
               ],
               "level": {
-                "home": 0.9957,
-                "away": 0.9833,
-                "pct": -1.1
+                "home": 0.9984,
+                "away": 0.9797,
+                "pct": -1.2
               },
               "referee": {
                 "name": null,
@@ -30147,25 +30342,25 @@
             },
             "who_more": {
               "shots": [
-                0.8906,
-                0.0242,
-                0.0851
+                0.8894,
+                0.0244,
+                0.0862
               ],
               "corners": [
-                0.6901,
-                0.0847,
-                0.2252
+                0.6881,
+                0.0849,
+                0.227
               ],
               "corner_handicap": {
-                "home_m15": 0.5947,
-                "home_p15": 0.8448,
-                "away_m15": 0.1552,
-                "away_p15": 0.4053
+                "home_m15": 0.5925,
+                "home_p15": 0.8433,
+                "away_m15": 0.1567,
+                "away_p15": 0.4075
               },
               "yellows": [
-                0.2799,
-                0.2349,
-                0.4852
+                0.2837,
+                0.2365,
+                0.4797
               ]
             }
           },
@@ -30323,31 +30518,31 @@
               "int_home": [
                 13,
                 27,
-                0.7936
+                0.7937
               ],
               "int_away": [
                 4,
                 11,
-                0.7934
+                0.7924
               ],
               "int_total": [
                 21,
                 35,
-                0.7927
+                0.7924
               ],
               "over": {
-                "23.5": 0.7986,
-                "25.5": 0.685,
-                "27.5": 0.5547
+                "23.5": 0.7997,
+                "25.5": 0.6863,
+                "27.5": 0.5562
               },
               "base": [
                 20.1604,
                 7.5715
               ],
               "level": {
-                "home": 1.0303,
-                "away": 1.0298,
-                "pct": 3.0
+                "home": 1.03,
+                "away": 1.0335,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -30357,32 +30552,32 @@
               "int_home": [
                 4,
                 11,
-                0.8117
+                0.8101
               ],
               "int_away": [
                 1,
                 5,
-                0.8487
+                0.849
               ],
               "int_total": [
                 7,
                 15,
-                0.8066
+                0.8061
               ],
               "over": {
-                "7.5": 0.8501,
-                "8.5": 0.7632,
-                "9.5": 0.6588,
-                "10.5": 0.5451
+                "7.5": 0.8521,
+                "8.5": 0.7658,
+                "9.5": 0.6621,
+                "10.5": 0.5487
               },
               "base": [
                 7.6034,
                 3.0
               ],
               "level": {
-                "home": 1.0536,
-                "away": 1.0282,
-                "pct": 4.6
+                "home": 1.0584,
+                "away": 1.0266,
+                "pct": 4.9
               }
             },
             "corners": {
@@ -30392,12 +30587,12 @@
               "int_home": [
                 3,
                 11,
-                0.8194
+                0.8198
               ],
               "int_away": [
                 1,
                 5,
-                0.8109
+                0.8099
               ],
               "int_total": [
                 7,
@@ -30405,19 +30600,19 @@
                 0.7985
               ],
               "over": {
-                "8.5": 0.7366,
-                "9.5": 0.6297,
-                "10.5": 0.5163,
-                "11.5": 0.4055
+                "8.5": 0.7369,
+                "9.5": 0.6301,
+                "10.5": 0.5167,
+                "11.5": 0.4059
               },
               "base": [
                 7.5121,
                 3.1973
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.0171,
-                "pct": 1.4
+                "home": 1.0122,
+                "away": 1.0211,
+                "pct": 1.5
               }
             },
             "yellows": {
@@ -30427,32 +30622,32 @@
               "int_home": [
                 0,
                 2,
-                0.8057
+                0.806
               ],
               "int_away": [
-                1,
-                4,
-                0.8167
+                0,
+                3,
+                0.8207
               ],
               "int_total": [
-                2,
-                6,
-                0.8015
+                1,
+                5,
+                0.8045
               ],
               "over": {
-                "2.5": 0.7196,
-                "3.5": 0.5124,
-                "4.5": 0.3191,
-                "5.5": 0.1748
+                "2.5": 0.715,
+                "3.5": 0.5066,
+                "4.5": 0.3137,
+                "5.5": 0.1708
               },
               "base": [
                 1.505,
                 2.2823
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9726,
-                "pct": -1.5
+                "home": 1.0041,
+                "away": 0.961,
+                "pct": -2.2
               },
               "referee": {
                 "name": null,
@@ -30466,31 +30661,31 @@
               "int_home": [
                 6,
                 13,
-                0.7834
+                0.7824
               ],
               "int_away": [
                 8,
                 16,
-                0.7839
+                0.7853
               ],
               "int_total": [
                 16,
                 28,
-                0.8009
+                0.8012
               ],
               "over": {
-                "22.5": 0.4995,
-                "24.5": 0.3484,
-                "26.5": 0.2217
+                "22.5": 0.498,
+                "24.5": 0.347,
+                "26.5": 0.2205
               },
               "base": [
                 10.1501,
                 12.8141
               ],
               "level": {
-                "home": 0.9957,
-                "away": 0.9833,
-                "pct": -1.1
+                "home": 0.9984,
+                "away": 0.9797,
+                "pct": -1.2
               },
               "referee": {
                 "name": null,
@@ -30499,25 +30694,25 @@
             },
             "who_more": {
               "shots": [
-                0.9586,
-                0.0115,
-                0.0299
+                0.9581,
+                0.0116,
+                0.0303
               ],
               "corners": [
-                0.8139,
-                0.0605,
-                0.1256
+                0.8124,
+                0.0608,
+                0.1268
               ],
               "corner_handicap": {
-                "home_m15": 0.739,
-                "home_p15": 0.9199,
-                "away_m15": 0.0801,
-                "away_p15": 0.261
+                "home_m15": 0.7373,
+                "home_p15": 0.9189,
+                "away_m15": 0.0811,
+                "away_p15": 0.2627
               },
               "yellows": [
-                0.2367,
-                0.2217,
-                0.5416
+                0.2403,
+                0.2237,
+                0.536
               ]
             }
           },
@@ -30675,31 +30870,31 @@
               "int_home": [
                 6,
                 15,
-                0.8078
+                0.8079
               ],
               "int_away": [
                 6,
                 15,
-                0.7825
+                0.781
               ],
               "int_total": [
                 16,
                 28,
-                0.7955
+                0.7951
               ],
               "over": {
-                "23.5": 0.3883,
-                "25.5": 0.2557,
-                "27.5": 0.1543
+                "23.5": 0.3911,
+                "25.5": 0.2581,
+                "27.5": 0.1561
               },
               "base": [
                 10.6458,
                 10.9618
               ],
               "level": {
-                "home": 1.0302,
-                "away": 1.0297,
-                "pct": 3.0
+                "home": 1.0299,
+                "away": 1.0334,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -30709,32 +30904,32 @@
               "int_home": [
                 1,
                 5,
-                0.8014
+                0.7996
               ],
               "int_away": [
                 1,
                 5,
-                0.8241
+                0.8245
               ],
               "int_total": [
                 4,
                 10,
-                0.8057
+                0.8054
               ],
               "over": {
-                "7.5": 0.4055,
-                "8.5": 0.2787,
-                "9.5": 0.1788,
-                "10.5": 0.1074
+                "7.5": 0.4071,
+                "8.5": 0.2801,
+                "9.5": 0.1799,
+                "10.5": 0.1082
               },
               "base": [
                 3.4432,
                 3.3099
               ],
               "level": {
-                "home": 1.0533,
-                "away": 1.028,
-                "pct": 4.1
+                "home": 1.0581,
+                "away": 1.0265,
+                "pct": 4.3
               }
             },
             "corners": {
@@ -30744,67 +30939,67 @@
               "int_home": [
                 2,
                 7,
-                0.7867
+                0.7869
               ],
               "int_away": [
                 1,
                 6,
-                0.8257
+                0.8243
               ],
               "int_total": [
                 5,
                 12,
-                0.8069
+                0.8066
               ],
               "over": {
-                "8.5": 0.4955,
-                "9.5": 0.3722,
-                "10.5": 0.2648,
-                "11.5": 0.1786
+                "8.5": 0.4968,
+                "9.5": 0.3735,
+                "10.5": 0.2659,
+                "11.5": 0.1796
               },
               "base": [
                 4.5514,
                 3.995
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.017,
-                "pct": 1.5
+                "home": 1.0121,
+                "away": 1.0211,
+                "pct": 1.6
               }
             },
             "yellows": {
               "home": 2.8,
               "away": 3.0,
-              "total": 5.9,
+              "total": 5.8,
               "int_home": [
                 1,
                 4,
-                0.7843
+                0.7846
               ],
               "int_away": [
                 1,
                 4,
-                0.7617
+                0.766
               ],
               "int_total": [
                 3,
                 8,
-                0.7922
+                0.794
               ],
               "over": {
-                "2.5": 0.931,
-                "3.5": 0.835,
-                "4.5": 0.6948,
-                "5.5": 0.5308
+                "2.5": 0.9291,
+                "3.5": 0.8313,
+                "4.5": 0.6894,
+                "5.5": 0.5245
               },
               "base": [
                 2.8119,
                 3.1156
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9729,
-                "pct": -1.2
+                "home": 1.0041,
+                "away": 0.9613,
+                "pct": -1.8
               },
               "referee": {
                 "name": null,
@@ -30813,36 +31008,36 @@
             },
             "fouls": {
               "home": 15.0,
-              "away": 15.4,
+              "away": 15.3,
               "total": 30.4,
               "int_home": [
                 10,
                 19,
-                0.7904
+                0.7895
               ],
               "int_away": [
                 11,
                 20,
-                0.7822
+                0.7824
               ],
               "int_total": [
                 23,
                 37,
-                0.7919
+                0.7921
               ],
               "over": {
-                "22.5": 0.9114,
-                "24.5": 0.8369,
-                "26.5": 0.7341
+                "22.5": 0.911,
+                "24.5": 0.8362,
+                "26.5": 0.7332
               },
               "base": [
                 15.049,
                 15.6474
               ],
               "level": {
-                "home": 0.9958,
-                "away": 0.9835,
-                "pct": -1.0
+                "home": 0.9984,
+                "away": 0.98,
+                "pct": -1.1
               },
               "referee": {
                 "name": null,
@@ -30851,25 +31046,25 @@
             },
             "who_more": {
               "shots": [
-                0.4465,
-                0.0646,
-                0.4889
+                0.4438,
+                0.0645,
+                0.4917
               ],
               "corners": [
-                0.4991,
+                0.4968,
                 0.1104,
-                0.3905
+                0.3928
               ],
               "corner_handicap": {
-                "home_m15": 0.3893,
-                "home_p15": 0.7115,
-                "away_m15": 0.2885,
-                "away_p15": 0.6107
+                "home_m15": 0.3871,
+                "home_p15": 0.7094,
+                "away_m15": 0.2906,
+                "away_p15": 0.6129
               },
               "yellows": [
-                0.3679,
-                0.185,
-                0.4471
+                0.3732,
+                0.1859,
+                0.4409
               ]
             }
           },
@@ -31023,35 +31218,35 @@
             "shots": {
               "home": 12.1,
               "away": 17.9,
-              "total": 29.9,
+              "total": 30.0,
               "int_home": [
                 7,
-                17,
-                0.8208
+                16,
+                0.7792
               ],
               "int_away": [
                 11,
                 24,
-                0.789
+                0.7881
               ],
               "int_total": [
                 22,
                 37,
-                0.8092
+                0.8086
               ],
               "over": {
-                "23.5": 0.8537,
-                "25.5": 0.7583,
-                "27.5": 0.6405
+                "23.5": 0.8559,
+                "25.5": 0.7613,
+                "27.5": 0.6442
               },
               "base": [
                 11.722,
                 17.3405
               ],
               "level": {
-                "home": 1.0302,
-                "away": 1.0297,
-                "pct": 3.0
+                "home": 1.0299,
+                "away": 1.0334,
+                "pct": 3.2
               }
             },
             "sot": {
@@ -31061,31 +31256,31 @@
               "int_home": [
                 2,
                 6,
-                0.7703
+                0.7694
               ],
               "int_away": [
                 3,
                 9,
-                0.7968
+                0.7974
               ],
               "int_total": [
                 7,
                 15,
-                0.8094
+                0.8093
               ],
               "over": {
-                "7.5": 0.8346,
-                "8.5": 0.7425,
-                "9.5": 0.634,
-                "10.5": 0.5181
+                "7.5": 0.8352,
+                "8.5": 0.7433,
+                "9.5": 0.635,
+                "10.5": 0.5191
               },
               "base": [
                 3.9646,
                 6.5001
               ],
               "level": {
-                "home": 1.0533,
-                "away": 1.028,
+                "home": 1.0581,
+                "away": 1.0265,
                 "pct": 3.8
               }
             },
@@ -31096,67 +31291,67 @@
               "int_home": [
                 1,
                 6,
-                0.8338
+                0.8342
               ],
               "int_away": [
                 3,
                 10,
-                0.7943
+                0.7931
               ],
               "int_total": [
                 7,
                 15,
-                0.7977
+                0.7975
               ],
               "over": {
-                "8.5": 0.7443,
-                "9.5": 0.6388,
-                "10.5": 0.5261,
-                "11.5": 0.4152
+                "8.5": 0.7463,
+                "9.5": 0.6412,
+                "10.5": 0.5287,
+                "11.5": 0.4178
               },
               "base": [
                 3.9151,
                 6.8681
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.017,
-                "pct": 1.6
+                "home": 1.0121,
+                "away": 1.0211,
+                "pct": 1.8
               }
             },
             "yellows": {
               "home": 2.3,
-              "away": 1.8,
+              "away": 1.7,
               "total": 4.0,
               "int_home": [
                 1,
                 4,
-                0.8164
+                0.8165
               ],
               "int_away": [
                 0,
                 2,
-                0.7396
+                0.7452
               ],
               "int_total": [
                 2,
                 6,
-                0.7963
+                0.797
               ],
               "over": {
-                "2.5": 0.7655,
-                "3.5": 0.5716,
-                "4.5": 0.3765,
-                "5.5": 0.2194
+                "2.5": 0.7622,
+                "3.5": 0.5672,
+                "4.5": 0.3721,
+                "5.5": 0.2158
               },
               "base": [
                 2.2503,
                 1.8155
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9729,
-                "pct": -0.9
+                "home": 1.0041,
+                "away": 0.9613,
+                "pct": -1.5
               },
               "referee": {
                 "name": null,
@@ -31170,12 +31365,12 @@
               "int_home": [
                 9,
                 18,
-                0.8143
+                0.8138
               ],
               "int_away": [
                 6,
                 13,
-                0.7928
+                0.7938
               ],
               "int_total": [
                 17,
@@ -31192,8 +31387,8 @@
                 9.9872
               ],
               "level": {
-                "home": 0.9958,
-                "away": 0.9835,
+                "home": 0.9984,
+                "away": 0.98,
                 "pct": -0.9
               },
               "referee": {
@@ -31203,25 +31398,25 @@
             },
             "who_more": {
               "shots": [
-                0.206,
-                0.0404,
-                0.7536
+                0.2038,
+                0.0401,
+                0.7561
               ],
               "corners": [
-                0.2034,
-                0.0765,
-                0.7201
+                0.2016,
+                0.076,
+                0.7224
               ],
               "corner_handicap": {
-                "home_m15": 0.1409,
-                "home_p15": 0.3674,
-                "away_m15": 0.6326,
-                "away_p15": 0.8591
+                "home_m15": 0.1394,
+                "home_p15": 0.3648,
+                "away_m15": 0.6352,
+                "away_p15": 0.8606
               },
               "yellows": [
-                0.4877,
-                0.2217,
-                0.2906
+                0.4917,
+                0.2218,
+                0.2864
               ]
             }
           },
@@ -31375,35 +31570,35 @@
             "shots": {
               "home": 13.6,
               "away": 11.4,
-              "total": 25.0,
+              "total": 25.1,
               "int_home": [
                 8,
                 18,
-                0.7855
+                0.7856
               ],
               "int_away": [
                 6,
                 15,
-                0.7793
+                0.7778
               ],
               "int_total": [
                 18,
                 31,
-                0.7976
+                0.7971
               ],
               "over": {
-                "23.5": 0.5922,
-                "25.5": 0.4477,
-                "27.5": 0.3139
+                "23.5": 0.5948,
+                "25.5": 0.4504,
+                "27.5": 0.3164
               },
               "base": [
                 13.2383,
                 11.0477
               ],
               "level": {
-                "home": 1.0302,
-                "away": 1.0297,
-                "pct": 3.0
+                "home": 1.0299,
+                "away": 1.0334,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -31413,32 +31608,32 @@
               "int_home": [
                 2,
                 7,
-                0.8322
+                0.8316
               ],
               "int_away": [
                 1,
                 5,
-                0.8119
+                0.8124
               ],
               "int_total": [
                 5,
                 11,
-                0.7721
+                0.7718
               ],
               "over": {
-                "7.5": 0.544,
-                "8.5": 0.4093,
-                "9.5": 0.2894,
-                "10.5": 0.1925
+                "7.5": 0.546,
+                "8.5": 0.4113,
+                "9.5": 0.2912,
+                "10.5": 0.194
               },
               "base": [
                 4.2593,
                 3.4316
               ],
               "level": {
-                "home": 1.0533,
-                "away": 1.028,
-                "pct": 4.2
+                "home": 1.0581,
+                "away": 1.0265,
+                "pct": 4.4
               }
             },
             "corners": {
@@ -31448,32 +31643,32 @@
               "int_home": [
                 2,
                 7,
-                0.7709
+                0.7712
               ],
               "int_away": [
                 1,
                 6,
-                0.8045
+                0.8029
               ],
               "int_total": [
                 5,
                 12,
-                0.7877
+                0.7872
               ],
               "over": {
-                "8.5": 0.5629,
-                "9.5": 0.4392,
-                "10.5": 0.3256,
-                "11.5": 0.2294
+                "8.5": 0.5642,
+                "9.5": 0.4406,
+                "10.5": 0.3268,
+                "11.5": 0.2305
               },
               "base": [
                 4.8608,
                 4.219
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.017,
-                "pct": 1.5
+                "home": 1.0121,
+                "away": 1.0211,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -31483,32 +31678,32 @@
               "int_home": [
                 1,
                 4,
-                0.8093
+                0.8094
               ],
               "int_away": [
                 1,
                 4,
-                0.8127
+                0.8137
               ],
               "int_total": [
                 2,
                 7,
-                0.8315
+                0.8335
               ],
               "over": {
-                "2.5": 0.8674,
-                "3.5": 0.7221,
-                "4.5": 0.5439,
-                "5.5": 0.3688
+                "2.5": 0.8647,
+                "3.5": 0.7176,
+                "4.5": 0.5384,
+                "5.5": 0.3635
               },
               "base": [
                 2.483,
                 2.4854
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9729,
-                "pct": -1.1
+                "home": 1.0041,
+                "away": 0.9613,
+                "pct": -1.7
               },
               "referee": {
                 "name": null,
@@ -31516,37 +31711,37 @@
               }
             },
             "fouls": {
-              "home": 13.5,
-              "away": 14.0,
+              "home": 13.6,
+              "away": 13.9,
               "total": 27.5,
               "int_home": [
                 9,
                 18,
-                0.8152
+                0.8148
               ],
               "int_away": [
                 9,
                 18,
-                0.8079
+                0.809
               ],
               "int_total": [
                 21,
                 34,
-                0.786
+                0.7861
               ],
               "over": {
-                "22.5": 0.8084,
-                "24.5": 0.6905,
-                "26.5": 0.5532
+                "22.5": 0.8077,
+                "24.5": 0.6896,
+                "26.5": 0.5521
               },
               "base": [
                 13.5793,
                 14.1838
               ],
               "level": {
-                "home": 0.9958,
-                "away": 0.9835,
-                "pct": -1.0
+                "home": 0.9984,
+                "away": 0.98,
+                "pct": -1.1
               },
               "referee": {
                 "name": null,
@@ -31555,25 +31750,25 @@
             },
             "who_more": {
               "shots": [
-                0.6005,
-                0.0568,
-                0.3427
+                0.5978,
+                0.0569,
+                0.3453
               ],
               "corners": [
-                0.5078,
+                0.5055,
                 0.106,
-                0.3862
+                0.3886
               ],
               "corner_handicap": {
-                "home_m15": 0.4018,
-                "home_p15": 0.7117,
-                "away_m15": 0.2883,
-                "away_p15": 0.5982
+                "home_m15": 0.3996,
+                "home_p15": 0.7095,
+                "away_m15": 0.2905,
+                "away_p15": 0.6004
               },
               "yellows": [
-                0.4088,
-                0.2044,
-                0.3868
+                0.4136,
+                0.205,
+                0.3814
               ]
             }
           },
@@ -31731,31 +31926,31 @@
               "int_home": [
                 11,
                 24,
-                0.8009
+                0.801
               ],
               "int_away": [
                 5,
-                13,
-                0.7766
+                14,
+                0.8246
               ],
               "int_total": [
                 21,
                 35,
-                0.7964
+                0.7962
               ],
               "over": {
-                "23.5": 0.7813,
-                "25.5": 0.663,
-                "27.5": 0.5302
+                "23.5": 0.7828,
+                "25.5": 0.6649,
+                "27.5": 0.5322
               },
               "base": [
                 17.8455,
                 9.5305
               ],
               "level": {
-                "home": 1.0302,
-                "away": 1.0297,
-                "pct": 3.0
+                "home": 1.0299,
+                "away": 1.0334,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -31765,32 +31960,32 @@
               "int_home": [
                 3,
                 9,
-                0.8241
+                0.8232
               ],
               "int_away": [
                 1,
                 5,
-                0.8063
+                0.8068
               ],
               "int_total": [
                 6,
                 13,
-                0.788
+                0.7875
               ],
               "over": {
-                "7.5": 0.7375,
-                "8.5": 0.6207,
-                "9.5": 0.4969,
-                "10.5": 0.3778
+                "7.5": 0.7397,
+                "8.5": 0.6232,
+                "9.5": 0.4996,
+                "10.5": 0.3805
               },
               "base": [
                 5.7833,
                 3.4844
               ],
               "level": {
-                "home": 1.0533,
-                "away": 1.028,
-                "pct": 4.4
+                "home": 1.0581,
+                "away": 1.0265,
+                "pct": 4.6
               }
             },
             "corners": {
@@ -31800,38 +31995,38 @@
               "int_home": [
                 2,
                 8,
-                0.776
+                0.7765
               ],
               "int_away": [
                 1,
                 6,
-                0.8216
+                0.8201
               ],
               "int_total": [
                 6,
                 14,
-                0.8207
+                0.8205
               ],
               "over": {
-                "8.5": 0.6601,
-                "9.5": 0.5425,
-                "10.5": 0.4255,
-                "11.5": 0.3185
+                "8.5": 0.6611,
+                "9.5": 0.5435,
+                "10.5": 0.4266,
+                "11.5": 0.3195
               },
               "base": [
                 5.8868,
                 4.0407
               ],
               "level": {
-                "home": 1.0134,
-                "away": 1.017,
-                "pct": 1.5
+                "home": 1.0121,
+                "away": 1.0211,
+                "pct": 1.6
               }
             },
             "yellows": {
               "home": 2.3,
               "away": 2.4,
-              "total": 4.7,
+              "total": 4.6,
               "int_home": [
                 1,
                 4,
@@ -31840,27 +32035,27 @@
               "int_away": [
                 1,
                 4,
-                0.8137
+                0.8145
               ],
               "int_total": [
                 2,
-                7,
-                0.8448
+                6,
+                0.7573
               ],
               "over": {
-                "2.5": 0.8447,
-                "3.5": 0.6859,
-                "4.5": 0.5005,
-                "5.5": 0.3272
+                "2.5": 0.8416,
+                "3.5": 0.6811,
+                "4.5": 0.4949,
+                "5.5": 0.322
               },
               "base": [
                 2.2726,
                 2.4575
               ],
               "level": {
-                "home": 1.0049,
-                "away": 0.9729,
-                "pct": -1.2
+                "home": 1.0041,
+                "away": 0.9613,
+                "pct": -1.8
               },
               "referee": {
                 "name": null,
@@ -31874,31 +32069,31 @@
               "int_home": [
                 9,
                 17,
-                0.7774
+                0.7772
               ],
               "int_away": [
                 8,
                 16,
-                0.7835
+                0.7849
               ],
               "int_total": [
                 19,
                 32,
-                0.8056
+                0.8057
               ],
               "over": {
-                "22.5": 0.6995,
-                "24.5": 0.5568,
-                "26.5": 0.4107
+                "22.5": 0.6988,
+                "24.5": 0.5559,
+                "26.5": 0.4098
               },
               "base": [
                 12.9277,
                 12.8236
               ],
               "level": {
-                "home": 0.9958,
-                "away": 0.9835,
-                "pct": -1.0
+                "home": 0.9984,
+                "away": 0.98,
+                "pct": -1.1
               },
               "referee": {
                 "name": null,
@@ -31907,25 +32102,25 @@
             },
             "who_more": {
               "shots": [
-                0.8659,
-                0.0284,
-                0.1057
+                0.8645,
+                0.0286,
+                0.1069
               ],
               "corners": [
-                0.6233,
-                0.0926,
-                0.2841
+                0.621,
+                0.0928,
+                0.2862
               ],
               "corner_handicap": {
-                "home_m15": 0.5235,
-                "home_p15": 0.7961,
-                "away_m15": 0.2039,
-                "away_p15": 0.4765
+                "home_m15": 0.5213,
+                "home_p15": 0.7943,
+                "away_m15": 0.2057,
+                "away_p15": 0.4787
               },
               "yellows": [
-                0.3707,
-                0.2097,
-                0.4196
+                0.3753,
+                0.2106,
+                0.4141
               ]
             }
           },
@@ -32077,37 +32272,37 @@
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
-              "home": 14.2,
+              "home": 14.1,
               "away": 11.0,
               "total": 25.2,
               "int_home": [
                 8,
                 19,
-                0.8131
+                0.8132
               ],
               "int_away": [
                 6,
                 15,
-                0.7914
+                0.7903
               ],
               "int_total": [
                 18,
                 31,
-                0.7955
+                0.7949
               ],
               "over": {
-                "23.5": 0.6023,
-                "25.5": 0.4583,
-                "27.5": 0.3236
+                "23.5": 0.6047,
+                "25.5": 0.4608,
+                "27.5": 0.3259
               },
               "base": [
                 13.7393,
                 10.6911
               ],
               "level": {
-                "home": 1.0301,
-                "away": 1.0295,
-                "pct": 3.0
+                "home": 1.0298,
+                "away": 1.0333,
+                "pct": 3.1
               }
             },
             "sot": {
@@ -32117,102 +32312,102 @@
               "int_home": [
                 2,
                 7,
-                0.8281
+                0.8273
               ],
               "int_away": [
                 2,
                 6,
-                0.7805
+                0.7806
               ],
               "int_total": [
                 5,
                 12,
-                0.8194
+                0.8191
               ],
               "over": {
-                "7.5": 0.603,
-                "8.5": 0.47,
-                "9.5": 0.3453,
-                "10.5": 0.2393
+                "7.5": 0.6049,
+                "8.5": 0.4719,
+                "9.5": 0.3472,
+                "10.5": 0.2409
               },
               "base": [
                 4.3661,
                 3.765
               ],
               "level": {
-                "home": 1.0531,
-                "away": 1.0279,
-                "pct": 4.1
+                "home": 1.0578,
+                "away": 1.0264,
+                "pct": 4.3
               }
             },
             "corners": {
               "home": 5.3,
               "away": 4.3,
-              "total": 9.5,
+              "total": 9.6,
               "int_home": [
                 2,
                 8,
-                0.8191
+                0.8194
               ],
               "int_away": [
                 1,
                 6,
-                0.8076
+                0.806
               ],
               "int_total": [
                 6,
                 13,
-                0.7806
+                0.7804
               ],
               "over": {
-                "8.5": 0.6019,
-                "9.5": 0.4796,
-                "10.5": 0.3638,
-                "11.5": 0.2626
+                "8.5": 0.6031,
+                "9.5": 0.4809,
+                "10.5": 0.365,
+                "11.5": 0.2637
               },
               "base": [
                 5.2178,
                 4.1883
               ],
               "level": {
-                "home": 1.0133,
-                "away": 1.017,
-                "pct": 1.5
+                "home": 1.0121,
+                "away": 1.021,
+                "pct": 1.6
               }
             },
             "yellows": {
               "home": 2.1,
               "away": 2.2,
-              "total": 4.3,
+              "total": 4.2,
               "int_home": [
                 0,
                 3,
-                0.8464
+                0.8467
               ],
               "int_away": [
                 0,
                 3,
-                0.8178
+                0.8229
               ],
               "int_total": [
                 2,
                 6,
-                0.7853
+                0.7869
               ],
               "over": {
-                "2.5": 0.798,
-                "3.5": 0.6164,
-                "4.5": 0.423,
-                "5.5": 0.2579
+                "2.5": 0.7944,
+                "3.5": 0.6114,
+                "4.5": 0.4176,
+                "5.5": 0.2534
               },
               "base": [
                 2.0486,
                 2.2687
               ],
               "level": {
-                "home": 1.0048,
-                "away": 0.9731,
-                "pct": -1.2
+                "home": 1.004,
+                "away": 0.9617,
+                "pct": -1.8
               },
               "referee": {
                 "name": null,
@@ -32221,36 +32416,36 @@
             },
             "fouls": {
               "home": 12.0,
-              "away": 12.8,
+              "away": 12.7,
               "total": 24.8,
               "int_home": [
                 8,
                 16,
-                0.7963
+                0.7959
               ],
               "int_away": [
-                9,
-                17,
-                0.7777
+                8,
+                16,
+                0.779
               ],
               "int_total": [
                 18,
                 31,
-                0.8132
+                0.8133
               ],
               "over": {
-                "22.5": 0.6546,
-                "24.5": 0.5063,
-                "26.5": 0.3614
+                "22.5": 0.6536,
+                "24.5": 0.5052,
+                "26.5": 0.3603
               },
               "base": [
                 12.0577,
                 13.0033
               ],
               "level": {
-                "home": 0.9959,
-                "away": 0.9838,
-                "pct": -1.0
+                "home": 0.9984,
+                "away": 0.9803,
+                "pct": -1.1
               },
               "referee": {
                 "name": null,
@@ -32259,25 +32454,25 @@
             },
             "who_more": {
               "shots": [
-                0.6493,
-                0.0539,
-                0.2968
+                0.6467,
+                0.054,
+                0.2993
               ],
               "corners": [
-                0.5467,
-                0.1018,
-                0.3515
+                0.5444,
+                0.1019,
+                0.3538
               ],
               "corner_handicap": {
-                "home_m15": 0.4422,
-                "home_p15": 0.7406,
-                "away_m15": 0.2594,
-                "away_p15": 0.5578
+                "home_m15": 0.44,
+                "home_p15": 0.7385,
+                "away_m15": 0.2615,
+                "away_p15": 0.56
               },
               "yellows": [
-                0.356,
-                0.2202,
-                0.4238
+                0.3604,
+                0.2212,
+                0.4184
               ]
             }
           },
@@ -32430,71 +32625,71 @@
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
             "shots": {
               "home": 13.8,
-              "away": 10.4,
+              "away": 10.5,
               "total": 24.2,
               "int_home": [
                 8,
                 18,
-                0.7814
+                0.7815
               ],
               "int_away": [
-                5,
-                14,
-                0.8041
+                6,
+                15,
+                0.8033
               ],
               "int_total": [
                 17,
                 30,
-                0.8052
+                0.8047
               ],
               "over": {
-                "23.5": 0.5351,
-                "25.5": 0.3902,
-                "27.5": 0.2629
+                "23.5": 0.5375,
+                "25.5": 0.3926,
+                "27.5": 0.265
               },
               "base": [
                 13.3925,
                 10.1294
               ],
               "level": {
-                "home": 1.0296,
-                "away": 1.0291,
-                "pct": 2.9
+                "home": 1.0293,
+                "away": 1.0328,
+                "pct": 3.1
               }
             },
             "sot": {
               "home": 4.6,
               "away": 3.7,
-              "total": 8.2,
+              "total": 8.3,
               "int_home": [
                 2,
                 7,
-                0.8298
+                0.8291
               ],
               "int_away": [
                 1,
                 5,
-                0.795
+                0.7956
               ],
               "int_total": [
                 5,
                 12,
-                0.8216
+                0.8215
               ],
               "over": {
-                "7.5": 0.5737,
-                "8.5": 0.4394,
-                "9.5": 0.3168,
-                "10.5": 0.2152
+                "7.5": 0.5756,
+                "8.5": 0.4414,
+                "9.5": 0.3187,
+                "10.5": 0.2167
               },
               "base": [
                 4.3296,
                 3.586
               ],
               "level": {
-                "home": 1.052,
-                "away": 1.0273,
-                "pct": 4.1
+                "home": 1.0566,
+                "away": 1.0258,
+                "pct": 4.3
               }
             },
             "corners": {
@@ -32504,32 +32699,32 @@
               "int_home": [
                 2,
                 8,
-                0.8233
+                0.8236
               ],
               "int_away": [
                 1,
                 6,
-                0.8245
+                0.8231
               ],
               "int_total": [
                 5,
                 12,
-                0.785
+                0.7845
               ],
               "over": {
-                "8.5": 0.5699,
-                "9.5": 0.4464,
-                "10.5": 0.3323,
-                "11.5": 0.2351
+                "8.5": 0.5711,
+                "9.5": 0.4476,
+                "10.5": 0.3334,
+                "11.5": 0.2361
               },
               "base": [
                 5.1304,
                 4.0092
               ],
               "level": {
-                "home": 1.0132,
-                "away": 1.0168,
-                "pct": 1.5
+                "home": 1.012,
+                "away": 1.0208,
+                "pct": 1.6
               }
             },
             "yellows": {
@@ -32539,32 +32734,32 @@
               "int_home": [
                 1,
                 4,
-                0.7927
+                0.7929
               ],
               "int_away": [
                 1,
                 4,
-                0.804
+                0.8058
               ],
               "int_total": [
                 3,
                 8,
-                0.8081
+                0.8083
               ],
               "over": {
-                "2.5": 0.8996,
-                "3.5": 0.7768,
-                "4.5": 0.6137,
-                "5.5": 0.4402
+                "2.5": 0.8974,
+                "3.5": 0.7729,
+                "4.5": 0.6086,
+                "5.5": 0.4348
               },
               "base": [
                 2.7226,
                 2.6551
               ],
               "level": {
-                "home": 1.0047,
-                "away": 0.9742,
-                "pct": -1.0
+                "home": 1.0039,
+                "away": 0.9632,
+                "pct": -1.6
               },
               "referee": {
                 "name": null,
@@ -32572,18 +32767,18 @@
               }
             },
             "fouls": {
-              "home": 14.4,
+              "home": 14.5,
               "away": 14.4,
               "total": 28.9,
               "int_home": [
                 10,
                 19,
-                0.7986
+                0.7983
               ],
               "int_away": [
                 10,
                 19,
-                0.7987
+                0.799
               ],
               "int_total": [
                 22,
@@ -32591,17 +32786,17 @@
                 0.804
               ],
               "over": {
-                "22.5": 0.8656,
-                "24.5": 0.7687,
-                "26.5": 0.646
+                "22.5": 0.8651,
+                "24.5": 0.768,
+                "26.5": 0.6451
               },
               "base": [
                 14.4987,
                 14.6459
               ],
               "level": {
-                "home": 0.9961,
-                "away": 0.9849,
+                "home": 0.9985,
+                "away": 0.9815,
                 "pct": -1.0
               },
               "referee": {
@@ -32611,25 +32806,25 @@
             },
             "who_more": {
               "shots": [
-                0.6651,
-                0.0542,
-                0.2807
+                0.6627,
+                0.0543,
+                0.283
               ],
               "corners": [
-                0.5571,
+                0.5548,
                 0.1031,
-                0.3399
+                0.3421
               ],
               "corner_handicap": {
-                "home_m15": 0.4505,
-                "home_p15": 0.7524,
-                "away_m15": 0.2476,
-                "away_p15": 0.5495
+                "home_m15": 0.4483,
+                "home_p15": 0.7504,
+                "away_m15": 0.2496,
+                "away_p15": 0.5517
               },
               "yellows": [
-                0.4258,
-                0.1954,
-                0.3788
+                0.4306,
+                0.1959,
+                0.3735
               ]
             }
           },
@@ -32813,7 +33008,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.43225,
+            "draw": 0.26659,
+            "away": 0.30116,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -33165,7 +33365,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.39678,
+            "draw": 0.25999,
+            "away": 0.34323,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -33517,7 +33722,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.46675,
+            "draw": 0.26786,
+            "away": 0.26538,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -33869,7 +34079,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.62348,
+            "draw": 0.20347,
+            "away": 0.17305,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -34221,7 +34436,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.55058,
+            "draw": 0.21645,
+            "away": 0.23297,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -34573,7 +34793,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.32692,
+            "draw": 0.28257,
+            "away": 0.39051,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -34925,7 +35150,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.60629,
+            "draw": 0.21645,
+            "away": 0.17725,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -35277,7 +35507,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.45755,
+            "draw": 0.2555,
+            "away": 0.28696,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -35552,8 +35787,8 @@
           }
         },
         {
-          "date": "2026-10-25",
-          "time": "19:45",
+          "date": "2026-10-26",
+          "time": "19:30",
           "home": "PSG",
           "away": "Olympique Lyon",
           "home_full": "Paris Saint-Germain FC",
@@ -35629,7 +35864,12 @@
               "share": 0.4421
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.67971,
+            "draw": 0.1783,
+            "away": 0.14199,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "with_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -35645,7 +35885,7 @@
               "int_away": [
                 5,
                 13,
-                0.7753
+                0.7754
               ],
               "int_total": [
                 21,
@@ -35653,17 +35893,17 @@
                 0.7973
               ],
               "over": {
-                "23.5": 0.775,
-                "25.5": 0.6551,
-                "27.5": 0.5214
+                "23.5": 0.7749,
+                "25.5": 0.655,
+                "27.5": 0.5213
               },
               "base": [
                 17.8925,
                 9.6556
               ],
               "level": {
-                "home": 1.0185,
-                "away": 1.0194,
+                "home": 1.0184,
+                "away": 1.0193,
                 "pct": 1.9
               }
             },
@@ -35674,7 +35914,7 @@
               "int_home": [
                 4,
                 10,
-                0.7808
+                0.7809
               ],
               "int_away": [
                 1,
@@ -35684,20 +35924,20 @@
               "int_total": [
                 6,
                 14,
-                0.8113
+                0.8114
               ],
               "over": {
-                "7.5": 0.8252,
-                "8.5": 0.7301,
-                "9.5": 0.6195,
-                "10.5": 0.5025
+                "7.5": 0.8251,
+                "8.5": 0.73,
+                "9.5": 0.6193,
+                "10.5": 0.5023
               },
               "base": [
                 6.928,
                 3.5307
               ],
               "level": {
-                "home": 1.0367,
+                "home": 1.0364,
                 "away": 1.003,
                 "pct": 2.5
               }
@@ -35744,31 +35984,31 @@
               "int_home": [
                 0,
                 2,
-                0.8283
+                0.8284
               ],
               "int_away": [
                 0,
                 2,
-                0.8014
+                0.801
               ],
               "int_total": [
                 1,
                 4,
-                0.7708
+                0.7707
               ],
               "over": {
-                "2.5": 0.5655,
-                "3.5": 0.3418,
-                "4.5": 0.1767,
-                "5.5": 0.0792
+                "2.5": 0.5658,
+                "3.5": 0.3421,
+                "4.5": 0.177,
+                "5.5": 0.0794
               },
               "base": [
                 1.3901,
                 1.6999
               ],
               "level": {
-                "home": 1.0225,
-                "away": 0.8997,
+                "home": 1.0223,
+                "away": 0.9008,
                 "pct": -4.5
               },
               "referee": {
@@ -35797,7 +36037,7 @@
               ],
               "over": {
                 "22.5": 0.3529,
-                "24.5": 0.22,
+                "24.5": 0.2201,
                 "26.5": 0.1241
               },
               "base": [
@@ -35805,8 +36045,8 @@
                 10.9257
               ],
               "level": {
-                "home": 0.9838,
-                "away": 1.0105,
+                "home": 0.984,
+                "away": 1.0103,
                 "pct": -0.2
               },
               "referee": {
@@ -35832,15 +36072,15 @@
                 "away_p15": 0.3858
               },
               "yellows": [
-                0.3347,
-                0.2721,
-                0.3932
+                0.3343,
+                0.272,
+                0.3937
               ]
             }
           },
           "context": {
             "home": {
-              "rest_days": 8,
+              "rest_days": 9,
               "form": [
                 {
                   "r": "P",
@@ -35871,7 +36111,7 @@
               "eo_n": 18
             },
             "away": {
-              "rest_days": 7,
+              "rest_days": 8,
               "form": [
                 {
                   "r": "V",
