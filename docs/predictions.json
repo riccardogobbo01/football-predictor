@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24 08:56 UTC",
+  "generated_at": "2026-10-24 13:19 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-10-19 10:35 UTC",
@@ -22,12 +22,12 @@
   },
   "stats_version": "s5-livello",
   "referee_status": {
-    "n": 125,
-    "with_referee": 9,
+    "n": 123,
+    "with_referee": 7,
     "by_league": {
       "Serie A": [
-        34,
-        9
+        32,
+        7
       ],
       "Premier League": [
         24,
@@ -47,12 +47,12 @@
       ]
     },
     "by_source": {
-      "aia": 9
+      "aia": 7
     },
     "by_days_ahead": {
       "0": [
-        19,
-        4
+        17,
+        2
       ],
       "1": [
         22,
@@ -101,7 +101,7 @@
     }
   },
   "model_counts": {
-    "with_xg": 125,
+    "with_xg": 123,
     "without_xg": 0,
     "cups_elo": 0
   },
@@ -186,722 +186,6 @@
       ],
       "meta_text": "Stack su 1880 partite recenti · 2026-10-24",
       "fixtures": [
-        {
-          "date": "2026-10-24",
-          "time": "13:00",
-          "home": "Cagliari",
-          "away": "Bologna",
-          "home_full": "Cagliari Calcio",
-          "away_full": "Bologna FC 1909",
-          "matchday": 8,
-          "referee": "Kevin Bonacina",
-          "referee_source": "aia",
-          "home_dc": "Cagliari",
-          "away_dc": "Bologna",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.2,
-            "exp_goals_away": 1.29,
-            "prob_home": 0.3366,
-            "prob_draw": 0.28495,
-            "prob_away": 0.37845,
-            "prob_o05": 0.90972,
-            "prob_o15": 0.71757,
-            "prob_o25": 0.45322,
-            "prob_o35": 0.23996,
-            "prob_btts": 0.5134,
-            "prob_cs_home": 0.27581,
-            "prob_cs_away": 0.30107,
-            "top_scores": [
-              [
-                1,
-                1,
-                13.6
-              ],
-              [
-                0,
-                1,
-                10.0
-              ],
-              [
-                1,
-                0,
-                9.2
-              ],
-              [
-                0,
-                0,
-                9.0
-              ],
-              [
-                1,
-                2,
-                8.3
-              ],
-              [
-                2,
-                1,
-                7.7
-              ]
-            ],
-            "rec_outcome": "X",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              1,
-              1,
-              13.6
-            ],
-            "model": "with_xg",
-            "fallback_reason": null,
-            "first_half": {
-              "p_home": 0.26461,
-              "p_draw": 0.44577,
-              "p_away": 0.28963,
-              "o05": 0.66065,
-              "o15": 0.29391,
-              "exp_home": 0.521,
-              "exp_away": 0.559,
-              "exp_total": 1.081,
-              "share": 0.4343
-            }
-          },
-          "market": {
-            "home": 0.30535,
-            "draw": 0.30535,
-            "away": 0.38931,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "with_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 12.2,
-              "away": 13.1,
-              "total": 25.3,
-              "int_home": [
-                7,
-                17,
-                0.818
-              ],
-              "int_away": [
-                7,
-                18,
-                0.8189
-              ],
-              "int_total": [
-                18,
-                31,
-                0.7925
-              ],
-              "over": {
-                "23.5": 0.6145,
-                "25.5": 0.4712,
-                "27.5": 0.3355
-              },
-              "base": [
-                11.7487,
-                12.6193
-              ],
-              "level": {
-                "home": 1.0409,
-                "away": 1.0388,
-                "pct": 4.0
-              }
-            },
-            "sot": {
-              "home": 3.8,
-              "away": 4.4,
-              "total": 8.2,
-              "int_home": [
-                1,
-                5,
-                0.7855
-              ],
-              "int_away": [
-                2,
-                7,
-                0.8345
-              ],
-              "int_total": [
-                4,
-                11,
-                0.8244
-              ],
-              "over": {
-                "7.5": 0.5653,
-                "8.5": 0.4309,
-                "9.5": 0.309,
-                "10.5": 0.2086
-              },
-              "base": [
-                3.7795,
-                4.1697
-              ],
-              "level": {
-                "home": 0.9963,
-                "away": 1.0575,
-                "pct": 2.8
-              }
-            },
-            "corners": {
-              "home": 4.5,
-              "away": 4.5,
-              "total": 9.0,
-              "int_home": [
-                2,
-                7,
-                0.7917
-              ],
-              "int_away": [
-                2,
-                7,
-                0.7908
-              ],
-              "int_total": [
-                5,
-                12,
-                0.7977
-              ],
-              "over": {
-                "8.5": 0.5332,
-                "9.5": 0.4092,
-                "10.5": 0.2979,
-                "11.5": 0.206
-              },
-              "base": [
-                4.6218,
-                4.7225
-              ],
-              "level": {
-                "home": 0.9677,
-                "away": 0.9532,
-                "pct": -4.0
-              }
-            },
-            "yellows": {
-              "home": 2.0,
-              "away": 1.6,
-              "total": 3.5,
-              "int_home": [
-                0,
-                3,
-                0.8649
-              ],
-              "int_away": [
-                0,
-                2,
-                0.7853
-              ],
-              "int_total": [
-                1,
-                5,
-                0.822
-              ],
-              "over": {
-                "2.5": 0.6877,
-                "3.5": 0.4737,
-                "4.5": 0.2839,
-                "5.5": 0.1491
-              },
-              "base": [
-                1.9163,
-                1.903
-              ],
-              "level": {
-                "home": 1.0208,
-                "away": 0.8368,
-                "pct": -7.1
-              },
-              "referee": {
-                "name": "Kevin Bonacina",
-                "delta": -0.49
-              }
-            },
-            "fouls": {
-              "home": 14.3,
-              "away": 12.6,
-              "total": 26.8,
-              "int_home": [
-                9,
-                18,
-                0.7997
-              ],
-              "int_away": [
-                8,
-                16,
-                0.7848
-              ],
-              "int_total": [
-                20,
-                33,
-                0.7932
-              ],
-              "over": {
-                "22.5": 0.7763,
-                "24.5": 0.6492,
-                "26.5": 0.5072
-              },
-              "base": [
-                14.7429,
-                13.8359
-              ],
-              "level": {
-                "home": 0.9666,
-                "away": 0.9085,
-                "pct": -6.2
-              },
-              "referee": {
-                "name": "Kevin Bonacina",
-                "delta": -0.13
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.4171,
-                0.0601,
-                0.5227
-              ],
-              "corners": [
-                0.4394,
-                0.1089,
-                0.4517
-              ],
-              "corner_handicap": {
-                "home_m15": 0.3352,
-                "home_p15": 0.6534,
-                "away_m15": 0.3466,
-                "away_p15": 0.6648
-              },
-              "yellows": [
-                0.4555,
-                0.2411,
-                0.3034
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 5,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Lecce 1-0 (07/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Atalanta 2-1 (12/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Udinese 1-0 (19/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Juventus 1-1 (11/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Monza 0-4 (19/10)"
-                }
-              ],
-              "pi_rating": 0.34,
-              "pi_rank": 11,
-              "pi_n": 20,
-              "eo_rating": 1330.3,
-              "eo_rank": 16,
-              "eo_n": 20
-            },
-            "away": {
-              "rest_days": 7,
-              "form": [
-                {
-                  "r": "N",
-                  "tip": "vs Sassuolo 2-2 (06/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Napoli 0-1 (13/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Torino 1-1 (19/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Lecce 2-1 (11/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Inter 1-3 (17/10)"
-                }
-              ],
-              "pi_rating": 0.45,
-              "pi_rank": 9,
-              "pi_n": 20,
-              "eo_rating": 1396.0,
-              "eo_rank": 10,
-              "eo_n": 20
-            }
-          }
-        },
-        {
-          "date": "2026-10-24",
-          "time": "13:00",
-          "home": "Como 1907",
-          "away": "Sassuolo",
-          "home_full": "Como 1907",
-          "away_full": "US Sassuolo Calcio",
-          "matchday": 8,
-          "referee": "Davide Di Marco",
-          "referee_source": "aia",
-          "home_dc": "Como",
-          "away_dc": "Sassuolo",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 2.28,
-            "exp_goals_away": 0.96,
-            "prob_home": 0.66661,
-            "prob_draw": 0.19418,
-            "prob_away": 0.13921,
-            "prob_o05": 0.95616,
-            "prob_o15": 0.83925,
-            "prob_o25": 0.62916,
-            "prob_o35": 0.40721,
-            "prob_btts": 0.55896,
-            "prob_cs_home": 0.38301,
-            "prob_cs_away": 0.10186,
-            "top_scores": [
-              [
-                2,
-                0,
-                10.2
-              ],
-              [
-                2,
-                1,
-                9.8
-              ],
-              [
-                1,
-                1,
-                9.0
-              ],
-              [
-                1,
-                0,
-                8.4
-              ],
-              [
-                3,
-                0,
-                7.7
-              ],
-              [
-                3,
-                1,
-                7.4
-              ]
-            ],
-            "rec_outcome": "1",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              2,
-              0,
-              10.2
-            ],
-            "model": "with_xg",
-            "fallback_reason": null,
-            "first_half": {
-              "p_home": 0.49117,
-              "p_draw": 0.35644,
-              "p_away": 0.15239,
-              "o05": 0.75556,
-              "o15": 0.41119,
-              "exp_home": 0.992,
-              "exp_away": 0.417,
-              "exp_total": 1.409,
-              "share": 0.4343
-            }
-          },
-          "market": {
-            "home": 0.65234,
-            "draw": 0.19499,
-            "away": 0.15268,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "with_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 20.7,
-              "away": 10.6,
-              "total": 31.3,
-              "int_home": [
-                13,
-                27,
-                0.7955
-              ],
-              "int_away": [
-                6,
-                15,
-                0.8006
-              ],
-              "int_total": [
-                23,
-                38,
-                0.7962
-              ],
-              "over": {
-                "23.5": 0.8959,
-                "25.5": 0.8186,
-                "27.5": 0.7164
-              },
-              "base": [
-                19.8476,
-                10.2244
-              ],
-              "level": {
-                "home": 1.0409,
-                "away": 1.0388,
-                "pct": 4.0
-              }
-            },
-            "sot": {
-              "home": 7.1,
-              "away": 3.7,
-              "total": 10.8,
-              "int_home": [
-                4,
-                10,
-                0.7832
-              ],
-              "int_away": [
-                1,
-                5,
-                0.7959
-              ],
-              "int_total": [
-                7,
-                15,
-                0.8099
-              ],
-              "over": {
-                "7.5": 0.8284,
-                "8.5": 0.7343,
-                "9.5": 0.6244,
-                "10.5": 0.5077
-              },
-              "base": [
-                7.119,
-                3.4762
-              ],
-              "level": {
-                "home": 0.9963,
-                "away": 1.0575,
-                "pct": 1.6
-              }
-            },
-            "corners": {
-              "home": 6.3,
-              "away": 3.2,
-              "total": 9.6,
-              "int_home": [
-                2,
-                9,
-                0.8197
-              ],
-              "int_away": [
-                1,
-                5,
-                0.8125
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7805
-              ],
-              "over": {
-                "8.5": 0.6029,
-                "9.5": 0.4808,
-                "10.5": 0.3649,
-                "11.5": 0.2636
-              },
-              "base": [
-                6.537,
-                3.3889
-              ],
-              "level": {
-                "home": 0.9677,
-                "away": 0.9532,
-                "pct": -3.7
-              }
-            },
-            "yellows": {
-              "home": 1.7,
-              "away": 1.8,
-              "total": 3.5,
-              "int_home": [
-                0,
-                2,
-                0.7666
-              ],
-              "int_away": [
-                1,
-                3,
-                0.7259
-              ],
-              "int_total": [
-                1,
-                5,
-                0.8271
-              ],
-              "over": {
-                "2.5": 0.6788,
-                "3.5": 0.4632,
-                "4.5": 0.2746,
-                "5.5": 0.1426
-              },
-              "base": [
-                1.6305,
-                2.1931
-              ],
-              "level": {
-                "home": 1.0208,
-                "away": 0.8368,
-                "pct": -8.5
-              },
-              "referee": {
-                "name": "Davide Di Marco",
-                "delta": -0.29
-              }
-            },
-            "fouls": {
-              "home": 11.1,
-              "away": 10.6,
-              "total": 21.7,
-              "int_home": [
-                7,
-                15,
-                0.8167
-              ],
-              "int_away": [
-                6,
-                14,
-                0.8231
-              ],
-              "int_total": [
-                15,
-                27,
-                0.8123
-              ],
-              "over": {
-                "22.5": 0.4187,
-                "24.5": 0.2752,
-                "26.5": 0.1643
-              },
-              "base": [
-                11.4393,
-                11.7015
-              ],
-              "level": {
-                "home": 0.9666,
-                "away": 0.9085,
-                "pct": -6.3
-              },
-              "referee": {
-                "name": "Davide Di Marco",
-                "delta": -0.61
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.8941,
-                0.0229,
-                0.083
-              ],
-              "corners": [
-                0.7394,
-                0.08,
-                0.1805
-              ],
-              "corner_handicap": {
-                "home_m15": 0.6453,
-                "home_p15": 0.8823,
-                "away_m15": 0.1177,
-                "away_p15": 0.3547
-              },
-              "yellows": [
-                0.3357,
-                0.2459,
-                0.4184
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 6,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Genoa 4-1 (04/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Parma 2-1 (14/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Frosinone 0-2 (20/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Roma 0-0 (11/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Fiorentina 3-1 (18/10)"
-                }
-              ],
-              "pi_rating": 1.1,
-              "pi_rank": 3,
-              "pi_n": 20,
-              "eo_rating": 1538.8,
-              "eo_rank": 3,
-              "eo_n": 20
-            },
-            "away": {
-              "rest_days": 8,
-              "form": [
-                {
-                  "r": "N",
-                  "tip": "a Bologna 2-2 (06/09)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Juventus 3-2 (13/09)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Monza 1-2 (18/09)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Milan 1-1 (11/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Frosinone 2-4 (16/10)"
-                }
-              ],
-              "pi_rating": 0.26,
-              "pi_rank": 14,
-              "pi_n": 20,
-              "eo_rating": 1368.9,
-              "eo_rank": 11,
-              "eo_n": 20
-            }
-          }
-        },
         {
           "date": "2026-10-24",
           "time": "16:00",
@@ -12361,7 +11645,7 @@
               },
               "base": [
                 11.7575,
-                15.1582
+                15.1583
               ],
               "level": {
                 "home": 1.0141,
@@ -12446,7 +11730,7 @@
               "int_home": [
                 0,
                 2,
-                0.7295
+                0.7296
               ],
               "int_away": [
                 0,
@@ -12465,7 +11749,7 @@
                 "5.5": 0.2003
               },
               "base": [
-                1.8198,
+                1.8197,
                 1.97
               ],
               "level": {
@@ -12717,7 +12001,7 @@
                 "27.5": 0.3779
               },
               "base": [
-                16.324,
+                16.3239,
                 9.1871
               ],
               "level": {
@@ -12861,7 +12145,7 @@
               },
               "base": [
                 9.7514,
-                11.4438
+                11.4439
               ],
               "level": {
                 "home": 1.0352,
@@ -13074,8 +12358,8 @@
                 "27.5": 0.4356
               },
               "base": [
-                12.5479,
-                13.7453
+                12.548,
+                13.7452
               ],
               "level": {
                 "home": 1.0141,
@@ -14055,7 +13339,7 @@
             "prob_o15": 0.81705,
             "prob_o25": 0.59203,
             "prob_o35": 0.36816,
-            "prob_btts": 0.62044,
+            "prob_btts": 0.62045,
             "prob_cs_home": 0.20132,
             "prob_cs_away": 0.23087,
             "top_scores": [
@@ -14766,8 +14050,8 @@
             "prob_draw": 0.24255,
             "prob_away": 0.54759,
             "prob_o05": 0.93586,
-            "prob_o15": 0.78303,
-            "prob_o25": 0.54178,
+            "prob_o15": 0.78302,
+            "prob_o25": 0.54177,
             "prob_o35": 0.31863,
             "prob_btts": 0.54654,
             "prob_cs_home": 0.16401,
@@ -16416,7 +15700,7 @@
               },
               "base": [
                 12.0424,
-                11.218
+                11.2179
               ],
               "level": {
                 "home": 1.0315,
@@ -16768,7 +16052,7 @@
               },
               "base": [
                 11.4535,
-                11.3608
+                11.3609
               ],
               "level": {
                 "home": 1.0315,
@@ -17046,7 +16330,7 @@
                 "11.5": 0.2322
               },
               "base": [
-                5.063,
+                5.0631,
                 4.3945
               ],
               "level": {
@@ -17075,7 +16359,7 @@
                 0.8318
               ],
               "over": {
-                "2.5": 0.6699,
+                "2.5": 0.67,
                 "3.5": 0.453,
                 "4.5": 0.2657,
                 "5.5": 0.1364
@@ -17399,7 +16683,7 @@
               },
               "base": [
                 5.5848,
-                4.7168
+                4.7167
               ],
               "level": {
                 "home": 0.9649,
@@ -18489,7 +17773,7 @@
                 "5.5": 0.1724
               },
               "base": [
-                1.8196,
+                1.8195,
                 1.8012
               ],
               "level": {
@@ -18649,7 +17933,7 @@
             "prob_away": 0.30076,
             "prob_o05": 0.9359,
             "prob_o15": 0.78466,
-            "prob_o25": 0.54354,
+            "prob_o25": 0.54355,
             "prob_o35": 0.32031,
             "prob_btts": 0.57851,
             "prob_cs_home": 0.2801,
@@ -18807,7 +18091,7 @@
               },
               "base": [
                 6.117,
-                4.509
+                4.5089
               ],
               "level": {
                 "home": 0.9651,
@@ -19179,7 +18463,7 @@
               "int_away": [
                 0,
                 2,
-                0.813
+                0.8129
               ],
               "int_total": [
                 1,
@@ -19194,7 +18478,7 @@
               },
               "base": [
                 1.3411,
-                1.4027
+                1.4028
               ],
               "level": {
                 "home": 0.9924,
@@ -19440,8 +18724,8 @@
                 "27.5": 0.3768
               },
               "base": [
-                13.5974,
-                11.8959
+                13.5973,
+                11.8958
               ],
               "level": {
                 "home": 1.0133,
@@ -19705,7 +18989,7 @@
             "prob_away": 0.05124,
             "prob_o05": 0.95088,
             "prob_o15": 0.81678,
-            "prob_o25": 0.59581,
+            "prob_o25": 0.5958,
             "prob_o35": 0.37202,
             "prob_btts": 0.37787,
             "prob_cs_home": 0.5944,
@@ -20058,7 +19342,7 @@
             "prob_o05": 0.93895,
             "prob_o15": 0.79327,
             "prob_o25": 0.55601,
-            "prob_o35": 0.33228,
+            "prob_o35": 0.33229,
             "prob_btts": 0.59301,
             "prob_cs_home": 0.24856,
             "prob_cs_away": 0.21949,
@@ -20288,7 +19572,7 @@
               },
               "base": [
                 11.4989,
-                10.1262
+                10.1261
               ],
               "level": {
                 "home": 1.0277,
@@ -20493,7 +19777,7 @@
               "over": {
                 "23.5": 0.7693,
                 "25.5": 0.648,
-                "27.5": 0.5136
+                "27.5": 0.5137
               },
               "base": [
                 13.0345,
@@ -20601,7 +19885,7 @@
                 "5.5": 0.1625
               },
               "base": [
-                1.856,
+                1.8559,
                 1.7069
               ],
               "level": {
@@ -20626,7 +19910,7 @@
               "int_away": [
                 6,
                 13,
-                0.781
+                0.7811
               ],
               "int_total": [
                 15,
