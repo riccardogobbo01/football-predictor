@@ -435,7 +435,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="logo">⚽</div>
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
-    <strong>108 previsioni</strong> · aggiornato 2026-10-26 14:24 UTC · <a href="resoconto.html" class="rep-link">Resoconto settimanale</a><br>
+    <strong>108 previsioni</strong> · aggiornato 2026-10-26 16:06 UTC · <a href="resoconto.html" class="rep-link">Resoconto settimanale</a><br>
     Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat + Elo-Odds) · coppe: modello Elo
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
@@ -444,12 +444,12 @@ footer a { color: var(--accent); text-decoration: none; }
 <script>
 (function () {
   // avviso se le previsioni hanno più di 30 ore (il job giornaliero potrebbe non aver girato)
-  var iso = "2026-10-26T14:24:00Z", t = Date.parse(iso);
+  var iso = "2026-10-26T16:06:00Z", t = Date.parse(iso);
   if (isNaN(t)) { return; }
   var h = (Date.now() - t) / 3600000;
   if (h > 30) {
     var b = document.getElementById("stale-banner");
-    b.textContent = "Attenzione: le previsioni sono state aggiornate più di " + Math.floor(h) + " ore fa (2026-10-26 14:24 UTC). Il job giornaliero potrebbe non aver girato: " +
+    b.textContent = "Attenzione: le previsioni sono state aggiornate più di " + Math.floor(h) + " ore fa (2026-10-26 16:06 UTC). Il job giornaliero potrebbe non aver girato: " +
       "partite recenti, arbitri e risultati potrebbero non essere aggiornati.";
     b.hidden = false;
   }
