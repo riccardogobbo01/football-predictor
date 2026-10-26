@@ -282,8 +282,13 @@ def poisson_beta(y, m0, x):
     return float(minimize_scalar(nll, bounds=(-3, 4), method="bounded").x)
 
 
+MIN_WEEKS = 8                       # sotto questo numero di settimane distinte l'IC a blocchi non e' attendibile
+
+
 def beta_ci(y, m0, x, wk, n_boot=1500, seed=41):
     uw, inv = np.unique(wk, return_inverse=True)
+    if len(uw) < MIN_WEEKS:
+        return poisson_beta(y, m0, x), float("nan"), float("nan")
     groups = [np.where(inv == g)[0] for g in range(len(uw))]
     rng = np.random.default_rng(seed)
     est = []
@@ -319,6 +324,7 @@ def m3(feat, weeks, st):
     for j, (idx, row) in enumerate(feat.loc[rows].iterrows()):
         if row.season != 2026:
             continue
+        # (le righe senza kickoff sono state completate da scripts/backfill_issued.py con l'orario delle copie di predictions.json)
         cand = [r for r in hk.get((row.Division, row.HomeTeam, row.AwayTeam), []) if abs((pd.Timestamp(r.match_date) - row.date).days) <= 3]
         if cand:
             r = cand[0]
@@ -339,10 +345,13 @@ def m3(feat, weeks, st):
         b, lo, hi = beta_ci(y[m], m0[m], x[m], wk[m])
         d_t = (v_0["ll_tot"] - v_w["ll_tot"])[m]
         d_s = (v_0["ll_team"] - v_w["ll_team"])[m]
-        mt, lt, ht = C3.ci_block(d_t, wk[m])
-        ms, ls, hs = C3.ci_block(d_s, wk[m])
+        few = len(np.unique(wk[m])) < MIN_WEEKS
+        mt, lt, ht = C3.ci_block(d_t, wk[m]) if not few else (d_t.mean(), np.nan, np.nan)
+        ms, ls, hs = C3.ci_block(d_s, wk[m]) if not few else (d_s.mean(), np.nan, np.nan)
         summ[name] = (b, lo, hi)
-        L.append(f"| {name} | {int(m.sum())} | {int(known[m].sum())} | {b:.2f} [{lo:.2f}, {hi:.2f}] | {mt:+.5f} [{lt:+.5f}, {ht:+.5f}] | {ms:+.5f} [{ls:+.5f}, {hs:+.5f}] | {m0[m].mean():.2f} → {y[m].mean():.2f} |")
+        ci = lambda a, l_, h_: f"{a:+.5f} [{l_:+.5f}, {h_:+.5f}]" if not few else f"{a:+.5f} (IC non calcolabile: {len(np.unique(wk[m]))} settimane)"
+        bt = f"{b:.2f} [{lo:.2f}, {hi:.2f}]" if not few else f"{b:.2f} (IC non calcolabile: {len(np.unique(wk[m]))} settimane)"
+        L.append(f"| {name} | {int(m.sum())} | {int(known[m].sum())} | {bt} | {ci(mt, lt, ht)} | {ci(ms, ls, hs)} | {m0[m].mean():.2f} → {y[m].mean():.2f} |")
     hist_b = summ.get("2019/20-2025/26")
     cur = summ.get("2026/27")
     if cur and hist_b:
@@ -375,12 +384,16 @@ def m3(feat, weeks, st):
 def main():
     feat, gw, weeks, st = prepare()
     parts = {}
+    only = set(sys.argv[1:])
     for name, fn in (("M1", lambda: m1(feat, weeks, st)), ("M2", lambda: m2(feat, gw, weeks, st)), ("M3", lambda: m3(feat, weeks, st))):
+        if only and name not in only:
+            continue
         L, s = fn()
         open(os.path.join(P8, f"{name}.md"), "w", encoding="utf-8").write("\n".join(L))
         parts[name] = s
         print(name, s, flush=True)
-    pd.to_pickle(parts, os.path.join(os.path.dirname(L7.CTX7), "round8.pkl"))
+    if not only:
+        pd.to_pickle(parts, os.path.join(os.path.dirname(L7.CTX7), "round8.pkl"))
 
 
 if __name__ == "__main__":

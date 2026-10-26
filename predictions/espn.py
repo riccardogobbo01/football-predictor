@@ -6,9 +6,9 @@ statistiche delle coppe. Verificata identica a football-data.co.uk per tiri in p
 Per ogni partita finita: gol dei 90 minuti, gol del primo tempo, tiri, tiri in porta, corner, falli, gialli (squadra di casa e ospite). I gialli non
 sono tra le statistiche di squadra dello scoreboard: si contano dagli eventi della partita (`details`, cartellini gialli; il secondo giallo vale uno).
 Nessuna chiave; una richiesta per (competizione, giorno). Se l'API non risponde le funzioni restituiscono [] e scrivono un avviso nel log.
-Differenze note rispetto al CSV (308 partite 2026/27 confrontate): gol e gol del primo tempo identici; tiri in porta 99,7%, tiri totali 97,7%,
-corner 98,5%, falli 98,9% uguali; gialli di una squadra uguali nell'87% delle partite (±1 nel resto): i valori ESPN restano provvisori (`result_source`
-= "espn") e vengono sostituiti dal CSV appena football-data.co.uk lo aggiorna.
+Differenze note rispetto al CSV (346 partite 2026/27, backtest/round8_parts/ESPN.md): gol e gol del primo tempo identici; tiri in porta 99-100%, tiri totali 97-98%,
+corner 98%, falli 98-100% e gialli di una squadra 93% uguali (±1 nel resto): i valori ESPN restano provvisori (`result_source` = "espn") e vengono sostituiti
+dal CSV appena football-data.co.uk lo aggiorna.
 """
 import logging
 import re

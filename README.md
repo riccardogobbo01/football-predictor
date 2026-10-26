@@ -78,8 +78,8 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   es. Colombo). Se football-data.org indica un arbitro diverso da quello AIA (cambio dell'ultimo momento) prevale football-data.org e il conflitto e' nel log.
 - **Risultati da ESPN** (`predictions/espn.py`): quando football-data.co.uk non e' ancora aggiornato i risultati e le statistiche (gol dei 90 minuti, primo tempo, tiri, tiri in porta,
   corner, falli, gialli) delle partite di campionato vengono presi dallo scoreboard pubblico di ESPN (provvisori: `result_source` = `espn`, sostituiti dal CSV appena disponibile);
-  per l'Europa League / Conference League (football-data.org: 403) e per le statistiche di tutte le coppe ESPN e' l'unica fonte. Confronto con il CSV su 308 partite 2026/27:
-  gol e primo tempo identici, tiri in porta 99,7%, falli 98,9%, corner 98,5%, tiri 97,7%, gialli di una squadra 87% (±1 nel resto).
+  per l'Europa League / Conference League (football-data.org: 403) e per le statistiche di tutte le coppe ESPN e' l'unica fonte. Confronto con il CSV su 346 partite 2026/27 (`backtest/round8_parts/ESPN.md`):
+  gol e gol del primo tempo identici, tiri in porta 99-100%, falli 98-100%, corner 98%, tiri 97-98%, gialli di una squadra 93% (±1 nel resto).
 - **Resoconto settimanale** (`scripts/weekly_report.py`, pagina `docs/resoconto.html` collegata dall'intestazione): ricalcolato a ogni esecuzione dallo storico; confronta le previsioni
   emesse prima del calcio d'inizio con i risultati reali (1X2 modello contro mercato, gol, Over/Under e BTTS, copertura degli intervalli e correlazione per statistica e per lega).
   `history.csv` conserva per questo `exp_h/exp_a`, `p_o15/p_o25/p_o35/p_btts`, `stats_json` (previsioni e intervalli emessi) e `stats_real_json` (valori reali per squadra);

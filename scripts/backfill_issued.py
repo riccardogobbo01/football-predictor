@@ -42,6 +42,7 @@ def snapshots():
                 if p.get("prob_o25") is not None:
                     vals = {"p_o25": p.get("prob_o25"), "p_o15": p.get("prob_o15"), "p_o35": p.get("prob_o35"), "p_btts": p.get("prob_btts"),
                             "exp_h": p.get("exp_goals_home"), "exp_a": p.get("exp_goals_away"), "stats_json": monitor.stats_json_from(f.get("expected_stats"))}
+                    vals["kickoff"] = f"{f['date']} {f['time']}" if f.get("time") else None
                     fx[(lk, f["date"], f["home"], f["away"])] = (f.get("time"), vals)
         out.append((gen, fx))
     return sorted(out, key=lambda x: x[0])
@@ -50,7 +51,7 @@ def snapshots():
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO_ROOT, "docs", "history.csv")
     h = monitor.load_history(path)
-    cols = ["p_o25", "p_o15", "p_o35", "p_btts", "exp_h", "exp_a", "stats_json"]
+    cols = ["p_o25", "p_o15", "p_o35", "p_btts", "exp_h", "exp_a", "stats_json", "kickoff"]
     todo = h[h["league"].isin(LEAGUES) & h[cols].isna().any(axis=1)]
     snaps = snapshots()
     n = 0
