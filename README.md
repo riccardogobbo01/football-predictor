@@ -85,9 +85,17 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   `history.csv` conserva per questo `exp_h/exp_a`, `p_o15/p_o25/p_o35/p_btts`, `stats_json` (previsioni e intervalli emessi) e `stats_real_json` (valori reali per squadra);
   `scripts/backfill_issued.py` ricostruisce le colonne emesse dalle copie di `predictions.json` in git per le righe precedenti.
 - **Avviso di previsioni vecchie**: la pagina mostra un avviso rosso se `generated_at` ha piu' di 30 ore (calcolato nel browser).
-- **Trigger esterno del job giornaliero** (opzionale, se i cron di GitHub ritardano o saltano): cron-job.org che chiama
-  `POST https://api.github.com/repos/riccardogobbo01/football-predictor/actions/workflows/predict.yml/dispatches` con corpo `{"ref":"main"}` e un token con il solo permesso
-  Actions: read and write su questo repository. Dettagli di configurazione nel commento di `docs/` della conversazione del 26/10/2026 (README: sezione Avvio locale non coinvolta).
+- **Trigger esterno del job giornaliero** (opzionale: i cron di GitHub possono ritardare di ore o saltare). Procedura:
+  1. Token: GitHub → Settings → Developer settings → Personal access tokens → *Fine-grained tokens* → Generate. Resource owner: il proprietario del repository; *Only select
+     repositories* → `riccardogobbo01/football-predictor`; *Repository permissions* → **Actions: Read and write** (il resto «No access»; *Metadata: Read* si aggiunge da solo); scadenza
+     massima 1 anno (segnarsi la data). Il token non puo' leggere il codice ne' fare push: puo' solo avviare i workflow di questo repository.
+  2. cron-job.org → *Create cronjob*. Title: `predict`. URL: `https://api.github.com/repos/riccardogobbo01/football-predictor/actions/workflows/predict.yml/dispatches`.
+     *Advanced*: Request method **POST**; Request body `{"ref":"main"}`; Headers: `Accept: application/vnd.github+json`, `Authorization: Bearer <TOKEN>`,
+     `X-GitHub-Api-Version: 2022-11-28`, `Content-Type: application/json`, `User-Agent: cron-job.org`. Timezone UTC.
+  3. Orari (UTC): 04:17 ogni giorno; secondo job 09:17 (o 09:07, piu' margine sulle domeniche con calcio d'inizio alle 10:30) venerdi-lunedi. Risposta attesa: HTTP 204; attivare
+     «Notify on failure» (e «after N failures»).
+  4. I cron di GitHub restano come ripiego: un doppio avvio e' innocuo (i job si accodano per `concurrency`, le righe gia' iniziate non si riscrivono).
+  Il token si puo' provare con `curl -X POST -H "Authorization: Bearer <TOKEN>" -H "Accept: application/vnd.github+json" -d '{"ref":"main"}' <URL>` (204 = avviato).
 - **Storico congelato al calcio d'inizio**: `history.csv` ha la colonna `kickoff` (UTC); dopo quell'istante una riga non si riscrive piu' e una partita gia' iniziata
   senza previsione non viene aggiunta. `p_o25` = probabilita' di Over 2,5 emessa, usata dal riquadro di monitoraggio (calibrazione dell'Over 2,5: previsto medio
   contro reale); `scripts/backfill_issued.py` la ricostruisce dalle copie di `predictions.json` in git per le righe precedenti.
