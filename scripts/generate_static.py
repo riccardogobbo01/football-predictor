@@ -53,7 +53,7 @@ import pandas as pd
 import requests
 
 from backtest import data, eloodds
-from predictions import cups, levels as levels_mod, monitor, referee_sources
+from predictions import cups, espn, levels as levels_mod, monitor, referee_sources
 from predictions import stack_predictor as sp
 from config import REC_DRAW_THRESHOLD, STATS_VERSION
 
@@ -731,6 +731,7 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
     )
 
     monitor_html = _monitor_html(mon)
+    generated_iso = generated_at.replace(" UTC", "").replace(" ", "T") + ":00Z"      # per l'avviso di previsioni vecchie (JS)
 
     # Costruisci i tab buttons
     tabs_html = '<button class="tab active" onclick="switchTab(\'all\',this)">🌍 Tutte</button>\n'
@@ -982,6 +983,9 @@ main {{ padding: 24px 20px 60px; max-width: 1400px; margin: 0 auto; }}
 
 /* League section */
 .league-section {{ margin-bottom: 32px; }}
+.stale {{ background: rgba(248,113,113,.14); color: var(--text); border: 1px solid var(--red); border-left-width: 5px; border-radius: 10px;
+  margin: 10px 16px; padding: 10px 14px; font-size: .88rem; font-weight: 600; }}
+.rep-link {{ color: var(--accent); text-decoration: none; font-weight: 700; }}
 .league-header {{
   display: flex;
   align-items: center;
@@ -1198,11 +1202,26 @@ footer a {{ color: var(--accent); text-decoration: none; }}
   <div class="logo">⚽</div>
   <h1 class="site-title">Football <em>Predictor</em></h1>
   <div class="header-meta">
-    <strong>{total_preds} previsioni</strong> · aggiornato {generated_at}<br>
+    <strong>{total_preds} previsioni</strong> · aggiornato {generated_at} · <a href="resoconto.html" class="rep-link">Resoconto settimanale</a><br>
     Poisson-stack (Dixon-Coles + tiri in porta + pi-ratings + xG Understat + Elo-Odds) · coppe: modello Elo
   </div>
   <button class="theme-btn" onclick="toggleTheme()" title="Cambia tema">☀️/🌙</button>
 </header>
+<div id="stale-banner" class="stale" role="alert" hidden></div>
+<script>
+(function () {{
+  // avviso se le previsioni hanno più di 30 ore (il job giornaliero potrebbe non aver girato)
+  var iso = "{generated_iso}", t = Date.parse(iso);
+  if (isNaN(t)) {{ return; }}
+  var h = (Date.now() - t) / 3600000;
+  if (h > 30) {{
+    var b = document.getElementById("stale-banner");
+    b.textContent = "Attenzione: le previsioni sono state aggiornate più di " + Math.floor(h) + " ore fa ({generated_at}). Il job giornaliero potrebbe non aver girato: " +
+      "partite recenti, arbitri e risultati potrebbero non essere aggiornati.";
+    b.hidden = false;
+  }}
+}})();
+</script>
 
 <div class="tabs-wrap">
   {tabs_html}
@@ -1360,6 +1379,16 @@ def validate_output(all_data: dict) -> list:
                        or min(mk["home"], mk["draw"], mk["away"]) <= 0):
                 problems.append(f"{tag}: probabilità di mercato non valide")
     return problems
+
+
+def espn_cup_events(history, today) -> list:
+    """Partite di coppa dello storico gia' giocate senza risultato o senza statistiche: eventi finiti ESPN per (coppa, giorno)."""
+    pend = history[history["league"].isin(cups.CUPS) & (pd.to_datetime(history["match_date"]) <= today)
+                   & (history["result"].isna() | history["shots_real"].isna())]
+    out = []
+    for lg, d in sorted(set(zip(pend["league"], pend["match_date"]))):
+        out += espn.as_finished(espn.fetch_day(espn.CODES[lg], d), lg)
+    return out
 
 
 def _referee_status(all_data: dict, today) -> dict:
@@ -1571,18 +1600,20 @@ def main():
     # ── Storico e monitoraggio ──
     history = monitor.upsert(history, new_rows, today)
     history = monitor.fill_results(history, df, today)
+    monitor.fill_from_espn(history, today)               # partite giocate non ancora nel CSV: risultato e statistiche provvisori da ESPN
     n_ref = monitor.fill_referees(history, recent_refs)
     if n_ref:
         log.info("Storico: arbitro aggiunto a %d partite giocate", n_ref)
 
     # risultati delle coppe (football-data.org: di fatto solo la Champions League)
     today_s = today.strftime("%Y-%m-%d")
-    pending = history[history.league.isin(list(cups.CUPS)) & history.result.isna() & (history.match_date <= today_s)]
+    pending = history[history.league.isin(list(cups.CUPS)) & (history.result.isna() | history.shots_real.isna()) & (history.match_date <= today_s)]
     if len(pending):
         finished = []
         for cup_key in sorted(set(pending.league)):
             time.sleep(7)
             finished += get_finished(cups.CUPS[cup_key]["fdo"], cup_key)
+        finished += espn_cup_events(history, today)          # Europa/Conference League (football-data.org 403) e statistiche di tutte le coppe
         history = cups.apply_results(history, finished, today)
     monitor.save_history(history, history_path)
     mon = monitor.rolling_logloss(history)
@@ -1632,6 +1663,13 @@ def main():
     html = generate_html(all_data, generated_at, mon)
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(html)
+    try:                                                   # resoconto settimanale (docs/resoconto.html): mai bloccare la generazione per un errore del report
+        from scripts import weekly_report
+        rep = weekly_report.main(history_path, "docs", today)
+        log.info("Resoconto settimanale: %d partite dall'inizio del monitoraggio, %d nell'ultima settimana completa (%d con risultato provvisorio ESPN)",
+                 rep["total"]["n"], rep["last_week"]["n"], rep["provisional"])
+    except Exception as e:
+        log.warning("Resoconto settimanale non generato (%s: %s)", type(e).__name__, e)
 
     total = sum(len(ld["fixtures"]) for ld in all_data.values())
     log.info("Generati docs/index.html e docs/predictions.json")

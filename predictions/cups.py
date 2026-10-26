@@ -417,16 +417,28 @@ def apply_results(history, finished: list, today, max_days: int = 1):
     h = history.copy()
     today = pd.Timestamp(today)
     n_new = 0
+    from predictions import monitor
+    n_stats = 0
     for i, row in h.iterrows():
-        if row["league"] not in CUPS or pd.notna(row["result"]) or pd.Timestamp(row["match_date"]) > today:
+        if row["league"] not in CUPS or pd.Timestamp(row["match_date"]) > today:
+            continue
+        no_result, no_stats = pd.isna(row["result"]), pd.isna(row["shots_real"])
+        if not (no_result or no_stats):
             continue
         cand = [c for c in finished if c.get("cup") == row["league"]]
-        m = match_to_fdo({"date": row["match_date"], "home": row["home"], "away": row["away"]}, cand, max_days)
-        if m is None:
-            continue
-        h.at[i, "hg"], h.at[i, "ag"] = int(m["hg"]), int(m["ag"])
-        h.at[i, "result"] = "H" if m["hg"] > m["ag"] else ("D" if m["hg"] == m["ag"] else "A")
-        n_new += 1
-    if n_new:
-        log.info("Coppe: %d risultati nuovi nello storico", n_new)
+        fix = {"date": row["match_date"], "home": row["home"], "away": row["away"]}
+        if no_result:                                  # risultato dei 90 minuti: football-data.org se c'e', altrimenti ESPN (provvisorio)
+            m = match_to_fdo(fix, [c for c in cand if "espn" not in c], max_days) or match_to_fdo(fix, [c for c in cand if "espn" in c], max_days)
+            if m is not None:
+                h.at[i, "hg"], h.at[i, "ag"] = int(m["hg"]), int(m["ag"])
+                h.at[i, "result"] = "H" if m["hg"] > m["ag"] else ("D" if m["hg"] == m["ag"] else "A")
+                h.at[i, "result_source"] = "espn" if "espn" in m else "football-data.org"
+                n_new += 1
+        if no_stats:                                   # statistiche (tiri, tiri in porta, corner, falli, gialli, gol del primo tempo): solo da ESPN
+            e = match_to_fdo(fix, [c for c in cand if "espn" in c], max_days)
+            if e is not None:
+                monitor.apply_espn(h, i, e["espn"], set_result=False)
+                n_stats += 1
+    if n_new or n_stats:
+        log.info("Coppe: %d risultati nuovi e statistiche per %d partite nello storico", n_new, n_stats)
     return h

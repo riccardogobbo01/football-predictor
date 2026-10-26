@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Riempie `p_o25` (probabilità di Over 2,5 emessa prima del calcio d'inizio) nelle righe di docs/history.csv giocate prima che la colonna esistesse,
-dalle copie di docs/predictions.json nella storia di git: per ogni partita si usa l'ULTIMA copia generata prima del calcio d'inizio che la contiene.
-Le righe delle coppe (modello Elo senza mercati dei gol) e quelle senza una copia utile restano vuote. Idempotente.
+Riempie le colonne «emesse» di docs/history.csv (`p_o25`, `p_o15`, `p_o35`, `p_btts`, `exp_h`, `exp_a`, `stats_json`) nelle righe create prima che le colonne
+esistessero, dalle copie di docs/predictions.json nella storia di git: per ogni partita si usa l'ULTIMA copia generata prima del calcio d'inizio che la
+contiene. Le righe delle coppe (modello Elo senza mercati dei gol) e quelle senza una copia utile restano vuote. Idempotente (non sovrascrive valori
+presenti). `stats_json` solo se la copia ha gli intervalli (dalla versione s4-intervalli).
 
-Uso:  python scripts/backfill_o25.py [docs/history.csv]
+Uso:  python scripts/backfill_issued.py [docs/history.csv]
 """
 import json
 import os
@@ -39,7 +40,9 @@ def snapshots():
             for f in (j.get("leagues", {}).get(lk, {}) or {}).get("fixtures", []):
                 p = f.get("prediction") or {}
                 if p.get("prob_o25") is not None:
-                    fx[(lk, f["date"], f["home"], f["away"])] = (f.get("time"), float(p["prob_o25"]))
+                    vals = {"p_o25": p.get("prob_o25"), "p_o15": p.get("prob_o15"), "p_o35": p.get("prob_o35"), "p_btts": p.get("prob_btts"),
+                            "exp_h": p.get("exp_goals_home"), "exp_a": p.get("exp_goals_away"), "stats_json": monitor.stats_json_from(f.get("expected_stats"))}
+                    fx[(lk, f["date"], f["home"], f["away"])] = (f.get("time"), vals)
         out.append((gen, fx))
     return sorted(out, key=lambda x: x[0])
 
@@ -47,7 +50,8 @@ def snapshots():
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO_ROOT, "docs", "history.csv")
     h = monitor.load_history(path)
-    todo = h[h["result"].notna() & h["p_o25"].isna() & h["league"].isin(LEAGUES)]
+    cols = ["p_o25", "p_o15", "p_o35", "p_btts", "exp_h", "exp_a", "stats_json"]
+    todo = h[h["league"].isin(LEAGUES) & h[cols].isna().any(axis=1)]
     snaps = snapshots()
     n = 0
     for i, row in todo.iterrows():
@@ -55,15 +59,17 @@ def main():
         found = None
         for gen, fx in snaps:
             if key in fx:
-                t, p = fx[key]
+                t, vals = fx[key]
                 ko = pd.Timestamp(row["kickoff"]) if isinstance(row["kickoff"], str) else pd.Timestamp(f"{key[1]} {t or '23:59'}")
                 if gen < ko:
-                    found = p                       # l'ultima copia generata prima del calcio d'inizio
+                    found = vals                    # l'ultima copia generata prima del calcio d'inizio
         if found is not None:
-            h.at[i, "p_o25"] = found
+            for c in cols:
+                if pd.isna(h.at[i, c]) and found.get(c) is not None:
+                    h.at[i, c] = found[c]
             n += 1
     monitor.save_history(h, path)
-    print(f"p_o25 riempita per {n} partite su {len(todo)} giocate senza valore ({len(snaps)} copie di predictions.json esaminate)")
+    print(f"colonne emesse riempite per {n} partite su {len(todo)} con valori mancanti ({len(snaps)} copie di predictions.json esaminate)")
 
 
 if __name__ == "__main__":

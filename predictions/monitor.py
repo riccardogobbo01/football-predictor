@@ -30,6 +30,7 @@ La log-loss mobile usa le ultime `window` partite giocate, della versione corren
 disponibili contemporaneamente with_xg, without_xg e mercato (stesso insieme per tutti e tre).
 """
 import io
+import json
 import logging
 import os
 import sys
@@ -64,13 +65,18 @@ COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "ho
            + [f"mkt_{k}" for k in P3] + ["mkt_source", "rec_score", "rec_prob", "hg", "ag", "result"]
            + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"]
            + ["shots_pred", "shots_real", "sot_pred", "sot_real", "fouls_pred", "fouls_real", "ht_goals_pred", "ht_goals_real"]
-           + ["kickoff", "referee_source", "p_o25"]
+           + ["kickoff", "referee_source", "p_o25", "result_source", "corners_real", "exp_h", "exp_a", "p_o15", "p_o35", "p_btts", "stats_json", "stats_real_json"]
            + [f"bm_{s}_{x}" for s in ("tiri", "sot", "corner", "falli", "gialli") for x in ("h", "a")])
 # bm_<statistica>_h/_a = medie attese di base (casa/ospite, con effetto arbitro, PRIMA del livello stagionale) al momento dell'emissione: servono a
 # ricalcolare ogni giorno il livello stagionale dalle partite giocate dopo l'ultimo allenamento (predictions/levels.py)
 # totali previsti (ultima emissione) e reali per tiri, tiri in porta, falli e gol del primo tempo: serve al monitoraggio dei modelli delle statistiche
 REAL_COLS = {"yellow_real": ("HY", "AY"), "shots_real": ("HS", "AS"), "sot_real": ("HST", "AST"),
-             "fouls_real": ("HF", "AF"), "ht_goals_real": ("HTHG", "HTAG")}
+             "fouls_real": ("HF", "AF"), "ht_goals_real": ("HTHG", "HTAG"), "corners_real": ("HC", "AC")}
+# result_source = "csv" (football-data.co.uk, fonte principale) | "espn" (provvisorio: sostituito dal CSV appena aggiornato) | "football-data.org" (coppe)
+# exp_h/exp_a, p_o15/p_o25/p_o35/p_btts = gol attesi e probabilita' emessi; stats_json = medie, intervalli [min, max, prob.] e totali delle 5 statistiche
+# emessi (serve al resoconto settimanale, scripts/weekly_report.py); stats_real_json = valori reali per squadra {stat: [casa, ospite]} delle stesse 5 statistiche
+# (tiri, tiri in porta, corner, gialli, falli) per confrontarli con gli intervalli
+STAT_JSON_KEYS = {"tiri": "shots", "sot": "sot", "corner": "corners", "gialli": "yellows", "falli": "fouls"}
 # kickoff = calcio d'inizio (UTC, "AAAA-MM-GG HH:MM") secondo football-data.org: dopo quell'istante la riga non si riscrive piu' (upsert)
 PROB_COLS = [c for c in COLUMNS if c.split("_")[0] in ("p", "pw", "po", "mkt") and c != "mkt_source"]
 
@@ -85,13 +91,13 @@ def load_history(path: str = HISTORY_PATH) -> pd.DataFrame:
     h = pd.read_csv(path, dtype={"matchday": str, "home_dc": str, "away_dc": str,
                                  "fallback_reason": str, "mkt_source": str, "result": str, "rec_score": str,
                                  "model_version": str, "referee": str, "referee_first_seen": str, "stats_version": str, "kickoff": str,
-                                 "referee_source": str})
+                                 "referee_source": str, "result_source": str, "stats_json": str, "stats_real_json": str})
     for c in COLUMNS:
         if c not in h.columns:
             h[c] = np.nan
     h["model_version"] = h["model_version"].astype(object).where(h["model_version"].notna(), LEGACY_MODEL_VERSION)
     h["stats_version"] = h["stats_version"].astype(object).where(h["stats_version"].notna(), LEGACY_STATS_VERSION)
-    for c in ("referee", "referee_first_seen", "kickoff", "referee_source"):     # colonne di testo: se mancano nel CSV nascono float
+    for c in ("referee", "referee_first_seen", "kickoff", "referee_source", "result_source", "stats_json", "stats_real_json"):     # colonne di testo: se mancano nel CSV nascono float
         h[c] = h[c].astype(object)
     h["rec_score"] = h["rec_score"].astype(object)      # colonna di testo ("2-1"): se manca nel CSV nasce float
     return h[COLUMNS]
@@ -173,6 +179,9 @@ def make_row(league, fix, pred, probs, issued_on) -> dict:
                p_home=pred["prob_home"], p_draw=pred["prob_draw"], p_away=pred["prob_away"])
     if pred.get("prob_o25") is not None:
         row["p_o25"] = float(pred["prob_o25"])                   # probabilita' di Over 2,5 al momento dell'emissione (monitoraggio della calibrazione)
+    for col, key in (("p_o15", "prob_o15"), ("p_o35", "prob_o35"), ("p_btts", "prob_btts"), ("exp_h", "exp_goals_home"), ("exp_a", "exp_goals_away")):
+        if pred.get(key) is not None:
+            row[col] = float(pred[key])
     if pred.get("rec_score"):
         row["rec_score"] = f"{pred['rec_score'][0]}-{pred['rec_score'][1]}"      # risultato consigliato (esito piu' probabile, poi punteggio)
         row["rec_prob"] = pred["rec_score"][2] / 100
@@ -242,6 +251,31 @@ def upsert(history: pd.DataFrame, new_rows: list[dict], today, now=None) -> pd.D
     return h
 
 
+# colonne CSV (casa, ospite) e chiavi dell'evento ESPN per le 5 statistiche di stats_real_json
+REAL_JSON_CSV = {"tiri": ("HS", "AS"), "sot": ("HST", "AST"), "corner": ("HC", "AC"), "gialli": ("HY", "AY"), "falli": ("HF", "AF")}
+REAL_JSON_ESPN = {"tiri": ("shots_h", "shots_a"), "sot": ("sot_h", "sot_a"), "corner": ("corners_h", "corners_a"), "gialli": ("yellow_h", "yellow_a"), "falli": ("fouls_h", "fouls_a")}
+
+
+def real_json_from(get, cols: dict) -> str | None:
+    """Testo JSON {stat: [casa, ospite]} dei valori reali; get(nome) -> valore o None; solo le statistiche con entrambi i lati finiti."""
+    out = {}
+    for stat, (a, b) in cols.items():
+        va, vb = get(a), get(b)
+        if va is not None and vb is not None and np.isfinite(va) and np.isfinite(vb):
+            out[stat] = [int(va), int(vb)]
+    return json.dumps(out, separators=(",", ":")) if out else None
+
+
+def stats_json_from(st) -> str | None:
+    """Testo JSON compatto delle 5 statistiche emesse (medie, intervalli [min, max, prob.], totale) dal dict `expected_stats`; None se non ci sono intervalli."""
+    sj = {}
+    for stat, key in STAT_JSON_KEYS.items():
+        o = (st or {}).get(key)
+        if o and "int_total" in o:
+            sj[stat] = {"h": o["home"], "a": o["away"], "t": o["total"], "ih": o["int_home"], "ia": o["int_away"], "it": o["int_total"]}
+    return json.dumps(sj, separators=(",", ":")) if sj else None
+
+
 def attach_yellows(rows: list[dict], stats_list: list, preds: list | None = None) -> None:
     """Mette in ogni riga (in place) i totali previsti dal modello delle statistiche: gialli (con l'effetto arbitro), tiri, tiri in porta,
     falli e, da `preds` (previsioni 1X2 con il primo tempo), i gol attesi del primo tempo."""
@@ -254,6 +288,9 @@ def attach_yellows(rows: list[dict], stats_list: list, preds: list | None = None
             b = ((st or {}).get(key) or {}).get("base")
             if b:
                 r[f"bm_{stat}_h"], r[f"bm_{stat}_a"] = float(b[0]), float(b[1])
+        sj = stats_json_from(st)
+        if sj:
+            r["stats_json"] = sj
         fh = ((preds or [None] * len(rows))[i] or {}).get("first_half")
         if fh:
             r["ht_goals_pred"] = float(fh["exp_total"])
@@ -288,7 +325,8 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
 
     n_new = 0
     for i, row in h.iterrows():
-        if pd.notna(row["result"]) or pd.Timestamp(row["match_date"]) > today:
+        provisional = row.get("result_source") == "espn"          # risultato e statistiche provvisori da ESPN: il CSV li sostituisce
+        if (pd.notna(row["result"]) and not provisional) or pd.Timestamp(row["match_date"]) > today:
             continue
         if not isinstance(row["home_dc"], str) or not isinstance(row["away_dc"], str):
             continue
@@ -300,6 +338,10 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
         r = min(cands, key=lambda c: abs((c.date - d).days))
         h.at[i, "hg"], h.at[i, "ag"] = int(r.hg), int(r.ag)
         h.at[i, "result"] = "H" if r.hg > r.ag else ("D" if r.hg == r.ag else "A")
+        h.at[i, "result_source"] = "csv"
+        rj = real_json_from(lambda c: getattr(r, c, None), REAL_JSON_CSV)
+        if rj:
+            h.at[i, "stats_real_json"] = rj
         for col, (a_, b_) in REAL_COLS.items():
             if hasattr(r, a_) and hasattr(r, b_) and np.isfinite(getattr(r, a_)) and np.isfinite(getattr(r, b_)):
                 h.at[i, col] = float(getattr(r, a_) + getattr(r, b_))
@@ -313,7 +355,7 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
     # valori reali anche per le righe giocate prima dell'introduzione delle colonne (o con risultato ma senza valori)
     cols_here = [c for c, (a_, b_) in REAL_COLS.items() if a_ in results.columns and b_ in results.columns]
     if cols_here:
-        missing = h["result"].notna() & h[cols_here].isna().any(axis=1)
+        missing = h["result"].notna() & (h[cols_here].isna().any(axis=1) | h["stats_real_json"].isna()) & h["league"].isin(LEAGUE_CODE)
         for i, row in h[missing].iterrows():
             if not isinstance(row["home_dc"], str) or not isinstance(row["away_dc"], str) or row["league"] not in LEAGUE_CODE:
                 continue
@@ -326,9 +368,60 @@ def fill_results(history: pd.DataFrame, results: pd.DataFrame, today, max_days_a
                     a_, b_ = REAL_COLS[col]
                     if pd.isna(h.at[i, col]) and np.isfinite(getattr(r, a_)) and np.isfinite(getattr(r, b_)):
                         h.at[i, col] = float(getattr(r, a_) + getattr(r, b_))
+                if pd.isna(h.at[i, "stats_real_json"]):
+                    rj = real_json_from(lambda c: getattr(r, c, None), REAL_JSON_CSV)
+                    if rj:
+                        h.at[i, "stats_real_json"] = rj
     if n_new:
         log.info("Storico: %d risultati nuovi", n_new)
     return h
+
+
+ESPN_REAL = {"shots_real": ("shots_h", "shots_a"), "sot_real": ("sot_h", "sot_a"), "corners_real": ("corners_h", "corners_a"),
+             "fouls_real": ("fouls_h", "fouls_a"), "yellow_real": ("yellow_h", "yellow_a")}
+
+
+def apply_espn(h: pd.DataFrame, i, ev: dict, source: str = "espn", set_result: bool = True) -> None:
+    """Scrive (in place) risultato (90 minuti) e statistiche di un evento ESPN sulla riga i dello storico; i valori gia' presenti non si sovrascrivono
+    tranne il risultato quando `set_result` e la riga non ne ha uno."""
+    if set_result and pd.isna(h.at[i, "result"]):
+        h.at[i, "hg"], h.at[i, "ag"] = int(ev["hg"]), int(ev["ag"])
+        h.at[i, "result"] = "H" if ev["hg"] > ev["ag"] else ("D" if ev["hg"] == ev["ag"] else "A")
+        h.at[i, "result_source"] = source
+    for col, (a_, b_) in ESPN_REAL.items():
+        va, vb = ev.get(a_), ev.get(b_)
+        if pd.isna(h.at[i, col]) and va is not None and vb is not None and np.isfinite(va) and np.isfinite(vb):
+            h.at[i, col] = float(va + vb)
+    if pd.isna(h.at[i, "ht_goals_real"]) and ev.get("ht_goals") is not None:
+        h.at[i, "ht_goals_real"] = float(ev["ht_goals"])
+    if pd.isna(h.at[i, "stats_real_json"]):
+        rj = real_json_from(lambda c: ev.get(c), REAL_JSON_ESPN)
+        if rj:
+            h.at[i, "stats_real_json"] = rj
+
+
+def fill_from_espn(history: pd.DataFrame, today, fetch=None, now=None) -> int:
+    """Per le partite di campionato gia' giocate e senza risultato (football-data.co.uk non ancora aggiornato) cerca risultato e statistiche su ESPN
+    (predictions/espn.py). Valori provvisori: result_source = "espn", sostituiti dal CSV da `fill_results`. Una richiesta per (campionato, giorno)."""
+    from predictions import espn
+    fetch = fetch or espn.fetch_day
+    h = history
+    today = pd.Timestamp(today)
+    n = 0
+    todo = h[h["result"].isna() & h["league"].isin(LEAGUE_CODE)]
+    todo = todo[pd.to_datetime(todo["match_date"]) <= today]
+    for (lg, d), g in todo.groupby(["league", "match_date"]):
+        events = fetch(espn.CODES[lg], str(d))
+        if not events:
+            continue
+        for i, row in g.iterrows():
+            ev = espn.match_event(row.to_dict(), events)
+            if ev is not None:
+                apply_espn(h, i, ev)
+                n += 1
+    if n:
+        log.info("Storico: %d risultati provvisori da ESPN (in attesa del CSV di football-data.co.uk)", n)
+    return n
 
 
 # ── Log-loss mobile ────────────────────────────────────────────────────────────

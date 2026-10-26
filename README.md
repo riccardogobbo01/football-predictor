@@ -76,9 +76,21 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   le partite da venerdì a lunedì) → fantacalcio.it (solo se l'AIA non e' utilizzabile) → football-data.org. Un cambio di struttura della pagina AIA non blocca il
   job: avviso nel log e ripiego. `history.csv` registra la fonte (`referee_source`); un arbitro nuovo ha effetto zero (alias in `AIA_ALIASES` per i cognomi ambigui,
   es. Colombo). Se football-data.org indica un arbitro diverso da quello AIA (cambio dell'ultimo momento) prevale football-data.org e il conflitto e' nel log.
+- **Risultati da ESPN** (`predictions/espn.py`): quando football-data.co.uk non e' ancora aggiornato i risultati e le statistiche (gol dei 90 minuti, primo tempo, tiri, tiri in porta,
+  corner, falli, gialli) delle partite di campionato vengono presi dallo scoreboard pubblico di ESPN (provvisori: `result_source` = `espn`, sostituiti dal CSV appena disponibile);
+  per l'Europa League / Conference League (football-data.org: 403) e per le statistiche di tutte le coppe ESPN e' l'unica fonte. Confronto con il CSV su 308 partite 2026/27:
+  gol e primo tempo identici, tiri in porta 99,7%, falli 98,9%, corner 98,5%, tiri 97,7%, gialli di una squadra 87% (±1 nel resto).
+- **Resoconto settimanale** (`scripts/weekly_report.py`, pagina `docs/resoconto.html` collegata dall'intestazione): ricalcolato a ogni esecuzione dallo storico; confronta le previsioni
+  emesse prima del calcio d'inizio con i risultati reali (1X2 modello contro mercato, gol, Over/Under e BTTS, copertura degli intervalli e correlazione per statistica e per lega).
+  `history.csv` conserva per questo `exp_h/exp_a`, `p_o15/p_o25/p_o35/p_btts`, `stats_json` (previsioni e intervalli emessi) e `stats_real_json` (valori reali per squadra);
+  `scripts/backfill_issued.py` ricostruisce le colonne emesse dalle copie di `predictions.json` in git per le righe precedenti.
+- **Avviso di previsioni vecchie**: la pagina mostra un avviso rosso se `generated_at` ha piu' di 30 ore (calcolato nel browser).
+- **Trigger esterno del job giornaliero** (opzionale, se i cron di GitHub ritardano o saltano): cron-job.org che chiama
+  `POST https://api.github.com/repos/riccardogobbo01/football-predictor/actions/workflows/predict.yml/dispatches` con corpo `{"ref":"main"}` e un token con il solo permesso
+  Actions: read and write su questo repository. Dettagli di configurazione nel commento di `docs/` della conversazione del 26/10/2026 (README: sezione Avvio locale non coinvolta).
 - **Storico congelato al calcio d'inizio**: `history.csv` ha la colonna `kickoff` (UTC); dopo quell'istante una riga non si riscrive piu' e una partita gia' iniziata
   senza previsione non viene aggiunta. `p_o25` = probabilita' di Over 2,5 emessa, usata dal riquadro di monitoraggio (calibrazione dell'Over 2,5: previsto medio
-  contro reale); `scripts/backfill_o25.py` la ricostruisce dalle copie di `predictions.json` in git per le righe precedenti.
+  contro reale); `scripts/backfill_issued.py` la ricostruisce dalle copie di `predictions.json` in git per le righe precedenti.
 - `python -I -X utf8 backtest/run_round6_prod.py` riproduce con il codice di produzione i risultati della fase 1 del round 6.
 
 ## Avvio locale
