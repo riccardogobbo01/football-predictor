@@ -70,6 +70,10 @@ def _fetch(season: int, div: str, session: requests.Session, current: int) -> di
         resp.raise_for_status()
         raw = resp.json()
     except (requests.RequestException, ValueError) as e:
+        if os.environ.get("UNDERSTAT_ALLOW_STALE") and os.path.exists(path):     # solo per i backtest: con Understat irraggiungibile si usa la cache anche vecchia
+            print(f"  ATTENZIONE: Understat {UNDERSTAT_LEAGUE[div]} {season} non raggiungibile, uso la cache (xG non aggiornati)")
+            with open(path, encoding="utf-8") as fh:
+                return json.load(fh)
         raise UnderstatError(f"Understat {UNDERSTAT_LEAGUE[div]} {season}: {e}") from e
     if "dates" not in raw:
         raise UnderstatError(f"Understat {UNDERSTAT_LEAGUE[div]} {season}: risposta senza 'dates'")
