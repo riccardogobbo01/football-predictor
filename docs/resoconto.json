@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-03 17:35 UTC",
- "today": "2026-11-03",
+ "generated_at": "2026-11-04 12:18 UTC",
+ "today": "2026-11-04",
  "last_week": {
   "start": "2026-10-26",
   "end": "2026-11-01",
@@ -1358,7 +1358,7 @@
     },
     "mae": 4.635,
     "bias": 0.09249999999999992,
-    "corr": 0.297183759143475
+    "corr": 0.29718375914347495
    },
    "sot": {
     "n": 160,
@@ -1372,7 +1372,7 @@
     },
     "mae": 2.75625,
     "bias": -0.25375,
-    "corr": 0.3679281678336978
+    "corr": 0.3679281678336979
    },
    "corner": {
     "n": 160,
@@ -1400,7 +1400,7 @@
     },
     "mae": 1.6324999999999998,
     "bias": 0.16625000000000004,
-    "corr": 0.27696519174991063
+    "corr": 0.27696519174991036
    },
    "falli": {
     "n": 160,
@@ -1414,7 +1414,7 @@
     },
     "mae": 3.920625,
     "bias": 0.06562500000000002,
-    "corr": 0.3330694095047659
+    "corr": 0.333069409504766
    }
   },
   "by_league": {
@@ -1975,16 +1975,25 @@
  "xg": {
   "n": 53,
   "first": "2026-11-02",
-  "last": "2026-11-03",
+  "last": "2026-11-04",
   "active": true,
   "by_week": {
    "2026-11-02": 53
   },
-  "reason": "Understat non disponibile (UnderstatError…"
+  "reason": "Understat non disponibile"
  },
  "model": {
-  "trained_at": "2026-10-26 10:46 UTC",
-  "age_days": 8,
-  "late": false
+  "trained_at": "2026-11-04 10:18 UTC",
+  "age_days": 0,
+  "late": false,
+  "xg": {
+   "source": "cache",
+   "asof": "2026-10-25",
+   "age_days": 10,
+   "too_old": false,
+   "error": "Understat Serie A 2014: Expecting value: line 1 column 1 (char 0)",
+   "mode": "with_xg+without_xg",
+   "with_xg_max_date": "2026-10-25"
+  }
  }
 }
