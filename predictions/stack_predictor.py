@@ -375,8 +375,9 @@ def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, ref
         if c not in frame:
             frame[c] = np.nan
     names = list(referees) if referees is not None else [None] * n
-    ratios = {"gialli": [refeffect.ratio(model.get("referees"), div, nm) for nm in names],
-              "falli": [refeffect.ratio(model.get("referees_fouls"), div, nm) for nm in names]}
+    asof = list(dates) if dates is not None else [None] * n                    # data della partita: serve al decadimento dell'effetto arbitro (s6)
+    ratios = {"gialli": [refeffect.ratio(model.get("referees"), div, nm, asof[i]) for i, nm in enumerate(names)],
+              "falli": [refeffect.ratio(model.get("referees_fouls"), div, nm, asof[i]) for i, nm in enumerate(names)]}
     frame["ref_logR"] = np.log([r[0] for r in ratios["gialli"]])
     frame["ref_logR_f"] = np.log([r[0] for r in ratios["falli"]])
     variant = [WITH_XG if state.xg_fallback_reason(h, a) is None else WITHOUT_XG for h, a in pairs]

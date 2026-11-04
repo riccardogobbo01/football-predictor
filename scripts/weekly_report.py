@@ -134,7 +134,38 @@ def week_bounds(day: pd.Timestamp):
     return mon, mon + pd.Timedelta(days=6)
 
 
-def build(history: pd.DataFrame, today) -> dict:
+def xg_status(history: pd.DataFrame, today) -> dict:
+    """Previsioni emesse con il ripiego senza xG (Understat non disponibile): righe di campionato con model_used = without_xg, per settimana di partita,
+    primo e ultimo giorno di emissione, e se l'ultima emissione e' recente (ultimi 3 giorni)."""
+    h = history[history["league"].isin(LEAGUES) & (history["model_used"] == "without_xg")]
+    out = {"n": int(len(h)), "first": None, "last": None, "active": False, "by_week": {}, "reason": None}
+    if not len(h):
+        return out
+    out["first"], out["last"] = str(h["issued_on"].min()), str(h["issued_on"].max())
+    out["active"] = (pd.Timestamp(today) - pd.Timestamp(out["last"])).days <= 3
+    for mon, g in h.groupby(pd.to_datetime(h["match_date"]).map(lambda d: week_bounds(d)[0])):
+        out["by_week"][str(mon.date())] = int(len(g))
+    r = h["fallback_reason"].dropna()
+    if len(r):
+        out["reason"] = str(r.iloc[-1]).split("(")[0].split(":")[0].strip()[:120]
+    return out
+
+
+def trained_status(stack_path, today) -> dict:
+    """Data dell'ultimo riallenamento (models/stack.json) e giorni trascorsi; il riallenamento e' settimanale."""
+    out = {"trained_at": None, "age_days": None, "late": False}
+    try:
+        with open(stack_path, encoding="utf-8") as fh:
+            t = json.load(fh)["meta"]["trained_at"]
+        d = pd.Timestamp(str(t).replace(" UTC", ""))
+        out.update(trained_at=str(t), age_days=int((pd.Timestamp(today) - d.normalize()).days))
+        out["late"] = out["age_days"] > 9
+    except Exception:
+        pass
+    return out
+
+
+def build(history: pd.DataFrame, today, stack_path=None) -> dict:
     today = pd.Timestamp(today).normalize()
     h = played_rows(history)
     cur_mon, _ = week_bounds(today)
@@ -147,7 +178,8 @@ def build(history: pd.DataFrame, today) -> dict:
             "current_week": {"start": str(cur_mon.date()), **(weeks.get(cur_mon) or summarize(h.iloc[0:0]))},
             "weeks": {str(k.date()): {"n": v["n"], "x12": v["x12"], "goals": {kk: vv for kk, vv in v["goals"].items() if kk != "markets"}} for k, v in sorted(weeks.items())},
             "total": summarize(h), "since": str(h["_d"].min().date()) if len(h) else None,
-            "provisional": int((h["result_source"] == "espn").sum())}
+            "provisional": int((h["result_source"] == "espn").sum()),
+            "xg": xg_status(history, today), "model": trained_status(stack_path or os.path.join(REPO_ROOT, "models", "stack.json"), today)}
 
 
 # ───────────────────────────── pagina ─────────────────────────────
@@ -242,6 +274,14 @@ def render(rep: dict) -> str:
     lw, cw, tot = rep["last_week"], rep["current_week"], rep["total"]
     prov = (f'<div class="warn">{rep["provisional"]} partite hanno risultato e statistiche provvisori da ESPN (football-data.co.uk non è ancora aggiornato): '
             f'verranno sostituiti dal CSV.</div>') if rep["provisional"] else ""
+    xg, mdl = rep.get("xg") or {}, rep.get("model") or {}
+    if xg.get("active"):
+        prov = (f'<div class="warn"><b>Modello senza xG in uso</b>: Understat non è disponibile ({html.escape(str(xg.get("reason") or ""))}); dal {xg["first"]} al {xg["last"]} '
+                f'{xg["n"]} previsioni di campionato sono state emesse con il ripiego senza xG (partite per settimana: '
+                + ", ".join(f"{k}: {v}" for k, v in xg["by_week"].items()) + ').</div>') + prov
+    if mdl.get("late"):
+        prov = (f'<div class="warn"><b>Riallenamento in ritardo</b>: ultimo allenamento del modello il {html.escape(str(mdl["trained_at"]))} ({mdl["age_days"]} giorni fa; '
+                'è settimanale). Il riallenamento fallisce se Understat non risponde: il sito usa il modello precedente.</div>') + prov
     rows = []
     for wk, v in rep["weeks"].items():
         x, g = v["x12"], v["goals"]

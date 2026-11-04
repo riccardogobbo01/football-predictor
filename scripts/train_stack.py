@@ -43,7 +43,7 @@ sys.path.insert(0, REPO_ROOT)
 import numpy as np
 
 from backtest import data, eloodds, features, refeffect, stack, stats_v3, understat
-from config import GAP_PARAMS, LEVEL_PARAMS, REFEREE_K, STATS_VERSION
+from config import GAP_PARAMS, LEVEL_PARAMS, REFEREE_HALF_LIFE_DAYS, REFEREE_K, STATS_VERSION
 
 OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
 
@@ -158,12 +158,12 @@ def main():
     if keys[feat.season >= 2016].notna().mean() < 0.9:
         print("ERRORE: storico degli arbitri troppo incompleto (< 90% delle partite dal 2016/17)", file=sys.stderr)
         sys.exit(1)
-    feat["ref_logR"], ref_state = refeffect.compute(feat, keys, REFEREE_K)
+    feat["ref_logR"], ref_state = refeffect.compute(feat, keys, REFEREE_K, REFEREE_HALF_LIFE_DAYS["gialli"])
     print(f"  {ref_state['n_referees']} arbitri con storico, k={REFEREE_K}", flush=True)
     priors = stats_v3.gap_priors(df)
     feat = feat.join(stats_v3.gap_features(df, priors))
     mhf, maf = stats_v3.base_predictions(feat, "falli")
-    feat["ref_logR_f"], ref_state_f = refeffect.compute_stat(feat, keys, mhf, maf, feat["HF"] + feat["AF"], REFEREE_K)
+    feat["ref_logR_f"], ref_state_f = refeffect.compute_stat(feat, keys, mhf, maf, feat["HF"] + feat["AF"], REFEREE_K, REFEREE_HALF_LIFE_DAYS["falli"])
     print(f"  falli: {ref_state_f['n_referees']} arbitri con storico", flush=True)
 
     print("Stima degli stack...", flush=True)

@@ -101,12 +101,18 @@ def mbar_by_league(feat, m_tot) -> dict:
     return {k: float(v) for k, v in m_tot[sel].groupby(feat.Division[sel]).mean().items()}
 
 
-def referee_ratio(feat, y, m, keys, k, mbar):
-    """(R per riga, somme finali {"Div|chiave": [Σy, Σm, n]}). Le partite si leggono in ordine di data; R usa solo le precedenti."""
+EPOCH = pd.Timestamp("2000-01-01")
+
+
+def referee_ratio(feat, y, m, keys, k, mbar, half_life_days=None):
+    """(R per riga, somme finali {"Div|chiave": [Σy, Σm, n, ultimo giorno]}). Le partite si leggono in ordine di data; R usa solo le precedenti.
+    half_life_days (round 10, s6-arbitro-decay): peso 0,5^(giorni/emivita) sulle partite passate dell'arbitro (None = peso uniforme, come prima).
+    Le somme finali sono quelle DECADUTE fino all'ultimo giorno in cui l'arbitro ha arbitrato (campo 4, giorni dall'epoca 2000-01-01)."""
     order = np.argsort(feat.date.to_numpy(), kind="stable")
     sums = {}
     out = np.ones(len(feat))
     div = feat.Division.to_numpy()
+    days = (feat.date - EPOCH).dt.days.to_numpy(float)
     yv, mv = y.to_numpy(float), m.to_numpy(float)
     kv = keys.to_numpy(dtype=object)
     default = float(np.mean(list(mbar.values())))
@@ -115,7 +121,12 @@ def referee_ratio(feat, y, m, keys, k, mbar):
         if key is None or (isinstance(key, float) and np.isnan(key)):
             continue
         kk = f"{div[i]}|{key}"
-        s = sums.setdefault(kk, [0.0, 0.0, 0])
+        s = sums.setdefault(kk, [0.0, 0.0, 0, days[i]])
+        if half_life_days:
+            f = 0.5 ** ((days[i] - s[3]) / half_life_days)
+            s[0] *= f
+            s[1] *= f
+        s[3] = days[i]
         mb = mbar.get(div[i], default)
         out[i] = (s[0] + k * mb) / (s[1] + k * mb)
         if np.isfinite(yv[i]) and np.isfinite(mv[i]):
@@ -125,28 +136,37 @@ def referee_ratio(feat, y, m, keys, k, mbar):
     return pd.Series(out, index=feat.index), sums
 
 
-def compute_stat(feat: pd.DataFrame, keys: pd.Series, mh0, ma0, y, k: float = REFEREE_K):
+def compute_stat(feat: pd.DataFrame, keys: pd.Series, mh0, ma0, y, k: float = REFEREE_K, half_life_days=None):
     """Effetto arbitro per una statistica generica: mh0/ma0 = medie attese del modello SENZA arbitro (come base_predictions), y = totale
-    osservato. Restituisce (log R per riga, stato per il serving)."""
+    osservato. Restituisce (log R per riga, stato per il serving). Con half_life_days lo stato ha anche "half_life_days" ed "epoch" e le somme
+    per arbitro sono decadute fino all'ultima partita [Σy, Σm, n, giorno]; senza, il formato e' quello originale [Σy, Σm, n]."""
     m_tot = mh0 + ma0
     mbar = mbar_by_league(feat, m_tot)
-    R, sums = referee_ratio(feat, y, m_tot, keys, k, mbar)
-    state = {"k": float(k), "mbar": mbar, "effects": {kk: [round(v[0], 3), round(v[1], 3), int(v[2])] for kk, v in sums.items() if v[2] > 0},
+    R, sums = referee_ratio(feat, y, m_tot, keys, k, mbar, half_life_days)
+    if half_life_days:
+        eff = {kk: [round(v[0], 4), round(v[1], 4), int(v[2]), int(v[3])] for kk, v in sums.items() if v[2] > 0}
+    else:
+        eff = {kk: [round(v[0], 3), round(v[1], 3), int(v[2])] for kk, v in sums.items() if v[2] > 0}
+    state = {"k": float(k), "mbar": mbar, "effects": eff,
              "asof": str(feat.date.max().date()), "n_matches_with_referee": int(keys.notna().sum()),
              "n_referees": int(len(sums))}
+    if half_life_days:
+        state.update(half_life_days=float(half_life_days), epoch=str(EPOCH.date()))
     return np.log(R), state
 
 
-def compute(feat: pd.DataFrame, keys: pd.Series, k: float = REFEREE_K):
+def compute(feat: pd.DataFrame, keys: pd.Series, k: float = REFEREE_K, half_life_days=None):
     """feat: feature del training con anche le feature delle statistiche (build_stat_features); keys: chiave arbitro per riga.
     Restituisce (ref_logR per riga, stato per il serving) per i GIALLI."""
     mh, ma = base_predictions(feat)
-    return compute_stat(feat, keys, mh, ma, feat["HY"] + feat["AY"], k)
+    return compute_stat(feat, keys, mh, ma, feat["HY"] + feat["AY"], k, half_life_days)
 
 
 # ───────────────────────────── serving ─────────────────────────────
-def ratio(state: dict, division: str, name) -> tuple:
-    """(R, chiave, storico_noto) per un arbitro indicato da football-data.org. Sconosciuto o senza storico -> R = 1."""
+def ratio(state: dict, division: str, name, asof=None) -> tuple:
+    """(R, chiave, storico_noto) per un arbitro indicato da football-data.org. Sconosciuto o senza storico -> R = 1.
+    Con uno stato a decadimento (half_life_days) le somme dell'arbitro decadono dall'ultima sua partita alla data `asof` (data ISO della partita da
+    prevedere; default: oggi) prima del calcolo, come nel walk-forward (`referee_ratio`); uno stato senza decadimento ignora `asof`."""
     if not state or not name:
         return 1.0, None, False
     key = resolve(division, name)
@@ -155,7 +175,13 @@ def ratio(state: dict, division: str, name) -> tuple:
         return 1.0, key, False
     mb = state["mbar"].get(division, float(np.mean(list(state["mbar"].values()))))
     k = state["k"]
-    return (e[0] + k * mb) / (e[1] + k * mb), key, True
+    sy, sm = e[0], e[1]
+    hl = state.get("half_life_days")
+    if hl and len(e) > 3:
+        day = (pd.Timestamp(asof) if asof is not None else pd.Timestamp.now().normalize()) - pd.Timestamp(state.get("epoch", "2000-01-01"))
+        f = 0.5 ** (max(day.days - e[3], 0) / hl)
+        sy, sm = sy * f, sm * f
+    return (sy + k * mb) / (sm + k * mb), key, True
 
 
 def check_premier_league(df: pd.DataFrame, keys: pd.Series) -> dict:
