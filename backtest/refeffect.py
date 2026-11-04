@@ -73,11 +73,11 @@ def load_history_keys(df: pd.DataFrame, matches_csv: str = MATCHES_CSV, history_
 
 
 # ───────────────────────────── calcolo dell'effetto ─────────────────────────────
-def base_predictions(feat: pd.DataFrame, stat: str = "gialli"):
-    """Medie attese (mh, ma) del modello SENZA arbitro (variante with_xg): walk-forward per stagione dal 2019/20, in campione
+def base_predictions(feat: pd.DataFrame, stat: str = "gialli", with_xg: bool = True):
+    """Medie attese (mh, ma) del modello SENZA arbitro (variante with_xg, o without_xg): walk-forward per stagione dal 2019/20, in campione
     per il 2016/17-2018/19 (previsioni del primo fold). Serie con NaN dove le feature non ci sono."""
     hc, ac = sm.STATS[stat][:2]
-    X = sm.design(feat, stat, True)
+    X = sm.design(feat, stat, with_xg)
     has_x = X.notna().all(axis=1)
     ok = has_x & feat[hc].notna() & feat[ac].notna()
     mh = pd.Series(np.nan, index=feat.index)
@@ -155,10 +155,10 @@ def compute_stat(feat: pd.DataFrame, keys: pd.Series, mh0, ma0, y, k: float = RE
     return np.log(R), state
 
 
-def compute(feat: pd.DataFrame, keys: pd.Series, k: float = REFEREE_K, half_life_days=None):
+def compute(feat: pd.DataFrame, keys: pd.Series, k: float = REFEREE_K, half_life_days=None, with_xg: bool = True):
     """feat: feature del training con anche le feature delle statistiche (build_stat_features); keys: chiave arbitro per riga.
-    Restituisce (ref_logR per riga, stato per il serving) per i GIALLI."""
-    mh, ma = base_predictions(feat)
+    Restituisce (ref_logR per riga, stato per il serving) per i GIALLI. with_xg=False: medie di base senza xG (training senza xG)."""
+    mh, ma = base_predictions(feat, "gialli", with_xg)
     return compute_stat(feat, keys, mh, ma, feat["HY"] + feat["AY"], k, half_life_days)
 
 

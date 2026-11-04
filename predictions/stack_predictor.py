@@ -135,6 +135,8 @@ def load_stack(path: str = STACK_PATH) -> dict:
                          "rilanciare scripts/train_stack.py")
     expected = {WITHOUT_XG: stack.PRODUCTION_FEATURES_EO, WITH_XG: stack.XG_FEATURES_EO}
     for name, feats in expected.items():
+        if name == WITH_XG and name not in d["models"]:        # training senza xG (cache degli xG troppo vecchia): solo without_xg
+            continue
         if d["models"][name]["features"] != feats:
             raise ValueError(f"models/stack.json: il modello {name} usa feature "
                              f"{d['models'][name]['features']}, attese {feats}")
@@ -302,6 +304,16 @@ def markets(M: np.ndarray, mu: float, nu: float) -> dict:
     }
 
 
+def xg_reasons(state: LeagueState, model: dict, pairs) -> list:
+    """Motivo del ripiego senza xG per ogni partita (None = si usa with_xg). Se models/stack.json non ha il modello con xG (training senza xG perche' la
+    cache degli xG era troppo vecchia) tutte le partite usano without_xg."""
+    if WITH_XG not in model["models"]:
+        asof = ((model.get("meta") or {}).get("xg") or {}).get("asof")
+        why = f"modello con xG non disponibile (xG fermi al {asof}: cache piu' vecchia di 30 giorni)" if asof else "modello con xG non disponibile"
+        return [why] * len(pairs)
+    return [state.xg_fallback_reason(h, a) for h, a in pairs]
+
+
 def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
     """pairs = [(home_csv_name, away_csv_name)]; nomi non presenti nel fit = squadra nuova.
 
@@ -311,7 +323,7 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
         return []
     homes, aways = zip(*pairs)
     X = state.features(homes, aways)
-    reasons = [state.xg_fallback_reason(h, a) for h, a in pairs]
+    reasons = xg_reasons(state, model, pairs)
 
     out = [None] * len(pairs)
     for name in (WITH_XG, WITHOUT_XG):
@@ -380,7 +392,7 @@ def stats_for_pairs(state: LeagueState, model: dict, pairs, league_key: str, ref
               "falli": [refeffect.ratio(model.get("referees_fouls"), div, nm, asof[i]) for i, nm in enumerate(names)]}
     frame["ref_logR"] = np.log([r[0] for r in ratios["gialli"]])
     frame["ref_logR_f"] = np.log([r[0] for r in ratios["falli"]])
-    variant = [WITH_XG if state.xg_fallback_reason(h, a) is None else WITHOUT_XG for h, a in pairs]
+    variant = [WITH_XG if r is None else WITHOUT_XG for r in xg_reasons(state, model, pairs)]
     out = [{"model": v, "note": stats_v3.PAGE_NOTE} for v in variant]
     means = {st: np.zeros((n, 2)) for st in stats_v3.ORDER}
     for stat in stats_v3.ORDER:
@@ -443,7 +455,7 @@ def probs_by_model(state: LeagueState, model: dict, pairs) -> list[dict]:
         return []
     homes, aways = zip(*pairs)
     X = state.features(homes, aways)
-    usable = [state.xg_fallback_reason(h, a) is None for h, a in pairs]
+    usable = [r is None for r in xg_reasons(state, model, pairs)]
     out = [{"with_xg": None, "without_xg": None} for _ in pairs]
     for name in (WITH_XG, WITHOUT_XG):
         rows = [i for i in range(len(pairs)) if name == WITHOUT_XG or usable[i]]

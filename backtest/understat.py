@@ -156,3 +156,67 @@ def attach_xg(df: pd.DataFrame, xg: pd.DataFrame, strict: bool = True, verbose=T
         raise UnderstatError("\n".join(lines))
 
     return out.drop(columns=["ut_hg", "ut_ag", "ut_date"])
+
+
+# ───────────────────────────── cache degli xG nel repository ─────────────────────────────
+# data/understat/xg.csv = solo le colonne necessarie dei dati Understat, ordinate per data (le righe nuove si accodano: poco rumore in git).
+# Serve al training settimanale quando Understat non risponde: si allena con gli xG disponibili e lo si scrive nel log, in models/stack.json
+# (meta.xg) e nel resoconto («xG fermi al <data>»). Cache piu' vecchia di CACHE_MAX_AGE_DAYS -> solo modello without_xg.
+CACHE_CSV = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "understat", "xg.csv")
+CACHE_COLUMNS = ["Division", "season", "ut_date", "ut_home", "ut_away", "ut_hg", "ut_ag", "xg_h", "xg_a"]
+CACHE_MAX_AGE_DAYS = 30
+
+
+def write_xg_cache(xg: pd.DataFrame, path: str = CACHE_CSV) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    out = xg[CACHE_COLUMNS].sort_values(["ut_date", "Division", "ut_home"], kind="stable")
+    out.to_csv(path, index=False, float_format="%.4f", date_format="%Y-%m-%d %H:%M:%S")
+
+
+def read_xg_cache(path: str = CACHE_CSV) -> pd.DataFrame | None:
+    if not os.path.exists(path):
+        return None
+    xg = pd.read_csv(path, parse_dates=["ut_date"])
+    return xg if len(xg) else None
+
+
+def load_xg_cached(first_season: int = FIRST_SEASON, current: int | None = None, verbose=True, cache_path: str = CACHE_CSV, today=None):
+    """(xg, stato): xG da Understat se risponde (e aggiorna la cache nel repository), altrimenti dalla cache.
+    stato = {"source": "understat" | "cache", "asof": data dell'ultima partita con xG (AAAA-MM-GG), "age_days", "too_old", "error"}.
+    Dalla cache non esce mai un xG di partite successive alla sua data (`asof` = massimo di ut_date). Senza cache e senza Understat solleva UnderstatError.
+    Variabili d'ambiente per i test: UNDERSTAT_SIMULATE_DOWN=1 (Understat irraggiungibile), XG_CACHE_TODAY=AAAA-MM-GG (data «di oggi»)."""
+    today = pd.Timestamp(os.environ.get("XG_CACHE_TODAY") or today or pd.Timestamp.now().normalize()).normalize()
+    err = None
+    try:
+        if os.environ.get("UNDERSTAT_SIMULATE_DOWN"):
+            raise UnderstatError("Understat irraggiungibile (simulato)")
+        xg = load_xg(first_season, current, verbose)
+        try:
+            write_xg_cache(xg, cache_path)
+        except OSError as e:                                      # una cache non scrivibile non deve far fallire il training
+            if verbose:
+                print(f"  ATTENZIONE: cache xG non aggiornata ({e})")
+        asof = xg.ut_date.max().normalize()
+        return xg, {"source": "understat", "asof": str(asof.date()), "age_days": int((today - asof).days), "too_old": False, "error": None}
+    except UnderstatError as e:
+        err = str(e)
+    cached = read_xg_cache(cache_path)
+    if cached is None:
+        raise UnderstatError(f"{err}\n(nessuna cache degli xG in {cache_path})")
+    cached = cached[cached.season >= max(first_season, FIRST_SEASON)]
+    asof = cached.ut_date.max().normalize()
+    age = int((today - asof).days)
+    if verbose:
+        print(f"  ATTENZIONE: Understat non raggiungibile ({err.splitlines()[0][:120]}): cache degli xG ferma al {asof.date()} ({age} giorni fa)")
+    return cached, {"source": "cache", "asof": str(asof.date()), "age_days": age, "too_old": age > CACHE_MAX_AGE_DAYS, "error": err.splitlines()[0][:300]}
+
+
+def check_xg_coverage(df: pd.DataFrame, asof) -> float:
+    """Quota di partite di df con data <= asof (nelle stagioni coperte) senza xG dopo `attach_xg`: serve alla modalita' «da cache»,
+    dove le partite successive a `asof` mancano per costruzione. Solleva UnderstatError oltre MAX_UNMATCHED."""
+    asof = pd.Timestamp(asof)
+    scope = (df.date <= asof) & df.xg_h.notna().groupby([df.Division, df.season]).transform("any")
+    frac = float((scope & df.xg_h.isna()).sum() / max(int(scope.sum()), 1))
+    if frac > MAX_UNMATCHED:
+        raise UnderstatError(f"Abbinamento xG insufficiente (cache): {frac * 100:.2f}% delle partite fino al {asof.date()} senza xG")
+    return frac

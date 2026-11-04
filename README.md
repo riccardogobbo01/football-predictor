@@ -96,6 +96,12 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
      «Notify on failure» (e «after N failures»).
   4. I cron di GitHub restano come ripiego: un doppio avvio e' innocuo (i job si accodano per `concurrency`, le righe gia' iniziate non si riscrivono).
   Il token si puo' provare con `curl -X POST -H "Authorization: Bearer <TOKEN>" -H "Accept: application/vnd.github+json" -d '{"ref":"main"}' <URL>` (204 = avviato).
+- **Training con Understat giu'** (`backtest/understat.py: load_xg_cached`): gli xG necessari (1,4 MB, ordinati per data) sono in `data/understat/xg.csv`, riscritti a ogni
+  allenamento in cui Understat risponde. Se non risponde il training usa la cache, lo scrive nel log («xG FERMI AL <data>»), in `models/stack.json` (`meta.xg`: sorgente, data,
+  giorni, modalita') e nel resoconto; il modello con xG si allena solo con partite fino alla data della cache (nessun xG successivo). Con la cache piu' vecchia di 30 giorni si
+  allena solo il modello `without_xg` (`models` senza `with_xg`; il sito usa `without_xg` per tutte le partite con il motivo «xG fermi al ...»). Senza cache il training fallisce come prima.
+  Perche' la cache si aggiorni in CI il passo «Commit and push» di `train.yml` deve aggiungere anche il file: `git add models/stack.json data/understat/xg.csv`.
+  Test con Understat simulato giu': `UNDERSTAT_SIMULATE_DOWN=1` (e `XG_CACHE_TODAY=AAAA-MM-GG` per simulare la data), `STACK_OUT_PATH` per non toccare `models/stack.json`.
 - **Storico congelato al calcio d'inizio**: `history.csv` ha la colonna `kickoff` (UTC); dopo quell'istante una riga non si riscrive piu' e una partita gia' iniziata
   senza previsione non viene aggiunta. `p_o25` = probabilita' di Over 2,5 emessa, usata dal riquadro di monitoraggio (calibrazione dell'Over 2,5: previsto medio
   contro reale); `scripts/backfill_issued.py` la ricostruisce dalle copie di `predictions.json` in git per le righe precedenti.

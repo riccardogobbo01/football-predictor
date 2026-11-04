@@ -76,11 +76,11 @@ def design(feat: pd.DataFrame, stat: str, with_xg: bool = True, referee: bool = 
 FIRST_TEST = 2019
 
 
-def base_predictions(feat: pd.DataFrame, stat: str):
-    """Medie attese (mh, ma) del modello SENZA arbitro (variante with_xg): walk-forward per stagione dal 2019/20, in campione per il
-    2016/17-2018/19 (previsioni del primo fold). Servono a calcolare l'effetto arbitro senza usare le partite future."""
+def base_predictions(feat: pd.DataFrame, stat: str, with_xg: bool = True):
+    """Medie attese (mh, ma) del modello SENZA arbitro (variante with_xg, o without_xg se `with_xg` e' False): walk-forward per stagione dal 2019/20, in
+    campione per il 2016/17-2018/19 (previsioni del primo fold). Servono a calcolare l'effetto arbitro senza usare le partite future."""
     spec = STATS3[stat]
-    X = design(feat, stat, True, referee=False)
+    X = design(feat, stat, with_xg, referee=False)
     has = X.notna().all(axis=1)
     ok = has & feat[spec["hc"]].notna() & feat[spec["ac"]].notna()
     mh = pd.Series(np.nan, index=feat.index)
@@ -127,11 +127,14 @@ def estimate_rho(yh, ya, mh, ma, alpha, division=None, seed=17):
     return {str(lg): float(np.corrcoef(zs[0][division == lg], zs[1][division == lg])[0, 1]) for lg in np.unique(division)}
 
 
-def train_stat(feat: pd.DataFrame, stat: str, with_xg: bool):
-    """Modello finale su tutto lo storico dal 2016/17. Restituisce (dict JSON, medie in campione mh, ma, maschera di training)."""
+def train_stat(feat: pd.DataFrame, stat: str, with_xg: bool, max_date=None):
+    """Modello finale su tutto lo storico dal 2016/17. Restituisce (dict JSON, medie in campione mh, ma, maschera di training).
+    max_date: ultima data di partita ammessa nel training (con gli xG da cache: la data della cache, vedi backtest/understat.load_xg_cached)."""
     spec = STATS3[stat]
     X = design(feat, stat, with_xg)
     ok = X.notna().all(axis=1) & np.isfinite(X).all(axis=1) & feat[spec["hc"]].notna() & feat[spec["ac"]].notna() & (feat.season >= FIRST_TRAIN)
+    if max_date is not None:
+        ok &= feat.date <= pd.Timestamp(max_date)
     model = sm.fit_stat_model(X[ok], feat[spec["hc"]][ok], feat[spec["ac"]][ok])
     d = sm.model_to_dict(model, X.columns, meta={"n_train": int(ok.sum())})
     mh, ma = sm.predict_means(model, X[ok])
@@ -353,14 +356,14 @@ def _csv(a, nd=3):
     return ",".join(f"{x:.{nd}f}".rstrip("0").rstrip(".") if nd else str(int(x)) for x in a)
 
 
-def build_level(feat: pd.DataFrame, params: dict, means: dict | None = None) -> dict:
+def build_level(feat: pd.DataFrame, params: dict, means: dict | None = None, with_xg: bool = True) -> dict:
     """Registro del livello per models/stack.json: somme giornaliere per lega e statistica (osservati e attesi, casa e ospite) dalle previsioni
     fuori campione, più (H, k) e l'ultimo giorno incluso. Le liste sono stringhe CSV (file compatto)."""
     ledger, asof = {}, {}
     day = ((feat.date - EPOCH).dt.days).to_numpy(float)
     for stat in ORDER:
         spec = STATS3[stat]
-        mh, ma = (means or {}).get(stat) or walk_forward_means(feat, stat)
+        mh, ma = (means or {}).get(stat) or walk_forward_means(feat, stat, with_xg)
         yh, ya = feat[spec["hc"]].to_numpy(float), feat[spec["ac"]].to_numpy(float)
         ok = np.isfinite(mh.to_numpy()) & np.isfinite(ma.to_numpy()) & np.isfinite(yh) & np.isfinite(ya)
         df = pd.DataFrame({"div": feat.Division.to_numpy()[ok], "d": day[ok], "yh": yh[ok], "mh": mh.to_numpy()[ok], "ya": ya[ok], "ma": ma.to_numpy()[ok], "n": 1.0})

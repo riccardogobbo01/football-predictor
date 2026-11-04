@@ -21,8 +21,9 @@ Lo storico degli arbitri viene da data/referees/matches.csv e da docs/history.cs
 
 Costruisce lo storico delle feature in walk-forward (ognuna calcolata solo con dati
 precedenti alla partita) per i 5 campionati, poi stima le due regressioni di Poisson e
-rho su tutto lo storico disponibile. Se Understat non risponde l'allenamento FALLISCE
-(exit 1) senza toccare models/stack.json: meglio un modello vecchio che uno monco. Lo stesso vale se le quote
+rho su tutto lo storico disponibile. Se Understat non risponde si usa la cache degli xG nel repository (data/understat/xg.csv, aggiornata a ogni
+allenamento riuscito): il modello con xG si allena solo con partite fino alla data della cache, il log e models/stack.json (meta.xg) scrivono «xG fermi al <data>»;
+con la cache piu' vecchia di 30 giorni si allena SOLO il modello without_xg. Senza cache l'allenamento FALLISCE (exit 1) senza toccare models/stack.json: meglio un modello vecchio che uno monco. Lo stesso vale se le quote
 storiche (chiusura) di football-data.co.uk non si scaricano o sono troppo incomplete (Elo-Odds).
 Pensato per girare una volta a settimana (.github/workflows/train.yml).
 
@@ -41,11 +42,12 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
 
 import numpy as np
+import pandas as pd
 
 from backtest import data, eloodds, features, refeffect, stack, stats_v3, understat
 from config import GAP_PARAMS, LEVEL_PARAMS, REFEREE_HALF_LIFE_DAYS, REFEREE_K, STATS_VERSION
 
-OUT_PATH = os.path.join(REPO_ROOT, "models", "stack.json")
+OUT_PATH = os.environ.get("STACK_OUT_PATH") or os.path.join(REPO_ROOT, "models", "stack.json")      # STACK_OUT_PATH: solo per i test
 
 # nome -> (feature, prima stagione di training o None)
 MODELS = {
@@ -54,11 +56,13 @@ MODELS = {
 }
 
 
-def train_one(name, cols, min_season, feat):
+def train_one(name, cols, min_season, feat, max_date=None):
     X = feat[cols]
     ok = X.notna().all(axis=1) & np.isfinite(X).all(axis=1)
     if min_season is not None:
         ok &= feat.season >= min_season
+    if max_date is not None:                      # modello con xG allenato con gli xG da cache: nessuna partita successiva alla data della cache
+        ok &= feat.date <= pd.Timestamp(max_date)
     X, hg, ag = X[ok], feat.hg[ok], feat.ag[ok]
     print(f"  [{name}] {len(X)} partite di training ({feat.date[ok].min().date()} → "
           f"{feat.date[ok].max().date()})", flush=True)
@@ -83,26 +87,29 @@ def train_one(name, cols, min_season, feat):
     return d
 
 
-def train_stats_v3(feat, priors):
+def train_stats_v3(feat, priors, with_xg_model=True, max_date=None):
     """Modelli delle statistiche attese s3-gap (backtest/stats_v3.py): {variante: {statistica: dict JSON}}, ρ della copula, quota del
-    primo tempo e parametri dei GAP ratings."""
+    primo tempo e parametri dei GAP ratings. with_xg_model=False: solo la variante without_xg (training senza xG, cache degli xG troppo vecchia);
+    max_date: ultima data ammessa per la variante with_xg (cache degli xG)."""
     models = {}
     copula = {}
-    for variant, with_xg in (("with_xg", True), ("without_xg", False)):
+    variants = (("with_xg", True), ("without_xg", False)) if with_xg_model else (("without_xg", False),)
+    copula_variant = variants[0][0]
+    for variant, with_xg in variants:
         models[variant] = {}
         for stat in stats_v3.ORDER:
-            d, mh, ma, ok = stats_v3.train_stat(feat, stat, with_xg)
+            d, mh, ma, ok = stats_v3.train_stat(feat, stat, with_xg, max_date if with_xg else None)
             spec = stats_v3.STATS3[stat]
             print(f"  [stats {variant}/{stat}] {d['meta']['n_train']} partite, alpha NB totale={d['alpha']:.4f}, per squadra={d['alpha_team']:.4f}"
                   + (f" (casa {d['alpha_home']:.4f}, ospite {d['alpha_away']:.4f})" if 'alpha_home' in d else ""), flush=True)
             models[variant][stat] = d
-            if with_xg and stat in stats_v3.COPULA_PER_LEAGUE:
+            if variant == copula_variant and stat in stats_v3.COPULA_PER_LEAGUE:
                 per_league = stats_v3.COPULA_PER_LEAGUE[stat]
                 rho = stats_v3.estimate_rho(feat[spec["hc"]][ok].to_numpy(), feat[spec["ac"]][ok].to_numpy(), mh, ma, stats_v3.team_alphas(d),
                                             division=feat.Division[ok].to_numpy() if per_league else None)
                 copula[stat] = {"per_league": per_league, "rho": rho, "M": spec["M"]}
                 print(f"  [copula {stat}] rho = {rho}", flush=True)
-    level = stats_v3.build_level(feat, LEVEL_PARAMS)
+    level = stats_v3.build_level(feat, LEVEL_PARAMS, with_xg=with_xg_model)
     print(f"  [livello] registro fino al {', '.join(f'{k} {v}' for k, v in level['asof'].items())}; parametri (H, k): "
           + ", ".join(f"{s} {tuple(v)}" for s, v in level["params"].items()), flush=True)
     fh = stats_v3.train_first_half(feat)
@@ -118,11 +125,28 @@ def main():
 
     print("Download/lettura xG Understat...", flush=True)
     try:
-        xg_raw = understat.load_xg()
-        df = understat.attach_xg(df, xg_raw, strict=True)
+        xg_raw, xg_info = understat.load_xg_cached()
+        if xg_info["source"] == "understat":
+            df = understat.attach_xg(df, xg_raw, strict=True)
+        else:                                                      # Understat giu': cache nel repository (data/understat/xg.csv)
+            df = understat.attach_xg(df, xg_raw, strict=False)
+            understat.check_xg_coverage(df, xg_info["asof"])
+            late = df.xg_h.notna() & (df.date > pd.Timestamp(xg_info["asof"]) + pd.Timedelta(days=understat.MAX_DAYS_APART))
+            if late.any():                                         # per costruzione impossibile: guardia contro un uso di xG successivi alla data della cache
+                raise understat.UnderstatError(f"{int(late.sum())} partite successive alla data della cache ({xg_info['asof']}) hanno xG")
     except understat.UnderstatError as e:
         print(f"ERRORE: xG Understat non disponibili o abbinamento insufficiente:\n{e}", file=sys.stderr)
         sys.exit(1)
+    xg_only_without = xg_info["source"] == "cache" and xg_info["too_old"]
+    xg_max_date = xg_info["asof"] if xg_info["source"] == "cache" else None
+    if xg_info["source"] == "cache":
+        print(f"  *** xG FERMI AL {xg_info['asof']} ({xg_info['age_days']} giorni fa): Understat non risponde, si usa la cache nel repository ***", flush=True)
+        if xg_only_without:
+            print(f"  *** cache piu' vecchia di {understat.CACHE_MAX_AGE_DAYS} giorni: si allena SOLO il modello without_xg ***", flush=True)
+            df["xg_h"], df["xg_a"] = np.nan, np.nan
+        else:
+            print(f"  il modello con xG si allena solo con partite fino al {xg_info['asof']}", flush=True)
+    xg_info = {**xg_info, "mode": "without_xg_only" if xg_only_without else "with_xg+without_xg", "with_xg_max_date": xg_max_date}
 
     print("Controllo quote di chiusura (Elo-Odds)...", flush=True)
     try:
@@ -136,7 +160,10 @@ def main():
     print("Feature walk-forward (può richiedere diversi minuti)...", flush=True)
     feat = features.build_features(df)
     feat = feat.join(eloodds.build_features(df))
-    feat = feat.join(features.build_xg_features(df)[["xg_lmu", "xg_lnu"]])
+    if xg_only_without:
+        feat["xg_lmu"], feat["xg_lnu"] = np.nan, np.nan
+    else:
+        feat = feat.join(features.build_xg_features(df)[["xg_lmu", "xg_lnu"]])
     feat = feat.join(features.build_stat_features(df))
 
     print("Effetto arbitro sui gialli...", flush=True)
@@ -158,11 +185,11 @@ def main():
     if keys[feat.season >= 2016].notna().mean() < 0.9:
         print("ERRORE: storico degli arbitri troppo incompleto (< 90% delle partite dal 2016/17)", file=sys.stderr)
         sys.exit(1)
-    feat["ref_logR"], ref_state = refeffect.compute(feat, keys, REFEREE_K, REFEREE_HALF_LIFE_DAYS["gialli"])
+    feat["ref_logR"], ref_state = refeffect.compute(feat, keys, REFEREE_K, REFEREE_HALF_LIFE_DAYS["gialli"], with_xg=not xg_only_without)
     print(f"  {ref_state['n_referees']} arbitri con storico, k={REFEREE_K}", flush=True)
     priors = stats_v3.gap_priors(df)
     feat = feat.join(stats_v3.gap_features(df, priors))
-    mhf, maf = stats_v3.base_predictions(feat, "falli")
+    mhf, maf = stats_v3.base_predictions(feat, "falli", with_xg=not xg_only_without)
     feat["ref_logR_f"], ref_state_f = refeffect.compute_stat(feat, keys, mhf, maf, feat["HF"] + feat["AF"], REFEREE_K, REFEREE_HALF_LIFE_DAYS["falli"])
     print(f"  falli: {ref_state_f['n_referees']} arbitri con storico", flush=True)
 
@@ -170,16 +197,17 @@ def main():
     out = {
         "referees": ref_state,
         "referees_fouls": ref_state_f,
-        "stats_v3": train_stats_v3(feat, priors),
+        "stats_v3": train_stats_v3(feat, priors, not xg_only_without, xg_max_date),
         "version": 2,
-        "models": {name: train_one(name, cols, min_season, feat)
-                   for name, (cols, min_season) in MODELS.items()},
+        "models": {name: train_one(name, cols, min_season, feat, xg_max_date if name == "with_xg" else None)
+                   for name, (cols, min_season) in MODELS.items() if not (xg_only_without and name == "with_xg")},
         "meta": {
             "trained_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
             "leagues": sorted(feat.Division.unique().tolist()),
             "xg_ridge": features.XG_RIDGE,
             "elo_odds": {"k": eloodds.ELO_ODDS_K, "odds_rows": odds_cov},
             "stats_version": STATS_VERSION,
+            "xg": xg_info,                      # source: understat | cache; asof = data degli xG; mode: with_xg+without_xg | without_xg_only
             "note": ("Poisson-stack, feature in walk-forward (DC xi=0.0018, xG xi=0.003 con ridge sul solo "
                      "DC degli xG, finestra 5 anni, Elo-Odds K=200 sulle quote di chiusura). "
                      "In produzione with_xg; without_xg e' il ripiego."),

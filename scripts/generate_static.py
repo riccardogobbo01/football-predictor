@@ -1431,10 +1431,13 @@ def main():
     log.info("=" * 55)
 
     model = sp.load_stack()
-    log.info("Stack allenato %s - with_xg: %s partite (rho=%.4f), without_xg: %s partite (rho=%.4f)",
-             model["meta"].get("trained_at"),
-             model["models"]["with_xg"]["meta"]["n_train"], model["models"]["with_xg"]["rho"],
-             model["models"]["without_xg"]["meta"]["n_train"], model["models"]["without_xg"]["rho"])
+    mw, mo = model["models"].get("with_xg"), model["models"]["without_xg"]
+    log.info("Stack allenato %s - with_xg: %s, without_xg: %s partite (rho=%.4f)", model["meta"].get("trained_at"),
+             f"{mw['meta']['n_train']} partite (rho={mw['rho']:.4f})" if mw else "ASSENTE", mo["meta"]["n_train"], mo["rho"])
+    xgm = model["meta"].get("xg") or {}
+    if xgm.get("source") == "cache":
+        log.warning("Stack allenato con xG FERMI AL %s (%s giorni prima del training: Understat non raggiungibile); modalita': %s",
+                    xgm.get("asof"), xgm.get("age_days"), xgm.get("mode"))
 
     log.info("Storico football-data.co.uk (2012/13 -> oggi)...")
     df = data.load_matches(verbose=False)

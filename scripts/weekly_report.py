@@ -153,12 +153,13 @@ def xg_status(history: pd.DataFrame, today) -> dict:
 
 def trained_status(stack_path, today) -> dict:
     """Data dell'ultimo riallenamento (models/stack.json) e giorni trascorsi; il riallenamento e' settimanale."""
-    out = {"trained_at": None, "age_days": None, "late": False}
+    out = {"trained_at": None, "age_days": None, "late": False, "xg": None}
     try:
         with open(stack_path, encoding="utf-8") as fh:
-            t = json.load(fh)["meta"]["trained_at"]
+            meta = json.load(fh)["meta"]
+        t = meta["trained_at"]
         d = pd.Timestamp(str(t).replace(" UTC", ""))
-        out.update(trained_at=str(t), age_days=int((pd.Timestamp(today) - d.normalize()).days))
+        out.update(trained_at=str(t), age_days=int((pd.Timestamp(today) - d.normalize()).days), xg=meta.get("xg"))
         out["late"] = out["age_days"] > 9
     except Exception:
         pass
@@ -279,6 +280,12 @@ def render(rep: dict) -> str:
         prov = (f'<div class="warn"><b>Modello senza xG in uso</b>: Understat non è disponibile ({html.escape(str(xg.get("reason") or ""))}); dal {xg["first"]} al {xg["last"]} '
                 f'{xg["n"]} previsioni di campionato sono state emesse con il ripiego senza xG (partite per settimana: '
                 + ", ".join(f"{k}: {v}" for k, v in xg["by_week"].items()) + ').</div>') + prov
+    xgm = mdl.get("xg") or {}
+    if xgm.get("source") == "cache":
+        prov = (f'<div class="warn"><b>xG fermi al {html.escape(str(xgm.get("asof")))}</b>: al training ({html.escape(str(mdl.get("trained_at")))}) Understat non era raggiungibile e il modello è stato '
+                f'allenato con la cache degli xG nel repository ({xgm.get("age_days")} giorni prima del training; modalità: {html.escape(str(xgm.get("mode")))}). '
+                + ("Cache più vecchia di 30 giorni: allenato solo il modello senza xG. " if xgm.get("mode") == "without_xg_only" else "Il modello con xG non usa partite successive a quella data. ")
+                + '</div>') + prov
     if mdl.get("late"):
         prov = (f'<div class="warn"><b>Riallenamento in ritardo</b>: ultimo allenamento del modello il {html.escape(str(mdl["trained_at"]))} ({mdl["age_days"]} giorni fa; '
                 'è settimanale). Il riallenamento fallisce se Understat non risponde: il sito usa il modello precedente.</div>') + prov
