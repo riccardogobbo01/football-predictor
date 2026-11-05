@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05 04:17 UTC",
+  "generated_at": "2026-11-05 12:30 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-11-04 10:18 UTC",
@@ -67,15 +67,26 @@
   "model_counts": {
     "with_xg": 0,
     "without_xg": 48,
-    "cups_elo": 0
+    "cups_elo": 15
   },
   "cups_status": {
-    "available": false,
-    "error": "CupsError: clubelo.com non raggiungibile (https://clubelo.com/Ranking): 403 Client Error: Forbidden for url: https://clubelo.com/Ranking",
-    "skipped": [],
+    "available": true,
+    "error": null,
+    "skipped": [
+      {
+        "cup": "uel",
+        "date": "2026-11-05",
+        "text": "Torreense - Ararat-Armenia (2026-11-05): Elo mancante per Torreense e Ararat-Armenia"
+      },
+      {
+        "cup": "uel",
+        "date": "2026-11-05",
+        "text": "Beer-Sheva - OFI (2026-11-05): Elo mancante per OFI"
+      }
+    ],
     "cross_check": null,
-    "fetched_on": null,
-    "clubs": null
+    "fetched_on": "2026-11-05",
+    "clubs": 748
   },
   "monitor": {
     "version": "v6-eloodds",
@@ -17217,8 +17228,8 @@
       "name": "Champions League",
       "flag": "🏆",
       "cup": true,
-      "unavailable": true,
-      "meta_text": "",
+      "unavailable": false,
+      "meta_text": "Modello Elo · ClubElo del 2026-11-05",
       "skipped": [],
       "fixtures": []
     },
@@ -17226,17 +17237,1296 @@
       "name": "Europa League",
       "flag": "🟧",
       "cup": true,
-      "unavailable": true,
-      "meta_text": "",
-      "skipped": [],
-      "fixtures": []
+      "unavailable": false,
+      "meta_text": "Modello Elo · ClubElo del 2026-11-05",
+      "skipped": [
+        "Torreense - Ararat-Armenia (2026-11-05): Elo mancante per Torreense e Ararat-Armenia",
+        "Beer-Sheva - OFI (2026-11-05): Elo mancante per OFI"
+      ],
+      "fixtures": [
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Anderlecht",
+          "away": "RB Salzburg",
+          "home_full": "Anderlecht",
+          "away_full": "RB Salzburg",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.66,
+            "exp_goals_away": 1.26,
+            "prob_home": 0.46965,
+            "prob_draw": 0.23821,
+            "prob_away": 0.29213,
+            "prob_o05": 0.94773,
+            "prob_o15": 0.78757,
+            "prob_o25": 0.55935,
+            "prob_o35": 0.33554,
+            "prob_btts": 0.57914,
+            "prob_cs_home": 0.28343,
+            "prob_cs_away": 0.1897,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.1
+              ],
+              [
+                2,
+                1,
+                9.4
+              ],
+              [
+                1,
+                0,
+                9.1
+              ],
+              [
+                2,
+                0,
+                7.4
+              ],
+              [
+                1,
+                2,
+                7.1
+              ],
+              [
+                0,
+                1,
+                6.9
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.4
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1663.0,
+            "away": 1660.0
+          },
+          "home_elo": 1663.0,
+          "away_elo": 1660.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.46399999999999997,
+            0.293,
+            0.243
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Crystal Palace",
+          "away": "Hoffenheim",
+          "home_full": "Crystal Palace",
+          "away_full": "Hoffenheim",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.92,
+            "exp_goals_away": 1.1,
+            "prob_home": 0.56494,
+            "prob_draw": 0.21843,
+            "prob_away": 0.21662,
+            "prob_o05": 0.95254,
+            "prob_o15": 0.80236,
+            "prob_o25": 0.58114,
+            "prob_o35": 0.35711,
+            "prob_btts": 0.56831,
+            "prob_cs_home": 0.33212,
+            "prob_cs_away": 0.14703,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.2
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                2,
+                0,
+                9.0
+              ],
+              [
+                3,
+                1,
+                6.3
+              ],
+              [
+                3,
+                0,
+                5.7
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1810.0,
+            "away": 1734.0
+          },
+          "home_elo": 1810.0,
+          "away_elo": 1734.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.575,
+            0.253,
+            0.172
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Levski",
+          "away": "Jagiellonia",
+          "home_full": "Levski",
+          "away_full": "Jagiellonia",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.66,
+            "exp_goals_away": 1.26,
+            "prob_home": 0.46965,
+            "prob_draw": 0.23821,
+            "prob_away": 0.29213,
+            "prob_o05": 0.94773,
+            "prob_o15": 0.78757,
+            "prob_o25": 0.55935,
+            "prob_o35": 0.33554,
+            "prob_btts": 0.57914,
+            "prob_cs_home": 0.28343,
+            "prob_cs_away": 0.1897,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.1
+              ],
+              [
+                2,
+                1,
+                9.4
+              ],
+              [
+                1,
+                0,
+                9.1
+              ],
+              [
+                2,
+                0,
+                7.4
+              ],
+              [
+                1,
+                2,
+                7.1
+              ],
+              [
+                0,
+                1,
+                6.9
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.4
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1594.0,
+            "away": 1591.0
+          },
+          "home_elo": 1594.0,
+          "away_elo": 1591.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.45399999999999996,
+            0.309,
+            0.23600000000000002
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Lillestrøm",
+          "away": "Viktoria Plzeň",
+          "home_full": "Lillestrøm",
+          "away_full": "Viktoria Plzeň",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.4,
+            "exp_goals_away": 1.48,
+            "prob_home": 0.35881,
+            "prob_draw": 0.24531,
+            "prob_away": 0.39588,
+            "prob_o05": 0.94553,
+            "prob_o15": 0.781,
+            "prob_o25": 0.5499,
+            "prob_o35": 0.32639,
+            "prob_btts": 0.58072,
+            "prob_cs_home": 0.22707,
+            "prob_cs_away": 0.24668,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.5
+              ],
+              [
+                1,
+                2,
+                8.6
+              ],
+              [
+                0,
+                1,
+                8.5
+              ],
+              [
+                2,
+                1,
+                8.1
+              ],
+              [
+                1,
+                0,
+                8.0
+              ],
+              [
+                0,
+                2,
+                6.2
+              ]
+            ],
+            "rec_outcome": "X",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              1,
+              1,
+              11.5
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1534.0,
+            "away": 1619.0
+          },
+          "home_elo": 1534.0,
+          "away_elo": 1619.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.32899999999999996,
+            0.297,
+            0.373
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Milan",
+          "away": "Ferencvaros",
+          "home_full": "Milan",
+          "away_full": "Ferencvaros",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.28,
+            "exp_goals_away": 0.94,
+            "prob_home": 0.67757,
+            "prob_draw": 0.18141,
+            "prob_away": 0.14102,
+            "prob_o05": 0.96106,
+            "prob_o15": 0.82986,
+            "prob_o25": 0.62362,
+            "prob_o35": 0.40124,
+            "prob_btts": 0.54447,
+            "prob_cs_home": 0.39232,
+            "prob_cs_away": 0.10215,
+            "top_scores": [
+              [
+                2,
+                0,
+                10.4
+              ],
+              [
+                2,
+                1,
+                9.8
+              ],
+              [
+                1,
+                0,
+                9.3
+              ],
+              [
+                1,
+                1,
+                8.4
+              ],
+              [
+                3,
+                0,
+                7.9
+              ],
+              [
+                3,
+                1,
+                7.4
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              0,
+              10.4
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1832.0,
+            "away": 1667.0
+          },
+          "home_elo": 1832.0,
+          "away_elo": 1667.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.7040000000000001,
+            0.203,
+            0.09300000000000001
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Nijmegen",
+          "away": "Omonia",
+          "home_full": "Nijmegen",
+          "away_full": "Omonia",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.51,
+            "exp_goals_away": 1.38,
+            "prob_home": 0.40567,
+            "prob_draw": 0.24464,
+            "prob_away": 0.3497,
+            "prob_o05": 0.94596,
+            "prob_o15": 0.78225,
+            "prob_o25": 0.55169,
+            "prob_o35": 0.32812,
+            "prob_btts": 0.5816,
+            "prob_cs_home": 0.25099,
+            "prob_cs_away": 0.22145,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.4
+              ],
+              [
+                2,
+                1,
+                8.7
+              ],
+              [
+                1,
+                0,
+                8.5
+              ],
+              [
+                1,
+                2,
+                8.0
+              ],
+              [
+                0,
+                1,
+                7.8
+              ],
+              [
+                2,
+                0,
+                6.3
+              ]
+            ],
+            "rec_outcome": "X",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              1,
+              1,
+              11.4
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1589.0,
+            "away": 1636.0
+          },
+          "home_elo": 1589.0,
+          "away_elo": 1636.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.386,
+            0.303,
+            0.311
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Real Sociedad",
+          "away": "Lyon",
+          "home_full": "Real Sociedad",
+          "away_full": "Lyon",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.65,
+            "exp_goals_away": 1.27,
+            "prob_home": 0.46446,
+            "prob_draw": 0.23895,
+            "prob_away": 0.29658,
+            "prob_o05": 0.94754,
+            "prob_o15": 0.78699,
+            "prob_o25": 0.55852,
+            "prob_o35": 0.33473,
+            "prob_btts": 0.57948,
+            "prob_cs_home": 0.2808,
+            "prob_cs_away": 0.19218,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.2
+              ],
+              [
+                2,
+                1,
+                9.3
+              ],
+              [
+                1,
+                0,
+                9.1
+              ],
+              [
+                2,
+                0,
+                7.3
+              ],
+              [
+                1,
+                2,
+                7.2
+              ],
+              [
+                0,
+                1,
+                7.0
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.3
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1789.0,
+            "away": 1790.0
+          },
+          "home_elo": 1789.0,
+          "away_elo": 1790.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.45399999999999996,
+            0.28600000000000003,
+            0.259
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "17:45",
+          "home": "Sparta Praha",
+          "away": "Bournemouth",
+          "home_full": "Sparta Praha",
+          "away_full": "Bournemouth",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.03,
+            "exp_goals_away": 1.98,
+            "prob_home": 0.19192,
+            "prob_draw": 0.21131,
+            "prob_away": 0.59676,
+            "prob_o05": 0.95208,
+            "prob_o15": 0.80113,
+            "prob_o25": 0.57922,
+            "prob_o35": 0.35518,
+            "prob_btts": 0.55249,
+            "prob_cs_home": 0.13767,
+            "prob_cs_away": 0.35776,
+            "top_scores": [
+              [
+                1,
+                2,
+                10.0
+              ],
+              [
+                1,
+                1,
+                9.9
+              ],
+              [
+                0,
+                1,
+                9.9
+              ],
+              [
+                0,
+                2,
+                9.7
+              ],
+              [
+                1,
+                3,
+                6.6
+              ],
+              [
+                0,
+                3,
+                6.4
+              ]
+            ],
+            "rec_outcome": "2",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              1,
+              2,
+              10.0
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1644.0,
+            "away": 1887.0
+          },
+          "home_elo": 1644.0,
+          "away_elo": 1887.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.149,
+            0.24100000000000002,
+            0.61
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "AZ",
+          "away": "Juventus",
+          "home_full": "AZ",
+          "away_full": "Juventus",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.24,
+            "exp_goals_away": 1.66,
+            "prob_home": 0.28612,
+            "prob_draw": 0.23844,
+            "prob_away": 0.47544,
+            "prob_o05": 0.94661,
+            "prob_o15": 0.78428,
+            "prob_o25": 0.55458,
+            "prob_o35": 0.3309,
+            "prob_btts": 0.57407,
+            "prob_cs_home": 0.18923,
+            "prob_cs_away": 0.29009,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.2
+              ],
+              [
+                1,
+                2,
+                9.4
+              ],
+              [
+                0,
+                1,
+                9.3
+              ],
+              [
+                0,
+                2,
+                7.6
+              ],
+              [
+                2,
+                1,
+                7.0
+              ],
+              [
+                1,
+                0,
+                6.9
+              ]
+            ],
+            "rec_outcome": "2",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              1,
+              2,
+              9.4
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1680.0,
+            "away": 1828.0
+          },
+          "home_elo": 1680.0,
+          "away_elo": 1828.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.242,
+            0.307,
+            0.451
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "Benfica",
+          "away": "Lech",
+          "home_full": "Benfica",
+          "away_full": "Lech",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.37,
+            "exp_goals_away": 0.9,
+            "prob_home": 0.70151,
+            "prob_draw": 0.1718,
+            "prob_away": 0.12669,
+            "prob_o05": 0.96322,
+            "prob_o15": 0.83714,
+            "prob_o25": 0.63533,
+            "prob_o35": 0.41391,
+            "prob_btts": 0.53769,
+            "prob_cs_home": 0.40581,
+            "prob_cs_away": 0.09328,
+            "top_scores": [
+              [
+                2,
+                0,
+                10.7
+              ],
+              [
+                2,
+                1,
+                9.6
+              ],
+              [
+                1,
+                0,
+                9.1
+              ],
+              [
+                3,
+                0,
+                8.4
+              ],
+              [
+                1,
+                1,
+                8.0
+              ],
+              [
+                3,
+                1,
+                7.6
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              0,
+              10.7
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1866.0,
+            "away": 1681.0
+          },
+          "home_elo": 1866.0,
+          "away_elo": 1681.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.7390000000000001,
+            0.172,
+            0.08900000000000001
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "Celta",
+          "away": "St Gillis",
+          "home_full": "Celta",
+          "away_full": "St Gillis",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.44,
+            "exp_goals_away": 1.45,
+            "prob_home": 0.37462,
+            "prob_draw": 0.24549,
+            "prob_away": 0.37988,
+            "prob_o05": 0.94558,
+            "prob_o15": 0.78116,
+            "prob_o25": 0.55012,
+            "prob_o35": 0.3266,
+            "prob_btts": 0.58129,
+            "prob_cs_home": 0.23517,
+            "prob_cs_away": 0.23795,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.5
+              ],
+              [
+                1,
+                2,
+                8.4
+              ],
+              [
+                2,
+                1,
+                8.3
+              ],
+              [
+                0,
+                1,
+                8.3
+              ],
+              [
+                1,
+                0,
+                8.2
+              ],
+              [
+                2,
+                2,
+                6.0
+              ]
+            ],
+            "rec_outcome": "X",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              1,
+              1,
+              11.5
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1746.0,
+            "away": 1818.0
+          },
+          "home_elo": 1746.0,
+          "away_elo": 1818.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.35,
+            0.307,
+            0.344
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "Celtic",
+          "away": "Besiktas",
+          "home_full": "Celtic",
+          "away_full": "Besiktas",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.48,
+            "exp_goals_away": 1.41,
+            "prob_home": 0.39191,
+            "prob_draw": 0.24521,
+            "prob_away": 0.36288,
+            "prob_o05": 0.94575,
+            "prob_o15": 0.78164,
+            "prob_o25": 0.55082,
+            "prob_o35": 0.32727,
+            "prob_btts": 0.58159,
+            "prob_cs_home": 0.24399,
+            "prob_cs_away": 0.22866,
+            "top_scores": [
+              [
+                1,
+                1,
+                11.5
+              ],
+              [
+                2,
+                1,
+                8.6
+              ],
+              [
+                1,
+                0,
+                8.4
+              ],
+              [
+                1,
+                2,
+                8.2
+              ],
+              [
+                0,
+                1,
+                8.0
+              ],
+              [
+                2,
+                0,
+                6.1
+              ]
+            ],
+            "rec_outcome": "X",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              1,
+              1,
+              11.5
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1650.0,
+            "away": 1708.0
+          },
+          "home_elo": 1650.0,
+          "away_elo": 1708.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.37799999999999995,
+            0.297,
+            0.325
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "Leverkusen",
+          "away": "Marseille",
+          "home_full": "Leverkusen",
+          "away_full": "Marseille",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.01,
+            "exp_goals_away": 1.05,
+            "prob_home": 0.59732,
+            "prob_draw": 0.20922,
+            "prob_away": 0.19346,
+            "prob_o05": 0.95469,
+            "prob_o15": 0.80915,
+            "prob_o25": 0.59139,
+            "prob_o35": 0.3675,
+            "prob_btts": 0.56273,
+            "prob_cs_home": 0.349,
+            "prob_cs_away": 0.13357,
+            "top_scores": [
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                1,
+                1,
+                9.7
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                2,
+                0,
+                9.4
+              ],
+              [
+                3,
+                1,
+                6.7
+              ],
+              [
+                3,
+                0,
+                6.3
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1865.0,
+            "away": 1764.0
+          },
+          "home_elo": 1865.0,
+          "away_elo": 1764.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.616,
+            0.23600000000000002,
+            0.14800000000000002
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "Sturm Graz",
+          "away": "Celje",
+          "home_full": "Sturm Graz",
+          "away_full": "Celje",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.09,
+            "exp_goals_away": 1.02,
+            "prob_home": 0.62034,
+            "prob_draw": 0.20195,
+            "prob_away": 0.1777,
+            "prob_o05": 0.95638,
+            "prob_o15": 0.81453,
+            "prob_o25": 0.5996,
+            "prob_o35": 0.37595,
+            "prob_btts": 0.55815,
+            "prob_cs_home": 0.36119,
+            "prob_cs_away": 0.12428,
+            "top_scores": [
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                2,
+                0,
+                9.8
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                1,
+                1,
+                9.4
+              ],
+              [
+                3,
+                1,
+                6.9
+              ],
+              [
+                3,
+                0,
+                6.8
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1631.0,
+            "away": 1512.0
+          },
+          "home_elo": 1631.0,
+          "away_elo": 1512.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.643,
+            0.226,
+            0.131
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "time": "20:00",
+          "home": "Sunderland",
+          "away": "Dinamo Zagreb",
+          "home_full": "Sunderland",
+          "away_full": "Dinamo Zagreb",
+          "matchday": null,
+          "stage": "League Stage",
+          "home_dc": null,
+          "away_dc": null,
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 1.92,
+            "exp_goals_away": 1.1,
+            "prob_home": 0.56625,
+            "prob_draw": 0.21809,
+            "prob_away": 0.21567,
+            "prob_o05": 0.95262,
+            "prob_o15": 0.80262,
+            "prob_o25": 0.58152,
+            "prob_o35": 0.3575,
+            "prob_btts": 0.56811,
+            "prob_cs_home": 0.3328,
+            "prob_cs_away": 0.14648,
+            "top_scores": [
+              [
+                1,
+                1,
+                10.2
+              ],
+              [
+                2,
+                1,
+                9.9
+              ],
+              [
+                1,
+                0,
+                9.5
+              ],
+              [
+                2,
+                0,
+                9.0
+              ],
+              [
+                3,
+                1,
+                6.3
+              ],
+              [
+                3,
+                0,
+                5.8
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              1,
+              9.9
+            ],
+            "model": "cups_elo",
+            "fallback_reason": null
+          },
+          "market": null,
+          "expected_stats": null,
+          "context": null,
+          "cup": "uel",
+          "elo": {
+            "home": 1732.0,
+            "away": 1655.0
+          },
+          "home_elo": 1732.0,
+          "away_elo": 1655.0,
+          "neutral": false,
+          "return_leg": false,
+          "clubelo_1x2": [
+            0.574,
+            0.261,
+            0.165
+          ]
+        }
+      ]
     },
     "uecl": {
       "name": "Conference League",
       "flag": "🟩",
       "cup": true,
-      "unavailable": true,
-      "meta_text": "",
+      "unavailable": false,
+      "meta_text": "Modello Elo · ClubElo del 2026-11-05",
       "skipped": [],
       "fixtures": []
     }
