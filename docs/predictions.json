@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07 09:17 UTC",
+  "generated_at": "2026-11-07 11:10 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-11-04 10:18 UTC",
@@ -23,7 +23,7 @@
   "stats_version": "s6-arbitro-decay",
   "referee_status": {
     "n": 72,
-    "with_referee": 9,
+    "with_referee": 11,
     "by_league": {
       "Serie A": [
         13,
@@ -31,7 +31,7 @@
       ],
       "Premier League": [
         16,
-        0
+        1
       ],
       "Bundesliga": [
         15,
@@ -39,7 +39,7 @@
       ],
       "La Liga": [
         14,
-        0
+        1
       ],
       "Ligue 1": [
         14,
@@ -47,12 +47,13 @@
       ]
     },
     "by_source": {
-      "aia": 9
+      "aia": 9,
+      "football-data.org": 2
     },
     "by_days_ahead": {
       "0": [
         19,
-        4
+        6
       ],
       "1": [
         24,
@@ -4832,7 +4833,8 @@
           "home_full": "Leeds United FC",
           "away_full": "Tottenham Hotspur FC",
           "matchday": 10,
-          "referee": null,
+          "referee": "John Brooks",
+          "referee_source": "football-data.org",
           "home_dc": "Leeds",
           "away_dc": "Tottenham",
           "new_team": false,
@@ -5016,33 +5018,33 @@
               }
             },
             "yellows": {
-              "home": 1.9,
-              "away": 2.5,
-              "total": 4.4,
+              "home": 2.2,
+              "away": 2.8,
+              "total": 5.0,
               "int_home": [
                 0,
                 3,
-                0.87
+                0.8212
               ],
               "int_away": [
                 1,
                 4,
-                0.8095
+                0.7873
               ],
               "int_total": [
                 2,
-                6,
-                0.7759
+                7,
+                0.8271
               ],
               "over": {
-                "2.5": 0.817,
-                "3.5": 0.6438,
-                "4.5": 0.4524,
-                "5.5": 0.2833
+                "2.5": 0.8741,
+                "3.5": 0.7329,
+                "4.5": 0.5569,
+                "5.5": 0.3815
               },
               "base": [
-                1.781,
-                2.2215
+                2.0241,
+                2.492
               ],
               "level": {
                 "home": 1.0822,
@@ -5050,37 +5052,37 @@
                 "pct": 10.4
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "John Brooks",
+                "delta": 0.57
               }
             },
             "fouls": {
-              "home": 12.1,
-              "away": 13.1,
-              "total": 25.1,
+              "home": 12.2,
+              "away": 13.2,
+              "total": 25.3,
               "int_home": [
                 8,
                 16,
-                0.7952
+                0.7938
               ],
               "int_away": [
                 8,
                 17,
-                0.8224
+                0.8195
               ],
               "int_total": [
-                18,
-                31,
-                0.8087
+                19,
+                32,
+                0.8061
               ],
               "over": {
-                "22.5": 0.6769,
-                "24.5": 0.5311,
-                "26.5": 0.3854
+                "22.5": 0.6889,
+                "24.5": 0.5447,
+                "26.5": 0.3987
               },
               "base": [
-                11.5168,
-                12.2777
+                11.6015,
+                12.3687
               ],
               "level": {
                 "home": 1.0491,
@@ -5088,8 +5090,8 @@
                 "pct": 5.6
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "John Brooks",
+                "delta": 0.19
               }
             },
             "who_more": {
@@ -5110,9 +5112,9 @@
                 "away_p15": 0.6263
               },
               "yellows": [
-                0.281,
-                0.2082,
-                0.5107
+                0.2863,
+                0.1946,
+                0.5191
               ]
             }
           },
@@ -15907,7 +15909,8 @@
           "home_full": "Málaga CF",
           "away_full": "Real Racing Club de Santander",
           "matchday": 12,
-          "referee": null,
+          "referee": "Isidro Díaz de Mera",
+          "referee_source": "football-data.org",
           "home_dc": "Malaga",
           "away_dc": "Santander",
           "new_team": false,
@@ -16091,33 +16094,33 @@
               }
             },
             "yellows": {
-              "home": 2.1,
-              "away": 2.6,
-              "total": 4.7,
+              "home": 2.2,
+              "away": 2.7,
+              "total": 4.9,
               "int_home": [
-                0,
-                3,
-                0.8333
+                1,
+                4,
+                0.8166
               ],
               "int_away": [
                 1,
                 4,
-                0.8048
+                0.7967
               ],
               "int_total": [
                 2,
                 7,
-                0.844
+                0.8315
               ],
               "over": {
-                "2.5": 0.8479,
-                "3.5": 0.6906,
-                "4.5": 0.5058,
-                "5.5": 0.332
+                "2.5": 0.8684,
+                "3.5": 0.7236,
+                "4.5": 0.5454,
+                "5.5": 0.3701
               },
               "base": [
-                2.1534,
-                2.6002
+                2.2595,
+                2.7149
               ],
               "level": {
                 "home": 0.9883,
@@ -16125,37 +16128,37 @@
                 "pct": -1.1
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Isidro Díaz de Mera",
+                "delta": 0.22
               }
             },
             "fouls": {
-              "home": 12.7,
-              "away": 11.8,
-              "total": 24.5,
+              "home": 12.6,
+              "away": 11.7,
+              "total": 24.2,
               "int_home": [
                 8,
                 16,
-                0.7798
+                0.7838
               ],
               "int_away": [
-                8,
-                16,
-                0.7977
+                7,
+                15,
+                0.8015
               ],
               "int_total": [
                 18,
-                31,
-                0.8156
+                30,
+                0.7853
               ],
               "over": {
-                "22.5": 0.6331,
-                "24.5": 0.483,
-                "26.5": 0.3394
+                "22.5": 0.6161,
+                "24.5": 0.4648,
+                "26.5": 0.3227
               },
               "base": [
-                12.9153,
-                12.0594
+                12.7892,
+                11.9408
               ],
               "level": {
                 "home": 0.9848,
@@ -16163,8 +16166,8 @@
                 "pct": -1.9
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Isidro Díaz de Mera",
+                "delta": -0.24
               }
             },
             "who_more": {
@@ -16185,9 +16188,9 @@
                 "away_p15": 0.5036
               },
               "yellows": [
-                0.3082,
-                0.2045,
-                0.4873
+                0.3109,
+                0.1994,
+                0.4897
               ]
             }
           },
