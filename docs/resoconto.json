@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-09 13:02 UTC",
+ "generated_at": "2026-11-09 19:49 UTC",
  "today": "2026-11-09",
  "last_week": {
   "start": "2026-11-02",
@@ -1467,13 +1467,13 @@
   "reason": "Understat non disponibile"
  },
  "model": {
-  "trained_at": "2026-11-04 10:18 UTC",
-  "age_days": 5,
+  "trained_at": "2026-11-09 13:32 UTC",
+  "age_days": 0,
   "late": false,
   "xg": {
    "source": "cache",
    "asof": "2026-10-25",
-   "age_days": 10,
+   "age_days": 15,
    "too_old": false,
    "error": "Understat Serie A 2014: Expecting value: line 1 column 1 (char 0)",
    "mode": "with_xg+without_xg",
