@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-09 19:49 UTC",
- "today": "2026-11-09",
+ "generated_at": "2026-11-10 04:19 UTC",
+ "today": "2026-11-10",
  "last_week": {
   "start": "2026-11-02",
   "end": "2026-11-08",
@@ -1457,7 +1457,7 @@
  "xg": {
   "n": 101,
   "first": "2026-11-02",
-  "last": "2026-11-09",
+  "last": "2026-11-10",
   "active": true,
   "by_week": {
    "2026-11-02": 53,
@@ -1468,7 +1468,7 @@
  },
  "model": {
   "trained_at": "2026-11-09 13:32 UTC",
-  "age_days": 0,
+  "age_days": 1,
   "late": false,
   "xg": {
    "source": "cache",
