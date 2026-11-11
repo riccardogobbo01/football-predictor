@@ -1,0 +1,85 @@
+# Round 11 — margine sul mercato (solo backtest)
+
+**La produzione non viene toccata.** Criteri scritti PRIMA di eseguire qualsiasi analisi del round. Stesse regole dei round precedenti: validazione 2019/20-2021/22 (solo qui si scelgono soglie e parametri), **held-out dal 2022/23** (2022/23-2025/26 più il 2026/27 in corso, riportato anche a parte), IC 95% a blocchi per settimana ISO (ricampionamento delle settimane), nessun parametro viene toccato dopo aver visto l'held-out.
+
+## Dati
+- **Modello**: stack di produzione v6 (with_xg + Elo-Odds), walk-forward per stagione (training dal 2016/17 sulle sole stagioni precedenti); probabilità 1X2 e Over 2,5 dalla matrice dei punteggi (`round7_lib.goals_walk_forward` + `goal_markets`). Le previsioni sono fuori campione solo dal 2019/20; il 2016-2018 non si usa.
+- **Nota di indipendenza**: il modello contiene già una feature di mercato (Elo-Odds: rating costruiti con le quote di chiusura delle partite PASSATE; le quote della partita da prevedere non entrano mai). Quindi modello e mercato non sono indipendenti: il test misura se la parte *non* mercato del modello aggiunge qualcosa alla quota della partita stessa.
+- **Mercato** (football-data.co.uk, colonne lette direttamente dai CSV in cache, backtest-only): pre-partita = media dei bookmaker `AvgH/D/A`, `Avg>2.5/<2.5` (raccolta giorni prima, non il giorno della partita), B365 (`B365H/D/A`, `B365>2.5/<2.5`) come sensibilità, `MaxH/D/A`, `Max>2.5/<2.5` per le scommesse; chiusura = `AvgCH/D/A`, `AvgC>2.5/<2.5`, Pinnacle `PSC*`/`PC>2.5` (solo dove esiste: fino al 2025/26) come sensibilità. Margine tolto col metodo power (`round2_lib.devig`).
+- **Campione**: partite 2019/20+ con previsione OOS e quote valide. Ogni confronto usa lo stesso insieme di partite per tutte le sue colonne (campione comune a chiusura e pre-partita per V1 e V2).
+
+## V1 — il modello aggiunge informazione al mercato?
+**Regressione logistica multinomiale (conditional logit)**: utilità dell'esito c = a_c + w_m·log p_modello,c + w_k·log p_mercato,c, con pesi condivisi tra gli esiti e due intercette libere (a_X, a_2; a_1 = 0). Stessa cosa per Over/Under 2,5: logit P(Over) = a + w_m·logit p_modello + w_k·logit p_mercato. Si stima separatamente con **quote di chiusura (AvgC)** e **pre-partita (Avg)**; sensibilità: B365 pre-partita, Pinnacle di chiusura.
+- **Walk-forward**: per la stagione s il modello combinato si stima su tutte le stagioni 2019/20…s−1 (le prime previsioni OOS sono quelle del 2019/20, che quindi servono solo da primo training); si valuta su s. Test: 2020/21 in poi; «validazione» = 2020/21-2021/22 (2019/20 non è testabile), «held-out» = 2022/23+. Nessun iperparametro da scegliere.
+- **Peso del modello (w_m) con IC**: stima sull'insieme dell'held-out (2022/23+) e sull'insieme di tutte le stagioni OOS, IC 95% col bootstrap a blocchi per settimana *rifacendo la stima* (2000 ricampionamenti); si riportano anche w_k, la somma w_m + w_k e i pesi per stagione.
+- **Guadagno di log-loss** (per partita; positivo = il combinato è meglio): (i) rispetto al **solo mercato calibrato** con lo stesso walk-forward (w_k e intercette, senza modello) — confronto principale, a parità di flessibilità; (ii) rispetto al **solo mercato grezzo** (probabilità senza margine). Entrambi con IC per partita e a blocchi. Riportati anche modello da solo (grezzo) e mercato grezzo.
+- **Verdetto**: «il modello aggiunge informazione» solo se, nell'held-out, il guadagno (i) è > 0 con IC a blocchi che esclude lo zero **e** l'IC di w_m esclude lo zero; «non aggiunge» se il guadagno (i) ha IC che comprende lo zero o è negativo e w_m ha IC che comprende lo zero; altrimenti «informazione ambigua» (descritta). Se il guadagno rispetto al mercato grezzo è positivo ma quello rispetto al mercato calibrato no, il merito è della calibrazione, non del modello, e lo si dice.
+
+## V2 — closing line value
+Per ogni partita e per ogni esito (1, X, 2; per O/U 2,5 il lato Over, con il segno che porta al lato Under): **d = p_modello − p_pre** (pre-partita Avg senza margine) e **m = p_chiusura − p_pre** (AvgC senza margine meno Avg senza margine), in punti percentuali.
+- **Correlazione** tra d e m (Pearson, partita×esito, IC a blocchi per settimana) e **pendenza** della regressione m su d (quota del divario «recuperata» dal mercato), con e senza controllo per il livello della probabilità pre-partita (effetto favorita/sfavorita), per tutti gli esiti, per esito, per lega, per O/U 2,5.
+- **Soglie τ ∈ {3, 5, 8} punti**: sulle coppie partita-esito con |d| > τ si riporta la **quota di casi in cui la quota si muove verso il modello** (segno di m = segno di d; i movimenti nulli sono esclusi dalla frazione e il loro peso è riportato) e il **movimento medio verso il modello** (m·segno(d), in punti, con IC a blocchi). Il caso nullo è 50 % e 0 punti.
+- **Soglia scelta in validazione**: la τ con il limite inferiore dell'IC 95 % a blocchi più alto del movimento medio verso il modello nella validazione (parità → τ più bassa). Le tre soglie sono riportate comunque nell'held-out; la tabella per esito/lega/O/U usa la τ scelta.
+- Contesto da tenere presente: tra la raccolta pre-partita e la chiusura arrivano formazioni, infortuni e flussi di denaro che il modello non vede; una correlazione bassa non è di per sé un difetto. Una correlazione positiva e distinguibile da zero a parità di livello sarebbe invece il segnale di informazione che il mercato riconosce poi.
+
+## V3 — simulazione di scommesse a puntata fissa (verifica finale)
+Puntata fissa di 1 unità su ogni esito con **p_modello × quota > 1 + θ**, quota = **Max pre-partita** (miglior quota tra i bookmaker raccolti: ottimistica). Un esito per riga; più esiti della stessa partita possono qualificarsi. Mercati: 1X2 e Over/Under 2,5, ciascuno con il proprio θ.
+- **θ scelta in validazione** dalla griglia {0; 0,03; 0,05; 0,08; 0,10; 0,15; 0,20}: ROI massimo nella validazione tra le soglie con almeno 150 scommesse (parità → θ più alta). Poi invariata nell'held-out.
+- **Varianti quote**: (a) Max (quella principale); (b) **quote medie pre-partita (Avg)**: segnale e regolamento con le Avg, θ scelta di nuovo in validazione; (c) segnale con Max e regolamento con le Avg (misura quanto pesa l'ottimismo della Max).
+- **Si riporta**: numero di scommesse, ROI (profitto / n scommesse) con IC a blocchi per settimana (ratio bootstrap, 5000), ROI per lega e per esito (1, X, 2, Over, Under), **CLV medio** delle scommesse = media di (quota giocata × p_chiusura senza margine − 1) e CLV rispetto alla quota di chiusura media grezza.
+- **Riferimenti** (stesso periodo): ROI e CLV di puntare *tutti* gli esiti alla Max, e alle Avg (il costo del margine/dello spread tra Max e chiusura), per leggere il CLV delle scommesse al netto del vantaggio meccanico della Max sulla chiusura media.
+- Potenza: con quote medie intorno a 3-5 la deviazione standard del profitto per scommessa è circa 2-3 unità; per poche migliaia di scommesse l'IC del ROI è di decine di punti. Il ROI non può provare un vantaggio piccolo: si legge insieme a V1 e V2 e il CLV è l'indicatore meno rumoroso.
+
+## V4 — registro quote dei mercati secondari (preparazione, non attivazione)
+Nessun codice di produzione e nessuna chiamata a servizi a pagamento. Si valuta (documentazione ufficiale al giorno dell'analisi): se il piano gratuito di The Odds API, o un'alternativa gratuita, copre per Serie A, Premier, Bundesliga, La Liga e Ligue 1 i mercati `alternate_totals_cards`, `alternate_totals_corners`, `player_shots`; quante richieste/crediti al mese servono per i nostri volumi (partite a settimana per lega × mercati × frequenza di raccolta); lo schema delle colonne da aggiungere a `history.csv` per salvare ogni giorno quote e previsioni del modello e misurare dopo qualche settimana il margine su gialli, falli, tiri e corner; costi e limiti **prima** di implementare.
+
+## Tabella riassuntiva e commento
+Una tabella finale con i verdetti di V1-V3 e il commento onesto: se V1 e V2 non mostrano informazione aggiuntiva, lo si scrive chiaramente, senza ripiegare sui risultati favorevoli di V3 (che è solo una verifica finale e non entra nei criteri di V1/V2).
+
+---
+
+# Aggiunte richieste dopo V1-V4: V5 (favorite in trasferta in Serie A) e V6 (controllo dell'anomalia)
+Scritte PRIMA di eseguire qualsiasi analisi su queste condizioni. Stesse regole: scelte SOLO nella validazione 2019/20-2021/22, held-out dal 2022/23 (fino al 2026/27 in corso), IC 95% a blocchi per settimana ISO, produzione non toccata.
+
+## Avvertenza sull'indipendenza (da leggere prima dei risultati)
+L'anomalia di V5 è stata trovata guardando le quote **2019/20-2026/27**: sono le stesse stagioni della validazione e dell'held-out. Quindi per *questa ipotesi* nessuna di quelle stagioni è davvero fuori campione: la suddivisione validazione/held-out può mostrare solo se l'effetto è **coerente tra sottoperiodi**, non confermarlo. Per questo il round usa due controlli aggiuntivi, dichiarati qui:
+1. **Stagioni 2013/14-2018/19** (football-data.co.uk, quote medie pre-partita e di chiusura già nel nostro archivio, copertura 100 %): non sono state usate per scoprire l'anomalia, quindi sono un controllo davvero indipendente (con la riserva che la fonte delle quote medie prima del 2019/20 può essere BbAv/B365 invece di Avg).
+2. **Controllo delle molteplicità (V6)**: simulazione sotto l'ipotesi nulla «il mercato è calibrato» per stimare quanto spesso, guardando molte condizioni, emerge per caso un eccesso come quello della Serie A.
+(Le partite del 2026/27 giocate dopo questo round saranno una verifica futura, non fanno parte del round.)
+
+Verdetto finale su V5a: **«confermata»** solo se (i) nell'held-out l'eccesso (vittorie osservate − probabilità implicita) ha IC a blocchi che esclude zero **e** (ii) nelle stagioni 2013/14-2018/19 l'eccesso è > 0 con IC che esclude zero **e** (iii) il p-value di famiglia di V6 è < 0,05; **«coerente nel periodo di scoperta ma non confermata»** se vale (i) ma non (ii) o (iii); **«non confermata»** se l'IC dell'held-out comprende lo zero.
+
+## Dati
+Tutti e cinque i campionati; `feat` (backtest/round7_lib.build_ctx7): esito, quote medie **pre-partita** `odds_h/d/a` (AvgH/D/A, o BbAv/B365 dove manca; la «quota media di apertura» del testo: sono le medie raccolte giorni prima), quote medie **di chiusura** `cl_h/d/a`. Probabilità senza margine col metodo power (come nel resto del round; il passo 0 riproduce anche i numeri con la normalizzazione semplice). Probabilità del modello v6 solo dal 2019/20 (fuori campione). Finestre: **pre-2019** = 2013/14-2018/19; **validazione** = 2019/20-2021/22; **held-out** = 2022/23-2026/27 (in corso); **scoperta** = validazione + held-out.
+
+## V5 — favorite in trasferta in Serie A
+**Passo 0 (solo riproduzione, nessuna decisione):** Serie A, finestra di scoperta, soglia 40 %: N, vittorie ospiti, probabilità implicita media, ROI alle quote medie pre-partita e di chiusura, stagioni positive su totale; da confrontare con 827 partite, 61 % contro 53 %, +8,7 %, +8,9 %, 7 stagioni su 8.
+
+**V5a — verifica.** Sottoinsieme A_t = partite di Serie A con p_ospite (pre-partita, senza margine) ≥ t, **t ∈ {35 %, 40 %, 45 %}**. Per finestra (pre-2019, validazione, held-out) e per stagione: N, probabilità implicita media, frequenza osservata di vittoria dell'ospite, **eccesso = osservata − implicita** (punti) con IC a blocchi, ROI a 1 unità alla quota media pre-partita (AvgA) con IC a blocchi, ROI alla quota media di chiusura, CLV = quota pre × p_chiusura senza margine − 1. **Soglia scelta in validazione**: la t con il limite inferiore dell'IC 95 % a blocchi dell'eccesso più alto nella validazione (parità → t più bassa). Verdetto come sopra. Confronto sugli altri quattro campionati con la stessa t (descrittivo; il controllo vero è V6).
+
+**V5b — il modello v6 lo cattura?** Sul sottoinsieme A_t* (t* da V5a) nella finestra 2019/20+: probabilità media prevista dell'ospite dal modello, dal mercato pre-partita e dal mercato di chiusura, contro la frequenza osservata; differenza modello − mercato con IC a blocchi; **log-loss 1X2** del modello e del mercato e **guadagno = ll(mercato) − ll(modello)** (positivo = il modello è meglio) con IC a blocchi, per validazione e held-out; ripetuto su tutta la Serie A. Il modello «cattura» l'effetto solo se p_modello − p_mercato (ospite) è > 0 con IC che esclude zero **e** il guadagno è > 0 con IC che esclude zero; altrimenti «non lo cattura».
+
+**V5c — correzione (eseguita comunque; rilevante se V5b dice «non lo cattura»).** Walk-forward per stagione sulle sole partite di Serie A: per la stagione s si stima su 2019/20…s−1 (test da 2020/21) e si applica alla Serie A (le altre leghe restano invariate, quindi il guadagno complessivo è diluito di circa 1/5). Utilità = log p_v6 + correzione:
+- **K1**: intercette di classe specifiche della Serie A (pareggio e ospite rispetto alla casa): «vantaggio casa della Serie A».
+- **K2**: K1 + termine di interazione b · 1[p_modello,ospite ≥ t*] · 1[esito = ospite] («ospite favorito × lega»; usa la probabilità del modello, non le quote, perché in produzione la correzione deve poter funzionare senza la quota della partita).
+Scelta tra K1 e K2 in validazione (2020/21-2021/22): minore log-loss 1X2 della Serie A; differenza < 0,0002 → K1. Misure: Δ log-loss 1X2 = baseline − variante (positivo = migliora) su **tutte e 5 le leghe** (guadagno complessivo, metrica primaria), sulla sola Serie A e sul sottoinsieme A_t*, in validazione e held-out, IC a blocchi; parametri stimati per fold. Verdetto: «migliora» se il Δ complessivo nell'held-out è > 0 con IC che esclude zero; «peggiora» se < 0 con IC sotto zero; altrimenti «non distinguibile dal rumore». Nessuna modifica della produzione in ogni caso.
+
+**V5d — scommesse.** 1 unità su ogni partita di Serie A in A_t* alla **quota media** pre-partita (AvgA; non la Max), regolamento a quella quota; riferimento anche alla quota media di chiusura. ROI con IC a blocchi per finestra e per stagione; CLV; **massimo drawdown** (massima discesa picco-valle del profitto cumulato, in unità, con le partite in ordine di data) nell'held-out e nella finestra di scoperta; distribuzione (5°, 50°, 95° percentile) del massimo drawdown ricampionando le settimane con rimpiazzo (stesso numero di settimane), per leggere il drawdown osservato contro quello atteso per puro caso con quel ROI. Riferimenti: tutte le trasferte in Serie A; stessa regola negli altri campionati.
+
+## V6 — controllo dell'anomalia
+**Condizioni scelte ora, prima di guardare i dati** (nessuna soglia viene ottimizzata: una sola soglia per condizione):
+- **H** — favorita in casa: p_casa (pre-partita) ≥ 60 %, esito = vittoria in casa.
+- **D** — pareggi tra squadre equilibrate: |p_casa − p_ospite| ≤ 10 punti, esito = pareggio.
+- **O** — outsider in casa: p_casa ≤ 25 %, esito = vittoria in casa (bias favorita/sfavorita).
+- **A** — la condizione di V5 (p_ospite ≥ 40 %, esito = ospite), per confronto.
+Ciascuna per i 5 campionati (e tutti insieme): per ogni cella N, probabilità implicita, frequenza osservata, eccesso, **z = (osservati − Σp) / √Σp(1−p)**, ROI alla quota media pre-partita con IC a blocchi, nelle finestre pre-2019, validazione, held-out e scoperta; stagioni positive.
+
+**Quante anomalie di questa grandezza emergono per caso.** Simulazione sotto l'ipotesi nulla «il mercato è calibrato»: gli esiti 1X2 di tutte le partite della finestra di scoperta vengono estratti dalle probabilità pre-partita senza margine (indipendenti tra partite), **10.000 simulazioni**, stessi partizionamenti e stesse soglie. La **famiglia E** di celle (ciascuna con almeno 100 partite nella finestra di scoperta, altrimenti esclusa sia nei dati sia nelle simulazioni):
+- esito 1 o 2 con p_esito ≥ t, t ∈ {35, 40, 45, 50, 55, 60} %, per lega (fino a 60 celle);
+- pareggio con |p_casa − p_ospite| ≤ δ, δ ∈ {5, 10, 15} punti, per lega (15 celle);
+- esito 1 o 2 con p_esito ≤ t, t ∈ {20, 25, 30} %, per lega (30 celle).
+Si riportano: (i) il valore z e il ROI osservati nella cella Serie A/ospite/≥ 40 % e il loro percentile nella distribuzione nulla della cella stessa (p-value di cella); (ii) il **p-value di famiglia** = frazione di simulazioni in cui *almeno una* cella della famiglia E ha z ≥ z osservato della cella Serie A (stesso test sul ROI); (iii) numero atteso di celle con z ≥ 2, 2,5, 3 sotto l'ipotesi nulla contro quello osservato nei dati reali (unilaterale e bilaterale); (iv) probabilità, nella cella, di ≥ 7 stagioni positive su 8 sotto l'ipotesi nulla.
+Giudizio: se il p-value di famiglia è ≥ 0,05 e il numero di celle con |z| > 2 osservato è simile a quello atteso per caso, l'anomalia della Serie A è compatibile con l'effetto di molte osservazioni; se è basso e le stagioni 2013/14-2018/19 vanno nella stessa direzione, merita un monitoraggio prospettico (non produzione).
+
+## Tabella riassuntiva e commento
+Come sopra: tabella con i verdetti di V1-V6 e commento onesto; se V1/V2 e V5/V6 non mostrano informazione o anomalia robusta, lo si scrive chiaramente.

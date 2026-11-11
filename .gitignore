@@ -35,3 +35,7 @@ Thumbs.db
 
 # Backtest: cache dei CSV scaricati
 data/cache/
+
+# Round 11: log delle esecuzioni locali
+backtest/round11_parts/*.log
+backtest/round11_parts/*.err
