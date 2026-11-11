@@ -84,6 +84,18 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   emesse prima del calcio d'inizio con i risultati reali (1X2 modello contro mercato, gol, Over/Under e BTTS, copertura degli intervalli e correlazione per statistica e per lega).
   `history.csv` conserva per questo `exp_h/exp_a`, `p_o15/p_o25/p_o35/p_btts`, `stats_json` (previsioni e intervalli emessi) e `stats_real_json` (valori reali per squadra);
   `scripts/backfill_issued.py` ricostruisce le colonne emesse dalle copie di `predictions.json` in git per le righe precedenti.
+- **Monitoraggio a carta** (`predictions/paper_monitor.py`, sezione del resoconto; solo resoconto, nessun effetto sul modello): tre anomalie del round 11 con regole fissate l'11/11/2026 e
+  solo partite giocate da quella data, dalle quote medie pre-partita di football-data.co.uk senza margine: (a) Serie A, ospite con probabilita' >= 45 %; (b) La Liga, favorita in casa >= 60 %;
+  (c) pareggi tra squadre equilibrate (|p casa − p ospite| <= 10 punti, 5 campionati). Per ciascuna: partite, frequenza reale contro implicita, rendimento teorico a quota media, IC a blocchi
+  per settimana da 30 partite in su. Il backtest di riferimento (round 11, V5-V6) e' nella tabella.
+- **Mercati secondari** (`predictions/odds_secondary.py`, The Odds API piano gratuito, 500 crediti/mese): raccoglie UNA istantanea per partita delle quote Over/Under di cartellini
+  (`alternate_totals_cards`) e corner (`alternate_totals_corners`), regione `eu`, tra 40 e 3 ore prima del calcio d'inizio (di norma il giorno prima; Serie A: si attende l'arbitro fino a 16 ore prima).
+  Costo: 1 credito per mercato che restituisce quote (risposta vuota = 0), al massimo 2 a partita; sopra il 90 % dei crediti mensili nessuna chiamata (scritto nel log e in
+  `docs/odds_secondary_status.json`). Chiave mancante o non valida, rete o risposte anomale non fanno mai fallire la generazione. La chiave e' `ODDS_API_KEY` (secret di GitHub; in locale variabile
+  d'ambiente o `.env`, mai nel codice o nei log). Dati in `docs/odds_secondary.csv` (una riga per partita, mercato, linea e bookmaker: quote Over/Under, probabilita' del mercato senza margine,
+  probabilita' del modello sulla stessa linea al momento dell'istantanea, risultato reale a partita giocata); sezione «Mercati secondari (in raccolta)» del resoconto: partite registrate e, dalla
+  200ª con risultato per mercato, log-loss del modello contro le quote senza margine (linea principale, IC a blocchi) e calibrazione. Prova della chiamata: `python scripts/odds_probe.py`.
+  Nel workflow `predict.yml` il passo «Generate predictions» deve avere `ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}` tra le variabili d'ambiente (`env:`).
 - **Avviso di previsioni vecchie**: la pagina mostra un avviso rosso se `generated_at` ha piu' di 30 ore (calcolato nel browser).
 - **Trigger esterno del job giornaliero** (opzionale: i cron di GitHub possono ritardare di ore o saltare). Procedura:
   1. Token: GitHub → Settings → Developer settings → Personal access tokens → *Fine-grained tokens* → Generate. Resource owner: il proprietario del repository; *Only select

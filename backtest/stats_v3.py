@@ -217,7 +217,8 @@ def page_rows(stat: str, mh, ma, d: dict) -> list:
              "int_home": [int(ih[0][i]), int(ih[1][i]), round(float(ih[2][i]), 4)],
              "int_away": [int(ia[0][i]), int(ia[1][i]), round(float(ia[2][i]), 4)],
              "int_total": [int(it[0][i]), int(it[1][i]), round(float(it[2][i]), 4)],
-             "over": {f"{L:g}": round(float(over[L][i]), 4) for L in spec["lines"]}}
+             "over": {f"{L:g}": round(float(over[L][i]), 4) for L in spec["lines"]},
+             "nb": [round(float(m[i]), 5), round(float(aT), 6)]}      # media e dispersione esatte del totale (Binomiale Negativa): probabilita' su qualsiasi linea
         rows.append(r)
     return rows
 

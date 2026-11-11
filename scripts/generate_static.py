@@ -1666,9 +1666,14 @@ def main():
     html = generate_html(all_data, generated_at, mon)
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(html)
+    try:                                                   # quote dei mercati secondari (cartellini, corner): solo raccolta, mai bloccare la generazione
+        from predictions import odds_secondary
+        odds_secondary.run(all_data, history, today, "docs", log)
+    except Exception as e:
+        log.warning("Mercati secondari non raccolti (%s: %s)", type(e).__name__, str(e)[:120])
     try:                                                   # resoconto settimanale (docs/resoconto.html): mai bloccare la generazione per un errore del report
         from scripts import weekly_report
-        rep = weekly_report.main(history_path, "docs", today)
+        rep = weekly_report.main(history_path, "docs", today, matches=df)
         log.info("Resoconto settimanale: %d partite dall'inizio del monitoraggio, %d nell'ultima settimana completa (%d con risultato provvisorio ESPN)",
                  rep["total"]["n"], rep["last_week"]["n"], rep["provisional"])
     except Exception as e:

@@ -25,7 +25,7 @@ import pandas as pd
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
-from predictions import monitor  # noqa: E402
+from predictions import monitor, odds_secondary, paper_monitor  # noqa: E402
 
 LEAGUES = list(monitor.LEAGUE_CODE)
 LEAGUE_NAME = {"serie_a": "Serie A", "premier_league": "Premier League", "bundesliga": "Bundesliga", "la_liga": "La Liga", "ligue_1": "Ligue 1"}
@@ -166,7 +166,17 @@ def trained_status(stack_path, today) -> dict:
     return out
 
 
-def build(history: pd.DataFrame, today, stack_path=None) -> dict:
+def paper_status(matches) -> dict | None:
+    """Monitoraggio a carta (predictions/paper_monitor.py): solo resoconto. None se mancano le partite di football-data o se il calcolo fallisce."""
+    if matches is None:
+        return None
+    try:
+        return paper_monitor.compute(matches)
+    except Exception as e:                                   # mai bloccare il resoconto
+        return {"error": f"{type(e).__name__}: {e}", "rules": {}}
+
+
+def build(history: pd.DataFrame, today, stack_path=None, matches=None) -> dict:
     today = pd.Timestamp(today).normalize()
     h = played_rows(history)
     cur_mon, _ = week_bounds(today)
@@ -180,7 +190,8 @@ def build(history: pd.DataFrame, today, stack_path=None) -> dict:
             "weeks": {str(k.date()): {"n": v["n"], "x12": v["x12"], "goals": {kk: vv for kk, vv in v["goals"].items() if kk != "markets"}} for k, v in sorted(weeks.items())},
             "total": summarize(h), "since": str(h["_d"].min().date()) if len(h) else None,
             "provisional": int((h["result_source"] == "espn").sum()),
-            "xg": xg_status(history, today), "model": trained_status(stack_path or os.path.join(REPO_ROOT, "models", "stack.json"), today)}
+            "xg": xg_status(history, today), "model": trained_status(stack_path or os.path.join(REPO_ROOT, "models", "stack.json"), today),
+            "paper": paper_status(matches)}
 
 
 # ───────────────────────────── pagina ─────────────────────────────
@@ -271,6 +282,77 @@ th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--border);whit
 """
 
 
+def paper_html(p) -> str:
+    """Sezione «Monitoraggio a carta»: tre regole fissate l'11/11/2026, solo partite da quella data."""
+    if not p:
+        return ""
+    if p.get("error"):
+        return f'<section><h2>Monitoraggio a carta</h2><p class="note">Non calcolato ({html.escape(p["error"])}).</p></section>'
+    rows = []
+    for r in p["rules"].values():
+        if not r["n"]:
+            rows.append([html.escape(r["label"]), 0, "–", "–", "–", "–", html.escape(r["ref"])])
+            continue
+        if r["ci"]:
+            e, ro = r["excess_ci"], r["roi_ci"]
+            ex = f'{100 * r["excess"]:+.1f} pp [{100 * e[1]:+.1f}; {100 * e[2]:+.1f}]'.replace(".", ",")
+            rd = f'{100 * r["roi"]:+.1f}% [{100 * ro[1]:+.1f}; {100 * ro[2]:+.1f}]'.replace(".", ",")
+        else:
+            ex = f'{100 * r["excess"]:+.1f} pp (in raccolta: IC dopo {p["min_n"]} partite)'.replace(".", ",")
+            rd = f'{100 * r["roi"]:+.1f}% (in raccolta)'.replace(".", ",")
+        rows.append([html.escape(r["label"]), f'{r["n"]} ({r["wins"]} esiti)', _pct(r["implied"]), _pct(r["real"]), ex, rd, html.escape(r["ref"])])
+    return ('<section><h2>Monitoraggio a carta (in raccolta)</h2><p class="note">Tre anomalie trovate nel backtest (round 11), regole fissate l’11/11/2026 e mai cambiate: '
+            f'si contano solo le partite giocate dal {html.escape(p["start"])}. Probabilità implicite dalle quote medie pre-partita di football-data.co.uk senza margine; '
+            'rendimento teorico = 1 unità alla quota media su ogni partita della regola. Intervalli al 95 % a blocchi per settimana, calcolati da '
+            f'{p["min_n"]} partite in su. Non influisce in alcun modo sul modello.</p>'
+            + _table(["Regola", "Partite", "% implicita", "% reale", "Eccesso reale − implicita", "Rendimento teorico (quota media)", "Riferimento (non usato per decidere)"], rows)
+            + '</section>')
+
+
+def secondary_html(sec) -> str:
+    """Sezione «Mercati secondari (in raccolta)»: quote di cartellini e corner (The Odds API, piano gratuito) contro le previsioni del modello."""
+    if not sec:
+        return ""
+    if sec.get("error"):
+        return f'<section><h2>Mercati secondari (in raccolta)</h2><p class="note">Non calcolato ({html.escape(str(sec["error"]))}).</p></section>'
+    st = sec.get("status") or {}
+    if st.get("enabled"):
+        cred = (f' Crediti del mese: usati {st.get("used")}, rimasti {st.get("remaining")}.' if st.get("used") is not None else "")
+        state = f'Ultima raccolta {html.escape(str(st.get("at")))}: {st.get("recorded", 0)} partite registrate.{cred}'
+        if st.get("budget_stop"):
+            state += " <b>Soglia del 90 % dei crediti raggiunta: chiamate sospese fino al nuovo mese.</b>"
+    elif st:
+        state = f'Raccolta non attiva: {html.escape(str(st.get("reason")))}.'
+    else:
+        state = "Raccolta non ancora eseguita."
+    names = {"cards": "Cartellini (gialli totali)", "corners": "Corner totali"}
+    rows = []
+    for k, label in names.items():
+        r = (sec.get("markets") or {}).get(k) or {}
+        e = r.get("eval")
+        if e:
+            d = e["delta"]
+            cells = [_num(e["ll_model"], 4), _num(e["ll_market"], 4), f'{d[0]:+.4f} [{d[1]:+.4f}; {d[2]:+.4f}]'.replace(".", ",")]
+        else:
+            cells = ["–", "–", f'dopo {sec.get("min_eval")} partite con risultato']
+        rows.append([label, r.get("registered", 0), r.get("with_result", 0), ", ".join(r.get("bookmakers") or []) or "–"] + cells)
+    body = ('<section><h2>Mercati secondari (in raccolta)</h2><p class="note">Una istantanea per partita, il giorno prima del calcio d’inizio (Serie A: dopo la designazione dell’arbitro, se possibile), '
+            'delle quote Over/Under di cartellini e corner (The Odds API, piano gratuito), confrontate con la probabilità del modello sulla stessa linea. '
+            'Si valuta la linea principale (la più vicina al 50 % del mercato) con le quote senza margine; i rimborsi sulle linee intere sono esclusi. '
+            f'Log-loss e calibrazione compaiono dalla {sec.get("min_eval")}ª partita con risultato per mercato. {state}</p>'
+            + _table(["Mercato", "Partite registrate", "Con risultato", "Bookmaker", "Log-loss modello", "Log-loss quote senza margine", "Differenza (quote − modello; > 0 = modello migliore) [IC 95 % a blocchi]"], rows))
+    for k, label in names.items():
+        e = ((sec.get("markets") or {}).get(k) or {}).get("eval")
+        if not e:
+            continue
+        cal = []
+        for (b1, n1, p1, o1), (b2, n2, p2, o2) in zip(e["cal_model"], e["cal_market"]):
+            cal.append([b1, n1, _pct(p1), _pct(o1), n2, _pct(p2), _pct(o2)])
+        body += (f'<h3>Calibrazione: {html.escape(label)} (Over della linea principale, {e["n"]} partite)</h3>'
+                 + _table(["Fascia di probabilità", "N modello", "Prevista dal modello", "Frequenza reale", "N quote", "Prevista dalle quote", "Frequenza reale"], cal))
+    return body + "</section>"
+
+
 def render(rep: dict) -> str:
     lw, cw, tot = rep["last_week"], rep["current_week"], rep["total"]
     prov = (f'<div class="warn">{rep["provisional"]} partite hanno risultato e statistiche provvisori da ESPN (football-data.co.uk non è ancora aggiornato): '
@@ -298,16 +380,20 @@ def render(rep: dict) -> str:
             block_html(f'Ultima settimana completa ({lw["start"]} → {lw["end"]})', lw),
             block_html(f'Settimana in corso dal {cw["start"]} (parziale)', cw),
             '<section><h2>Settimane</h2>' + _table(["Settimana dal", "Partite", "Log-loss modello", "Log-loss mercato", "Gol attesi", "Gol reali", "Reali / attesi"], rows) + "</section>",
-            block_html("Totale dall'inizio del monitoraggio", tot)]
+            block_html("Totale dall'inizio del monitoraggio", tot), paper_html(rep.get("paper")), secondary_html(rep.get("secondary"))]
     return ('<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             '<title>Resoconto settimanale</title><style>' + CSS + '</style></head><body><main>' + "".join(body) + "</main></body></html>")
 
 
-def main(history_path=None, out_dir=None, today=None):
+def main(history_path=None, out_dir=None, today=None, matches=None):
     history_path = history_path or os.path.join(REPO_ROOT, "docs", "history.csv")
     out_dir = out_dir or os.path.dirname(history_path)
     history = monitor.load_history(history_path)
-    rep = build(history, today or datetime.now(timezone.utc).date())
+    rep = build(history, today or datetime.now(timezone.utc).date(), matches=matches)
+    try:                                                      # registro quote dei mercati secondari (docs/odds_secondary.csv)
+        rep["secondary"] = odds_secondary.summary(out_dir)
+    except Exception as e:                                    # mai bloccare il resoconto
+        rep["secondary"] = {"error": f"{type(e).__name__}: {e}"}
     with open(os.path.join(out_dir, "resoconto.html"), "w", encoding="utf-8") as fh:
         fh.write(render(rep))
     with open(os.path.join(out_dir, "resoconto.json"), "w", encoding="utf-8") as fh:
