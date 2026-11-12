@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12 04:17 UTC",
+  "generated_at": "2026-11-12 12:54 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-11-09 13:32 UTC",
@@ -4019,7 +4019,7 @@
                 "27.5": 0.4339
               },
               "nb": [
-                26.78443,
+                26.78442,
                 0.008942
               ],
               "base": [
@@ -5883,7 +5883,7 @@
                 0.008942
               ],
               "base": [
-                14.9165,
+                14.9166,
                 12.2635
               ],
               "level": {
@@ -6168,7 +6168,7 @@
             "prob_o35": 0.26848,
             "prob_btts": 0.49315,
             "prob_cs_home": 0.17916,
-            "prob_cs_away": 0.40611,
+            "prob_cs_away": 0.40612,
             "top_scores": [
               [
                 0,
