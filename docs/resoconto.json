@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-11 11:58 UTC",
- "today": "2026-11-11",
+ "generated_at": "2026-11-12 04:19 UTC",
+ "today": "2026-11-12",
  "last_week": {
   "start": "2026-11-02",
   "end": "2026-11-08",
@@ -1457,7 +1457,7 @@
  "xg": {
   "n": 101,
   "first": "2026-11-02",
-  "last": "2026-11-11",
+  "last": "2026-11-12",
   "active": true,
   "by_week": {
    "2026-11-02": 53,
@@ -1468,7 +1468,7 @@
  },
  "model": {
   "trained_at": "2026-11-09 13:32 UTC",
-  "age_days": 2,
+  "age_days": 3,
   "late": false,
   "xg": {
    "source": "cache",
@@ -1479,5 +1479,52 @@
    "mode": "with_xg+without_xg",
    "with_xg_max_date": "2026-10-25"
   }
+ },
+ "paper": {
+  "start": "2026-11-11",
+  "min_n": 30,
+  "rules": {
+   "a": {
+    "label": "(a) Serie A, ospite con probabilità >= 45 %",
+    "ref": "backtest 2019/20-2026/27: eccesso +7,0 pt, ROI +9,3 %; 2013/14-2018/19: +3,1 pt, ROI +2,5 %",
+    "n": 0,
+    "ci": false
+   },
+   "b": {
+    "label": "(b) La Liga, favorita in casa con probabilità >= 60 %",
+    "ref": "backtest 2019/20-2026/27: eccesso +5,0 pt, ROI +5,2 %; 2013/14-2018/19: +0,5 pt, ROI −1,4 %",
+    "n": 0,
+    "ci": false
+   },
+   "c": {
+    "label": "(c) Pareggio tra squadre equilibrate (|p casa − p ospite| <= 10 pt), 5 campionati",
+    "ref": "backtest 2019/20-2026/27: eccesso +2,3 pt, ROI +2,1 %; 2013/14-2018/19: +1,6 pt, ROI −0,5 %",
+    "n": 0,
+    "ci": false
+   }
+  }
+ },
+ "secondary": {
+  "status": {
+   "at": "2026-11-12 04:19 UTC",
+   "enabled": false,
+   "reason": "ODDS_API_KEY non impostata: raccolta saltata",
+   "used": null,
+   "remaining": null,
+   "calls": 0,
+   "credits_spent": 0,
+   "due": 0,
+   "recorded": 0,
+   "no_data": 0,
+   "unmatched": [],
+   "waiting_referee": 0,
+   "budget_stop": false,
+   "rows": 0,
+   "matches": 0,
+   "results_filled": 0
+  },
+  "markets": {},
+  "min_eval": 200,
+  "matches": 0
  }
 }

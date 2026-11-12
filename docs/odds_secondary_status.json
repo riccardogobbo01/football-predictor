@@ -1,0 +1,18 @@
+{
+ "at": "2026-11-12 04:19 UTC",
+ "enabled": false,
+ "reason": "ODDS_API_KEY non impostata: raccolta saltata",
+ "used": null,
+ "remaining": null,
+ "calls": 0,
+ "credits_spent": 0,
+ "due": 0,
+ "recorded": 0,
+ "no_data": 0,
+ "unmatched": [],
+ "waiting_referee": 0,
+ "budget_stop": false,
+ "rows": 0,
+ "matches": 0,
+ "results_filled": 0
+}
