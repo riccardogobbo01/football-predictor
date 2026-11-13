@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-12 12:56 UTC",
- "today": "2026-11-12",
+ "generated_at": "2026-11-13 04:19 UTC",
+ "today": "2026-11-13",
  "last_week": {
   "start": "2026-11-02",
   "end": "2026-11-08",
@@ -1455,20 +1455,20 @@
  "since": "2026-10-09",
  "provisional": 1,
  "xg": {
-  "n": 101,
+  "n": 106,
   "first": "2026-11-02",
-  "last": "2026-11-12",
+  "last": "2026-11-13",
   "active": true,
   "by_week": {
    "2026-11-02": 53,
    "2026-11-16": 45,
-   "2026-11-23": 3
+   "2026-11-23": 8
   },
   "reason": "Understat non disponibile"
  },
  "model": {
   "trained_at": "2026-11-09 13:32 UTC",
-  "age_days": 3,
+  "age_days": 4,
   "late": false,
   "xg": {
    "source": "cache",
@@ -1506,7 +1506,7 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-12 12:56 UTC",
+   "at": "2026-11-13 04:19 UTC",
    "enabled": false,
    "reason": "ODDS_API_KEY non impostata: raccolta saltata",
    "used": null,
