@@ -84,6 +84,15 @@ del primo tempo previsti e reali, e `stats_version` (`config.STATS_VERSION`, sep
   emesse prima del calcio d'inizio con i risultati reali (1X2 modello contro mercato, gol, Over/Under e BTTS, copertura degli intervalli e correlazione per statistica e per lega).
   `history.csv` conserva per questo `exp_h/exp_a`, `p_o15/p_o25/p_o35/p_btts`, `stats_json` (previsioni e intervalli emessi) e `stats_real_json` (valori reali per squadra);
   `scripts/backfill_issued.py` ricostruisce le colonne emesse dalle copie di `predictions.json` in git per le righe precedenti.
+- **MyCombo** (`predictions/mycombo.py`, `predictions/mycombo_js.py`; solo campionati, nessun collegamento a bookmaker): per ogni partita 20.000 scenari coerenti con il modello (punteggio dalla
+  matrice dei gol, primo tempo dalla quota di lega, tiri, tiri in porta, corner, gialli e falli con la copula gaussiana a 12 variabili `models/mycombo_corr.json`, stimata sui residui fuori campione;
+  l'effetto arbitro e il livello stagionale sono nelle medie). Il pannello della partita propone 2-3 combo da 3-5 giocate con quota equa (1/probabilita' congiunta) tra 2,0 e 3,0, senza giocate
+  ridondanti e senza combo quasi identiche, con la probabilita' «come se fossero indipendenti»; un campo per la quota Sisal calcola nel browser valore atteso e margine implicito (nulla viene
+  salvato). La modalita' «componi tu» (2-6 giocate, linea a scelta, quota totale) usa 4.000 scenari della partita (`docs/mycombo/*.bin`, solo per le partite dei prossimi 4 giorni) e avverte
+  se le giocate sono incompatibili (probabilita' zero). Validazione walk-forward 2022/23-2025/26 su 21.243 combo (`backtest/results_mycombo.md`, protocollo in `backtest/mycombo_parts/prereg.md`):
+  probabilita' prevista 36,7 %, frequenza reale 36,9 %. Registro a carta in `docs/mycombo_history.csv` (combo proposte e, a partita finita, esito dal CSV di football-data) e sezione
+  «MyCombo (registro a carta)» del resoconto. Se `models/mycombo_corr.json` manca la funzione si spegne e il resto del sito non cambia. Rifare la validazione: `backtest/run_mycombo.py`
+  (PREP, SEASON, poi `run_mycombo_report.py`).
 - **Monitoraggio a carta** (`predictions/paper_monitor.py`, sezione del resoconto; solo resoconto, nessun effetto sul modello): tre anomalie del round 11 con regole fissate l'11/11/2026 e
   solo partite giocate da quella data, dalle quote medie pre-partita di football-data.co.uk senza margine: (a) Serie A, ospite con probabilita' >= 45 %; (b) La Liga, favorita in casa >= 60 %;
   (c) pareggi tra squadre equilibrate (|p casa − p ospite| <= 10 punti, 5 campionati). Per ciascuna: partite, frequenza reale contro implicita, rendimento teorico a quota media, IC a blocchi

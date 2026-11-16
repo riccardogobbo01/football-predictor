@@ -53,7 +53,7 @@ import pandas as pd
 import requests
 
 from backtest import data, eloodds
-from predictions import cups, espn, levels as levels_mod, monitor, referee_sources
+from predictions import cups, espn, levels as levels_mod, monitor, mycombo, mycombo_js, referee_sources
 from predictions import stack_predictor as sp
 from config import REC_DRAW_THRESHOLD, STATS_VERSION
 
@@ -367,6 +367,7 @@ PANEL_JS = r'''
   var sub = document.getElementById("panel-sub");
   var closeBtn = document.getElementById("panel-close");
   var opener = null;
+  if (typeof MCUI !== "undefined") { MCUI.bind(body); }
 
   function esc(s) {
     return String(s === null || s === undefined ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -577,6 +578,10 @@ PANEL_JS = r'''
       out += grp("Statistiche e quote", '<div class="pn-note">Statistiche e quote non disponibili per le coppe europee</div>', false);
     }
 
+    if (f.combo && !f.cup && typeof MCUI !== "undefined") {
+      out += grp("MyCombo · combo e «componi tu»", MCUI.html(f), false);
+    }
+
     if (cx) {
       out += grp("Contesto", '<div class="ctx-grid">' + ctxCol(h, cx.home) + ctxCol(a, cx.away) + '</div>' +
         '<div class="pn-note">Riposo calcolato solo sulle partite di campionato (coppe escluse). Forma: la partita più ' +
@@ -590,6 +595,7 @@ PANEL_JS = r'''
     var f = FX[card.getAttribute("data-id")];
     if (!f) { return; }
     opener = card;
+    if (typeof MCUI !== "undefined") { MCUI.reset(f); }
     title.textContent = f.home + " vs " + f.away;
     sub.textContent = f.flag + " " + f.league + " · " + f.round + " · " + f.date + " " + f.time + " UTC";
     body.innerHTML = render(f);
@@ -636,6 +642,8 @@ PANEL_JS = r'''
   });
 })();
 '''
+PANEL_CSS = PANEL_CSS + mycombo_js.CSS
+MYCOMBO_JS = mycombo_js.CORE_JS + mycombo_js.UI_JS
 
 
 MARKET_DIFF_PP = 5.0   # scarto modello - mercato oltre il quale la cella viene evidenziata
@@ -774,7 +782,7 @@ def generate_html(leagues_data: dict, generated_at: str, mon: dict) -> str:
             fx_data[fid] = {"league": ld["name"], "flag": ld["flag"], "date": fix["date"], "time": fix["time"],
                             "matchday": fix["matchday"], "round": round_label,
                             "home": fix["home"], "away": fix["away"],
-                            "pred": pred, "market": fix.get("market"), "stats": fix.get("expected_stats"),
+                            "pred": pred, "market": fix.get("market"), "stats": fix.get("expected_stats"), "combo": fix.get("mycombo"),
                             "ctx": fix.get("context"), "cup": bool(fix.get("cup")), "elo": fix.get("elo"),
                             "neutral": bool(fix.get("neutral")), "return_leg": bool(fix.get("return_leg"))}
             aria = _html.escape(f"Apri i dettagli di {fix['home']} contro {fix['away']}", quote=True)
@@ -1284,6 +1292,7 @@ try {{
   if (saved) document.documentElement.setAttribute('data-theme', saved);
 }} catch(e) {{}}
 </script>
+<script>{MYCOMBO_JS}</script>
 <script>{PANEL_JS}</script>
 </body>
 </html>"""
@@ -1479,6 +1488,14 @@ def main():
     log.info("Quote di mercato da fixtures.csv: %d partite dei 5 campionati", len(fx_market))
     new_rows = []
 
+    # MyCombo: matrice di correlazione validata (backtest/results_mycombo.md); senza il file la funzione e' spenta
+    mc_cc, mc_payloads = None, {}
+    try:
+        with open(os.path.join(REPO_ROOT, "models", "mycombo_corr.json"), encoding="utf-8") as fh:
+            mc_cc = mycombo.prepare_corr(json.load(fh)["corr"])
+    except Exception as e:
+        log.warning("MyCombo spento: models/mycombo_corr.json non disponibile (%s: %s)", type(e).__name__, e)
+
     all_data = {}
     recent_refs = []        # arbitri delle partite finite negli ultimi giorni (per completare lo storico)
 
@@ -1541,6 +1558,25 @@ def main():
                        "context": {"home": team_context(g, state, h, fix["date"], today, active),
                                    "away": team_context(g, state, a, fix["date"], today, active)}}
                       for fix, (h, a), pred, row, st in zip(fixtures, names, preds, league_rows, stats_list)]
+
+        if mc_cc is not None:                        # MyCombo: simulazione congiunta e combo (mai bloccare la generazione per un errore)
+            fh_ = (model.get("stats_v3") or {}).get("first_half") or {}
+            share_ = (fh_.get("share") or {}).get(sp.CSV_CODE[league_key], fh_.get("all"))
+            t_mc = time.time()
+            n_mc = 0
+            for f_ in preds_list:
+                try:
+                    near = (pd.Timestamp(f_["date"]) - today).days <= mycombo.WEB_DAYS
+                    r_ = mycombo.build_fixture(league_key, f_, share_, mc_cc, with_file=near)
+                except Exception as e:
+                    log.warning("  MyCombo %s - %s non generato (%s: %s)", f_["home"], f_["away"], type(e).__name__, str(e)[:100])
+                    r_ = None
+                if r_:
+                    f_["mycombo"] = r_[0]
+                    if r_[2] is not None:
+                        mc_payloads[r_[1]] = r_[2]
+                    n_mc += 1
+            log.info("  MyCombo: %d partite in %.1fs", n_mc, time.time() - t_mc)
 
         all_data[league_key] = {
             "name":         league_info["name"],
@@ -1666,6 +1702,18 @@ def main():
     html = generate_html(all_data, generated_at, mon)
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(html)
+    try:                                                   # MyCombo: scenari per il browser e registro a carta (docs/mycombo_history.csv)
+        if mc_cc is not None:
+            items = [(lk, fx_, fx_["mycombo"]) for lk, ld in all_data.items() if not ld.get("cup") for fx_ in ld["fixtures"] if fx_.get("mycombo")]
+            reg_path = os.path.join("docs", "mycombo_history.csv")
+            reg = mycombo.reg_load(reg_path)
+            reg = mycombo.reg_update(reg, items, datetime.utcnow())
+            n_closed = mycombo.reg_settle(reg, df, today)
+            mycombo.reg_save(reg, reg_path)
+            n_files = mycombo.write_scenarios("docs", mc_payloads)
+            log.info("MyCombo: %d partite con combo, registro %d combo (%d chiuse ora), %d file di scenari scritti", len(items), len(reg), n_closed, n_files)
+    except Exception as e:
+        log.warning("MyCombo: registro/scenari non scritti (%s: %s)", type(e).__name__, str(e)[:120])
     try:                                                   # quote dei mercati secondari (cartellini, corner): solo raccolta, mai bloccare la generazione
         from predictions import odds_secondary
         odds_secondary.run(all_data, history, today, "docs", log)

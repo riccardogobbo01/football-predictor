@@ -39,3 +39,6 @@ data/cache/
 # Round 11: log delle esecuzioni locali
 backtest/round11_parts/*.log
 backtest/round11_parts/*.err
+
+# MyCombo: cache del backtest (pesante, si ricostruisce)
+backtest/mycombo_parts/_cache/

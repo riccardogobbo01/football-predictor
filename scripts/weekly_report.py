@@ -25,7 +25,7 @@ import pandas as pd
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
-from predictions import monitor, odds_secondary, paper_monitor  # noqa: E402
+from predictions import monitor, mycombo, odds_secondary, paper_monitor  # noqa: E402
 
 LEAGUES = list(monitor.LEAGUE_CODE)
 LEAGUE_NAME = {"serie_a": "Serie A", "premier_league": "Premier League", "bundesliga": "Bundesliga", "la_liga": "La Liga", "ligue_1": "Ligue 1"}
@@ -309,6 +309,28 @@ def paper_html(p) -> str:
             + '</section>')
 
 
+def mycombo_html(mc) -> str:
+    """Sezione «MyCombo (registro a carta)»: combo proposte dal sito (docs/mycombo_history.csv), chiuse e vinte, probabilita' prevista contro frequenza reale."""
+    if not mc:
+        return ""
+    if mc.get("error"):
+        return f'<section><h2>MyCombo (registro a carta)</h2><p class="note">Non calcolato ({html.escape(str(mc["error"]))}).</p></section>'
+    intro = ('<p class="note">Ogni combo proposta nel pannello di una partita di campionato viene registrata prima del calcio d’inizio (ultima proposta emessa) e chiusa a partita finita con i dati di football-data.co.uk. '
+             'Nessuna quota: si confronta la probabilità congiunta prevista dal modello con la frequenza reale. Validazione walk-forward 2022/23-2025/26 su 21.243 combo: prevista 36,7%, reale 36,9% (backtest/results_mycombo.md).</p>')
+    if not mc.get("proposed"):
+        return '<section><h2>MyCombo (registro a carta)</h2>' + intro + '<p class="note">Nessuna combo ancora registrata.</p></section>'
+    if not mc.get("settled"):
+        return ('<section><h2>MyCombo (registro a carta)</h2>' + intro + f'<p class="note">{mc["proposed"]} combo proposte su {mc["matches"]} partite, nessuna ancora chiusa.</p></section>')
+    ci = mc.get("gap_ci")
+    gap = (f'{100 * ci[0]:+.1f} pp [{100 * ci[1]:+.1f}; {100 * ci[2]:+.1f}]' if ci else f'{100 * (mc["real"] - mc["p_mean"]):+.1f} pp (IC dalle 100 combo chiuse)').replace(".", ",")
+    rows = [[mc["proposed"], mc["matches"], mc["settled"], mc["won"], _pct(mc["p_mean"]), _pct(mc["real"]), gap, _pct(mc["p_indep"]), _num(mc["fair_mean"], 2)]]
+    body = ('<section><h2>MyCombo (registro a carta)</h2>' + intro +
+            _table(["Combo proposte", "Partite", "Chiuse", "Vinte", "Probabilità prevista media", "Frequenza reale", "Scarto reale − prevista", "Prevista «come se indipendenti»", "Quota equa media"], rows))
+    if mc.get("by_k"):
+        body += _table(["Giocate", "Combo chiuse", "Prevista", "Reale"], [[k, v["n"], _pct(v["p"]), _pct(v["real"])] for k, v in sorted(mc["by_k"].items())])
+    return body + '</section>'
+
+
 def secondary_html(sec) -> str:
     """Sezione «Mercati secondari (in raccolta)»: quote di cartellini e corner (The Odds API, piano gratuito) contro le previsioni del modello."""
     if not sec:
@@ -380,7 +402,7 @@ def render(rep: dict) -> str:
             block_html(f'Ultima settimana completa ({lw["start"]} → {lw["end"]})', lw),
             block_html(f'Settimana in corso dal {cw["start"]} (parziale)', cw),
             '<section><h2>Settimane</h2>' + _table(["Settimana dal", "Partite", "Log-loss modello", "Log-loss mercato", "Gol attesi", "Gol reali", "Reali / attesi"], rows) + "</section>",
-            block_html("Totale dall'inizio del monitoraggio", tot), paper_html(rep.get("paper")), secondary_html(rep.get("secondary"))]
+            block_html("Totale dall'inizio del monitoraggio", tot), paper_html(rep.get("paper")), secondary_html(rep.get("secondary")), mycombo_html(rep.get("mycombo"))]
     return ('<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             '<title>Resoconto settimanale</title><style>' + CSS + '</style></head><body><main>' + "".join(body) + "</main></body></html>")
 
@@ -390,6 +412,10 @@ def main(history_path=None, out_dir=None, today=None, matches=None):
     out_dir = out_dir or os.path.dirname(history_path)
     history = monitor.load_history(history_path)
     rep = build(history, today or datetime.now(timezone.utc).date(), matches=matches)
+    try:                                                      # registro a carta di MyCombo (docs/mycombo_history.csv)
+        rep["mycombo"] = mycombo.reg_summary(os.path.join(out_dir, "mycombo_history.csv"))
+    except Exception as e:
+        rep["mycombo"] = {"error": f"{type(e).__name__}: {e}"}
     try:                                                      # registro quote dei mercati secondari (docs/odds_secondary.csv)
         rep["secondary"] = odds_secondary.summary(out_dir)
     except Exception as e:                                    # mai bloccare il resoconto

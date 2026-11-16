@@ -340,6 +340,7 @@ def predict_pairs(state: LeagueState, model: dict, pairs) -> list[dict]:
             fh = stats_v3.first_half(mu, nu, share)
         for k, i in enumerate(rows):
             pred = markets(M[k], mu[k], nu[k])
+            pred["sim"] = {"mu": round(float(mu[k]), 6), "nu": round(float(nu[k]), 6), "rho": round(float(rho), 6)}     # parametri esatti della matrice dei punteggi (MyCombo)
             pred["model"] = name
             pred["fallback_reason"] = reasons[i]
             if fh is not None:
