@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16 12:55 UTC",
+ "generated_at": "2026-11-16 19:36 UTC",
  "today": "2026-11-16",
  "last_week": {
   "start": "2026-11-09",
@@ -840,13 +840,13 @@
   "reason": "Understat non disponibile"
  },
  "model": {
-  "trained_at": "2026-11-09 13:32 UTC",
-  "age_days": 7,
+  "trained_at": "2026-11-16 13:20 UTC",
+  "age_days": 0,
   "late": false,
   "xg": {
    "source": "cache",
    "asof": "2026-10-25",
-   "age_days": 15,
+   "age_days": 22,
    "too_old": false,
    "error": "Understat Serie A 2014: Expecting value: line 1 column 1 (char 0)",
    "mode": "with_xg+without_xg",
@@ -877,11 +877,17 @@
    }
   }
  },
+ "mycombo": {
+  "proposed": 288,
+  "matches": 96,
+  "settled": 0,
+  "won": 0
+ },
  "secondary": {
   "status": {
-   "at": "2026-11-16 12:55 UTC",
-   "enabled": false,
-   "reason": "ODDS_API_KEY non impostata: raccolta saltata",
+   "at": "2026-11-16 19:36 UTC",
+   "enabled": true,
+   "reason": null,
    "used": null,
    "remaining": null,
    "calls": 0,

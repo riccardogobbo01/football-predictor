@@ -1,7 +1,7 @@
 {
- "at": "2026-11-16 12:55 UTC",
- "enabled": false,
- "reason": "ODDS_API_KEY non impostata: raccolta saltata",
+ "at": "2026-11-16 19:36 UTC",
+ "enabled": true,
+ "reason": null,
  "used": null,
  "remaining": null,
  "calls": 0,
