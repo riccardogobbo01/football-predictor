@@ -31,6 +31,7 @@ jobs:
       - name: Generate predictions
         env:
           FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python scripts/generate_static.py
 
       - name: Commit and push
