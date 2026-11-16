@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16 09:19 UTC",
+ "generated_at": "2026-11-16 12:55 UTC",
  "today": "2026-11-16",
  "last_week": {
   "start": "2026-11-09",
@@ -879,7 +879,7 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-16 09:19 UTC",
+   "at": "2026-11-16 12:55 UTC",
    "enabled": false,
    "reason": "ODDS_API_KEY non impostata: raccolta saltata",
    "used": null,
