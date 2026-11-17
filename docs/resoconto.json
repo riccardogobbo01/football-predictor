@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-16 19:36 UTC",
- "today": "2026-11-16",
+ "generated_at": "2026-11-17 04:19 UTC",
+ "today": "2026-11-17",
  "last_week": {
   "start": "2026-11-09",
   "end": "2026-11-15",
@@ -827,21 +827,21 @@
  "since": "2026-10-09",
  "provisional": 1,
  "xg": {
-  "n": 149,
+  "n": 150,
   "first": "2026-11-02",
-  "last": "2026-11-16",
+  "last": "2026-11-17",
   "active": true,
   "by_week": {
    "2026-11-02": 53,
    "2026-11-16": 45,
    "2026-11-23": 48,
-   "2026-11-30": 3
+   "2026-11-30": 4
   },
   "reason": "Understat non disponibile"
  },
  "model": {
   "trained_at": "2026-11-16 13:20 UTC",
-  "age_days": 0,
+  "age_days": 1,
   "late": false,
   "xg": {
    "source": "cache",
@@ -878,14 +878,14 @@
   }
  },
  "mycombo": {
-  "proposed": 288,
-  "matches": 96,
+  "proposed": 291,
+  "matches": 97,
   "settled": 0,
   "won": 0
  },
  "secondary": {
   "status": {
-   "at": "2026-11-16 19:36 UTC",
+   "at": "2026-11-17 04:19 UTC",
    "enabled": true,
    "reason": null,
    "used": null,
