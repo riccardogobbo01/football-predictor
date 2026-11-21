@@ -19,26 +19,26 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-19 04:19,ligue_1,2026-11-20,2026-11-20 19:45,Troyes,Le Havre,corners,9.0,pinnacle,1.92,1.9,0.4972,0.42322,0.12388,39.4,0,without_xg,7.0
 2026-11-19 04:19,ligue_1,2026-11-20,2026-11-20 19:45,Troyes,Le Havre,corners,9.5,pinnacle,2.16,1.68,0.43194,0.42322,0.0,39.4,0,without_xg,7.0
 2026-11-19 04:19,ligue_1,2026-11-20,2026-11-20 19:45,Troyes,Le Havre,corners,10.0,pinnacle,2.49,1.5,0.36279,0.31077,0.11245,39.4,0,without_xg,7.0
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,2.0,pinnacle,1.19,4.36,0.8178,0.64704,0.19824,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,2.5,pinnacle,1.49,2.57,0.64536,0.64704,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,3.0,pinnacle,1.76,2.07,0.54362,0.42685,0.22019,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,3.5,pinnacle,2.19,1.66,0.42495,0.42685,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,4.0,pinnacle,2.94,1.37,0.29783,0.2434,0.18345,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,9.0,pinnacle,1.55,2.4,0.61784,0.49248,0.12149,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,9.5,pinnacle,1.76,2.05,0.54131,0.49248,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,10.0,pinnacle,1.99,1.83,0.47751,0.37618,0.1163,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,10.5,pinnacle,2.22,1.65,0.42,0.37618,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,11.0,pinnacle,2.62,1.46,0.34313,0.27367,0.10251,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,2.5,pinnacle,1.3,3.33,0.74334,0.6785,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,3.0,pinnacle,1.42,2.81,0.67958,0.46265,0.21586,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,3.5,pinnacle,1.74,2.09,0.54939,0.46265,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,4.0,pinnacle,2.13,1.69,0.437,0.27396,0.18869,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,4.5,pinnacle,2.57,1.47,0.34915,0.27396,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,8.5,pinnacle,1.51,2.48,0.63387,0.60105,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,9.0,pinnacle,1.65,2.21,0.57904,0.47881,0.12224,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,9.5,pinnacle,1.89,1.94,0.50697,0.47881,0.0,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,10.0,pinnacle,2.13,1.7,0.43891,0.363,0.11582,33.7,1,without_xg,
-2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,10.5,pinnacle,2.38,1.56,0.38614,0.363,0.0,33.7,1,without_xg,
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,2.0,pinnacle,1.19,4.36,0.8178,0.64704,0.19824,33.7,1,without_xg,0.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,2.5,pinnacle,1.49,2.57,0.64536,0.64704,0.0,33.7,1,without_xg,0.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,3.0,pinnacle,1.76,2.07,0.54362,0.42685,0.22019,33.7,1,without_xg,0.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,3.5,pinnacle,2.19,1.66,0.42495,0.42685,0.0,33.7,1,without_xg,0.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,cards,4.0,pinnacle,2.94,1.37,0.29783,0.2434,0.18345,33.7,1,without_xg,0.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,9.0,pinnacle,1.55,2.4,0.61784,0.49248,0.12149,33.7,1,without_xg,6.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,9.5,pinnacle,1.76,2.05,0.54131,0.49248,0.0,33.7,1,without_xg,6.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,10.0,pinnacle,1.99,1.83,0.47751,0.37618,0.1163,33.7,1,without_xg,6.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,10.5,pinnacle,2.22,1.65,0.42,0.37618,0.0,33.7,1,without_xg,6.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Como 1907,Cagliari,corners,11.0,pinnacle,2.62,1.46,0.34313,0.27367,0.10251,33.7,1,without_xg,6.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,2.5,pinnacle,1.3,3.33,0.74334,0.6785,0.0,33.7,1,without_xg,3.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,3.0,pinnacle,1.42,2.81,0.67958,0.46265,0.21586,33.7,1,without_xg,3.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,3.5,pinnacle,1.74,2.09,0.54939,0.46265,0.0,33.7,1,without_xg,3.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,4.0,pinnacle,2.13,1.69,0.437,0.27396,0.18869,33.7,1,without_xg,3.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,cards,4.5,pinnacle,2.57,1.47,0.34915,0.27396,0.0,33.7,1,without_xg,3.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,8.5,pinnacle,1.51,2.48,0.63387,0.60105,0.0,33.7,1,without_xg,12.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,9.0,pinnacle,1.65,2.21,0.57904,0.47881,0.12224,33.7,1,without_xg,12.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,9.5,pinnacle,1.89,1.94,0.50697,0.47881,0.0,33.7,1,without_xg,12.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,10.0,pinnacle,2.13,1.7,0.43891,0.363,0.11582,33.7,1,without_xg,12.0
+2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 14:00,Lazio,Lecce,corners,10.5,pinnacle,2.38,1.56,0.38614,0.363,0.0,33.7,1,without_xg,12.0
 2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 17:00,Parma,Roma,cards,2.0,pinnacle,1.18,4.51,0.82546,0.63815,0.20176,36.7,1,without_xg,
 2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 17:00,Parma,Roma,cards,2.5,pinnacle,1.47,2.61,0.65342,0.63815,0.0,36.7,1,without_xg,
 2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 17:00,Parma,Roma,cards,3.0,pinnacle,1.73,2.11,0.55338,0.41704,0.22111,36.7,1,without_xg,
@@ -59,16 +59,16 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 19:45,Napoli,Torino,corners,9.5,pinnacle,1.81,2.02,0.52938,0.47711,0.0,39.4,1,without_xg,
 2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 19:45,Napoli,Torino,corners,10.0,pinnacle,2.03,1.78,0.46448,0.36137,0.11575,39.4,1,without_xg,
 2026-11-20 04:19,serie_a,2026-11-21,2026-11-21 19:45,Napoli,Torino,corners,10.5,pinnacle,2.27,1.61,0.40689,0.36137,0.0,39.4,1,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,2.0,pinnacle,1.21,4.05,0.80197,0.71301,0.16993,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,2.5,pinnacle,1.49,2.57,0.64536,0.71301,0.0,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,3.0,pinnacle,1.78,2.04,0.53672,0.50396,0.20904,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,3.5,pinnacle,2.25,1.62,0.41088,0.50396,0.0,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,4.0,pinnacle,3.25,1.31,0.26337,0.31108,0.19289,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,9.5,pinnacle,1.57,2.34,0.60823,0.57359,0.0,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,10.0,pinnacle,1.73,2.09,0.55118,0.45726,0.11633,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,10.5,pinnacle,1.97,1.86,0.48466,0.45726,0.0,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,11.0,pinnacle,2.22,1.65,0.42,0.3483,0.10896,32.2,0,without_xg,
-2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,11.5,pinnacle,2.47,1.52,0.36942,0.3483,0.0,32.2,0,without_xg,
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,2.0,pinnacle,1.21,4.05,0.80197,0.71301,0.16993,32.2,0,without_xg,4.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,2.5,pinnacle,1.49,2.57,0.64536,0.71301,0.0,32.2,0,without_xg,4.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,3.0,pinnacle,1.78,2.04,0.53672,0.50396,0.20904,32.2,0,without_xg,4.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,3.5,pinnacle,2.25,1.62,0.41088,0.50396,0.0,32.2,0,without_xg,4.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,cards,4.0,pinnacle,3.25,1.31,0.26337,0.31108,0.19289,32.2,0,without_xg,4.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,9.5,pinnacle,1.57,2.34,0.60823,0.57359,0.0,32.2,0,without_xg,14.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,10.0,pinnacle,1.73,2.09,0.55118,0.45726,0.11633,32.2,0,without_xg,14.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,10.5,pinnacle,1.97,1.86,0.48466,0.45726,0.0,32.2,0,without_xg,14.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,11.0,pinnacle,2.22,1.65,0.42,0.3483,0.10896,32.2,0,without_xg,14.0
+2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 12:30,Man City,Fulham,corners,11.5,pinnacle,2.47,1.52,0.36942,0.3483,0.0,32.2,0,without_xg,14.0
 2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 15:00,Chelsea,Leeds United,cards,3.0,pinnacle,1.24,3.77,0.7815,0.66631,0.16579,34.7,0,without_xg,
 2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 15:00,Chelsea,Leeds United,cards,3.5,pinnacle,1.5,2.54,0.64068,0.66631,0.0,34.7,0,without_xg,
 2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 15:00,Chelsea,Leeds United,cards,4.0,pinnacle,1.78,2.05,0.5379,0.47768,0.18863,34.7,0,without_xg,
@@ -131,56 +131,56 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 17:30,Newcastle,Arsenal,corners,10.0,pinnacle,1.93,1.9,0.49582,0.37966,0.11641,37.2,0,without_xg,
 2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 17:30,Newcastle,Arsenal,corners,10.5,pinnacle,2.14,1.7,0.43786,0.37966,0.0,37.2,0,without_xg,
 2026-11-20 04:19,premier_league,2026-11-21,2026-11-21 17:30,Newcastle,Arsenal,corners,11.0,pinnacle,2.46,1.52,0.37016,0.27678,0.10288,37.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,2.5,pinnacle,1.37,2.95,0.70263,0.59618,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,3.0,pinnacle,1.53,2.45,0.62658,0.37245,0.22373,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,3.5,pinnacle,1.9,1.9,0.5,0.37245,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,4.0,pinnacle,2.42,1.54,0.37817,0.19974,0.17271,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,4.5,pinnacle,2.9,1.38,0.3031,0.19974,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,9.5,pinnacle,1.6,2.27,0.59532,0.6111,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,10.0,pinnacle,1.77,2.03,0.53722,0.49645,0.11465,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,10.5,pinnacle,2.01,1.81,0.47184,0.49645,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,11.0,pinnacle,2.3,1.6,0.40202,0.386,0.11045,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,11.5,pinnacle,2.55,1.47,0.35047,0.386,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,2.5,pinnacle,1.39,2.87,0.69214,0.72789,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,3.0,pinnacle,1.57,2.35,0.60906,0.5225,0.20539,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,3.5,pinnacle,1.97,1.83,0.48006,0.5225,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,4.0,pinnacle,2.53,1.5,0.36,0.32839,0.19411,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,4.5,pinnacle,2.99,1.36,0.29212,0.32839,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,9.0,pinnacle,1.54,2.39,0.6195,0.4983,0.12113,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,9.5,pinnacle,1.75,2.06,0.54421,0.4983,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,10.0,pinnacle,1.96,1.85,0.48445,0.38183,0.11647,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,10.5,pinnacle,2.17,1.67,0.42895,0.38183,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,11.0,pinnacle,2.49,1.5,0.36279,0.27873,0.10311,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,3.0,pinnacle,1.25,3.68,0.77472,0.54918,0.19953,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,3.5,pinnacle,1.5,2.54,0.64068,0.54918,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,4.0,pinnacle,1.75,2.08,0.5465,0.35404,0.19514,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,4.5,pinnacle,2.15,1.68,0.43297,0.35404,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,5.0,pinnacle,2.7,1.43,0.32952,0.20135,0.15269,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,8.5,pinnacle,1.57,2.33,0.60739,0.61975,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,9.0,pinnacle,1.73,2.08,0.55006,0.49865,0.12111,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,9.5,pinnacle,1.97,1.85,0.48315,0.49865,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,10.0,pinnacle,2.24,1.62,0.41181,0.38217,0.11648,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,10.5,pinnacle,2.49,1.5,0.36279,0.38217,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,3.0,pinnacle,1.38,2.89,0.69642,0.53144,0.20351,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,3.5,pinnacle,1.68,2.15,0.56703,0.53144,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,4.0,pinnacle,2.01,1.81,0.47184,0.33689,0.19455,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,4.5,pinnacle,2.39,1.56,0.38535,0.33689,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,5.0,pinnacle,3.22,1.32,0.26829,0.18808,0.14881,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,8.5,pinnacle,1.54,2.38,0.61871,0.62062,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,9.0,pinnacle,1.7,2.11,0.55894,0.49957,0.12105,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,9.5,pinnacle,1.95,1.85,0.48578,0.49957,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,10.0,pinnacle,2.17,1.67,0.42895,0.38307,0.1165,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,10.5,pinnacle,2.38,1.54,0.38129,0.38307,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,3.0,pinnacle,1.38,2.91,0.69738,0.58394,0.19084,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,3.5,pinnacle,1.68,2.15,0.56703,0.58394,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,4.0,pinnacle,2.06,1.77,0.45925,0.38881,0.19513,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,4.5,pinnacle,2.49,1.52,0.36798,0.38881,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,5.0,pinnacle,3.36,1.29,0.25165,0.22918,0.15963,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,9.5,pinnacle,1.58,2.31,0.60337,0.5522,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,10.0,pinnacle,1.72,2.08,0.55189,0.43539,0.1168,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,10.5,pinnacle,1.94,1.87,0.49011,0.43539,0.0,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,11.0,pinnacle,2.19,1.65,0.42291,0.32773,0.10766,34.2,0,without_xg,
-2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,11.5,pinnacle,2.43,1.52,0.37239,0.32773,0.0,34.2,0,without_xg,
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,2.5,pinnacle,1.37,2.95,0.70263,0.59618,0.0,34.2,0,without_xg,2.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,3.0,pinnacle,1.53,2.45,0.62658,0.37245,0.22373,34.2,0,without_xg,2.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,3.5,pinnacle,1.9,1.9,0.5,0.37245,0.0,34.2,0,without_xg,2.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,4.0,pinnacle,2.42,1.54,0.37817,0.19974,0.17271,34.2,0,without_xg,2.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,cards,4.5,pinnacle,2.9,1.38,0.3031,0.19974,0.0,34.2,0,without_xg,2.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,9.5,pinnacle,1.6,2.27,0.59532,0.6111,0.0,34.2,0,without_xg,11.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,10.0,pinnacle,1.77,2.03,0.53722,0.49645,0.11465,34.2,0,without_xg,11.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,10.5,pinnacle,2.01,1.81,0.47184,0.49645,0.0,34.2,0,without_xg,11.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,11.0,pinnacle,2.3,1.6,0.40202,0.386,0.11045,34.2,0,without_xg,11.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Leverkusen,SC Paderborn,corners,11.5,pinnacle,2.55,1.47,0.35047,0.386,0.0,34.2,0,without_xg,11.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,2.5,pinnacle,1.39,2.87,0.69214,0.72789,0.0,34.2,0,without_xg,4.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,3.0,pinnacle,1.57,2.35,0.60906,0.5225,0.20539,34.2,0,without_xg,4.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,3.5,pinnacle,1.97,1.83,0.48006,0.5225,0.0,34.2,0,without_xg,4.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,4.0,pinnacle,2.53,1.5,0.36,0.32839,0.19411,34.2,0,without_xg,4.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,cards,4.5,pinnacle,2.99,1.36,0.29212,0.32839,0.0,34.2,0,without_xg,4.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,9.0,pinnacle,1.54,2.39,0.6195,0.4983,0.12113,34.2,0,without_xg,12.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,9.5,pinnacle,1.75,2.06,0.54421,0.4983,0.0,34.2,0,without_xg,12.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,10.0,pinnacle,1.96,1.85,0.48445,0.38183,0.11647,34.2,0,without_xg,12.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,10.5,pinnacle,2.17,1.67,0.42895,0.38183,0.0,34.2,0,without_xg,12.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Union Berlin,RB Leipzig,corners,11.0,pinnacle,2.49,1.5,0.36279,0.27873,0.10311,34.2,0,without_xg,12.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,3.0,pinnacle,1.25,3.68,0.77472,0.54918,0.19953,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,3.5,pinnacle,1.5,2.54,0.64068,0.54918,0.0,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,4.0,pinnacle,1.75,2.08,0.5465,0.35404,0.19514,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,4.5,pinnacle,2.15,1.68,0.43297,0.35404,0.0,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,cards,5.0,pinnacle,2.7,1.43,0.32952,0.20135,0.15269,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,8.5,pinnacle,1.57,2.33,0.60739,0.61975,0.0,34.2,0,without_xg,8.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,9.0,pinnacle,1.73,2.08,0.55006,0.49865,0.12111,34.2,0,without_xg,8.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,9.5,pinnacle,1.97,1.85,0.48315,0.49865,0.0,34.2,0,without_xg,8.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,10.0,pinnacle,2.24,1.62,0.41181,0.38217,0.11648,34.2,0,without_xg,8.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Elversberg,Freiburg,corners,10.5,pinnacle,2.49,1.5,0.36279,0.38217,0.0,34.2,0,without_xg,8.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,3.0,pinnacle,1.38,2.89,0.69642,0.53144,0.20351,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,3.5,pinnacle,1.68,2.15,0.56703,0.53144,0.0,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,4.0,pinnacle,2.01,1.81,0.47184,0.33689,0.19455,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,4.5,pinnacle,2.39,1.56,0.38535,0.33689,0.0,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,cards,5.0,pinnacle,3.22,1.32,0.26829,0.18808,0.14881,34.2,0,without_xg,3.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,8.5,pinnacle,1.54,2.38,0.61871,0.62062,0.0,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,9.0,pinnacle,1.7,2.11,0.55894,0.49957,0.12105,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,9.5,pinnacle,1.95,1.85,0.48578,0.49957,0.0,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,10.0,pinnacle,2.17,1.67,0.42895,0.38307,0.1165,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,M'gladbach,Dortmund,corners,10.5,pinnacle,2.38,1.54,0.38129,0.38307,0.0,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,3.0,pinnacle,1.38,2.91,0.69738,0.58394,0.19084,34.2,0,without_xg,5.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,3.5,pinnacle,1.68,2.15,0.56703,0.58394,0.0,34.2,0,without_xg,5.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,4.0,pinnacle,2.06,1.77,0.45925,0.38881,0.19513,34.2,0,without_xg,5.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,4.5,pinnacle,2.49,1.52,0.36798,0.38881,0.0,34.2,0,without_xg,5.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,cards,5.0,pinnacle,3.36,1.29,0.25165,0.22918,0.15963,34.2,0,without_xg,5.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,9.5,pinnacle,1.58,2.31,0.60337,0.5522,0.0,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,10.0,pinnacle,1.72,2.08,0.55189,0.43539,0.1168,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,10.5,pinnacle,1.94,1.87,0.49011,0.43539,0.0,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,11.0,pinnacle,2.19,1.65,0.42291,0.32773,0.10766,34.2,0,without_xg,14.0
+2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 14:30,Frankfurt,Hoffenheim,corners,11.5,pinnacle,2.43,1.52,0.37239,0.32773,0.0,34.2,0,without_xg,14.0
 2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 17:30,Schalke,Stuttgart,cards,2.5,pinnacle,1.39,2.86,0.69164,0.69852,0.0,37.2,0,without_xg,
 2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 17:30,Schalke,Stuttgart,cards,3.0,pinnacle,1.55,2.4,0.61784,0.48634,0.21218,37.2,0,without_xg,
 2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 17:30,Schalke,Stuttgart,cards,3.5,pinnacle,1.91,1.89,0.49716,0.48634,0.0,37.2,0,without_xg,
@@ -191,11 +191,11 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 17:30,Schalke,Stuttgart,corners,9.5,pinnacle,1.96,1.85,0.48445,0.51005,0.0,37.2,0,without_xg,
 2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 17:30,Schalke,Stuttgart,corners,10.0,pinnacle,2.22,1.64,0.41793,0.39332,0.11672,37.2,0,without_xg,
 2026-11-20 04:19,bundesliga,2026-11-21,2026-11-21 17:30,Schalke,Stuttgart,corners,10.5,pinnacle,2.46,1.51,0.36758,0.39332,0.0,37.2,0,without_xg,
-2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,8.5,pinnacle,1.5,2.52,0.63932,0.63313,0.0,32.7,0,without_xg,
-2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,9.0,pinnacle,1.63,2.26,0.5879,0.51302,0.12011,32.7,0,without_xg,
-2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,9.5,pinnacle,1.85,1.97,0.51685,0.51302,0.0,32.7,0,without_xg,
-2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,10.0,pinnacle,2.08,1.74,0.45173,0.39625,0.11677,32.7,0,without_xg,
-2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,10.5,pinnacle,2.32,1.58,0.39578,0.39625,0.0,32.7,0,without_xg,
+2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,8.5,pinnacle,1.5,2.52,0.63932,0.63313,0.0,32.7,0,without_xg,10.0
+2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,9.0,pinnacle,1.63,2.26,0.5879,0.51302,0.12011,32.7,0,without_xg,10.0
+2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,9.5,pinnacle,1.85,1.97,0.51685,0.51302,0.0,32.7,0,without_xg,10.0
+2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,10.0,pinnacle,2.08,1.74,0.45173,0.39625,0.11677,32.7,0,without_xg,10.0
+2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 13:00,Alavés,Deportivo,corners,10.5,pinnacle,2.32,1.58,0.39578,0.39625,0.0,32.7,0,without_xg,10.0
 2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 15:15,Rayo Vallecano,Valencia,corners,9.0,pinnacle,1.48,2.56,0.64741,0.54025,0.11783,34.9,0,without_xg,
 2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 15:15,Rayo Vallecano,Valencia,corners,9.5,pinnacle,1.68,2.17,0.56908,0.54025,0.0,34.9,0,without_xg,
 2026-11-20 04:19,la_liga,2026-11-21,2026-11-21 15:15,Rayo Vallecano,Valencia,corners,10.0,pinnacle,1.88,1.95,0.50975,0.42333,0.11692,34.9,0,without_xg,

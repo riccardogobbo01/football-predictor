@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21 12:47 UTC",
+  "generated_at": "2026-11-21 16:46 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-11-16 13:20 UTC",
@@ -22,38 +22,38 @@
   },
   "stats_version": "s6-arbitro-decay",
   "referee_status": {
-    "n": 133,
-    "with_referee": 11,
+    "n": 126,
+    "with_referee": 14,
     "by_league": {
       "Serie A": [
-        24,
-        5
+        22,
+        3
       ],
       "Premier League": [
-        36,
-        0
+        37,
+        7
       ],
       "Bundesliga": [
-        24,
-        5
+        19,
+        1
       ],
       "La Liga": [
         26,
-        1
+        3
       ],
       "Ligue 1": [
-        23,
+        22,
         0
       ]
     },
     "by_source": {
-      "aia": 5,
-      "football-data.org": 6
+      "aia": 3,
+      "football-data.org": 11
     },
     "by_days_ahead": {
       "0": [
-        25,
-        10
+        18,
+        13
       ],
       "1": [
         16,
@@ -103,7 +103,7 @@
   },
   "model_counts": {
     "with_xg": 0,
-    "without_xg": 133,
+    "without_xg": 126,
     "cups_elo": 0
   },
   "cups_status": {
@@ -112,35 +112,35 @@
     "skipped": [],
     "cross_check": null,
     "fetched_on": "2026-11-21",
-    "clubs": 747
+    "clubs": 749
   },
   "monitor": {
     "version": "v6-eloodds",
     "window": 200,
     "min_n": 30,
     "tracked": 412,
-    "with_result": 278,
+    "with_result": 287,
     "tracked_all_versions": 493,
     "n": 155,
     "status": "ok",
     "since": "2026-10-16",
     "until": "2026-11-01",
     "over25": {
-      "n": 278,
-      "pred": 0.5615260431654676,
-      "real": 0.5575539568345323,
-      "diff_pp": 0.3972086330935265,
-      "se_pp": 2.950024164400184,
+      "n": 287,
+      "pred": 0.5612155052264808,
+      "real": 0.554006968641115,
+      "diff_pp": 0.7208536585365799,
+      "se_pp": 2.911069688871719,
       "since": "2026-10-16",
-      "until": "2026-11-20",
+      "until": "2026-11-21",
       "all_versions": {
-        "n": 326,
-        "pred": 0.5616555521472393,
-        "real": 0.5797546012269938,
-        "diff_pp": -1.809904907975457,
-        "se_pp": 2.7046275016014656,
+        "n": 335,
+        "pred": 0.5613860298507463,
+        "real": 0.5761194029850746,
+        "diff_pp": -1.473337313432832,
+        "se_pp": 2.674694803244976,
         "since": "2026-10-09",
-        "until": "2026-11-20"
+        "until": "2026-11-21"
       }
     },
     "with_xg": 0.9165648389364217,
@@ -187,1008 +187,6 @@
       ],
       "meta_text": "Stack su 1882 partite recenti · 2026-11-21",
       "fixtures": [
-        {
-          "date": "2026-11-21",
-          "time": "14:00",
-          "home": "Como 1907",
-          "away": "Cagliari",
-          "home_full": "Como 1907",
-          "away_full": "Cagliari Calcio",
-          "matchday": 12,
-          "referee": "Andrea Calzavara",
-          "referee_source": "aia",
-          "home_dc": "Como",
-          "away_dc": "Cagliari",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 2.3,
-            "exp_goals_away": 0.67,
-            "prob_home": 0.73593,
-            "prob_draw": 0.17531,
-            "prob_away": 0.08876,
-            "prob_o05": 0.9447,
-            "prob_o15": 0.8003,
-            "prob_o25": 0.57002,
-            "prob_o35": 0.34601,
-            "prob_btts": 0.44515,
-            "prob_cs_home": 0.50944,
-            "prob_cs_away": 0.10072,
-            "top_scores": [
-              [
-                2,
-                0,
-                13.5
-              ],
-              [
-                1,
-                0,
-                11.4
-              ],
-              [
-                3,
-                0,
-                10.3
-              ],
-              [
-                2,
-                1,
-                9.1
-              ],
-              [
-                1,
-                1,
-                8.3
-              ],
-              [
-                3,
-                1,
-                7.0
-              ]
-            ],
-            "rec_outcome": "1",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              2,
-              0,
-              13.5
-            ],
-            "sim": {
-              "mu": 2.295456,
-              "nu": 0.674444,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.53128,
-              "p_draw": 0.36135,
-              "p_away": 0.10736,
-              "o05": 0.72522,
-              "o15": 0.37026,
-              "exp_home": 0.998,
-              "exp_away": 0.293,
-              "exp_total": 1.292,
-              "share": 0.435
-            }
-          },
-          "market": {
-            "home": 0.75715,
-            "draw": 0.15316,
-            "away": 0.08969,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 20.1,
-              "away": 9.1,
-              "total": 29.2,
-              "int_home": [
-                13,
-                27,
-                0.8032
-              ],
-              "int_away": [
-                5,
-                13,
-                0.7984
-              ],
-              "int_total": [
-                22,
-                36,
-                0.7864
-              ],
-              "over": {
-                "23.5": 0.8241,
-                "25.5": 0.7184,
-                "27.5": 0.5931
-              },
-              "sim": [
-                20.05256,
-                9.11305,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                29.16561,
-                0.008942
-              ],
-              "base": [
-                19.288,
-                8.6284
-              ],
-              "level": {
-                "home": 1.0396,
-                "away": 1.0562,
-                "pct": 4.5
-              }
-            },
-            "sot": {
-              "home": 6.6,
-              "away": 3.0,
-              "total": 9.6,
-              "int_home": [
-                3,
-                9,
-                0.8017
-              ],
-              "int_away": [
-                1,
-                4,
-                0.7553
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7894
-              ],
-              "over": {
-                "7.5": 0.7277,
-                "8.5": 0.6091,
-                "9.5": 0.4847,
-                "10.5": 0.3662
-              },
-              "sim": [
-                6.58846,
-                2.98721,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                9.57567,
-                0.009534
-              ],
-              "base": [
-                6.5177,
-                2.7966
-              ],
-              "level": {
-                "home": 1.0109,
-                "away": 1.0682,
-                "pct": 2.8
-              }
-            },
-            "corners": {
-              "home": 6.4,
-              "away": 3.3,
-              "total": 9.7,
-              "int_home": [
-                2,
-                9,
-                0.8154
-              ],
-              "int_away": [
-                1,
-                5,
-                0.8098
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7787
-              ],
-              "over": {
-                "8.5": 0.6139,
-                "9.5": 0.4924,
-                "10.5": 0.3761,
-                "11.5": 0.2736
-              },
-              "sim": [
-                6.38821,
-                3.26382,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                9.65203,
-                0.01444
-              ],
-              "base": [
-                6.6091,
-                3.2797
-              ],
-              "level": {
-                "home": 0.9666,
-                "away": 0.9952,
-                "pct": -2.4
-              }
-            },
-            "yellows": {
-              "home": 1.4,
-              "away": 2.0,
-              "total": 3.3,
-              "int_home": [
-                0,
-                2,
-                0.8433
-              ],
-              "int_away": [
-                0,
-                3,
-                0.8618
-              ],
-              "int_total": [
-                1,
-                5,
-                0.8431
-              ],
-              "over": {
-                "2.5": 0.6471,
-                "3.5": 0.4269,
-                "4.5": 0.2434,
-                "5.5": 0.1211
-              },
-              "sim": [
-                1.35922,
-                1.97361,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                3.33283,
-                0.0001
-              ],
-              "base": [
-                1.4928,
-                2.2782
-              ],
-              "level": {
-                "home": 0.9105,
-                "away": 0.8663,
-                "pct": -11.6
-              },
-              "referee": {
-                "name": "Andrea Calzavara",
-                "delta": -0.09
-              }
-            },
-            "fouls": {
-              "home": 11.0,
-              "away": 12.7,
-              "total": 23.7,
-              "int_home": [
-                7,
-                15,
-                0.8174
-              ],
-              "int_away": [
-                8,
-                16,
-                0.7812
-              ],
-              "int_total": [
-                17,
-                29,
-                0.7908
-              ],
-              "over": {
-                "22.5": 0.5724,
-                "24.5": 0.4196,
-                "26.5": 0.2821
-              },
-              "sim": [
-                10.98035,
-                12.67359,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                23.65394,
-                0.005992
-              ],
-              "base": [
-                11.8077,
-                13.7213
-              ],
-              "level": {
-                "home": 0.9299,
-                "away": 0.9236,
-                "pct": -7.3
-              },
-              "referee": {
-                "name": "Andrea Calzavara",
-                "delta": 0.31
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.9258,
-                0.0183,
-                0.0559
-              ],
-              "corners": [
-                0.7401,
-                0.0793,
-                0.1806
-              ],
-              "corner_handicap": {
-                "home_m15": 0.6468,
-                "home_p15": 0.8817,
-                "away_m15": 0.1183,
-                "away_p15": 0.3532
-              },
-              "yellows": [
-                0.2401,
-                0.2397,
-                0.5202
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Fiorentina 3-1 (18/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Sassuolo 2-0 (24/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Torino 3-1 (27/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Venezia 1-0 (01/11)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Inter 0-2 (08/11)"
-                }
-              ],
-              "pi_rating": 1.09,
-              "pi_rank": 3,
-              "pi_n": 20,
-              "eo_rating": 1557.5,
-              "eo_rank": 2,
-              "eo_n": 20
-            },
-            "away": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Monza 0-4 (19/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Bologna 0-2 (24/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Roma 2-4 (27/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Lazio 1-2 (01/11)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Frosinone 1-0 (07/11)"
-                }
-              ],
-              "pi_rating": 0.3,
-              "pi_rank": 12,
-              "pi_n": 20,
-              "eo_rating": 1308.1,
-              "eo_rank": 17,
-              "eo_n": 20
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "btts",
-                    true
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ]
-                ],
-                "p": 0.3337,
-                "fair": 2.997,
-                "p_indep": 0.19007,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "under",
-                    3.5
-                  ],
-                  [
-                    "btts",
-                    false
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "under",
-                    3.5
-                  ]
-                ],
-                "p": 0.34125,
-                "fair": 2.93,
-                "p_indep": 0.22926,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    1.5
-                  ]
-                ],
-                "p": 0.4169,
-                "fair": 2.399,
-                "p_indep": 0.34011,
-                "k": 4
-              }
-            ],
-            "file": "mycombo/serie_a_2026-11-21_como-1907_cagliari.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Andrea Calzavara"
-          }
-        },
-        {
-          "date": "2026-11-21",
-          "time": "14:00",
-          "home": "Lazio",
-          "away": "Lecce",
-          "home_full": "SS Lazio",
-          "away_full": "US Lecce",
-          "matchday": 12,
-          "referee": "Matteo Marcenaro",
-          "referee_source": "aia",
-          "home_dc": "Lazio",
-          "away_dc": "Lecce",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 2.0,
-            "exp_goals_away": 0.71,
-            "prob_home": 0.67335,
-            "prob_draw": 0.20926,
-            "prob_away": 0.11739,
-            "prob_o05": 0.92903,
-            "prob_o15": 0.7587,
-            "prob_o25": 0.50993,
-            "prob_o35": 0.28911,
-            "prob_btts": 0.44446,
-            "prob_cs_home": 0.49185,
-            "prob_cs_away": 0.13467,
-            "top_scores": [
-              [
-                2,
-                0,
-                13.3
-              ],
-              [
-                1,
-                0,
-                12.8
-              ],
-              [
-                1,
-                1,
-                9.9
-              ],
-              [
-                2,
-                1,
-                9.4
-              ],
-              [
-                3,
-                0,
-                8.9
-              ],
-              [
-                0,
-                0,
-                7.1
-              ]
-            ],
-            "rec_outcome": "1",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              2,
-              0,
-              13.3
-            ],
-            "sim": {
-              "mu": 2.004951,
-              "nu": 0.709589,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.47873,
-              "p_draw": 0.39544,
-              "p_away": 0.12583,
-              "o05": 0.69294,
-              "o15": 0.33039,
-              "exp_home": 0.872,
-              "exp_away": 0.309,
-              "exp_total": 1.181,
-              "share": 0.435
-            }
-          },
-          "market": {
-            "home": 0.71641,
-            "draw": 0.17568,
-            "away": 0.1079,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 15.8,
-              "away": 10.2,
-              "total": 26.0,
-              "int_home": [
-                9,
-                21,
-                0.8147
-              ],
-              "int_away": [
-                5,
-                14,
-                0.8122
-              ],
-              "int_total": [
-                19,
-                32,
-                0.7867
-              ],
-              "over": {
-                "23.5": 0.6575,
-                "25.5": 0.5177,
-                "27.5": 0.3798
-              },
-              "sim": [
-                15.78623,
-                10.20808,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                25.99431,
-                0.008942
-              ],
-              "base": [
-                15.1843,
-                9.6652
-              ],
-              "level": {
-                "home": 1.0396,
-                "away": 1.0562,
-                "pct": 4.6
-              }
-            },
-            "sot": {
-              "home": 5.7,
-              "away": 3.7,
-              "total": 9.4,
-              "int_home": [
-                3,
-                8,
-                0.7715
-              ],
-              "int_away": [
-                1,
-                5,
-                0.7964
-              ],
-              "int_total": [
-                6,
-                13,
-                0.792
-              ],
-              "over": {
-                "7.5": 0.7068,
-                "8.5": 0.5847,
-                "9.5": 0.4591,
-                "10.5": 0.3418
-              },
-              "sim": [
-                5.70055,
-                3.66931,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                9.36986,
-                0.009534
-              ],
-              "base": [
-                5.6393,
-                3.4352
-              ],
-              "level": {
-                "home": 1.0109,
-                "away": 1.0682,
-                "pct": 3.3
-              }
-            },
-            "corners": {
-              "home": 5.9,
-              "away": 3.6,
-              "total": 9.5,
-              "int_home": [
-                2,
-                8,
-                0.7797
-              ],
-              "int_away": [
-                1,
-                5,
-                0.7768
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7806
-              ],
-              "over": {
-                "8.5": 0.6011,
-                "9.5": 0.4788,
-                "10.5": 0.363,
-                "11.5": 0.262
-              },
-              "sim": [
-                5.91348,
-                3.62671,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                9.54019,
-                0.01444
-              ],
-              "base": [
-                6.118,
-                3.6444
-              ],
-              "level": {
-                "home": 0.9666,
-                "away": 0.9952,
-                "pct": -2.3
-              }
-            },
-            "yellows": {
-              "home": 1.4,
-              "away": 2.1,
-              "total": 3.5,
-              "int_home": [
-                0,
-                2,
-                0.8299
-              ],
-              "int_away": [
-                0,
-                3,
-                0.842
-              ],
-              "int_total": [
-                1,
-                5,
-                0.8277
-              ],
-              "over": {
-                "2.5": 0.6785,
-                "3.5": 0.4626,
-                "4.5": 0.2739,
-                "5.5": 0.142
-              },
-              "sim": [
-                1.41473,
-                2.08187,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                3.4966,
-                0.0001
-              ],
-              "base": [
-                1.5537,
-                2.4032
-              ],
-              "level": {
-                "home": 0.9105,
-                "away": 0.8663,
-                "pct": -11.6
-              },
-              "referee": {
-                "name": "Matteo Marcenaro",
-                "delta": -0.09
-              }
-            },
-            "fouls": {
-              "home": 9.4,
-              "away": 11.9,
-              "total": 21.3,
-              "int_home": [
-                6,
-                13,
-                0.8004
-              ],
-              "int_away": [
-                8,
-                16,
-                0.7968
-              ],
-              "int_total": [
-                15,
-                27,
-                0.8181
-              ],
-              "over": {
-                "22.5": 0.3885,
-                "24.5": 0.2495,
-                "26.5": 0.1452
-              },
-              "sim": [
-                9.38734,
-                11.92077,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                21.3081,
-                0.005992
-              ],
-              "base": [
-                10.0947,
-                12.9063
-              ],
-              "level": {
-                "home": 0.9299,
-                "away": 0.9236,
-                "pct": -7.4
-              },
-              "referee": {
-                "name": "Matteo Marcenaro",
-                "delta": -1.24
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.7717,
-                0.0432,
-                0.185
-              ],
-              "corners": [
-                0.6678,
-                0.0906,
-                0.2415
-              ],
-              "corner_handicap": {
-                "home_m15": 0.567,
-                "home_p15": 0.8338,
-                "away_m15": 0.1662,
-                "away_p15": 0.433
-              },
-              "yellows": [
-                0.236,
-                0.2313,
-                0.5327
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Juventus 3-0 (18/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Parma 2-1 (24/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Sassuolo 6-2 (27/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Cagliari 2-1 (01/11)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Napoli 1-1 (08/11)"
-                }
-              ],
-              "pi_rating": 0.94,
-              "pi_rank": 5,
-              "pi_n": 20,
-              "eo_rating": 1468.4,
-              "eo_rank": 7,
-              "eo_n": 20
-            },
-            "away": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Udinese 3-0 (18/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Juventus 0-2 (25/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Frosinone 1-5 (29/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Genoa 1-2 (01/11)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Torino 1-1 (07/11)"
-                }
-              ],
-              "pi_rating": -0.12,
-              "pi_rank": 18,
-              "pi_n": 20,
-              "eo_rating": 1274.7,
-              "eo_rank": 19,
-              "eo_n": 20
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ]
-                ],
-                "p": 0.35775,
-                "fair": 2.795,
-                "p_indep": 0.2329,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0,
-                      1
-                    ]
-                  ],
-                  [
-                    "team",
-                    "tiri",
-                    "c",
-                    "over",
-                    14.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "over",
-                    5.5
-                  ]
-                ],
-                "p": 0.3554,
-                "fair": 2.814,
-                "p_indep": 0.25093,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0,
-                      1
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "over",
-                    4.5
-                  ]
-                ],
-                "p": 0.4141,
-                "fair": 2.415,
-                "p_indep": 0.30014,
-                "k": 4
-              }
-            ],
-            "file": "mycombo/serie_a_2026-11-21_lazio_lecce.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Matteo Marcenaro"
-          }
-        },
         {
           "date": "2026-11-21",
           "time": "17:00",
@@ -12151,13 +11149,511 @@
       "fixtures": [
         {
           "date": "2026-11-21",
+          "time": "12:30",
+          "home": "Man City",
+          "away": "Fulham",
+          "home_full": "Manchester City FC",
+          "away_full": "Fulham FC",
+          "matchday": 11,
+          "referee": "Thomas Bramall",
+          "referee_source": "football-data.org",
+          "home_dc": "Man City",
+          "away_dc": "Fulham",
+          "new_team": false,
+          "prediction": {
+            "exp_goals_home": 2.19,
+            "exp_goals_away": 0.78,
+            "prob_home": 0.69221,
+            "prob_draw": 0.19272,
+            "prob_away": 0.11507,
+            "prob_o05": 0.94467,
+            "prob_o15": 0.80183,
+            "prob_o25": 0.57169,
+            "prob_o35": 0.34767,
+            "prob_btts": 0.48662,
+            "prob_cs_home": 0.45734,
+            "prob_cs_away": 0.11137,
+            "top_scores": [
+              [
+                2,
+                0,
+                12.3
+              ],
+              [
+                1,
+                0,
+                10.7
+              ],
+              [
+                2,
+                1,
+                9.6
+              ],
+              [
+                1,
+                1,
+                9.2
+              ],
+              [
+                3,
+                0,
+                9.0
+              ],
+              [
+                3,
+                1,
+                7.0
+              ]
+            ],
+            "rec_outcome": "1",
+            "rec_threshold": 0.42,
+            "rec_score": [
+              2,
+              0,
+              12.3
+            ],
+            "sim": {
+              "mu": 2.194959,
+              "nu": 0.782329,
+              "rho": -0.050284
+            },
+            "model": "without_xg",
+            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
+            "first_half": {
+              "p_home": 0.50598,
+              "p_draw": 0.36462,
+              "p_away": 0.1294,
+              "o05": 0.73363,
+              "o15": 0.38126,
+              "exp_home": 0.975,
+              "exp_away": 0.348,
+              "exp_total": 1.323,
+              "share": 0.4443
+            }
+          },
+          "market": {
+            "home": 0.71118,
+            "draw": 0.1703,
+            "away": 0.11852,
+            "source": "fixtures"
+          },
+          "expected_stats": {
+            "model": "without_xg",
+            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
+            "shots": {
+              "home": 17.5,
+              "away": 9.3,
+              "total": 26.8,
+              "int_home": [
+                11,
+                23,
+                0.7844
+              ],
+              "int_away": [
+                5,
+                13,
+                0.7931
+              ],
+              "int_total": [
+                19,
+                33,
+                0.8084
+              ],
+              "over": {
+                "23.5": 0.7058,
+                "25.5": 0.5722,
+                "27.5": 0.434
+              },
+              "sim": [
+                17.45805,
+                9.32694,
+                0.036348,
+                0.046619
+              ],
+              "nb": [
+                26.78499,
+                0.008942
+              ],
+              "base": [
+                17.1034,
+                9.1962
+              ],
+              "level": {
+                "home": 1.0207,
+                "away": 1.0142,
+                "pct": 1.8
+              }
+            },
+            "sot": {
+              "home": 5.7,
+              "away": 3.0,
+              "total": 8.7,
+              "int_home": [
+                3,
+                8,
+                0.7711
+              ],
+              "int_away": [
+                1,
+                4,
+                0.7572
+              ],
+              "int_total": [
+                5,
+                12,
+                0.8147
+              ],
+              "over": {
+                "7.5": 0.6292,
+                "8.5": 0.498,
+                "9.5": 0.3722,
+                "10.5": 0.2628
+              },
+              "sim": [
+                5.71156,
+                2.96974,
+                0.025276,
+                0.025276
+              ],
+              "nb": [
+                8.68129,
+                0.009534
+              ],
+              "base": [
+                5.7271,
+                3.059
+              ],
+              "level": {
+                "home": 0.9973,
+                "away": 0.9708,
+                "pct": -1.2
+              }
+            },
+            "corners": {
+              "home": 6.7,
+              "away": 3.7,
+              "total": 10.3,
+              "int_home": [
+                3,
+                10,
+                0.8061
+              ],
+              "int_away": [
+                1,
+                5,
+                0.7721
+              ],
+              "int_total": [
+                6,
+                14,
+                0.8145
+              ],
+              "over": {
+                "8.5": 0.688,
+                "9.5": 0.5737,
+                "10.5": 0.4573,
+                "11.5": 0.3484
+              },
+              "sim": [
+                6.67562,
+                3.67274,
+                0.079641,
+                0.079641
+              ],
+              "nb": [
+                10.34835,
+                0.01444
+              ],
+              "base": [
+                6.8932,
+                3.7322
+              ],
+              "level": {
+                "home": 0.9684,
+                "away": 0.9841,
+                "pct": -2.6
+              }
+            },
+            "yellows": {
+              "home": 1.3,
+              "away": 2.3,
+              "total": 3.5,
+              "int_home": [
+                0,
+                2,
+                0.8657
+              ],
+              "int_away": [
+                1,
+                4,
+                0.8162
+              ],
+              "int_total": [
+                1,
+                5,
+                0.8226
+              ],
+              "over": {
+                "2.5": 0.6875,
+                "3.5": 0.4733,
+                "4.5": 0.2833,
+                "5.5": 0.1486
+              },
+              "sim": [
+                1.26206,
+                2.28403,
+                0.0001,
+                0.0001
+              ],
+              "nb": [
+                3.5461,
+                0.0001
+              ],
+              "base": [
+                1.185,
+                1.9939
+              ],
+              "level": {
+                "home": 1.065,
+                "away": 1.1455,
+                "pct": 11.6
+              },
+              "referee": {
+                "name": "Thomas Bramall",
+                "delta": -0.15
+              }
+            },
+            "fouls": {
+              "home": 8.9,
+              "away": 12.4,
+              "total": 21.2,
+              "int_home": [
+                5,
+                12,
+                0.8169
+              ],
+              "int_away": [
+                8,
+                16,
+                0.7898
+              ],
+              "int_total": [
+                15,
+                26,
+                0.7814
+              ],
+              "over": {
+                "22.5": 0.3823,
+                "24.5": 0.2443,
+                "26.5": 0.1415
+              },
+              "sim": [
+                8.86255,
+                12.36733,
+                0.005146,
+                0.005146
+              ],
+              "nb": [
+                21.22987,
+                0.005992
+              ],
+              "base": [
+                8.496,
+                11.6704
+              ],
+              "level": {
+                "home": 1.0431,
+                "away": 1.0597,
+                "pct": 5.3
+              },
+              "referee": {
+                "name": "Thomas Bramall",
+                "delta": 0.46
+              }
+            },
+            "who_more": {
+              "shots": [
+                0.8586,
+                0.0302,
+                0.1112
+              ],
+              "corners": [
+                0.7205,
+                0.0791,
+                0.2004
+              ],
+              "corner_handicap": {
+                "home_m15": 0.6296,
+                "home_p15": 0.8637,
+                "away_m15": 0.1363,
+                "away_p15": 0.3704
+              },
+              "yellows": [
+                0.1766,
+                0.2102,
+                0.6132
+              ]
+            }
+          },
+          "context": {
+            "home": {
+              "rest_days": 14,
+              "form": [
+                {
+                  "r": "V",
+                  "tip": "a Liverpool 3-0 (11/10)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Ipswich 3-2 (17/10)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Aston Villa 1-2 (24/10)"
+                },
+                {
+                  "r": "P",
+                  "tip": "vs Brighton 0-1 (31/10)"
+                },
+                {
+                  "r": "P",
+                  "tip": "a Nott'm Forest 1-3 (07/11)"
+                }
+              ],
+              "pi_rating": 1.05,
+              "pi_rank": 3,
+              "pi_n": 20,
+              "eo_rating": 1611.5,
+              "eo_rank": 2,
+              "eo_n": 20
+            },
+            "away": {
+              "rest_days": 14,
+              "form": [
+                {
+                  "r": "P",
+                  "tip": "a Ipswich 1-2 (10/10)"
+                },
+                {
+                  "r": "V",
+                  "tip": "vs Hull 1-0 (17/10)"
+                },
+                {
+                  "r": "V",
+                  "tip": "a Coventry 1-0 (24/10)"
+                },
+                {
+                  "r": "N",
+                  "tip": "a Aston Villa 1-1 (31/10)"
+                },
+                {
+                  "r": "N",
+                  "tip": "vs Newcastle 1-1 (07/11)"
+                }
+              ],
+              "pi_rating": 0.35,
+              "pi_rank": 14,
+              "pi_n": 20,
+              "eo_rating": 1413.2,
+              "eo_rank": 14,
+              "eo_n": 20
+            }
+          },
+          "mycombo": {
+            "combos": [
+              {
+                "specs": [
+                  [
+                    "gtot",
+                    "over",
+                    2.5
+                  ],
+                  [
+                    "btts",
+                    true
+                  ],
+                  [
+                    "htou",
+                    0.5
+                  ]
+                ],
+                "p": 0.36125,
+                "fair": 2.768,
+                "p_indep": 0.21029,
+                "k": 3
+              },
+              {
+                "specs": [
+                  [
+                    "res",
+                    [
+                      0,
+                      2
+                    ]
+                  ],
+                  [
+                    "gtot",
+                    "under",
+                    3.5
+                  ],
+                  [
+                    "btts",
+                    false
+                  ]
+                ],
+                "p": 0.3667,
+                "fair": 2.727,
+                "p_indep": 0.26517,
+                "k": 3
+              },
+              {
+                "specs": [
+                  [
+                    "res",
+                    [
+                      0
+                    ]
+                  ],
+                  [
+                    "gtot",
+                    "over",
+                    1.5
+                  ],
+                  [
+                    "htou",
+                    0.5
+                  ],
+                  [
+                    "team",
+                    "sot",
+                    "o",
+                    "under",
+                    3.5
+                  ]
+                ],
+                "p": 0.3342,
+                "fair": 2.992,
+                "p_indep": 0.26573,
+                "k": 4
+              }
+            ],
+            "file": "mycombo/premier_league_2026-11-21_man-city_fulham.bin",
+            "n": 20000,
+            "n_web": 4000,
+            "web_days": 4,
+            "referee": "Thomas Bramall"
+          }
+        },
+        {
+          "date": "2026-11-21",
           "time": "15:00",
           "home": "Chelsea",
           "away": "Leeds United",
           "home_full": "Chelsea FC",
           "away_full": "Leeds United FC",
           "matchday": 11,
-          "referee": null,
+          "referee": "Michael Oliver",
+          "referee_source": "football-data.org",
           "home_dc": "Chelsea",
           "away_dc": "Leeds",
           "new_team": false,
@@ -12376,91 +11872,91 @@
               }
             },
             "yellows": {
-              "home": 2.0,
-              "away": 2.5,
-              "total": 4.6,
+              "home": 1.8,
+              "away": 2.3,
+              "total": 4.1,
               "int_home": [
                 0,
-                3,
-                0.8546
+                2,
+                0.729
               ],
               "int_away": [
                 1,
                 4,
-                0.807
+                0.8159
               ],
               "int_total": [
                 2,
                 6,
-                0.7658
+                0.7937
               ],
               "over": {
-                "2.5": 0.832,
-                "3.5": 0.6662,
-                "4.5": 0.4775,
-                "5.5": 0.3058
+                "2.5": 0.7772,
+                "3.5": 0.5873,
+                "4.5": 0.3923,
+                "5.5": 0.232
               },
               "sim": [
-                2.01366,
-                2.53735,
+                1.80596,
+                2.30208,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                4.55101,
+                4.10804,
                 0.0001
               ],
               "base": [
-                1.8907,
-                2.215
+                1.6957,
+                2.0096
               ],
               "level": {
                 "home": 1.065,
                 "away": 1.1455,
-                "pct": 10.8
+                "pct": 10.9
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Michael Oliver",
+                "delta": -0.44
               }
             },
             "fouls": {
-              "home": 11.4,
-              "away": 13.3,
-              "total": 24.8,
+              "home": 11.7,
+              "away": 13.6,
+              "total": 25.3,
               "int_home": [
                 7,
                 15,
-                0.808
+                0.8001
               ],
               "int_away": [
                 9,
                 18,
-                0.8164
+                0.8137
               ],
               "int_total": [
-                18,
-                31,
-                0.8132
+                19,
+                32,
+                0.8061
               ],
               "over": {
-                "22.5": 0.6529,
-                "24.5": 0.5045,
-                "26.5": 0.3597
+                "22.5": 0.6882,
+                "24.5": 0.5439,
+                "26.5": 0.3979
               },
               "sim": [
-                11.44521,
-                13.33134,
+                11.69063,
+                13.61824,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                24.77655,
+                25.30888,
                 0.005992
               ],
               "base": [
-                10.9719,
-                12.5801
+                11.2072,
+                12.8508
               ],
               "level": {
                 "home": 1.0431,
@@ -12468,8 +11964,8 @@
                 "pct": 5.2
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Michael Oliver",
+                "delta": 0.53
               }
             },
             "who_more": {
@@ -12490,9 +11986,9 @@
                 "away_p15": 0.4863
               },
               "yellows": [
-                0.2912,
-                0.2062,
-                0.5026
+                0.2859,
+                0.2184,
+                0.4957
               ]
             }
           },
@@ -12641,7 +12137,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Michael Oliver"
           }
         },
         {
@@ -12652,7 +12148,8 @@
           "home_full": "Aston Villa FC",
           "away_full": "Sunderland AFC",
           "matchday": 11,
-          "referee": null,
+          "referee": "Andy Madley",
+          "referee_source": "football-data.org",
           "home_dc": "Aston Villa",
           "away_dc": "Sunderland",
           "new_team": false,
@@ -12871,43 +12368,43 @@
               }
             },
             "yellows": {
-              "home": 1.7,
+              "home": 1.6,
               "away": 2.8,
               "total": 4.4,
               "int_home": [
                 0,
                 2,
-                0.7683
+                0.7711
               ],
               "int_away": [
                 1,
                 4,
-                0.7896
+                0.791
               ],
               "int_total": [
                 2,
                 6,
-                0.7753
+                0.7772
               ],
               "over": {
-                "2.5": 0.8181,
-                "3.5": 0.6453,
-                "4.5": 0.4541,
-                "5.5": 0.2848
+                "2.5": 0.8149,
+                "3.5": 0.6407,
+                "4.5": 0.449,
+                "5.5": 0.2803
               },
               "sim": [
-                1.65787,
-                2.77004,
+                1.64714,
+                2.75401,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                4.42791,
+                4.40116,
                 0.0001
               ],
               "base": [
-                1.5566,
-                2.4181
+                1.5466,
+                2.4041
               ],
               "level": {
                 "home": 1.065,
@@ -12915,47 +12412,47 @@
                 "pct": 11.4
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Andy Madley",
+                "delta": -0.03
               }
             },
             "fouls": {
-              "home": 11.2,
-              "away": 13.5,
-              "total": 24.7,
+              "home": 11.9,
+              "away": 14.3,
+              "total": 26.1,
               "int_home": [
-                7,
-                15,
-                0.8132
+                8,
+                16,
+                0.7971
               ],
               "int_away": [
-                9,
-                18,
-                0.8152
+                10,
+                19,
+                0.799
               ],
               "int_total": [
-                18,
-                31,
-                0.8138
+                19,
+                32,
+                0.7988
               ],
               "over": {
-                "22.5": 0.6494,
-                "24.5": 0.5006,
-                "26.5": 0.356
+                "22.5": 0.7387,
+                "24.5": 0.603,
+                "26.5": 0.4579
               },
               "sim": [
-                11.2328,
-                13.49167,
+                11.87356,
+                14.2641,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                24.72447,
+                26.13766,
                 0.005992
               ],
               "base": [
-                10.7683,
-                12.7314
+                11.3825,
+                13.4603
               ],
               "level": {
                 "home": 1.0431,
@@ -12963,8 +12460,8 @@
                 "pct": 5.2
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Andy Madley",
+                "delta": 1.41
               }
             },
             "who_more": {
@@ -12986,8 +12483,8 @@
               },
               "yellows": [
                 0.1918,
-                0.1858,
-                0.6224
+                0.1866,
+                0.6216
               ]
             }
           },
@@ -13134,7 +12631,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Andy Madley"
           }
         },
         {
@@ -13145,7 +12642,8 @@
           "home_full": "AFC Bournemouth",
           "away_full": "Nottingham Forest FC",
           "matchday": 11,
-          "referee": null,
+          "referee": "Adam Herczeg",
+          "referee_source": "football-data.org",
           "home_dc": "Bournemouth",
           "away_dc": "Nott'm Forest",
           "new_team": false,
@@ -13370,37 +12868,37 @@
               "int_home": [
                 0,
                 3,
-                0.8586
+                0.8573
               ],
               "int_away": [
                 1,
                 4,
-                0.816
+                0.8159
               ],
               "int_total": [
                 2,
                 6,
-                0.7846
+                0.7837
               ],
               "over": {
-                "2.5": 0.8009,
-                "3.5": 0.6203,
-                "4.5": 0.4269,
-                "5.5": 0.2611
+                "2.5": 0.8027,
+                "3.5": 0.623,
+                "4.5": 0.4298,
+                "5.5": 0.2635
               },
               "sim": [
-                1.99185,
-                2.29443,
+                1.99916,
+                2.30195,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                4.28628,
+                4.3011,
                 0.0001
               ],
               "base": [
-                1.8702,
-                2.0029
+                1.8771,
+                2.0095
               ],
               "level": {
                 "home": 1.065,
@@ -13408,18 +12906,18 @@
                 "pct": 10.7
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Adam Herczeg",
+                "delta": 0.01
               }
             },
             "fouls": {
-              "home": 12.4,
+              "home": 12.3,
               "away": 11.8,
               "total": 24.2,
               "int_home": [
                 8,
                 16,
-                0.7901
+                0.7904
               ],
               "int_away": [
                 8,
@@ -13429,26 +12927,26 @@
               "int_total": [
                 18,
                 30,
-                0.7858
+                0.786
               ],
               "over": {
-                "22.5": 0.6127,
-                "24.5": 0.4612,
-                "26.5": 0.3194
+                "22.5": 0.6108,
+                "24.5": 0.4592,
+                "26.5": 0.3175
               },
               "sim": [
-                12.35437,
-                11.84821,
+                12.34073,
+                11.83508,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                24.20259,
+                24.17581,
                 0.005992
               ],
               "base": [
-                11.8434,
-                11.1805
+                11.8304,
+                11.1682
               ],
               "level": {
                 "home": 1.0431,
@@ -13456,8 +12954,8 @@
                 "pct": 5.1
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Adam Herczeg",
+                "delta": -0.03
               }
             },
             "who_more": {
@@ -13478,9 +12976,9 @@
                 "away_p15": 0.4927
               },
               "yellows": [
-                0.3265,
-                0.2178,
-                0.4558
+                0.3267,
+                0.2174,
+                0.4559
               ]
             }
           },
@@ -13620,9 +13118,9 @@
                     5.5
                   ]
                 ],
-                "p": 0.3402,
-                "fair": 2.939,
-                "p_indep": 0.25968,
+                "p": 0.33925,
+                "fair": 2.948,
+                "p_indep": 0.2587,
                 "k": 4
               }
             ],
@@ -13630,7 +13128,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Adam Herczeg"
           }
         },
         {
@@ -13641,7 +13139,8 @@
           "home_full": "Tottenham Hotspur FC",
           "away_full": "Ipswich Town FC",
           "matchday": 11,
-          "referee": null,
+          "referee": "Robert Jones",
+          "referee_source": "football-data.org",
           "home_dc": "Tottenham",
           "away_dc": "Ipswich",
           "new_team": false,
@@ -13860,43 +13359,43 @@
               }
             },
             "yellows": {
-              "home": 1.8,
+              "home": 1.7,
               "away": 2.4,
-              "total": 4.2,
+              "total": 4.1,
               "int_home": [
                 0,
                 2,
-                0.7406
+                0.7456
               ],
               "int_away": [
                 1,
                 4,
-                0.813
+                0.8138
               ],
               "int_total": [
                 2,
                 6,
-                0.7907
+                0.7927
               ],
               "over": {
-                "2.5": 0.7863,
-                "3.5": 0.5998,
-                "4.5": 0.4051,
-                "5.5": 0.2427
+                "2.5": 0.7805,
+                "3.5": 0.5918,
+                "4.5": 0.3969,
+                "5.5": 0.2358
               },
               "sim": [
-                1.76282,
-                2.41139,
+                1.74367,
+                2.38797,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                4.17421,
+                4.13164,
                 0.0001
               ],
               "base": [
-                1.6552,
-                2.105
+                1.6372,
+                2.0846
               ],
               "level": {
                 "home": 1.065,
@@ -13904,47 +13403,47 @@
                 "pct": 11.0
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Robert Jones",
+                "delta": -0.04
               }
             },
             "fouls": {
-              "home": 11.4,
-              "away": 12.2,
-              "total": 23.6,
+              "home": 11.9,
+              "away": 12.7,
+              "total": 24.6,
               "int_home": [
-                7,
-                15,
-                0.8082
+                8,
+                16,
+                0.7969
               ],
               "int_away": [
                 8,
                 16,
-                0.7938
+                0.7815
               ],
               "int_total": [
-                17,
-                29,
-                0.7916
+                18,
+                31,
+                0.815
               ],
               "over": {
-                "22.5": 0.5684,
-                "24.5": 0.4156,
-                "26.5": 0.2786
+                "22.5": 0.6388,
+                "24.5": 0.4891,
+                "26.5": 0.3451
               },
               "sim": [
-                11.43847,
-                12.16227,
+                11.90795,
+                12.66326,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                23.60074,
+                24.57122,
                 0.005992
               ],
               "base": [
-                10.9654,
-                11.4769
+                11.4155,
+                11.9497
               ],
               "level": {
                 "home": 1.0431,
@@ -13952,8 +13451,8 @@
                 "pct": 5.2
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Robert Jones",
+                "delta": 0.97
               }
             },
             "who_more": {
@@ -13974,9 +13473,9 @@
                 "away_p15": 0.3465
               },
               "yellows": [
-                0.2599,
-                0.2117,
-                0.5283
+                0.2596,
+                0.213,
+                0.5274
               ]
             }
           },
@@ -14120,9 +13619,9 @@
                     5.5
                   ]
                 ],
-                "p": 0.39945,
-                "fair": 2.503,
-                "p_indep": 0.332,
+                "p": 0.40335,
+                "fair": 2.479,
+                "p_indep": 0.33531,
                 "k": 4
               }
             ],
@@ -14130,7 +13629,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Robert Jones"
           }
         },
         {
@@ -14141,7 +13640,8 @@
           "home_full": "Coventry City FC",
           "away_full": "Crystal Palace FC",
           "matchday": 11,
-          "referee": null,
+          "referee": "Darren England",
+          "referee_source": "football-data.org",
           "home_dc": "Coventry",
           "away_dc": "Crystal Palace",
           "new_team": false,
@@ -14360,43 +13860,43 @@
               }
             },
             "yellows": {
-              "home": 1.5,
-              "away": 2.1,
-              "total": 3.6,
+              "home": 1.6,
+              "away": 2.2,
+              "total": 3.8,
               "int_home": [
                 0,
                 2,
-                0.8133
+                0.7881
               ],
               "int_away": [
                 0,
                 3,
-                0.841
+                0.817
               ],
               "int_total": [
-                1,
-                5,
-                0.8201
+                2,
+                6,
+                0.8017
               ],
               "over": {
-                "2.5": 0.6918,
-                "3.5": 0.4783,
-                "4.5": 0.2878,
-                "5.5": 0.1518
+                "2.5": 0.73,
+                "3.5": 0.5252,
+                "4.5": 0.3309,
+                "5.5": 0.1835
               },
               "sim": [
-                1.48226,
-                2.08738,
+                1.58161,
+                2.212,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                3.56963,
+                3.79361,
                 0.0001
               ],
               "base": [
-                1.3918,
-                1.8222
+                1.485,
+                1.931
               ],
               "level": {
                 "home": 1.065,
@@ -14404,47 +13904,47 @@
                 "pct": 11.1
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Darren England",
+                "delta": 0.22
               }
             },
             "fouls": {
-              "home": 10.8,
-              "away": 11.6,
-              "total": 22.4,
+              "home": 11.0,
+              "away": 11.8,
+              "total": 22.8,
               "int_home": [
                 7,
                 15,
-                0.8187
+                0.8171
               ],
               "int_away": [
-                7,
-                15,
-                0.8039
+                8,
+                16,
+                0.7976
               ],
               "int_total": [
                 16,
                 28,
-                0.8054
+                0.7997
               ],
               "over": {
-                "22.5": 0.4764,
-                "24.5": 0.3269,
-                "26.5": 0.2044
+                "22.5": 0.5039,
+                "24.5": 0.3525,
+                "26.5": 0.2252
               },
               "sim": [
-                10.83211,
-                11.58133,
+                11.00027,
+                11.76176,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                22.41344,
+                22.76203,
                 0.005992
               ],
               "base": [
-                10.3841,
-                10.9287
+                10.5453,
+                11.099
               ],
               "level": {
                 "home": 1.0431,
@@ -14452,8 +13952,8 @@
                 "pct": 5.2
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Darren England",
+                "delta": 0.35
               }
             },
             "who_more": {
@@ -14474,9 +13974,9 @@
                 "away_p15": 0.6212
               },
               "yellows": [
-                0.25,
-                0.2315,
-                0.5185
+                0.2524,
+                0.2232,
+                0.5244
               ]
             }
           },
@@ -14626,7 +14126,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Darren England"
           }
         },
         {
@@ -14637,7 +14137,8 @@
           "home_full": "Newcastle United FC",
           "away_full": "Arsenal FC",
           "matchday": 11,
-          "referee": null,
+          "referee": "Chris Kavanagh",
+          "referee_source": "football-data.org",
           "home_dc": "Newcastle",
           "away_dc": "Arsenal",
           "new_team": false,
@@ -14856,91 +14357,91 @@
               }
             },
             "yellows": {
-              "home": 2.0,
-              "away": 2.1,
-              "total": 4.1,
+              "home": 2.2,
+              "away": 2.3,
+              "total": 4.5,
               "int_home": [
-                0,
-                3,
-                0.8507
+                1,
+                4,
+                0.8166
               ],
               "int_away": [
-                0,
-                3,
-                0.8361
+                1,
+                4,
+                0.816
               ],
               "int_total": [
                 2,
                 6,
-                0.7919
+                0.7672
               ],
               "over": {
-                "2.5": 0.7828,
-                "3.5": 0.595,
-                "4.5": 0.4002,
-                "5.5": 0.2385
+                "2.5": 0.8301,
+                "3.5": 0.6634,
+                "4.5": 0.4743,
+                "5.5": 0.3029
               },
               "sim": [
-                2.03535,
-                2.11331,
+                2.2357,
+                2.29831,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                4.14865,
+                4.53401,
                 0.0001
               ],
               "base": [
-                1.9111,
-                1.8448
+                2.0992,
+                2.0063
               ],
               "level": {
                 "home": 1.065,
                 "away": 1.1455,
-                "pct": 10.5
+                "pct": 10.4
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Chris Kavanagh",
+                "delta": 0.39
               }
             },
             "fouls": {
-              "home": 11.5,
-              "away": 11.5,
-              "total": 23.1,
+              "home": 11.6,
+              "away": 11.6,
+              "total": 23.3,
               "int_home": [
                 7,
                 15,
-                0.8053
+                0.8022
               ],
               "int_away": [
                 7,
                 15,
-                0.805
+                0.8018
               ],
               "int_total": [
                 17,
                 29,
-                0.7977
+                0.796
               ],
               "over": {
-                "22.5": 0.529,
-                "24.5": 0.3766,
-                "26.5": 0.2452
+                "22.5": 0.5436,
+                "24.5": 0.3909,
+                "26.5": 0.2572
               },
               "sim": [
-                11.53712,
-                11.54745,
+                11.63159,
+                11.64233,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                23.08457,
+                23.27392,
                 0.005992
               ],
               "base": [
-                11.06,
-                10.8967
+                11.1506,
+                10.9863
               ],
               "level": {
                 "home": 1.0431,
@@ -14948,8 +14449,8 @@
                 "pct": 5.1
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Chris Kavanagh",
+                "delta": 0.19
               }
             },
             "who_more": {
@@ -14970,9 +14471,9 @@
                 "away_p15": 0.7673
               },
               "yellows": [
-                0.3682,
-                0.2243,
-                0.4075
+                0.3772,
+                0.2136,
+                0.4092
               ]
             }
           },
@@ -15069,36 +14570,9 @@
               {
                 "specs": [
                   [
-                    "res",
-                    [
-                      0,
-                      2
-                    ]
-                  ],
-                  [
                     "gtot",
                     "over",
                     2.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    3.5
-                  ]
-                ],
-                "p": 0.3485,
-                "fair": 2.869,
-                "p_indep": 0.25378,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    1.5
                   ],
                   [
                     "htou",
@@ -15110,6 +14584,35 @@
                     "o",
                     "over",
                     3.5
+                  ]
+                ],
+                "p": 0.3452,
+                "fair": 2.897,
+                "p_indep": 0.23275,
+                "k": 3
+              },
+              {
+                "specs": [
+                  [
+                    "res",
+                    [
+                      1,
+                      2
+                    ]
+                  ],
+                  [
+                    "team",
+                    "tiri",
+                    "c",
+                    "under",
+                    12.5
+                  ],
+                  [
+                    "team",
+                    "sot",
+                    "c",
+                    "under",
+                    4.5
                   ],
                   [
                     "tot",
@@ -15118,9 +14621,9 @@
                     5.5
                   ]
                 ],
-                "p": 0.34455,
-                "fair": 2.902,
-                "p_indep": 0.26382,
+                "p": 0.3384,
+                "fair": 2.955,
+                "p_indep": 0.28967,
                 "k": 4
               }
             ],
@@ -15128,7 +14631,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Chris Kavanagh"
           }
         },
         {
@@ -30012,2514 +29515,14 @@
       "fixtures": [
         {
           "date": "2026-11-21",
-          "time": "14:30",
-          "home": "Leverkusen",
-          "away": "SC Paderborn",
-          "home_full": "Bayer 04 Leverkusen",
-          "away_full": "SC Paderborn 07",
-          "matchday": 10,
-          "referee": "Tobias Reichel",
-          "referee_source": "football-data.org",
-          "home_dc": "Leverkusen",
-          "away_dc": "Paderborn",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 2.35,
-            "exp_goals_away": 0.68,
-            "prob_home": 0.74375,
-            "prob_draw": 0.17017,
-            "prob_away": 0.08607,
-            "prob_o05": 0.94783,
-            "prob_o15": 0.80925,
-            "prob_o25": 0.58362,
-            "prob_o35": 0.35961,
-            "prob_btts": 0.45032,
-            "prob_cs_home": 0.50651,
-            "prob_cs_away": 0.09533,
-            "top_scores": [
-              [
-                2,
-                0,
-                13.3
-              ],
-              [
-                1,
-                0,
-                11.0
-              ],
-              [
-                3,
-                0,
-                10.4
-              ],
-              [
-                2,
-                1,
-                9.1
-              ],
-              [
-                1,
-                1,
-                8.1
-              ],
-              [
-                3,
-                1,
-                7.1
-              ]
-            ],
-            "rec_outcome": "1",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              2,
-              0,
-              13.3
-            ],
-            "sim": {
-              "mu": 2.350415,
-              "nu": 0.680207,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.54553,
-              "p_draw": 0.34817,
-              "p_away": 0.1063,
-              "o05": 0.74084,
-              "o15": 0.3909,
-              "exp_home": 1.047,
-              "exp_away": 0.303,
-              "exp_total": 1.35,
-              "share": 0.4456
-            }
-          },
-          "market": {
-            "home": 0.76982,
-            "draw": 0.13672,
-            "away": 0.09346,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 20.9,
-              "away": 11.0,
-              "total": 31.9,
-              "int_home": [
-                13,
-                27,
-                0.7907
-              ],
-              "int_away": [
-                6,
-                15,
-                0.7905
-              ],
-              "int_total": [
-                24,
-                39,
-                0.791
-              ],
-              "over": {
-                "23.5": 0.9119,
-                "25.5": 0.8427,
-                "27.5": 0.7484
-              },
-              "sim": [
-                20.90865,
-                11.0153,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                31.92395,
-                0.008942
-              ],
-              "base": [
-                20.3912,
-                10.5967
-              ],
-              "level": {
-                "home": 1.0254,
-                "away": 1.0395,
-                "pct": 3.0
-              }
-            },
-            "sot": {
-              "home": 7.4,
-              "away": 3.2,
-              "total": 10.7,
-              "int_home": [
-                4,
-                11,
-                0.8286
-              ],
-              "int_away": [
-                1,
-                5,
-                0.8382
-              ],
-              "int_total": [
-                6,
-                14,
-                0.8132
-              ],
-              "over": {
-                "7.5": 0.8208,
-                "8.5": 0.7244,
-                "9.5": 0.6129,
-                "10.5": 0.4956
-              },
-              "sim": [
-                7.43268,
-                3.2325,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                10.66518,
-                0.009534
-              ],
-              "base": [
-                7.1248,
-                3.1963
-              ],
-              "level": {
-                "home": 1.0432,
-                "away": 1.0113,
-                "pct": 3.3
-              }
-            },
-            "corners": {
-              "home": 7.6,
-              "away": 3.1,
-              "total": 10.7,
-              "int_home": [
-                3,
-                11,
-                0.821
-              ],
-              "int_away": [
-                1,
-                5,
-                0.8203
-              ],
-              "int_total": [
-                6,
-                14,
-                0.8033
-              ],
-              "over": {
-                "8.5": 0.7207,
-                "9.5": 0.6112,
-                "10.5": 0.4965,
-                "11.5": 0.3861
-              },
-              "sim": [
-                7.57214,
-                3.11736,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                10.6895,
-                0.01444
-              ],
-              "base": [
-                7.4084,
-                3.0891
-              ],
-              "level": {
-                "home": 1.0221,
-                "away": 1.0092,
-                "pct": 1.8
-              }
-            },
-            "yellows": {
-              "home": 1.2,
-              "away": 1.8,
-              "total": 3.0,
-              "int_home": [
-                0,
-                2,
-                0.8826
-              ],
-              "int_away": [
-                1,
-                3,
-                0.726
-              ],
-              "int_total": [
-                1,
-                4,
-                0.7647
-              ],
-              "over": {
-                "2.5": 0.5781,
-                "3.5": 0.3541,
-                "4.5": 0.1858,
-                "5.5": 0.0846
-              },
-              "sim": [
-                1.18538,
-                1.82059,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                3.00596,
-                0.0001
-              ],
-              "base": [
-                1.1375,
-                1.7004
-              ],
-              "level": {
-                "home": 1.042,
-                "away": 1.0707,
-                "pct": 5.9
-              },
-              "referee": {
-                "name": "Tobias Reichel",
-                "delta": -0.08
-              }
-            },
-            "fouls": {
-              "home": 9.5,
-              "away": 11.4,
-              "total": 20.9,
-              "int_home": [
-                6,
-                13,
-                0.7988
-              ],
-              "int_away": [
-                7,
-                15,
-                0.8088
-              ],
-              "int_total": [
-                15,
-                26,
-                0.7863
-              ],
-              "over": {
-                "22.5": 0.3601,
-                "24.5": 0.2259,
-                "26.5": 0.1283
-              },
-              "sim": [
-                9.53,
-                11.41709,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                20.94709,
-                0.005992
-              ],
-              "base": [
-                9.5967,
-                10.9405
-              ],
-              "level": {
-                "home": 0.993,
-                "away": 1.0436,
-                "pct": 2.0
-              },
-              "referee": {
-                "name": "Tobias Reichel",
-                "delta": 1.05
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.8849,
-                0.0238,
-                0.0913
-              ],
-              "corners": [
-                0.8224,
-                0.0592,
-                0.1185
-              ],
-              "corner_handicap": {
-                "home_m15": 0.7483,
-                "home_p15": 0.9255,
-                "away_m15": 0.0745,
-                "away_p15": 0.2517
-              },
-              "yellows": [
-                0.2233,
-                0.2522,
-                0.5245
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "a Mainz 4-3 (10/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Freiburg 2-1 (18/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Hoffenheim 0-3 (25/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Stuttgart 2-4 (31/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a FC Koln 2-1 (08/11)"
-                }
-              ],
-              "pi_rating": 0.83,
-              "pi_rank": 4,
-              "pi_n": 18,
-              "eo_rating": 1553.9,
-              "eo_rank": 2,
-              "eo_n": 18
-            },
-            "away": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "vs Stuttgart 0-2 (10/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Werder Bremen 2-2 (17/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Hamburg 1-0 (24/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a M'gladbach 0-0 (31/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Ein Frankfurt 2-2 (07/11)"
-                }
-              ],
-              "pi_rating": -0.48,
-              "pi_rank": 18,
-              "pi_n": 18,
-              "eo_rating": 1311.6,
-              "eo_rank": 16,
-              "eo_n": 18
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "htres",
-                    [
-                      0
-                    ]
-                  ]
-                ],
-                "p": 0.35855,
-                "fair": 2.789,
-                "p_indep": 0.23387,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "over",
-                    6.5
-                  ]
-                ],
-                "p": 0.3583,
-                "fair": 2.791,
-                "p_indep": 0.24892,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0,
-                      2
-                    ]
-                  ],
-                  [
-                    "btts",
-                    false
-                  ],
-                  [
-                    "team",
-                    "tiri",
-                    "o",
-                    "under",
-                    12.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "under",
-                    4.5
-                  ]
-                ],
-                "p": 0.34085,
-                "fair": 2.934,
-                "p_indep": 0.24131,
-                "k": 4
-              }
-            ],
-            "file": "mycombo/bundesliga_2026-11-21_leverkusen_sc-paderborn.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Tobias Reichel"
-          }
-        },
-        {
-          "date": "2026-11-21",
-          "time": "14:30",
-          "home": "Union Berlin",
-          "away": "RB Leipzig",
-          "home_full": "1. FC Union Berlin",
-          "away_full": "RB Leipzig",
-          "matchday": 10,
-          "referee": "Christian Dingert",
-          "referee_source": "football-data.org",
-          "home_dc": "Union Berlin",
-          "away_dc": "RB Leipzig",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.02,
-            "exp_goals_away": 1.9,
-            "prob_home": 0.19483,
-            "prob_draw": 0.23188,
-            "prob_away": 0.57329,
-            "prob_o05": 0.94113,
-            "prob_o15": 0.79475,
-            "prob_o25": 0.55999,
-            "prob_o35": 0.33615,
-            "prob_btts": 0.5505,
-            "prob_cs_home": 0.14935,
-            "prob_cs_away": 0.35903,
-            "top_scores": [
-              [
-                1,
-                1,
-                11.0
-              ],
-              [
-                1,
-                2,
-                9.9
-              ],
-              [
-                0,
-                2,
-                9.7
-              ],
-              [
-                0,
-                1,
-                9.7
-              ],
-              [
-                1,
-                3,
-                6.3
-              ],
-              [
-                0,
-                3,
-                6.1
-              ]
-            ],
-            "rec_outcome": "2",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              1,
-              2,
-              9.9
-            ],
-            "sim": {
-              "mu": 1.024355,
-              "nu": 1.901481,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.18692,
-              "p_draw": 0.38714,
-              "p_away": 0.42594,
-              "o05": 0.72846,
-              "o15": 0.37447,
-              "exp_home": 0.456,
-              "exp_away": 0.847,
-              "exp_total": 1.304,
-              "share": 0.4456
-            }
-          },
-          "market": {
-            "home": 0.15671,
-            "draw": 0.19242,
-            "away": 0.65087,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 11.4,
-              "away": 15.7,
-              "total": 27.1,
-              "int_home": [
-                6,
-                15,
-                0.7921
-              ],
-              "int_away": [
-                9,
-                21,
-                0.7983
-              ],
-              "int_total": [
-                20,
-                34,
-                0.8066
-              ],
-              "over": {
-                "23.5": 0.7224,
-                "25.5": 0.5916,
-                "27.5": 0.4539
-              },
-              "sim": [
-                11.42417,
-                15.65006,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                27.07422,
-                0.008942
-              ],
-              "base": [
-                11.1414,
-                15.0553
-              ],
-              "level": {
-                "home": 1.0254,
-                "away": 1.0395,
-                "pct": 3.3
-              }
-            },
-            "sot": {
-              "home": 4.5,
-              "away": 5.7,
-              "total": 10.1,
-              "int_home": [
-                2,
-                7,
-                0.8325
-              ],
-              "int_away": [
-                3,
-                8,
-                0.7724
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7735
-              ],
-              "over": {
-                "7.5": 0.7796,
-                "8.5": 0.672,
-                "9.5": 0.5531,
-                "10.5": 0.4336
-              },
-              "sim": [
-                4.46334,
-                5.67712,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                10.14047,
-                0.009534
-              ],
-              "base": [
-                4.2785,
-                5.6135
-              ],
-              "level": {
-                "home": 1.0432,
-                "away": 1.0113,
-                "pct": 2.5
-              }
-            },
-            "corners": {
-              "home": 4.5,
-              "away": 5.2,
-              "total": 9.7,
-              "int_home": [
-                2,
-                7,
-                0.79
-              ],
-              "int_away": [
-                2,
-                8,
-                0.8238
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7776
-              ],
-              "over": {
-                "8.5": 0.6195,
-                "9.5": 0.4984,
-                "10.5": 0.3819,
-                "11.5": 0.2788
-              },
-              "sim": [
-                4.5196,
-                5.18224,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                9.70183,
-                0.01444
-              ],
-              "base": [
-                4.4218,
-                5.1352
-              ],
-              "level": {
-                "home": 1.0221,
-                "away": 1.0092,
-                "pct": 1.5
-              }
-            },
-            "yellows": {
-              "home": 2.0,
-              "away": 1.7,
-              "total": 3.7,
-              "int_home": [
-                0,
-                3,
-                0.8543
-              ],
-              "int_away": [
-                0,
-                2,
-                0.7681
-              ],
-              "int_total": [
-                1,
-                5,
-                0.8083
-              ],
-              "over": {
-                "2.5": 0.7101,
-                "3.5": 0.5004,
-                "4.5": 0.3078,
-                "5.5": 0.1663
-              },
-              "sim": [
-                2.01571,
-                1.65857,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                3.67427,
-                0.0001
-              ],
-              "base": [
-                1.9344,
-                1.5491
-              ],
-              "level": {
-                "home": 1.042,
-                "away": 1.0707,
-                "pct": 5.5
-              },
-              "referee": {
-                "name": "Christian Dingert",
-                "delta": -0.11
-              }
-            },
-            "fouls": {
-              "home": 11.8,
-              "away": 10.0,
-              "total": 21.8,
-              "int_home": [
-                8,
-                16,
-                0.7976
-              ],
-              "int_away": [
-                6,
-                13,
-                0.7854
-              ],
-              "int_total": [
-                16,
-                28,
-                0.8104
-              ],
-              "over": {
-                "22.5": 0.4291,
-                "24.5": 0.2844,
-                "26.5": 0.1713
-              },
-              "sim": [
-                11.77127,
-                10.04788,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                21.81915,
-                0.005992
-              ],
-              "base": [
-                11.8537,
-                9.6284
-              ],
-              "level": {
-                "home": 0.993,
-                "away": 1.0436,
-                "pct": 1.6
-              },
-              "referee": {
-                "name": "Christian Dingert",
-                "delta": -0.21
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.2515,
-                0.0485,
-                0.7
-              ],
-              "corners": [
-                0.3814,
-                0.102,
-                0.5166
-              ],
-              "corner_handicap": {
-                "home_m15": 0.2871,
-                "home_p15": 0.5861,
-                "away_m15": 0.4139,
-                "away_p15": 0.7129
-              },
-              "yellows": [
-                0.4551,
-                0.2368,
-                0.3081
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Elversberg 1-0 (10/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Dortmund 0-0 (17/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Augsburg 1-1 (24/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs FC Koln 1-1 (01/11)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Freiburg 0-2 (08/11)"
-                }
-              ],
-              "pi_rating": -0.17,
-              "pi_rank": 16,
-              "pi_n": 18,
-              "eo_rating": 1294.0,
-              "eo_rank": 18,
-              "eo_n": 18
-            },
-            "away": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Ein Frankfurt 6-0 (10/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Bayern Munich 1-6 (17/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Elversberg 4-0 (24/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Schalke 04 2-0 (31/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Augsburg 5-2 (07/11)"
-                }
-              ],
-              "pi_rating": 1.0,
-              "pi_rank": 3,
-              "pi_n": 18,
-              "eo_rating": 1496.9,
-              "eo_rank": 4,
-              "eo_n": 18
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "btts",
-                    true
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "over",
-                    3.5
-                  ]
-                ],
-                "p": 0.3553,
-                "fair": 2.815,
-                "p_indep": 0.2563,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    5.5
-                  ]
-                ],
-                "p": 0.36605,
-                "fair": 2.732,
-                "p_indep": 0.28143,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      1,
-                      2
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "team",
-                    "tiri",
-                    "c",
-                    "under",
-                    12.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "under",
-                    5.5
-                  ]
-                ],
-                "p": 0.3431,
-                "fair": 2.915,
-                "p_indep": 0.28312,
-                "k": 4
-              }
-            ],
-            "file": "mycombo/bundesliga_2026-11-21_union-berlin_rb-leipzig.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Christian Dingert"
-          }
-        },
-        {
-          "date": "2026-11-21",
-          "time": "14:30",
-          "home": "Elversberg",
-          "away": "Freiburg",
-          "home_full": "SV 07 Elversberg",
-          "away_full": "SC Freiburg",
-          "matchday": 10,
-          "referee": "Richard Hempel",
-          "referee_source": "football-data.org",
-          "home_dc": "Elversberg",
-          "away_dc": "Freiburg",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.29,
-            "exp_goals_away": 1.57,
-            "prob_home": 0.3092,
-            "prob_draw": 0.25894,
-            "prob_away": 0.43185,
-            "prob_o05": 0.93674,
-            "prob_o15": 0.78435,
-            "prob_o25": 0.54411,
-            "prob_o35": 0.32085,
-            "prob_btts": 0.57952,
-            "prob_cs_home": 0.20898,
-            "prob_cs_away": 0.27477,
-            "top_scores": [
-              [
-                1,
-                1,
-                12.2
-              ],
-              [
-                1,
-                2,
-                9.1
-              ],
-              [
-                0,
-                1,
-                8.4
-              ],
-              [
-                2,
-                1,
-                7.5
-              ],
-              [
-                0,
-                2,
-                7.0
-              ],
-              [
-                1,
-                0,
-                6.8
-              ]
-            ],
-            "rec_outcome": "2",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              1,
-              2,
-              9.1
-            ],
-            "sim": {
-              "mu": 1.291836,
-              "nu": 1.565526,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.26002,
-              "p_draw": 0.40415,
-              "p_away": 0.33583,
-              "o05": 0.72005,
-              "o15": 0.36363,
-              "exp_home": 0.576,
-              "exp_away": 0.698,
-              "exp_total": 1.273,
-              "share": 0.4456
-            }
-          },
-          "market": {
-            "home": 0.27013,
-            "draw": 0.24478,
-            "away": 0.48509,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 12.1,
-              "away": 13.5,
-              "total": 25.6,
-              "int_home": [
-                7,
-                17,
-                0.8199
-              ],
-              "int_away": [
-                8,
-                19,
-                0.8068
-              ],
-              "int_total": [
-                19,
-                32,
-                0.7905
-              ],
-              "over": {
-                "23.5": 0.633,
-                "25.5": 0.491,
-                "27.5": 0.3543
-              },
-              "sim": [
-                12.11936,
-                13.49815,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                25.61751,
-                0.008942
-              ],
-              "base": [
-                11.8194,
-                12.9852
-              ],
-              "level": {
-                "home": 1.0254,
-                "away": 1.0395,
-                "pct": 3.3
-              }
-            },
-            "sot": {
-              "home": 4.4,
-              "away": 4.6,
-              "total": 9.0,
-              "int_home": [
-                2,
-                7,
-                0.8331
-              ],
-              "int_away": [
-                2,
-                7,
-                0.8274
-              ],
-              "int_total": [
-                5,
-                12,
-                0.8027
-              ],
-              "over": {
-                "7.5": 0.6721,
-                "8.5": 0.5452,
-                "9.5": 0.4187,
-                "10.5": 0.3044
-              },
-              "sim": [
-                4.44407,
-                4.60511,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                9.04917,
-                0.009534
-              ],
-              "base": [
-                4.26,
-                4.5535
-              ],
-              "level": {
-                "home": 1.0432,
-                "away": 1.0113,
-                "pct": 2.7
-              }
-            },
-            "corners": {
-              "home": 4.6,
-              "away": 5.1,
-              "total": 9.7,
-              "int_home": [
-                2,
-                7,
-                0.7883
-              ],
-              "int_away": [
-                2,
-                8,
-                0.8258
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7776
-              ],
-              "over": {
-                "8.5": 0.6195,
-                "9.5": 0.4984,
-                "10.5": 0.382,
-                "11.5": 0.2788
-              },
-              "sim": [
-                4.56457,
-                5.13784,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                9.70241,
-                0.01444
-              ],
-              "base": [
-                4.4658,
-                5.0912
-              ],
-              "level": {
-                "home": 1.0221,
-                "away": 1.0092,
-                "pct": 1.5
-              }
-            },
-            "yellows": {
-              "home": 1.9,
-              "away": 2.1,
-              "total": 4.0,
-              "int_home": [
-                0,
-                3,
-                0.8673
-              ],
-              "int_away": [
-                0,
-                3,
-                0.8408
-              ],
-              "int_total": [
-                2,
-                6,
-                0.7966
-              ],
-              "over": {
-                "2.5": 0.7664,
-                "3.5": 0.5726,
-                "4.5": 0.3773,
-                "5.5": 0.2198
-              },
-              "sim": [
-                1.94286,
-                2.08853,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                4.03139,
-                0.0001
-              ],
-              "base": [
-                1.8645,
-                1.9507
-              ],
-              "level": {
-                "home": 1.042,
-                "away": 1.0707,
-                "pct": 5.7
-              },
-              "referee": {
-                "name": "Richard Hempel",
-                "delta": 0.12
-              }
-            },
-            "fouls": {
-              "home": 12.3,
-              "away": 12.8,
-              "total": 25.0,
-              "int_home": [
-                8,
-                16,
-                0.792
-              ],
-              "int_away": [
-                8,
-                16,
-                0.7775
-              ],
-              "int_total": [
-                18,
-                31,
-                0.81
-              ],
-              "over": {
-                "22.5": 0.6708,
-                "24.5": 0.5243,
-                "26.5": 0.3787
-              },
-              "sim": [
-                12.2625,
-                12.78059,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                25.04309,
-                0.005992
-              ],
-              "base": [
-                12.3484,
-                12.2471
-              ],
-              "level": {
-                "home": 0.993,
-                "away": 1.0436,
-                "pct": 1.8
-              },
-              "referee": {
-                "name": "Richard Hempel",
-                "delta": 0.4
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.3903,
-                0.0585,
-                0.5512
-              ],
-              "corners": [
-                0.3898,
-                0.1023,
-                0.5078
-              ],
-              "corner_handicap": {
-                "home_m15": 0.2948,
-                "home_p15": 0.5946,
-                "away_m15": 0.4054,
-                "away_p15": 0.7052
-              },
-              "yellows": [
-                0.3524,
-                0.2275,
-                0.4202
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a Union Berlin 0-1 (10/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Augsburg 4-3 (17/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a RB Leipzig 0-4 (24/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Mainz 4-1 (30/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Dortmund 1-2 (07/11)"
-                }
-              ],
-              "pi_rating": 0.18,
-              "pi_rank": 11,
-              "pi_n": 18,
-              "eo_rating": 1318.0,
-              "eo_rank": 15,
-              "eo_n": 18
-            },
-            "away": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Schalke 04 2-1 (11/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Leverkusen 1-2 (18/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Bayern Munich 1-3 (25/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Augsburg 2-1 (31/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Union Berlin 2-0 (08/11)"
-                }
-              ],
-              "pi_rating": 0.57,
-              "pi_rank": 6,
-              "pi_n": 18,
-              "eo_rating": 1438.9,
-              "eo_rank": 7,
-              "eo_n": 18
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "btts",
-                    true
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ]
-                ],
-                "p": 0.4064,
-                "fair": 2.461,
-                "p_indep": 0.22309,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      1,
-                      2
-                    ]
-                  ],
-                  [
-                    "team",
-                    "tiri",
-                    "o",
-                    "over",
-                    12.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    3.5
-                  ]
-                ],
-                "p": 0.34715,
-                "fair": 2.881,
-                "p_indep": 0.25421,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    4.5
-                  ]
-                ],
-                "p": 0.35375,
-                "fair": 2.827,
-                "p_indep": 0.27044,
-                "k": 3
-              }
-            ],
-            "file": "mycombo/bundesliga_2026-11-21_elversberg_freiburg.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Richard Hempel"
-          }
-        },
-        {
-          "date": "2026-11-21",
-          "time": "14:30",
-          "home": "M'gladbach",
-          "away": "Dortmund",
-          "home_full": "Borussia Mönchengladbach",
-          "away_full": "Borussia Dortmund",
-          "matchday": 10,
-          "referee": "Robert Hartmann",
-          "referee_source": "football-data.org",
-          "home_dc": "M'gladbach",
-          "away_dc": "Dortmund",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.04,
-            "exp_goals_away": 2.0,
-            "prob_home": 0.18473,
-            "prob_draw": 0.2222,
-            "prob_away": 0.59307,
-            "prob_o05": 0.94722,
-            "prob_o15": 0.81187,
-            "prob_o25": 0.58591,
-            "prob_o35": 0.36193,
-            "prob_btts": 0.56331,
-            "prob_cs_home": 0.13471,
-            "prob_cs_away": 0.35477,
-            "top_scores": [
-              [
-                1,
-                1,
-                10.4
-              ],
-              [
-                1,
-                2,
-                10.0
-              ],
-              [
-                0,
-                2,
-                9.6
-              ],
-              [
-                0,
-                1,
-                9.1
-              ],
-              [
-                1,
-                3,
-                6.6
-              ],
-              [
-                0,
-                3,
-                6.4
-              ]
-            ],
-            "rec_outcome": "2",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              1,
-              2,
-              10.0
-            ],
-            "sim": {
-              "mu": 1.036299,
-              "nu": 2.004624,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.18217,
-              "p_draw": 0.37584,
-              "p_away": 0.44198,
-              "o05": 0.74203,
-              "o15": 0.3925,
-              "exp_home": 0.462,
-              "exp_away": 0.893,
-              "exp_total": 1.355,
-              "share": 0.4456
-            }
-          },
-          "market": {
-            "home": 0.17629,
-            "draw": 0.20355,
-            "away": 0.62016,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 12.9,
-              "away": 15.4,
-              "total": 28.2,
-              "int_home": [
-                7,
-                17,
-                0.8007
-              ],
-              "int_away": [
-                9,
-                21,
-                0.8038
-              ],
-              "int_total": [
-                21,
-                35,
-                0.7955
-              ],
-              "over": {
-                "23.5": 0.7835,
-                "25.5": 0.6659,
-                "27.5": 0.5335
-              },
-              "sim": [
-                12.87259,
-                15.37635,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                28.24894,
-                0.008942
-              ],
-              "base": [
-                12.554,
-                14.792
-              ],
-              "level": {
-                "home": 1.0254,
-                "away": 1.0395,
-                "pct": 3.3
-              }
-            },
-            "sot": {
-              "home": 4.1,
-              "away": 5.9,
-              "total": 10.0,
-              "int_home": [
-                2,
-                6,
-                0.7737
-              ],
-              "int_away": [
-                3,
-                9,
-                0.8277
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7778
-              ],
-              "over": {
-                "7.5": 0.7693,
-                "8.5": 0.6593,
-                "9.5": 0.539,
-                "10.5": 0.4195
-              },
-              "sim": [
-                4.08882,
-                5.9328,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                10.02163,
-                0.009534
-              ],
-              "base": [
-                3.9195,
-                5.8663
-              ],
-              "level": {
-                "home": 1.0432,
-                "away": 1.0113,
-                "pct": 2.4
-              }
-            },
-            "corners": {
-              "home": 4.2,
-              "away": 5.5,
-              "total": 9.7,
-              "int_home": [
-                1,
-                6,
-                0.8128
-              ],
-              "int_away": [
-                2,
-                8,
-                0.8068
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7774
-              ],
-              "over": {
-                "8.5": 0.6206,
-                "9.5": 0.4996,
-                "10.5": 0.3831,
-                "11.5": 0.2799
-              },
-              "sim": [
-                4.20348,
-                5.50876,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                9.71224,
-                0.01444
-              ],
-              "base": [
-                4.1126,
-                5.4588
-              ],
-              "level": {
-                "home": 1.0221,
-                "away": 1.0092,
-                "pct": 1.5
-              }
-            },
-            "yellows": {
-              "home": 1.9,
-              "away": 1.9,
-              "total": 3.9,
-              "int_home": [
-                0,
-                3,
-                0.8719
-              ],
-              "int_away": [
-                0,
-                3,
-                0.8686
-              ],
-              "int_total": [
-                2,
-                6,
-                0.801
-              ],
-              "over": {
-                "2.5": 0.7393,
-                "3.5": 0.537,
-                "4.5": 0.3422,
-                "5.5": 0.1922
-              },
-              "sim": [
-                1.91621,
-                1.93533,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                3.85154,
-                0.0001
-              ],
-              "base": [
-                1.8389,
-                1.8076
-              ],
-              "level": {
-                "home": 1.042,
-                "away": 1.0707,
-                "pct": 5.6
-              },
-              "referee": {
-                "name": "Robert Hartmann",
-                "delta": 0.03
-              }
-            },
-            "fouls": {
-              "home": 10.8,
-              "away": 11.1,
-              "total": 21.9,
-              "int_home": [
-                7,
-                15,
-                0.8188
-              ],
-              "int_away": [
-                7,
-                15,
-                0.8158
-              ],
-              "int_total": [
-                16,
-                28,
-                0.8101
-              ],
-              "over": {
-                "22.5": 0.4362,
-                "24.5": 0.2907,
-                "26.5": 0.1761
-              },
-              "sim": [
-                10.81456,
-                11.09381,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                21.90837,
-                0.005992
-              ],
-              "base": [
-                10.8903,
-                10.6307
-              ],
-              "level": {
-                "home": 0.993,
-                "away": 1.0436,
-                "pct": 1.8
-              },
-              "referee": {
-                "name": "Robert Hartmann",
-                "delta": 0.18
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.3394,
-                0.0527,
-                0.6079
-              ],
-              "corners": [
-                0.3222,
-                0.0984,
-                0.5795
-              ],
-              "corner_handicap": {
-                "home_m15": 0.2349,
-                "home_p15": 0.5236,
-                "away_m15": 0.4764,
-                "away_p15": 0.7651
-              },
-              "yellows": [
-                0.3752,
-                0.2341,
-                0.3906
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 15,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a FC Koln 1-2 (11/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "vs Hoffenheim 1-2 (18/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Stuttgart 3-2 (23/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "vs Paderborn 0-0 (31/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Hamburg 1-3 (06/11)"
-                }
-              ],
-              "pi_rating": -0.08,
-              "pi_rank": 13,
-              "pi_n": 18,
-              "eo_rating": 1329.2,
-              "eo_rank": 14,
-              "eo_n": 18
-            },
-            "away": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "N",
-                  "tip": "vs Werder Bremen 2-2 (09/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Union Berlin 0-0 (17/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Ein Frankfurt 1-0 (24/10)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Bayern Munich 2-2 (31/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Elversberg 2-1 (07/11)"
-                }
-              ],
-              "pi_rating": 1.12,
-              "pi_rank": 2,
-              "pi_n": 18,
-              "eo_rating": 1539.9,
-              "eo_rank": 3,
-              "eo_n": 18
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      2
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htres",
-                    [
-                      2
-                    ]
-                  ]
-                ],
-                "p": 0.3448,
-                "fair": 2.9,
-                "p_indep": 0.21432,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    5.5
-                  ]
-                ],
-                "p": 0.3343,
-                "fair": 2.991,
-                "p_indep": 0.23053,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "team",
-                    "tiri",
-                    "c",
-                    "over",
-                    12.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "over",
-                    3.5
-                  ]
-                ],
-                "p": 0.33595,
-                "fair": 2.977,
-                "p_indep": 0.23573,
-                "k": 3
-              }
-            ],
-            "file": "mycombo/bundesliga_2026-11-21_m-gladbach_dortmund.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Robert Hartmann"
-          }
-        },
-        {
-          "date": "2026-11-21",
-          "time": "14:30",
-          "home": "Frankfurt",
-          "away": "Hoffenheim",
-          "home_full": "Eintracht Frankfurt",
-          "away_full": "TSG 1899 Hoffenheim",
-          "matchday": 10,
-          "referee": "Max Burda",
-          "referee_source": "football-data.org",
-          "home_dc": "Ein Frankfurt",
-          "away_dc": "Hoffenheim",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 1.59,
-            "exp_goals_away": 1.46,
-            "prob_home": 0.40276,
-            "prob_draw": 0.25125,
-            "prob_away": 0.34599,
-            "prob_o05": 0.9471,
-            "prob_o15": 0.81368,
-            "prob_o25": 0.58785,
-            "prob_o35": 0.3639,
-            "prob_btts": 0.61667,
-            "prob_cs_home": 0.23228,
-            "prob_cs_away": 0.20394,
-            "top_scores": [
-              [
-                1,
-                1,
-                11.5
-              ],
-              [
-                2,
-                1,
-                8.7
-              ],
-              [
-                1,
-                2,
-                8.0
-              ],
-              [
-                1,
-                0,
-                7.0
-              ],
-              [
-                2,
-                2,
-                6.4
-              ],
-              [
-                0,
-                1,
-                6.4
-              ]
-            ],
-            "rec_outcome": "X",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              1,
-              1,
-              11.5
-            ],
-            "sim": {
-              "mu": 1.589906,
-              "nu": 1.459796,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.32276,
-              "p_draw": 0.38972,
-              "p_away": 0.28752,
-              "o05": 0.74304,
-              "o15": 0.39387,
-              "exp_home": 0.708,
-              "exp_away": 0.65,
-              "exp_total": 1.359,
-              "share": 0.4456
-            }
-          },
-          "market": {
-            "home": 0.40678,
-            "draw": 0.23847,
-            "away": 0.35475,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 15.0,
-              "away": 13.9,
-              "total": 28.9,
-              "int_home": [
-                9,
-                20,
-                0.7949
-              ],
-              "int_away": [
-                8,
-                19,
-                0.8005
-              ],
-              "int_total": [
-                22,
-                36,
-                0.7878
-              ],
-              "over": {
-                "23.5": 0.8139,
-                "25.5": 0.705,
-                "27.5": 0.5777
-              },
-              "sim": [
-                15.04158,
-                13.88125,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                28.92283,
-                0.008942
-              ],
-              "base": [
-                14.6693,
-                13.3537
-              ],
-              "level": {
-                "home": 1.0254,
-                "away": 1.0395,
-                "pct": 3.2
-              }
-            },
-            "sot": {
-              "home": 5.6,
-              "away": 4.6,
-              "total": 10.2,
-              "int_home": [
-                3,
-                8,
-                0.7762
-              ],
-              "int_away": [
-                2,
-                7,
-                0.826
-              ],
-              "int_total": [
-                6,
-                14,
-                0.8274
-              ],
-              "over": {
-                "7.5": 0.7841,
-                "8.5": 0.6776,
-                "9.5": 0.5594,
-                "10.5": 0.44
-              },
-              "sim": [
-                5.55528,
-                4.63865,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                10.19392,
-                0.009534
-              ],
-              "base": [
-                5.3252,
-                4.5866
-              ],
-              "level": {
-                "home": 1.0432,
-                "away": 1.0113,
-                "pct": 2.8
-              }
-            },
-            "corners": {
-              "home": 5.6,
-              "away": 4.6,
-              "total": 10.2,
-              "int_home": [
-                2,
-                8,
-                0.8042
-              ],
-              "int_away": [
-                2,
-                7,
-                0.7867
-              ],
-              "int_total": [
-                6,
-                14,
-                0.819
-              ],
-              "over": {
-                "8.5": 0.6687,
-                "9.5": 0.552,
-                "10.5": 0.4352,
-                "11.5": 0.3275
-              },
-              "sim": [
-                5.55198,
-                4.60558,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                10.15755,
-                0.01444
-              ],
-              "base": [
-                5.4319,
-                4.5638
-              ],
-              "level": {
-                "home": 1.0221,
-                "away": 1.0092,
-                "pct": 1.6
-              }
-            },
-            "yellows": {
-              "home": 1.8,
-              "away": 2.3,
-              "total": 4.1,
-              "int_home": [
-                0,
-                2,
-                0.728
-              ],
-              "int_away": [
-                1,
-                4,
-                0.816
-              ],
-              "int_total": [
-                2,
-                6,
-                0.7939
-              ],
-              "over": {
-                "2.5": 0.7766,
-                "3.5": 0.5864,
-                "4.5": 0.3914,
-                "5.5": 0.2313
-              },
-              "sim": [
-                1.80967,
-                2.29375,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                4.10342,
-                0.0001
-              ],
-              "base": [
-                1.7366,
-                2.1424
-              ],
-              "level": {
-                "home": 1.042,
-                "away": 1.0707,
-                "pct": 5.8
-              },
-              "referee": {
-                "name": "Max Burda",
-                "delta": 0.01
-              }
-            },
-            "fouls": {
-              "home": 10.4,
-              "away": 13.1,
-              "total": 23.4,
-              "int_home": [
-                7,
-                14,
-                0.7756
-              ],
-              "int_away": [
-                8,
-                17,
-                0.8222
-              ],
-              "int_total": [
-                17,
-                29,
-                0.7944
-              ],
-              "over": {
-                "22.5": 0.554,
-                "24.5": 0.4012,
-                "26.5": 0.2661
-              },
-              "sim": [
-                10.35653,
-                13.05368,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                23.41021,
-                0.005992
-              ],
-              "base": [
-                10.4291,
-                12.5088
-              ],
-              "level": {
-                "home": 0.993,
-                "away": 1.0436,
-                "pct": 2.1
-              },
-              "referee": {
-                "name": "Max Burda",
-                "delta": 0.54
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.5339,
-                0.0542,
-                0.4118
-              ],
-              "corners": [
-                0.537,
-                0.0982,
-                0.3648
-              ],
-              "corner_handicap": {
-                "home_m15": 0.4369,
-                "home_p15": 0.7252,
-                "away_m15": 0.2748,
-                "away_p15": 0.5631
-              },
-              "yellows": [
-                0.288,
-                0.2189,
-                0.4931
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "a RB Leipzig 0-6 (10/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs FC Koln 1-0 (16/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Dortmund 0-1 (24/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Hamburg 3-1 (01/11)"
-                },
-                {
-                  "r": "N",
-                  "tip": "a Paderborn 2-2 (07/11)"
-                }
-              ],
-              "pi_rating": 0.36,
-              "pi_rank": 9,
-              "pi_n": 18,
-              "eo_rating": 1406.4,
-              "eo_rank": 9,
-              "eo_n": 18
-            },
-            "away": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "P",
-                  "tip": "vs Hamburg 2-3 (10/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a M'gladbach 2-1 (18/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Leverkusen 3-0 (25/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Werder Bremen 0-2 (31/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Schalke 04 2-1 (08/11)"
-                }
-              ],
-              "pi_rating": 0.42,
-              "pi_rank": 7,
-              "pi_n": 18,
-              "eo_rating": 1447.6,
-              "eo_rank": 6,
-              "eo_n": 18
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0,
-                      2
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "btts",
-                    true
-                  ]
-                ],
-                "p": 0.42015,
-                "fair": 2.38,
-                "p_indep": 0.27266,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "btts",
-                    true
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "over",
-                    4.5
-                  ]
-                ],
-                "p": 0.38095,
-                "fair": 2.625,
-                "p_indep": 0.29226,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      0,
-                      2
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    3.5
-                  ]
-                ],
-                "p": 0.3753,
-                "fair": 2.665,
-                "p_indep": 0.30129,
-                "k": 4
-              }
-            ],
-            "file": "mycombo/bundesliga_2026-11-21_frankfurt_hoffenheim.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": "Max Burda"
-          }
-        },
-        {
-          "date": "2026-11-21",
           "time": "17:30",
           "home": "Schalke",
           "away": "Stuttgart",
           "home_full": "FC Schalke 04",
           "away_full": "VfB Stuttgart",
           "matchday": 10,
-          "referee": null,
+          "referee": "Daniel Siebert",
+          "referee_source": "football-data.org",
           "home_dc": "Schalke 04",
           "away_dc": "Stuttgart",
           "new_team": false,
@@ -32744,37 +29747,37 @@
               "int_home": [
                 1,
                 3,
-                0.7255
+                0.7257
               ],
               "int_away": [
                 0,
                 2,
-                0.7486
+                0.7503
               ],
               "int_total": [
                 1,
                 5,
-                0.8159
+                0.8175
               ],
               "over": {
-                "2.5": 0.6985,
-                "3.5": 0.4863,
-                "4.5": 0.295,
-                "5.5": 0.1569
+                "2.5": 0.6959,
+                "3.5": 0.4832,
+                "4.5": 0.2922,
+                "5.5": 0.1549
               },
               "sim": [
-                1.8748,
-                1.73255,
+                1.86682,
+                1.72596,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                3.60735,
+                3.59278,
                 0.0001
               ],
               "base": [
-                1.7992,
-                1.6182
+                1.7915,
+                1.6121
               ],
               "level": {
                 "home": 1.042,
@@ -32782,47 +29785,47 @@
                 "pct": 5.6
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Daniel Siebert",
+                "delta": -0.01
               }
             },
             "fouls": {
-              "home": 11.6,
-              "away": 11.1,
-              "total": 22.7,
+              "home": 11.5,
+              "away": 11.0,
+              "total": 22.5,
               "int_home": [
                 7,
                 15,
-                0.8025
+                0.805
               ],
               "int_away": [
                 7,
                 15,
-                0.8161
+                0.8171
               ],
               "int_total": [
                 16,
                 28,
-                0.801
+                0.8034
               ],
               "over": {
-                "22.5": 0.4984,
-                "24.5": 0.3474,
-                "26.5": 0.221
+                "22.5": 0.487,
+                "24.5": 0.3367,
+                "26.5": 0.2123
               },
               "sim": [
-                11.62153,
-                11.0716,
+                11.54734,
+                11.00068,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                22.69314,
+                22.54802,
                 0.005992
               ],
               "base": [
-                11.7029,
-                10.6094
+                11.6282,
+                10.5415
               ],
               "level": {
                 "home": 0.993,
@@ -32830,8 +29833,8 @@
                 "pct": 1.7
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "Daniel Siebert",
+                "delta": -0.15
               }
             },
             "who_more": {
@@ -32852,8 +29855,8 @@
                 "away_p15": 0.792
               },
               "yellows": [
-                0.4062,
-                0.2425,
+                0.4057,
+                0.2431,
                 0.3512
               ]
             }
@@ -33001,7 +30004,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "Daniel Siebert"
           }
         },
         {
@@ -42478,7 +39481,8 @@
           "home_full": "Rayo Vallecano de Madrid",
           "away_full": "Valencia CF",
           "matchday": 13,
-          "referee": null,
+          "referee": "José Munuera Montero",
+          "referee_source": "football-data.org",
           "home_dc": "Vallecano",
           "away_dc": "Valencia",
           "new_team": false,
@@ -42697,43 +39701,43 @@
               }
             },
             "yellows": {
-              "home": 2.6,
-              "away": 2.4,
-              "total": 5.0,
+              "home": 2.3,
+              "away": 2.1,
+              "total": 4.4,
               "int_home": [
                 1,
                 4,
-                0.8021
+                0.8163
               ],
               "int_away": [
-                1,
-                4,
-                0.813
+                0,
+                3,
+                0.8325
               ],
               "int_total": [
                 2,
-                7,
-                0.8243
+                6,
+                0.7765
               ],
               "over": {
-                "2.5": 0.8774,
-                "3.5": 0.7384,
-                "4.5": 0.5638,
-                "5.5": 0.3884
+                "2.5": 0.816,
+                "3.5": 0.6423,
+                "4.5": 0.4508,
+                "5.5": 0.2819
               },
               "sim": [
-                2.61411,
-                2.41065,
+                2.27841,
+                2.13196,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                5.02477,
+                4.41037,
                 0.0001
               ],
               "base": [
-                2.4966,
-                2.4882
+                2.176,
+                2.2006
               ],
               "level": {
                 "home": 1.0471,
@@ -42741,47 +39745,47 @@
                 "pct": 0.8
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "José Munuera Montero",
+                "delta": -0.61
               }
             },
             "fouls": {
-              "home": 13.2,
-              "away": 12.0,
-              "total": 25.2,
+              "home": 12.5,
+              "away": 11.4,
+              "total": 23.9,
               "int_home": [
                 8,
-                17,
-                0.8171
+                16,
+                0.7859
               ],
               "int_away": [
-                8,
-                16,
-                0.796
+                7,
+                15,
+                0.8102
               ],
               "int_total": [
                 18,
-                31,
-                0.8072
+                30,
+                0.7878
               ],
               "over": {
-                "22.5": 0.6829,
-                "24.5": 0.5379,
-                "26.5": 0.392
+                "22.5": 0.5892,
+                "24.5": 0.4367,
+                "26.5": 0.2973
               },
               "sim": [
-                13.22227,
-                12.00491,
+                12.51718,
+                11.36252,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                25.22717,
+                23.87971,
                 0.005992
               ],
               "base": [
-                13.2235,
-                12.5665
+                12.5183,
+                11.8941
               ],
               "level": {
                 "home": 0.9999,
@@ -42789,8 +39793,8 @@
                 "pct": -2.2
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "José Munuera Montero",
+                "delta": -1.35
               }
             },
             "who_more": {
@@ -42811,9 +39815,9 @@
                 "away_p15": 0.4783
               },
               "yellows": [
-                0.4339,
-                0.2013,
-                0.3647
+                0.4173,
+                0.2167,
+                0.3661
               ]
             }
           },
@@ -42972,7 +39976,7 @@
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "José Munuera Montero"
           }
         },
         {
@@ -42983,7 +39987,8 @@
           "home_full": "Sevilla FC",
           "away_full": "Real Betis Balompié",
           "matchday": 13,
-          "referee": null,
+          "referee": "José Sánchez Martínez",
+          "referee_source": "football-data.org",
           "home_dc": "Sevilla",
           "away_dc": "Betis",
           "new_team": false,
@@ -43203,42 +40208,42 @@
             },
             "yellows": {
               "home": 2.9,
-              "away": 2.1,
-              "total": 5.0,
+              "away": 2.0,
+              "total": 4.9,
               "int_home": [
                 1,
                 4,
-                0.7718
+                0.7807
               ],
               "int_away": [
                 0,
                 3,
-                0.8413
+                0.851
               ],
               "int_total": [
                 2,
                 7,
-                0.8239
+                0.8331
               ],
               "over": {
-                "2.5": 0.8779,
-                "3.5": 0.7392,
-                "4.5": 0.5649,
-                "5.5": 0.3895
+                "2.5": 0.8662,
+                "3.5": 0.72,
+                "4.5": 0.541,
+                "5.5": 0.3658
               },
               "sim": [
-                2.94498,
-                2.08598,
+                2.86227,
+                2.03353,
                 0.0001,
                 0.0001
               ],
               "nb": [
-                5.03096,
+                4.89581,
                 0.0001
               ],
               "base": [
-                2.8126,
-                2.1531
+                2.7336,
+                2.099
               ],
               "level": {
                 "home": 1.0471,
@@ -43246,47 +40251,47 @@
                 "pct": 1.3
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "José Sánchez Martínez",
+                "delta": -0.14
               }
             },
             "fouls": {
-              "home": 14.5,
-              "away": 10.7,
-              "total": 25.2,
+              "home": 14.9,
+              "away": 11.0,
+              "total": 25.9,
               "int_home": [
                 10,
                 19,
-                0.7978
+                0.7916
               ],
               "int_away": [
-                6,
-                14,
-                0.8207
+                7,
+                15,
+                0.8171
               ],
               "int_total": [
-                18,
-                31,
-                0.8082
+                19,
+                32,
+                0.8018
               ],
               "over": {
-                "22.5": 0.6789,
-                "24.5": 0.5333,
-                "26.5": 0.3875
+                "22.5": 0.7255,
+                "24.5": 0.5872,
+                "26.5": 0.4416
               },
               "sim": [
-                14.48016,
-                10.68509,
+                14.90906,
+                11.00273,
                 0.005146,
                 0.005146
               ],
               "nb": [
-                25.16525,
+                25.91178,
                 0.005992
               ],
               "base": [
-                14.4815,
-                11.185
+                14.9104,
+                11.5175
               ],
               "level": {
                 "home": 0.9999,
@@ -43294,8 +40299,8 @@
                 "pct": -2.0
               },
               "referee": {
-                "name": null,
-                "delta": null
+                "name": "José Sánchez Martínez",
+                "delta": 0.75
               }
             },
             "who_more": {
@@ -43316,9 +40321,9 @@
                 "away_p15": 0.5943
               },
               "yellows": [
-                0.5607,
-                0.1873,
-                0.252
+                0.5555,
+                0.1908,
+                0.2537
               ]
             }
           },
@@ -43456,20 +40461,26 @@
                     "sot",
                     "c",
                     "over",
-                    4.5
+                    3.5
+                  ],
+                  [
+                    "tot",
+                    "gialli",
+                    "over",
+                    3.5
                   ]
                 ],
-                "p": 0.37775,
-                "fair": 2.647,
-                "p_indep": 0.28755,
-                "k": 3
+                "p": 0.33685,
+                "fair": 2.969,
+                "p_indep": 0.26698,
+                "k": 4
               }
             ],
             "file": "mycombo/la_liga_2026-11-21_sevilla-fc_real-betis.bin",
             "n": 20000,
             "n_web": 4000,
             "web_days": 4,
-            "referee": null
+            "referee": "José Sánchez Martínez"
           }
         },
         {
@@ -54908,508 +51919,6 @@
       ],
       "meta_text": "Stack su 1629 partite recenti · 2026-11-21",
       "fixtures": [
-        {
-          "date": "2026-11-21",
-          "time": "16:15",
-          "home": "Nice",
-          "away": "PSG",
-          "home_full": "OGC Nice",
-          "away_full": "Paris Saint-Germain FC",
-          "matchday": 11,
-          "referee": null,
-          "home_dc": "Nice",
-          "away_dc": "Paris SG",
-          "new_team": false,
-          "prediction": {
-            "exp_goals_home": 0.95,
-            "exp_goals_away": 2.17,
-            "prob_home": 0.14997,
-            "prob_draw": 0.20399,
-            "prob_away": 0.64605,
-            "prob_o05": 0.95123,
-            "prob_o15": 0.82259,
-            "prob_o25": 0.60304,
-            "prob_o35": 0.37952,
-            "prob_btts": 0.54864,
-            "prob_cs_home": 0.11459,
-            "prob_cs_away": 0.38553,
-            "top_scores": [
-              [
-                0,
-                2,
-                10.4
-              ],
-              [
-                1,
-                2,
-                9.9
-              ],
-              [
-                1,
-                1,
-                9.6
-              ],
-              [
-                0,
-                1,
-                9.1
-              ],
-              [
-                0,
-                3,
-                7.5
-              ],
-              [
-                1,
-                3,
-                7.1
-              ]
-            ],
-            "rec_outcome": "2",
-            "rec_threshold": 0.42,
-            "rec_score": [
-              0,
-              2,
-              10.4
-            ],
-            "sim": {
-              "mu": 0.953127,
-              "nu": 2.16641,
-              "rho": -0.050284
-            },
-            "model": "without_xg",
-            "fallback_reason": "Understat non disponibile (UnderstatError: Understat Serie A 2021: Expecting value: line 1 column 1 (char 0))",
-            "first_half": {
-              "p_home": 0.15836,
-              "p_draw": 0.36426,
-              "p_away": 0.47738,
-              "o05": 0.74804,
-              "o15": 0.40072,
-              "exp_home": 0.421,
-              "exp_away": 0.957,
-              "exp_total": 1.378,
-              "share": 0.4419
-            }
-          },
-          "market": {
-            "home": 0.14615,
-            "draw": 0.17971,
-            "away": 0.67413,
-            "source": "fixtures"
-          },
-          "expected_stats": {
-            "model": "without_xg",
-            "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
-            "shots": {
-              "home": 10.7,
-              "away": 16.0,
-              "total": 26.7,
-              "int_home": [
-                6,
-                15,
-                0.8137
-              ],
-              "int_away": [
-                9,
-                21,
-                0.7907
-              ],
-              "int_total": [
-                19,
-                33,
-                0.8099
-              ],
-              "over": {
-                "23.5": 0.7003,
-                "25.5": 0.5658,
-                "27.5": 0.4275
-              },
-              "sim": [
-                10.72813,
-                15.96236,
-                0.036348,
-                0.046619
-              ],
-              "nb": [
-                26.6905,
-                0.008942
-              ],
-              "base": [
-                10.5505,
-                16.0085
-              ],
-              "level": {
-                "home": 1.0168,
-                "away": 0.9971,
-                "pct": 0.5
-              }
-            },
-            "sot": {
-              "home": 4.0,
-              "away": 6.3,
-              "total": 10.3,
-              "int_home": [
-                2,
-                6,
-                0.777
-              ],
-              "int_away": [
-                3,
-                9,
-                0.8178
-              ],
-              "int_total": [
-                6,
-                14,
-                0.8261
-              ],
-              "over": {
-                "7.5": 0.7889,
-                "8.5": 0.6836,
-                "9.5": 0.5661,
-                "10.5": 0.4469
-              },
-              "sim": [
-                3.99681,
-                6.25457,
-                0.025276,
-                0.025276
-              ],
-              "nb": [
-                10.25138,
-                0.009534
-              ],
-              "base": [
-                3.8375,
-                6.3573
-              ],
-              "level": {
-                "home": 1.0415,
-                "away": 0.9838,
-                "pct": 0.6
-              }
-            },
-            "corners": {
-              "home": 3.9,
-              "away": 5.6,
-              "total": 9.5,
-              "int_home": [
-                1,
-                6,
-                0.8366
-              ],
-              "int_away": [
-                2,
-                8,
-                0.8028
-              ],
-              "int_total": [
-                6,
-                13,
-                0.7811
-              ],
-              "over": {
-                "8.5": 0.5974,
-                "9.5": 0.4749,
-                "10.5": 0.3593,
-                "11.5": 0.2587
-              },
-              "sim": [
-                3.93206,
-                5.57596,
-                0.079641,
-                0.079641
-              ],
-              "nb": [
-                9.50802,
-                0.01444
-              ],
-              "base": [
-                3.9865,
-                5.6867
-              ],
-              "level": {
-                "home": 0.9863,
-                "away": 0.9805,
-                "pct": -1.7
-              }
-            },
-            "yellows": {
-              "home": 1.7,
-              "away": 1.5,
-              "total": 3.1,
-              "int_home": [
-                0,
-                2,
-                0.7691
-              ],
-              "int_away": [
-                0,
-                2,
-                0.8193
-              ],
-              "int_total": [
-                1,
-                4,
-                0.7515
-              ],
-              "over": {
-                "2.5": 0.6015,
-                "3.5": 0.378,
-                "4.5": 0.204,
-                "5.5": 0.0957
-              },
-              "sim": [
-                1.65464,
-                1.45794,
-                0.0001,
-                0.0001
-              ],
-              "nb": [
-                3.11258,
-                0.0001
-              ],
-              "base": [
-                1.6459,
-                1.4688
-              ],
-              "level": {
-                "home": 1.0053,
-                "away": 0.9926,
-                "pct": -0.1
-              },
-              "referee": {
-                "name": null,
-                "delta": null
-              }
-            },
-            "fouls": {
-              "home": 10.9,
-              "away": 9.2,
-              "total": 20.2,
-              "int_home": [
-                7,
-                15,
-                0.8179
-              ],
-              "int_away": [
-                5,
-                12,
-                0.8017
-              ],
-              "int_total": [
-                14,
-                25,
-                0.7947
-              ],
-              "over": {
-                "22.5": 0.3004,
-                "24.5": 0.1787,
-                "26.5": 0.0959
-              },
-              "sim": [
-                10.93153,
-                9.23748,
-                0.005146,
-                0.005146
-              ],
-              "nb": [
-                20.169,
-                0.005992
-              ],
-              "base": [
-                10.5732,
-                9.0246
-              ],
-              "level": {
-                "home": 1.0339,
-                "away": 1.0236,
-                "pct": 2.9
-              },
-              "referee": {
-                "name": null,
-                "delta": null
-              }
-            },
-            "who_more": {
-              "shots": [
-                0.2079,
-                0.0443,
-                0.7478
-              ],
-              "corners": [
-                0.2898,
-                0.0968,
-                0.6134
-              ],
-              "corner_handicap": {
-                "home_m15": 0.2061,
-                "home_p15": 0.4903,
-                "away_m15": 0.5097,
-                "away_p15": 0.7939
-              },
-              "yellows": [
-                0.4106,
-                0.2633,
-                0.3261
-              ]
-            }
-          },
-          "context": {
-            "home": {
-              "rest_days": 13,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Strasbourg 2-1 (11/10)"
-                },
-                {
-                  "r": "P",
-                  "tip": "a Lyon 1-2 (18/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Brest 2-1 (23/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Rennes 5-2 (30/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Angers 2-0 (08/11)"
-                }
-              ],
-              "pi_rating": 0.36,
-              "pi_rank": 12,
-              "pi_n": 18,
-              "eo_rating": 1457.0,
-              "eo_rank": 9,
-              "eo_n": 18
-            },
-            "away": {
-              "rest_days": 14,
-              "form": [
-                {
-                  "r": "V",
-                  "tip": "vs Le Mans 3-1 (10/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Strasbourg 3-1 (17/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Lyon 2-0 (26/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "a Le Havre 5-1 (30/10)"
-                },
-                {
-                  "r": "V",
-                  "tip": "vs Troyes 1-0 (07/11)"
-                }
-              ],
-              "pi_rating": 1.31,
-              "pi_rank": 1,
-              "pi_n": 18,
-              "eo_rating": 1713.6,
-              "eo_rank": 1,
-              "eo_n": 18
-            }
-          },
-          "mycombo": {
-            "combos": [
-              {
-                "specs": [
-                  [
-                    "gtot",
-                    "over",
-                    2.5
-                  ],
-                  [
-                    "btts",
-                    true
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ]
-                ],
-                "p": 0.4067,
-                "fair": 2.459,
-                "p_indep": 0.24711,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      1,
-                      2
-                    ]
-                  ],
-                  [
-                    "team",
-                    "tiri",
-                    "c",
-                    "under",
-                    10.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "c",
-                    "under",
-                    4.5
-                  ]
-                ],
-                "p": 0.36745,
-                "fair": 2.721,
-                "p_indep": 0.26782,
-                "k": 3
-              },
-              {
-                "specs": [
-                  [
-                    "res",
-                    [
-                      1,
-                      2
-                    ]
-                  ],
-                  [
-                    "gtot",
-                    "over",
-                    1.5
-                  ],
-                  [
-                    "htou",
-                    0.5
-                  ],
-                  [
-                    "team",
-                    "sot",
-                    "o",
-                    "over",
-                    5.5
-                  ]
-                ],
-                "p": 0.40045,
-                "fair": 2.497,
-                "p_indep": 0.30258,
-                "k": 4
-              }
-            ],
-            "file": "mycombo/ligue_1_2026-11-21_nice_psg.bin",
-            "n": 20000,
-            "n_web": 4000,
-            "web_days": 4,
-            "referee": null
-          }
-        },
         {
           "date": "2026-11-21",
           "time": "19:45",
