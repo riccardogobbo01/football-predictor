@@ -1,5 +1,5 @@
 {
- "at": "2026-11-22 12:43 UTC",
+ "at": "2026-11-22 17:10 UTC",
  "enabled": true,
  "reason": null,
  "used": null,
@@ -14,5 +14,5 @@
  "budget_stop": false,
  "rows": 437,
  "matches": 48,
- "results_filled": 0
+ "results_filled": 74
 }
