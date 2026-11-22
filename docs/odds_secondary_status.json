@@ -1,18 +1,18 @@
 {
- "at": "2026-11-22 04:19 UTC",
+ "at": "2026-11-22 09:19 UTC",
  "enabled": true,
  "reason": null,
- "used": 97,
- "remaining": 403,
- "calls": 11,
- "credits_spent": 15,
- "due": 8,
- "recorded": 8,
+ "used": null,
+ "remaining": null,
+ "calls": 0,
+ "credits_spent": 0,
+ "due": 0,
+ "recorded": 0,
  "no_data": 0,
  "unmatched": [],
  "waiting_referee": 0,
  "budget_stop": false,
  "rows": 437,
  "matches": 48,
- "results_filled": 157
+ "results_filled": 0
 }
