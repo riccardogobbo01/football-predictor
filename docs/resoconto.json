@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23 04:19 UTC",
+ "generated_at": "2026-11-23 09:19 UTC",
  "today": "2026-11-23",
  "last_week": {
   "start": "2026-11-16",
@@ -1506,22 +1506,47 @@
    "a": {
     "label": "(a) Serie A, ospite con probabilità >= 45 %",
     "ref": "backtest 2019/20-2026/27: eccesso +7,0 pt, ROI +9,3 %; 2013/14-2018/19: +3,1 pt, ROI +2,5 %",
-    "n": 0,
-    "ci": false
+    "n": 2,
+    "ci": false,
+    "n_fallback": 2,
+    "implied": 0.6860087280093259,
+    "real": 0.5,
+    "wins": 1,
+    "excess": -0.18600872800932589,
+    "roi": -0.36,
+    "profit": -0.72,
+    "last_date": "2026-11-22"
    },
    "b": {
     "label": "(b) La Liga, favorita in casa con probabilità >= 60 %",
     "ref": "backtest 2019/20-2026/27: eccesso +5,0 pt, ROI +5,2 %; 2013/14-2018/19: +0,5 pt, ROI −1,4 %",
-    "n": 0,
-    "ci": false
+    "n": 3,
+    "ci": false,
+    "n_fallback": 3,
+    "implied": 0.7730836613234547,
+    "real": 0.6666666666666666,
+    "wins": 2,
+    "excess": -0.10641699465678811,
+    "roi": -0.21333333333333337,
+    "profit": -0.6400000000000001,
+    "last_date": "2026-11-22"
    },
    "c": {
     "label": "(c) Pareggio tra squadre equilibrate (|p casa − p ospite| <= 10 pt), 5 campionati",
     "ref": "backtest 2019/20-2026/27: eccesso +2,3 pt, ROI +2,1 %; 2013/14-2018/19: +1,6 pt, ROI −0,5 %",
-    "n": 0,
-    "ci": false
+    "n": 6,
+    "ci": false,
+    "n_fallback": 6,
+    "implied": 0.26120456951555887,
+    "real": 0.3333333333333333,
+    "wins": 2,
+    "excess": 0.07212876381777444,
+    "roi": 0.12833333333333333,
+    "profit": 0.77,
+    "last_date": "2026-11-22"
    }
-  }
+  },
+  "fallback": 45
  },
  "mycombo": {
   "proposed": 468,
@@ -1531,7 +1556,7 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-23 04:19 UTC",
+   "at": "2026-11-23 09:19 UTC",
    "enabled": true,
    "reason": null,
    "used": null,
@@ -1546,7 +1571,7 @@
    "budget_stop": false,
    "rows": 437,
    "matches": 48,
-   "results_filled": 74
+   "results_filled": 0
   },
   "markets": {
    "cards": {
