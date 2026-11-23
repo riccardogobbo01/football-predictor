@@ -1,0 +1,20 @@
+# Round 12 — gialli della Serie A 2026/27 e monitoraggio a carta (controlli)
+
+**La produzione non viene toccata.** Criteri scritti PRIMA di eseguire l'analisi. Stesse regole di sempre: scelte solo sulla validazione 2019/20-2021/22, held-out 2022/23-2025/26 (il 2026/27 in corso a parte, descrittivo e mai usato per scegliere), IC a blocchi per settimana ISO, Δ = baseline − variante (positivo = la variante migliora), verdetto «migliora» se Δ del totale in held-out > 0 con IC a blocchi che esclude lo zero e Δ per squadra ≥ 0; «peggiora» se < 0 con IC sotto zero; altrimenti «non distinguibile dal rumore».
+
+## Parte 1 — il livello dei gialli (L3, H = 4, k = 15) si applica alla Serie A? E il decadimento dell'effetto arbitro?
+Diagnosi, nessuna scelta:
+1. **Il livello è applicato?** Dallo storico emesso (`docs/history.csv`): rapporto tra gialli previsti finali e medie di base prima del livello (`bm_gialli`), per versione e mese; moltiplicatori di produzione (`predictions.levels.Levels` con il registro di `models/stack.json`) per data, casa e ospite.
+2. **Il decadimento riduce il livello di lega?** Per ciascuna lega e stagione dal 2019/20: media del log dell'effetto arbitro dei gialli (`ref_logR`) con pesi uniformi e con il decadimento di produzione (emivita 182,5 giorni). Se il decadimento abbassasse il livello di lega la media (e la media prevista) calerebbe rispetto ai pesi uniformi in modo sistematico.
+3. **Dove nasce lo scarto della Serie A?** Medie dei gialli del 2026/27 per mese: reale contro modello senza arbitro, con arbitro uniforme, con arbitro a decadimento e con il livello di produzione; rapporto reale/previsto con IC a blocchi.
+4. **Quanto è significativo?** Rapporto reale/previsto della Serie A, con IC, contro la distribuzione dei rapporti reale/previsto di tutte le altre combinazioni lega-stagione dopo il livello di produzione a parità di numero di partite giocate (primi ~100 incontri).
+
+## Parte 2 — correzione candidata (una sola famiglia, fissata ora)
+**L4 = livello a due scale di tempo.** Se la diagnosi mostra uno spostamento persistente di tutta la stagione che il livello di produzione corregge solo in parte (shrinkage k = 15 e decadimento a 4 settimane dimezzano il peso dei dati), si prova ad aggiungere sotto di esso un livello lento: R_lento con emivita H_L ∈ {12, 26, 52} settimane e k_L ∈ {5, 15, 40} (stessa formula, per lega e per lato, sulle medie di base), poi il livello di produzione (H = 4, k = 15) calcolato sulle medie già corrette dal livello lento (con il moltiplicatore lento che valeva alla data di ciascuna partita passata). Previsione finale = media di base × R_lento × R_veloce.
+- **Baseline**: produzione attuale (effetto arbitro a decadimento, livello H = 4, k = 15). **Scelta** di (H_L, k_L) sulla sola validazione: massimo Δ della log-loss del totale; parità entro 0,0002 → la più semplice (k più alto, poi H più alto).
+- **Metriche**: log-loss del totale (primaria) e per squadra, e per la Serie A 2026/27 media prevista contro reale. (La copertura degli intervalli del prereg iniziale non viene riportata: gli intervalli del backtest di questo round sono a quantili e non quelli a massima probabilità usati in produzione, quindi non confrontabili con il criterio dei 3 punti.)
+- Il round 10 aveva già provato un livello di stagione bayesiano sopra quello di produzione per i gialli (B1/B2): non migliorava. L4 è diverso (memoria oltre la stagione, applicato prima del livello veloce) e si prova una sola volta.
+- **Nessuna correzione va in produzione se non migliora l'held-out.** Se non migliora si riporta solo la diagnosi.
+
+## Parte 3 — monitoraggio a carta: n = 0
+Controllo, nessuna scelta: ultima partita presente nei CSV stagionali di football-data.co.uk e data di aggiornamento dei file; partite dal 21/11 in `fixtures.csv` (quote medie disponibili) e nello storico emesso (risultati ESPN provvisori); applicazione dei filtri (a), (b), (c) ai dati disponibili per verificare che non ci siano errori di selezione; conteggio atteso a CSV aggiornato.
