@@ -130,12 +130,11 @@ def ci():
         st, sel, am = fm_league(s, *LEAGUES["I1"], "2025/2026")
         print(f"pagina lega Serie A: HTTP {st}, stagione {sel}, partite finite {len(am)}")
         time.sleep(PAUSE)
-        if am:
-            m = am[9]
-            st2, n, d = fm_page(s, m["pageUrl"])
-            print(f"pagina partita {m['home']['name']}-{m['away']['name']} ({m['id']}): HTTP {st2}, {n} byte, NEXT_DATA {'si' if d else 'NO'}")
-            if d:
-                print("riepilogo:", json.dumps(fm_summary(d)))
+        # partita con dati completi in locale (Monza-Inter 2026/27, id 5749645: 20 tiri con xG, 43 giocatori con statistiche): se qui mancano, e' un blocco; se coincidono, no
+        st2, n, d = fm_page(s, "/matches/monza-vs-inter/1w8tzq#5749645")
+        print(f"pagina partita Monza-Inter (5749645): HTTP {st2}, {n} byte, NEXT_DATA {'si' if d else 'NO'}")
+        if d:
+            print("riepilogo:", json.dumps(fm_summary(d)))
     except Exception as e:
         print("FotMob ERRORE:", type(e).__name__, str(e)[:120])
     print("== Sofascore (API, client normale)")
