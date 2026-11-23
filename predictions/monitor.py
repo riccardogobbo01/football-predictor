@@ -66,7 +66,10 @@ COLUMNS = (["issued_on", "league", "match_date", "matchday", "home", "away", "ho
            + ["referee", "referee_first_seen", "yellow_pred", "yellow_real", "stats_version"]
            + ["shots_pred", "shots_real", "sot_pred", "sot_real", "fouls_pred", "fouls_real", "ht_goals_pred", "ht_goals_real"]
            + ["kickoff", "referee_source", "p_o25", "result_source", "corners_real", "exp_h", "exp_a", "p_o15", "p_o35", "p_btts", "stats_json", "stats_real_json"]
-           + [f"bm_{s}_{x}" for s in ("tiri", "sot", "corner", "falli", "gialli") for x in ("h", "a")])
+           + [f"bm_{s}_{x}" for s in ("tiri", "sot", "corner", "falli", "gialli") for x in ("h", "a")]
+           + [f"odds_avg_{x}" for x in ("h", "d", "a")])
+# odds_avg_h/d/a = quote MEDIE 1X2 pre-partita di fixtures.csv (AvgH/AvgD/AvgA) all'ultima emissione prima del calcio d'inizio (come mkt_*: non si riscrivono dopo l'inizio);
+# servono al monitoraggio a carta (predictions/paper_monitor.py) come ripiego quando il CSV stagionale di football-data.co.uk non ha ancora la partita.
 # bm_<statistica>_h/_a = medie attese di base (casa/ospite, con effetto arbitro, PRIMA del livello stagionale) al momento dell'emissione: servono a
 # ricalcolare ogni giorno il livello stagionale dalle partite giocate dopo l'ultimo allenamento (predictions/levels.py)
 # totali previsti (ultima emissione) e reali per tiri, tiri in porta, falli e gol del primo tempo: serve al monitoraggio dei modelli delle statistiche
@@ -119,7 +122,7 @@ def _market_from_odds(oh, od, oa):
 def fixtures_market(url: str = FIXTURES_URL, session=None) -> pd.DataFrame:
     """Quote delle prossime partite (football-data.co.uk/fixtures.csv) come probabilità senza
     margine. Colonne: Division, date, HomeTeam, AwayTeam, mkt_home/draw/away. Vuoto se non disponibile."""
-    cols = ["Division", "date", "HomeTeam", "AwayTeam"] + [f"mkt_{k}" for k in P3]
+    cols = ["Division", "date", "HomeTeam", "AwayTeam"] + [f"mkt_{k}" for k in P3] + ["odds_avg_h", "odds_avg_d", "odds_avg_a"]
     try:
         resp = (session or requests).get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
         resp.raise_for_status()
@@ -142,11 +145,14 @@ def fixtures_market(url: str = FIXTURES_URL, session=None) -> pd.DataFrame:
     if fx.empty:
         return pd.DataFrame(columns=cols)
     P = _market_from_odds(o.iloc[:, 0], o.iloc[:, 1], o.iloc[:, 2])
+    is_avg = trio[0] == "AvgH"                                  # le quote medie si registrano solo se la fonte e' la media (con B365 di ripiego restano vuote)
     out = pd.DataFrame({"Division": fx["Div"].values,
                         "date": pd.to_datetime(fx["Date"], dayfirst=True, format="mixed", errors="coerce").values,
                         "HomeTeam": fx["HomeTeam"].astype(str).str.strip().values,
                         "AwayTeam": fx["AwayTeam"].astype(str).str.strip().values,
-                        "mkt_home": P[:, 0], "mkt_draw": P[:, 1], "mkt_away": P[:, 2]})
+                        "mkt_home": P[:, 0], "mkt_draw": P[:, 1], "mkt_away": P[:, 2],
+                        "odds_avg_h": o.iloc[:, 0].values if is_avg else np.nan, "odds_avg_d": o.iloc[:, 1].values if is_avg else np.nan,
+                        "odds_avg_a": o.iloc[:, 2].values if is_avg else np.nan})
     return out.dropna(subset=["date"])
 
 
@@ -165,6 +171,55 @@ def attach_fixture_market(rows: list[dict], fx: pd.DataFrame) -> None:
             h = hit.iloc[0]
             r["mkt_home"], r["mkt_draw"], r["mkt_away"] = h.mkt_home, h.mkt_draw, h.mkt_away
             r["mkt_source"] = "fixtures"
+            for c in ("odds_avg_h", "odds_avg_d", "odds_avg_a"):
+                if c in h.index:
+                    r[c] = h[c]
+
+
+def backfill_odds(history: pd.DataFrame, fx: pd.DataFrame, since: str = "2026-11-11") -> int:
+    """Riempie odds_avg_h/d/a (SOLO dove mancano, mai sovrascrivendo) nelle righe con match_date >= since, dalle quote medie di fixtures.csv
+    (chiave: lega, squadre CSV, data entro ±1 giorno). Non tocca nessun'altra colonna. Restituisce le righe riempite."""
+    cols = ["odds_avg_h", "odds_avg_d", "odds_avg_a"]
+    if fx is None or fx.empty or not all(c in fx.columns for c in cols):
+        return 0
+    n = 0
+    fxv = fx[fx[cols].notna().all(axis=1)]
+    for i in history.index[(history["match_date"].astype(str) >= since) & history[cols].isna().any(axis=1) & history["home_dc"].notna() & history["away_dc"].notna()
+                           & history["league"].isin(LEAGUE_CODE)]:
+        r = history.loc[i]
+        d = pd.Timestamp(r["match_date"])
+        hit = fxv[(fxv.Division == LEAGUE_CODE[r["league"]]) & (fxv.HomeTeam == r["home_dc"]) & (fxv.AwayTeam == r["away_dc"]) & ((fxv.date - d).abs() <= pd.Timedelta(days=1))]
+        if len(hit):
+            h = hit.iloc[0]
+            for c in cols:
+                if pd.isna(history.at[i, c]):
+                    history.at[i, c] = float(h[c])
+            n += 1
+    return n
+
+
+def backfill_odds_csv(history: pd.DataFrame, matches: pd.DataFrame, since: str = "2026-11-11") -> int:
+    """Come backfill_odds ma dal CSV stagionale di football-data.co.uk (colonne Division, HomeTeam, AwayTeam, date, odds_h/d/a = quote medie pre-partita):
+    solo dove odds_avg_* manca, mai sovrascrivendo. Restituisce le righe riempite."""
+    cols = ["odds_avg_h", "odds_avg_d", "odds_avg_a"]
+    if matches is None or not len(matches):
+        return 0
+    m = matches[matches[["odds_h", "odds_d", "odds_a"]].notna().all(axis=1)]
+    idx = {}
+    for r in m.itertuples(index=False):
+        idx.setdefault((r.Division, r.HomeTeam, r.AwayTeam), []).append(r)
+    n = 0
+    for i in history.index[(history["match_date"].astype(str) >= since) & history[cols].isna().any(axis=1) & history["home_dc"].notna() & history["away_dc"].notna()
+                           & history["league"].isin(LEAGUE_CODE)]:
+        r = history.loc[i]
+        d = pd.Timestamp(r["match_date"])
+        hit = next((c for c in idx.get((LEAGUE_CODE[r["league"]], r["home_dc"], r["away_dc"]), []) if abs((pd.Timestamp(c.date).normalize() - d).days) <= 1), None)
+        if hit is not None:
+            for c, v in zip(cols, (hit.odds_h, hit.odds_d, hit.odds_a)):
+                if pd.isna(history.at[i, c]):
+                    history.at[i, c] = float(v)
+            n += 1
+    return n
 
 
 # ── Aggiornamento dello storico ────────────────────────────────────────────────
@@ -234,6 +289,7 @@ def upsert(history: pd.DataFrame, new_rows: list[dict], today, now=None) -> pd.D
                 h.at[i, "kickoff"] = ko
             continue
         old_mkt = {c: h.at[i, c] for c in ("mkt_home", "mkt_draw", "mkt_away", "mkt_source")}
+        old_odds = {c: h.at[i, c] for c in ("odds_avg_h", "odds_avg_d", "odds_avg_a")}
         old_ref = {c: h.at[i, c] for c in ("referee", "referee_first_seen", "referee_source")}
         for c in COLUMNS:
             if c in r:
@@ -245,6 +301,9 @@ def upsert(history: pd.DataFrame, new_rows: list[dict], today, now=None) -> pd.D
             h.at[i, "referee_source"] = old_ref["referee_source"]
         if pd.isna(r.get("mkt_home")) and pd.notna(old_mkt["mkt_home"]):
             for c, v in old_mkt.items():
+                h.at[i, c] = v
+        if pd.isna(r.get("odds_avg_h")) and pd.notna(old_odds["odds_avg_h"]):          # la quota gia' registrata non si perde se fixtures.csv non ha piu' la partita
+            for c, v in old_odds.items():
                 h.at[i, c] = v
     if add:
         h = pd.concat([h, pd.DataFrame(add, columns=COLUMNS)], ignore_index=True)

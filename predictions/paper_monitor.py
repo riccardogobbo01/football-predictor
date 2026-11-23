@@ -8,11 +8,16 @@ implicite nelle quote MEDIE PRE-PARTITA di football-data.co.uk (AvgH/D/A, raccol
   (b) La Liga, favorita in casa con probabilità implicita >= 60 %  -> si punta sulla vittoria in casa
   (c) pareggi tra squadre equilibrate, |p_casa - p_ospite| <= 10 punti (5 campionati) -> si punta sul pareggio
 
-Con poche partite l'esito è dominato dal caso: sotto MIN_N partite si mostrano solo i conteggi, senza intervalli. Gli intervalli (95 %) sono a blocchi per settimana ISO."""
+Con poche partite l'esito è dominato dal caso: sotto MIN_N partite si mostrano solo i conteggi, senza intervalli. Gli intervalli (95 %) sono a blocchi per settimana ISO.
+
+Fonti: il CSV stagionale di football-data.co.uk (risultato definitivo, quote medie pre-partita) quando ha la partita; altrimenti, come RIPIEGO, lo storico emesso (docs/history.csv):
+risultato provvisorio ESPN e quote medie pre-partita di fixtures.csv registrate all'emissione (odds_avg_h/d/a). Il CSV ha sempre la precedenza; il resoconto segna quante partite
+usano il ripiego."""
 import numpy as np
 import pandas as pd
 
 from backtest import eloodds
+from predictions.monitor import LEAGUE_CODE
 
 PAPER_START = "2026-11-11"
 MIN_N = 30
@@ -41,6 +46,40 @@ def _block_ci(num, den, weeks, seed):
     return float(sn.sum() / sd.sum()), float(np.percentile(est, 2.5)), float(np.percentile(est, 97.5))
 
 
+def fallback_rows(matches, history, start=PAPER_START) -> pd.DataFrame:
+    """Partite dello storico emesso con risultato e quote medie registrate che il CSV stagionale non ha ancora (chiave: lega, squadre CSV, data entro ±1 giorno)."""
+    cols = ["Division", "date", "res", "odds_h", "odds_d", "odds_a", "fb"]
+    if history is None or not len(history) or "odds_avg_h" not in history.columns:
+        return pd.DataFrame(columns=cols)
+    h = history[history["league"].isin(LEAGUE_CODE) & history["result"].isin(["H", "D", "A"]) & (history["match_date"].astype(str) >= str(start)[:10])
+                & history[["odds_avg_h", "odds_avg_d", "odds_avg_a"]].notna().all(axis=1) & history["home_dc"].notna() & history["away_dc"].notna()]
+    if h.empty:
+        return pd.DataFrame(columns=cols)
+    have = {}
+    if matches is not None and "HomeTeam" in matches.columns and "AwayTeam" in matches.columns:
+        for r in matches[["Division", "HomeTeam", "AwayTeam", "date"]].itertuples(index=False):
+            have.setdefault((r.Division, r.HomeTeam, r.AwayTeam), []).append(pd.Timestamp(r.date).normalize())
+    rows = []
+    for r in h.itertuples(index=False):
+        div, d = LEAGUE_CODE[r.league], pd.Timestamp(r.match_date)
+        if any(abs((x - d).days) <= 1 for x in have.get((div, r.home_dc, r.away_dc), [])):
+            continue                                                         # il CSV ha gia' la partita: precedenza al CSV
+        rows.append({"Division": div, "date": d, "res": {"H": 0, "D": 1, "A": 2}[r.result], "odds_h": float(r.odds_avg_h), "odds_d": float(r.odds_avg_d),
+                     "odds_a": float(r.odds_avg_a), "fb": True})
+    return pd.DataFrame(rows, columns=cols)
+
+
+def pool(matches: pd.DataFrame, history=None, start=PAPER_START) -> pd.DataFrame:
+    """CSV stagionale + ripiego dallo storico, con la colonna `fb` (True = partita da ripiego)."""
+    base = matches.copy()
+    base["fb"] = False
+    fb = fallback_rows(matches, history, start)
+    if fb.empty:
+        return base
+    keep = ["Division", "date", "res", "odds_h", "odds_d", "odds_a", "fb"]
+    return pd.concat([base[keep], fb[keep]], ignore_index=True)
+
+
 def select(matches: pd.DataFrame, rule: dict, start=PAPER_START):
     """Partite giocate da `start` che soddisfano la regola, con quote medie pre-partita valide. Restituisce (sottoinsieme, p_esito senza margine)."""
     m = matches[matches["Division"].isin(rule["leagues"]) & (matches["date"] >= pd.Timestamp(start)) & matches["res"].isin([0, 1, 2])]
@@ -57,13 +96,15 @@ def select(matches: pd.DataFrame, rule: dict, start=PAPER_START):
     return m[sel], p[sel, rule["outcome"]]
 
 
-def compute(matches: pd.DataFrame, start=PAPER_START) -> dict:
-    """Per ciascuna regola: N, probabilità implicita media, frequenza reale, eccesso, rendimento teorico a quota media (IC a blocchi se N >= MIN_N)."""
-    out = {"start": str(start), "min_n": MIN_N, "rules": {}}
+def compute(matches: pd.DataFrame, start=PAPER_START, history=None) -> dict:
+    """Per ciascuna regola: N, probabilità implicita media, frequenza reale, eccesso, rendimento teorico a quota media (IC a blocchi se N >= MIN_N).
+    history: storico emesso per il ripiego sulle partite non ancora nel CSV stagionale (`n_fallback` per regola e `fallback` totale)."""
+    matches = pool(matches, history, start)
+    out = {"start": str(start), "min_n": MIN_N, "rules": {}, "fallback": int(matches["fb"].sum()) if "fb" in matches else 0}
     for key, r in RULES.items():
         m, p = select(matches, r, start)
         o = r["outcome"]
-        res = {"label": r["label"], "ref": r["ref"], "n": int(len(m)), "ci": False}
+        res = {"label": r["label"], "ref": r["ref"], "n": int(len(m)), "ci": False, "n_fallback": int(m["fb"].sum()) if "fb" in m else 0}
         if len(m):
             win = (m["res"].to_numpy() == o).astype(float)
             odds = m[["odds_h", "odds_d", "odds_a"]].to_numpy(float)[:, o]

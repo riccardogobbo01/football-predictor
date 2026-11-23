@@ -166,12 +166,13 @@ def trained_status(stack_path, today) -> dict:
     return out
 
 
-def paper_status(matches) -> dict | None:
-    """Monitoraggio a carta (predictions/paper_monitor.py): solo resoconto. None se mancano le partite di football-data o se il calcolo fallisce."""
+def paper_status(matches, history=None) -> dict | None:
+    """Monitoraggio a carta (predictions/paper_monitor.py): solo resoconto. None se mancano le partite di football-data o se il calcolo fallisce.
+    history: storico emesso per il ripiego (partite non ancora nel CSV stagionale)."""
     if matches is None:
         return None
     try:
-        return paper_monitor.compute(matches)
+        return paper_monitor.compute(matches, history=history)
     except Exception as e:                                   # mai bloccare il resoconto
         return {"error": f"{type(e).__name__}: {e}", "rules": {}}
 
@@ -191,7 +192,7 @@ def build(history: pd.DataFrame, today, stack_path=None, matches=None) -> dict:
             "total": summarize(h), "since": str(h["_d"].min().date()) if len(h) else None,
             "provisional": int((h["result_source"] == "espn").sum()),
             "xg": xg_status(history, today), "model": trained_status(stack_path or os.path.join(REPO_ROOT, "models", "stack.json"), today),
-            "paper": paper_status(matches)}
+            "paper": paper_status(matches, history)}
 
 
 # ───────────────────────────── pagina ─────────────────────────────
@@ -300,12 +301,16 @@ def paper_html(p) -> str:
         else:
             ex = f'{100 * r["excess"]:+.1f} pp (in raccolta: IC dopo {p["min_n"]} partite)'.replace(".", ",")
             rd = f'{100 * r["roi"]:+.1f}% (in raccolta)'.replace(".", ",")
-        rows.append([html.escape(r["label"]), f'{r["n"]} ({r["wins"]} esiti)', _pct(r["implied"]), _pct(r["real"]), ex, rd, html.escape(r["ref"])])
+        fb = f', di cui {r["n_fallback"]} da ripiego' if r.get("n_fallback") else ""
+        rows.append([html.escape(r["label"]), f'{r["n"]} ({r["wins"]} esiti{fb})', _pct(r["implied"]), _pct(r["real"]), ex, rd, html.escape(r["ref"])])
+    fbn = p.get("fallback") or 0
+    fbnote = ('<p class="note"><b>Partite con ripiego: ' + str(fbn) + '.</b> Le partite non ancora nel CSV stagionale di football-data.co.uk (che si aggiorna con 1-3 giorni di ritardo) '
+              'usano il risultato provvisorio ESPN e le quote medie pre-partita di fixtures.csv registrate all’emissione; passano al CSV appena è aggiornato.</p>')
     return ('<section><h2>Monitoraggio a carta (in raccolta)</h2><p class="note">Tre anomalie trovate nel backtest (round 11), regole fissate l’11/11/2026 e mai cambiate: '
             f'si contano solo le partite giocate dal {html.escape(p["start"])}. Probabilità implicite dalle quote medie pre-partita di football-data.co.uk senza margine; '
             'rendimento teorico = 1 unità alla quota media su ogni partita della regola. Intervalli al 95 % a blocchi per settimana, calcolati da '
             f'{p["min_n"]} partite in su. Non influisce in alcun modo sul modello.</p>'
-            + _table(["Regola", "Partite", "% implicita", "% reale", "Eccesso reale − implicita", "Rendimento teorico (quota media)", "Riferimento (non usato per decidere)"], rows)
+            + fbnote + _table(["Regola", "Partite", "% implicita", "% reale", "Eccesso reale − implicita", "Rendimento teorico (quota media)", "Riferimento (non usato per decidere)"], rows)
             + '</section>')
 
 
