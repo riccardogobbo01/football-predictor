@@ -261,16 +261,16 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-20 04:19,ligue_1,2026-11-21,2026-11-21 19:45,Strasbourg,Brest,corners,9.0,pinnacle,1.82,1.99,0.52407,0.40867,0.12392,39.4,0,without_xg,9.0
 2026-11-20 04:19,ligue_1,2026-11-21,2026-11-21 19:45,Strasbourg,Brest,corners,9.5,pinnacle,2.03,1.76,0.46106,0.40867,0.0,39.4,0,without_xg,9.0
 2026-11-20 04:19,ligue_1,2026-11-21,2026-11-21 19:45,Strasbourg,Brest,corners,10.0,pinnacle,2.35,1.56,0.38858,0.29747,0.1112,39.4,0,without_xg,9.0
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,3.5,pinnacle,1.45,2.64,0.66099,0.60181,0.0,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,4.0,pinnacle,1.65,2.2,0.57807,0.40729,0.19452,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,4.5,pinnacle,2.02,1.79,0.46735,0.40729,0.0,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,5.0,pinnacle,2.57,1.49,0.35464,0.24448,0.16282,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,5.5,pinnacle,3.01,1.35,0.28772,0.24448,0.0,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,9.0,pinnacle,1.44,2.7,0.66749,0.57952,0.11367,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,9.5,pinnacle,1.63,2.26,0.5879,0.57952,0.0,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,10.0,pinnacle,1.81,2.02,0.52938,0.46338,0.11614,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,10.5,pinnacle,2.03,1.78,0.46448,0.46338,0.0,36.2,0,without_xg,
-2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,11.0,pinnacle,2.32,1.58,0.39578,0.35412,0.10926,36.2,0,without_xg,
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,3.5,pinnacle,1.45,2.64,0.66099,0.60181,0.0,36.2,0,without_xg,1.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,4.0,pinnacle,1.65,2.2,0.57807,0.40729,0.19452,36.2,0,without_xg,1.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,4.5,pinnacle,2.02,1.79,0.46735,0.40729,0.0,36.2,0,without_xg,1.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,5.0,pinnacle,2.57,1.49,0.35464,0.24448,0.16282,36.2,0,without_xg,1.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,cards,5.5,pinnacle,3.01,1.35,0.28772,0.24448,0.0,36.2,0,without_xg,1.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,9.0,pinnacle,1.44,2.7,0.66749,0.57952,0.11367,36.2,0,without_xg,20.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,9.5,pinnacle,1.63,2.26,0.5879,0.57952,0.0,36.2,0,without_xg,20.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,10.0,pinnacle,1.81,2.02,0.52938,0.46338,0.11614,36.2,0,without_xg,20.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,10.5,pinnacle,2.03,1.78,0.46448,0.46338,0.0,36.2,0,without_xg,20.0
+2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 16:30,Liverpool,Man United,corners,11.0,pinnacle,2.32,1.58,0.39578,0.35412,0.10926,36.2,0,without_xg,20.0
 2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 14:00,Hull City,Brighton Hove,cards,3.0,pinnacle,1.32,3.21,0.73134,0.54773,0.19987,33.7,0,without_xg,4.0
 2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 14:00,Hull City,Brighton Hove,cards,3.5,pinnacle,1.56,2.37,0.61305,0.54773,0.0,33.7,0,without_xg,4.0
 2026-11-21 04:19,premier_league,2026-11-22,2026-11-22 14:00,Hull City,Brighton Hove,cards,4.0,pinnacle,1.85,1.95,0.51422,0.35263,0.1951,33.7,0,without_xg,4.0
@@ -291,16 +291,16 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 14:30,Augsburg,Mainz,corners,10.0,pinnacle,1.87,1.94,0.50989,0.41819,0.11693,34.2,0,without_xg,6.0
 2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 14:30,Augsburg,Mainz,corners,10.5,pinnacle,2.07,1.74,0.45287,0.41819,0.0,34.2,0,without_xg,6.0
 2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 14:30,Augsburg,Mainz,corners,11.0,pinnacle,2.37,1.55,0.38454,0.31177,0.10641,34.2,0,without_xg,6.0
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,2.5,pinnacle,1.28,3.43,0.75469,0.79419,0.0,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,3.0,pinnacle,1.4,2.89,0.68989,0.61086,0.18333,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,3.5,pinnacle,1.72,2.13,0.55736,0.61086,0.0,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,4.0,pinnacle,2.11,1.7,0.44106,0.41681,0.19404,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,4.5,pinnacle,2.58,1.47,0.3485,0.41681,0.0,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,9.0,pinnacle,1.54,2.39,0.6195,0.51355,0.12007,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,9.5,pinnacle,1.75,2.05,0.54305,0.51355,0.0,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,10.0,pinnacle,1.97,1.83,0.48006,0.39677,0.11678,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,10.5,pinnacle,2.2,1.65,0.42193,0.39677,0.0,36.2,0,without_xg,
-2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,11.0,pinnacle,2.56,1.47,0.34981,0.2922,0.10458,36.2,0,without_xg,
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,2.5,pinnacle,1.28,3.43,0.75469,0.79419,0.0,36.2,0,without_xg,6.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,3.0,pinnacle,1.4,2.89,0.68989,0.61086,0.18333,36.2,0,without_xg,6.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,3.5,pinnacle,1.72,2.13,0.55736,0.61086,0.0,36.2,0,without_xg,6.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,4.0,pinnacle,2.11,1.7,0.44106,0.41681,0.19404,36.2,0,without_xg,6.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,cards,4.5,pinnacle,2.58,1.47,0.3485,0.41681,0.0,36.2,0,without_xg,6.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,9.0,pinnacle,1.54,2.39,0.6195,0.51355,0.12007,36.2,0,without_xg,9.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,9.5,pinnacle,1.75,2.05,0.54305,0.51355,0.0,36.2,0,without_xg,9.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,10.0,pinnacle,1.97,1.83,0.48006,0.39677,0.11678,36.2,0,without_xg,9.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,10.5,pinnacle,2.2,1.65,0.42193,0.39677,0.0,36.2,0,without_xg,9.0
+2026-11-21 04:19,bundesliga,2026-11-22,2026-11-22 16:30,Bremen,HSV,corners,11.0,pinnacle,2.56,1.47,0.34981,0.2922,0.10458,36.2,0,without_xg,9.0
 2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 13:00,Barça,Villarreal,corners,10.0,pinnacle,1.46,2.62,0.65687,0.49564,0.1147,32.7,0,without_xg,10.0
 2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 13:00,Barça,Villarreal,corners,10.5,pinnacle,1.63,2.25,0.58698,0.49564,0.0,32.7,0,without_xg,10.0
 2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 13:00,Barça,Villarreal,corners,11.0,pinnacle,1.82,2.01,0.52656,0.38521,0.11043,32.7,0,without_xg,10.0
@@ -311,16 +311,16 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 15:15,Santander,Real Sociedad,corners,10.5,pinnacle,1.89,1.93,0.50561,0.47656,0.0,34.9,0,without_xg,21.0
 2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 15:15,Santander,Real Sociedad,corners,11.0,pinnacle,2.11,1.72,0.44479,0.36674,0.10982,34.9,0,without_xg,21.0
 2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 15:15,Santander,Real Sociedad,corners,11.5,pinnacle,2.33,1.58,0.39493,0.36674,0.0,34.9,0,without_xg,21.0
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,8.5,pinnacle,1.55,2.39,0.61705,0.59679,0.0,37.2,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,9.0,pinnacle,1.7,2.13,0.56109,0.47433,0.12246,37.2,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,9.5,pinnacle,1.95,1.88,0.49025,0.47433,0.0,37.2,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,10.0,pinnacle,2.21,1.66,0.42299,0.3587,0.11563,37.2,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,10.5,pinnacle,2.45,1.52,0.37089,0.3587,0.0,37.2,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,8.5,pinnacle,1.59,2.31,0.60109,0.53826,0.0,39.7,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,9.0,pinnacle,1.75,2.06,0.54421,0.41433,0.12393,39.7,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,9.5,pinnacle,1.99,1.84,0.47906,0.41433,0.0,39.7,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,10.0,pinnacle,2.25,1.63,0.41302,0.30263,0.1117,39.7,0,without_xg,
-2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,10.5,pinnacle,2.48,1.51,0.36613,0.30263,0.0,39.7,0,without_xg,
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,8.5,pinnacle,1.55,2.39,0.61705,0.59679,0.0,37.2,0,without_xg,5.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,9.0,pinnacle,1.7,2.13,0.56109,0.47433,0.12246,37.2,0,without_xg,5.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,9.5,pinnacle,1.95,1.88,0.49025,0.47433,0.0,37.2,0,without_xg,5.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,10.0,pinnacle,2.21,1.66,0.42299,0.3587,0.11563,37.2,0,without_xg,5.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 17:30,Osasuna,Málaga,corners,10.5,pinnacle,2.45,1.52,0.37089,0.3587,0.0,37.2,0,without_xg,5.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,8.5,pinnacle,1.59,2.31,0.60109,0.53826,0.0,39.7,0,without_xg,9.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,9.0,pinnacle,1.75,2.06,0.54421,0.41433,0.12393,39.7,0,without_xg,9.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,9.5,pinnacle,1.99,1.84,0.47906,0.41433,0.0,39.7,0,without_xg,9.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,10.0,pinnacle,2.25,1.63,0.41302,0.30263,0.1117,39.7,0,without_xg,9.0
+2026-11-21 04:19,la_liga,2026-11-22,2026-11-22 20:00,Getafe,Atleti,corners,10.5,pinnacle,2.48,1.51,0.36613,0.30263,0.0,39.7,0,without_xg,9.0
 2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 14:00,Paris FC,Angers SCO,cards,2.0,pinnacle,1.2,4.21,0.81004,0.57239,0.22548,33.7,0,without_xg,2.0
 2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 14:00,Paris FC,Angers SCO,cards,2.5,pinnacle,1.51,2.52,0.6367,0.57239,0.0,33.7,0,without_xg,2.0
 2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 14:00,Paris FC,Angers SCO,cards,3.0,pinnacle,1.79,2.03,0.53386,0.34839,0.22399,33.7,0,without_xg,2.0
@@ -331,26 +331,26 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 14:00,Paris FC,Angers SCO,corners,9.0,pinnacle,1.82,1.99,0.52407,0.43496,0.12373,33.7,0,without_xg,12.0
 2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 14:00,Paris FC,Angers SCO,corners,9.5,pinnacle,2.06,1.75,0.45579,0.43496,0.0,33.7,0,without_xg,12.0
 2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 14:00,Paris FC,Angers SCO,corners,10.0,pinnacle,2.36,1.55,0.38535,0.32161,0.11335,33.7,0,without_xg,12.0
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,3.0,pinnacle,1.33,3.12,0.72414,0.55948,0.19708,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,3.5,pinnacle,1.64,2.22,0.58207,0.55948,0.0,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,4.0,pinnacle,2.03,1.79,0.46614,0.36418,0.1953,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,4.5,pinnacle,2.51,1.51,0.364,0.36418,0.0,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,5.0,pinnacle,3.28,1.31,0.2623,0.20934,0.15484,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,8.5,pinnacle,1.49,2.5,0.6406,0.56664,0.0,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,9.0,pinnacle,1.62,2.25,0.58912,0.44308,0.12356,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,9.5,pinnacle,1.84,1.97,0.51838,0.44308,0.0,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,10.0,pinnacle,2.05,1.75,0.45695,0.32917,0.11391,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,10.5,pinnacle,2.28,1.59,0.40154,0.32917,0.0,35.9,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,2.5,pinnacle,1.34,3.07,0.71843,0.6633,0.0,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,3.0,pinnacle,1.51,2.51,0.636,0.44514,0.21817,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,3.5,pinnacle,1.9,1.9,0.5,0.44514,0.0,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,4.0,pinnacle,2.45,1.53,0.37342,0.25883,0.18631,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,4.5,pinnacle,2.94,1.37,0.29783,0.25883,0.0,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,8.0,pinnacle,1.42,2.72,0.67468,0.56698,0.12215,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,8.5,pinnacle,1.62,2.26,0.59003,0.56698,0.0,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,9.0,pinnacle,1.79,2.02,0.53265,0.44342,0.12356,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,9.5,pinnacle,2.01,1.78,0.46691,0.44342,0.0,39.4,0,without_xg,
-2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,10.0,pinnacle,2.33,1.57,0.39261,0.32949,0.11393,39.4,0,without_xg,
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,3.0,pinnacle,1.33,3.12,0.72414,0.55948,0.19708,35.9,0,without_xg,4.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,3.5,pinnacle,1.64,2.22,0.58207,0.55948,0.0,35.9,0,without_xg,4.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,4.0,pinnacle,2.03,1.79,0.46614,0.36418,0.1953,35.9,0,without_xg,4.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,4.5,pinnacle,2.51,1.51,0.364,0.36418,0.0,35.9,0,without_xg,4.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,cards,5.0,pinnacle,3.28,1.31,0.2623,0.20934,0.15484,35.9,0,without_xg,4.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,8.5,pinnacle,1.49,2.5,0.6406,0.56664,0.0,35.9,0,without_xg,12.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,9.0,pinnacle,1.62,2.25,0.58912,0.44308,0.12356,35.9,0,without_xg,12.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,9.5,pinnacle,1.84,1.97,0.51838,0.44308,0.0,35.9,0,without_xg,12.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,10.0,pinnacle,2.05,1.75,0.45695,0.32917,0.11391,35.9,0,without_xg,12.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 16:15,Lorient,Stade Rennais,corners,10.5,pinnacle,2.28,1.59,0.40154,0.32917,0.0,35.9,0,without_xg,12.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,2.5,pinnacle,1.34,3.07,0.71843,0.6633,0.0,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,3.0,pinnacle,1.51,2.51,0.636,0.44514,0.21817,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,3.5,pinnacle,1.9,1.9,0.5,0.44514,0.0,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,4.0,pinnacle,2.45,1.53,0.37342,0.25883,0.18631,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,cards,4.5,pinnacle,2.94,1.37,0.29783,0.25883,0.0,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,8.0,pinnacle,1.42,2.72,0.67468,0.56698,0.12215,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,8.5,pinnacle,1.62,2.26,0.59003,0.56698,0.0,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,9.0,pinnacle,1.79,2.02,0.53265,0.44342,0.12356,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,9.5,pinnacle,2.01,1.78,0.46691,0.44342,0.0,39.4,0,without_xg,7.0
+2026-11-21 04:19,ligue_1,2026-11-22,2026-11-22 19:45,Marseille,Le Mans,corners,10.0,pinnacle,2.33,1.57,0.39261,0.32949,0.11393,39.4,0,without_xg,7.0
 2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 11:30,Juventus,Venezia FC,cards,1.5,pinnacle,1.22,4.04,0.7969,0.80646,0.0,7.2,0,without_xg,0.0
 2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 11:30,Juventus,Venezia FC,cards,2.0,pinnacle,1.35,3.18,0.71926,0.58531,0.22115,7.2,0,without_xg,0.0
 2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 11:30,Juventus,Venezia FC,cards,2.5,pinnacle,1.79,2.04,0.53505,0.58531,0.0,7.2,0,without_xg,0.0
@@ -385,16 +385,16 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 14:00,Sassuolo,Genoa,corners,9.0,pinnacle,1.99,1.83,0.47751,0.44512,0.12351,9.7,0,without_xg,8.0
 2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 14:00,Sassuolo,Genoa,corners,9.5,pinnacle,2.23,1.65,0.41905,0.44512,0.0,9.7,0,without_xg,8.0
 2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 14:00,Sassuolo,Genoa,corners,10.0,pinnacle,2.59,1.47,0.34786,0.33108,0.11404,9.7,0,without_xg,8.0
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,3.0,pinnacle,1.37,2.98,0.704,0.43573,0.21926,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,3.5,pinnacle,1.68,2.18,0.57009,0.43573,0.0,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,4.0,pinnacle,2.09,1.76,0.45412,0.25085,0.18489,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,4.5,pinnacle,2.57,1.5,0.35731,0.25085,0.0,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,5.0,pinnacle,3.45,1.29,0.24878,0.12611,0.12474,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,9.0,pinnacle,1.51,2.49,0.63459,0.56241,0.11561,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,9.5,pinnacle,1.71,2.12,0.55814,0.56241,0.0,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,10.0,pinnacle,1.95,1.88,0.49025,0.44579,0.11662,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,10.5,pinnacle,2.2,1.66,0.42396,0.44579,0.0,12.7,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,11.0,pinnacle,2.57,1.48,0.35193,0.33747,0.10832,12.7,0,without_xg,
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,3.0,pinnacle,1.37,2.98,0.704,0.43573,0.21926,12.7,0,without_xg,5.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,3.5,pinnacle,1.68,2.18,0.57009,0.43573,0.0,12.7,0,without_xg,5.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,4.0,pinnacle,2.09,1.76,0.45412,0.25085,0.18489,12.7,0,without_xg,5.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,4.5,pinnacle,2.57,1.5,0.35731,0.25085,0.0,12.7,0,without_xg,5.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,cards,5.0,pinnacle,3.45,1.29,0.24878,0.12611,0.12474,12.7,0,without_xg,5.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,9.0,pinnacle,1.51,2.49,0.63459,0.56241,0.11561,12.7,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,9.5,pinnacle,1.71,2.12,0.55814,0.56241,0.0,12.7,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,10.0,pinnacle,1.95,1.88,0.49025,0.44579,0.11662,12.7,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,10.5,pinnacle,2.2,1.66,0.42396,0.44579,0.0,12.7,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 17:00,Milan,Frosinone,corners,11.0,pinnacle,2.57,1.48,0.35193,0.33747,0.10832,12.7,0,without_xg,11.0
 2026-11-22 04:19,serie_a,2026-11-23,2026-11-23 19:45,Monza,Fiorentina,cards,2.5,pinnacle,1.3,3.29,0.74197,0.67409,0.0,39.4,1,without_xg,
 2026-11-22 04:19,serie_a,2026-11-23,2026-11-23 19:45,Monza,Fiorentina,cards,3.0,pinnacle,1.45,2.7,0.66456,0.45752,0.21657,39.4,1,without_xg,
 2026-11-22 04:19,serie_a,2026-11-23,2026-11-23 19:45,Monza,Fiorentina,cards,3.5,pinnacle,1.83,1.99,0.52249,0.45752,0.0,39.4,1,without_xg,
@@ -405,20 +405,20 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-22 04:19,serie_a,2026-11-23,2026-11-23 19:45,Monza,Fiorentina,corners,9.5,pinnacle,2.0,1.83,0.47625,0.40116,0.0,39.4,1,without_xg,
 2026-11-22 04:19,serie_a,2026-11-23,2026-11-23 19:45,Monza,Fiorentina,corners,10.0,pinnacle,2.28,1.62,0.40816,0.29067,0.11049,39.4,1,without_xg,
 2026-11-22 04:19,serie_a,2026-11-23,2026-11-23 19:45,Monza,Fiorentina,corners,10.5,pinnacle,2.53,1.49,0.35733,0.29067,0.0,39.4,1,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,2.5,pinnacle,1.4,2.84,0.6874,0.57805,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,3.0,pinnacle,1.59,2.34,0.60363,0.35404,0.22401,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,3.5,pinnacle,1.98,1.85,0.48186,0.35404,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,4.0,pinnacle,2.57,1.5,0.35731,0.18572,0.16832,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,4.5,pinnacle,3.07,1.35,0.28516,0.18572,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,8.5,pinnacle,1.49,2.54,0.64335,0.58061,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,9.0,pinnacle,1.61,2.29,0.59489,0.45747,0.12314,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,9.5,pinnacle,1.83,2.0,0.52375,0.45747,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,10.0,pinnacle,2.05,1.76,0.45869,0.34268,0.11479,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,10.5,pinnacle,2.3,1.6,0.40202,0.34268,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,3.5,mybookieag,1.92,1.79,0.48031,0.35404,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,8.5,mybookieag,1.57,2.26,0.60128,0.58061,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,9.5,mybookieag,1.92,1.79,0.48031,0.45747,0.0,15.4,0,without_xg,
-2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,10.5,mybookieag,2.44,1.5,0.36642,0.34268,0.0,15.4,0,without_xg,
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,2.5,pinnacle,1.4,2.84,0.6874,0.57805,0.0,15.4,0,without_xg,3.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,3.0,pinnacle,1.59,2.34,0.60363,0.35404,0.22401,15.4,0,without_xg,3.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,3.5,pinnacle,1.98,1.85,0.48186,0.35404,0.0,15.4,0,without_xg,3.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,4.0,pinnacle,2.57,1.5,0.35731,0.18572,0.16832,15.4,0,without_xg,3.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,4.5,pinnacle,3.07,1.35,0.28516,0.18572,0.0,15.4,0,without_xg,3.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,8.5,pinnacle,1.49,2.54,0.64335,0.58061,0.0,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,9.0,pinnacle,1.61,2.29,0.59489,0.45747,0.12314,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,9.5,pinnacle,1.83,2.0,0.52375,0.45747,0.0,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,10.0,pinnacle,2.05,1.76,0.45869,0.34268,0.11479,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,10.5,pinnacle,2.3,1.6,0.40202,0.34268,0.0,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,cards,3.5,mybookieag,1.92,1.79,0.48031,0.35404,0.0,15.4,0,without_xg,3.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,8.5,mybookieag,1.57,2.26,0.60128,0.58061,0.0,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,9.5,mybookieag,1.92,1.79,0.48031,0.45747,0.0,15.4,0,without_xg,11.0
+2026-11-22 04:19,serie_a,2026-11-22,2026-11-22 19:45,Atalanta,Inter,corners,10.5,mybookieag,2.44,1.5,0.36642,0.34268,0.0,15.4,0,without_xg,11.0
 2026-11-22 04:19,premier_league,2026-11-23,2026-11-23 20:00,Brentford,Everton,cards,2.5,pinnacle,1.31,3.23,0.73591,0.77678,0.0,39.7,0,without_xg,
 2026-11-22 04:19,premier_league,2026-11-23,2026-11-23 20:00,Brentford,Everton,cards,3.0,pinnacle,1.43,2.77,0.67441,0.58667,0.19011,39.7,0,without_xg,
 2026-11-22 04:19,premier_league,2026-11-23,2026-11-23 20:00,Brentford,Everton,cards,3.5,pinnacle,1.72,2.13,0.55736,0.58667,0.0,39.7,0,without_xg,
