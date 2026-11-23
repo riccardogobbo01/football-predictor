@@ -1,0 +1,29 @@
+name: Probe sources
+
+# Prova manuale (round 13): una sola partita per fonte (FotMob, Sofascore) e lo stato di Understat, per vedere se le richieste funzionano dagli IP di GitHub Actions.
+# Nessun dato viene salvato o committato.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: FotMob e Sofascore (una partita per fonte)
+        run: python scripts/sources_probe.py ci
+
+      - name: Understat (stato)
+        run: python scripts/understat_status.py || true
