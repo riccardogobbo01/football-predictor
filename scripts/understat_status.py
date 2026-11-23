@@ -21,7 +21,8 @@ def main() -> int:
         d = r.json()
     except ValueError:
         t = re.sub(r"<(svg|style|script).*?</\1>", "", r.text, flags=re.S)
-        print(f"MANUTENZIONE: HTTP {r.status_code}, non JSON: «{re.sub(chr(10), ' ', re.sub(r'<[^>]+>', ' ', t)).strip()[:80]}» (Last-Modified {r.headers.get('Last-Modified')})")
+        txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)).strip()[:80]
+        print(f"MANUTENZIONE: HTTP {r.status_code}, non JSON: «{txt}» (Last-Modified {r.headers.get('Last-Modified')})")
         return 3
     if isinstance(d, dict) and d.get("dates"):
         played = sum(1 for m in d["dates"] if m.get("isResult"))
