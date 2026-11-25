@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-24 15:00 UTC",
- "today": "2026-11-24",
+ "generated_at": "2026-11-25 04:19 UTC",
+ "today": "2026-11-25",
  "last_week": {
   "start": "2026-11-16",
   "end": "2026-11-22",
@@ -1899,7 +1899,7 @@
  "xg": {
   "n": 209,
   "first": "2026-11-02",
-  "last": "2026-11-24",
+  "last": "2026-11-25",
   "active": true,
   "by_week": {
    "2026-11-02": 53,
@@ -1912,7 +1912,7 @@
  },
  "model": {
   "trained_at": "2026-11-23 15:35 UTC",
-  "age_days": 1,
+  "age_days": 2,
   "late": false,
   "xg": {
    "source": "cache",
@@ -2008,7 +2008,7 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-24 15:00 UTC",
+   "at": "2026-11-25 04:19 UTC",
    "enabled": true,
    "reason": null,
    "used": null,
