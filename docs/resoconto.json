@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25 04:19 UTC",
+ "generated_at": "2026-11-25 14:36 UTC",
  "today": "2026-11-25",
  "last_week": {
   "start": "2026-11-16",
@@ -2008,7 +2008,7 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-25 04:19 UTC",
+   "at": "2026-11-25 14:36 UTC",
    "enabled": true,
    "reason": null,
    "used": null,
