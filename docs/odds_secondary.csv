@@ -466,3 +466,8 @@ snapshot_utc,league,match_date,kickoff_utc,home,away,market,line,bookmaker,odds_
 2026-11-26 04:19,ligue_1,2026-11-27,2026-11-27 19:45,Brest,Paris FC,corners,9.0,pinnacle,1.9,1.91,0.50141,0.41838,0.12392,39.4,0,without_xg,
 2026-11-26 04:19,ligue_1,2026-11-27,2026-11-27 19:45,Brest,Paris FC,corners,9.5,pinnacle,2.12,1.7,0.43998,0.41838,0.0,39.4,0,without_xg,
 2026-11-26 04:19,ligue_1,2026-11-27,2026-11-27 19:45,Brest,Paris FC,corners,10.0,pinnacle,2.45,1.51,0.36831,0.30633,0.11205,39.4,0,without_xg,
+2026-11-26 14:02,serie_a,2026-11-27,2026-11-27 19:45,Venezia FC,Bologna,corners,8.0,pinnacle,1.51,2.5,0.6353,0.55381,0.12369,29.7,1,without_xg,
+2026-11-26 14:02,serie_a,2026-11-27,2026-11-27 19:45,Venezia FC,Bologna,corners,8.5,pinnacle,1.71,2.12,0.55814,0.55381,0.0,29.7,1,without_xg,
+2026-11-26 14:02,serie_a,2026-11-27,2026-11-27 19:45,Venezia FC,Bologna,corners,9.0,pinnacle,1.93,1.9,0.49582,0.43,0.12381,29.7,1,without_xg,
+2026-11-26 14:02,serie_a,2026-11-27,2026-11-27 19:45,Venezia FC,Bologna,corners,9.5,pinnacle,2.14,1.7,0.43786,0.43,0.0,29.7,1,without_xg,
+2026-11-26 14:02,serie_a,2026-11-27,2026-11-27 19:45,Venezia FC,Bologna,corners,10.0,pinnacle,2.47,1.52,0.36942,0.31702,0.11298,29.7,1,without_xg,

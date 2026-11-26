@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26 04:19 UTC",
+ "generated_at": "2026-11-26 14:02 UTC",
  "today": "2026-11-26",
  "last_week": {
   "start": "2026-11-16",
@@ -2008,21 +2008,21 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-26 04:19 UTC",
+   "at": "2026-11-26 14:02 UTC",
    "enabled": true,
    "reason": null,
-   "used": 103,
-   "remaining": 397,
-   "calls": 8,
-   "credits_spent": 6,
-   "due": 4,
-   "recorded": 4,
+   "used": 104,
+   "remaining": 396,
+   "calls": 2,
+   "credits_spent": 1,
+   "due": 1,
+   "recorded": 1,
    "no_data": 0,
    "unmatched": [],
-   "waiting_referee": 1,
+   "waiting_referee": 0,
    "budget_stop": false,
-   "rows": 467,
-   "matches": 52,
+   "rows": 472,
+   "matches": 53,
    "results_filled": 0
   },
   "markets": {
@@ -2037,7 +2037,7 @@
     "n_eval": 30
    },
    "corners": {
-    "registered": 52,
+    "registered": 53,
     "with_result": 48,
     "bookmakers": [
      "mybookieag",
@@ -2048,6 +2048,6 @@
    }
   },
   "min_eval": 200,
-  "matches": 52
+  "matches": 53
  }
 }
