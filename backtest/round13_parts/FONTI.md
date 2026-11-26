@@ -46,3 +46,6 @@ Endpoint `getMatchData/{match_id}` (due librerie pubbliche; `match_id` già in `
 - **Understat resta la fonte primaria** per tiri, xG e roster appena torna online (il controllo periodico ogni 6 ore resta attivo; il download parte solo dopo la conferma della sonda sullo schema).
 - **FotMob: nessuno scaricamento storico.** Solo usi mirati e piccoli in futuro (riempire buchi puntuali, campi che a Understat mancano su sottoinsiemi ridotti).
 - **Sofascore: escluso.**
+
+## API-Football (sonda del 26/11/2026): chiusa
+Il piano gratuito non dà la stagione in corso (solo 2022-2024) e non ha il parametro `ids`: non serve alla produzione. Dettagli in `backtest/round13_parts/APIFOOTBALL.md`. Decisione dell'utente: fonte chiusa, nessuna raccolta.
