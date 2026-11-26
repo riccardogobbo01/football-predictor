@@ -41,3 +41,8 @@ Endpoint `getMatchData/{match_id}` (due librerie pubbliche; `match_id` già in `
 | Costo per ~18.500 partite | 18.500 richieste da ~28 KB (~6,5-9 ore) | 18.500 pagine da ~1,1 MB (~20 GB, ~12 ore) | n.d. |
 | Stabilità | schema stabile da anni, ma ora 3 settimane di manutenzione | pagine Next.js: struttura che può cambiare senza preavviso; API ufficiosa vietata dal robots.txt | protezione anti-bot attiva |
 | ToS | non verificabile ora | uso sistematico dichiarato non permesso | scraping ed estrazione vietati |
+
+## Decisioni dell'utente (26/11/2026)
+- **Understat resta la fonte primaria** per tiri, xG e roster appena torna online (il controllo periodico ogni 6 ore resta attivo; il download parte solo dopo la conferma della sonda sullo schema).
+- **FotMob: nessuno scaricamento storico.** Solo usi mirati e piccoli in futuro (riempire buchi puntuali, campi che a Understat mancano su sottoinsiemi ridotti).
+- **Sofascore: escluso.**
