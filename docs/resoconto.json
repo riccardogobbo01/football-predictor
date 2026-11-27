@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27 04:19 UTC",
+ "generated_at": "2026-11-27 09:19 UTC",
  "today": "2026-11-27",
  "last_week": {
   "start": "2026-11-16",
@@ -2008,15 +2008,15 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-27 04:19 UTC",
+   "at": "2026-11-27 09:19 UTC",
    "enabled": true,
    "reason": null,
-   "used": 140,
-   "remaining": 360,
-   "calls": 25,
-   "credits_spent": 36,
-   "due": 20,
-   "recorded": 20,
+   "used": null,
+   "remaining": null,
+   "calls": 0,
+   "credits_spent": 0,
+   "due": 0,
+   "recorded": 0,
    "no_data": 0,
    "unmatched": [],
    "waiting_referee": 0,
