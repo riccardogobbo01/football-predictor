@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27 09:17 UTC",
+  "generated_at": "2026-11-27 13:58 UTC",
   "model": {
     "name": "Poisson-stack (with_xg, ripiego without_xg)",
     "trained_at": "2026-11-23 15:35 UTC",
@@ -116,7 +116,7 @@
     "skipped": [],
     "cross_check": null,
     "fetched_on": "2026-11-27",
-    "clubs": 743
+    "clubs": 742
   },
   "monitor": {
     "version": "v6-eloodds",
@@ -275,7 +275,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.3114,
+            "draw": 0.29283,
+            "away": 0.39578,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -768,7 +773,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.66121,
+            "draw": 0.17876,
+            "away": 0.16002,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -1272,7 +1282,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.27516,
+            "draw": 0.27603,
+            "away": 0.44881,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -1766,7 +1781,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.75185,
+            "draw": 0.15704,
+            "away": 0.0911,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -2259,7 +2279,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.30684,
+            "draw": 0.26258,
+            "away": 0.43058,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -2749,7 +2774,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.19697,
+            "draw": 0.21716,
+            "away": 0.58586,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -3242,7 +3272,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.82423,
+            "draw": 0.11273,
+            "away": 0.06304,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -3735,7 +3770,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.49071,
+            "draw": 0.26066,
+            "away": 0.24863,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -4227,7 +4267,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.23719,
+            "draw": 0.2412,
+            "away": 0.52161,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -4722,7 +4767,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.18971,
+            "draw": 0.24297,
+            "away": 0.56731,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -10730,7 +10780,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.39429,
+            "draw": 0.27916,
+            "away": 0.32655,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -11215,7 +11270,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.6645,
+            "draw": 0.1999,
+            "away": 0.1356,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -11705,7 +11765,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.4571,
+            "draw": 0.24922,
+            "away": 0.29369,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -12202,7 +12267,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.26556,
+            "draw": 0.24469,
+            "away": 0.48975,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -12691,7 +12761,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.20987,
+            "draw": 0.24255,
+            "away": 0.54759,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -13189,7 +13264,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.34434,
+            "draw": 0.27108,
+            "away": 0.38459,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -13679,7 +13759,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.62157,
+            "draw": 0.2051,
+            "away": 0.17333,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -14174,7 +14259,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.25502,
+            "draw": 0.27603,
+            "away": 0.46895,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -14664,7 +14754,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.51333,
+            "draw": 0.24884,
+            "away": 0.23784,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -15167,7 +15262,12 @@
               "share": 0.4443
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.48673,
+            "draw": 0.25285,
+            "away": 0.26042,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -25545,7 +25645,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.58519,
+            "draw": 0.2148,
+            "away": 0.20002,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -26042,7 +26147,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.48259,
+            "draw": 0.2463,
+            "away": 0.2711,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -26538,7 +26648,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.65045,
+            "draw": 0.19652,
+            "away": 0.15303,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -27038,7 +27153,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.37586,
+            "draw": 0.27219,
+            "away": 0.35195,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -27526,7 +27646,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.08718,
+            "draw": 0.12963,
+            "away": 0.7832,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -28018,7 +28143,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.53395,
+            "draw": 0.20665,
+            "away": 0.25939,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -28518,7 +28648,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.35238,
+            "draw": 0.24365,
+            "away": 0.40398,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -29006,7 +29141,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.56617,
+            "draw": 0.20327,
+            "away": 0.23056,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -29504,7 +29644,12 @@
               "share": 0.4456
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.45504,
+            "draw": 0.23565,
+            "away": 0.30931,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -34988,7 +35133,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.47929,
+            "draw": 0.23343,
+            "away": 0.28728,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -35486,7 +35636,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.61201,
+            "draw": 0.21105,
+            "away": 0.17695,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -35981,7 +36136,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.19648,
+            "draw": 0.24312,
+            "away": 0.56041,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -36481,7 +36641,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.14012,
+            "draw": 0.1897,
+            "away": 0.67018,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -36974,7 +37139,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.87939,
+            "draw": 0.08081,
+            "away": 0.0398,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -37485,7 +37655,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.44731,
+            "draw": 0.28817,
+            "away": 0.26451,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -37983,7 +38158,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.07878,
+            "draw": 0.11243,
+            "away": 0.80878,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -38481,7 +38661,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.34787,
+            "draw": 0.26807,
+            "away": 0.38406,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -38969,7 +39154,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.44816,
+            "draw": 0.26315,
+            "away": 0.28869,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -39461,7 +39651,12 @@
               "share": 0.435
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.46324,
+            "draw": 0.29674,
+            "away": 0.24002,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -46909,7 +47104,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.28106,
+            "draw": 0.27573,
+            "away": 0.44321,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -47404,7 +47604,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.19691,
+            "draw": 0.2289,
+            "away": 0.57418,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -47897,7 +48102,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.25363,
+            "draw": 0.27637,
+            "away": 0.47,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -48387,7 +48597,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.57822,
+            "draw": 0.2299,
+            "away": 0.19189,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -48885,7 +49100,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.30137,
+            "draw": 0.26298,
+            "away": 0.43565,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -49382,7 +49602,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.81592,
+            "draw": 0.12301,
+            "away": 0.06107,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -49881,7 +50106,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.26003,
+            "draw": 0.24447,
+            "away": 0.4955,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -50371,7 +50601,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.37504,
+            "draw": 0.26076,
+            "away": 0.3642,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
@@ -50859,7 +51094,12 @@
               "share": 0.4419
             }
           },
-          "market": null,
+          "market": {
+            "home": 0.40244,
+            "draw": 0.2794,
+            "away": 0.31816,
+            "source": "fixtures"
+          },
           "expected_stats": {
             "model": "without_xg",
             "note": "Modello validato con backtest. Queste statistiche variano molto da partita a partita: guarda l'intervallo e le probabilità, non solo il numero medio.",
