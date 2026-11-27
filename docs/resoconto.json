@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-26 14:02 UTC",
- "today": "2026-11-26",
+ "generated_at": "2026-11-27 04:19 UTC",
+ "today": "2026-11-27",
  "last_week": {
   "start": "2026-11-16",
   "end": "2026-11-22",
@@ -1897,22 +1897,22 @@
  "since": "2026-10-09",
  "provisional": 1,
  "xg": {
-  "n": 210,
+  "n": 214,
   "first": "2026-11-02",
-  "last": "2026-11-26",
+  "last": "2026-11-27",
   "active": true,
   "by_week": {
    "2026-11-02": 53,
    "2026-11-16": 45,
    "2026-11-23": 48,
    "2026-11-30": 60,
-   "2026-12-07": 4
+   "2026-12-07": 8
   },
   "reason": "Understat non disponibile"
  },
  "model": {
   "trained_at": "2026-11-23 15:35 UTC",
-  "age_days": 3,
+  "age_days": 4,
   "late": false,
   "xg": {
    "source": "cache",
@@ -1974,8 +1974,8 @@
   "fallback": 0
  },
  "mycombo": {
-  "proposed": 471,
-  "matches": 157,
+  "proposed": 483,
+  "matches": 161,
   "settled": 144,
   "won": 50,
   "p_mean": 0.3638371527777778,
@@ -2008,36 +2008,36 @@
  },
  "secondary": {
   "status": {
-   "at": "2026-11-26 14:02 UTC",
+   "at": "2026-11-27 04:19 UTC",
    "enabled": true,
    "reason": null,
-   "used": 104,
-   "remaining": 396,
-   "calls": 2,
-   "credits_spent": 1,
-   "due": 1,
-   "recorded": 1,
+   "used": 140,
+   "remaining": 360,
+   "calls": 25,
+   "credits_spent": 36,
+   "due": 20,
+   "recorded": 20,
    "no_data": 0,
    "unmatched": [],
    "waiting_referee": 0,
    "budget_stop": false,
-   "rows": 472,
-   "matches": 53,
+   "rows": 657,
+   "matches": 73,
    "results_filled": 0
   },
   "markets": {
    "cards": {
-    "registered": 39,
+    "registered": 55,
     "with_result": 37,
     "bookmakers": [
      "mybookieag",
      "pinnacle"
     ],
-    "lines": 5.0,
+    "lines": 4.9,
     "n_eval": 30
    },
    "corners": {
-    "registered": 53,
+    "registered": 73,
     "with_result": 48,
     "bookmakers": [
      "mybookieag",
@@ -2048,6 +2048,6 @@
    }
   },
   "min_eval": 200,
-  "matches": 53
+  "matches": 73
  }
 }
